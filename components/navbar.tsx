@@ -41,9 +41,9 @@ export function Navbar({ whatsappUrl }: { whatsappUrl: string }) {
           <Image
             src="/images/yikat-logo-blue.png"
             alt="YIKAT"
-            width={140}
-            height={56}
-            className="h-11 w-auto"
+            width={180}
+            height={72}
+            className="h-14 w-auto"
             priority
           />
         </a>
