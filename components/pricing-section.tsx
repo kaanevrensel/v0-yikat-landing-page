@@ -50,8 +50,24 @@ export function PricingSection({
   whatsappUrl: string
 }) {
   return (
-    <section id="paketler" className="py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <section id="paketler" className="relative overflow-hidden py-20 sm:py-28">
+      {/* Ambient video background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        className="pointer-events-none absolute inset-0 z-0 h-full w-full scale-110 object-cover opacity-[0.07] blur-xl motion-reduce:hidden"
+        aria-hidden="true"
+      >
+        <source src="/videos/laundry-bg.mp4" type="video/mp4" />
+      </video>
+      {/* Overlay layers for readability */}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-background/80 via-background/40 to-background/80" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5" aria-hidden="true" />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
