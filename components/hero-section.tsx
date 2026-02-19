@@ -32,7 +32,7 @@ export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
                 <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-75" />
                 <span className="relative inline-flex size-2 rounded-full bg-primary" />
               </span>
-              {"Simdi hizmet veriyoruz"}
+              {"Şimdi hizmet veriyoruz"}
             </div>
           </motion.div>
 
@@ -57,7 +57,7 @@ export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
           >
             {"Camasir yikama, katlama ve utuleme islerini bize birakin."}
             <br className="hidden sm:block" />
-            {"Zamaninizi kendinize ayirin, biz gerisini halledelim."}
+            {"Zamanınızı kendinize ayırın, biz gerisini halledelim."}
           </motion.p>
 
           {/* CTAs */}
