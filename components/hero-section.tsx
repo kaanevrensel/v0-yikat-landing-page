@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Star } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 
 export function HeroSection({ whatsappUrl }: { whatsappUrl: string }) {
@@ -87,41 +87,7 @@ export function HeroSection({ whatsappUrl }: { whatsappUrl: string }) {
             </Button>
           </motion.div>
 
-          {/* Social proof */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.45 }}
-            className="mt-10 flex items-center gap-4"
-          >
-            {/* Avatar stack */}
-            <div className="flex -space-x-2">
-              {["A", "B", "C", "D"].map((letter) => (
-                <div
-                  key={letter}
-                  className="flex size-8 items-center justify-center rounded-full border-2 border-card bg-secondary text-xs font-semibold text-secondary-foreground"
-                >
-                  {letter}
-                </div>
-              ))}
-            </div>
-            <div className="flex items-center gap-1.5">
-              <div className="flex">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className="size-3.5 fill-amber-400 text-amber-400"
-                  />
-                ))}
-              </div>
-              <span className="text-sm font-semibold text-foreground">
-                {"500+"}
-              </span>
-              <span className="text-sm text-muted-foreground">
-                {"mutlu müşteri"}
-              </span>
-            </div>
-          </motion.div>
+
         </div>
       </div>
     </section>
