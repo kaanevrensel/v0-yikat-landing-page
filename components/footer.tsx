@@ -25,7 +25,7 @@ const footerColumns = [
     links: [
       { label: "Gizlilik Politikası", href: "#" },
       { label: "Kullanım Şartları", href: "#" },
-      { label: "KVKK", href: "#" },
+      { label: "KVKK", href: "/kvkk" },
     ],
   },
 ]
