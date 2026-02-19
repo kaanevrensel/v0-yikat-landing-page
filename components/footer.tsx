@@ -8,15 +8,13 @@ const footerColumns = [
       { label: "Çamaşır Yıkama", href: "#paketler" },
       { label: "Ayakkabı Yıkama", href: "#paketler" },
       { label: "Ütüleme", href: "#paketler" },
-      { label: "Kurumsal Hizmetler", href: "#" },
     ],
   },
   {
     title: "DESTEK",
     links: [
       { label: "Yardım Merkezi", href: "#" },
-      { label: "İletişim", href: "#" },
-      { label: "Hizmet Bölgeleri", href: "#" },
+      { label: "İletişim", href: "/iletisim" },
       { label: "SSS", href: "#sss" },
     ],
   },
