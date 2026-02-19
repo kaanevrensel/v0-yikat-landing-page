@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { Mail, Phone, Clock } from "lucide-react"
 
 const footerColumns = [
@@ -36,8 +37,14 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand column */}
           <div className="lg:col-span-2">
-            <a href="#" className="text-2xl font-bold tracking-tight">
-              {"yıkat"}
+            <a href="#">
+              <Image
+                src="/images/yikat-logo-white.png"
+                alt="YIKAT"
+                width={100}
+                height={40}
+                className="h-8 w-auto"
+              />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-card/70">
               {"Çamaşır yükünü biz alalım. Premium çamaşır toplama ve teslimat servisi."}

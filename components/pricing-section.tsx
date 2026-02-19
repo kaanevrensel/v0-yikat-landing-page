@@ -116,7 +116,7 @@ export function PricingSection({
               <div className="mt-4 flex justify-center">
                 <div className="inline-flex items-center gap-1.5 rounded-full bg-primary/5 px-3 py-1 text-xs font-medium text-primary">
                   <Clock className="size-3" />
-                  {"24 saat içinde teslim"}
+                  {"24-48 saat arası teslim"}
                 </div>
               </div>
 

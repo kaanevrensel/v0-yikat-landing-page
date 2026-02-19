@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -35,10 +36,16 @@ export function Navbar({ whatsappUrl }: { whatsappUrl: string }) {
         {/* Logo */}
         <a
           href="#"
-          className="text-2xl font-bold tracking-tight text-foreground"
           aria-label="YIKAT Ana Sayfa"
         >
-          {"yıkat"}
+          <Image
+            src="/images/yikat-logo-blue.png"
+            alt="YIKAT"
+            width={100}
+            height={40}
+            className="h-8 w-auto"
+            priority
+          />
         </a>
 
         {/* Desktop links */}
