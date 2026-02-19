@@ -2,28 +2,28 @@ import { Mail, Phone, Clock } from "lucide-react"
 
 const footerColumns = [
   {
-    title: "Hizmetler",
+    title: "HİZMETLER",
     links: [
-      { label: "Camasir Yikama", href: "#paketler" },
-      { label: "Ayakkabi Yikama", href: "#paketler" },
-      { label: "Utuleme", href: "#paketler" },
+      { label: "Çamaşır Yıkama", href: "#paketler" },
+      { label: "Ayakkabı Yıkama", href: "#paketler" },
+      { label: "Ütüleme", href: "#paketler" },
       { label: "Kurumsal Hizmetler", href: "#" },
     ],
   },
   {
-    title: "Destek",
+    title: "DESTEK",
     links: [
-      { label: "Yardim Merkezi", href: "#" },
-      { label: "Iletisim", href: "#" },
-      { label: "Hizmet Bolgeleri", href: "#" },
+      { label: "Yardım Merkezi", href: "#" },
+      { label: "İletişim", href: "#" },
+      { label: "Hizmet Bölgeleri", href: "#" },
       { label: "SSS", href: "#sss" },
     ],
   },
   {
-    title: "Yasal",
+    title: "YASAL",
     links: [
-      { label: "Gizlilik Politikasi", href: "#" },
-      { label: "Kullanim Sartlari", href: "#" },
+      { label: "Gizlilik Politikası", href: "#" },
+      { label: "Kullanım Şartları", href: "#" },
       { label: "KVKK", href: "#" },
     ],
   },
@@ -37,10 +37,10 @@ export function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-2">
             <a href="#" className="text-2xl font-bold tracking-tight">
-              {"yikat"}
+              {"yıkat"}
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-card/70">
-              {"Camasir yukunu biz alalim. Premium camasir toplama ve teslimat servisi."}
+              {"Çamaşır yükünü biz alalım. Premium çamaşır toplama ve teslimat servisi."}
             </p>
 
             <div className="mt-5 space-y-2">
@@ -63,10 +63,10 @@ export function Footer() {
             <div className="mt-5 border-t border-card/10 pt-5">
               <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-card/50">
                 <Clock className="size-3.5" />
-                {"Calisma Saatleri"}
+                {"ÇALIŞMA SAATLERİ"}
               </div>
               <p className="mt-1 text-sm text-card/70">
-                {"Haftanin her gunu: 08:00 - 22:00"}
+                {"Haftanın her günü: 08:00 - 22:00"}
               </p>
             </div>
           </div>
@@ -96,7 +96,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 border-t border-card/10 pt-6 text-center">
           <p className="text-xs text-card/50">
-            {"\u00A9 2026 Yikat. Tum haklari saklidir."}
+            {"\u00A9 2026 Yıkat. Tüm hakları saklıdır."}
           </p>
         </div>
       </div>

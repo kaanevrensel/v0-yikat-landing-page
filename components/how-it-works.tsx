@@ -7,26 +7,26 @@ const steps = [
   {
     num: "01",
     icon: Truck,
-    title: "Teslim Aliyoruz",
-    desc: "Camasirlarinizi kapinizdan aliyoruz. Size uygun zamanda geliyoruz.",
+    title: "Teslim Alıyoruz",
+    desc: "Çamaşırlarınızı kapınızdan alıyoruz. Size uygun zamanda geliyoruz.",
   },
   {
     num: "02",
     icon: Sparkles,
-    title: "Yikiyoruz",
-    desc: "Profesyonel ekibimiz ozenle yikiyor, kurutuyor ve katliyor.",
+    title: "Yıkıyoruz",
+    desc: "Profesyonel ekibimiz özenle yıkıyor, kurutuyor ve katlıyor.",
   },
   {
     num: "03",
     icon: Shirt,
-    title: "Isterseniz Utu",
-    desc: "Utu secenegiyle kiyafetleriniz kullanima hazir sekilde teslim edilir.",
+    title: "İsterseniz Ütü",
+    desc: "Ütü seçeneğiyle kıyafetleriniz kullanıma hazır şekilde teslim edilir.",
   },
   {
     num: "04",
     icon: PackageCheck,
     title: "Teslim Ediyoruz",
-    desc: "Tertemiz camasirlarinizi paketli olarak kapiniza teslim ediyoruz.",
+    desc: "Tertemiz çamaşırlarınızı paketli olarak kapınıza teslim ediyoruz.",
   },
 ]
 
@@ -56,10 +56,10 @@ export function HowItWorks() {
           className="text-center"
         >
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            {"Nasil Calisir?"}
+            {"Nasıl Çalışır?"}
           </h2>
           <p className="mt-3 text-base text-muted-foreground sm:text-lg">
-            {"Dort basit adimda camasir derdinizden kurtulun"}
+            {"Dört basit adımda çamaşır derdinizden kurtulun"}
           </p>
         </motion.div>
 

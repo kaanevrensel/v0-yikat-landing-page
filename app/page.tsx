@@ -1,6 +1,3 @@
-"use client"
-
-import { useState } from "react"
 import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
 import { HowItWorks } from "@/components/how-it-works"
@@ -9,26 +6,22 @@ import { WhyYikat } from "@/components/why-yikat"
 import { FaqSection } from "@/components/faq-section"
 import { CtaBand } from "@/components/cta-band"
 import { Footer } from "@/components/footer"
-import { OrderDialog } from "@/components/order-dialog"
+
+const WHATSAPP_URL = "https://wa.me/908503033193?text=Merhaba%2C%20sipari%C5%9F%20vermek%20istiyorum."
 
 export default function Home() {
-  const [orderOpen, setOrderOpen] = useState(false)
-
-  const handleOrderClick = () => setOrderOpen(true)
-
   return (
     <>
-      <Navbar onOrderClick={handleOrderClick} />
+      <Navbar whatsappUrl={WHATSAPP_URL} />
       <main>
-        <HeroSection onOrderClick={handleOrderClick} />
+        <HeroSection whatsappUrl={WHATSAPP_URL} />
         <HowItWorks />
-        <PricingSection onOrderClick={handleOrderClick} />
+        <PricingSection whatsappUrl={WHATSAPP_URL} />
         <WhyYikat />
         <FaqSection />
-        <CtaBand onOrderClick={handleOrderClick} />
+        <CtaBand whatsappUrl={WHATSAPP_URL} />
       </main>
       <Footer />
-      <OrderDialog open={orderOpen} onOpenChange={setOrderOpen} />
     </>
   )
 }

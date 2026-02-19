@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 
-export function CtaBand({ onOrderClick }: { onOrderClick: () => void }) {
+export function CtaBand({ whatsappUrl }: { whatsappUrl: string }) {
   return (
     <section
       className="relative overflow-hidden py-20 sm:py-24"
@@ -26,18 +26,20 @@ export function CtaBand({ onOrderClick }: { onOrderClick: () => void }) {
           className="text-center"
         >
           <h2 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            {"Bugun dene, ilk siparisini ver."}
+            {"Bugün dene, ilk siparişini ver."}
           </h2>
           <p className="mt-3 text-base text-white/80 sm:text-lg">
-            {"Hayatinizi kolaylastirmak icin bir siparis kadar yakinsiniz."}
+            {"Hayatınızı kolaylaştırmak için bir sipariş kadar yakınsınız."}
           </p>
           <Button
-            onClick={onOrderClick}
+            asChild
             size="lg"
             className="mt-7 rounded-full border border-white/20 bg-white px-7 text-base font-semibold text-foreground hover:bg-white/90"
           >
-            {"Siparis Ver"}
-            <ArrowRight className="ml-1 size-4" />
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+              {"Sipariş Ver"}
+              <ArrowRight className="ml-1 size-4" />
+            </a>
           </Button>
         </motion.div>
       </div>

@@ -1,10 +1,10 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Star, Users } from "lucide-react"
+import { ArrowRight, Star } from "lucide-react"
 import { motion } from "framer-motion"
 
-export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
+export function HeroSection({ whatsappUrl }: { whatsappUrl: string }) {
   return (
     <section className="relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28 lg:pt-44 lg:pb-36">
       {/* Background gradient */}
@@ -43,9 +43,9 @@ export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="max-w-3xl text-balance text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl"
           >
-            {"Camasir yukunu"}
+            {"Çamaşır yükünü"}
             <br />
-            <span className="text-primary">{"biz alalim."}</span>
+            <span className="text-primary">{"biz alalım."}</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -55,7 +55,7 @@ export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
           >
-            {"Camasir yikama, katlama ve utuleme islerini bize birakin."}
+            {"Çamaşır yıkama, katlama ve ütüleme işlerini bize bırakın."}
             <br className="hidden sm:block" />
             {"Zamanınızı kendinize ayırın, biz gerisini halledelim."}
           </motion.p>
@@ -68,12 +68,14 @@ export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
             className="mt-8 flex flex-col items-center gap-3 sm:flex-row"
           >
             <Button
-              onClick={onOrderClick}
+              asChild
               size="lg"
               className="rounded-full bg-primary px-7 text-base font-semibold text-primary-foreground hover:bg-primary/90"
             >
-              {"Siparis Ver"}
-              <ArrowRight className="ml-1 size-4" />
+              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                {"Sipariş Ver"}
+                <ArrowRight className="ml-1 size-4" />
+              </a>
             </Button>
             <Button
               variant="outline"
@@ -81,7 +83,7 @@ export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
               asChild
               className="rounded-full border-border px-7 text-base font-semibold text-foreground"
             >
-              <a href="#nasil-calisir">{"Nasil Calisir?"}</a>
+              <a href="#nasil-calisir">{"Nasıl Çalışır?"}</a>
             </Button>
           </motion.div>
 
@@ -116,7 +118,7 @@ export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
                 {"500+"}
               </span>
               <span className="text-sm text-muted-foreground">
-                {"mutlu musteri"}
+                {"mutlu müşteri"}
               </span>
             </div>
           </motion.div>

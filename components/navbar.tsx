@@ -7,12 +7,12 @@ import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 
 const navLinks = [
-  { label: "Nasil Calisir?", href: "#nasil-calisir" },
+  { label: "Nasıl Çalışır?", href: "#nasil-calisir" },
   { label: "Paketler", href: "#paketler" },
   { label: "SSS", href: "#sss" },
 ]
 
-export function Navbar({ onOrderClick }: { onOrderClick: () => void }) {
+export function Navbar({ whatsappUrl }: { whatsappUrl: string }) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -38,7 +38,7 @@ export function Navbar({ onOrderClick }: { onOrderClick: () => void }) {
           className="text-2xl font-bold tracking-tight text-foreground"
           aria-label="YIKAT Ana Sayfa"
         >
-          {"yikat"}
+          {"yıkat"}
         </a>
 
         {/* Desktop links */}
@@ -53,11 +53,13 @@ export function Navbar({ onOrderClick }: { onOrderClick: () => void }) {
             </a>
           ))}
           <Button
-            onClick={onOrderClick}
+            asChild
             className="rounded-full bg-primary px-5 text-primary-foreground hover:bg-primary/90"
             size="sm"
           >
-            {"Siparis Ver"}
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+              {"Sipariş Ver"}
+            </a>
           </Button>
         </div>
 
@@ -92,14 +94,13 @@ export function Navbar({ onOrderClick }: { onOrderClick: () => void }) {
                 </a>
               ))}
               <Button
-                onClick={() => {
-                  setMobileOpen(false)
-                  onOrderClick()
-                }}
+                asChild
                 className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
                 size="sm"
               >
-                {"Siparis Ver"}
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                  {"Sipariş Ver"}
+                </a>
               </Button>
             </div>
           </motion.div>

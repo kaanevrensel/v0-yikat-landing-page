@@ -7,32 +7,32 @@ import { Check, Clock, Footprints } from "lucide-react"
 
 const packages = [
   {
-    name: "Kucuk Paket",
-    desc: "Tek kisilik veya haftalik yikamalar icin",
-    price: "149",
+    name: "Küçük Paket",
+    desc: "Tek kişilik veya haftalık yıkamalar için",
+    price: "459",
     recommended: false,
     features: [
-      "5 kg'a kadar camasir",
-      "Yikama ve katlama",
-      "Ozel kiyafet bakimi",
-      "Utu opsiyonel (+50\u20BA)",
+      "4 kg'a kadar çamaşır",
+      "Yıkama ve katlama",
+      "Özel kıyafet bakımı",
+      "Ütü opsiyonel (+30\u20BA)",
     ],
   },
   {
     name: "Standart Paket",
-    desc: "Aileler ve duzenli kullanim icin",
-    price: "249",
+    desc: "Aileler ve düzenli kullanım için",
+    price: "679",
     recommended: true,
     features: [
-      "10 kg'a kadar camasir",
-      "Yikama ve katlama",
-      "Ozel kiyafet bakimi",
-      "Utu opsiyonel (+50\u20BA)",
+      "10 kg'a kadar çamaşır",
+      "Yıkama ve katlama",
+      "Özel kıyafet bakımı",
+      "Ütü opsiyonel (+30\u20BA)",
     ],
   },
 ]
 
-const shoeFeatures = ["Spor Ayakkabi", "Klasik / Deri", "Bot / Kalin"]
+const shoeFeatures = ["Spor Ayakkabı", "Klasik / Deri", "Bot / Kalın"]
 
 const containerVariants = {
   hidden: {},
@@ -45,9 +45,9 @@ const itemVariants = {
 }
 
 export function PricingSection({
-  onOrderClick,
+  whatsappUrl,
 }: {
-  onOrderClick: () => void
+  whatsappUrl: string
 }) {
   return (
     <section id="paketler" className="py-20 sm:py-28">
@@ -63,7 +63,7 @@ export function PricingSection({
             {"Paketler & Fiyatlar"}
           </h2>
           <p className="mt-3 text-base text-muted-foreground sm:text-lg">
-            {"Ihtiyaciniza uygun paketi secin, hemen baslayin"}
+            {"İhtiyacınıza uygun paketi seçin, hemen başlayın"}
           </p>
         </motion.div>
 
@@ -88,7 +88,7 @@ export function PricingSection({
               {pkg.recommended && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                   <Badge className="rounded-full bg-primary px-3 py-0.5 text-xs font-semibold text-primary-foreground">
-                    {"Onerilen"}
+                    {"Önerilen"}
                   </Badge>
                 </div>
               )}
@@ -108,7 +108,7 @@ export function PricingSection({
                   {"\u20BA"}
                 </span>
                 <p className="mt-0.5 text-sm text-muted-foreground">
-                  {"/ siparis"}
+                  {"/ sipariş"}
                 </p>
               </div>
 
@@ -116,7 +116,7 @@ export function PricingSection({
               <div className="mt-4 flex justify-center">
                 <div className="inline-flex items-center gap-1.5 rounded-full bg-primary/5 px-3 py-1 text-xs font-medium text-primary">
                   <Clock className="size-3" />
-                  {"24 saat icinde teslim"}
+                  {"24 saat içinde teslim"}
                 </div>
               </div>
 
@@ -135,14 +135,16 @@ export function PricingSection({
               </ul>
 
               <Button
-                onClick={onOrderClick}
+                asChild
                 className={`mt-7 w-full rounded-full text-sm font-semibold ${
                   pkg.recommended
                     ? "bg-primary text-primary-foreground hover:bg-primary/90"
                     : "bg-foreground text-card hover:bg-foreground/90"
                 }`}
               >
-                {"Siparis Ver"}
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                  {"Sipariş Ver"}
+                </a>
               </Button>
             </motion.div>
           ))}
@@ -161,10 +163,10 @@ export function PricingSection({
               <Footprints className="size-5" />
             </div>
             <h3 className="text-xl font-bold text-foreground">
-              {"Ayakkabi Yikama"}
+              {"Ayakkabı Yıkama"}
             </h3>
             <p className="mt-1 text-sm text-muted-foreground">
-              {"Ayakkabilariniz icin ozel yikama hizmeti"}
+              {"Ayakkabılarınız için özel yıkama hizmeti"}
             </p>
 
             <ul className="mt-5 space-y-2.5" role="list">
@@ -177,10 +179,12 @@ export function PricingSection({
             </ul>
 
             <Button
-              onClick={onOrderClick}
+              asChild
               className="mt-6 w-full rounded-full bg-foreground text-card hover:bg-foreground/90 text-sm font-semibold"
             >
-              {"Siparis Ver"}
+              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                {"Sipariş Ver"}
+              </a>
             </Button>
           </div>
         </motion.div>

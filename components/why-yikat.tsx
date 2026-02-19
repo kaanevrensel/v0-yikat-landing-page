@@ -6,18 +6,18 @@ import { Clock, ShieldCheck, CalendarCheck } from "lucide-react"
 const benefits = [
   {
     icon: Clock,
-    title: "Zaman Kazandirir",
-    desc: "Ayda ortalama 85 saat kazandirir. Camasir yikama, kurutma ve katlama derdi artik sizin degil.",
+    title: "Zaman Kazandırır",
+    desc: "Ayda ortalama 85 saat kazandırır. Çamaşır yıkama, kurutma ve katlama derdi artık sizin değil.",
   },
   {
     icon: ShieldCheck,
-    title: "Hijyen Standartlari",
-    desc: "Her siparis icin sterilize edilmis ekipman ve yuksek kaliteli deterjanlar kullaniyoruz.",
+    title: "Hijyen Standartları",
+    desc: "Her sipariş için sterilize edilmiş ekipman ve yüksek kaliteli deterjanlar kullanıyoruz.",
   },
   {
     icon: CalendarCheck,
-    title: "Duzenli Teslimat",
-    desc: "Planli teslimat, duzenli surec. Her sipariste ayni guvenilirlikle zamaninizi daha verimli kullanin.",
+    title: "Düzenli Teslimat",
+    desc: "Planlı teslimat, düzenli süreç. Her siparişte aynı güvenilirlikle zamanınızı daha verimli kullanın.",
   },
 ]
 
@@ -46,7 +46,7 @@ export function WhyYikat() {
             {"Neden YIKAT?"}
           </h2>
           <p className="mt-3 text-base text-muted-foreground sm:text-lg">
-            {"Guvenilir, hijyenik ve zamaninda hizmet"}
+            {"Güvenilir, hijyenik ve zamanında hizmet"}
           </p>
         </motion.div>
 
