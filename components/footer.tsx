@@ -23,9 +23,7 @@ const footerColumns = [
   {
     title: "YASAL",
     links: [
-      { label: "Gizlilik Politikası", href: "#" },
-      { label: "Kullanım Şartları", href: "#" },
-      { label: "KVKK", href: "/kvkk" },
+      { label: "KVKK Aydınlatma Metni", href: "/kvkk" },
     ],
   },
 ]
