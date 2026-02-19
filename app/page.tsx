@@ -7,7 +7,8 @@ import { FaqSection } from "@/components/faq-section"
 import { CtaBand } from "@/components/cta-band"
 import { Footer } from "@/components/footer"
 
-const WHATSAPP_URL = "https://wa.me/908503033193?text=Merhaba%2C%20sipari%C5%9F%20vermek%20istiyorum."
+const WHATSAPP_URL =
+  "https://wa.me/908503033193?text=Merhaba%2C%20sipari%C5%9F%20vermek%20istiyorum."
 
 export default function Home() {
   return (
