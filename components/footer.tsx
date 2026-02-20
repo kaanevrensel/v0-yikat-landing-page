@@ -22,6 +22,7 @@ const footerColumns = [
     title: "YASAL",
     links: [
       { label: "KVKK Aydınlatma Metni", href: "/kvkk" },
+      { label: "Mesafeli Satış Sözleşmesi", href: "/mesafeli-satis-sozlesmesi" },
     ],
   },
 ]
