@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 const navLinks = [
   { label: "Nasıl Çalışır?", href: "#nasil-calisir" },
-  { label: "Paketler", href: "#paketler" },
+  { label: "Hizmetler", href: "#paketler" },
   { label: "SSS", href: "#sss" },
 ]
 

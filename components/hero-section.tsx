@@ -15,9 +15,19 @@ export function HeroSection({ whatsappUrl }: { whatsappUrl: string }) {
             "linear-gradient(180deg, oklch(0.93 0.03 230) 0%, oklch(0.97 0.01 240) 50%, oklch(0.99 0.002 240) 100%)",
         }}
       />
-      {/* Subtle decorative circles */}
-      <div className="pointer-events-none absolute -top-32 -right-32 size-96 rounded-full bg-primary/5 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-24 -left-24 size-80 rounded-full bg-primary/5 blur-3xl" />
+      {/* Subtle animated decorative circles */}
+      <div
+        className="pointer-events-none absolute -top-32 -right-32 size-96 rounded-full bg-primary/5 blur-3xl motion-reduce:animate-none"
+        style={{ animation: "hero-drift-1 25s ease-in-out infinite" }}
+      />
+      <div
+        className="pointer-events-none absolute -bottom-24 -left-24 size-80 rounded-full bg-primary/5 blur-3xl motion-reduce:animate-none"
+        style={{ animation: "hero-drift-2 30s ease-in-out infinite" }}
+      />
+      <div
+        className="pointer-events-none absolute top-1/3 left-1/2 size-72 -translate-x-1/2 rounded-full bg-primary/[0.03] blur-3xl motion-reduce:animate-none"
+        style={{ animation: "hero-drift-1 35s ease-in-out infinite reverse" }}
+      />
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">

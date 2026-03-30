@@ -2,32 +2,46 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Check, Clock, Footprints } from "lucide-react"
+import { Check, Clock, Footprints, MessageCircle, Weight, Sofa, Shirt } from "lucide-react"
 
-const packages = [
+const services = [
   {
-    name: "Küçük Paket",
-    desc: "Tek kişilik veya haftalık yıkamalar için",
-    price: "459",
+    name: "Kiloyla Yıkat",
+    icon: Weight,
+    price: "110",
+    unit: "TL / kg",
+    description: "4 kg ve üstü siparişlerde servis ücretsiz.",
     recommended: false,
     features: [
-      "4 kg'a kadar çamaşır",
-      "Yıkama ve katlama",
+      "Yıkama ve kurutma",
+      "Katlama",
       "Özel kıyafet bakımı",
-      "Ütü opsiyonel (+30\u20BA)",
     ],
   },
   {
-    name: "Standart Paket",
-    desc: "Aileler ve düzenli kullanım için",
-    price: "679",
-    recommended: true,
+    name: "Hacimli Yıkama",
+    icon: Sofa,
+    description: "Yorgan, çarşaf ve benzeri hacimli ürünler için.",
+    recommended: false,
+    cta: true,
     features: [
-      "10 kg'a kadar çamaşır",
-      "Yıkama ve katlama",
-      "Özel kıyafet bakımı",
-      "Ütü opsiyonel (+30\u20BA)",
+      "Yorgan yıkama",
+      "Çarşaf & nevresim",
+      "Battaniye",
+      "Perde yıkama",
+    ],
+  },
+  {
+    name: "Ütü Hizmeti",
+    icon: Shirt,
+    price: "30",
+    unit: "TL / parça",
+    description: "Kıyafetleriniz için profesyonel ütü hizmeti.",
+    recommended: false,
+    features: [
+      "Gömlek & bluz",
+      "Pantolon & etek",
+      "Takım elbise",
     ],
   },
 ]
@@ -76,10 +90,10 @@ export function PricingSection({
           className="text-center"
         >
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            {"Paketler & Fiyatlar"}
+            {"Hizmetler & Fiyatlar"}
           </h2>
           <p className="mt-3 text-base text-muted-foreground sm:text-lg">
-            {"İhtiyacınıza uygun paketi seçin, hemen başlayın"}
+            {"İhtiyacınıza uygun olan servisi seçin, hemen yıkatın"}
           </p>
         </motion.div>
 
@@ -89,79 +103,87 @@ export function PricingSection({
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          className="mx-auto mt-14 grid max-w-3xl gap-6 lg:grid-cols-2"
+          className="mx-auto mt-14 grid max-w-5xl gap-6 md:grid-cols-2 lg:grid-cols-3"
         >
-          {packages.map((pkg) => (
+          {services.map((svc) => (
             <motion.div
-              key={pkg.name}
+              key={svc.name}
               variants={itemVariants}
-              className={`relative rounded-2xl border bg-card p-7 transition-shadow hover:shadow-md ${
-                pkg.recommended
+              className={`relative flex flex-col rounded-2xl border bg-card p-7 transition-shadow hover:shadow-md ${
+                svc.recommended
                   ? "border-primary shadow-lg shadow-primary/10"
                   : "border-border"
               }`}
             >
-              {pkg.recommended && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <Badge className="rounded-full bg-primary px-3 py-0.5 text-xs font-semibold text-primary-foreground">
-                    {"Önerilen"}
-                  </Badge>
+              {svc.icon && (
+                <div className="mx-auto mb-3 flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <svc.icon className="size-5" />
                 </div>
               )}
 
-              <div className="text-center">
-                <h3 className="text-xl font-bold text-foreground">
-                  {pkg.name}
-                </h3>
-                <p className="mt-1 text-sm text-muted-foreground">{pkg.desc}</p>
-              </div>
+              {/* Content grows so the CTA buttons align across grid rows */}
+              <div className="flex flex-1 flex-col">
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-foreground">
+                    {svc.name}
+                  </h3>
+                  {svc.description && (
+                    <p className="mt-1 text-sm text-muted-foreground">{svc.description}</p>
+                  )}
+                </div>
 
-              <div className="mt-6 text-center">
-                <span className="text-4xl font-extrabold tracking-tight text-foreground">
-                  {pkg.price}
-                </span>
-                <span className="ml-1 text-lg font-semibold text-muted-foreground">
-                  {"\u20BA"}
-                </span>
-                <p className="mt-0.5 text-sm text-muted-foreground">
-                  {"/ sipariş"}
-                </p>
-              </div>
+                {svc.price && (
+                  <div className="mt-6 text-center">
+                    <span className="text-4xl font-extrabold tracking-tight text-foreground">
+                      {svc.price}
+                    </span>
+                    <span className="ml-1 text-lg font-semibold text-muted-foreground">
+                      {svc.unit}
+                    </span>
+                  </div>
+                )}
 
-              {/* Delivery badge */}
-              <div className="mt-4 flex justify-center">
-                <div className="inline-flex items-center gap-1.5 rounded-full bg-primary/5 px-3 py-1 text-xs font-medium text-primary">
-                  <Clock className="size-3" />
-                  {"24-48 saat arası teslim"}
+                {/* Features */}
+                {svc.features && (
+                  <ul className="mt-5 space-y-2.5" role="list">
+                    {svc.features.map((f) => (
+                      <li key={f} className="flex items-center justify-center gap-2 text-sm text-foreground">
+                        <Check className="size-4 shrink-0 text-primary" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {/* Delivery badge */}
+                <div className="mt-4 flex justify-center">
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-primary/5 px-3 py-1 text-xs font-medium text-primary">
+                    <Clock className="size-3" />
+                    {"24-48 saat arası teslim"}
+                  </div>
                 </div>
               </div>
 
-              {/* Features */}
-              <ul className="mt-6 space-y-3" role="list">
-                {pkg.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2.5 text-sm text-foreground">
-                    <Check
-                      className={`size-4 shrink-0 ${
-                        pkg.recommended ? "text-primary" : "text-primary/70"
-                      }`}
-                    />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-
-              <Button
-                asChild
-                className={`mt-7 w-full rounded-full text-sm font-semibold ${
-                  pkg.recommended
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                    : "bg-foreground text-card hover:bg-foreground/90"
-                }`}
-              >
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                  {"Sipariş Ver"}
-                </a>
-              </Button>
+              {svc.cta ? (
+                <Button
+                  asChild
+                  className="mt-7 w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 text-sm font-semibold"
+                >
+                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                    <MessageCircle className="mr-2 size-4" />
+                    {"Teklif Al"}
+                  </a>
+                </Button>
+              ) : (
+                <Button
+                  asChild
+                  className="mt-7 w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 text-sm font-semibold"
+                >
+                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                    {"Sipariş Ver"}
+                  </a>
+                </Button>
+              )}
             </motion.div>
           ))}
         </motion.div>
@@ -196,7 +218,7 @@ export function PricingSection({
 
             <Button
               asChild
-              className="mt-6 w-full rounded-full bg-foreground text-card hover:bg-foreground/90 text-sm font-semibold"
+              className="mt-6 w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 text-sm font-semibold"
             >
               <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                 {"Sipariş Ver"}
