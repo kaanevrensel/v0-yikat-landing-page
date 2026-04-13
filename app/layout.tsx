@@ -41,6 +41,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.yikat.tech/',
   },
+  verification: {
+    google: 'STVQceqys-HuTc9IuB8MElUcaltLIoRKCwBQ-FkwUYA',
+  },
 }
 
 export const viewport: Viewport = {
