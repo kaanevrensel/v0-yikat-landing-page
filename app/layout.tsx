@@ -9,9 +9,8 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'YIKAT - Premium Camasir Yikama ve Teslimat Servisi',
-  description:
-    'Camasir yukunu biz alalim. Premium camasir toplama, yikama, katlama ve teslimat servisi. 24 saat icinde teslim.',
+  title: 'Çamaşır ve Ayakkabı Yıkama Servisi | Kapıdan Alım, Kapıya Teslim — YIKAT',
+  description: 'YIKAT ile çamaşır ve ayakkabılarınız kapınızdan alınır, yıkanır, kapınıza teslim edilir. Kilo bazlı fiyatlandırma, 24–48 saat teslim. İstanbul geneli hizmet.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -21,6 +20,26 @@ export const metadata: Metadata = {
       },
     ],
     apple: '/images/yikat-logo-blue.png',
+  },
+  openGraph: {
+    type: 'website',
+    url: 'https://www.yikat.tech/',
+    title: 'YIKAT — Çamaşır ve Ayakkabı Yıkama Servisi',
+    description: 'Kapıdan alım, kapıya teslim. Kilo bazlı çamaşır ve ayakkabı yıkama hizmeti.',
+    locale: 'tr_TR',
+    siteName: 'YIKAT',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'YIKAT — Çamaşır ve Ayakkabı Yıkama Servisi',
+    description: 'Kapıdan alım, kapıya teslim. Kilo bazlı çamaşır ve ayakkabı yıkama hizmeti.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: 'https://www.yikat.tech/',
   },
 }
 
@@ -38,7 +57,76 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className={`${inter.variable} font-sans antialiased`}>
-        {children}
+      <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "CleaningService",
+      "name": "YIKAT",
+      "alternateName": "Yıkat Çamaşır Servisi",
+      "description": "Çamaşır ve ayakkabı temizliğini kapıdan alıp kapıya teslim eden, kilo bazlı fiyatlandırma ile çalışan pratik temizlik servisi.",
+      "url": "https://www.yikat.tech",
+      "telephone": "+908503033193",
+      "email": "destek@yikat.tech",
+      "priceRange": "₺₺",
+      "openingHours": "Mo-Su 08:00-22:00",
+      "areaServed": { "@type": "City", "name": "İstanbul" },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Yıkat Hizmetleri",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Kiloyla Çamaşır Yıkama" },
+            "price": "110", "priceCurrency": "TRY"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Ütü Hizmeti" },
+            "price": "30", "priceCurrency": "TRY"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Ayakkabı Yıkama" }
+          }
+        ]
+      }
+    })
+  }}
+/>
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "YIKAT nedir?",
+          "acceptedAnswer": { "@type": "Answer", "text": "YIKAT, çamaşır ve ayakkabı temizliğini kapıdan alıp kapıya teslim eden bir hizmet servisidir. Kilo bazlı fiyatlandırma ile çalışır." }
+        },
+        {
+          "@type": "Question",
+          "name": "Hangi bölgelerde hizmet veriyorsunuz?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Şu an İstanbul genelinde hizmet vermekteyiz." }
+        },
+        {
+          "@type": "Question",
+          "name": "Çamaşırlarım ne kadar sürede teslim edilir?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Standart siparişlerde teslim süresi 24–48 saattir." }
+        },
+        {
+          "@type": "Question",
+          "name": "Ödeme nasıl yapılıyor?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Nakit, kredi kartı veya havale ile ödeme yapabilirsiniz." }
+        }
+      ]
+    })
+  }}
+         />
+         {children}
         <Analytics />
       </body>
     </html>
