@@ -44,7 +44,7 @@ export function Footer() {
               />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-card/70">
-              {"Çamaşır yükünü biz alalım. Premium çamaşır toplama ve teslimat servisi."}
+              {"Çekmeköy'de çamaşır yıkama, ütüleme ve ayakkabı temizleme servisi. Kapıdan alım, kapıya teslim."}
             </p>
 
             <div className="mt-5 space-y-2">
