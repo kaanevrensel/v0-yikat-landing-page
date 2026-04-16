@@ -7,7 +7,7 @@ const benefits = [
   {
     icon: Clock,
     title: "Zaman Kazandırır",
-    desc: "Ayda ortalama 85 saat kazandırır. Çamaşır yıkama, kurutma ve katlama derdi artık sizin değil.",
+    desc: "Çamaşır yıkama servisiyle ayda ortalama 85 saat kazanırsınız. Yıkama, kurutma ve katlama derdi artık sizin değil.",
   },
   {
     icon: ShieldCheck,
