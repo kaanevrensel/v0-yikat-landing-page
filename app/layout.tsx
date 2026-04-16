@@ -9,9 +9,8 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Çamaşır ve Ayakkabı Yıkama Servisi | Kapıdan Alım, Kapıya Teslim — YIKAT',
-  description: 'YIKAT ile çamaşır ve ayakkabılarınız kapınızdan alınır, yıkanır, kapınıza teslim edilir. Kilo bazlı fiyatlandırma, 24–48 saat teslim. İstanbul geneli hizmet.',
-  generator: 'v0.app',
+  title: 'Çekmeköy Çamaşır ve Ayakkabı Yıkama Servisi | Kapıdan Alım, Kapıya Teslim — YIKAT',
+  description: 'Çekmeköy çamaşır yıkama servisi. Evden çamaşır toplama, yıkama, ütüleme ve kapıya teslim. Kilo bazlı fiyatlandırma, 24–48 saat teslim. WhatsApp ile sipariş.',  
   icons: {
     icon: [
       {
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
     type: 'website',
     url: 'https://www.yikat.tech/',
     title: 'YIKAT — Çamaşır ve Ayakkabı Yıkama Servisi',
-    description: 'Kapıdan alım, kapıya teslim. Kilo bazlı çamaşır ve ayakkabı yıkama hizmeti.',
+    description: 'Çekmeköy çamaşır yıkama servisi. Kapıdan toplama, yıkama, ütüleme ve teslim. Kilo bazlı fiyat, 24–48 saat.',
     locale: 'tr_TR',
     siteName: 'YIKAT',
   },
@@ -74,7 +73,7 @@ export default function RootLayout({
       "email": "destek@yikat.tech",
       "priceRange": "₺₺",
       "openingHours": "Mo-Su 08:00-22:00",
-      "areaServed": { "@type": "City", "name": "İstanbul" },
+      "areaServed": { "@type": "City", "name": "Çekmeköy" },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Yıkat Hizmetleri",
