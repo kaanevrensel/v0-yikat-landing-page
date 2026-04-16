@@ -7,26 +7,26 @@ const steps = [
   {
     num: "01",
     icon: Truck,
-    title: "Teslim Alıyoruz",
-    desc: "Çamaşırlarınızı kapınızdan alıyoruz. Size uygun zamanda geliyoruz.",
+    title: "Kapınızdan Teslim Alıyoruz",
+    desc: "Çamaşır toplama servisiyle kapınıza geliyoruz. Siz saati seçin, biz gelip alalım.",
   },
   {
     num: "02",
     icon: Sparkles,
-    title: "Yıkıyoruz",
-    desc: "Profesyonel ekibimiz özenle yıkıyor, kurutuyor ve katlıyor.",
+    title: "Profesyonelce Yıkıyoruz",
+    desc: "Çamaşırlarınızı profesyonel ekibimiz özenle yıkıyor, kurutuyor ve katlıyor.",
   },
   {
     num: "03",
     icon: Shirt,
-    title: "İsterseniz Ütü",
-    desc: "Ütü seçeneğiyle kıyafetleriniz kullanıma hazır şekilde teslim edilir.",
+    title: "İsterseniz Ütülüyoruz",
+    desc: "Ütü hizmeti seçeneğiyle kıyafetleriniz kullanıma hazır şekilde teslim edilir.",
   },
   {
     num: "04",
     icon: PackageCheck,
-    title: "Teslim Ediyoruz",
-    desc: "Tertemiz çamaşırlarınızı paketli olarak kapınıza teslim ediyoruz.",
+    title: "Kapınıza Teslim Ediyoruz",
+    desc: "Tertemiz çamaşırlarınızı 24-48 saat içinde paketli olarak kapınıza teslim ediyoruz.",
   },
 ]
 
@@ -59,8 +59,13 @@ export function HowItWorks() {
             {"Nasıl Çalışır?"}
           </h2>
           <p className="mt-3 text-base text-muted-foreground sm:text-lg">
-            {"Dört basit adımda çamaşır derdinizden kurtulun"}
+           {"Kapıdan çamaşır toplama, yıkama ve teslim. 4 basit adımda."}
           </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
+           <span>✓ 24–48 saat teslim</span>
+           <span>✓ Kilo bazlı fiyat</span>
+           <span>✓ WhatsApp ile hızlı sipariş</span>
+          </div>
         </motion.div>
 
         <motion.div

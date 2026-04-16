@@ -15,15 +15,15 @@ const faqs = [
   },
   {
     q: "Hangi bölgelerde hizmet veriyorsunuz?",
-    a: "Şu anda İstanbul'un Anadolu ve Avrupa yakasında seçili bölgelerde hizmet vermekteyiz. Hizmet bölgemizi sürekli genişletiyoruz. Detaylı bilgi için destek hattımızı arayabilirsiniz.",
-  },
+    a: "Şu anda Çekmeköy'de hizmet vermekteyiz. Hizmet bölgemizi sürekli genişletiyoruz. Detaylı bilgi için destek hattımızla iletişime geçebilirsiniz.",  
+  }, 
   {
     q: "Hassas kıyafetlerimi de yıkayabilir misiniz?",
     a: "Evet, hassas kıyafetleriniz için özel yıkama programları uyguluyoruz. İpek, yün ve benzeri hassas kumaşlar için uygun deterjan ve sıcaklık ayarları kullanılmaktadır.",
   },
   {
     q: "Çamaşırlarım ne kadar sürede teslim edilir?",
-    a: "Standart siparişlerde çamaşırlarınız 24 saat içinde teslim edilir. Yoğun dönemlerde bu süre en fazla 36 saate uzayabilir.",
+    a: "Standart siparişlerde çamaşırlarınız 24–48 saat içinde teslim edilir. Yoğun dönemlerde bu süre en fazla 48 saate uzayabilir.", 
   },
   {
     q: "Ödeme nasıl yapılıyor?",
@@ -32,6 +32,18 @@ const faqs = [
   {
     q: "Kıyafetlerime zarar gelirse ne olur?",
     a: "Profesyonel ekibimiz her kıyafeti titizlikle inceleyerek uygun yıkama programını uygular. Herhangi bir sorun yaşanması durumunda müşterimizle iletişime geçerek çözüm sunuyoruz.",
+  },
+  {
+    q: "Çamaşır yıkama fiyatları nasıl hesaplanıyor?",
+    a: "Kilo bazlı fiyatlandırma uyguluyoruz. 4 kg ve üzeri siparişlerde ücretsiz servis sunuyoruz. Güncel fiyatlar için WhatsApp hattımızdan bilgi alabilirsiniz.",
+  },
+  {
+    q: "Ayakkabı temizleme servisi nasıl işliyor?",
+    a: "Ayakkabılarınızı kapınızdan teslim alıyor, profesyonel ekibimizle temizleyip 24–48 saat içinde kapınıza teslim ediyoruz.",
+  },
+  {
+    q: "WhatsApp ile nasıl sipariş verebilirim?",
+    a: "WhatsApp hattımıza mesaj atmanız yeterli. Adresinizi ve uygun zamanı belirtirseniz ekibimiz kapınıza gelir.",
   },
 ]
 

@@ -90,10 +90,10 @@ export function PricingSection({
           className="text-center"
         >
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            {"Hizmetler & Fiyatlar"}
+           {"Çamaşır ve Ayakkabı Yıkama Hizmetleri & Fiyatlar"}
           </h2>
           <p className="mt-3 text-base text-muted-foreground sm:text-lg">
-            {"İhtiyacınıza uygun olan servisi seçin, hemen yıkatın"}
+            {"Kilo bazlı çamaşır yıkama, ütü ve ayakkabı temizleme. Çekmeköy'e kapıdan teslim"}
           </p>
         </motion.div>
 
