@@ -42,7 +42,7 @@ export function HeroSection({ whatsappUrl }: { whatsappUrl: string }) {
                 <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-75" />
                 <span className="relative inline-flex size-2 rounded-full bg-primary" />
               </span>
-              {"Şimdi hizmet veriyoruz"}
+              {"Çekmeköy • 08:00–22:00"}
             </div>
           </motion.div>
 
@@ -53,9 +53,9 @@ export function HeroSection({ whatsappUrl }: { whatsappUrl: string }) {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="max-w-3xl text-balance text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl"
           >
-            {"Çamaşır yükünü"}
-            <br />
-            <span className="text-primary">{"biz alalım."}</span>
+           {"Çamaşır ve Ayakkabı Yıkat"}
+           <br />
+           <span className="text-primary">{"Kapıdan Teslim."}</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -65,9 +65,9 @@ export function HeroSection({ whatsappUrl }: { whatsappUrl: string }) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
           >
-            {"Çamaşır yıkama, katlama ve ütüleme işlerini bize bırakın."}
+            {"Evden çamaşır toplama, yıkama, ütüleme ve kapıya teslim hizmeti."}
             <br className="hidden sm:block" />
-            {"Zamanınızı kendinize ayırın, biz gerisini halledelim."}
+            {"Kilo bazlı fiyatlandırma, 24–48 saat teslim. Çekmeköy genelinde hizmet veriyoruz."}
           </motion.p>
 
           {/* CTAs */}
