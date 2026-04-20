@@ -10,7 +10,7 @@ export default function Home() {
           <section
             key={s.id}
             id={s.id}
-            className={`flex min-h-screen items-center justify-center ${i === 0 ? "" : "lg:pl-[260px]"}`}
+            className={`flex min-h-screen items-center justify-center ${i === 0 ? "" : "lg:pl-[480px]"}`}
           >
             <h1 className="font-mono text-6xl">{s.label}</h1>
           </section>

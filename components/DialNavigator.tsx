@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import {
   motion,
   useMotionValue,
@@ -25,9 +25,9 @@ const SAMPLES = 240
 // ---------- Size constants (CSS pixels) ----------
 const BASE_SIZE = 500                       // container footprint (matches viewBox)
 const HERO_SIZE = 380                       // visible diameter at hero
-const SCROLLED_SIZE = 420                   // visible diameter once morph completes
 const HERO_SCALE = HERO_SIZE / BASE_SIZE    // 0.76
-const SCROLLED_SCALE = SCROLLED_SIZE / BASE_SIZE // 0.84
+const SCROLLED_PADDING = 40                 // 20px top + 20px bottom
+const MIN_SCROLLED_SIZE = 420               // clamp floor for short viewports
 
 function smoothstep(t: number): number {
   const x = Math.max(0, Math.min(1, t))
@@ -66,6 +66,17 @@ export function DialNavigator() {
 
   const [active, setActiveManual] = useActiveSection({ freeze: false })
 
+  const [scrolledSize, setScrolledSize] = useState(MIN_SCROLLED_SIZE)
+  useEffect(() => {
+    const update = () => {
+      setScrolledSize(Math.max(MIN_SCROLLED_SIZE, window.innerHeight - SCROLLED_PADDING))
+    }
+    update()
+    window.addEventListener("resize", update)
+    return () => window.removeEventListener("resize", update)
+  }, [])
+  const scrolledScale = scrolledSize / BASE_SIZE
+
   const rotationTarget = useMotionValue(0)
   const rotation = useSpring(rotationTarget, { stiffness: 60, damping: 20 })
 
@@ -79,7 +90,7 @@ export function DialNavigator() {
   const morphProgress = useSpring(easedProgress, { stiffness: 50, damping: 20 })
 
   const left = useTransform(morphProgress, [0, 1], ["50vw", "0vw"])
-  const scale = useTransform(morphProgress, [0, 1], [HERO_SCALE, SCROLLED_SCALE])
+  const scale = useTransform(morphProgress, [0, 1], [HERO_SCALE, scrolledScale])
 
   const instantRotation = useMotionValue(-active * 45)
   useEffect(() => {
@@ -87,7 +98,7 @@ export function DialNavigator() {
   }, [active, instantRotation])
 
   const effectiveLeft = prefersReducedMotion ? "0vw" : left
-  const effectiveScale = prefersReducedMotion ? SCROLLED_SCALE : scale
+  const effectiveScale = prefersReducedMotion ? scrolledScale : scale
   const effectiveRotation = prefersReducedMotion ? instantRotation : rotation
 
   function handleClick(i: number) {
