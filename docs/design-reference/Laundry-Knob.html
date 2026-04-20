@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Program Selector — Laundry</title>
+<meta name="viewport" content="width=1440" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --accent: #2798ff;
+    --ink: #2798ff;
+  }
+  html, body { margin:0; padding:0; background:#fff; color:#2798ff; font-family:'Inter', system-ui, sans-serif; }
+  body { min-height:100vh; display:flex; align-items:center; justify-content:center; }
+  * { box-sizing: border-box; }
+  #root { width:100%; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" data-presets="react">
+const { useState, useEffect, useRef } = React;
+
+const TWEAKS = /*EDITMODE-BEGIN*/{
+  "knobSize": 316,
+  "perspectiveTilt": 0,
+  "panelTone": "flat",
+  "accentHue": 220,
+  "showIcons": false,
+  "motionBlur": false,
+  "autoDemo": false,
+  "language": "tr"
+}/*EDITMODE-END*/;
+
+const BLUE  = '#2798ff';
+const WHITE = '#ffffff';
+
+const LABELS = ['BAŞLA', 'HİZMET', 'NASIL', 'FİYAT', 'NEDEN', 'YORUM', 'SORU', 'SİPARİŞ'];
+const N = 8;
+const STEP = 360 / N;
+const RING = Array.from({ length: N }, (_, i) => ({
+  label: LABELS[i],
+  num: String(i + 1).padStart(2, '0'),
+  angle: i * STEP,
+}));
+
+function App(){
+  const [tweaks, setTweaks] = useState(TWEAKS);
+  const [tweaksOpen, setTweaksOpen] = useState(false);
+  const [selectedIdx, setSelectedIdx] = useState(0);
+  const [mode, setMode] = useState('idle'); // idle | hover | rotating
+  const [dragAngle, setDragAngle] = useState(null);
+  const frameRef = useRef(null);
+
+  const selected = RING[selectedIdx];
+  const targetAngle = selected.angle;
+  const displayAngle = dragAngle !== null ? dragAngle : targetAngle;
+
+  const dragState = useRef({ active:false, startAngle:0, startRot:0 });
+  const dragAngleRef = useRef(displayAngle);
+  useEffect(() => { dragAngleRef.current = displayAngle; }, [displayAngle]);
+
+  const onMouseDown = (e) => {
+    if (!frameRef.current) return;
+    const rect = frameRef.current.getBoundingClientRect();
+    const cx = rect.left + rect.width/2;
+    const cy = rect.top + rect.height/2;
+    const a0 = Math.atan2(e.clientY - cy, e.clientX - cx) * 180 / Math.PI;
+    dragState.current = { active:true, startAngle:a0, startRot: displayAngle };
+    setMode('rotating');
+    setDragAngle(displayAngle);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+  };
+  const onMouseMove = (e) => {
+    if (!dragState.current.active || !frameRef.current) return;
+    const rect = frameRef.current.getBoundingClientRect();
+    const cx = rect.left + rect.width/2;
+    const cy = rect.top + rect.height/2;
+    const a = Math.atan2(e.clientY - cy, e.clientX - cx) * 180 / Math.PI;
+    const delta = a - dragState.current.startAngle;
+    setDragAngle(dragState.current.startRot + delta);
+  };
+  const onMouseUp = () => {
+    if (!dragState.current.active) return;
+    dragState.current.active = false;
+    window.removeEventListener('mousemove', onMouseMove);
+    window.removeEventListener('mouseup', onMouseUp);
+    const cur = dragAngleRef.current;
+    const snapped = Math.round(cur / STEP) * STEP;
+    const normalized = ((snapped) % 360 + 360) % 360;
+    const idx = Math.round(normalized / STEP) % RING.length;
+    setSelectedIdx(idx);
+    setDragAngle(null);
+    setMode('hover');
+  };
+
+  useEffect(() => {
+    if (!tweaks.autoDemo) return;
+    const id = setInterval(() => {
+      setMode('rotating');
+      setSelectedIdx((i) => (i + 1) % RING.length);
+      setTimeout(() => setMode('idle'), 520);
+    }, 1600);
+    return () => clearInterval(id);
+  }, [tweaks.autoDemo]);
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        setMode('rotating');
+        setSelectedIdx(i => (i + 1) % RING.length);
+        setTimeout(() => setMode('idle'), 520);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        setMode('rotating');
+        setSelectedIdx(i => (i - 1 + RING.length) % RING.length);
+        setTimeout(() => setMode('idle'), 520);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
+  useEffect(() => {
+    const onMsg = (e) => {
+      const d = e.data;
+      if (!d || !d.type) return;
+      if (d.type === '__activate_edit_mode') setTweaksOpen(true);
+      if (d.type === '__deactivate_edit_mode') setTweaksOpen(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+  const updateTweak = (k, v) => {
+    setTweaks(t => {
+      const nt = { ...t, [k]: v };
+      window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [k]: v } }, '*');
+      return nt;
+    });
+  };
+
+  // Layout
+  const W = 1440, H = 900;
+  const cx = W/2, cy = H/2;
+  const size = tweaks.knobSize;       // blue disc diameter
+  const R = size/2;                    // knob radius
+  const rRingOuter = R + 70;           // outer circle of the bezel ring
+  const rRingInner = R;                // inner edge = edge of knob
+  const rLabel     = (rRingOuter + rRingInner) / 2; // labels centered in the white ring
+  const bumpExtra  = 18;               // how far the ring bumps out at active position
+  const hover = mode !== 'idle';
+  const scale = hover ? 1.02 : 1;
+
+  return (
+    <div style={{
+      width: W, height: H, position:'relative', background:'#fff',
+      margin:'0 auto', overflow:'hidden',
+      fontFamily:"'Inter', system-ui, sans-serif",
+    }}>
+      {/* Scene as single SVG — pure flat vectors with one concave depth cue */}
+      <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H}
+        style={{ position:'absolute', inset:0 }}>
+        <defs>
+          {/* Concave dish: edges slightly darker, center lighter */}
+          <radialGradient id="concave" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"  stopColor="#5fb1ff" />
+            <stop offset="55%" stopColor="#2798ff" />
+            <stop offset="100%" stopColor="#1b6bb8" />
+          </radialGradient>
+        </defs>
+
+        {/* Bezel ring: outer boundary is a smooth path that bumps outward at the active label.
+            The ring itself is the white gap between this outer path and the knob edge. */}
+        {(() => {
+          const samples = 240;
+          const activeAng = selected.angle; // degrees
+          const bumpWidth = 26; // degrees of influence (full width)
+          const pts = [];
+          for (let i = 0; i <= samples; i++) {
+            const deg = (i / samples) * 360;
+            // signed shortest angular distance to activeAng
+            let d = ((deg - activeAng + 540) % 360) - 180;
+            const t = Math.max(0, 1 - Math.abs(d) / bumpWidth);
+            const smooth = t * t * (3 - 2 * t); // smoothstep
+            const r = rRingOuter + bumpExtra * smooth;
+            const rad = (deg - 90) * Math.PI / 180;
+            pts.push([cx + Math.cos(rad) * r, cy + Math.sin(rad) * r]);
+          }
+          const d = pts.map((p, i) => (i === 0 ? 'M' : 'L') + p[0].toFixed(2) + ',' + p[1].toFixed(2)).join(' ') + ' Z';
+          return (
+            <path d={d} fill="none" stroke={BLUE} strokeWidth="2"
+              style={{ transition: 'd 420ms cubic-bezier(.2,.9,.25,1)' }} />
+          );
+        })()}
+
+        {/* Labels INSIDE the white bezel ring, at each 45° position */}
+        {RING.map((it, idx) => {
+          const rad = (it.angle - 90) * Math.PI / 180;
+          const active = idx === selectedIdx;
+          const lx = cx + Math.cos(rad) * rLabel;
+          const ly = cy + Math.sin(rad) * rLabel;
+          return (
+            <text key={idx} x={lx} y={ly}
+              textAnchor="middle" dominantBaseline="central"
+              fontFamily="'JetBrains Mono', ui-monospace, monospace"
+              fontSize={active ? 16 : 11}
+              fontWeight={active ? 700 : 400}
+              letterSpacing={active ? '0.16em' : '0.12em'}
+              fill={BLUE}
+              opacity={active ? 1 : 0.3}
+              style={{
+                cursor:'pointer',
+                transition: 'font-size 320ms, opacity 320ms, font-weight 320ms',
+              }}
+              onClick={() => {
+                setMode('rotating');
+                setSelectedIdx(idx);
+                setTimeout(() => setMode('idle'), 520);
+              }}>
+              {it.label}
+            </text>
+          );
+        })}
+
+        {/* KNOB — flat disc with concave radial shading */}
+        <g ref={frameRef}
+          onMouseDown={onMouseDown}
+          onMouseEnter={() => mode === 'idle' && setMode('hover')}
+          onMouseLeave={() => mode === 'hover' && setMode('idle')}
+          style={{
+            cursor: mode === 'rotating' ? 'grabbing' : 'grab',
+            transform: `scale(${scale})`,
+            transformOrigin: `${cx}px ${cy}px`,
+            transition: 'transform 320ms cubic-bezier(.2,.7,.2,1)',
+          }}
+        >
+          {/* hover halo */}
+          {hover && (
+            <circle cx={cx} cy={cy} r={R + 14}
+              fill="none" stroke={BLUE} strokeWidth="1.25" opacity="0.3" />
+          )}
+
+          {/* main disc — concave dish */}
+          <circle cx={cx} cy={cy} r={R}
+            fill="url(#concave)" />
+
+          {/* rotating layer: indicator + center dot */}
+          <g style={{
+            transform: `rotate(${displayAngle}deg)`,
+            transformOrigin: `${cx}px ${cy}px`,
+            transition: mode === 'rotating' ? 'none' : 'transform 520ms cubic-bezier(.2,.9,.25,1)',
+          }}>
+            {/* indicator — clean white stroke, rounded caps */}
+            <line x1={cx} y1={cy - R + 16} x2={cx} y2={cy - R + 72}
+              stroke={WHITE} strokeWidth="6" strokeLinecap="round" />
+
+            {/* center dot */}
+            <circle cx={cx} cy={cy} r="10" fill={WHITE} />
+          </g>
+        </g>
+      </svg>
+
+      {tweaksOpen && (
+        <TweaksPanel tweaks={tweaks} set={updateTweak} close={()=>setTweaksOpen(false)} />
+      )}
+    </div>
+  );
+}
+
+function TweaksPanel({ tweaks, set, close }) {
+  const Row = ({label, children}) => (
+    <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', gap:12, padding:'10px 0', borderBottom:'1px solid #e7f1ff'}}>
+      <div style={{fontSize:11, letterSpacing:'0.08em', textTransform:'uppercase', color:BLUE, opacity:0.7}}>{label}</div>
+      <div>{children}</div>
+    </div>
+  );
+  return (
+    <div style={{
+      position:'fixed', right:20, bottom:20, width:280,
+      background:'#fff', border:`1px solid ${BLUE}`, borderRadius:8,
+      padding:'14px 16px 6px', zIndex:50, fontFamily:"'Inter', system-ui, sans-serif",
+    }}>
+      <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:6}}>
+        <div style={{fontSize:12, fontWeight:600, letterSpacing:'0.06em', textTransform:'uppercase', color:BLUE}}>Tweaks</div>
+        <button onClick={close} style={{border:0, background:'transparent', cursor:'pointer', color:BLUE}}>✕</button>
+      </div>
+      <Row label="Knob size">
+        <input type="range" min="200" max="380" step="4"
+          value={tweaks.knobSize}
+          onChange={e => set('knobSize', +e.target.value)} />
+      </Row>
+      <Row label="Auto demo">
+        <input type="checkbox" checked={tweaks.autoDemo} onChange={e => set('autoDemo', e.target.checked)} />
+      </Row>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
