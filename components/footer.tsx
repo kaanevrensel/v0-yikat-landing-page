@@ -52,21 +52,21 @@ export function Footer() {
                 href="mailto:destek@yikat.tech"
                 className="flex items-center gap-2 text-sm text-card/70 transition-colors hover:text-card"
               >
-                <Mail className="size-4" />
+                <Mail className="size-4" aria-hidden="true" />
                 {"destek@yikat.tech"}
               </a>
               <a
                 href="tel:08503033193"
                 className="flex items-center gap-2 text-sm text-card/70 transition-colors hover:text-card"
               >
-                <Phone className="size-4" />
+                <Phone className="size-4" aria-hidden="true" />
                 {"0850 303 31 93"}
               </a>
             </div>
 
             <div className="mt-5 border-t border-card/10 pt-5">
               <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-card/50">
-                <Clock className="size-3.5" />
+                <Clock className="size-3.5" aria-hidden="true" />
                 {"ÇALIŞMA SAATLERİ"}
               </div>
               <p className="mt-1 text-sm text-card/70">
@@ -78,9 +78,9 @@ export function Footer() {
           {/* Link columns */}
           {footerColumns.map((col) => (
             <div key={col.title}>
-              <h4 className="text-sm font-semibold uppercase tracking-wider text-card/90">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-card/90">
                 {col.title}
-              </h4>
+              </h3>
               <ul className="mt-4 space-y-2.5" role="list">
                 {col.links.map((link) => (
                   <li key={link.label}>
