@@ -125,7 +125,7 @@ export default function RootLayout({
         {
           "@type": "Question",
           "name": "Hangi bölgelerde hizmet veriyorsunuz?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Şu an İstanbul genelinde hizmet vermekteyiz." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Şu an Çekmeköy'de hizmet vermekteyiz. Hizmet bölgemizi sürekli genişletiyoruz." }
         },
         {
           "@type": "Question",
