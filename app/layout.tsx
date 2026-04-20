@@ -1,11 +1,18 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Fraunces } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
   variable: '--font-inter',
+})
+
+const fraunces = Fraunces({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-fraunces',
+  axes: ['opsz'],
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -58,7 +65,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${fraunces.variable} font-sans antialiased`}>
       <script
   type="application/ld+json"
   dangerouslySetInnerHTML={{
