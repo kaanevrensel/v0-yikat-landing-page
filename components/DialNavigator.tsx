@@ -32,7 +32,9 @@ const HERO_SIZE = 380                       // visible diameter at hero
 const HERO_SCALE = HERO_SIZE / BASE_SIZE    // 0.76
 const SCROLLED_PADDING = 40                 // 20px top + 20px bottom
 const MIN_SCROLLED_SIZE = 420               // clamp floor for short viewports
-const MOBILE_DIAL_VW = 100                  // full diameter = 100% of viewport width; visible half = 50vw tall
+const MOBILE_HERO_DIAL_VW = 70              // full diameter at hero state (fully visible, centered)
+const MOBILE_SCROLLED_DIAL_VW = 100         // full diameter when scrolled (top-clipped, edge-to-edge)
+const MOBILE_HERO_TOP_PCT = 30              // center at 30% of viewport height in hero state
 
 function smoothstep(t: number): number {
   const x = Math.max(0, Math.min(1, t))
@@ -82,7 +84,8 @@ export function DialNavigator() {
   }, [])
   const scrolledSize = Math.max(MIN_SCROLLED_SIZE, viewport.h - SCROLLED_PADDING)
   const scrolledScale = scrolledSize / BASE_SIZE
-  const mobileScale = (MOBILE_DIAL_VW / 100 * viewport.w) / BASE_SIZE
+  const mobileHeroScale = (MOBILE_HERO_DIAL_VW / 100 * viewport.w) / BASE_SIZE
+  const mobileScrolledScale = (MOBILE_SCROLLED_DIAL_VW / 100 * viewport.w) / BASE_SIZE
 
   const rotationTarget = useMotionValue(0)
   const rotation = useSpring(rotationTarget, { stiffness: 60, damping: 20 })
@@ -99,6 +102,10 @@ export function DialNavigator() {
   const left = useTransform(morphProgress, [0, 1], ["50vw", "0vw"])
   const scale = useTransform(morphProgress, [0, 1], [HERO_SCALE, scrolledScale])
 
+  // Mobile morph: hero (fully visible, centered ~30% from top, 70vw) → scrolled (top-clipped, 100vw).
+  const mobileTop = useTransform(morphProgress, [0, 1], [`${MOBILE_HERO_TOP_PCT}%`, "0%"])
+  const mobileScale = useTransform(morphProgress, [0, 1], [mobileHeroScale, mobileScrolledScale])
+
   const instantRotation = useMotionValue(-active * 45)
   useEffect(() => {
     instantRotation.set(-active * 45)
@@ -107,6 +114,9 @@ export function DialNavigator() {
   const effectiveLeft = prefersReducedMotion ? "0vw" : left
   const effectiveScale = prefersReducedMotion ? scrolledScale : scale
   const effectiveRotation = prefersReducedMotion ? instantRotation : rotation
+
+  const effectiveMobileTop = prefersReducedMotion ? "0%" : mobileTop
+  const effectiveMobileScale = prefersReducedMotion ? mobileScrolledScale : mobileScale
 
   // Mobile rotation = desktop rotation + 90° (so active lands at 6 o'clock, not 3).
   const mobileRotation = useTransform(rotation, (r) => r + MOBILE_ROTATION_OFFSET_DEG)
@@ -179,15 +189,16 @@ export function DialNavigator() {
         </motion.div>
       </motion.div>
 
-      {/* Mobile: same dial, half-clipped top, active label at 6 o'clock, bezel bump at 6 o'clock. */}
+      {/* Mobile: same dial, morphs from fully-visible center (hero) to top-clipped (scrolled). Active at 6 o'clock. */}
       <motion.div
         role="navigation"
         aria-label="Sayfa içi gezinti"
-        className="pointer-events-none fixed left-1/2 top-0 z-40 h-[500px] w-[500px] lg:hidden"
+        className="pointer-events-none fixed left-1/2 z-40 h-[500px] w-[500px] lg:hidden"
         style={{
+          top: effectiveMobileTop,
           x: "-50%",
           y: "-50%",
-          scale: mobileScale,
+          scale: effectiveMobileScale,
           transformOrigin: "center",
           willChange: "transform",
         }}
