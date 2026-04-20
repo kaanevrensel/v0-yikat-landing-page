@@ -91,6 +91,7 @@ export function DialNavigator() {
   const effectiveRotation = prefersReducedMotion ? instantRotation : rotation
 
   function handleClick(i: number) {
+    // TODO(task-10): pass programmaticScrollRef.current into useActiveSection via its freeze option
     programmaticScrollRef.current = true
     setActiveManual(i)
     const el = document.getElementById(SECTIONS[i].id)
