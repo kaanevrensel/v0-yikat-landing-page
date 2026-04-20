@@ -32,7 +32,7 @@ const HERO_SIZE = 380                       // visible diameter at hero
 const HERO_SCALE = HERO_SIZE / BASE_SIZE    // 0.76
 const SCROLLED_PADDING = 40                 // 20px top + 20px bottom
 const MIN_SCROLLED_SIZE = 420               // clamp floor for short viewports
-const MOBILE_DIAL_VW = 60                   // full diameter = 60% of viewport width; visible half = 30vw tall
+const MOBILE_DIAL_VW = 100                  // full diameter = 100% of viewport width; visible half = 50vw tall
 
 function smoothstep(t: number): number {
   const x = Math.max(0, Math.min(1, t))
