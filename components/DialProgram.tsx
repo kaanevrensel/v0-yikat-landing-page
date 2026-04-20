@@ -9,7 +9,7 @@ interface DialProgramProps {
   activeIndex: number
   /** Label ring rotation (degrees). Pass through from parent for counter-rotation. */
   ringRotation: MotionValue<number>
-  /** Radius in viewBox units (0..250 where dial container is 500x500). Default 220. */
+  /** Radius in viewBox units (0..250 where dial container is 500x500). Default 205 (inside bezel annulus). */
   radius?: number
   onClick: (index: number) => void
 }
@@ -19,25 +19,27 @@ export function DialProgram({
   index,
   activeIndex,
   ringRotation,
-  radius = 220,
+  radius = 205,
   onClick,
 }: DialProgramProps) {
   const isActive = index === activeIndex
-  // Position on ring: base angle i*45° (clockwise from 3 o'clock).
   const rad = (section.angle * Math.PI) / 180
   const x = Math.cos(rad) * radius
   const y = Math.sin(rad) * radius
 
-  // Counter-rotate so text stays upright while ring rotates
   const counterRotation = useTransform(ringRotation, r => -r)
 
   const colorClass = isActive
     ? section.highlight
       ? "text-[#2798ff]"
       : "text-[#0F172A]"
-    : "text-[#0F172A]/30"
+    : "text-[#0F172A]/50"
 
-  const weightClass = isActive ? "font-semibold" : "font-normal"
+  const sizeClass = isActive
+    ? "text-[15px] tracking-[0.16em]"
+    : "text-[12px] tracking-[0.12em]"
+
+  const weightClass = isActive ? "font-bold" : "font-normal"
 
   return (
     <motion.button
@@ -45,7 +47,7 @@ export function DialProgram({
       onClick={() => onClick(index)}
       aria-label={section.ariaLabel}
       aria-current={isActive ? "location" : undefined}
-      className={`absolute left-1/2 top-1/2 whitespace-nowrap rounded-sm px-2 py-1 font-serif text-sm tracking-[0.08em] outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-[#2798ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAFAF7] ${colorClass} ${weightClass}`}
+      className={`absolute left-1/2 top-1/2 whitespace-nowrap rounded-sm px-2 py-1 font-mono outline-none transition-[font-size,color,letter-spacing,font-weight] duration-300 ease-out focus-visible:ring-2 focus-visible:ring-[#2798ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAFAF7] ${colorClass} ${sizeClass} ${weightClass}`}
       style={{
         x: x,
         y: y,
