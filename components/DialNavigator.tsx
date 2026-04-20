@@ -167,7 +167,54 @@ export function DialNavigator() {
         </motion.div>
       </motion.div>
 
-      {/* Mobile top bar — placeholder for Task 12 */}
+      {/* Mobile: fixed top bar, small dial + horizontal label strip */}
+      <nav
+        aria-label="Sayfa içi gezinti"
+        className="fixed left-0 right-0 top-0 z-40 flex h-16 items-center gap-3 border-b border-[#E5E7EB] bg-[#FAFAF7]/90 px-3 backdrop-blur lg:hidden"
+      >
+        {/* Mini dial */}
+        <motion.div
+          className="relative h-12 w-12 shrink-0"
+          aria-hidden="true"
+        >
+          <svg viewBox="0 0 500 500" className="h-full w-full">
+            <defs>
+              <radialGradient id="knob-shade-mobile" cx="50%" cy="45%" r="55%">
+                <stop offset="0%" stopColor="#FFFFFF" />
+                <stop offset="100%" stopColor="#F3F4F6" />
+              </radialGradient>
+            </defs>
+            <circle cx="250" cy="250" r="190" fill="none" stroke="#E5E7EB" strokeWidth="8" />
+            <circle cx="250" cy="250" r="130" fill="url(#knob-shade-mobile)" stroke="#E5E7EB" strokeWidth="3" />
+            <polygon points="380,230 380,270 420,250" fill="#0F172A" />
+          </svg>
+        </motion.div>
+
+        {/* Horizontal label strip */}
+        <div className="flex flex-1 gap-3 overflow-x-auto scrollbar-hide">
+          {SECTIONS.map((s, i) => {
+            const isActive = i === active
+            const color = isActive
+              ? s.highlight
+                ? "text-[#2798ff]"
+                : "text-[#0F172A]"
+              : "text-[#0F172A]/40"
+            const weight = isActive ? "font-semibold" : "font-normal"
+            return (
+              <button
+                key={s.id}
+                type="button"
+                onClick={() => handleClick(i)}
+                aria-label={s.ariaLabel}
+                aria-current={isActive ? "location" : undefined}
+                className={`shrink-0 whitespace-nowrap rounded-sm px-2 py-1 font-serif text-xs tracking-[0.08em] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#2798ff] ${color} ${weight}`}
+              >
+                {s.label}
+              </button>
+            )
+          })}
+        </div>
+      </nav>
     </>
   )
 }
