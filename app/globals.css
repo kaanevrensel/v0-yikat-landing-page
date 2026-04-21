@@ -124,3 +124,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes emoji-breathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.03); }
+}
+.emoji-breathe {
+  animation: emoji-breathe 3.5s ease-in-out infinite;
+}
+.emoji-breathe,
+span.emoji-static {
+  font-size: 110px;
+  line-height: 1;
+}
+@media (min-width: 768px) {
+  .emoji-breathe,
+  span.emoji-static {
+    font-size: 180px;
+  }
+}
