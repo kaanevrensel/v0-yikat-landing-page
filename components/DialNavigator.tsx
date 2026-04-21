@@ -18,7 +18,9 @@ const CX = 250
 const CY = 250
 const KNOB_R = 160                   // reduced from 185 — solid knob, no bezel
 
-// Indicator: short radial white line INSIDE the knob. Outer tip touches knob edge.
+// Indicator: short radial white line INSIDE the knob. With strokeLinecap="round"
+// the outer rounded cap intentionally overshoots KNOB_R by ~strokeWidth/2 so the
+// tip "kisses" the edge instead of sinking inside it — don't inset by stroke/2.
 const INDICATOR_LENGTH = 18         // 11.25% of KNOB_R (inside 8-12% target range)
 const INDICATOR_STROKE = 3.5
 const INDICATOR_OUTER_R = KNOB_R    // tip at knob edge = 160
