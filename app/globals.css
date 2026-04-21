@@ -154,4 +154,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .drum-spin { animation: none; }
+  .animate-ping,
+  .animate-bounce { animation: none; }
 }
