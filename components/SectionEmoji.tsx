@@ -32,8 +32,11 @@ export function SectionEmoji({ emoji, id, index, alt = "" }: SectionEmojiProps) 
       variants={revealItem}
       className="flex items-start justify-center md:justify-end"
     >
+      {/* Kept as plain <span> (not motion.span) so the CSS `transform: scale(...)`
+          from emoji-breathe doesn't collide with Framer's transform on the parent
+          motion.div. Wrapping this in a motion element would clobber the animation. */}
       <span
-        aria-hidden={alt === ""}
+        aria-hidden={alt === "" || undefined}
         aria-label={alt || undefined}
         role={alt ? "img" : undefined}
         className={prefersReducedMotion ? "emoji-static" : "emoji-breathe"}

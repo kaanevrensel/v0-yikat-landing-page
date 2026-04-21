@@ -133,13 +133,13 @@
   animation: emoji-breathe 3.5s ease-in-out infinite;
 }
 .emoji-breathe,
-span.emoji-static {
+.emoji-static {
   font-size: 110px;
   line-height: 1;
 }
 @media (min-width: 768px) {
   .emoji-breathe,
-  span.emoji-static {
+  .emoji-static {
     font-size: 180px;
   }
 }
