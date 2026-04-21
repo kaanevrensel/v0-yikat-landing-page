@@ -21,7 +21,8 @@ export function WhyUsSection() {
       <div className="mx-auto max-w-4xl">
         <motion.h2
           variants={revealItem}
-          className="font-serif text-4xl font-semibold tracking-tight text-[#0F172A] sm:text-5xl md:text-6xl"
+          className="text-4xl font-semibold leading-[1.05] tracking-[-0.022em] text-[#0F172A] sm:text-5xl md:text-6xl"
+          style={{ fontVariationSettings: "'opsz' 32" }}
         >
           Neden YIKAT
         </motion.h2>
@@ -34,7 +35,7 @@ export function WhyUsSection() {
               className="border-t border-[#E5E7EB] pt-8"
             >
               <p.icon className="size-6 text-[#2798ff]" strokeWidth={1.5} aria-hidden="true" />
-              <h3 className="mt-5 font-serif text-2xl font-semibold text-[#0F172A]">
+              <h3 className="mt-5 text-2xl font-semibold tracking-[-0.01em] text-[#0F172A]">
                 {p.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-[#64748B]">
