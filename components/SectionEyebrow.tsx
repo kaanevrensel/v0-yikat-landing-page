@@ -1,5 +1,6 @@
 "use client"
 
+import { useId } from "react"
 import { motion } from "framer-motion"
 import { revealItem } from "@/components/SectionReveal"
 
@@ -23,12 +24,18 @@ interface SectionEyebrowProps {
 export function SectionEyebrow({ angle, number, label, className = "", onDark = false }: SectionEyebrowProps) {
   const textColor = onDark ? "text-white/80" : "text-[#64748B]"
   const ruleColor = onDark ? "bg-white/20" : "bg-[#E5E7EB]"
+  // useId hardens against duplicate-mount gradient id collisions.
+  const gradientId = `eyebrow-knob-${useId().replace(/:/g, "")}`
 
   return (
     <motion.div
       variants={revealItem}
       className={`flex items-center gap-3 ${className}`}
     >
+      {/* Angle rotation is a visual no-op on this radially-symmetric fill —
+          Phase 6 will add a small white indicator line (scaled analogue of
+          INDICATOR_LENGTH in DialNavigator) to make rotation readable. API
+          keeps the `angle` prop so callers don't churn. */}
       <svg
         viewBox="0 0 80 80"
         className="size-10 flex-shrink-0"
@@ -36,13 +43,13 @@ export function SectionEyebrow({ angle, number, label, className = "", onDark = 
         aria-hidden="true"
       >
         <defs>
-          <radialGradient id={`eyebrow-knob-${number}`} cx="50%" cy="50%" r="55%">
+          <radialGradient id={gradientId} cx="50%" cy="50%" r="55%">
             <stop offset="0%"  stopColor="#4aa5ff" />
             <stop offset="55%" stopColor="#2798ff" />
             <stop offset="100%" stopColor="#1a7de8" />
           </radialGradient>
         </defs>
-        <circle cx={40} cy={40} r={32} fill={`url(#eyebrow-knob-${number})`} />
+        <circle cx={40} cy={40} r={32} fill={`url(#${gradientId})`} />
       </svg>
 
       <span
