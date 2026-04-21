@@ -49,7 +49,8 @@ export function FAQSection() {
       <div className="mx-auto max-w-3xl">
         <motion.h2
           variants={revealItem}
-          className="font-serif text-4xl font-semibold tracking-tight text-[#0F172A] sm:text-5xl md:text-6xl"
+          className="text-4xl font-semibold leading-[1.05] tracking-[-0.022em] text-[#0F172A] sm:text-5xl md:text-6xl"
+          style={{ fontVariationSettings: "'opsz' 32" }}
         >
           Sorular
         </motion.h2>
@@ -58,7 +59,7 @@ export function FAQSection() {
           <Accordion type="single" collapsible className="divide-y divide-[#E5E7EB] border-y border-[#E5E7EB]">
             {faqs.map((faq, i) => (
               <AccordionItem key={i} value={`faq-${i}`} className="border-b-0">
-                <AccordionTrigger className="py-5 text-left font-serif text-lg font-medium text-[#0F172A] hover:no-underline">
+                <AccordionTrigger className="py-5 text-left text-lg font-semibold text-[#0F172A] hover:no-underline">
                   {faq.q}
                 </AccordionTrigger>
                 <AccordionContent className="pb-6 text-base leading-relaxed text-[#64748B]">

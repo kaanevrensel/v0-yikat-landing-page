@@ -13,7 +13,8 @@ export function ReviewsSection() {
       <div className="mx-auto max-w-4xl">
         <motion.h2
           variants={revealItem}
-          className="font-serif text-4xl font-semibold tracking-tight text-[#0F172A] sm:text-5xl md:text-6xl"
+          className="text-4xl font-semibold leading-[1.05] tracking-[-0.022em] text-[#0F172A] sm:text-5xl md:text-6xl"
+          style={{ fontVariationSettings: "'opsz' 32" }}
         >
           Yorumlar
         </motion.h2>
