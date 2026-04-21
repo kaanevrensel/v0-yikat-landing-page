@@ -22,7 +22,8 @@ export function HeroSection() {
 
         <motion.h1
           variants={revealItem}
-          className="font-serif text-5xl font-semibold leading-[1.05] tracking-tight text-[#0F172A] sm:text-6xl md:text-7xl lg:text-[5.5rem]"
+          className="text-5xl font-bold leading-[0.98] tracking-[-0.028em] text-[#0F172A] sm:text-6xl md:text-7xl lg:text-[5.5rem]"
+          style={{ fontVariationSettings: "'opsz' 32" }}
         >
           Tertemiz. Kapında.
           <br />
