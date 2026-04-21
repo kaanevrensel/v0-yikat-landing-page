@@ -18,6 +18,12 @@ const CX = 250
 const CY = 250
 const KNOB_R = 160                   // reduced from 185 — solid knob, no bezel
 
+// Indicator: short radial white line INSIDE the knob. Outer tip touches knob edge.
+const INDICATOR_LENGTH = 18         // 11.25% of KNOB_R (inside 8-12% target range)
+const INDICATOR_STROKE = 3.5
+const INDICATOR_OUTER_R = KNOB_R    // tip at knob edge = 160
+const INDICATOR_INNER_R = KNOB_R - INDICATOR_LENGTH  // 142
+
 // Mobile: labels rotate 90° so active lands at 6 o'clock, not 3.
 const MOBILE_ROTATION_OFFSET_DEG = 90
 
@@ -67,6 +73,10 @@ export function DialNavigator() {
   const rawProgress = useTransform(scrollY, [120, 380], [0, 1], { clamp: true })
   const easedProgress = useTransform(rawProgress, easeInOutCubic)
   const morphProgress = useSpring(easedProgress, { stiffness: 50, damping: 20 })
+
+  // Indicator: hidden in hero (opacity 0), fades in with the morph spring, fully visible when scrolled.
+  const indicatorOpacity = useTransform(morphProgress, [0, 1], [0, 1])
+  const effectiveIndicatorOpacity = prefersReducedMotion ? 1 : indicatorOpacity
 
   const left = useTransform(morphProgress, [0, 1], ["50vw", "0vw"])
   const scale = useTransform(morphProgress, [0, 1], [HERO_SCALE, scrolledScale])
@@ -136,6 +146,17 @@ export function DialNavigator() {
           </defs>
 
           <circle cx={CX} cy={CY} r={KNOB_R} fill="url(#concave-knob)" />
+
+          <motion.line
+            x1={CX + INDICATOR_INNER_R}
+            y1={CY}
+            x2={CX + INDICATOR_OUTER_R}
+            y2={CY}
+            stroke="#FFFFFF"
+            strokeWidth={INDICATOR_STROKE}
+            strokeLinecap="round"
+            style={{ opacity: effectiveIndicatorOpacity }}
+          />
         </svg>
 
         <motion.div
@@ -183,6 +204,17 @@ export function DialNavigator() {
           </defs>
 
           <circle cx={CX} cy={CY} r={KNOB_R} fill="url(#concave-knob-mobile)" />
+
+          <motion.line
+            x1={CX}
+            y1={CY + INDICATOR_INNER_R}
+            x2={CX}
+            y2={CY + INDICATOR_OUTER_R}
+            stroke="#FFFFFF"
+            strokeWidth={INDICATOR_STROKE}
+            strokeLinecap="round"
+            style={{ opacity: effectiveIndicatorOpacity }}
+          />
         </svg>
 
         <motion.div
