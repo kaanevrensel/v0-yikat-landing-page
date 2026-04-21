@@ -29,17 +29,12 @@ export function DialProgram({
 
   const counterRotation = useTransform(ringRotation, r => -r)
 
-  const colorClass = isActive
-    ? section.highlight
-      ? "text-[#2798ff]"
-      : "text-[#0F172A]"
-    : "text-[#0F172A]/50"
+  const colorClass = section.highlight
+    ? "text-[#2798ff]"
+    : "text-[#0F172A]"
 
-  const sizeClass = isActive
-    ? "text-[15px] tracking-[0.16em]"
-    : "text-[12px] tracking-[0.12em]"
-
-  const weightClass = isActive ? "font-bold" : "font-normal"
+  const sizeClass = "text-[15px] tracking-[0.16em]"
+  const weightClass = "font-semibold"
 
   return (
     <motion.button
@@ -47,15 +42,16 @@ export function DialProgram({
       onClick={() => onClick(index)}
       aria-label={section.ariaLabel}
       aria-current={isActive ? "location" : undefined}
-      className={`absolute left-1/2 top-1/2 whitespace-nowrap rounded-sm px-2 py-1 outline-none transition-[font-size,color,letter-spacing,font-weight] duration-300 ease-out focus-visible:ring-2 focus-visible:ring-[#2798ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAFAF7] ${colorClass} ${sizeClass} ${weightClass}`}
+      className={`absolute left-1/2 top-1/2 whitespace-nowrap rounded-sm px-2 py-1 outline-none transition-opacity duration-300 ease-out focus-visible:ring-2 focus-visible:ring-[#2798ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAFAF7] ${colorClass} ${sizeClass} ${weightClass}`}
       style={{
         x: x,
         y: y,
         translateX: "-50%",
         translateY: "-50%",
         rotate: counterRotation,
-        pointerEvents: "auto",
-        willChange: "transform",
+        pointerEvents: isActive ? "auto" : "none",
+        opacity: isActive ? 1 : 0,
+        willChange: "transform, opacity",
       }}
     >
       {section.label}
