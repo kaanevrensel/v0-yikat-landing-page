@@ -42,6 +42,8 @@ export function DialProgram({
       onClick={() => onClick(index)}
       aria-label={section.ariaLabel}
       aria-current={isActive ? "location" : undefined}
+      aria-hidden={!isActive}
+      tabIndex={isActive ? 0 : -1}
       className={`absolute left-1/2 top-1/2 whitespace-nowrap rounded-sm px-2 py-1 outline-none transition-opacity duration-300 ease-out focus-visible:ring-2 focus-visible:ring-[#2798ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAFAF7] ${colorClass} ${sizeClass} ${weightClass}`}
       style={{
         x: x,
