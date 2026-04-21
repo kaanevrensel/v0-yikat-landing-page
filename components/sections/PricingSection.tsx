@@ -20,7 +20,8 @@ export function PricingSection() {
 
         <motion.h2
           variants={revealItem}
-          className="mt-6 font-serif text-6xl font-semibold leading-none tracking-tight text-[#0F172A] sm:text-7xl md:text-[8rem] lg:text-[10rem]"
+          className="mt-6 text-6xl font-bold leading-none tracking-[-0.035em] text-[#0F172A] sm:text-7xl md:text-[8rem] lg:text-[10rem]"
+          style={{ fontVariationSettings: "'opsz' 32" }}
         >
           110 TL
           <span className="text-3xl font-normal text-[#64748B] sm:text-4xl md:text-5xl"> / kg</span>
