@@ -1,10 +1,28 @@
 "use client"
 
+import {
+  motion,
+  useMotionTemplate,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion"
+
 interface WashingMachineProps {
   className?: string
 }
 
 export function WashingMachine({ className }: WashingMachineProps) {
+  const prefersReducedMotion = useReducedMotion()
+  const { scrollYProgress } = useScroll()
+  // 3 full turns across the page
+  const rawAngle = useTransform(scrollYProgress, [0, 1], [0, 1080])
+  const smooth = useSpring(rawAngle, { stiffness: 50, damping: 20 })
+  const angle = prefersReducedMotion ? 0 : smooth
+  const drumTransform = useMotionTemplate`rotate(${angle} 450 590)`
+  const doorTransform = useMotionTemplate`rotate(${angle} 450 590)`
+
   return (
     <svg
       viewBox="0 0 900 1100"
@@ -263,14 +281,14 @@ export function WashingMachine({ className }: WashingMachineProps) {
         {/* Outer static ring blending into body */}
         <circle cx="450" cy="590" r="220" fill="#F2F2EE" />
         {/* Rotating gasket ring (door outer rim) */}
-        <g id="doorRotor">
+        <motion.g id="doorRotor" transform={doorTransform}>
           {/* Inner black ring (gasket / rim) */}
           <circle cx="450" cy="590" r="210" fill="url(#doorRing)" />
           {/* Slight inner rim shade */}
           <circle cx="450" cy="590" r="196" fill="#0A0B0D" />
           {/* small tick on gasket so rotation is visible */}
           <circle cx="450" cy="395" r="3" fill="#2A2B2E" />
-        </g>
+        </motion.g>
       </g>
 
       {/* Drum + clothes (BEHIND the tinted glass) */}
@@ -279,7 +297,7 @@ export function WashingMachine({ className }: WashingMachineProps) {
         <circle cx="450" cy="590" r="160" fill="url(#drumGrad)" />
 
         {/* Rotating drum interior: holes pattern + paddles + clothes */}
-        <g id="drumRotor">
+        <motion.g id="drumRotor" transform={drumTransform}>
           {/* holes pattern rotates with drum */}
           <circle cx="450" cy="590" r="160" fill="url(#drumHoles)" />
 
@@ -368,7 +386,7 @@ export function WashingMachine({ className }: WashingMachineProps) {
             <path d="M 360 655 Q 400 645 445 650" stroke="#ffffff" strokeWidth="1.3" fill="none" strokeLinecap="round" opacity="0.3" />
           </g>
 
-        </g>
+        </motion.g>
 
         {/* water placeholder (no-op, keeps tinted glass overlay structure below) */}
         <g>
