@@ -16,7 +16,7 @@ export interface Section {
 }
 
 export const SECTIONS: readonly Section[] = [
-  { id: 'basla',      label: 'BAŞLA',     ariaLabel: 'Başla bölümüne git',         angle: 0   /* no emoji, no number — hero */ },
+  { id: 'basla',      label: 'YIKAT',     ariaLabel: 'Başa dön',                   angle: 0   /* no emoji, no number — hero */ },
   { id: 'hizmetler',  label: 'HİZMETLER', ariaLabel: 'Hizmetler bölümüne git',     angle: 45,  emoji: '🧺',  number: '01' },
   { id: 'nasil',      label: 'NASIL',     ariaLabel: 'Nasıl çalışır bölümüne git', angle: 90,  emoji: '📱',  number: '02' },
   { id: 'fiyatlar',   label: 'FİYATLAR',  ariaLabel: 'Fiyatlar bölümüne git',      angle: 135, emoji: '💰',  number: '03' },

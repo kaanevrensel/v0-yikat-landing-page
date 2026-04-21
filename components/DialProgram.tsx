@@ -36,6 +36,12 @@ export function DialProgram({
   const sizeClass = "text-[15px] tracking-[0.16em]"
   const weightClass = "font-semibold"
 
+  // Hero brand mark: "YIKAT" renders bigger than other labels (brand wordmark presence).
+  const isBrandMark = section.id === "basla"
+  const finalSizeClass = isBrandMark
+    ? "text-[26px] tracking-[0.16em]"
+    : sizeClass
+
   return (
     <motion.button
       type="button"
@@ -44,7 +50,7 @@ export function DialProgram({
       aria-current={isActive ? "location" : undefined}
       aria-hidden={!isActive}
       tabIndex={isActive ? 0 : -1}
-      className={`absolute left-1/2 top-1/2 whitespace-nowrap rounded-sm px-2 py-1 outline-none transition-opacity duration-300 ease-out focus-visible:ring-2 focus-visible:ring-[#2798ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAFAF7] ${colorClass} ${sizeClass} ${weightClass}`}
+      className={`absolute left-1/2 top-1/2 whitespace-nowrap rounded-sm px-2 py-1 outline-none transition-opacity duration-300 ease-out focus-visible:ring-2 focus-visible:ring-[#2798ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAFAF7] ${colorClass} ${finalSizeClass} ${weightClass}`}
       style={{
         x: x,
         y: y,
