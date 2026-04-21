@@ -1,5 +1,7 @@
 # Landing Polish Implementation Plan
 
+**Model tier:** see [docs/superpowers/project-rules.md](../project-rules.md)
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Apply nine QA-identified polish items to the YIKAT landing page: typography overhaul (drop Fraunces + JetBrains Mono, adopt Inter Display), dial simplification (remove bezel/outer-ring/center-dot, add inside indicator), staggered section reveals, knob-thread + 3D emoji decoration, hero washing-machine photograph morph with detaching knob, YIKAT brand-mark slot behavior, and CTA contrast fix.
