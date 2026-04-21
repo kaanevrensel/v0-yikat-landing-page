@@ -19,7 +19,7 @@ export function DialProgram({
   index,
   activeIndex,
   ringRotation,
-  radius = 205,
+  radius = 215,
   onClick,
 }: DialProgramProps) {
   const isActive = index === activeIndex
