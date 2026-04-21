@@ -18,7 +18,8 @@ export function CTASection({ whatsappUrl }: CTASectionProps) {
       <div className="mx-auto max-w-3xl">
         <motion.h2
           variants={revealItem}
-          className="font-serif text-5xl font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl"
+          className="text-5xl font-bold leading-[0.98] tracking-[-0.028em] text-white sm:text-6xl md:text-7xl lg:text-8xl"
+          style={{ fontVariationSettings: "'opsz' 32" }}
         >
           Hazırsan
           <br />
