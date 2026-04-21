@@ -46,8 +46,9 @@ export function ServicesSection() {
 
       <div className="mx-auto max-w-4xl">
         {(() => {
-          const meta = SECTIONS.find(s => s.id === "hizmetler")!
-          const sectionIndex = SECTIONS.findIndex(s => s.id === "hizmetler") - 1  // -1 to skip hero for phase-offset purposes
+          const idx = SECTIONS.findIndex(s => s.id === "hizmetler")
+          const meta = SECTIONS[idx]!
+          const sectionIndex = idx - 1  // -1 to skip hero for phase-offset purposes
           return (
             <>
               <SectionEyebrow angle={meta.angle} number={meta.number!} label={meta.label} />

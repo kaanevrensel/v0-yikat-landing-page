@@ -1569,7 +1569,7 @@ Key layout details:
 - [ ] **Step 3: Visual QA**
 
 Scroll to Hizmetler section:
-- Desktop: eyebrow row at top (mini blue knob rotated 45° + "02 · HİZMETLER" + rule). Below: 2-column layout, headline+subtitle on left, 180px 🧺 emoji on right, breathing.
+- Desktop: eyebrow row at top (mini blue knob rotated 45° + "01 · HİZMETLER" + rule). Below: 2-column layout, headline+subtitle on left, 180px 🧺 emoji on right, breathing.
 - Mobile (< 768px): eyebrow row, then headline+subtitle, then emoji at 110px, then cards.
 
 - [ ] **Step 4: Commit**
