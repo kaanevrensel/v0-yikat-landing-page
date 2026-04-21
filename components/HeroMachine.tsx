@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion"
 
 /**
  * Layered hero visual: photograph of a washing machine + CSS-animated drum
@@ -13,9 +14,15 @@ import Image from "next/image"
  * sit on the photo. The knob morphs out of this position on scroll.
  */
 export function HeroMachine() {
+  const prefersReducedMotion = useReducedMotion()
+  const { scrollY } = useScroll()
+  const opacity = useTransform(scrollY, [0, 380], [1, 0], { clamp: true })
+  const effectiveOpacity = prefersReducedMotion ? 0 : opacity
+
   return (
-    <div
+    <motion.div
       className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-[#E5E7EB]"
+      style={{ opacity: effectiveOpacity }}
       aria-hidden="true"
     >
       {/* Layer 1: photograph */}
@@ -41,6 +48,6 @@ export function HeroMachine() {
           background: "radial-gradient(circle at 50% 50%, transparent 60%, rgba(15,23,42,0.15) 62%, transparent 64%), radial-gradient(circle at 30% 70%, rgba(15,23,42,0.25), transparent 40%), radial-gradient(circle at 70% 30%, rgba(15,23,42,0.2), transparent 35%)",
         }}
       />
-    </div>
+    </motion.div>
   )
 }
