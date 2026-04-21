@@ -20,7 +20,8 @@ export function HowItWorksSection() {
       <div className="mx-auto max-w-4xl">
         <motion.h2
           variants={revealItem}
-          className="font-serif text-4xl font-semibold tracking-tight text-[#0F172A] sm:text-5xl md:text-6xl"
+          className="text-4xl font-semibold leading-[1.05] tracking-[-0.022em] text-[#0F172A] sm:text-5xl md:text-6xl"
+          style={{ fontVariationSettings: "'opsz' 32" }}
         >
           Nasıl çalışır
         </motion.h2>
@@ -32,11 +33,11 @@ export function HowItWorksSection() {
               variants={revealItem}
               className="grid grid-cols-[auto_1fr] items-start gap-8 border-t border-[#E5E7EB] pt-8 md:grid-cols-[120px_1fr]"
             >
-              <span className="font-serif text-3xl text-[#2798ff] md:text-4xl">
+              <span className="text-3xl font-bold text-[#2798ff] md:text-4xl" style={{ fontVariationSettings: "'opsz' 32" }}>
                 {step.num}
               </span>
               <div>
-                <h3 className="font-serif text-2xl font-semibold text-[#0F172A] md:text-3xl">
+                <h3 className="text-2xl font-semibold tracking-[-0.01em] text-[#0F172A] md:text-3xl">
                   {step.title}
                 </h3>
                 <p className="mt-3 text-base text-[#64748B] md:text-lg">
