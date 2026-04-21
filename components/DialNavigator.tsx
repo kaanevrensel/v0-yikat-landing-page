@@ -16,14 +16,9 @@ import { DialProgram } from "./DialProgram"
 // ---------- Geometry constants (viewBox 500×500, center 250,250) ----------
 const CX = 250
 const CY = 250
-const BASE_R = 225            // bezel base radius
-const BUMP_DELTA = 18         // bump height outward (max r = 243)
-const BUMP_HALFWIDTH_DEG = 30 // smoothstep falloff ±30°
-const SAMPLES = 240
+const KNOB_R = 160                   // reduced from 185 — solid knob, no bezel
 
-// Desktop: labels rotate to 3 o'clock; Mobile: labels rotate to 6 o'clock.
-const DESKTOP_BUMP_DEG = 0
-const MOBILE_BUMP_DEG = 90
+// Mobile: labels rotate 90° so active lands at 6 o'clock, not 3.
 const MOBILE_ROTATION_OFFSET_DEG = 90
 
 // ---------- Size constants (CSS pixels) ----------
@@ -35,32 +30,6 @@ const MIN_SCROLLED_SIZE = 420               // clamp floor for short viewports
 const MOBILE_HERO_DIAL_VW = 70              // full diameter at hero state (fully visible, centered)
 const MOBILE_SCROLLED_DIAL_VW = 100         // full diameter when scrolled (top-clipped, edge-to-edge)
 const MOBILE_HERO_TOP_PCT = 30              // center at 30% of viewport height in hero state
-
-function smoothstep(t: number): number {
-  const x = Math.max(0, Math.min(1, t))
-  return 3 * x * x - 2 * x * x * x
-}
-
-function buildBezelPath(bumpAngleDeg: number): string {
-  const pts: string[] = []
-  for (let i = 0; i <= SAMPLES; i++) {
-    const angleDeg = (i / SAMPLES) * 360
-    let delta = Math.abs(angleDeg - bumpAngleDeg)
-    if (delta > 180) delta = 360 - delta
-    const norm = Math.min(delta / BUMP_HALFWIDTH_DEG, 1)
-    const bump = 1 - smoothstep(norm)
-    const r = BASE_R + bump * BUMP_DELTA
-    const rad = (angleDeg * Math.PI) / 180
-    const x = CX + Math.cos(rad) * r
-    const y = CY + Math.sin(rad) * r
-    pts.push(i === 0 ? `M ${x.toFixed(2)} ${y.toFixed(2)}` : `L ${x.toFixed(2)} ${y.toFixed(2)}`)
-  }
-  pts.push("Z")
-  return pts.join(" ")
-}
-
-const DESKTOP_BEZEL_PATH = buildBezelPath(DESKTOP_BUMP_DEG)
-const MOBILE_BEZEL_PATH = buildBezelPath(MOBILE_BUMP_DEG)
 
 function easeInOutCubic(t: number): number {
   if (t < 0.5) return 4 * t * t * t
@@ -166,10 +135,7 @@ export function DialNavigator() {
             </radialGradient>
           </defs>
 
-          <circle cx={CX} cy={CY} r={248} fill="none" stroke="#2798ff" strokeOpacity={0.4} strokeWidth={1} />
-          <path d={DESKTOP_BEZEL_PATH} fill="#FFFFFF" stroke="#2798ff" strokeOpacity={0.5} strokeWidth={2} />
-          <circle cx={CX} cy={CY} r={185} fill="url(#concave-knob)" />
-          <circle cx={CX} cy={CY} r={6} fill="#FFFFFF" />
+          <circle cx={CX} cy={CY} r={KNOB_R} fill="url(#concave-knob)" />
         </svg>
 
         <motion.div
@@ -216,10 +182,7 @@ export function DialNavigator() {
             </radialGradient>
           </defs>
 
-          <circle cx={CX} cy={CY} r={248} fill="none" stroke="#2798ff" strokeOpacity={0.4} strokeWidth={1} />
-          <path d={MOBILE_BEZEL_PATH} fill="#FFFFFF" stroke="#2798ff" strokeOpacity={0.5} strokeWidth={2} />
-          <circle cx={CX} cy={CY} r={185} fill="url(#concave-knob-mobile)" />
-          <circle cx={CX} cy={CY} r={6} fill="#FFFFFF" />
+          <circle cx={CX} cy={CY} r={KNOB_R} fill="url(#concave-knob-mobile)" />
         </svg>
 
         <motion.div
