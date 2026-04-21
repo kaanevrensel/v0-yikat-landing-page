@@ -22,7 +22,7 @@ export const SECTIONS: readonly Section[] = [
   { id: 'fiyatlar',   label: 'FİYATLAR',  ariaLabel: 'Fiyatlar bölümüne git',      angle: 135, emoji: '💰',  number: '03' },
   { id: 'neden',      label: 'NEDEN',     ariaLabel: 'Neden YIKAT bölümüne git',   angle: 180, emoji: '✨',  number: '04' },
   { id: 'yorumlar',   label: 'YORUMLAR',  ariaLabel: 'Yorumlar bölümüne git',      angle: 225, emoji: '💬',  number: '05' },
-  { id: 'sss',        label: 'SORULAR',   ariaLabel: 'Sıkça sorulan sorular bölümüne git', angle: 270, emoji: '❓', number: '06' },
+  { id: 'sss',        label: 'SORULAR',   ariaLabel: 'Sıkça sorulan sorular bölümüne git', angle: 270, emoji: '❓\uFE0F', number: '06' },
   { id: 'siparis',    label: 'SİPARİŞ',   ariaLabel: 'Sipariş ver bölümüne git',   angle: 315, highlight: true, emoji: '🎉', number: '07' },
 ] as const
 
