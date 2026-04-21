@@ -76,8 +76,8 @@
 
 @theme inline {
   --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
-  --font-serif: var(--font-fraunces), Georgia, 'Times New Roman', serif;
-  --font-mono: var(--font-jetbrains), 'Geist Mono', ui-monospace, monospace;
+  --font-serif: var(--font-inter), 'Inter', system-ui, sans-serif;
+  --font-mono: var(--font-inter), 'Inter', ui-monospace, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
