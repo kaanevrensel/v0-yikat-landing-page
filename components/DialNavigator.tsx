@@ -31,13 +31,19 @@ const MOBILE_ROTATION_OFFSET_DEG = 90
 
 // ---------- Size constants (CSS pixels) ----------
 const BASE_SIZE = 500                       // container footprint (matches viewBox)
-const HERO_SIZE = 380                       // visible diameter at hero
-const HERO_SCALE = HERO_SIZE / BASE_SIZE    // 0.76
+const HERO_SIZE = 110                       // visible diameter at hero (matches photo's knob on-screen)
+const HERO_SCALE = HERO_SIZE / BASE_SIZE    // 0.22
 const SCROLLED_PADDING = 40                 // 20px top + 20px bottom
 const MIN_SCROLLED_SIZE = 420               // clamp floor for short viewports
 const MOBILE_HERO_DIAL_VW = 70              // full diameter at hero state (fully visible, centered)
 const MOBILE_SCROLLED_DIAL_VW = 100         // full diameter when scrolled (top-clipped, edge-to-edge)
 const MOBILE_HERO_TOP_PCT = 30              // center at 30% of viewport height in hero state
+
+// Hero state (desktop): knob visually overlays the photograph's physical knob on the left half.
+// 30vw lands roughly in the center of the left column on a max-w-1400 grid at wider viewports.
+const HERO_LEFT_VW = 30
+// Hero state (desktop): knob sits at ~40% from top (aligns with photograph's knob position).
+const HERO_TOP_PCT = 40
 
 function easeInOutCubic(t: number): number {
   if (t < 0.5) return 4 * t * t * t
@@ -80,7 +86,8 @@ export function DialNavigator() {
   const indicatorOpacity = useTransform(morphProgress, [0, 1], [0, 1])
   const effectiveIndicatorOpacity = prefersReducedMotion ? 1 : indicatorOpacity
 
-  const left = useTransform(morphProgress, [0, 1], ["50vw", "0vw"])
+  const left = useTransform(morphProgress, [0, 1], [`${HERO_LEFT_VW}vw`, "0vw"])
+  const top = useTransform(morphProgress, [0, 1], [`${HERO_TOP_PCT}%`, "50%"])
   const scale = useTransform(morphProgress, [0, 1], [HERO_SCALE, scrolledScale])
 
   // Mobile morph: hero (fully visible, centered ~30% from top, 70vw) → scrolled (top-clipped, 100vw).
@@ -93,6 +100,7 @@ export function DialNavigator() {
   }, [active, instantRotation])
 
   const effectiveLeft = prefersReducedMotion ? "0vw" : left
+  const effectiveTop = prefersReducedMotion ? "50%" : top
   const effectiveScale = prefersReducedMotion ? scrolledScale : scale
   const effectiveRotation = prefersReducedMotion ? instantRotation : rotation
 
@@ -124,9 +132,10 @@ export function DialNavigator() {
       <motion.div
         role="navigation"
         aria-label="Sayfa içi gezinti"
-        className="pointer-events-none fixed top-1/2 z-40 hidden h-[500px] w-[500px] lg:block"
+        className="pointer-events-none fixed z-40 hidden h-[500px] w-[500px] lg:block"
         style={{
           left: effectiveLeft,
+          top: effectiveTop,
           x: "-50%",
           y: "-50%",
           scale: effectiveScale,
