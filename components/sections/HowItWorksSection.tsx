@@ -24,7 +24,7 @@ export function HowItWorksSection() {
         {(() => {
           const idx = SECTIONS.findIndex(s => s.id === "nasil")
           const meta = SECTIONS[idx]!
-          const sectionIndex = idx - 1
+          const sectionIndex = idx - 1  // -1 to skip hero for phase-offset purposes
           return (
             <>
               <SectionEyebrow angle={meta.angle} number={meta.number!} label={meta.label} />
