@@ -9,17 +9,21 @@ export interface Section {
   angle: number
   /** If true, label renders in brand color when active */
   highlight?: boolean
+  /** Native emoji placeholder. Swapped to /public/emojis/{id}.png when that file exists. */
+  emoji?: string
+  /** Display number shown in the section eyebrow (e.g. "01"). Undefined for hero. */
+  number?: string
 }
 
 export const SECTIONS: readonly Section[] = [
-  { id: 'basla',      label: 'BAŞLA',     ariaLabel: 'Başla bölümüne git',     angle: 0 },
-  { id: 'hizmetler',  label: 'HİZMETLER', ariaLabel: 'Hizmetler bölümüne git', angle: 45 },
-  { id: 'nasil',      label: 'NASIL',     ariaLabel: 'Nasıl çalışır bölümüne git', angle: 90 },
-  { id: 'fiyatlar',   label: 'FİYATLAR',  ariaLabel: 'Fiyatlar bölümüne git',  angle: 135 },
-  { id: 'neden',      label: 'NEDEN',     ariaLabel: 'Neden YIKAT bölümüne git', angle: 180 },
-  { id: 'yorumlar',   label: 'YORUMLAR',  ariaLabel: 'Yorumlar bölümüne git',  angle: 225 },
-  { id: 'sss',        label: 'SORULAR',   ariaLabel: 'Sıkça sorulan sorular bölümüne git', angle: 270 },
-  { id: 'siparis',    label: 'SİPARİŞ',   ariaLabel: 'Sipariş ver bölümüne git', angle: 315, highlight: true },
+  { id: 'basla',      label: 'BAŞLA',     ariaLabel: 'Başla bölümüne git',         angle: 0   /* no emoji, no number — hero */ },
+  { id: 'hizmetler',  label: 'HİZMETLER', ariaLabel: 'Hizmetler bölümüne git',     angle: 45,  emoji: '🧺',  number: '01' },
+  { id: 'nasil',      label: 'NASIL',     ariaLabel: 'Nasıl çalışır bölümüne git', angle: 90,  emoji: '📱',  number: '02' },
+  { id: 'fiyatlar',   label: 'FİYATLAR',  ariaLabel: 'Fiyatlar bölümüne git',      angle: 135, emoji: '💰',  number: '03' },
+  { id: 'neden',      label: 'NEDEN',     ariaLabel: 'Neden YIKAT bölümüne git',   angle: 180, emoji: '✨',  number: '04' },
+  { id: 'yorumlar',   label: 'YORUMLAR',  ariaLabel: 'Yorumlar bölümüne git',      angle: 225, emoji: '💬',  number: '05' },
+  { id: 'sss',        label: 'SORULAR',   ariaLabel: 'Sıkça sorulan sorular bölümüne git', angle: 270, emoji: '❓', number: '06' },
+  { id: 'siparis',    label: 'SİPARİŞ',   ariaLabel: 'Sipariş ver bölümüne git',   angle: 315, highlight: true, emoji: '🎉', number: '07' },
 ] as const
 
 // Runtime invariant: exactly 8 sections, each 45° apart, ids unique.
