@@ -10,6 +10,9 @@ const container: Variants = {
   },
 }
 
+// Reduced-motion support relies on the <MotionConfig reducedMotion="user"> in
+// app/page.tsx wrapping the tree — not on useReducedMotion here. If this
+// component is ever used outside that wrapper, add the hook back.
 export const revealItem: Variants = {
   hidden: { opacity: 0, y: 16 },
   visible: {
