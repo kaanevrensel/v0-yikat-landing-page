@@ -9,7 +9,7 @@ interface DialProgramProps {
   activeIndex: number
   /** Label ring rotation (degrees). Pass through from parent for counter-rotation. */
   ringRotation: MotionValue<number>
-  /** Radius in viewBox units (0..250 where dial container is 500x500). Default 205 (inside bezel annulus). */
+  /** Radius in viewBox units (0..250 where dial container is 500x500). Default 215 (outside the 160-radius knob). */
   radius?: number
   onClick: (index: number) => void
 }
