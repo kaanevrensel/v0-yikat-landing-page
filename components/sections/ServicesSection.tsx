@@ -44,7 +44,8 @@ export function ServicesSection() {
       <div className="mx-auto max-w-4xl">
         <motion.h2
           variants={revealItem}
-          className="font-serif text-4xl font-semibold tracking-tight text-[#0F172A] sm:text-5xl md:text-6xl"
+          className="text-4xl font-semibold leading-[1.05] tracking-[-0.022em] text-[#0F172A] sm:text-5xl md:text-6xl"
+          style={{ fontVariationSettings: "'opsz' 32" }}
         >
           Hizmetler
         </motion.h2>
@@ -63,7 +64,7 @@ export function ServicesSection() {
               className="group rounded-xl border border-[#E5E7EB] bg-white p-8 shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-shadow hover:shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
             >
               <s.icon className="size-6 text-[#0F172A]" strokeWidth={1.5} aria-hidden="true" />
-              <h3 className="mt-6 font-serif text-2xl font-semibold text-[#0F172A]">
+              <h3 className="mt-6 text-2xl font-semibold tracking-[-0.01em] text-[#0F172A]">
                 {s.title}
               </h3>
               <p className="mt-2 text-sm text-[#64748B]">{s.description}</p>
