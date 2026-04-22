@@ -22,12 +22,9 @@ export function WashingMachine({ className }: WashingMachineProps) {
   const angle = prefersReducedMotion ? 0 : smooth
   const drumTransform = useMotionTemplate`rotate(${angle} 450 590)`
   const doorTransform = useMotionTemplate`rotate(${angle} 450 590)`
+  const knobTransform = useMotionTemplate`translate(450 210) rotate(${angle})`
 
-  const rawKnobAngle = useTransform(scrollYProgress, [0, 1], [0, 1080])
-  const smoothKnobAngle = useSpring(rawKnobAngle, { stiffness: 50, damping: 20 })
-  const knobAngle = prefersReducedMotion ? 0 : smoothKnobAngle
-  const knobTransform = useMotionTemplate`translate(450 210) rotate(${knobAngle})`
-
+  // Machine body fades across the hero's scroll depth; knob stays opaque
   const bodyOpacity = useTransform(scrollY, [0, 380], [1, 0], { clamp: true })
   const effectiveBodyOpacity = prefersReducedMotion ? 0 : bodyOpacity
 
@@ -513,7 +510,7 @@ export function WashingMachine({ className }: WashingMachineProps) {
 
       </motion.g>
 
-      {/* Round blue knob (centered on panel) — stays opaque, rotates on scroll */}
+      {/* Round blue knob (centered on panel) */}
       <motion.g filter="url(#knobShadow)" transform={knobTransform}>
         {/* knob base shadow recess */}
         <circle cx="0" cy="0" r="44" fill="#000" opacity="0.45" />
