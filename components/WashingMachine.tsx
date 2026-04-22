@@ -22,7 +22,9 @@ export function WashingMachine({ className }: WashingMachineProps) {
   const angle = prefersReducedMotion ? 0 : smooth
   const drumTransform = useMotionTemplate`rotate(${angle} 450 590)`
   const doorTransform = useMotionTemplate`rotate(${angle} 450 590)`
-  const knobTransform = useMotionTemplate`translate(450 210) rotate(${angle})`
+  // Rotation only — static parent <g> handles the translate to (450, 210).
+  // motion.g drops compound transform strings (translate + rotate), so we split the two.
+  const knobRotate = useMotionTemplate`rotate(${angle})`
 
   // Machine body fades across the hero's scroll depth; knob stays opaque
   const bodyOpacity = useTransform(scrollY, [0, 380], [1, 0], { clamp: true })
@@ -511,20 +513,22 @@ export function WashingMachine({ className }: WashingMachineProps) {
       </motion.g>
 
       {/* Round blue knob (centered on panel) */}
-      <motion.g filter="url(#knobShadow)" transform={knobTransform}>
-        {/* knob base shadow recess */}
-        <circle cx="0" cy="0" r="44" fill="#000" opacity="0.45" />
-        {/* outer body (vivid blue) */}
-        <circle cx="0" cy="0" r="42" fill="url(#knobBody)" />
-        {/* top cap */}
-        <circle cx="0" cy="0" r="34" fill="url(#knobTop)" />
-        {/* subtle concentric groove */}
-        <circle cx="0" cy="0" r="34" fill="none" stroke="#0A2D5C" strokeOpacity="0.35" strokeWidth="0.8" />
-        {/* center dot (like reference) */}
-        <circle cx="0" cy="0" r="2.2" fill="#F4F6FA" opacity="0.95" />
-        {/* pointer indicator (white on blue) */}
-        <rect x="-1.8" y="-30" width="3.6" height="11" rx="1.6" fill="#F4F6FA" opacity="0.9" />
-      </motion.g>
+      <g transform="translate(450 210)" filter="url(#knobShadow)">
+        <motion.g transform={knobRotate}>
+          {/* knob base shadow recess */}
+          <circle cx="0" cy="0" r="44" fill="#000" opacity="0.45" />
+          {/* outer body (vivid blue) */}
+          <circle cx="0" cy="0" r="42" fill="url(#knobBody)" />
+          {/* top cap */}
+          <circle cx="0" cy="0" r="34" fill="url(#knobTop)" />
+          {/* subtle concentric groove */}
+          <circle cx="0" cy="0" r="34" fill="none" stroke="#0A2D5C" strokeOpacity="0.35" strokeWidth="0.8" />
+          {/* center dot (like reference) */}
+          <circle cx="0" cy="0" r="2.2" fill="#F4F6FA" opacity="0.95" />
+          {/* pointer indicator (white on blue) */}
+          <rect x="-1.8" y="-30" width="3.6" height="11" rx="1.6" fill="#F4F6FA" opacity="0.9" />
+        </motion.g>
+      </g>
     </svg>
   )
 }
