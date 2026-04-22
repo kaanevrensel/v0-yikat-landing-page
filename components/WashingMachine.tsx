@@ -15,13 +15,21 @@ interface WashingMachineProps {
 
 export function WashingMachine({ className }: WashingMachineProps) {
   const prefersReducedMotion = useReducedMotion()
-  const { scrollYProgress } = useScroll()
+  const { scrollY, scrollYProgress } = useScroll()
   // 3 full turns across the page
   const rawAngle = useTransform(scrollYProgress, [0, 1], [0, 1080])
   const smooth = useSpring(rawAngle, { stiffness: 50, damping: 20 })
   const angle = prefersReducedMotion ? 0 : smooth
   const drumTransform = useMotionTemplate`rotate(${angle} 450 590)`
   const doorTransform = useMotionTemplate`rotate(${angle} 450 590)`
+
+  const rawKnobAngle = useTransform(scrollYProgress, [0, 1], [0, 1080])
+  const smoothKnobAngle = useSpring(rawKnobAngle, { stiffness: 50, damping: 20 })
+  const knobAngle = prefersReducedMotion ? 0 : smoothKnobAngle
+  const knobTransform = useMotionTemplate`translate(450 210) rotate(${knobAngle})`
+
+  const bodyOpacity = useTransform(scrollY, [0, 380], [1, 0], { clamp: true })
+  const effectiveBodyOpacity = prefersReducedMotion ? 0 : bodyOpacity
 
   return (
     <svg
@@ -157,6 +165,8 @@ export function WashingMachine({ className }: WashingMachineProps) {
         </filter>
       </defs>
 
+      <motion.g style={{ opacity: effectiveBodyOpacity }}>
+
       {/* Floor shadow */}
       <ellipse cx="450" cy="1030" rx="320" ry="22" fill="url(#floorShadow)" />
 
@@ -233,21 +243,6 @@ export function WashingMachine({ className }: WashingMachineProps) {
           </g>
         </g>
 
-        {/* Round blue knob (centered on panel) */}
-        <g filter="url(#knobShadow)" transform="translate(450 210)">
-          {/* knob base shadow recess */}
-          <circle cx="0" cy="0" r="44" fill="#000" opacity="0.45" />
-          {/* outer body (vivid blue) */}
-          <circle cx="0" cy="0" r="42" fill="url(#knobBody)" />
-          {/* top cap */}
-          <circle cx="0" cy="0" r="34" fill="url(#knobTop)" />
-          {/* subtle concentric groove */}
-          <circle cx="0" cy="0" r="34" fill="none" stroke="#0A2D5C" strokeOpacity="0.35" strokeWidth="0.8" />
-          {/* center dot (like reference) */}
-          <circle cx="0" cy="0" r="2.2" fill="#F4F6FA" opacity="0.95" />
-          {/* pointer indicator (white on blue) */}
-          <rect x="-1.8" y="-30" width="3.6" height="11" rx="1.6" fill="#F4F6FA" opacity="0.9" />
-        </g>
       </g>
 
       {/* ===== Detergent drawer (upper-left below panel) ===== */}
@@ -515,6 +510,24 @@ export function WashingMachine({ className }: WashingMachineProps) {
       {/* Subtle body side-edge highlights */}
       <rect x="128" y="280" width="3" height="700" rx="1.5" fill="#ffffff" opacity="0.5" />
       <rect x="769" y="280" width="3" height="700" rx="1.5" fill="#000" opacity="0.04" />
+
+      </motion.g>
+
+      {/* Round blue knob (centered on panel) — stays opaque, rotates on scroll */}
+      <motion.g filter="url(#knobShadow)" transform={knobTransform}>
+        {/* knob base shadow recess */}
+        <circle cx="0" cy="0" r="44" fill="#000" opacity="0.45" />
+        {/* outer body (vivid blue) */}
+        <circle cx="0" cy="0" r="42" fill="url(#knobBody)" />
+        {/* top cap */}
+        <circle cx="0" cy="0" r="34" fill="url(#knobTop)" />
+        {/* subtle concentric groove */}
+        <circle cx="0" cy="0" r="34" fill="none" stroke="#0A2D5C" strokeOpacity="0.35" strokeWidth="0.8" />
+        {/* center dot (like reference) */}
+        <circle cx="0" cy="0" r="2.2" fill="#F4F6FA" opacity="0.95" />
+        {/* pointer indicator (white on blue) */}
+        <rect x="-1.8" y="-30" width="3.6" height="11" rx="1.6" fill="#F4F6FA" opacity="0.9" />
+      </motion.g>
     </svg>
   )
 }

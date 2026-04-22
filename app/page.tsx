@@ -1,7 +1,6 @@
 "use client"
 
 import { MotionConfig } from "framer-motion"
-import { DialNavigator } from "@/components/DialNavigator"
 import { SiteNav } from "@/components/SiteNav"
 import { HeroSection } from "@/components/sections/HeroSection"
 import { ServicesSection } from "@/components/sections/ServicesSection"
@@ -19,7 +18,6 @@ const WHATSAPP_URL =
 export default function Home() {
   return (
     <MotionConfig reducedMotion="user">
-      <DialNavigator />
       <SiteNav />
       <main>
         <HeroSection />
