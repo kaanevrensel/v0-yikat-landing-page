@@ -120,6 +120,9 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    @apply scroll-pt-14 md:scroll-pt-16;
+  }
   body {
     @apply bg-background text-foreground;
   }
