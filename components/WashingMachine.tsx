@@ -22,9 +22,10 @@ export function WashingMachine({ className }: WashingMachineProps) {
   const angle = prefersReducedMotion ? 0 : smooth
   const drumTransform = useMotionTemplate`rotate(${angle} 450 590)`
   const doorTransform = useMotionTemplate`rotate(${angle} 450 590)`
-  // Rotation only — static parent <g> handles the translate to (450, 210).
-  // motion.g drops compound transform strings (translate + rotate), so we split the two.
-  const knobRotate = useMotionTemplate`rotate(${angle})`
+  // Rotation around the knob's local origin (0, 0). Outer static <g> handles the
+  // translate to (450, 210); this inner rotate uses SVG's 3-arg form so motion.g
+  // treats it as an SVG transform attribute rather than a CSS rotate.
+  const knobRotate = useMotionTemplate`rotate(${angle} 0 0)`
 
   // Machine body fades across the hero's scroll depth; knob stays opaque
   const bodyOpacity = useTransform(scrollY, [0, 380], [1, 0], { clamp: true })
