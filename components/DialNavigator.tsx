@@ -23,7 +23,7 @@ const MOBILE_ROTATION_OFFSET_DEG = 90
 
 // ---------- Size constants (CSS pixels) ----------
 const BASE_SIZE = 500                       // container footprint (matches viewBox)
-const HERO_SIZE = 110                       // visible diameter at hero (matches photo's knob on-screen)
+const HERO_SIZE = 100                       // visible diameter at hero (matches photo's knob on-screen)
 const HERO_SCALE = HERO_SIZE / BASE_SIZE    // 0.22
 const SCROLLED_PADDING = 40                 // 20px top + 20px bottom
 const MIN_SCROLLED_SIZE = 420               // clamp floor for short viewports
@@ -33,9 +33,9 @@ const MOBILE_HERO_TOP_PCT = 30              // center at 30% of viewport height 
 
 // Hero state (desktop): knob visually overlays the photograph's physical knob on the left half.
 // 30vw lands roughly in the center of the left column on a max-w-1400 grid at wider viewports.
-const HERO_LEFT_VW = 30
+const HERO_LEFT_VW = 24
 // Hero state (desktop): knob sits at ~40% from top (aligns with photograph's knob position).
-const HERO_TOP_PCT = 40
+const HERO_TOP_PCT = 28
 
 function easeInOutCubic(t: number): number {
   if (t < 0.5) return 4 * t * t * t
