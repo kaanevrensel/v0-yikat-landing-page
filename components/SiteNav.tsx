@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
 import { Menu, X } from "lucide-react"
 
 const WHATSAPP_URL =
@@ -17,6 +17,7 @@ const links = [
 
 export function SiteNav() {
   const [open, setOpen] = useState(false)
+  const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
     if (!open) return
@@ -80,10 +81,13 @@ export function SiteNav() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -8 }}
+            transition={{
+              duration: prefersReducedMotion ? 0 : 0.18,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             className="fixed inset-x-0 top-14 z-40 border-b border-[#E5E7EB] bg-[#FAFAF7] md:hidden"
           >
             <nav aria-label="Mobil gezinti" className="mx-auto max-w-[1400px] px-6 py-4">
