@@ -18,14 +18,6 @@ const CX = 250
 const CY = 250
 const KNOB_R = 160                   // reduced from 185 — solid knob, no bezel
 
-// Indicator: short radial white line INSIDE the knob. With strokeLinecap="round"
-// the outer rounded cap intentionally overshoots KNOB_R by ~strokeWidth/2 so the
-// tip "kisses" the edge instead of sinking inside it — don't inset by stroke/2.
-const INDICATOR_LENGTH = 18         // 11.25% of KNOB_R (inside 8-12% target range)
-const INDICATOR_STROKE = 3.5
-const INDICATOR_OUTER_R = KNOB_R    // tip at knob edge = 160
-const INDICATOR_INNER_R = KNOB_R - INDICATOR_LENGTH  // 142
-
 // Mobile: labels rotate 90° so active lands at 6 o'clock, not 3.
 const MOBILE_ROTATION_OFFSET_DEG = 90
 
@@ -149,23 +141,30 @@ export function DialNavigator() {
           aria-hidden="true"
         >
           <defs>
-            <radialGradient id="concave-knob" cx="50%" cy="50%" r="55%">
-              <stop offset="0%"   stopColor="#4aa5ff" />
-              <stop offset="55%"  stopColor="#2798ff" />
-              <stop offset="100%" stopColor="#1a7de8" />
-            </radialGradient>
+            <linearGradient id="dial-knobBody-desktop" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%"   stopColor="#5AA8FF" />
+              <stop offset="40%"  stopColor="#2E86F0" />
+              <stop offset="75%"  stopColor="#1A63C4" />
+              <stop offset="100%" stopColor="#0D3F86" />
+            </linearGradient>
+            <linearGradient id="dial-knobTop-desktop" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%"   stopColor="#6EB6FF" />
+              <stop offset="100%" stopColor="#1E6DCC" />
+            </linearGradient>
           </defs>
 
-          <circle cx={CX} cy={CY} r={KNOB_R} fill="url(#concave-knob)" />
+          <circle cx={CX} cy={CY} r={KNOB_R} fill="url(#dial-knobBody-desktop)" />
+          <circle cx={CX} cy={CY} r={130} fill="url(#dial-knobTop-desktop)" />
+          <circle cx={CX} cy={CY} r={8.4} fill="#F4F6FA" />
 
-          <motion.line
-            x1={CX + INDICATOR_INNER_R}
-            y1={CY}
-            x2={CX + INDICATOR_OUTER_R}
-            y2={CY}
-            stroke="#FFFFFF"
-            strokeWidth={INDICATOR_STROKE}
-            strokeLinecap="round"
+          <motion.rect
+            x={CX - 6.85}
+            y={CY - 115}
+            width={13.7}
+            height={42}
+            rx={6.1}
+            fill="#F4F6FA"
+            opacity={0.9}
             style={{ opacity: effectiveIndicatorOpacity }}
           />
         </svg>
@@ -207,23 +206,30 @@ export function DialNavigator() {
           aria-hidden="true"
         >
           <defs>
-            <radialGradient id="concave-knob-mobile" cx="50%" cy="50%" r="55%">
-              <stop offset="0%"   stopColor="#4aa5ff" />
-              <stop offset="55%"  stopColor="#2798ff" />
-              <stop offset="100%" stopColor="#1a7de8" />
-            </radialGradient>
+            <linearGradient id="dial-knobBody-mobile" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%"   stopColor="#5AA8FF" />
+              <stop offset="40%"  stopColor="#2E86F0" />
+              <stop offset="75%"  stopColor="#1A63C4" />
+              <stop offset="100%" stopColor="#0D3F86" />
+            </linearGradient>
+            <linearGradient id="dial-knobTop-mobile" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%"   stopColor="#6EB6FF" />
+              <stop offset="100%" stopColor="#1E6DCC" />
+            </linearGradient>
           </defs>
 
-          <circle cx={CX} cy={CY} r={KNOB_R} fill="url(#concave-knob-mobile)" />
+          <circle cx={CX} cy={CY} r={KNOB_R} fill="url(#dial-knobBody-mobile)" />
+          <circle cx={CX} cy={CY} r={130} fill="url(#dial-knobTop-mobile)" />
+          <circle cx={CX} cy={CY} r={8.4} fill="#F4F6FA" />
 
-          <motion.line
-            x1={CX}
-            y1={CY + INDICATOR_INNER_R}
-            x2={CX}
-            y2={CY + INDICATOR_OUTER_R}
-            stroke="#FFFFFF"
-            strokeWidth={INDICATOR_STROKE}
-            strokeLinecap="round"
+          <motion.rect
+            x={CX - 6.85}
+            y={CY + 73}
+            width={13.7}
+            height={42}
+            rx={6.1}
+            fill="#F4F6FA"
+            opacity={0.9}
             style={{ opacity: effectiveIndicatorOpacity }}
           />
         </svg>
