@@ -2,7 +2,6 @@
 
 import {
   motion,
-  useMotionTemplate,
   useReducedMotion,
   useScroll,
   useSpring,
@@ -20,8 +19,6 @@ export function WashingMachine({ className }: WashingMachineProps) {
   const rawAngle = useTransform(scrollYProgress, [0, 1], [0, 1080])
   const smooth = useSpring(rawAngle, { stiffness: 50, damping: 20 })
   const angle = prefersReducedMotion ? 0 : smooth
-  const drumTransform = useMotionTemplate`rotate(${angle} 450 590)`
-  const doorTransform = useMotionTemplate`rotate(${angle} 450 590)`
 
   // Machine body fades across the hero's scroll depth; knob stays opaque
   const bodyOpacity = useTransform(scrollY, [0, 380], [1, 0], { clamp: true })
@@ -246,15 +243,13 @@ export function WashingMachine({ className }: WashingMachineProps) {
       <g filter="url(#doorShadow)">
         {/* Outer static ring blending into body */}
         <circle cx="450" cy="590" r="220" fill="#F2F2EE" />
-        {/* Rotating gasket ring (door outer rim) */}
-        <motion.g id="doorRotor" transform={doorTransform}>
+        <g>
           {/* Inner black ring (gasket / rim) */}
           <circle cx="450" cy="590" r="210" fill="url(#doorRing)" />
           {/* Slight inner rim shade */}
           <circle cx="450" cy="590" r="196" fill="#0A0B0D" />
-          {/* small tick on gasket so rotation is visible */}
           <circle cx="450" cy="395" r="3" fill="#2A2B2E" />
-        </motion.g>
+        </g>
       </g>
 
       {/* Drum + clothes (BEHIND the tinted glass) */}
@@ -263,7 +258,14 @@ export function WashingMachine({ className }: WashingMachineProps) {
         <circle cx="450" cy="590" r="160" fill="url(#drumGrad)" />
 
         {/* Rotating drum interior: holes pattern + paddles + clothes */}
-        <motion.g id="drumRotor" transform={drumTransform}>
+        <motion.g
+          id="drumRotor"
+          style={{
+            rotate: angle,
+            transformOrigin: "450px 590px",
+            transformBox: "view-box",
+          }}
+        >
           {/* holes pattern rotates with drum */}
           <circle cx="450" cy="590" r="160" fill="url(#drumHoles)" />
 
