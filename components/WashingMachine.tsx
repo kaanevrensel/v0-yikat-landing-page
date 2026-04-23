@@ -22,10 +22,6 @@ export function WashingMachine({ className }: WashingMachineProps) {
   const angle = prefersReducedMotion ? 0 : smooth
   const drumTransform = useMotionTemplate`rotate(${angle} 450 590)`
   const doorTransform = useMotionTemplate`rotate(${angle} 450 590)`
-  // Rotation around the knob's local origin (0, 0). Outer static <g> handles the
-  // translate to (450, 210); this inner rotate uses SVG's 3-arg form so motion.g
-  // treats it as an SVG transform attribute rather than a CSS rotate.
-  const knobRotate = useMotionTemplate`rotate(${angle} 0 0)`
 
   // Machine body fades across the hero's scroll depth; knob stays opaque
   const bodyOpacity = useTransform(scrollY, [0, 380], [1, 0], { clamp: true })
@@ -106,19 +102,6 @@ export function WashingMachine({ className }: WashingMachineProps) {
           <stop offset="100%" stopColor="#000000" />
         </radialGradient>
 
-        {/* Knob (vivid blue) */}
-        <radialGradient id="knobBody" cx="40%" cy="32%" r="75%">
-          <stop offset="0%" stopColor="#5AA8FF" />
-          <stop offset="40%" stopColor="#2E86F0" />
-          <stop offset="80%" stopColor="#1A63C4" />
-          <stop offset="100%" stopColor="#0D3F86" />
-        </radialGradient>
-        <radialGradient id="knobTop" cx="45%" cy="38%" r="70%">
-          <stop offset="0%" stopColor="#6FB0FF" />
-          <stop offset="55%" stopColor="#2E86F0" />
-          <stop offset="100%" stopColor="#164F9E" />
-        </radialGradient>
-
         {/* Detergent drawer (white, flush with body) */}
         <linearGradient id="drawerFace" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor="#EDEDE9" />
@@ -139,18 +122,6 @@ export function WashingMachine({ className }: WashingMachineProps) {
         <clipPath id="glassClip">
           <circle cx="450" cy="590" r="190" />
         </clipPath>
-
-        <filter id="knobShadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" />
-          <feOffset dx="0" dy="3" result="offsetblur" />
-          <feComponentTransfer>
-            <feFuncA type="linear" slope="0.45" />
-          </feComponentTransfer>
-          <feMerge>
-            <feMergeNode />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
 
         <filter id="doorShadow" x="-20%" y="-20%" width="140%" height="140%">
           <feGaussianBlur in="SourceAlpha" stdDeviation="5" />
@@ -513,23 +484,6 @@ export function WashingMachine({ className }: WashingMachineProps) {
 
       </motion.g>
 
-      {/* Round blue knob (centered on panel) */}
-      <g transform="translate(450 210)" filter="url(#knobShadow)">
-        <motion.g transform={knobRotate}>
-          {/* knob base shadow recess */}
-          <circle cx="0" cy="0" r="44" fill="#000" opacity="0.45" />
-          {/* outer body (vivid blue) */}
-          <circle cx="0" cy="0" r="42" fill="url(#knobBody)" />
-          {/* top cap */}
-          <circle cx="0" cy="0" r="34" fill="url(#knobTop)" />
-          {/* subtle concentric groove */}
-          <circle cx="0" cy="0" r="34" fill="none" stroke="#0A2D5C" strokeOpacity="0.35" strokeWidth="0.8" />
-          {/* center dot (like reference) */}
-          <circle cx="0" cy="0" r="2.2" fill="#F4F6FA" opacity="0.95" />
-          {/* pointer indicator (white on blue) */}
-          <rect x="-1.8" y="-30" width="3.6" height="11" rx="1.6" fill="#F4F6FA" opacity="0.9" />
-        </motion.g>
-      </g>
     </svg>
   )
 }
