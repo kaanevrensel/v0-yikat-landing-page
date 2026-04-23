@@ -144,8 +144,8 @@ Approximate dispatches per phase if using subagent-driven execution. Most phases
 
 Run:
 ```bash
-git -C /Users/kaanevrensel/v0-yikat-landing-page/.worktrees/feat-landing-redesign status
-git -C /Users/kaanevrensel/v0-yikat-landing-page/.worktrees/feat-landing-redesign branch --show-current
+git -C /Users/kaanevrensel/v0-yikat-landing-page/.worktrees/feat-landing-redesign-2 status
+git -C /Users/kaanevrensel/v0-yikat-landing-page/.worktrees/feat-landing-redesign-2 branch --show-current
 ```
 Expected: `nothing to commit, working tree clean` and `feat/landing-redesign`.
 
