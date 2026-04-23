@@ -1,11 +1,15 @@
 "use client"
 
+import { useRef } from "react"
 import { motion } from "framer-motion"
 import { ChevronDown } from "lucide-react"
 import { SectionReveal, revealItem } from "@/components/SectionReveal"
 import { HeroMachine } from "@/components/HeroMachine"
+import { Knob } from "@/components/Knob"
 
 export function HeroSection() {
+  const machineRef = useRef<HTMLDivElement>(null)
+
   return (
     <SectionReveal
       id="basla"
@@ -15,7 +19,7 @@ export function HeroSection() {
       <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
         {/* LEFT: machine photo */}
         <motion.div variants={revealItem} className="order-1 lg:order-1">
-          <HeroMachine />
+          <HeroMachine ref={machineRef} />
         </motion.div>
 
         {/* RIGHT: text stack */}
@@ -55,6 +59,8 @@ export function HeroSection() {
           </motion.div>
         </div>
       </div>
+
+      <Knob containerRef={machineRef} />
     </SectionReveal>
   )
 }
