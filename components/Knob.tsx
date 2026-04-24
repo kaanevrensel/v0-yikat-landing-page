@@ -1,6 +1,7 @@
 "use client"
 
 import { type RefObject, useEffect, useState } from "react"
+import { motion, useScroll, useSpring, useTransform, useReducedMotion } from "framer-motion"
 
 type Props = {
   containerRef: RefObject<HTMLDivElement | null>
@@ -39,6 +40,12 @@ export function Knob({ containerRef }: Props) {
   }, [containerRef])
 
   const position = rect ? computePosition(rect) : { left: 0, top: 0 }
+
+  const prefersReducedMotion = useReducedMotion()
+  const { scrollYProgress } = useScroll()
+  const rawAngle = useTransform(scrollYProgress, [0, 1], [0, 1080])
+  const smoothAngle = useSpring(rawAngle, { stiffness: 50, damping: 20 })
+  const angle = prefersReducedMotion ? 0 : smoothAngle
 
   return (
     <svg
@@ -80,14 +87,14 @@ export function Knob({ containerRef }: Props) {
         </filter>
       </defs>
       <g filter="url(#knobShadow)">
-        <g>
+        <motion.g style={{ rotate: angle }}>
           <circle cx="0" cy="0" r="44" fill="#000" opacity="0.45" />
           <circle cx="0" cy="0" r="42" fill="url(#knobBody)" />
           <circle cx="0" cy="0" r="34" fill="url(#knobTop)" />
           <circle cx="0" cy="0" r="34" fill="none" stroke="#0A2D5C" strokeOpacity="0.35" strokeWidth="0.8" />
           <circle cx="0" cy="0" r="2.2" fill="#F4F6FA" opacity="0.95" />
           <rect x="-1.8" y="-30" width="3.6" height="11" rx="1.6" fill="#F4F6FA" opacity="0.9" />
-        </g>
+        </motion.g>
       </g>
     </svg>
   )
