@@ -1,7 +1,7 @@
 "use client"
 
 import { type RefObject, useEffect, useState } from "react"
-import { motion, useScroll, useSpring, useTransform, useReducedMotion } from "framer-motion"
+import { motion, useScroll, useSpring, useTransform, useReducedMotion, useMotionValue } from "framer-motion"
 
 type Props = {
   containerRef: RefObject<HTMLDivElement | null>
@@ -24,6 +24,18 @@ const KNOB_FILL_SCALE = BASE_SIZE / KNOB_DIAMETER       // 500/88 ≈ 5.6818
 const C = BASE_SIZE / 2                                 // 250 — knob center in new viewBox
 // Fallback rest-scale used before measurement; harmless since opacity=0 until isMeasured.
 const DEFAULT_REST_SCALE = 100 / BASE_SIZE
+
+// Morph driver constants (ported verbatim from deleted DialNavigator.tsx @ ac52fd0~1).
+const MORPH_START = 120              // scrollY px — morph begins
+const MORPH_END = 380                // scrollY px — morph settled
+const SCROLLED_PADDING = 40          // 20 top + 20 bottom (used in Task 3 for dest scale)
+const MIN_SCROLLED_SIZE = 420        // clamp floor (used in Task 3)
+
+function easeInOutCubic(t: number): number {
+  if (t < 0.5) return 4 * t * t * t
+  const f = 2 * t - 2
+  return 0.5 * f * f * f + 1
+}
 
 export function Knob({ containerRef }: Props) {
   const [rect, setRect] = useState<DOMRect | null>(null)
@@ -56,10 +68,21 @@ export function Knob({ containerRef }: Props) {
     : { left: 0, top: 0, restScale: DEFAULT_REST_SCALE }
 
   const prefersReducedMotion = useReducedMotion()
-  const { scrollYProgress } = useScroll()
+  const { scrollY, scrollYProgress } = useScroll()
   const rawAngle = useTransform(scrollYProgress, [0, 1], [0, 1080])
   const smoothAngle = useSpring(rawAngle, { stiffness: 50, damping: 20 })
   const angle = prefersReducedMotion ? 0 : smoothAngle
+
+  // Morph driver chain (Task 2). Produces a unit-progress MotionValue that will
+  // drive rest→destination blending in Tasks 3–5. Not consumed yet.
+  const rawProgress = useTransform(scrollY, [MORPH_START, MORPH_END], [0, 1], { clamp: true })
+  const easedProgress = useTransform(rawProgress, easeInOutCubic)
+  const morphProgressRaw = useSpring(easedProgress, { stiffness: 50, damping: 20 })
+  // Reduced-motion: pin to 0. zeroMV is created unconditionally to obey rules of hooks.
+  const zeroMV = useMotionValue(0)
+  // morphProgress is intentionally unused in Task 2 — it will be consumed in Task 5.
+  const morphProgress = prefersReducedMotion ? zeroMV : morphProgressRaw
+  void morphProgress
 
   // Pre-compute scaled geometry (radii/pointer) for the 500-unit viewBox.
   const R_SHADOW = 44 * KNOB_FILL_SCALE   // 250
