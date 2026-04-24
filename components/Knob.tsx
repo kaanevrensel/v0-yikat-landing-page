@@ -41,12 +41,27 @@ export function Knob({ containerRef }: Props) {
   const [rect, setRect] = useState<DOMRect | null>(null)
   const [isMeasured, setIsMeasured] = useState(false)
 
+  // Rest MotionValues, fed via .set() inside the RO/scroll effect (Task 4).
+  // These mirror the values returned by computePosition() and will replace the
+  // `position` derivation in the JSX in Task 5. Created unconditionally to obey
+  // rules of hooks. Defaults: 0 for left/top (offscreen until measured; the
+  // isMeasured opacity gate hides the knob anyway) and DEFAULT_REST_SCALE for
+  // restScale (matches the SSR fallback path).
+  const restLeftMV = useMotionValue(0)
+  const restTopMV = useMotionValue(0)
+  const restScaleMV = useMotionValue(DEFAULT_REST_SCALE)
+
   useEffect(() => {
     const el = containerRef.current
     if (!el) return
 
     const update = () => {
-      setRect(el.getBoundingClientRect())
+      const r = el.getBoundingClientRect()
+      setRect(r)
+      const p = computePosition(r)
+      restLeftMV.set(p.restLeft)
+      restTopMV.set(p.restTop)
+      restScaleMV.set(p.restScale)
       setIsMeasured(true)
     }
 
@@ -61,7 +76,7 @@ export function Knob({ containerRef }: Props) {
       window.removeEventListener("scroll", update)
       window.removeEventListener("resize", update)
     }
-  }, [containerRef])
+  }, [containerRef, restLeftMV, restTopMV, restScaleMV])
 
   // Viewport tracking for responsive morph destination (Task 3).
   // SSR initial { 375, 800 } is fine — dest MVs aren't consumed yet, and the
@@ -76,7 +91,7 @@ export function Knob({ containerRef }: Props) {
 
   const position = rect
     ? computePosition(rect)
-    : { left: 0, top: 0, restScale: DEFAULT_REST_SCALE }
+    : { restLeft: 0, restTop: 0, restScale: DEFAULT_REST_SCALE }
 
   const prefersReducedMotion = useReducedMotion()
   const { scrollY, scrollYProgress } = useScroll()
@@ -118,6 +133,12 @@ export function Knob({ containerRef }: Props) {
   void destLeftMV
   void destTopMV
   void destScaleMV
+  // Rest MVs (Task 4) are fed via the RO/scroll effect above but not yet
+  // consumed in JSX — Task 5 will replace `position.restLeft/restTop/restScale`
+  // with blended MVs that read from these.
+  void restLeftMV
+  void restTopMV
+  void restScaleMV
 
   // Pre-compute scaled geometry (radii/pointer) for the 500-unit viewBox.
   const R_SHADOW = 44 * KNOB_FILL_SCALE   // 250
@@ -135,8 +156,8 @@ export function Knob({ containerRef }: Props) {
       aria-hidden="true"
       style={{
         position: "fixed",
-        left: position.left,
-        top: position.top,
+        left: position.restLeft,
+        top: position.restTop,
         x: "-50%",
         y: "-50%",
         width: BASE_SIZE,
@@ -223,8 +244,8 @@ function computePosition(rect: DOMRect) {
   // makes the rendered knob radius = 44*machineScale — matching commit efa011c exactly.
   const restScale = (KNOB_DIAMETER * machineScale) / BASE_SIZE
   return {
-    left: knobCenterX,
-    top: knobCenterY,
+    restLeft: knobCenterX,
+    restTop: knobCenterY,
     restScale,
   }
 }
