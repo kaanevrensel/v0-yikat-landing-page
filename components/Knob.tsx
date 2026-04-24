@@ -63,6 +63,17 @@ export function Knob({ containerRef }: Props) {
     }
   }, [containerRef])
 
+  // Viewport tracking for responsive morph destination (Task 3).
+  // SSR initial { 375, 800 } is fine — dest MVs aren't consumed yet, and the
+  // existing isMeasured opacity gate hides the knob until the RO callback fires.
+  const [viewport, setViewport] = useState({ w: 375, h: 800 })
+  useEffect(() => {
+    const update = () => setViewport({ w: window.innerWidth, h: window.innerHeight })
+    update()
+    window.addEventListener("resize", update)
+    return () => window.removeEventListener("resize", update)
+  }, [])
+
   const position = rect
     ? computePosition(rect)
     : { left: 0, top: 0, restScale: DEFAULT_REST_SCALE }
@@ -83,6 +94,30 @@ export function Knob({ containerRef }: Props) {
   // morphProgress is intentionally unused in Task 2 — it will be consumed in Task 5.
   const morphProgress = prefersReducedMotion ? zeroMV : morphProgressRaw
   void morphProgress
+
+  // Responsive morph destination (Task 3). Plain numbers derived from viewport.
+  // Desktop: knob center at left edge, vertically centered (half-clipped).
+  // Mobile:  knob center at top  edge, horizontally centered (half-clipped).
+  const isDesktop = viewport.w >= 1024
+  const destLeftPx = isDesktop ? 0 : viewport.w / 2
+  const destTopPx = isDesktop ? viewport.h / 2 : 0
+  const destScale = isDesktop
+    ? Math.max(MIN_SCROLLED_SIZE, viewport.h - SCROLLED_PADDING) / BASE_SIZE
+    : viewport.w / BASE_SIZE
+
+  // Destination MotionValues, fed via effect on viewport change.
+  // Intentionally unconsumed in Task 3 — Task 5 will wire them into the blend.
+  const destLeftMV = useMotionValue(0)
+  const destTopMV = useMotionValue(0)
+  const destScaleMV = useMotionValue(0)
+  useEffect(() => {
+    destLeftMV.set(destLeftPx)
+    destTopMV.set(destTopPx)
+    destScaleMV.set(destScale)
+  }, [destLeftPx, destTopPx, destScale, destLeftMV, destTopMV, destScaleMV])
+  void destLeftMV
+  void destTopMV
+  void destScaleMV
 
   // Pre-compute scaled geometry (radii/pointer) for the 500-unit viewBox.
   const R_SHADOW = 44 * KNOB_FILL_SCALE   // 250
