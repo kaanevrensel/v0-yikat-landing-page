@@ -7,11 +7,23 @@ type Props = {
   containerRef: RefObject<HTMLDivElement | null>
 }
 
-const SVG_SIZE = 100
+// New fixed container: 500×500 motion.div, scaled uniformly via `restScale`.
+// The knob SVG inside uses a 0 0 500 500 viewBox with geometry centered at (250, 250).
+// All circle/pointer radii are scaled from the old 100-unit viewBox (knob diameter 88)
+// to fill the 500-unit viewBox — scale factor k = 500/88. The outer `restScale` then
+// brings the rendered knob back to its old CSS size: rendered knob CSS radius =
+// (44*k) * restScale = (44*500/88) * (88*machine_scale/500) = 44*machine_scale,
+// matching commit efa011c's rendered knob exactly.
+const BASE_SIZE = 500
 const VIEWBOX_W = 900
 const VIEWBOX_H = 1100
 const KNOB_LOCAL_X = 450
 const KNOB_LOCAL_Y = 210
+const KNOB_DIAMETER = 88                                // r=44 in old 100-unit viewBox
+const KNOB_FILL_SCALE = BASE_SIZE / KNOB_DIAMETER       // 500/88 ≈ 5.6818
+const C = BASE_SIZE / 2                                 // 250 — knob center in new viewBox
+// Fallback rest-scale used before measurement; harmless since opacity=0 until isMeasured.
+const DEFAULT_REST_SCALE = 100 / BASE_SIZE
 
 export function Knob({ containerRef }: Props) {
   const [rect, setRect] = useState<DOMRect | null>(null)
@@ -39,7 +51,9 @@ export function Knob({ containerRef }: Props) {
     }
   }, [containerRef])
 
-  const position = rect ? computePosition(rect) : { left: 0, top: 0, svgSize: SVG_SIZE }
+  const position = rect
+    ? computePosition(rect)
+    : { left: 0, top: 0, restScale: DEFAULT_REST_SCALE }
 
   const prefersReducedMotion = useReducedMotion()
   const { scrollYProgress } = useScroll()
@@ -47,56 +61,91 @@ export function Knob({ containerRef }: Props) {
   const smoothAngle = useSpring(rawAngle, { stiffness: 50, damping: 20 })
   const angle = prefersReducedMotion ? 0 : smoothAngle
 
+  // Pre-compute scaled geometry (radii/pointer) for the 500-unit viewBox.
+  const R_SHADOW = 44 * KNOB_FILL_SCALE   // 250
+  const R_BODY = 42 * KNOB_FILL_SCALE     // ≈ 238.636
+  const R_TOP = 34 * KNOB_FILL_SCALE      // ≈ 193.182
+  const R_DOT = 2.2 * KNOB_FILL_SCALE     // 12.5
+  const POINTER_W = 3.6 * KNOB_FILL_SCALE // ≈ 20.455
+  const POINTER_H = 11 * KNOB_FILL_SCALE  // 62.5
+  const POINTER_RX = 1.6 * KNOB_FILL_SCALE // ≈ 9.091
+  const POINTER_X = C - POINTER_W / 2     // centered horizontally at 250
+  const POINTER_Y = C + (-30 * KNOB_FILL_SCALE) // old y=-30 shifted to center → ≈ 79.545
+
   return (
-    <svg
+    <motion.div
       aria-hidden="true"
-      width={position.svgSize}
-      height={position.svgSize}
-      viewBox={`-${SVG_SIZE / 2} -${SVG_SIZE / 2} ${SVG_SIZE} ${SVG_SIZE}`}
       style={{
         position: "fixed",
         left: position.left,
         top: position.top,
+        x: "-50%",
+        y: "-50%",
+        width: BASE_SIZE,
+        height: BASE_SIZE,
+        scale: position.restScale,
+        transformOrigin: "center",
         pointerEvents: "none",
         zIndex: 30,
         opacity: isMeasured ? 1 : 0,
+        willChange: "transform",
       }}
     >
-      <defs>
-        <radialGradient id="knobBody" cx="40%" cy="32%" r="75%">
-          <stop offset="0%" stopColor="#5AA8FF" />
-          <stop offset="40%" stopColor="#2E86F0" />
-          <stop offset="80%" stopColor="#1A63C4" />
-          <stop offset="100%" stopColor="#0D3F86" />
-        </radialGradient>
-        <radialGradient id="knobTop" cx="45%" cy="38%" r="70%">
-          <stop offset="0%" stopColor="#6FB0FF" />
-          <stop offset="55%" stopColor="#2E86F0" />
-          <stop offset="100%" stopColor="#164F9E" />
-        </radialGradient>
-        <filter id="knobShadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" />
-          <feOffset dx="0" dy="3" result="offsetblur" />
-          <feComponentTransfer>
-            <feFuncA type="linear" slope="0.45" />
-          </feComponentTransfer>
-          <feMerge>
-            <feMergeNode />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-      <g filter="url(#knobShadow)">
-        <motion.g style={{ rotate: angle }}>
-          <circle cx="0" cy="0" r="44" fill="#000" opacity="0.45" />
-          <circle cx="0" cy="0" r="42" fill="url(#knobBody)" />
-          <circle cx="0" cy="0" r="34" fill="url(#knobTop)" />
-          <circle cx="0" cy="0" r="34" fill="none" stroke="#0A2D5C" strokeOpacity="0.35" strokeWidth="0.8" />
-          <circle cx="0" cy="0" r="2.2" fill="#F4F6FA" opacity="0.95" />
-          <rect x="-1.8" y="-30" width="3.6" height="11" rx="1.6" fill="#F4F6FA" opacity="0.9" />
-        </motion.g>
-      </g>
-    </svg>
+      <svg
+        viewBox={`0 0 ${BASE_SIZE} ${BASE_SIZE}`}
+        width={BASE_SIZE}
+        height={BASE_SIZE}
+      >
+        <defs>
+          <radialGradient id="knobBody" cx="40%" cy="32%" r="75%">
+            <stop offset="0%" stopColor="#5AA8FF" />
+            <stop offset="40%" stopColor="#2E86F0" />
+            <stop offset="80%" stopColor="#1A63C4" />
+            <stop offset="100%" stopColor="#0D3F86" />
+          </radialGradient>
+          <radialGradient id="knobTop" cx="45%" cy="38%" r="70%">
+            <stop offset="0%" stopColor="#6FB0FF" />
+            <stop offset="55%" stopColor="#2E86F0" />
+            <stop offset="100%" stopColor="#164F9E" />
+          </radialGradient>
+          <filter id="knobShadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation={2.5 * KNOB_FILL_SCALE} />
+            <feOffset dx="0" dy={3 * KNOB_FILL_SCALE} result="offsetblur" />
+            <feComponentTransfer>
+              <feFuncA type="linear" slope="0.45" />
+            </feComponentTransfer>
+            <feMerge>
+              <feMergeNode />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <g filter="url(#knobShadow)">
+          <motion.g
+            style={{
+              rotate: angle,
+              transformOrigin: `${C}px ${C}px`,
+              transformBox: "view-box",
+            }}
+          >
+            <circle cx={C} cy={C} r={R_SHADOW} fill="#000" opacity="0.45" />
+            <circle cx={C} cy={C} r={R_BODY} fill="url(#knobBody)" />
+            <circle cx={C} cy={C} r={R_TOP} fill="url(#knobTop)" />
+            <circle cx={C} cy={C} r={R_TOP} fill="none" stroke="#0A2D5C" strokeOpacity="0.35" strokeWidth={0.8 * KNOB_FILL_SCALE} />
+            <circle cx={C} cy={C} r={R_DOT} fill="#F4F6FA" opacity="0.95" />
+            <rect
+              x={POINTER_X}
+              y={POINTER_Y}
+              width={POINTER_W}
+              height={POINTER_H}
+              rx={POINTER_RX}
+              fill="#F4F6FA"
+              opacity="0.9"
+            />
+          </motion.g>
+        </g>
+      </svg>
+    </motion.div>
   )
 }
 
@@ -104,17 +153,20 @@ function computePosition(rect: DOMRect) {
   const containerAspect = rect.width / rect.height
   const svgAspect = VIEWBOX_W / VIEWBOX_H
   const widthConstrained = containerAspect < svgAspect
-  const scale = widthConstrained ? rect.width / VIEWBOX_W : rect.height / VIEWBOX_H
-  const renderedW = VIEWBOX_W * scale
-  const renderedH = VIEWBOX_H * scale
+  const machineScale = widthConstrained ? rect.width / VIEWBOX_W : rect.height / VIEWBOX_H
+  const renderedW = VIEWBOX_W * machineScale
+  const renderedH = VIEWBOX_H * machineScale
   const offsetX = (rect.width - renderedW) / 2
   const offsetY = (rect.height - renderedH) / 2
-  const knobCenterX = rect.left + offsetX + KNOB_LOCAL_X * scale
-  const knobCenterY = rect.top + offsetY + KNOB_LOCAL_Y * scale
-  const svgSize = SVG_SIZE * scale
+  const knobCenterX = rect.left + offsetX + KNOB_LOCAL_X * machineScale
+  const knobCenterY = rect.top + offsetY + KNOB_LOCAL_Y * machineScale
+  // rest scale: new 500-container scaled so its rendered CSS size equals the old rendered
+  // knob diameter (88 * machineScale). Combined with r=250 inside the new viewBox, this
+  // makes the rendered knob radius = 44*machineScale — matching commit efa011c exactly.
+  const restScale = (KNOB_DIAMETER * machineScale) / BASE_SIZE
   return {
-    left: knobCenterX - svgSize / 2,
-    top: knobCenterY - svgSize / 2,
-    svgSize,
+    left: knobCenterX,
+    top: knobCenterY,
+    restScale,
   }
 }
