@@ -39,7 +39,7 @@ export function Knob({ containerRef }: Props) {
     }
   }, [containerRef])
 
-  const position = rect ? computePosition(rect) : { left: 0, top: 0 }
+  const position = rect ? computePosition(rect) : { left: 0, top: 0, svgSize: SVG_SIZE }
 
   const prefersReducedMotion = useReducedMotion()
   const { scrollYProgress } = useScroll()
@@ -50,8 +50,8 @@ export function Knob({ containerRef }: Props) {
   return (
     <svg
       aria-hidden="true"
-      width={SVG_SIZE}
-      height={SVG_SIZE}
+      width={position.svgSize}
+      height={position.svgSize}
       viewBox={`-${SVG_SIZE / 2} -${SVG_SIZE / 2} ${SVG_SIZE} ${SVG_SIZE}`}
       style={{
         position: "fixed",
@@ -111,8 +111,10 @@ function computePosition(rect: DOMRect) {
   const offsetY = (rect.height - renderedH) / 2
   const knobCenterX = rect.left + offsetX + KNOB_LOCAL_X * scale
   const knobCenterY = rect.top + offsetY + KNOB_LOCAL_Y * scale
+  const svgSize = SVG_SIZE * scale
   return {
-    left: knobCenterX - SVG_SIZE / 2,
-    top: knobCenterY - SVG_SIZE / 2,
+    left: knobCenterX - svgSize / 2,
+    top: knobCenterY - svgSize / 2,
+    svgSize,
   }
 }
