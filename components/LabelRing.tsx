@@ -263,6 +263,10 @@ export function LabelRing({ containerRef }: Props) {
   const ringOpacityMorphGate = useTransform(morphProgress, [VISIBILITY_GATE_START, VISIBILITY_GATE_END], [0, 1], { clamp: true })
   const ringOpacityGate = prefersReducedMotion ? ringOpacityScrollGate : ringOpacityMorphGate
   const ringOpacity = useTransform(ringOpacityGate, (g) => (isMeasured ? g : 0))
+  // Disable pointer-events on invisible labels — opacity:0 alone doesn't
+  // suppress hit-testing, so any future hero CTA inside the orbit radius
+  // would be silently click-blocked.
+  const ringPointerEvents = useTransform(ringOpacity, (o) => (o > 0 ? "auto" : "none"))
 
   const isDesktop = viewport.w >= DESKTOP_BREAKPOINT
   const destLeftPx = isDesktop ? 0 : viewport.w / 2
@@ -361,6 +365,7 @@ export function LabelRing({ containerRef }: Props) {
           inset: 0,
           rotate: ringRotation,
           transformOrigin: "center",
+          pointerEvents: ringPointerEvents,
         }}
       >
         {SECTIONS.map((section, i) => {
