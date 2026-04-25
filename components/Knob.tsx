@@ -2,34 +2,28 @@
 
 import { type RefObject, useEffect, useState } from "react"
 import { motion, useScroll, useTransform, useReducedMotion, useMotionValue } from "framer-motion"
+import {
+  BASE_SIZE,
+  VIEWBOX_W,
+  VIEWBOX_H,
+  KNOB_LOCAL_X,
+  KNOB_LOCAL_Y,
+  KNOB_DIAMETER,
+  MORPH_START,
+  MORPH_END,
+  SCROLLED_PADDING,
+  MIN_SCROLLED_SIZE,
+  DESKTOP_BREAKPOINT,
+} from "@/lib/knob-geometry"
 
 type Props = {
   containerRef: RefObject<HTMLDivElement | null>
 }
 
-// New fixed container: 500×500 motion.div, scaled uniformly via `restScale`.
-// The knob SVG inside uses a 0 0 500 500 viewBox with geometry centered at (250, 250).
-// All circle/pointer radii are scaled from the old 100-unit viewBox (knob diameter 88)
-// to fill the 500-unit viewBox — scale factor k = 500/88. The outer `restScale` then
-// brings the rendered knob back to its old CSS size: rendered knob CSS radius =
-// (44*k) * restScale = (44*500/88) * (88*machine_scale/500) = 44*machine_scale,
-// matching commit efa011c's rendered knob exactly.
-const BASE_SIZE = 500
-const VIEWBOX_W = 900
-const VIEWBOX_H = 1100
-const KNOB_LOCAL_X = 450
-const KNOB_LOCAL_Y = 210
-const KNOB_DIAMETER = 88                                // r=44 in old 100-unit viewBox
+// Derived locally — not shared (LabelRing computes from BASE_SIZE directly).
 const KNOB_FILL_SCALE = BASE_SIZE / KNOB_DIAMETER       // 500/88 ≈ 5.6818
 const C = BASE_SIZE / 2                                 // 250 — knob center in new viewBox
-// Fallback rest-scale used before measurement; harmless since opacity=0 until isMeasured.
-const DEFAULT_REST_SCALE = 100 / BASE_SIZE
-
-// Morph driver constants (ported verbatim from deleted DialNavigator.tsx @ ac52fd0~1).
-const MORPH_START = 120              // scrollY px — morph begins
-const MORPH_END = 380                // scrollY px — morph settled
-const SCROLLED_PADDING = 40          // total vertical padding at scrolled destination
-const MIN_SCROLLED_SIZE = 420        // clamp floor for the scrolled destination scale
+const DEFAULT_REST_SCALE = 100 / BASE_SIZE              // SSR fallback; opacity=0 hides until measured
 
 function easeInOutCubic(t: number): number {
   if (t < 0.5) return 4 * t * t * t
@@ -102,7 +96,7 @@ export function Knob({ containerRef }: Props) {
   // Responsive morph destination — plain numbers derived from viewport.
   // Desktop: knob center at left edge, vertically centered (half-clipped).
   // Mobile:  knob center at top  edge, horizontally centered (half-clipped).
-  const isDesktop = viewport.w >= 1024
+  const isDesktop = viewport.w >= DESKTOP_BREAKPOINT
   const destLeftPx = isDesktop ? 0 : viewport.w / 2
   const destTopPx = isDesktop ? viewport.h / 2 : 0
   const destScale = isDesktop
