@@ -1,7 +1,14 @@
 "use client"
 
 import { type RefObject, useEffect, useState, useRef, useCallback } from "react"
-import { motion, useScroll, useTransform, useMotionValue, useReducedMotion } from "framer-motion"
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValue,
+  useReducedMotion,
+  type MotionValue,
+} from "framer-motion"
 import {
   BASE_SIZE,
   VIEWBOX_W,
@@ -14,8 +21,11 @@ import {
   SCROLLED_PADDING,
   MIN_SCROLLED_SIZE,
   DESKTOP_BREAKPOINT,
+  MARKER_ANGLE_DESKTOP,
+  MARKER_ANGLE_MOBILE,
+  LABEL_RING_GAP,
 } from "@/lib/knob-geometry"
-import { SECTIONS } from "@/lib/sections"
+import { SECTIONS, SECTION_IDS } from "@/lib/sections"
 import { useActiveSection } from "@/hooks/use-active-section"
 
 type Props = {
@@ -23,7 +33,6 @@ type Props = {
 }
 
 const DEFAULT_REST_SCALE = 100 / BASE_SIZE
-const LABEL_RING_GAP = 16                    // px gap between knob edge and label center
 
 function easeInOutCubic(t: number): number {
   if (t < 0.5) return 4 * t * t * t
@@ -32,6 +41,90 @@ function easeInOutCubic(t: number): number {
 }
 
 const lerp = (r: number, d: number, p: number) => r + (d - r) * p
+
+function clamp(v: number, lo: number, hi: number): number {
+  return Math.max(lo, Math.min(hi, v))
+}
+
+function shortestSignedAngle(from: number, to: number): number {
+  return ((to - from + 540) % 360) - 180
+}
+
+function computeRingRotation(
+  scrollY: number,
+  sectionTops: number[],
+  markerAngle: number,
+  sectionAngles: number[],
+): number {
+  if (sectionTops.length === 0) return 0
+  const target = (i: number) => markerAngle - sectionAngles[i]
+
+  if (scrollY <= sectionTops[0]) return target(0)
+  if (scrollY >= sectionTops[sectionTops.length - 1]) return target(sectionTops.length - 1)
+
+  let i = 0
+  while (i < sectionTops.length - 1 && sectionTops[i + 1] <= scrollY) i++
+
+  const lo = sectionTops[i]
+  const hi = sectionTops[i + 1]
+  const frac = hi === lo ? 0 : clamp((scrollY - lo) / (hi - lo), 0, 1)
+  const eased = easeInOutCubic(frac)
+
+  const r0 = target(i)
+  const r1 = target(i + 1)
+  const delta = shortestSignedAngle(r0, r1)
+  return r0 + delta * eased
+}
+
+type LabelButtonProps = {
+  section: typeof SECTIONS[number]
+  isActive: boolean
+  isDesktop: boolean
+  cx: number
+  cy: number
+  ringRotation: MotionValue<number>
+  onClick: () => void
+}
+
+function LabelButton({ section, isActive, isDesktop, cx, cy, ringRotation, onClick }: LabelButtonProps) {
+  const counterRotate = useTransform(ringRotation, (r) => -r)
+  const isHighlighted = section.highlight === true
+  const color = (isHighlighted || isActive) ? "#2798ff" : "#0F172A"
+
+  return (
+    <motion.button
+      type="button"
+      onClick={onClick}
+      aria-label={section.ariaLabel}
+      aria-current={isActive ? "true" : undefined}
+      className="focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2798ff] rounded"
+      style={{
+        position: "absolute",
+        left: cx,
+        top: cy,
+        x: "-50%",
+        y: "-50%",
+        rotate: counterRotate,
+        color,
+        fontSize: isDesktop ? 16 : 13,
+        fontWeight: isActive ? 700 : 500,
+        letterSpacing: "0.06em",
+        textTransform: "uppercase",
+        whiteSpace: "nowrap",
+        pointerEvents: "auto",
+        background: "transparent",
+        border: "none",
+        cursor: "pointer",
+        padding: 0,
+        paddingTop: 4,
+        lineHeight: 1,
+        fontFamily: "inherit",
+      }}
+    >
+      {section.label}
+    </motion.button>
+  )
+}
 
 export function LabelRing({ containerRef }: Props) {
   const [isMeasured, setIsMeasured] = useState(false)
@@ -71,6 +164,26 @@ export function LabelRing({ containerRef }: Props) {
     update()
     window.addEventListener("resize", update)
     return () => window.removeEventListener("resize", update)
+  }, [])
+
+  const [sectionTops, setSectionTops] = useState<number[]>([])
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const measure = () => {
+      const tops = SECTION_IDS.map((id) => {
+        const el = document.getElementById(id)
+        return el ? el.getBoundingClientRect().top + window.scrollY : 0
+      })
+      setSectionTops(tops)
+    }
+    measure()
+    // Re-measure when layout might change.
+    window.addEventListener("resize", measure)
+    window.addEventListener("load", measure)
+    return () => {
+      window.removeEventListener("resize", measure)
+      window.removeEventListener("load", measure)
+    }
   }, [])
 
   const prefersReducedMotion = useReducedMotion()
@@ -134,6 +247,21 @@ export function LabelRing({ containerRef }: Props) {
     }, 900)
   }, [setActiveManual])
 
+  const markerAngle = isDesktop ? MARKER_ANGLE_DESKTOP : MARKER_ANGLE_MOBILE
+  const sectionAngles = SECTIONS.map((s) => s.angle)
+
+  const ringRotationRaw = useTransform(scrollY, (y) =>
+    computeRingRotation(y, sectionTops, markerAngle, sectionAngles),
+  )
+  // Reduced-motion: lock to discrete rotation for current active section.
+  // Uses scrollY as the trigger MV so the type matches ringRotationRaw; the
+  // closure captures activeIndex, and React re-renders on activeIndex changes
+  // to recreate this MV with the new value.
+  const ringRotationDiscrete = useTransform(scrollY, () =>
+    markerAngle - SECTIONS[activeIndex].angle,
+  )
+  const ringRotation = prefersReducedMotion ? ringRotationDiscrete : ringRotationRaw
+
   return (
     <motion.div
       style={{
@@ -151,57 +279,35 @@ export function LabelRing({ containerRef }: Props) {
         opacity: isMeasured ? 1 : 0,
       }}
     >
-      {SECTIONS.map((section, i) => {
-        const isActive = i === activeIndex
-        const dist = angularDistance(section.angle, SECTIONS[activeIndex].angle)
-        const visual = depthOfField(dist, isDesktop)
+      <motion.div
+        style={{
+          position: "absolute",
+          inset: 0,
+          rotate: ringRotation,
+          transformOrigin: "center",
+        }}
+      >
+        {SECTIONS.map((section, i) => {
+          const isActive = i === activeIndex
+          const angleRad = (section.angle * Math.PI) / 180
+          const ringRadiusInBase = BASE_SIZE / 2 + LABEL_RING_GAP
+          const cx = BASE_SIZE / 2 + ringRadiusInBase * Math.cos(angleRad)
+          const cy = BASE_SIZE / 2 + ringRadiusInBase * Math.sin(angleRad)
 
-        // Position label center on the ring (radius in BASE_SIZE units, since
-        // the parent motion.div is BASE_SIZE×BASE_SIZE and uses scale to size).
-        // Label center coords relative to parent: (BASE_SIZE/2 + r*cos, BASE_SIZE/2 + r*sin)
-        const knobRadiusInBase = BASE_SIZE / 2
-        const ringRadiusInBase = knobRadiusInBase + LABEL_RING_GAP
-        const angleRad = (section.angle * Math.PI) / 180
-        const cx = BASE_SIZE / 2 + ringRadiusInBase * Math.cos(angleRad)
-        const cy = BASE_SIZE / 2 + ringRadiusInBase * Math.sin(angleRad)
-
-        const isHighlighted = section.highlight === true
-        const color = (isHighlighted || isActive) ? "#2798ff" : "#0F172A"
-
-        return (
-          <button
-            key={section.id}
-            type="button"
-            onClick={() => handleClick(i, section.id)}
-            aria-label={section.ariaLabel}
-            aria-current={isActive ? "true" : undefined}
-            className="focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2798ff] rounded"
-            style={{
-              position: "absolute",
-              left: cx,
-              top: cy,
-              transform: `translate(-50%, -50%) scale(${visual.scale})`,
-              opacity: visual.opacity,
-              color,
-              fontSize: visual.fontSize,
-              fontWeight: isActive ? 600 : 500,
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
-              whiteSpace: "nowrap",
-              pointerEvents: "auto",
-              background: "transparent",
-              border: "none",
-              cursor: "pointer",
-              padding: 0,
-              lineHeight: 1,
-              paddingTop: 4,
-              fontFamily: "inherit",
-            }}
-          >
-            {section.label}
-          </button>
-        )
-      })}
+          return (
+            <LabelButton
+              key={section.id}
+              section={section}
+              isActive={isActive}
+              isDesktop={isDesktop}
+              cx={cx}
+              cy={cy}
+              ringRotation={ringRotation}
+              onClick={() => handleClick(i, section.id)}
+            />
+          )
+        })}
+      </motion.div>
     </motion.div>
   )
 }
@@ -223,28 +329,4 @@ function computeRestPosition(rect: DOMRect) {
     restTop: knobCenterY,
     restScale,
   }
-}
-
-function angularDistance(a: number, b: number): number {
-  const diff = Math.abs(a - b) % 360
-  return diff > 180 ? 360 - diff : diff
-}
-
-function depthOfField(distanceDeg: number, isDesktop: boolean): {
-  opacity: number; scale: number; fontSize: number
-} {
-  const desktop = isDesktop
-  if (distanceDeg === 0) {
-    return { opacity: 1.00, scale: 1.00, fontSize: desktop ? 16 : 13 }
-  }
-  if (distanceDeg <= 45) {
-    return { opacity: 0.62, scale: 0.86, fontSize: desktop ? 14 : 12 }
-  }
-  if (distanceDeg <= 90) {
-    return { opacity: 0.34, scale: 0.74, fontSize: desktop ? 13 : 11 }
-  }
-  if (distanceDeg <= 135) {
-    return { opacity: 0.18, scale: 0.66, fontSize: desktop ? 12 : 10 }
-  }
-  return { opacity: 0.10, scale: 0.62, fontSize: desktop ? 12 : 10 }
 }
