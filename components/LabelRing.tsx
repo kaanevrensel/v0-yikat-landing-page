@@ -1,6 +1,6 @@
 "use client"
 
-import { type RefObject, useEffect, useState } from "react"
+import { type RefObject, useEffect, useState, useRef, useCallback } from "react"
 import { motion, useScroll, useTransform, useMotionValue, useReducedMotion } from "framer-motion"
 import {
   BASE_SIZE,
@@ -16,6 +16,7 @@ import {
   DESKTOP_BREAKPOINT,
 } from "@/lib/knob-geometry"
 import { SECTIONS } from "@/lib/sections"
+import { useActiveSection } from "@/hooks/use-active-section"
 
 type Props = {
   containerRef: RefObject<HTMLDivElement | null>
@@ -108,12 +109,18 @@ export function LabelRing({ containerRef }: Props) {
     ([r, d, p]: number[]) => lerp(r, d, p),
   )
 
-  // TASK 2 SCAFFOLD: hardcoded active index. Replaced with useActiveSection in Task 4.
-  const activeIndex = 0
+  const freezeRef = useRef(false)
+  const [activeIndex, setActiveManual] = useActiveSection(freezeRef)
+
+  const handleClick = useCallback((index: number, id: string) => {
+    freezeRef.current = true
+    setActiveManual(index)
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+    window.setTimeout(() => { freezeRef.current = false }, 900)
+  }, [setActiveManual])
 
   return (
     <motion.div
-      aria-hidden="true"
       style={{
         position: "fixed",
         left,
@@ -147,8 +154,12 @@ export function LabelRing({ containerRef }: Props) {
         const color = (isHighlighted || isActive) ? "#2798ff" : "#0F172A"
 
         return (
-          <div
+          <button
             key={section.id}
+            type="button"
+            onClick={() => handleClick(i, section.id)}
+            aria-label={section.ariaLabel}
+            aria-current={isActive ? "true" : undefined}
             style={{
               position: "absolute",
               left: cx,
@@ -161,10 +172,18 @@ export function LabelRing({ containerRef }: Props) {
               letterSpacing: "0.04em",
               textTransform: "uppercase",
               whiteSpace: "nowrap",
+              pointerEvents: "auto",
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              padding: 0,
+              lineHeight: 1,
+              paddingTop: 4,
+              fontFamily: "inherit",
             }}
           >
             {section.label}
-          </div>
+          </button>
         )
       })}
     </motion.div>
