@@ -161,7 +161,10 @@
   100% { opacity: 1; }
 }
 
+html { scroll-behavior: smooth; }
+
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .drum-spin { animation: none; }
   .animate-ping,
   .animate-bounce { animation: none; }

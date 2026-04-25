@@ -245,17 +245,22 @@ export function LabelRing({ containerRef }: Props) {
   }, [])
 
   const handleClick = useCallback((index: number, id: string) => {
+    const el = document.getElementById(id)
+    if (!el) return
     if (freezeTimerRef.current !== null) {
       window.clearTimeout(freezeTimerRef.current)
     }
     freezeRef.current = true
     setActiveManual(index)
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+    el.scrollIntoView({
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+      block: "start",
+    })
     freezeTimerRef.current = window.setTimeout(() => {
       freezeRef.current = false
       freezeTimerRef.current = null
     }, 900)
-  }, [setActiveManual])
+  }, [setActiveManual, prefersReducedMotion])
 
   const markerAngle = isDesktop ? MARKER_ANGLE_DESKTOP : MARKER_ANGLE_MOBILE
   const sectionAngles = SECTIONS.map((s) => s.angle)
