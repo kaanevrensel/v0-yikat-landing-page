@@ -144,7 +144,7 @@ export function LabelRing({ containerRef }: Props) {
         const cy = BASE_SIZE / 2 + ringRadiusInBase * Math.sin(angleRad)
 
         const isHighlighted = section.highlight === true
-        const color = isHighlighted ? "#2798ff" : (isActive ? "#2798ff" : "#0F172A")
+        const color = (isHighlighted || isActive) ? "#2798ff" : "#0F172A"
 
         return (
           <div
@@ -161,7 +161,6 @@ export function LabelRing({ containerRef }: Props) {
               letterSpacing: "0.04em",
               textTransform: "uppercase",
               whiteSpace: "nowrap",
-              pointerEvents: "auto",
             }}
           >
             {section.label}
