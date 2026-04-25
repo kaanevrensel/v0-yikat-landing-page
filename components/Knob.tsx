@@ -131,19 +131,15 @@ export function Knob({ containerRef }: Props) {
   )
 
   // Pre-compute scaled geometry (radii/pointer) for the 500-unit viewBox.
-  // Note: R_TOP_INNER is the inner radius of the (now-virtual) outer band — it
-  // sets POINTER_H and is intentionally NOT rendered as a separate circle.
-  // Drawing a second concentric disc with a slightly different blue created
-  // visible banding at the morphed scale (~600px diameter); fix is a single
-  // solid body. See plan §7 / Task 5 fix path A.
-  const R_BODY = 42 * KNOB_FILL_SCALE         // ≈ 238.636
-  const R_TOP_INNER = 34 * KNOB_FILL_SCALE    // ≈ 193.182 — pointer geometry only
-  const R_DOT = 2.2 * KNOB_FILL_SCALE         // 12.5
-  const POINTER_W = 3.6 * KNOB_FILL_SCALE     // ≈ 20.455
-  const POINTER_H = R_BODY - R_TOP_INNER      // spans the outer band
-  const POINTER_RX = 1.6 * KNOB_FILL_SCALE    // ≈ 9.091
-  const POINTER_X = C - POINTER_W / 2         // centered horizontally at 250
-  const POINTER_Y = C - R_BODY                // outer edge sits at knob outer edge
+  // Do NOT re-add a second concentric disc — caused banding at morph scale (see 46bb2de).
+  const R_BODY = 42 * KNOB_FILL_SCALE             // ≈ 238.636
+  const R_POINTER_INNER = 34 * KNOB_FILL_SCALE    // ≈ 193.182 — pointer's inner edge radius
+  const R_DOT = 2.2 * KNOB_FILL_SCALE             // 12.5
+  const POINTER_W = 3.6 * KNOB_FILL_SCALE         // ≈ 20.455
+  const POINTER_H = R_BODY - R_POINTER_INNER      // spans the outer band region
+  const POINTER_RX = 1.6 * KNOB_FILL_SCALE        // ≈ 9.091
+  const POINTER_X = C - POINTER_W / 2             // centered horizontally at 250
+  const POINTER_Y = C - R_BODY                    // outer edge sits at knob outer edge
 
   return (
     <motion.div
