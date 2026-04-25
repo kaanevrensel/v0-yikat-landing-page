@@ -161,6 +161,12 @@
   100% { opacity: 1; }
 }
 
+@keyframes label-active-pulse {
+  0%   { font-weight: 600; }
+  50%  { font-weight: 680; }
+  100% { font-weight: 600; }
+}
+
 html { scroll-behavior: smooth; }
 
 @media (prefers-reduced-motion: reduce) {

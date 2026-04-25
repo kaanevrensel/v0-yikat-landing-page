@@ -50,6 +50,10 @@ function shortestSignedAngle(from: number, to: number): number {
   return ((to - from + 540) % 360) - 180
 }
 
+function easeOutQuad(t: number): number {
+  return 1 - (1 - t) * (1 - t)
+}
+
 function computeRingRotation(
   scrollY: number,
   sectionTops: number[],
@@ -83,16 +87,60 @@ type LabelButtonProps = {
   cx: number
   cy: number
   ringRotation: MotionValue<number>
+  markerAngle: number
   onClick: () => void
 }
 
-function LabelButton({ section, isActive, isDesktop, cx, cy, ringRotation, onClick }: LabelButtonProps) {
-  const counterRotate = useTransform(ringRotation, (r) => -r)
+function LabelButton({ section, isActive, isDesktop, cx, cy, ringRotation, markerAngle, onClick }: LabelButtonProps) {
   const isHighlighted = section.highlight === true
-  const color = (isHighlighted || isActive) ? "#2798ff" : "#0F172A"
+
+  // Per-label angular distance from marker, signed in (-180°, 180°].
+  const labelDistance = useTransform(ringRotation, (r) =>
+    shortestSignedAngle(markerAngle, section.angle + r),
+  )
+  const absDistance = useTransform(labelDistance, (d) => Math.abs(d))
+
+  // Opacity: piecewise easeOutQuad, anchors at 0°→1.0, 45°→0.55, 90°→0.
+  const opacity = useTransform(absDistance, (d) => {
+    if (d >= 90) return 0
+    if (d <= 45) {
+      const t = d / 45
+      return 1 - easeOutQuad(t) * (1 - 0.55)
+    }
+    const t = (d - 45) / 45
+    return 0.55 - easeOutQuad(t) * 0.55
+  })
+
+  // Scale: easeInOutCubic from 1.0 → 0.78 over 0°→90°, clamps below.
+  const scale = useTransform(absDistance, (d) => {
+    const t = clamp(d / 90, 0, 1)
+    return 1 - easeInOutCubic(t) * (1 - 0.78)
+  })
+
+  // Counter-rotation to keep label upright as ring spins.
+  const counterRotate = useTransform(ringRotation, (r) => -r)
+
+  // Color: brand if SİPARİŞ (always), or if within ±15° of marker. Otherwise neutral.
+  const color = useTransform(absDistance, (d) =>
+    (isHighlighted || d <= 15) ? "#2798ff" : "#0F172A",
+  )
+
+  // Font-weight: snap-flip at ±22.5° (halfway through prev/next arc).
+  const fontWeight = useTransform(absDistance, (d) => (d <= 22.5 ? 600 : 500))
+
+  // Active-arrival weight pulse: bump pulseKey when isActive flips false→true.
+  const [pulseKey, setPulseKey] = useState(0)
+  const wasActiveRef = useRef(isActive)
+  useEffect(() => {
+    if (isActive && !wasActiveRef.current) {
+      setPulseKey((k) => k + 1)
+    }
+    wasActiveRef.current = isActive
+  }, [isActive])
 
   return (
     <motion.button
+      key={pulseKey}
       type="button"
       onClick={onClick}
       aria-label={section.ariaLabel}
@@ -105,10 +153,12 @@ function LabelButton({ section, isActive, isDesktop, cx, cy, ringRotation, onCli
         x: "-50%",
         y: "-50%",
         rotate: counterRotate,
+        opacity,
+        scale,
         color,
         fontSize: isDesktop ? 16 : 13,
-        fontWeight: isActive ? 700 : 500,
-        letterSpacing: "0.06em",
+        fontWeight,
+        letterSpacing: "0.04em",
         textTransform: "uppercase",
         whiteSpace: "nowrap",
         pointerEvents: "auto",
@@ -119,6 +169,7 @@ function LabelButton({ section, isActive, isDesktop, cx, cy, ringRotation, onCli
         paddingTop: 4,
         lineHeight: 1,
         fontFamily: "inherit",
+        animation: pulseKey > 0 ? `label-active-pulse 280ms cubic-bezier(0.34, 1.56, 0.64, 1)` : undefined,
       }}
     >
       {section.label}
@@ -303,7 +354,6 @@ export function LabelRing({ containerRef }: Props) {
         }}
       >
         {SECTIONS.map((section, i) => {
-          const isActive = i === activeIndex
           const angleRad = (section.angle * Math.PI) / 180
           const ringRadiusInBase = BASE_SIZE / 2 + LABEL_RING_GAP
           const cx = BASE_SIZE / 2 + ringRadiusInBase * Math.cos(angleRad)
@@ -313,11 +363,12 @@ export function LabelRing({ containerRef }: Props) {
             <LabelButton
               key={section.id}
               section={section}
-              isActive={isActive}
+              isActive={i === activeIndex}
               isDesktop={isDesktop}
               cx={cx}
               cy={cy}
               ringRotation={ringRotation}
+              markerAngle={markerAngle}
               onClick={() => handleClick(i, section.id)}
             />
           )
