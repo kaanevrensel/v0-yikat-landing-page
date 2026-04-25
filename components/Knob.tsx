@@ -28,8 +28,8 @@ const DEFAULT_REST_SCALE = 100 / BASE_SIZE
 // Morph driver constants (ported verbatim from deleted DialNavigator.tsx @ ac52fd0~1).
 const MORPH_START = 120              // scrollY px — morph begins
 const MORPH_END = 380                // scrollY px — morph settled
-const SCROLLED_PADDING = 40          // 20 top + 20 bottom (used in Task 3 for dest scale)
-const MIN_SCROLLED_SIZE = 420        // clamp floor (used in Task 3)
+const SCROLLED_PADDING = 40          // total vertical padding at scrolled destination
+const MIN_SCROLLED_SIZE = 420        // clamp floor for the scrolled destination scale
 
 function easeInOutCubic(t: number): number {
   if (t < 0.5) return 4 * t * t * t
@@ -42,7 +42,7 @@ const lerp = (r: number, d: number, p: number) => r + (d - r) * p
 export function Knob({ containerRef }: Props) {
   const [isMeasured, setIsMeasured] = useState(false)
 
-  // Rest MotionValues, fed via .set() inside the RO/scroll effect (Task 4).
+  // Rest MotionValues, fed via .set() inside the RO/scroll effect below.
   // Created unconditionally to obey rules of hooks. Defaults: 0 for left/top
   // (offscreen until measured; the isMeasured opacity gate hides the knob
   // anyway) and DEFAULT_REST_SCALE for restScale (matches the SSR fallback path).
@@ -76,9 +76,9 @@ export function Knob({ containerRef }: Props) {
     }
   }, [containerRef, restLeftMV, restTopMV, restScaleMV])
 
-  // Viewport tracking for responsive morph destination (Task 3).
-  // SSR initial { 375, 800 } is fine — dest MVs aren't consumed yet, and the
-  // existing isMeasured opacity gate hides the knob until the RO callback fires.
+  // Viewport tracking for responsive morph destination.
+  // SSR initial { 375, 800 } is fine — the isMeasured opacity gate hides
+  // the knob until the RO callback fires.
   const [viewport, setViewport] = useState({ w: 375, h: 800 })
   useEffect(() => {
     const update = () => setViewport({ w: window.innerWidth, h: window.innerHeight })
@@ -99,7 +99,7 @@ export function Knob({ containerRef }: Props) {
   const zeroMV = useMotionValue(0)
   const morphProgress = prefersReducedMotion ? zeroMV : easedProgress
 
-  // Responsive morph destination (Task 3). Plain numbers derived from viewport.
+  // Responsive morph destination — plain numbers derived from viewport.
   // Desktop: knob center at left edge, vertically centered (half-clipped).
   // Mobile:  knob center at top  edge, horizontally centered (half-clipped).
   const isDesktop = viewport.w >= 1024
@@ -119,8 +119,8 @@ export function Knob({ containerRef }: Props) {
     destScaleMV.set(destScale)
   }, [destLeftPx, destTopPx, destScale, destLeftMV, destTopMV, destScaleMV])
 
-  // Blended MotionValues (Task 5). At morphProgress=0 these return the rest
-  // values exactly (pixel-identity at scrollY=0). As morphProgress eases to 1,
+  // Blended MotionValues. At morphProgress=0 these return the rest values
+  // exactly (position parity at scrollY=0). As morphProgress eases to 1,
   // they migrate to the destination. Reduced-motion pins morphProgress to 0,
   // so the blend stays at rest forever.
   const left = useTransform(
