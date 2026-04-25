@@ -1,106 +1,78 @@
-# Session resume — handoff 2026-04-24 (night)
+# Session resume — handoff 2026-04-26 (mid-2.4c)
 
 ## Branch state
 - Branch: `feat/landing-redesign`
 - Worktree: `/Users/kaanevrensel/v0-yikat-landing-page/.worktrees/feat-landing-redesign-2`
-- Last commit: `5502f49` — `feat(knob): add scroll-driven rotation with spring (3 turns, reduced-motion aware)`
-- **Pushed to origin: YES** (tonight, 8 commits landed `b346b85..5502f49`)
-- Uncommitted: `tsconfig.tsbuildinfo` only — TypeScript incremental build cache, tracked but churns every dev run. Consider gitignoring at some point; not urgent.
+- Last commit: `35891cf` — `fix(label-ring): disable pointer-events on invisible labels` (Task 8 follow-up)
+- **Pushed to origin: YES** (range `5502f49..35891cf`, 31 commits)
+- Uncommitted: `tsconfig.tsbuildinfo` only (auto-gen TypeScript incremental cache; still tracked, still churns every dev run — pending gitignore)
 
-Tonight's 8 commits (oldest → newest on this branch above `b346b85`):
-```
-3bec03c docs: plan knob extraction (candidate C) with UI/UX recommendations
-1c8ddc6 docs: update worktree path references after recreation
-97d0209 feat(knob): scaffold standalone Knob component (static, no rotation)
-356248a feat(hero): forward ref on HeroMachine for knob overlay tracking
-c3fc915 feat(hero): mount Knob overlay with shared machine ref
-7c3533d refactor(machine): remove in-SVG knob (now owned by Knob overlay)
-966b40a fix(machine): rewire drum rotation to style prop; remove broken door motion wrapper
-5502f49 feat(knob): add scroll-driven rotation with spring (3 turns, reduced-motion aware)
-```
+## Master plan progress (`docs/superpowers/plans/2026-04-23-launch-master.md` or equivalent)
 
-## Task 2.4a — knob extraction: status
-
-Executed 5-task plan `docs/superpowers/plans/2026-04-23-knob-extraction.md` via subagent-driven development. All 5 tasks implemented, committed, reviewed.
-
-- **Task 1 (knob plan)** — committed `3bec03c`
-- **Task 2 (scaffold Knob.tsx)** — committed `97d0209`
-- **Task 3 (mount Knob overlay)** — committed `356248a` + `c3fc915`
-- **Task 4 (remove in-SVG knob)** — committed `7c3533d`
-- **Mid-session regression fix** — committed `966b40a` (see "Mid-session incident" below)
-- **Task 5 (scroll-driven rotation)** — committed `5502f49`. **Both spec + code-quality reviewers approved with zero Critical/Important findings.** 4 Minor notes, all optional polish (listed under "Pending decisions" below).
-
-**→ Status: implementation complete; PENDING YOUR BROWSER VERIFICATION.**
-
-### Browser verification checklist (plan lines 645–653)
-
-Run `pnpm dev`, open http://localhost:3000, verify each row:
-
-| # | Scenario | Expected |
+| # | Item | Status |
 |---|---|---|
-| 1 | Page load (scrollY = 0) | Knob on control panel, pointer at 12 o'clock, no flash at (0,0), fully opaque |
-| 2 | Mid-hero scroll (scrollY ≈ 400) | Knob rotated ~540° (1.5 turns); machine body opacity ≈ 0.05; knob still tracks panel |
-| 3 | End of hero (scrollY ≈ 800) | Knob rotated ~1080° (3 turns) with spring overshoot; machine opacity 0; knob still tracks |
-| 4 | Window resize | Knob repositions smoothly, tracks panel at all widths |
-| 5 | Reduced-motion (DevTools emulate `prefers-reduced-motion: reduce`) | Knob static at 0° from page load; machine opacity 0 from page load |
-| 6 | Mobile viewport (375px, device toolbar) | Knob tracks machine; stacked layout; still on control panel |
-| 7 | Scroll-then-resize | After half-scroll, resize: knob snaps to new position; rotation preserved |
+| 2.4a | Knob extraction | ✅ Done (commits up to `5502f49`) |
+| 2.4b | Knob morph to viewport edge | ✅ Done (commits up to `b57a4c0` + polish) |
+| 2.4c | Label ring | 🟡 In progress — Tasks 1-8 done, Task 9 pending |
+| 3 | Liquid-glass nav | ⏳ Pending |
+| 4 | Loading state | ⏳ Pending |
+| 5 | Section transitions | ⏳ Pending |
+| 6 | Emoji shrink | ⏳ Pending |
+| 7 | KVKK page | ⏳ Pending |
+| 8 | Production build | ⏳ Pending |
 
-**If all 7 pass:** dispatch final code-reviewer for entire knob-extraction implementation, then run `superpowers:finishing-a-development-branch`.
+## Task 2.4c — label ring: status (Tasks 1-8 done)
 
-**If any row fails:** investigate/fix before proceeding.
+Plan: `docs/superpowers/plans/2026-04-26-label-ring.md` (v3 — committed `1cfe1f0`).
 
-## Mid-session incident (resolved) — critical context if you touch rotation again
+| Task | Title | Main commit | Follow-up | Verified |
+|---|---|---|---|---|
+| 1 | Hoist constants to `lib/knob-geometry.ts` | `a771b4d` | — | ✅ |
+| 2 | Scaffold LabelRing with depth-of-field | `fe0b448` | `5b68ffe` | ✅ |
+| 3 | Wire useActiveSection + click nav | `6ab9aee` | `2013489` | ✅ |
+| 4 | Rotating ring + scroll-tied rotation | `1623f39` | `12c047c` | ✅ |
+| 5 | Knob pixelation deep dive (drop two-tone disc) | `46bb2de` | `7bad54f` | ✅ |
+| 6 | Freeze knob pointer + pulse on active change | `78577ba` | — | ✅ |
+| 6.5 | Restore smooth scroll on click (regression fix) | `5235f61` | — | ✅ |
+| 7 | 3-label window via continuous angular-distance | `4722c8e` | — | ✅ |
+| 8 | Gated visibility on morph progress | `f2e842f` | `35891cf` | ✅ |
+| 9 | RM snap-to-active + a11y final pass + prod build | — | — | ⏳ Pending |
 
-Framer-motion v11 has a structural bug where `<motion.g transform={MotionValue}>` silently fails:
-- The raw MotionValue leaks through `filteredProps`
-- React stringifies it to the literal DOM attribute `transform="[object Object]"`
-- `svgMotionConfig.onUpdate` bails because the string `"transform"` is NOT in framer-motion's internal `transformProps` Set (only `rotate`, `x`, `y`, `translateX`, `scale`, `skew`, etc. are)
+### Task 9 scope (next up — see plan §729 onward)
+1. **Reduced-motion fixes** — currently RM has a known-broken intermediate state per Task 8 reviewer flag #1: `morphProgress` is locked at 0 for RM, so labels would orbit the in-machine knob once `scrollY ≥ MORPH_END`. Task 9 reconciles by snapping the morph end-state without animating, OR by hiding the ring entirely for RM and relying on SiteNav.
+2. **A11y final pass** — verify aria-current behavior under VoiceOver/NVDA, focus management on click-spin, focus-visible ring on each LabelButton.
+3. **Production build** — `pnpm build` clean, no console warnings, bundle size sanity check.
 
-The ONLY working pattern is `style={{ rotate: MotionValue }}` — `rotate` IS in `transformProps`, triggering the imperative update path.
+### Outstanding non-blocking items from prior reviews
+- **Task 7 Important #2 (pulse-spam under fast scroll)** — reviewer's own framing: "address only if browser verification surfaces jank." User did NOT report jank during Task 7 verification. Skip unless it appears.
+- **Task 6 Important (freezeRef divergence — premature pulse during click-spin)** — UX-perceptibility question deferred. User did not request the freezeRef-share follow-up after smooth scroll was restored. Re-evaluate if the user wants it before 2.4c closes.
 
-The WashingMachine drum had been silently broken with the `transform={MotionValue}` pattern since commit `b8eb72a` (pre-existing, not introduced by knob extraction — just noticed after knob overlay removed the visual distraction). Fix in `966b40a`:
-- Drum: swapped to `style={{ rotate: angle, transformOrigin: "450px 590px", transformBox: "view-box" }}` (explicit origin needed because drum geometry is NOT centered at viewBox origin)
-- Door: removed motion wrapper entirely (user elected option 1 — door no longer rotates, cleaner look)
-- Knob (Task 5): written with correct pattern from the start. No `transformOrigin` needed because Knob's viewBox `-50 -50 100 100` has geometry centered at (0,0).
+## Important workflow patterns established this branch
 
-**Do NOT recommend `transform={MotionValue}` anywhere in this repo. Always use `style={{ rotate }}`.**
+- **Subagent-driven dev**: implementer (general-purpose, Opus 4.7) → parallel spec + code-quality reviewers (general-purpose + superpowers:code-reviewer, both Opus 4.7) → user browser verification gate.
+- **Important findings → separate follow-up commit** (never amend). Critical findings = blocker.
+- **Stop after each task**, never chain. Wait for explicit user "next" before dispatching the next task.
+- **Heredoc for commit messages** with em dashes / apostrophes: `cat > /tmp/msg.txt <<'EOF' ... EOF` then `git commit -F /tmp/msg.txt`.
+- **framer-motion v11 SVG gotcha**: never `transform={MotionValue}` on motion.g; always `style={{ rotate }}`. (See prior session resume.)
 
-## Task 2.4b — next work
+## Environment
 
-**Needs new brainstorm + plan.** Scope not yet defined.
+- Dev server PIDs killed: `45174 45176 45183` (port 3000 free, confirmed)
+- TypeScript clean as of `35891cf` (`./node_modules/.bin/tsc --noEmit` exit 0)
+- macOS Reduce Motion is OFF on user's machine (confirmed during smooth-scroll regression debug)
+- `pnpm lint` still environment-broken (`sh: eslint: command not found`) — not a code issue
 
-Suggested prompt to start a new session:
-```
-Resuming feat/landing-redesign after overnight break.
-Last commit: 5502f49 (Task 5 knob rotation complete, both reviewers approved).
-Read docs/session-resume.md for full state.
-Ready to [brainstorm 2.4b scope / confirm browser verification / …].
-```
+## Resuming this session
 
-## Pending decisions (user hasn't made yet)
+User's planned resume prompt:
+> "Resuming feat/landing-redesign. Read docs/session-resume.md. Ready to dispatch Task 9 of label ring."
 
-1. **Browser verification results** for Task 5 (7-row checklist above) — the only thing blocking the final code-reviewer + `finishing-a-development-branch` for the knob-extraction work.
-
-2. **Minor findings from Task 5 code-quality review** — all optional polish, none blocking. Apply any / all / none:
-   - Hook ordering: move `const position = ...` below the new hook block so all hooks group at the top of `Knob` — pure style preference
-   - `angle` union type `MotionValue<number> | 0` could be unified via `useTransform(scrollYProgress, [0,1], prefersReducedMotion ? [0,0] : [0,1080])` — eliminates a theoretical cold-start discontinuity if OS reduced-motion setting toggles mid-session; also tidier
-   - Spring params `{ stiffness: 50, damping: 20 }` could be extracted to module-level constants alongside existing `SVG_SIZE`, `VIEWBOX_W`, etc.
-   - Two scroll paths coexist in `Knob.tsx` (existing `window.scroll` listener for position tracking + framer-motion's internal `useScroll` for rotation) — non-issue observation; if jank appears later, switch to `useMotionValueEvent(scrollY, "change", update)` for position too
-
-3. **Placeholder asset swaps** (still pending from 2026-04-21 landing-polish work, NOT addressed tonight):
-   - `/public/hero-machine.jpg` — still a 1×1 gray JPEG. Spec in `public/hero-machine-README.md`. After swap, tune `HERO_LEFT_VW`, `HERO_TOP_PCT`, `HERO_SIZE` in `components/DialNavigator.tsx` and drum `top/left/width` in `components/HeroMachine.tsx` to match final composition. (Note: knob extraction may have changed how these tuning knobs interact — verify post-swap.)
-   - `/public/emojis/{id}.png` — 7 PNG files needed (see `public/emojis/README.md`). After creating, swap `SectionEmoji.tsx` to render `<img src={…} />` instead of native-emoji `<span>`.
-
-4. **CTA section WCAG AA contrast** (deferred from landing-polish) — #2798ff bg + white text fails WCAG AA even at `text-white/85` (~2.60:1 vs 4.5:1 required). Pending a brand-blue darkening or inset card decision.
-
-5. **Scope of 2.4b** — brainstorm needed.
-
-6. **tsconfig.tsbuildinfo tracked by git** — minor repo-hygiene issue. Should probably be `.gitignore`'d. Not urgent, but will keep showing up as dirty working tree after every dev run.
-
-## Environment notes
-
-- Dev server on PID 41824 was KILLED tonight (confirmed)
-- Port 3000 should be free
-- `./node_modules/.bin/tsc --noEmit` passes clean as of `5502f49`
-- `pnpm lint` still fails with `sh: eslint: command not found` (environment gap from 2026-04-21, not a code issue)
+Action on resume:
+1. Verify dev server status; restart if needed (`pnpm dev > /tmp/yikat-dev.log 2>&1 &`).
+2. Read Task 9 spec from `docs/superpowers/plans/2026-04-26-label-ring.md` (lines 729+).
+3. Mark task #26 in_progress.
+4. Dispatch Task 9 implementer (general-purpose, Opus 4.7).
+5. Standard subagent flow + Important findings as follow-up commits.
+6. Stop after Task 9 for user browser verification.
+7. After Task 9 verified, run `superpowers:finishing-a-development-branch` for 2.4c closeout.
+8. Then move to master plan item 3 (liquid-glass nav) — likely brainstorm + plan first.
