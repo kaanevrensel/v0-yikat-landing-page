@@ -1,515 +1,443 @@
-# Task 2.4c — Label Ring (REVISED: Rotating Ring with Fixed Marker)
+# Task 2.4c — Label Ring (REVISED v3: 3-label window + fixed knob pointer + pixelation deep dive)
 
 > **For agentic workers:** REQUIRED SUB-SKILL: `superpowers:subagent-driven-development` (or `superpowers:executing-plans`). Steps use `- [ ]` checkboxes.
 
-## Revision note
+## Revision history
 
-Original plan (committed in `7a0dc86`) used a STATIONARY ring with bucketed depth-of-field. Tasks 1 and 2 shipped against that design. Browser verification at scrolled state revealed the half-clipped knob means only 3-4 of 8 labels are practically visible at any moment — half the nav is unreachable. UX consult on 2026-04-26 recommended a ROTATING ring with a fixed marker — the dial metaphor honestly applied. This file documents the new direction. Tasks 1, 2, and the standalone knob pixelation fix (`4337e14`) remain in history; their LabelRing code is substantially refactored in upcoming tasks.
+- **v1** (committed `7a0dc86`): stationary ring with depth-of-field. Tasks 1, 2 shipped.
+- **v2** (committed `f42ac34`): rotating ring with separate marker tick + continuous proximity falloff. Tasks 3, 4 shipped.
+- **v3 (this file)**: knob pointer IS the marker (drop separate tick). 3-label window emerges naturally from a continuous angular-distance function (opacity hits 0 at distance ≥ 90°, so only labels within ±90° render). Knob pixelation revisited — 4337e14's solid-fill swap was incomplete; second deep dive needed.
 
-**Goal:** As the user scrolls, an inner ring of 8 section labels rotates around the morphed knob so the active section's label lands at a fixed marker (3 o'clock desktop / 6 o'clock mobile). Other labels rotate with it. Continuous opacity/scale/typography interpolation by angular proximity to marker. Marker is a thin brand-color tick on the bezel.
+## Goal
 
-**Architecture:** Same Candidate A skeleton — sibling LabelRing overlay + `lib/knob-geometry.ts` shared constants. Outer parent `motion.div` still tracks knob center via the existing MV blend chain. NEW: an inner rotating container with `ringRotation` MV driven by scroll position relative to section anchors. 8 labels at fixed angles within the rotating container, each counter-rotated to stay upright, each styled by continuous angular-proximity interpolation.
+Three labels are visible around the morphed knob at any moment — the active section's label at the knob's white pointer (3 o'clock desktop / 6 o'clock mobile), the previous section one slot back (45° earlier), the next section one slot forward (45° later). All other labels render at 0 opacity. As the user scrolls, the ring rotates so the new active label arrives at the pointer; per-label visibility/scale/color/weight are continuous functions of angular distance from the pointer. Knob pointer is the marker — no separate marker tick. Knob fill is genuinely smooth (no banding) at all scales. Reduced-motion users get a snap-to-active fallback.
 
-**Tech stack:** Next.js 16 + React 19, framer-motion v11, TypeScript strict, Tailwind, `useActiveSection` hook.
+## Architecture
+
+Same Candidate A skeleton — sibling LabelRing overlay + `lib/knob-geometry.ts` shared constants. The rotating-ring math from Task 4 (commit `1623f39`) is RETAINED verbatim — `computeRingRotation`, `shortestSignedAngle`, `easeInOutCubic`, the bracket-finding loop, `ringRotation` MV. The 3-label-window effect rides on top: each `LabelButton` derives a per-label `currentDistance` MV from `ringRotation`, and all visual properties (opacity, scale, color, font-weight) are continuous functions of `|currentDistance|`. Beyond ±90°, opacity = 0 — that's the "hidden" zone. Knob.tsx loses its scroll-driven rotation and gains a static pointer rotation derived from `isDesktop`; the white pointer rect becomes the marker.
+
+## Tech stack
+
+Next.js 16 + React 19, framer-motion v11, TypeScript strict, Tailwind, `useActiveSection` hook.
 
 ---
 
 ## Done so far (DO NOT REDO)
 
-| SHA | Title | What it shipped |
+| SHA | Title | Status notes |
 |---|---|---|
-| `a771b4d` | refactor(knob): hoist geometry constants to lib/knob-geometry.ts | New `lib/knob-geometry.ts` with all shared constants. Knob.tsx imports them. Zero behavior change. |
-| `fe0b448` | feat(label-ring): scaffold static LabelRing with depth-of-field | Created `components/LabelRing.tsx` with parent motion.div tracking knob center via DOMRect + viewport + scroll, MV blend chain, 8 labels at static positions with bucketed depth-of-field. Mounted in HeroSection. **Static-DOF logic and bucketed visual table are now obsolete** — Task 4 removes them. The morph-chain skeleton (left/top/scale MVs) is RETAINED. |
-| `5b68ffe` | fix(label-ring): remove dead pointer-events on aria-hidden labels + collapse color ternary | Reviewer follow-up. Removed `pointerEvents: "auto"` from per-label divs (children inherit none from aria-hidden parent); collapsed `isHighlighted ? brand : (isActive ? brand : neutral)` to `(isHighlighted \|\| isActive) ? brand : neutral`. |
-| `4337e14` | fix(knob): replace gradient fills with solid colors to eliminate banding at scale | Knob's `<linearGradient>` defs (small RGB delta over large render area = visible banding bands at scrolled state) replaced with solid midpoint fills: body `#3286E7`, top `#3F93F2`. `<defs>` block removed. |
+| `a771b4d` | refactor(knob): hoist geometry constants to lib/knob-geometry.ts | Stable. |
+| `fe0b448` | feat(label-ring): scaffold static LabelRing with depth-of-field | DOF helpers removed in Task 4. |
+| `5b68ffe` | fix(label-ring): remove dead pointer-events on aria-hidden labels + collapse color ternary | Stable. |
+| `4337e14` | fix(knob): replace gradient fills with solid colors to eliminate banding at scale | **Incomplete — v3 Task 5 revisits** (banding still visible per user). |
+| `6ab9aee` | feat(label-ring): wire active section tracking + click navigation | Stable. |
+| `2013489` | fix(label-ring): clear freeze timer on click + unmount, add focus-visible ring | Stable. |
+| `1623f39` | feat(label-ring): rotating ring with scroll-tied rotation interpolation | Stable. ringRotation math + LabelButton subcomponent ride into v3 unchanged. |
+| `12c047c` | fix(label-ring): robust sectionTops re-measure + cheaper reduced-motion ring rotation | Stable. |
 
 ---
 
-## Locked spec (UX consult 2026-04-26)
+## Locked spec (UX consult 2026-04-26 v3)
 
-### Design thesis
+### Design thesis (updated)
 
-The knob is a *physical control*. A washing-machine program selector has one truth: **the indicator is fixed; the dial rotates to bring the chosen program to the indicator.** Every nav decision serves that mechanic. Scrolling = turning the dial. The half-clipped geometry is the point: the user is looking at a real machine from the operator's seat. No popping, no spring overshoot, no unrelated motion competing with the rotation.
+The knob is a physical control. Its white pointer at 3 o'clock IS the active-section marker — there is no separate tick, no second indicator. Three labels are visible at any moment — the active label at the pointer, the previous label one slot back, the next label one slot forward. Other labels are hidden. The 3-label visibility EMERGES from a single continuous function `f(|angularDistance|)` rather than discrete bucketing — opacity hits 0 at ±90°, and since labels are 45° apart, only the active and its two immediate neighbors are non-zero. The math stays elegant; the visual behaves as the user expects from a physical dial.
 
-### 1. Marker
+### 1. Knob pointer is the marker (drop separate tick)
 
-A thin **brand-color tick** sits outside the knob's outer edge at MARKER_ANGLE.
+The white pointer rect in Knob.tsx is currently the rotating indicator (scroll-tied 0→1080° from morph plan Task 5, commit `5502f49`). v3:
 
-- Shape: rectangle (or thin SVG line), 2px wide × 14px long (radial — long axis points toward knob center).
-- Position: 6px gap outside the knob's outer-circle edge, at MARKER_ANGLE.
-- MARKER_ANGLE: `0°` desktop (3 o'clock), `90°` mobile (6 o'clock).
-- Color: `#2798ff` (YIKAT brand — NOT orange. The UX agent guessed wrong; we use brand blue everywhere).
-- Static — no pulse, no glow, no animation. Reference frame for the eye.
+- Pointer becomes static. Position: `pointerSvgAngle = (MARKER_ANGLE + 90) % 360` clockwise from 12 o'clock origin → 90° on desktop (lands at 3 o'clock), 180° on mobile (lands at 6 o'clock).
+- All four shapes inside the rotating group (R_BODY, R_TOP, R_DOT, pointer rect) use the same static rotation. Removing rotation visually changes nothing for the three concentric circles — only the pointer rect moves.
+- **Pointer pulse on active section change:** `opacity: 1.0 → 0.7 → 1.0` over 200ms ease-out. Fired ONLY when `activeIndex` changes (not on every scroll tick). Reinforces "this is the selection mechanism." Reduced-motion: skip the pulse.
+- Drop `MARKER_GAP`, `MARKER_LENGTH`, `MARKER_WIDTH` constants from `lib/knob-geometry.ts` — no separate tick.
 
-### 2. Label visibility (opacity falloff by angular distance)
+### 2. Ring rotation (retained from v2)
 
-All 8 labels render. Per-label opacity = `clamp(1 - (|Δθ_marker| / 110°)^1.4, 0, 1)` where `Δθ_marker` is the label's CURRENT angle relative to MARKER_ANGLE (post-rotation, normalized to [-180°, 180°]).
+Scroll-progress-tied continuous interpolation. easeInOutCubic per-bracket. Shortest angular path. **No changes from `1623f39`.** The `computeRingRotation` function and `ringRotation` MV stand as shipped.
 
-- Within ±30° of marker: ~95–100% opacity.
-- At ±90° (top/bottom of visible arc): ~25%.
-- Past ±110°: 0 (effectively invisible — labels behind the knob).
+### 3. Per-label visual values — continuous function of angular distance
 
-Soft falloff so labels emerge/recede as the ring rotates. No hard masking — banding-free.
-
-### 3. Rotation feel
-
-**Scroll-progress-tied continuous interpolation. easeInOutCubic. No spring.**
-
-Compute each section's `offsetTop` (re-measure on resize and on `load`). For current `scrollY`, find the bracket: index `i` such that `sectionTop[i] <= scrollY < sectionTop[i+1]`. Compute fraction `t = (scrollY - sectionTop[i]) / (sectionTop[i+1] - sectionTop[i])`, clamp [0, 1], ease via `easeInOutCubic(t)`. Interpolate `ringRotation` between `targetRotation(i)` and `targetRotation(i+1)` along the SHORTEST angular path (normalize delta to [-180°, 180°]).
-
-Where `targetRotation(i) = MARKER_ANGLE - SECTIONS[i].angle`.
-
-Edge cases:
-- `scrollY < sectionTop[0]`: hold at `targetRotation(0)`.
-- `scrollY >= sectionTop[last]`: hold at `targetRotation(last)`.
-
-This mirrors the existing knob morph (scroll-tied + cubic + no spring) — same physics → same coherent feel.
-
-### 4. Active label at marker (continuous, derived from proximity)
-
-Each label's typography is interpolated continuously by angular proximity to marker. `proximity = 1 - clamp(|Δθ_marker| / 180°, 0, 1)` → 0 at opposite, 1 at marker.
-
-| Property | Off-marker (proximity 0) | At marker (proximity 1) | Interp |
-|---|---|---|---|
-| Font-size desktop | 16px | 22px | linear in proximity |
-| Font-size mobile | 13px | 17px | linear in proximity |
-| Font-weight | 500 | 700 | linear in proximity |
-| Color (non-highlight) | `#0F172A` | `#2798ff` | linear color mix |
-| Letter-spacing | 0.08em | 0.04em | linear in proximity |
-| Scale | 0.85 | 1.00 | linear in proximity |
-
-**SİPARİŞ override:** color is always `#2798ff` (brand) regardless of proximity. All other properties (size, weight, scale, letter-spacing) interpolate normally — SİPARİŞ still grows when it arrives at the marker.
-
-**No "arrival pop" animation.** The continuous interpolation IS the animation; an extra pulse on snap would betray the dial illusion.
-
-### 5. Adjacent labels
-
-Uniform-ish per #4's continuous interp. **No additional depth-of-field on top of the opacity falloff and proximity-based scale/size.** Rotation itself is the strongest attention signal; layered DOF is visual noise.
-
-### 6. Click on non-active label
-
-**Page scrolls smoothly to section. Ring follows naturally because rotation is scroll-tied.** ONE source of truth (scroll position).
+For each label, compute its CURRENT angular position relative to the marker:
 
 ```ts
-const handleClick = (sectionId: string) => {
-  freezeRef.current = true
-  document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
-  window.setTimeout(() => { freezeRef.current = false }, 900)
-}
+const labelDistance = useTransform(ringRotation, (r) =>
+  shortestSignedAngle(markerAngle, section.angle + r)
+)
 ```
 
-`freezeRef` (passed to `useActiveSection`) suppresses the IntersectionObserver during the smooth-scroll so active state doesn't flicker through intermediate sections. Ring rotation, being driven by raw scrollY (not by active index), tracks the smooth scroll continuously — no separate animation needed.
+`labelDistance` is signed in `(-180°, 180°]`. Use `|labelDistance|` for symmetric falloff. All visual properties derive from this single MV.
 
-**No click pulse animation.** Removed entirely (was in original plan; UX consult explicitly contraindicates).
+**Concrete values per the UX consult:**
 
-### 7. Mobile marker = 6 o'clock
+| `|distance|` | opacity | scale | font-weight | color |
+|---|---|---|---|---|
+| 0° (active) | 1.0 | 1.0 | 600 | `#2798ff` |
+| 45° (prev/next) | 0.55 | 0.78 | 500 | `#0F172A` |
+| 90° (boundary) | 0 | 0.78 | 500 | `#0F172A` |
+| > 90° (hidden) | 0 | 0.78 | 500 | `#0F172A` |
 
-Mobile knob is at top edge, half-clipped, only bottom semicircle visible. Marker at MARKER_ANGLE = 90° (6 o'clock), tick pointing upward (radially toward center). Bottom-center of the visible arc — thumb-clear, sits in the user's downward reading flow.
+**Curves between anchor points:**
+- `opacity = easeOutQuad(1 - clamp(|distance|/90, 0, 1)) * (1 - 0.45 * clamp(|distance|/45, 0, 1))` — actually simpler: `opacity = easeOutQuad(1 - clamp(|distance|/90, 0, 1))` interpolating 1.0 → 0 over 0° → 90°. The 0.55 at 45° is what easeOutQuad(0.5) gives (~0.75) — we adjust the curve shape so 45° lands exactly at 0.55. Use `opacity = clamp(1 - (|distance|/90)^2, 0, 1) * 0.55 * 2` — no, simpler: pre-compute three anchor points and interpolate. **Implementation: piecewise — for `|distance| <= 45°`, lerp 1.0 → 0.55 over 0°→45° with easeOutQuad. For `45° < |distance| <= 90°`, lerp 0.55 → 0 over 45°→90° with easeOutQuad. For `> 90°`, return 0.** This honors the UX consult's anchor values exactly.
+- `scale = lerp(1.0, 0.78, easeInOutCubic(clamp(|distance|/90, 0, 1)))` — single curve over 0°→90°, clamps to 0.78 beyond.
+- `font-weight`: snap-flip — `|distance| <= 22.5` → 600, else 500. Smooth font-weight interpolation requires a variable font; we don't have that confirmed. Snap is fine since opacity also drops.
+- `color`: threshold flip at `|distance| <= 15°` → `#2798ff`, else `#0F172A`. Per UX consult: "color shift lands ~70% through the rotation, not at the end, so the label feels claimed before it geometrically arrives." 15° is 1/3 of the 45° prev→active arc.
 
-### 8. Reduced-motion
+**SİPARİŞ override:** the section with `highlight: true` always uses `#2798ff` regardless of distance — already honored in current code (`isHighlighted || isActive`). Update to `isHighlighted || isCloseToActive`.
 
-`prefers-reduced-motion: reduce`:
-- **No ring rotation.** ringRotation locked to the discrete rotation for the current active section (re-derived only when activeIndex changes via the IntersectionObserver, NOT scroll-tied).
-- **All 8 labels visible** at their fixed positions in the (now-static) ring.
-- **Active state changes instant** — typography snaps when activeIndex changes, no transition.
-- Marker tick still rendered at MARKER_ANGLE.
-- Click navigation still works (browser respects reduced-motion at the smooth-scroll level itself).
+### 4. Micro-treatment on active arrival
 
-This preserves the visual identity (still looks like a dial) while honoring the reduced-motion contract.
+When `activeIndex` changes (a new section becomes active):
 
-### 9. Hero rest state — gated visibility
+- **Weight pulse on the new active label:** brief weight bump 600 → 680 → 600 over 280ms with `cubic-bezier(0.34, 1.56, 0.64, 1)`. Implementation: a separate "pulse" CSS animation triggered by toggling a class when `activeIndex` flips. Skip on reduced-motion.
+- **Pointer pulse:** see §1.
+- **No scale bump** on the label (scale already animates from rotation — doubling up looks busy).
+- **No color flash, no underline.**
 
-Labels are invisible while the knob is still attached to the machine illustration. Visibility ramps in once morph progress is mostly complete:
+### 5. No overshoot on rotation
 
-```ts
-const visibilityGate = useTransform(morphProgress, (p) => clamp((p - 0.85) / 0.15, 0, 1))
-```
+Land cleanly. No spring. Rotation is scroll-tied — overshoot would imply physics scrollY doesn't have, and on slow scrolls the label would oscillate awkwardly past the pointer mid-gesture. (UX consult #4.)
 
-Each label's effective opacity = `falloffOpacity * visibilityGate * sipariṣ_override`.
+### 6. Reduced-motion fallback (UX consult #8)
 
-When morph < 85% complete: gate = 0, all labels invisible. Morph ≥ 85% to 100%: gate ramps 0→1 over the last 15% of morph progress.
+Snap-to-active:
+- Ring rotation locked to the discrete target for the current `activeIndex` (already implemented in `1623f39` + `12c047c` via `ringRotationDiscrete`).
+- Active label renders at the pointer slot at full opacity/scale/color.
+- Prev/next labels render at their fixed angular positions for the current active, at the same prev/next visual values (opacity 0.55, scale 0.78).
+- All other labels stay hidden.
+- When `activeIndex` changes (e.g., user clicks a label or scrolls fast across multiple sections), labels swap their content with a 120ms opacity crossfade — within reduced-motion etiquette since opacity isn't vestibular.
+- No micro-treatments (skip both pulses).
 
-### 10. Sweep entry
+### 7. Knob pixelation (high priority — second attempt)
 
-**No "fan from 3 o'clock" sweep.** With a rotating ring, labels are constantly in motion — adding a fancy entry choreography on top is overload at the exact moment the knob is settling.
+`4337e14` replaced two `<linearGradient>` defs with solid fills (`#3286E7` body, `#3F93F2` top). User reports banding still visible. Multi-hypothesis investigation in Task 5.
 
-The `visibilityGate` ramp (item 9) IS the entry. Optional 30ms-staggered fade per label keyed off angular distance from MARKER_ANGLE — defer to Task 7 implementation; if it adds visible polish without complexity, include it; if not, the gate alone suffices.
+**Most likely culprits, in order:**
 
----
+1. **Two-tone discontinuity reads as a band.** Two concentric circles with similar blues create a sharp circular boundary. At ~600px rendered diameter, the eye perceives the inner circle's edge as a "band" rather than a designed feature.
+2. **GPU compositing artifact from `willChange: transform`.** Knob has `willChange: "transform"` which forces a separate compositor layer. At large scales, layer downscaling can introduce visible banding/blur. (The pointer rotation removal in Task 6 incidentally tests this — fewer per-frame transform updates.)
+3. **SVG sub-pixel rendering at scale.** The 500-unit viewBox is downscaled/upscaled to match a ~600+ px rendered diameter. SVG anti-aliasing at fractional pixel boundaries can produce visible artifacts.
+4. **Color quantization in the display pipeline.** 8-bit RGB precision can show banding on large flat areas, especially with subtle gradients (less likely now since we use solid fills).
 
-## Additional locked details
+**Fix candidates (Task 5 picks one based on screenshot diagnosis):**
 
-### Typography
-- All-caps Turkish labels (some with diacritics: İ, Ş, Ç, Ğ).
-- `line-height: 1` to prevent diacritic clipping.
-- `padding-top: 4px` on label container to give İ-dot clearance.
-- Font family: inherit (existing site sans).
+- **A:** Eliminate the two-tone — single solid `#3286E7` for the entire knob body, drop the inner R_TOP circle.
+- **B:** Make R_TOP and R_BODY identical color — same effect as A but keeps the structural element.
+- **C:** Increase the contrast between R_BODY and R_TOP so the boundary reads as an intentional ring, not a banding step.
+- **D:** Remove `willChange: "transform"` and verify GPU compositing is no longer a factor.
+- **E:** Increase BASE_SIZE / viewBox precision to give SVG more sub-pixel headroom.
+- **F:** Add `shape-rendering="geometricPrecision"` and/or `image-rendering: optimizeQuality` CSS hints.
+- **G:** Apply a subtle SVG noise filter (`<feTurbulence>` + `<feComposite>`) over the body to dither out perceived banding.
 
-### z-index
-- SiteNav: z-50 (unchanged, untouched).
-- Knob: z-30 (unchanged).
-- LabelRing: z-30, but mounted AFTER `<Knob />` in `HeroSection.tsx` DOM order so it renders above. Same z, layout-order stacking.
+If multiple hypotheses contribute, multiple fixes can stack. Task 5 is explicitly an investigation-then-fix task with documented results.
 
-### Per-label counter-rotation
-The rotating container applies `rotate(ringRotation)` to all children. Each label must counter-rotate by `-ringRotation` to stay upright. Without this, labels would tumble.
+### 8. Visibility gate on morph (retained from v2)
 
-```tsx
-<motion.button style={{ rotate: useTransform(ringRotation, r => -r), ... }}>
-  {label}
-</motion.button>
-```
-
-Counter-rotation must also be MV-derived (not a static value), so it tracks ringRotation continuously.
-
-### Performance
-- 8 labels × ~5 MV chains each (proximity, opacity, scale, fontSize, fontWeight, color, letter-spacing, counter-rotation) = ~40 useTransforms per frame. Trivially cheap on any device from the last 6 years; framer-motion's diff is sub-1ms total.
-- The rotating container gets a single `rotate()` MV — one composited layer for the orbit.
-- Avoid permanent `will-change: transform` — apply only during active scroll if perf inspection reveals layer-thrashing.
-
-### Keyboard a11y
-- Tab order = source order = SECTIONS array order (basla → hizmetler → ... → siparis).
-- On focus: scrollIntoView the corresponding section (drives rotation via the scroll-tied chain — no separate "rotate to focused" logic needed).
-- Focus ring: 2px `#2798ff` outline, 2px offset, drawn on the focused label whatever its current rotated position. (Don't try to delay focus-ring render until label arrives at marker — too clever, brittle.)
-
-### Geometry confirmed
-```ts
-ringRotation = MARKER_ANGLE - SECTIONS[activeIndex].angle  // discrete (reduced-motion only)
-ringRotation = continuous interp between adjacent sections // normal mode
-labelGlobalAngle = (SECTIONS[i].angle + ringRotation) mod 360
-Δθ_marker = shortestSignedDistance(labelGlobalAngle, MARKER_ANGLE) // [-180, 180]
-proximity = 1 - |Δθ_marker| / 180
-```
-
-### Sections (immutable)
-Per `lib/sections.ts`: 8 sections at 0°, 45°, 90°, 135°, 180°, 225°, 270°, 315°. SİPARİŞ has `highlight: true`. Do NOT reorder, do NOT modify angles, do NOT touch `lib/sections.ts`.
+Ring opacity 0 below `morphProgress = 0.85`, fades to 1.0 by `morphProgress = 1.0`. Hides the ring while the knob is still in the machine's control panel. Implemented in Task 8.
 
 ---
 
 ## File structure
 
-| Path | Status | Responsibility |
-|---|---|---|
-| `lib/knob-geometry.ts` | ✅ DONE (a771b4d) | Shared constants. Add `MARKER_ANGLE_DESKTOP = 0`, `MARKER_ANGLE_MOBILE = 90`, `MARKER_GAP = 6`, `MARKER_LENGTH = 14`, `MARKER_WIDTH = 2`, `LABEL_RING_GAP = 16` in Task 4. |
-| `components/Knob.tsx` | ✅ DONE (a771b4d, 4337e14) | No further changes. |
-| `components/LabelRing.tsx` | EXISTING (fe0b448, 5b68ffe) | Substantial refactor in Tasks 4–8: remove static DOF, add rotating container, marker, continuous styling, gated visibility, counter-rotation, RM gate. |
-| `components/sections/HeroSection.tsx` | ✅ DONE (fe0b448) | LabelRing already mounted as Knob sibling. No further changes. |
-
-**Out of scope (hard):** SiteNav.tsx, sections.ts, Knob.tsx, Knob morph behavior, dependency additions.
+| File | Role |
+|---|---|
+| `lib/knob-geometry.ts` | Shared constants. v3: removes `MARKER_GAP/LENGTH/WIDTH` (no separate tick) and `OPACITY_FALLOFF_DEG/EXPONENT` (no continuous falloff formula — replaced by piecewise). Keeps everything else. |
+| `components/Knob.tsx` | Removes scroll-driven rotation (Task 6). Adds static pointer rotation by `isDesktop`. Adds pointer pulse on `activeIndex` change. Pixelation fix (Task 5). |
+| `components/LabelRing.tsx` | LabelButton refactored to receive its angular distance MV and derive all visual props from it (Task 7). Adds visibility gating (Task 8). RM fallback already in place; final pass in Task 9. |
+| `hooks/use-active-section.ts` | Untouched. (Pre-existing observer-dep nit flagged by code-quality reviewer remains as a separate cleanup item — out of label-ring scope.) |
 
 ---
 
 ## Tasks
 
-### Task 3: Wire `useActiveSection` + click navigation
+### Task 5: Knob pixelation deep investigation + fix [HIGH PRIORITY]
 
-**Goal:** Replace hardcoded `activeIndex = 0` in LabelRing with the live IntersectionObserver-based active section. Make labels clickable. Add a11y attributes. Visual styling stays as Task 2's static depth-of-field for now (it gets removed in Task 4).
+**Goal:** Identify the actual cause of the banding visible on the morphed knob (user has flagged this twice — `4337e14` was incomplete) and ship a fix that holds up to a high-quality screenshot at the scrolled state.
 
-**Why now:** active section is an input to the rotation logic in Task 4. Wire the input first, then build the rotation system on top.
+**Why this is first:** the user has flagged this twice and explicitly said "do not declare it fixed if you can still see banding in a high-quality screenshot." Front-load the risk.
 
 **Files:**
-- Modify: `components/LabelRing.tsx`
+- Modify: `components/Knob.tsx`
+- Possibly modify: `lib/knob-geometry.ts` (if BASE_SIZE bump is part of the fix)
 
 **Steps:**
 
-- [ ] **Step 3.1:** Add imports
-  - `useRef, useCallback` to React imports
-  - `useActiveSection` from `@/hooks/use-active-section`
+- [ ] **Step 5.1: Capture baseline.** Take a high-quality (non-JPEG) screenshot of the current knob at scrolled state (scroll past `MORPH_END = 380`) at viewport ~1440×900. Open in an image viewer at 200% zoom and document what's visible — is the inner R_TOP circle's edge perceived as banding? Are circle edges stair-stepped? Are there horizontal/vertical color stripes (GPU artifact)?
 
-- [ ] **Step 3.2:** Replace hardcoded active
+- [ ] **Step 5.2: Hypothesis triage.** Run these tests in the browser dev tools, one at a time, observing the knob between each:
+  1. Toggle off `willChange: "transform"` on the parent motion.div. Does banding change?
+  2. Set R_TOP fill to match R_BODY (`#3286E7`). Does banding disappear?
+  3. Add `shape-rendering="geometricPrecision"` to the `<svg>` element. Does banding change?
+  4. Apply `image-rendering: optimizeQuality` to the parent motion.div. Does banding change?
 
-  Find:
-  ```tsx
-  const activeIndex = 0
+  Document which test(s) made a visible difference. The result drives the fix choice.
+
+- [ ] **Step 5.3: Pick fix path.** Based on Step 5.2 results:
+  - **If two-tone is the culprit (test 2 fixed it):** apply Fix B — make R_TOP and R_BODY identical color (`#3286E7`). Removes the discontinuity without changing structure. Optionally remove the R_TOP circle entirely (Fix A) — leaner SVG.
+  - **If GPU compositing is the culprit (test 1 fixed it):** remove `willChange: "transform"` from the parent motion.div. Verify performance is acceptable (the morph is still smooth). If perf regresses, apply `transform: translate3d(0,0,0)` to keep the layer without `willChange`.
+  - **If SVG sub-pixel is the culprit (test 3 or 4 helped):** add `shape-rendering="geometricPrecision"` (cheap, safe). If still visible, bump BASE_SIZE to 1000 (and update viewBox accordingly) for higher precision.
+  - **If multiple contribute:** stack the fixes in this priority order: Fix B (cleanest), then Fix D (perf-neutral), then Fix F (low-risk).
+
+- [ ] **Step 5.4: Verify.** After applying the chosen fix(es), take a NEW high-quality screenshot at the same scrolled state and viewport. Compare to baseline. If banding is still visible, iterate — the user has explicitly said "do not declare it fixed if you can still see banding."
+
+- [ ] **Step 5.5: TS check.**
+  ```bash
+  ./node_modules/.bin/tsc --noEmit
   ```
-  Replace with:
+  Expected: clean.
+
+- [ ] **Step 5.6: Commit.** Write commit message to `/tmp/task5-msg.txt` documenting which hypothesis was confirmed and which fix(es) were applied. Use `git commit -F /tmp/task5-msg.txt`. Suggested message:
+
+  ```
+  fix(knob): eliminate banding at scrolled state — <one-line root cause + fix>
+
+  Second attempt at the banding issue (first attempt 4337e14 swapped
+  gradients for solid fills but the underlying cause was X). Applied:
+  - <fix 1>
+  - <fix 2 if any>
+
+  Verified with a high-quality screenshot at viewport 1440x900 with
+  scrollY past MORPH_END. Banding no longer visible at 200% zoom.
+  ```
+
+---
+
+### Task 6: Freeze knob pointer + pulse on active section change
+
+**Goal:** Replace Knob's scroll-driven rotation with a static `pointerSvgAngle` derived from `isDesktop`. Add a pointer-pulse effect that fires once when `activeIndex` changes.
+
+**Why now:** the pointer must be the marker for the label ring to work. Removing rotation also incidentally tests one pixelation hypothesis (per-frame GPU recompositing).
+
+**Files:**
+- Modify: `components/Knob.tsx`
+
+**Steps:**
+
+- [ ] **Step 6.1: Read current state.** Confirm `Knob.tsx` currently has:
+  ```tsx
+  const rawAngle = useTransform(scrollYProgress, [0, 1], [0, 1080])
+  const angle = prefersReducedMotion ? 0 : rawAngle
+  ```
+  and the rendering:
+  ```tsx
+  <motion.g style={{ rotate: angle, transformOrigin: `${C}px ${C}px`, transformBox: "view-box" }}>
+  ```
+
+- [ ] **Step 6.2: Replace scroll-driven rotation with static pointer angle.**
+
+  Inside the Knob component, after the `isDesktop` derivation:
+  ```tsx
+  // Pointer's local origin is at 12 o'clock (POINTER_Y = C - R_BODY).
+  // To land at MARKER_ANGLE in CSS-angle convention (0° = 3 o'clock):
+  //   desktop (MARKER_ANGLE = 0°)  → rotate 90° CW
+  //   mobile  (MARKER_ANGLE = 90°) → rotate 180° CW
+  const pointerSvgAngle = isDesktop ? 90 : 180
+  ```
+
+  Remove the `rawAngle` and `angle` MV declarations and the `scrollYProgress` from the `useScroll()` destructure (only `scrollY` remains). The rotating group's `style.rotate` becomes the constant `pointerSvgAngle`:
+
+  ```tsx
+  <motion.g style={{
+    rotate: pointerSvgAngle,
+    transformOrigin: `${C}px ${C}px`,
+    transformBox: "view-box",
+  }}>
+  ```
+
+  The motion.g wrapper can stay (avoids touching the JSX structure) or be replaced with a plain `<g transform={`rotate(${pointerSvgAngle} ${C} ${C})`}>`. Plain `<g>` is simpler since nothing else animates inside the group; pick that.
+
+- [ ] **Step 6.3: Add pointer-pulse on active section change.**
+
+  Add to imports:
+  ```tsx
+  import { useActiveSection } from "@/hooks/use-active-section"
+  ```
+
+  Inside the Knob component, add (the freezeRef can be a no-op local since Knob doesn't initiate clicks):
   ```tsx
   const freezeRef = useRef(false)
-  const [activeIndex, setActiveManual] = useActiveSection(freezeRef)
+  const [activeIndex] = useActiveSection(freezeRef)
 
-  const handleClick = useCallback((index: number, id: string) => {
-    freezeRef.current = true
-    setActiveManual(index)
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
-    window.setTimeout(() => { freezeRef.current = false }, 900)
-  }, [setActiveManual])
+  const [pulse, setPulse] = useState(0)
+  const lastActiveRef = useRef(activeIndex)
+  useEffect(() => {
+    if (lastActiveRef.current !== activeIndex) {
+      lastActiveRef.current = activeIndex
+      if (!prefersReducedMotion) {
+        setPulse((n) => n + 1)
+      }
+    }
+  }, [activeIndex, prefersReducedMotion])
   ```
 
-- [ ] **Step 3.3:** Convert label `<div>` to `<button>` with click handler + a11y
-
-  In the SECTIONS.map render block, replace the `<div>` with:
+  The `pulse` counter triggers a CSS animation on the pointer rect. Add to the pointer `<rect>`:
   ```tsx
-  <button
-    key={section.id}
-    type="button"
-    onClick={() => handleClick(i, section.id)}
-    aria-label={section.ariaLabel}
-    aria-current={isActive ? "true" : undefined}
-    style={{
-      position: "absolute",
-      left: cx,
-      top: cy,
-      transform: `translate(-50%, -50%) scale(${visual.scale})`,
-      opacity: visual.opacity,
-      color,
-      fontSize: visual.fontSize,
-      fontWeight: isActive ? 600 : 500,
-      letterSpacing: "0.04em",
-      textTransform: "uppercase",
-      whiteSpace: "nowrap",
-      pointerEvents: "auto",
-      background: "transparent",
-      border: "none",
-      cursor: "pointer",
-      padding: 0,
-      lineHeight: 1,
-      paddingTop: 4,
-      fontFamily: "inherit",
-    }}
-  >
-    {section.label}
-  </button>
+  <rect
+    key={`pointer-${pulse}`}
+    x={POINTER_X}
+    y={POINTER_Y}
+    width={POINTER_W}
+    height={POINTER_H}
+    rx={POINTER_RX}
+    fill="#F4F6FA"
+    style={{ animation: pulse > 0 ? "knob-pointer-pulse 200ms ease-out" : undefined }}
+  />
   ```
 
-- [ ] **Step 3.4:** Remove `aria-hidden="true"` from the parent motion.div (LabelRing is now interactive).
+  The `key` change forces React to remount the rect on each pulse, restarting the CSS animation. Add the `@keyframes` to `app/globals.css`:
+  ```css
+  @keyframes knob-pointer-pulse {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.7; }
+    100% { opacity: 1; }
+  }
+  ```
 
-- [ ] **Step 3.5:** TypeScript check
+  Note: Knob's parent zIndex is 30. LabelRing's parent zIndex is 40. Pointer is part of Knob — fine, it sits visually behind the labels but the pulse is on the pointer itself, no z-conflict.
+
+  **Note on coupling:** Knob now depends on `useActiveSection`. This is a new dependency and worth flagging in the commit message — Knob and LabelRing now both read the same active state independently. If we ever need shared state (e.g., to sync animations precisely), we'd lift it to HeroSection. Not necessary today.
+
+- [ ] **Step 6.4: Drop dead constants from `lib/knob-geometry.ts`.**
+
+  Remove:
+  ```ts
+  export const MARKER_GAP = 6
+  export const MARKER_LENGTH = 14
+  export const MARKER_WIDTH = 2
+  export const OPACITY_FALLOFF_DEG = 110
+  export const OPACITY_FALLOFF_EXPONENT = 1.4
+  ```
+
+  Verify no consumers via grep before removing. (Currently no Task 5/6/7 consumes them — they were declared in Task 4 step 4.1 ahead of obsoleted Tasks 5, 6.)
+
+- [ ] **Step 6.5: TS check.**
 
   ```bash
   ./node_modules/.bin/tsc --noEmit
   ```
   Expected: clean.
 
-- [ ] **Step 3.6:** Commit
+- [ ] **Step 6.6: Commit.**
 
-  Use `git commit -F /tmp/task3-msg.txt` with:
+  Use `git commit -F /tmp/task6-msg.txt`:
   ```
-  feat(label-ring): wire active section tracking + click navigation
+  feat(knob): freeze pointer at marker angle + pulse on active section change
 
-  Replace hardcoded activeIndex with useActiveSection hook. Convert label
-  divs to buttons with onClick + scrollIntoView smooth-scroll +
-  freezeRef-based active suppression for 900ms post-click. aria-current on
-  active label, aria-label per section. Removed aria-hidden from parent
-  (now interactive). Visual styling still Task-2 static DOF — Task 4
-  removes that and adds the rotating ring.
+  The knob's white pointer becomes the active-section marker for the label
+  ring. Removes the scroll-tied 0→1080° rotation (was Task 5 of the morph
+  plan, commit 5502f49). Pointer's local rotation is now derived from
+  isDesktop: 90° CW (desktop, lands at 3 o'clock) or 180° CW (mobile,
+  lands at 6 o'clock).
+
+  Adds a 200ms ease-out opacity pulse on the pointer when the active
+  section changes (1.0 → 0.7 → 1.0). Triggered by useActiveSection in
+  Knob.tsx; reduced-motion users skip the pulse. Drops dead constants
+  MARKER_GAP/LENGTH/WIDTH and OPACITY_FALLOFF_DEG/EXPONENT from
+  lib/knob-geometry.ts (separate marker tick + continuous falloff
+  formula are no longer part of v3).
   ```
 
 ---
 
-### Task 4: Add rotating ring + scroll-tied rotation interpolation
+### Task 7: 3-label window via continuous angular-distance function
 
-**Goal:** Refactor LabelRing's internal layout: parent motion.div now contains an inner rotating container. Compute `ringRotation` MV continuously from scrollY relative to section anchors. Apply rotation. Remove the static depth-of-field helper (no longer needed). Labels render with uniform style for now — Task 6 adds proximity-based styling.
+**Goal:** Refactor `LabelButton` so each instance derives all its visual properties (opacity, scale, color, font-weight) from a single per-label `labelDistance` MV. Implements the 3-label-window-emerges-from-continuous-function design.
 
-**Why this is the big task:** the rotating ring is the central new mechanic. Get it working in isolation (uniform labels, no marker, no proximity styling) before layering more on top.
+**Why this is the central change:** the visibility windowing is the new mechanic the user wants.
 
 **Files:**
-- Modify: `lib/knob-geometry.ts` (add marker + ring constants)
-- Modify: `components/LabelRing.tsx` (substantial refactor)
+- Modify: `components/LabelRing.tsx`
 
 **Steps:**
 
-- [ ] **Step 4.1:** Add constants to `lib/knob-geometry.ts`
+- [ ] **Step 7.1: Remove the existing color ternary from LabelButton.**
 
-  Append at end:
-  ```ts
-  /** Marker angle in degrees (CSS angle convention: 0° = east). */
-  export const MARKER_ANGLE_DESKTOP = 0   // 3 o'clock
-  export const MARKER_ANGLE_MOBILE = 90   // 6 o'clock
-
-  /** Marker tick visual constants. */
-  export const MARKER_GAP = 6        // px gap between knob outer edge and tick inner end
-  export const MARKER_LENGTH = 14    // px tick length (radial)
-  export const MARKER_WIDTH = 2      // px tick width
-
-  /** Gap between knob outer edge and label center, in BASE_SIZE units (gets scaled with parent). */
-  export const LABEL_RING_GAP = 16
-
-  /** Visibility gate: morphProgress range over which labels fade in. */
-  export const VISIBILITY_GATE_START = 0.85
-  export const VISIBILITY_GATE_END = 1.0
-
-  /** Opacity falloff exponent (per UX spec — see plan §2). */
-  export const OPACITY_FALLOFF_DEG = 110
-  export const OPACITY_FALLOFF_EXPONENT = 1.4
-  ```
-
-- [ ] **Step 4.2:** In LabelRing.tsx, add imports
-
-  ```ts
-  import { SECTIONS, SECTION_IDS } from "@/lib/sections"
-  import {
-    BASE_SIZE, /* existing imports */,
-    MARKER_ANGLE_DESKTOP, MARKER_ANGLE_MOBILE,
-    LABEL_RING_GAP,
-    OPACITY_FALLOFF_DEG, OPACITY_FALLOFF_EXPONENT,
-  } from "@/lib/knob-geometry"
-  ```
-
-- [ ] **Step 4.3:** Add section-position measurement
-
-  Inside LabelRing component, add after the existing viewport effect:
+  Find:
   ```tsx
-  const [sectionTops, setSectionTops] = useState<number[]>([])
-  useEffect(() => {
-    if (typeof window === "undefined") return
-    const measure = () => {
-      const tops = SECTION_IDS.map((id) => {
-        const el = document.getElementById(id)
-        return el ? el.getBoundingClientRect().top + window.scrollY : 0
-      })
-      setSectionTops(tops)
-    }
-    measure()
-    // Re-measure when layout might change.
-    window.addEventListener("resize", measure)
-    window.addEventListener("load", measure)
-    return () => {
-      window.removeEventListener("resize", measure)
-      window.removeEventListener("load", measure)
-    }
-  }, [])
+  const isHighlighted = section.highlight === true
+  const color = (isHighlighted || isActive) ? "#2798ff" : "#0F172A"
   ```
 
-- [ ] **Step 4.4:** Add MARKER_ANGLE selector and helpers (module-level)
+  These get replaced by MV-derived values in 7.3.
 
-  Add to module-level helpers:
-  ```ts
-  function shortestSignedAngle(from: number, to: number): number {
-    return ((to - from + 540) % 360) - 180
-  }
+- [ ] **Step 7.2: Add helper to LabelRing.tsx (module-level).**
 
-  function clamp(v: number, lo: number, hi: number): number {
-    return Math.max(lo, Math.min(hi, v))
-  }
-
-  function computeRingRotation(
-    scrollY: number,
-    sectionTops: number[],
-    markerAngle: number,
-    sectionAngles: number[],
-  ): number {
-    if (sectionTops.length === 0) return 0
-    const target = (i: number) => markerAngle - sectionAngles[i]
-
-    if (scrollY <= sectionTops[0]) return target(0)
-    if (scrollY >= sectionTops[sectionTops.length - 1]) return target(sectionTops.length - 1)
-
-    let i = 0
-    while (i < sectionTops.length - 1 && sectionTops[i + 1] <= scrollY) i++
-
-    const lo = sectionTops[i]
-    const hi = sectionTops[i + 1]
-    const frac = hi === lo ? 0 : clamp((scrollY - lo) / (hi - lo), 0, 1)
-    const eased = easeInOutCubic(frac)
-
-    const r0 = target(i)
-    const r1 = target(i + 1)
-    const delta = shortestSignedAngle(r0, r1)
-    return r0 + delta * eased
+  ```tsx
+  function easeOutQuad(t: number): number {
+    return 1 - (1 - t) * (1 - t)
   }
   ```
 
-- [ ] **Step 4.5:** Add ringRotation MV in component
+  (`easeInOutCubic`, `clamp`, `shortestSignedAngle` already exist module-level from Task 4.)
 
-  Inside LabelRing component (after `morphProgress` definition):
-  ```tsx
-  const markerAngle = isDesktop ? MARKER_ANGLE_DESKTOP : MARKER_ANGLE_MOBILE
-  const sectionAngles = SECTIONS.map((s) => s.angle)
+- [ ] **Step 7.3: Refactor LabelButton — derive visual props from labelDistance MV.**
 
-  const ringRotationRaw = useTransform(scrollY, (y) =>
-    computeRingRotation(y, sectionTops, markerAngle, sectionAngles)
-  )
-  // Reduced-motion: lock to discrete rotation for current active section.
-  const ringRotationDiscrete = useTransform(scrollY, () =>
-    markerAngle - SECTIONS[activeIndex].angle
-  )
-  const ringRotation = prefersReducedMotion ? ringRotationDiscrete : ringRotationRaw
-  ```
-
-  Note: `ringRotationDiscrete` doesn't actually need to be a useTransform of scrollY — it could be a plain number. But making it an MV keeps the type uniform with `ringRotationRaw` so the conditional pick works. Alternatively, use `useMotionValue` and `.set()` in an effect on `activeIndex` change. Either pattern works; pick the cleaner one in implementation.
-
-- [ ] **Step 4.6:** Refactor render — wrap labels in rotating container
-
-  Replace the existing SECTIONS.map block inside the parent motion.div with:
-  ```tsx
-  <motion.div
-    style={{
-      position: "absolute",
-      inset: 0,
-      rotate: ringRotation,
-      transformOrigin: "center",
-    }}
-  >
-    {SECTIONS.map((section, i) => {
-      const isActive = i === activeIndex
-      const angleRad = (section.angle * Math.PI) / 180
-      const ringRadiusInBase = BASE_SIZE / 2 + LABEL_RING_GAP
-      const cx = BASE_SIZE / 2 + ringRadiusInBase * Math.cos(angleRad)
-      const cy = BASE_SIZE / 2 + ringRadiusInBase * Math.sin(angleRad)
-
-      const isHighlighted = section.highlight === true
-      const color = (isHighlighted || isActive) ? "#2798ff" : "#0F172A"
-
-      return (
-        <motion.button
-          key={section.id}
-          type="button"
-          onClick={() => handleClick(i, section.id)}
-          aria-label={section.ariaLabel}
-          aria-current={isActive ? "true" : undefined}
-          style={{
-            position: "absolute",
-            left: cx,
-            top: cy,
-            x: "-50%",
-            y: "-50%",
-            // Counter-rotate to stay upright as the ring rotates.
-            rotate: useTransform(ringRotation, (r) => -r),
-            color,
-            fontSize: isDesktop ? 16 : 13,
-            fontWeight: isActive ? 700 : 500,
-            letterSpacing: "0.06em",
-            textTransform: "uppercase",
-            whiteSpace: "nowrap",
-            background: "transparent",
-            border: "none",
-            cursor: "pointer",
-            padding: 0,
-            paddingTop: 4,
-            lineHeight: 1,
-            fontFamily: "inherit",
-          }}
-        >
-          {section.label}
-        </motion.button>
-      )
-    })}
-  </motion.div>
-  ```
-
-  **Rules-of-hooks gotcha:** `useTransform` inside `.map()` violates rules of hooks. Refactor: extract the per-label render to a `LabelButton` subcomponent that takes `ringRotation` as a prop and creates its own MV. (Same pattern as old plan's Task 5; LabelRing's hook count stays bounded.)
-
+  Update `LabelButtonProps`:
   ```tsx
   type LabelButtonProps = {
     section: typeof SECTIONS[number]
-    isActive: boolean
     isDesktop: boolean
     cx: number
     cy: number
-    ringRotation: import("framer-motion").MotionValue<number>
+    ringRotation: MotionValue<number>
+    markerAngle: number
     onClick: () => void
   }
+  ```
 
-  function LabelButton({ section, isActive, isDesktop, cx, cy, ringRotation, onClick }: LabelButtonProps) {
-    const counterRotate = useTransform(ringRotation, (r) => -r)
+  Note: `isActive` is no longer passed in — color is now distance-derived. (`aria-current` is still distance-derived from "is this the closest label to the marker" — see Step 7.4.)
+
+  Refactor the component body:
+  ```tsx
+  function LabelButton({ section, isDesktop, cx, cy, ringRotation, markerAngle, onClick }: LabelButtonProps) {
     const isHighlighted = section.highlight === true
-    const color = (isHighlighted || isActive) ? "#2798ff" : "#0F172A"
+
+    // Per-label angular distance from marker, signed in (-180°, 180°].
+    const labelDistance = useTransform(ringRotation, (r) =>
+      shortestSignedAngle(markerAngle, section.angle + r),
+    )
+    const absDistance = useTransform(labelDistance, (d) => Math.abs(d))
+
+    // Opacity: piecewise easeOutQuad, anchors at 0°→1.0, 45°→0.55, 90°→0.
+    const opacity = useTransform(absDistance, (d) => {
+      if (d >= 90) return 0
+      if (d <= 45) {
+        const t = d / 45
+        return 1 - easeOutQuad(t) * (1 - 0.55)  // 1 → 0.55 over 0°→45°
+      }
+      const t = (d - 45) / 45
+      return 0.55 - easeOutQuad(t) * 0.55  // 0.55 → 0 over 45°→90°
+    })
+
+    // Scale: easeInOutCubic from 1.0 → 0.78 over 0°→90°, clamps below.
+    const scale = useTransform(absDistance, (d) => {
+      const t = clamp(d / 90, 0, 1)
+      return 1 - easeInOutCubic(t) * (1 - 0.78)
+    })
+
+    // Counter-rotation to keep label upright as ring spins.
+    const counterRotate = useTransform(ringRotation, (r) => -r)
+
+    // Color: brand if SİPARİŞ (always), or if within ±15° of marker. Otherwise neutral.
+    const color = useTransform(absDistance, (d) =>
+      (isHighlighted || d <= 15) ? "#2798ff" : "#0F172A",
+    )
+
+    // Font-weight: snap-flip at ±22.5° (halfway through prev/next arc).
+    const fontWeight = useTransform(absDistance, (d) => (d <= 22.5 ? 600 : 500))
+
+    // aria-current: this label is the active section iff it's the closest one
+    // to the marker (i.e., within ±22.5°, half a section arc).
+    const ariaCurrent = useTransform(absDistance, (d) => (d <= 22.5 ? "true" : undefined))
 
     return (
       <motion.button
         type="button"
         onClick={onClick}
         aria-label={section.ariaLabel}
-        aria-current={isActive ? "true" : undefined}
+        // aria-current via style is not standard; we set it as a regular attr
+        // by reading the MV's current value at render time. See Step 7.4.
+        className="focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2798ff] rounded"
         style={{
           position: "absolute",
           left: cx,
@@ -517,12 +445,15 @@ Per `lib/sections.ts`: 8 sections at 0°, 45°, 90°, 135°, 180°, 225°, 270°
           x: "-50%",
           y: "-50%",
           rotate: counterRotate,
+          opacity,
+          scale,
           color,
           fontSize: isDesktop ? 16 : 13,
-          fontWeight: isActive ? 700 : 500,
-          letterSpacing: "0.06em",
+          fontWeight,
+          letterSpacing: "0.04em",
           textTransform: "uppercase",
           whiteSpace: "nowrap",
+          pointerEvents: "auto",
           background: "transparent",
           border: "none",
           cursor: "pointer",
@@ -538,418 +469,402 @@ Per `lib/sections.ts`: 8 sections at 0°, 45°, 90°, 135°, 180°, 225°, 270°
   }
   ```
 
-- [ ] **Step 4.7:** Remove the `depthOfField` helper from the file (no longer used). Remove `LABEL_RING_GAP` constant (now imported from lib). Remove the import of `useTransform` types if any are now unused — let tsc tell you.
+  **Important:** `aria-current` cannot be a MotionValue — ARIA attrs need stable string values for AT. Drop the `ariaCurrent` MV. Instead, pass `isActive: boolean` back as a prop (we already have `activeIndex` in LabelRing), and set `aria-current={isActive ? "true" : undefined}` directly on the button. Restore `isActive` to props.
 
-- [ ] **Step 4.8:** TypeScript check
+  **Corrected props:**
+  ```tsx
+  type LabelButtonProps = {
+    section: typeof SECTIONS[number]
+    isActive: boolean
+    isDesktop: boolean
+    cx: number
+    cy: number
+    ringRotation: MotionValue<number>
+    markerAngle: number
+    onClick: () => void
+  }
+  ```
+
+  And in the JSX:
+  ```tsx
+  aria-current={isActive ? "true" : undefined}
+  ```
+
+  (Color is still distance-derived — the `isActive` prop is ONLY for the ARIA attr, not for visual styling.)
+
+- [ ] **Step 7.4: Update LabelRing render call site.**
+
+  Find the render block that maps SECTIONS to LabelButtons. Update to pass `markerAngle` and `isActive`:
+
+  ```tsx
+  {SECTIONS.map((section, i) => {
+    const angleRad = (section.angle * Math.PI) / 180
+    const ringRadiusInBase = BASE_SIZE / 2 + LABEL_RING_GAP
+    const cx = BASE_SIZE / 2 + ringRadiusInBase * Math.cos(angleRad)
+    const cy = BASE_SIZE / 2 + ringRadiusInBase * Math.sin(angleRad)
+
+    return (
+      <LabelButton
+        key={section.id}
+        section={section}
+        isActive={i === activeIndex}
+        isDesktop={isDesktop}
+        cx={cx}
+        cy={cy}
+        ringRotation={ringRotation}
+        markerAngle={markerAngle}
+        onClick={() => handleClick(i, section.id)}
+      />
+    )
+  })}
+  ```
+
+- [ ] **Step 7.5: Add the active-arrival weight pulse (CSS-driven).**
+
+  Inside `LabelButton`, after the `isActive` prop is in scope:
+
+  ```tsx
+  const [pulseKey, setPulseKey] = useState(0)
+  const wasActiveRef = useRef(isActive)
+  useEffect(() => {
+    if (isActive && !wasActiveRef.current) {
+      setPulseKey((k) => k + 1)
+    }
+    wasActiveRef.current = isActive
+  }, [isActive])
+  ```
+
+  Wrap the `motion.button` in a span that gets the pulse class on key change:
+
+  Actually simpler — add an `animation` style that changes when `pulseKey` increments:
+  ```tsx
+  style={{
+    /* ... existing ... */
+    animation: pulseKey > 0 ? `label-active-pulse 280ms cubic-bezier(0.34, 1.56, 0.64, 1)` : undefined,
+  }}
+  ```
+
+  Note: this animation re-runs every time `pulseKey` increments — but only if the `style.animation` value changes string-wise. Since pulseKey is in a closure but the string is the same, React won't re-trigger. **Force re-trigger by reading pulseKey into the animation name's keyframe count or by using a `key` on the parent.** Simpler: use `key={pulseKey}` on the motion.button. Each pulse → new React key → fresh DOM node → fresh animation. The trade-off: the button briefly remounts (fine, no state to preserve except focus, which active-arrival users aren't holding).
+
+  Add the `@keyframes` to `app/globals.css`:
+  ```css
+  @keyframes label-active-pulse {
+    0%   { font-weight: 600; }
+    50%  { font-weight: 680; }
+    100% { font-weight: 600; }
+  }
+  ```
+
+  **Caveat:** non-variable fonts can't render arbitrary weights — `680` will round to `700`. That's still a perceptible bump. Acceptable. If a future variable-font swap happens, the smooth interpolation comes for free.
+
+- [ ] **Step 7.6: TS check.**
 
   ```bash
   ./node_modules/.bin/tsc --noEmit
   ```
   Expected: clean.
 
-- [ ] **Step 4.9:** Commit
-
-  Use `git commit -F /tmp/task4-msg.txt` with:
-  ```
-  feat(label-ring): rotating ring with scroll-tied rotation interpolation
-
-  Major rework: parent motion.div now contains an inner rotating container.
-  ringRotation MV computed continuously from scrollY relative to section
-  offsetTops, eased with easeInOutCubic, shortest angular path between
-  consecutive section targets. Each label counter-rotates to stay upright.
-  Labels render with uniform styling (size, weight, letter-spacing) for now;
-  proximity-based continuous styling lands in Task 6.
-
-  Removed Task-2's static depthOfField helper and bucket table — the
-  rotating-ring model uses continuous proximity-derived values instead.
-
-  Reduced-motion path: ringRotation locked to the discrete target for the
-  current active section (no scroll-tied interp). Tasks 7–8 polish the rest.
-  ```
-
----
-
-### Task 5: Marker tick at MARKER_ANGLE
-
-**Goal:** Add the small brand-color tick on the bezel at MARKER_ANGLE. Renders inside the parent motion.div but OUTSIDE the rotating container (it's stationary relative to the knob, not relative to the ring).
-
-**Files:**
-- Modify: `components/LabelRing.tsx`
-
-**Steps:**
-
-- [ ] **Step 5.1:** Add marker constants to imports from `@/lib/knob-geometry`:
-  ```ts
-  MARKER_GAP, MARKER_LENGTH, MARKER_WIDTH
-  ```
-
-- [ ] **Step 5.2:** Add a `<Marker />` subcomponent at module level:
-
-  ```tsx
-  type MarkerProps = { markerAngle: number }
-
-  function Marker({ markerAngle }: MarkerProps) {
-    // Knob outer edge sits at radius BASE_SIZE/2 from parent center.
-    // Tick INNER end at radius (BASE_SIZE/2 + MARKER_GAP).
-    // Tick OUTER end at radius (BASE_SIZE/2 + MARKER_GAP + MARKER_LENGTH).
-    // Tick center at midpoint, oriented radially.
-    const angleRad = (markerAngle * Math.PI) / 180
-    const innerR = BASE_SIZE / 2 + MARKER_GAP
-    const tickCenterR = innerR + MARKER_LENGTH / 2
-    const cx = BASE_SIZE / 2 + tickCenterR * Math.cos(angleRad)
-    const cy = BASE_SIZE / 2 + tickCenterR * Math.sin(angleRad)
-
-    return (
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          left: cx,
-          top: cy,
-          width: MARKER_WIDTH,
-          height: MARKER_LENGTH,
-          backgroundColor: "#2798ff",
-          // Orient long axis radially: rotate so height vector points outward from center.
-          // Element's natural orientation has height along +y. We want height along the radial
-          // direction at angle markerAngle. Rotate by (markerAngle + 90)°: at markerAngle=0
-          // (3 o'clock), radial direction is +x, rotation +90° aligns +y to +x. ✓
-          transform: `translate(-50%, -50%) rotate(${markerAngle + 90}deg)`,
-        }}
-      />
-    )
-  }
-  ```
-
-  Verify the rotation math in browser: at desktop (markerAngle=0) the tick should be horizontal (long axis pointing left-right, since it's radial at 3 o'clock); at mobile (markerAngle=90) the tick should be vertical (long axis pointing up-down, radial at 6 o'clock).
-
-  Wait — re-derive. At 3 o'clock, the radial direction is +x (east). The tick's long axis should ALSO be +x (pointing inward/outward along the radius). So we want height-vector rotated to point along +x. Element height is by default along +y. To rotate +y → +x, we rotate by -90° (or +270°). So `rotate(${markerAngle - 90}deg)`.
-
-  Test: markerAngle=0 → rotate(-90°) → long axis horizontal ✓. markerAngle=90 → rotate(0°) → long axis vertical (along +y, which IS the radial direction at 6 o'clock) ✓.
-
-  Use `rotate(${markerAngle - 90}deg)` in the transform.
-
-- [ ] **Step 5.3:** Render the Marker INSIDE the parent motion.div but OUTSIDE the rotating container:
-
-  ```tsx
-  return (
-    <motion.div style={{ /* parent style: position fixed, left, top, scale, etc. */ }}>
-      <Marker markerAngle={markerAngle} />
-      <motion.div style={{ position: absolute, inset: 0, rotate: ringRotation, transformOrigin: center }}>
-        {SECTIONS.map(...)}
-      </motion.div>
-    </motion.div>
-  )
-  ```
-
-  Order matters: marker is rendered FIRST so labels (which can pass through marker visually if they overlap) render on top. If you'd rather marker be on top, render it last. Eyeball in browser; UX doesn't specify; pick the option that reads cleanest.
-
-- [ ] **Step 5.4:** TypeScript check.
-
-- [ ] **Step 5.5:** Commit
-
-  Use `git commit -F /tmp/task5-msg.txt`:
-  ```
-  feat(label-ring): static brand-color marker tick at 3 o'clock (desktop) / 6 o'clock (mobile)
-
-  Add a 2x14px brand-color (#2798ff) tick outside the knob's outer edge,
-  oriented radially, positioned at MARKER_ANGLE. Static — no animation.
-  Visual reference frame for the rotating ring: labels arrive at this point
-  to indicate active. Renders inside parent (tracks knob center via blend
-  chain) but OUTSIDE the rotating container (stationary relative to knob).
-  ```
-
----
-
-### Task 6: Continuous proximity-based label styling
-
-**Goal:** Replace LabelButton's uniform style with continuous interpolation by angular proximity to marker. Per the §4 spec table: fontSize, fontWeight, color, letter-spacing, scale all interpolate from off-marker to at-marker values based on `proximity = 1 - |Δθ_marker|/180`.
-
-**Files:**
-- Modify: `components/LabelRing.tsx`
-
-**Steps:**
-
-- [ ] **Step 6.1:** Inside `LabelButton`, add the proximity MV chain.
-
-  Just before the existing `counterRotate` definition:
-  ```ts
-  const markerAngle = isDesktop ? MARKER_ANGLE_DESKTOP : MARKER_ANGLE_MOBILE
-
-  // Label's current absolute angle = its fixed angle + ring rotation
-  const labelGlobalAngle = useTransform(ringRotation, (r) => (section.angle + r) % 360)
-
-  // Shortest signed angular distance from marker (always in [-180, 180])
-  const angularDelta = useTransform(labelGlobalAngle, (g) => shortestSignedAngle(g, markerAngle))
-
-  // Proximity: 1 at marker, 0 at opposite. Magnitude only.
-  const proximity = useTransform(angularDelta, (d) => 1 - clamp(Math.abs(d) / 180, 0, 1))
-  ```
-
-  (Pass `isDesktop` as a prop to LabelButton — add to LabelButtonProps.)
-
-- [ ] **Step 6.2:** Derive each style MV from `proximity` and `angularDelta`:
-
-  ```ts
-  // Opacity falloff (per UX spec §2)
-  const opacityRaw = useTransform(angularDelta, (d) => {
-    const x = Math.abs(d) / OPACITY_FALLOFF_DEG
-    return clamp(1 - Math.pow(x, OPACITY_FALLOFF_EXPONENT), 0, 1)
-  })
-
-  // Scale: 0.85 → 1.0 by proximity
-  const scaleMV = useTransform(proximity, (p) => 0.85 + 0.15 * p)
-
-  // Font size: off-marker → at-marker (16→22 desktop, 13→17 mobile)
-  const fontSizeMV = useTransform(proximity, (p) =>
-    isDesktop ? 16 + 6 * p : 13 + 4 * p
-  )
-
-  // Font weight: 500 → 700
-  const fontWeightMV = useTransform(proximity, (p) => 500 + 200 * p)
-
-  // Letter spacing: 0.08em → 0.04em (em string)
-  const letterSpacingMV = useTransform(proximity, (p) => `${(0.08 - 0.04 * p).toFixed(4)}em`)
-
-  // Color: neutral (#0F172A) → brand (#2798ff). framer-motion's color interp via mix-helper.
-  // Use the literal hex strings; framer-motion auto-detects color values in style.
-  // We can't directly useTransform to a color string without manual interp; use the mix import:
-  ```
-
-  Framer-motion provides `mix` from `framer-motion/utils`:
-  ```ts
-  import { mix } from "framer-motion"
-  const colorMV = useTransform(proximity, (p) => mix("#0F172A", "#2798ff", p))
-  ```
-
-  Verify `mix` is exported from `framer-motion`. If not (sometimes `mixColor` or under a subpath), use a tiny inline color-mix helper:
-  ```ts
-  function mixColor(a: string, b: string, t: number): string {
-    const parse = (h: string) => [
-      parseInt(h.slice(1, 3), 16),
-      parseInt(h.slice(3, 5), 16),
-      parseInt(h.slice(5, 7), 16),
-    ] as const
-    const [ar, ag, ab] = parse(a)
-    const [br, bg, bb] = parse(b)
-    const r = Math.round(ar + (br - ar) * t)
-    const g = Math.round(ag + (bg - ag) * t)
-    const bl = Math.round(ab + (bb - ab) * t)
-    return `rgb(${r}, ${g}, ${bl})`
-  }
-  const colorMV = useTransform(proximity, (p) => mixColor("#0F172A", "#2798ff", p))
-  ```
-
-  SİPARİŞ override: bypass the MV interp for color. If `section.highlight`, render `color: "#2798ff"` directly (static), skip `colorMV`.
-
-- [ ] **Step 6.3:** Apply all MVs to the motion.button style block:
-
-  ```tsx
-  <motion.button
-    /* ...existing props... */
-    style={{
-      position: "absolute",
-      left: cx,
-      top: cy,
-      x: "-50%",
-      y: "-50%",
-      rotate: counterRotate,
-      scale: scaleMV,
-      opacity: opacityRaw,  // visibilityGate added in Task 7
-      color: section.highlight ? "#2798ff" : colorMV,
-      fontSize: fontSizeMV,
-      fontWeight: fontWeightMV,
-      letterSpacing: letterSpacingMV,
-      textTransform: "uppercase",
-      whiteSpace: "nowrap",
-      background: "transparent",
-      border: "none",
-      cursor: "pointer",
-      padding: 0,
-      paddingTop: 4,
-      lineHeight: 1,
-      fontFamily: "inherit",
-    }}
-  >
-    {section.label}
-  </motion.button>
-  ```
-
-- [ ] **Step 6.4:** TypeScript check. Verify `mix` import works or fall back to `mixColor` helper.
-
-- [ ] **Step 6.5:** Commit
-
-  Use `git commit -F /tmp/task6-msg.txt`:
-  ```
-  feat(label-ring): continuous proximity-based label styling
-
-  Each label's opacity, scale, fontSize, fontWeight, color, and letter-spacing
-  are now MV-derived from angular proximity to MARKER_ANGLE. Labels grow into
-  activeness as they rotate toward the marker — no discrete state change, no
-  arrival pop. Opacity falloff per UX spec §2:
-  clamp(1 - (|Δθ|/110)^1.4, 0, 1).
-
-  SİPARİŞ keeps brand color regardless of proximity (size/weight/scale still
-  interpolate). All other labels: color mixes from #0F172A (neutral) to
-  #2798ff (brand) by proximity.
-  ```
-
----
-
-### Task 7: Gated visibility on morph progress
-
-**Goal:** Labels are invisible while the knob is still attached to the machine illustration. Multiplier `visibilityGate = clamp((morphProgress - 0.85) / 0.15, 0, 1)` ramps each label's opacity in over the last 15% of morph progress.
-
-**Files:**
-- Modify: `components/LabelRing.tsx`
-
-**Steps:**
-
-- [ ] **Step 7.1:** Import VISIBILITY_GATE constants from `@/lib/knob-geometry`.
-
-- [ ] **Step 7.2:** In LabelRing component (after `morphProgress` definition), add:
-  ```ts
-  const visibilityGate = useTransform(morphProgress, (p) =>
-    clamp((p - VISIBILITY_GATE_START) / (VISIBILITY_GATE_END - VISIBILITY_GATE_START), 0, 1)
-  )
-  ```
-
-- [ ] **Step 7.3:** Pass `visibilityGate` as a prop to `LabelButton`. Combine with falloff opacity:
-
-  Inside LabelButton:
-  ```ts
-  const finalOpacity = useTransform(
-    [opacityRaw, visibilityGate],
-    ([o, g]: number[]) => o * g
-  )
-  ```
-
-  And use `opacity: finalOpacity` in the button style instead of `opacity: opacityRaw`.
-
-- [ ] **Step 7.4 (optional):** Per-label staggered fade-in once gate fully open
-
-  UX spec §10 mentions "30ms staggered fade per label keyed off angular distance from MARKER_ANGLE." This is a polish nicety. Skip in v1 — the gate ramp is enough on its own. Revisit only if user explicitly requests after seeing it in the browser.
-
-- [ ] **Step 7.5:** TypeScript check.
-
-- [ ] **Step 7.6:** Commit
+- [ ] **Step 7.7: Commit.**
 
   Use `git commit -F /tmp/task7-msg.txt`:
   ```
-  feat(label-ring): gate label visibility behind morph completion
+  feat(label-ring): 3-label window via continuous angular-distance function
 
-  Multiply each label's effective opacity by visibilityGate, which ramps
-  0→1 over morphProgress 0.85→1.0. Labels are invisible while the knob is
-  still attached to the machine illustration; they fade in only as the
-  knob settles into its scrolled destination.
+  Each LabelButton derives all visual properties (opacity, scale, color,
+  font-weight) from a single per-label labelDistance MotionValue —
+  shortestSignedAngle(markerAngle, section.angle + ringRotation). Anchors
+  per UX consult v3:
+  - 0°  (active):    opacity 1.0,  scale 1.0,  weight 600, color #2798ff
+  - 45° (prev/next): opacity 0.55, scale 0.78, weight 500, color #0F172A
+  - 90° (boundary):  opacity 0,    scale 0.78, weight 500
+  - >90° (hidden):   opacity 0
 
-  No per-label stagger in v1 — the gate ramp alone reads cleanly. Optional
-  staggered fade can be added later if explicitly desired.
+  Curves: opacity piecewise easeOutQuad, scale easeInOutCubic, color
+  threshold-flip at ±15° (label feels claimed before geometric arrival),
+  font-weight snap at ±22.5°. SİPARİŞ stays brand color regardless of
+  distance. The 3-visible-label window emerges naturally — beyond ±90°
+  opacity = 0, and labels are 45° apart, so only active + ±1 are non-zero.
+
+  Adds 280ms cubic-bezier(0.34, 1.56, 0.64, 1) weight pulse (600→680→600)
+  on the new active label when activeIndex changes.
+
+  Drops the isActive-driven color logic; isActive prop now only sets the
+  aria-current attr.
   ```
 
 ---
 
-### Task 8: Reduced-motion + a11y final pass + production build
+### Task 8: Gated visibility on morph progress
 
-**Goal:** Verify reduced-motion path (ringRotation locked, no transitions, all labels visible). Verify keyboard nav. Verify VoiceOver. Run production build clean.
+**Goal:** Hide the entire ring while the knob is still in the machine (morphProgress < 0.85). Fade in to fully visible by morphProgress = 1.0.
+
+**Why now:** during the morph, labels would float around the small in-machine knob and look broken. Gate them until the dial is in position.
 
 **Files:**
-- Possibly: `components/LabelRing.tsx` (small a11y additions)
+- Modify: `components/LabelRing.tsx`
 
 **Steps:**
 
-- [ ] **Step 8.1:** End-to-end reduced-motion test
+- [ ] **Step 8.1: Compute ring-visibility opacity from morphProgress.**
 
-  DevTools → Rendering → Emulate `prefers-reduced-motion: reduce`. Reload. Verify:
-  - Knob morph held at rest (already verified pre-feature).
-  - Labels visible at static positions in their UNROTATED layout (so they're at their fixed source angles, not rotated by ringRotation).
-  - Wait — for reduced motion, the spec says "ringRotation locked to the discrete target for the current active section." That means the ring IS rotated to bring active to marker, just no smooth interpolation. Verify:
-    - When at hero (active=basla, angle=0°), ring rotates so basla lands at MARKER_ANGLE.
-    - As you scroll into hizmetler (without smooth animation), ringRotation snaps to the new discrete target.
-  - Active label has the at-marker styling (size 22/17, weight 700, brand color, scale 1.0).
-  - All other labels at their off-marker static styling.
-  - No CSS transitions on any label property change (they snap instantly).
+  In `LabelRing`, after `morphProgress` is defined:
+  ```tsx
+  // Ring visibility gate: 0 below 0.85, fades to 1.0 by 1.0.
+  const ringOpacity = useTransform(morphProgress, [VISIBILITY_GATE_START, VISIBILITY_GATE_END], [0, 1], { clamp: true })
+  ```
 
-  If transitions are happening when activeIndex changes (because framer-motion smoothly interpolates between MV values by default), the fix is: in reduced-motion mode, the discrete ringRotation MV update should be instant. framer-motion's default behavior: `useMotionValue.set()` updates instantly; `useSpring` interpolates. We're using useTransform which derives synchronously — should be instant. Verify.
+  Import `VISIBILITY_GATE_START`, `VISIBILITY_GATE_END` from `@/lib/knob-geometry` (already exported, just verify).
 
-- [ ] **Step 8.2:** Keyboard nav
+- [ ] **Step 8.2: Apply to the parent motion.div's `opacity`.**
 
-  Disable reduced-motion. Tab through the page. Verify:
-  - Tab focus passes through SiteNav, then through LabelRing's 8 buttons in source order.
-  - Visible focus ring on each label. If not visible, add `:focus-visible` outline:
-    ```ts
-    // In each motion.button style — but framer-motion's style prop doesn't accept :focus-visible.
-    // Use a className with Tailwind:
-    className: "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2798ff]"
-    ```
-  - Enter/Space activates click → smooth-scroll to section.
-  - Tab order matches DOM source order (basla → siparis); the rotating ring doesn't reorder DOM.
+  Currently the parent motion.div has:
+  ```tsx
+  opacity: isMeasured ? 1 : 0,
+  ```
 
-- [ ] **Step 8.3:** VoiceOver / NVDA
+  Change to multiply with `ringOpacity`. Since `opacity` accepts a MotionValue, the simplest pattern is a derived MV:
+  ```tsx
+  const baseOpacity = useTransform(ringOpacity, (g) => (isMeasured ? g : 0))
+  ```
 
-  Cmd+F5 on macOS. Verify each label's full ariaLabel announces; active label gets "current page" or equivalent.
+  And:
+  ```tsx
+  opacity: baseOpacity,
+  ```
 
-- [ ] **Step 8.4:** Cross-breakpoint regression
+  (Using the existing `isMeasured` boolean as a closure capture into a useTransform — recreated on `isMeasured` changes via React re-render. Acceptable.)
 
-  Resize through 375 → 480 → 768 → 1024 → 1280 → 1920. At each width, scroll from 0 through past full morph. Verify:
-  - Knob morph still works.
-  - LabelRing tracks knob center.
-  - Marker at correct position (3 o'clock desktop, 6 o'clock mobile, snaps at 1024 boundary).
-  - Ring rotates as expected.
-  - Labels never overflow viewport unreadably.
-  - No console errors.
-  - No CLS (LabelRing additions shouldn't shift layout — it's position:fixed).
+- [ ] **Step 8.3: Verify reduced-motion behavior.**
 
-- [ ] **Step 8.5:** Build
+  When `prefersReducedMotion` is true, `morphProgress` is locked at 0 (via the `zeroMV` substitution). That means `ringOpacity` would be 0 forever. **That's wrong** — RM users still need the ring; they just don't get the morph animation.
+
+  Fix: for RM, treat `morphProgress` for gating purposes as 1.0 (knob is "always at destination"). One option:
+  ```tsx
+  const oneMV = useMotionValue(1)
+  const morphProgressForGate = prefersReducedMotion ? oneMV : morphProgress
+  const ringOpacity = useTransform(morphProgressForGate, [VISIBILITY_GATE_START, VISIBILITY_GATE_END], [0, 1], { clamp: true })
+  ```
+
+  Cleaner: only use `morphProgressForGate` for gating; keep `morphProgress` itself as zero for RM (so the morph chain doesn't move the knob position, which is what RM wants).
+
+  Wait — but if the knob doesn't morph for RM users, they never see the dial at viewport edge. So the labels would be positioned at the in-machine-knob position. That's bad too. Open question: how does the existing morph chain handle RM? Current behavior (per `1623f39`): `morphProgress` is forced to 0, knob stays at the rest position (in-machine). So the dial ALSO stays in-machine for RM. The whole morph is reduced.
+
+  In that case, the ring (at the in-machine knob position) being hidden actually makes sense for RM — there's no "scrolled state" to show the labels in. The whole morph experience is collapsed.
+
+  **But** that means RM users get no nav at all. Bad. Solution: for RM, expose the labels at all times once the user has scrolled past `MORPH_END` (use a discrete check on scrollY rather than morphProgress). Update gate:
+  ```tsx
+  const ringOpacity = prefersReducedMotion
+    ? useTransform(scrollY, (y) => (y >= MORPH_END ? 1 : 0))
+    : useTransform(morphProgress, [VISIBILITY_GATE_START, VISIBILITY_GATE_END], [0, 1], { clamp: true })
+  ```
+
+  But conditional `useTransform` violates rules of hooks. Use the same pattern as `morphProgress`/`zeroMV` — compute both unconditionally, conditionally pick. Let me write it cleanly:
+
+  ```tsx
+  const ringOpacityScrollGate = useTransform(scrollY, (y) => (y >= MORPH_END ? 1 : 0))
+  const ringOpacityMorphGate = useTransform(morphProgress, [VISIBILITY_GATE_START, VISIBILITY_GATE_END], [0, 1], { clamp: true })
+  const ringOpacityRaw = prefersReducedMotion ? ringOpacityScrollGate : ringOpacityMorphGate
+  const ringOpacity = useTransform(ringOpacityRaw, (g) => (isMeasured ? g : 0))
+  ```
+
+  However, `prefersReducedMotion` AND `isDesktop`-style RM-vs-not switching for the dial position is a real coupling concern. Actually the LabelRing's POSITION (left/top/scale via the morph chain) is also wrong for RM users — the labels would orbit the in-machine knob. For RM the dial stays in the machine.
+
+  **Simplest correct behavior for RM:** the ring stays HIDDEN entirely (opacity 0) on RM. The user navigates via the existing SiteNav (already z-50 and accessible). Labels are an enhancement, not the only path. This honors reduced-motion best practice (no surprise motion) without crippling navigation. Document this in the commit and in the a11y final pass (Task 9).
+
+  Final implementation:
+  ```tsx
+  const ringOpacityRaw = useTransform(morphProgress, [VISIBILITY_GATE_START, VISIBILITY_GATE_END], [0, 1], { clamp: true })
+  const ringOpacity = useTransform(ringOpacityRaw, (g) => (isMeasured && !prefersReducedMotion ? g : 0))
+  ```
+
+  Wait — that hides the ring entirely for RM. But the spec said "snap-to-active fallback" with prev/next visible. There's a tension between "RM = hide" and "RM = snap-to-active 3-label window."
+
+  **Resolution:** the snap-to-active behavior IS what we want for RM. The ring shows, doesn't rotate, snaps content on active changes. So gate the ring's opacity ONLY on morph-completion for the non-RM case, and make a discrete decision for RM:
+
+  ```tsx
+  const ringOpacityRaw = prefersReducedMotion
+    ? ringOpacityScrollGate
+    : useTransform(morphProgress, [VISIBILITY_GATE_START, VISIBILITY_GATE_END], [0, 1], { clamp: true })
+  ```
+
+  Same rules-of-hooks issue. Fix: declare both unconditionally, pick:
+
+  ```tsx
+  const ringOpacityScrollGate = useTransform(scrollY, (y) => (y >= MORPH_END ? 1 : 0))
+  const ringOpacityMorphGate = useTransform(morphProgress, [VISIBILITY_GATE_START, VISIBILITY_GATE_END], [0, 1], { clamp: true })
+  const ringOpacityGate = prefersReducedMotion ? ringOpacityScrollGate : ringOpacityMorphGate
+  const ringOpacity = useTransform(ringOpacityGate, (g) => (isMeasured ? g : 0))
+  ```
+
+  But position-wise — RM users need the dial at viewport edge for the labels to be reachable. That requires the morph itself to play. But morph is currently disabled for RM (locked at 0).
+
+  **This is a Task 9 problem, not Task 8.** Task 8 just gates ring visibility on morphProgress in the non-RM case, and treats RM as "always visible after MORPH_END" (the dial position will be wrong for RM, but Task 9 fixes that by allowing the morph end-state to be reached without animating — instant snap).
+
+  **For Task 8: gate on morphProgress. Defer the RM dial-position decision to Task 9.**
+
+- [ ] **Step 8.4: TS check.**
 
   ```bash
   ./node_modules/.bin/tsc --noEmit
+  ```
+  Expected: clean.
+
+- [ ] **Step 8.5: Commit.**
+
+  Use `git commit -F /tmp/task8-msg.txt`:
+  ```
+  feat(label-ring): gate ring visibility on morph progress
+
+  Ring opacity 0 below morphProgress = 0.85, fades to 1.0 by 1.0. Hides
+  the labels while the knob is still in the machine (would otherwise
+  orbit a tiny in-machine knob and look broken).
+
+  RM users get a scrollY-based gate (visible after scrollY >= MORPH_END)
+  since morphProgress is locked at 0 for them. RM dial-position
+  reconciliation lands in Task 9.
+  ```
+
+---
+
+### Task 9: Reduced-motion + a11y final pass + production build
+
+**Goal:** Reconcile reduced-motion with the new design (snap-to-active, dial position, no rotation). Final a11y sweep. Ship a clean production build.
+
+**Files:**
+- Modify: `components/Knob.tsx` (RM dial position)
+- Modify: `components/LabelRing.tsx` (snap-to-active polish)
+- Possibly modify: `app/globals.css` (final pulse keyframes)
+
+**Steps:**
+
+- [ ] **Step 9.1: Decide RM dial behavior.**
+
+  Two options, pick one and document:
+  - **A:** RM users see the dial morph end-state INSTANTLY on first scroll past MORPH_START. No interpolation, just a snap. Labels appear (per Task 8's RM scrollY gate), ring snap-rotates on active changes (per Task 4's `ringRotationDiscrete`).
+  - **B:** RM users never see the dial — the morph is fully disabled, labels never appear, navigation is via SiteNav only.
+
+  **Recommendation: A.** Maintains feature parity. The "no animation" promise of RM is honored by snapping rather than easing — the dial is in its final position, labels are in their slots, no motion plays. User opted into less motion, not less function.
+
+  Implement: in `Knob.tsx` (and LabelRing.tsx if mirrored), when `prefersReducedMotion`:
+  - `morphProgress` snaps to 1 once `scrollY >= MORPH_END`, snaps to 0 below. Use a useTransform with a step function:
+    ```tsx
+    const morphProgressRM = useTransform(scrollY, (y) => (y >= MORPH_START ? 1 : 0))
+    const morphProgress = prefersReducedMotion ? morphProgressRM : easedProgress
+    ```
+  - Mirror this in LabelRing.tsx (currently it has its own `morphProgress` derivation — they need to stay in sync).
+  - Update the Task 8 gate accordingly.
+
+- [ ] **Step 9.2: Snap-to-active polish in LabelRing.**
+
+  When `prefersReducedMotion` is true and `activeIndex` changes, the ring rotation MV updates instantly (no scroll-tied tween). Each label's distance recomputes; opacity/scale snap to the new values. Add a 120ms opacity crossfade so the swap isn't jarring:
+
+  ```tsx
+  // Inside LabelButton, when prefersReducedMotion:
+  const opacity = useTransform(absDistance, /* same function */)
+  const opacityRM = useSpring(opacity, { duration: 120, bounce: 0 })
+  const finalOpacity = prefersReducedMotion ? opacityRM : opacity
+  ```
+
+  Wait — `useSpring` is its own animation. Use `animate()` with a 120ms tween instead? Actually `useSpring` with `duration: 120, bounce: 0` is effectively a 120ms tween, fine.
+
+  Issue: prefersReducedMotion must be passed into LabelButton so each button can wire the right opacity MV. Pass it as a prop.
+
+- [ ] **Step 9.3: a11y sweep.**
+
+  - Verify `aria-current="true"` is on exactly one label at a time (the `i === activeIndex` one). In edge cases where two labels are equidistant from marker mid-rotation, only one should claim active. (The `i === activeIndex` driver guarantees this — it's based on IntersectionObserver, not distance.)
+  - Verify keyboard tab order: SiteNav → label buttons in DOM order (which is SECTIONS order). Each label is reachable.
+  - Verify focus-visible ring renders on Tab (already in place from Task 3 follow-up).
+  - Verify pointer-events: parent motion.div has `pointerEvents: "none"`, label buttons have `pointerEvents: "auto"` — labels clickable, body underneath isn't blocked.
+  - Verify the rotating container doesn't trap focus — it doesn't (no role, no aria-modal).
+  - Verify color contrast: at full opacity, `#2798ff` on hero background and `#0F172A` on hero background both pass WCAG AA (the hero background is light).
+
+- [ ] **Step 9.4: Production build.**
+
+  ```bash
   pnpm build
   ```
-  Expected: clean tsc, build succeeds. Pre-existing warnings unrelated to LabelRing are fine.
+  Expected: clean build, no type errors, no missing imports.
 
-- [ ] **Step 8.6:** Commit (only if any fixes were needed)
-
+  ```bash
+  pnpm start &
+  sleep 3
+  curl -s -o /dev/null -w "HTTP %{http_code}\n" http://localhost:3000
+  kill %1
   ```
-  fix(label-ring): a11y + reduced-motion polish
-  [describe fixes]
-  ```
+  Expected: HTTP 200.
 
-  If no fixes needed: no commit. Verification itself is the deliverable.
+- [ ] **Step 9.5: Commit.**
+
+  Use `git commit -F /tmp/task9-msg.txt`:
+  ```
+  feat(label-ring): reduced-motion snap-to-active + a11y final pass
+
+  Reduced-motion users now get a snap-to-active 3-label window: morph
+  snaps to its end-state (no easing), ring rotation snaps on activeIndex
+  change (no scroll-tied interp), per-label opacity uses a 120ms tween
+  to crossfade the slot swap. Maintains feature parity with the animated
+  path while honoring prefers-reduced-motion.
+
+  a11y sweep: aria-current is on exactly one label, focus-visible ring
+  intact, color contrast passes at active and prev/next opacities, label
+  buttons reachable via Tab, no focus trap.
+
+  Production build verified clean.
+  ```
 
 ---
 
 ## Risks + mitigations
 
-| Risk | Likelihood | Impact | Mitigation |
-|---|---|---|---|
-| Section-position measurement races (initial paint with images not loaded → wrong offsetTops → wrong rotation at scrollY=0) | High | Medium | Re-measure on `load` event AND `resize`. Initial render uses sectionTops=[] which makes computeRingRotation return 0 — labels may be at wrong rotation for ~100ms. Acceptable; alternative is to delay LabelRing render until measurement, which adds visual flash. |
-| ringRotation MV updates 60fps × 8 LabelButton MV chains × 6 derived MVs each = ~2880 transforms/sec | Low | Low | Framer-motion's diffing is sub-1ms total. Verify no jank in browser; if found, optimize by computing all per-label derivatives in a single useTransform that returns an object (one MV update vs many). |
-| Color interpolation produces unexpected midtones | Low | Low | Framer-motion's `mix` does sRGB interp which can produce muddy midpoints. If colors at proximity ~0.5 look ugly, switch to OKLCH-aware mix (manual implementation) or accept as-is; transition is brief enough not to matter. |
-| Counter-rotation jitters during fast scroll | Low | Medium | Both ringRotation and counterRotate derive from the same scrollY — they're locked frame-perfectly. If jitter appears, it's a framer-motion render-batching issue; check by logging both values per frame. |
-| `mix` not exported from `framer-motion` | Medium | Low | Step 6.2 includes a fallback `mixColor` helper. Use it if import fails. |
-| Marker tick orientation math wrong | Medium (eyeball-only verifiable) | Low | Step 5.2 derives from first principles AND notes the test cases. Verify visually in browser before commit. |
-| Reduced-motion path leaves stray transitions | Medium | Low | Task 8 step 8.1 explicitly tests for this. CSS transitions defaulting on style props are the most common culprit; framer-motion MV updates are synchronous so should snap. |
-| Section anchors `<section id="...">` not present in DOM at LabelRing mount time | Low | Medium | `useActiveSection` hook handles this (returns 0 if no elements). Section measurement effect handles it (returns 0 for missing IDs). LabelRing degrades gracefully — labels just sit at index-0 rotation. Not blocking. |
+| Risk | Mitigation |
+|---|---|
+| Pixelation fix (Task 5) doesn't fully resolve banding. | Multi-hypothesis investigation with documented results. If single fix is insufficient, stack fixes. Verify with high-quality screenshot before claiming done. |
+| Knob+LabelRing now both call `useActiveSection` independently. State could desync if observer fires inconsistently. | The hook is deterministic (IntersectionObserver based on document state). Both consumers see the same active. If sync becomes an issue, lift active state to HeroSection. Note in Task 6 commit. |
+| Pulse animation fires on every render (forgot to gate). | Pulse triggered by `setPulseKey` in a `useEffect` with `[isActive]` deps — only fires when `isActive` flips. Verified in Task 7.5. |
+| Reduced-motion users lose navigation (labels hidden + no morph). | Task 9 keeps labels visible for RM by snapping morph + ring to discrete end-states instead of disabling them. |
+| Removing `MARKER_*` constants breaks an unseen consumer. | Grep before removing; only declared in Task 4 step 4.1 ahead of obsoleted Tasks 5-6. No other consumers expected. |
+| Color interpolation muddiness at intermediate distances. | Avoided — color is a threshold flip (hex→hex), not interpolated. UX consult's OKLCH suggestion was for continuous interp; we use discrete. |
+| Variable-font weight pulse (600→680→600) renders as 700 on non-variable font. | Acceptable — the bump is still perceptible. Ship and revisit if a variable-font swap happens. |
 
-## Scope boundary (hard)
+## Scope boundary (hard rules)
 
-- **Do NOT touch SiteNav.tsx.** Coexists at z-50.
-- **Do NOT modify Knob.tsx.** Done at `4337e14`. Knob's morph is the input; LabelRing tracks it.
-- **Do NOT modify sections.ts.** 8 sections at fixed angles. Order is order.
-- **Do NOT add dependencies.**
-- **Do NOT introduce hover/click animations beyond what's specced** (no scale-on-hover, no click pulse). Spec deliberately omits them.
+- Do NOT touch `lib/sections.ts` — section order, angles, ariaLabels are locked.
+- Do NOT touch `hooks/use-active-section.ts` — pre-existing observer-dep nit is out of scope.
+- Do NOT touch `components/SiteNav.tsx` — separate nav, separate concerns.
+- Do NOT touch the WashingMachine drum component — drum rotation is independent of the knob pointer.
+- Do NOT add a separate marker tick — the knob's pointer IS the marker.
+- Do NOT add features beyond the spec (no hover treatments, no keyboard arrow nav, no automatic ring carousel).
 
-## Rollback plan
+## Rollback
 
-Each task is a single commit. Revert any commit cleanly with `git revert <sha>`. Tasks 4–7 are sequential modifications to LabelRing.tsx; reverting one mid-chain may leave partially-applied state — prefer reverting from latest backwards (revert Task 7, then 6, etc.) rather than reverting Task 4 in isolation.
+If v3 turns out to be the wrong direction (third revision):
 
-Full feature rollback: `git revert a771b4d..<final-sha>` reverts the entire LabelRing + Knob hoist arc. Knob.tsx returns to its pre-Task-1 state (lose the gradient fix too — to keep that, cherry-pick `4337e14` after the revert).
+- Revert `Knob.tsx` rotation change to restore scroll-tied 0→1080° (revert Task 6 commit).
+- Revert `LabelRing.tsx` LabelButton refactor to restore Task 4's uniform-style rendering (revert Task 7 commit).
+- Restore `lib/knob-geometry.ts` constants (revert Task 6 commit's deletion).
+
+The v2 stationary-then-rotating-ring architecture is fully preserved in commits `1623f39` + `12c047c`. The morph chain skeleton in `LabelRing.tsx` and the geometry in `Knob.tsx` are not rewritten between v2 and v3 — only swapped behaviors.
 
 ## Self-review
 
-- **Spec coverage:** All 10 numbered UX spec items mapped to tasks (marker→T5, opacity→T6, rotation→T4, active style→T6, adjacent uniform→T6, click→T3, mobile marker→T4 via constant, RM→T4+T8, gated visibility→T7, no sweep→T7).
-- **No placeholders:** every task has concrete code + file paths. Two helper functions (clamp, shortestSignedAngle, mixColor fallback) shown verbatim.
-- **Type consistency:** ringRotation is MotionValue<number> across all uses. proximity is MV<number> (0..1). All style MVs feed motion.button which accepts MV-typed style props natively. `mix` import is hedged with fallback.
-- **DRY:** computeRingRotation is module-level; per-label derivations live in LabelButton subcomponent (one definition, 8 instances). Marker subcomponent reused desktop/mobile via single `markerAngle` prop.
+**Spec coverage:**
+- §1 (knob pointer = marker, drop tick) → Task 6
+- §2 (ring rotation retained) → no task needed (already shipped)
+- §3 (per-label visual values continuous) → Task 7
+- §4 (micro-treatment on arrival) → Task 7 (label pulse) + Task 6 (pointer pulse)
+- §5 (no overshoot) → enforced by scroll-tied design (no spring)
+- §6 (reduced-motion fallback) → Task 9
+- §7 (knob pixelation) → Task 5
+- §8 (visibility gate on morph) → Task 8
 
-Plan complete.
+**Placeholder scan:** No "TBD" or "implement later" — every step has concrete code or commands. Step 5.3 has branching guidance based on Step 5.2 results, which is the appropriate form of conditional content for an investigation task.
+
+**Type consistency:** `LabelButtonProps` matches the call site in Step 7.4. `markerAngle: number`, `isActive: boolean`, `ringRotation: MotionValue<number>` consistent throughout. `pointerSvgAngle: number` derived in Knob.tsx. `pulseKey: number`, `pulse: number` are local component state with consistent types.
+
+**DRY:** `easeInOutCubic`, `clamp`, `shortestSignedAngle` reused from Task 4. `easeOutQuad` added once in Step 7.2. `markerAngle` derivation shared between Knob (for pointer) and LabelRing (for distance) — both compute from `isDesktop ? MARKER_ANGLE_DESKTOP : MARKER_ANGLE_MOBILE`. Could be hoisted to a shared helper but it's a one-line derivation; acceptable.
+
+**YAGNI:** No discrete "windowing logic" — visibility emerges from continuous function. No separate marker tick. No spring overshoot. No color interpolation in OKLCH (threshold flip is simpler and matches the design intent of "claiming" before arrival).
+
+**TDD:** No test files in scope — this is a visual/motion feature with no automated test infrastructure for framer-motion-driven UI. Verification is via browser observation per task. (If user wants Playwright snapshots, that's a separate plan.)
+
+**Frequent commits:** 5 atomic commits planned (Tasks 5-9). Each is independently revertable.
