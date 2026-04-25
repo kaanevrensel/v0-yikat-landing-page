@@ -1,7 +1,7 @@
 "use client"
 
 import { type RefObject, useEffect, useState } from "react"
-import { motion, useScroll, useSpring, useTransform, useReducedMotion, useMotionValue } from "framer-motion"
+import { motion, useScroll, useTransform, useReducedMotion, useMotionValue } from "framer-motion"
 
 type Props = {
   containerRef: RefObject<HTMLDivElement | null>
@@ -90,17 +90,14 @@ export function Knob({ containerRef }: Props) {
   const prefersReducedMotion = useReducedMotion()
   const { scrollY, scrollYProgress } = useScroll()
   const rawAngle = useTransform(scrollYProgress, [0, 1], [0, 1080])
-  const smoothAngle = useSpring(rawAngle, { stiffness: 50, damping: 20 })
-  const angle = prefersReducedMotion ? 0 : smoothAngle
+  const angle = prefersReducedMotion ? 0 : rawAngle
 
-  // Morph driver chain (Task 2). Produces a unit-progress MotionValue that
-  // drives the rest→destination blend below.
+  // Morph driver: scroll-tied with eased shape, no spring smoothing.
   const rawProgress = useTransform(scrollY, [MORPH_START, MORPH_END], [0, 1], { clamp: true })
   const easedProgress = useTransform(rawProgress, easeInOutCubic)
-  const morphProgressRaw = useSpring(easedProgress, { stiffness: 50, damping: 20 })
   // Reduced-motion: pin to 0. zeroMV is created unconditionally to obey rules of hooks.
   const zeroMV = useMotionValue(0)
-  const morphProgress = prefersReducedMotion ? zeroMV : morphProgressRaw
+  const morphProgress = prefersReducedMotion ? zeroMV : easedProgress
 
   // Responsive morph destination (Task 3). Plain numbers derived from viewport.
   // Desktop: knob center at left edge, vertically centered (half-clipped).
@@ -140,7 +137,6 @@ export function Knob({ containerRef }: Props) {
   )
 
   // Pre-compute scaled geometry (radii/pointer) for the 500-unit viewBox.
-  const R_SHADOW = 44 * KNOB_FILL_SCALE   // 250
   const R_BODY = 42 * KNOB_FILL_SCALE     // ≈ 238.636
   const R_TOP = 34 * KNOB_FILL_SCALE      // ≈ 193.182
   const R_DOT = 2.2 * KNOB_FILL_SCALE     // 12.5
@@ -175,53 +171,35 @@ export function Knob({ containerRef }: Props) {
         height={BASE_SIZE}
       >
         <defs>
-          <radialGradient id="knobBody" cx="40%" cy="32%" r="75%">
-            <stop offset="0%" stopColor="#5AA8FF" />
-            <stop offset="40%" stopColor="#2E86F0" />
-            <stop offset="80%" stopColor="#1A63C4" />
-            <stop offset="100%" stopColor="#0D3F86" />
-          </radialGradient>
-          <radialGradient id="knobTop" cx="45%" cy="38%" r="70%">
-            <stop offset="0%" stopColor="#6FB0FF" />
-            <stop offset="55%" stopColor="#2E86F0" />
-            <stop offset="100%" stopColor="#164F9E" />
-          </radialGradient>
-          <filter id="knobShadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation={2.5 * KNOB_FILL_SCALE} />
-            <feOffset dx="0" dy={3 * KNOB_FILL_SCALE} result="offsetblur" />
-            <feComponentTransfer>
-              <feFuncA type="linear" slope="0.45" />
-            </feComponentTransfer>
-            <feMerge>
-              <feMergeNode />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
+          <linearGradient id="knobBody" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#3D93F2" />
+            <stop offset="100%" stopColor="#2778DB" />
+          </linearGradient>
+          <linearGradient id="knobTop" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#4FA0F5" />
+            <stop offset="100%" stopColor="#2E86F0" />
+          </linearGradient>
         </defs>
-        <g filter="url(#knobShadow)">
-          <motion.g
-            style={{
-              rotate: angle,
-              transformOrigin: `${C}px ${C}px`,
-              transformBox: "view-box",
-            }}
-          >
-            <circle cx={C} cy={C} r={R_SHADOW} fill="#000" opacity="0.45" />
-            <circle cx={C} cy={C} r={R_BODY} fill="url(#knobBody)" />
-            <circle cx={C} cy={C} r={R_TOP} fill="url(#knobTop)" />
-            <circle cx={C} cy={C} r={R_TOP} fill="none" stroke="#0A2D5C" strokeOpacity="0.35" strokeWidth={0.8 * KNOB_FILL_SCALE} />
-            <circle cx={C} cy={C} r={R_DOT} fill="#F4F6FA" opacity="0.95" />
-            <rect
-              x={POINTER_X}
-              y={POINTER_Y}
-              width={POINTER_W}
-              height={POINTER_H}
-              rx={POINTER_RX}
-              fill="#F4F6FA"
-              opacity="0.9"
-            />
-          </motion.g>
-        </g>
+        <motion.g
+          style={{
+            rotate: angle,
+            transformOrigin: `${C}px ${C}px`,
+            transformBox: "view-box",
+          }}
+        >
+          <circle cx={C} cy={C} r={R_BODY} fill="url(#knobBody)" />
+          <circle cx={C} cy={C} r={R_TOP} fill="url(#knobTop)" />
+          <circle cx={C} cy={C} r={R_DOT} fill="#F4F6FA" opacity="0.95" />
+          <rect
+            x={POINTER_X}
+            y={POINTER_Y}
+            width={POINTER_W}
+            height={POINTER_H}
+            rx={POINTER_RX}
+            fill="#F4F6FA"
+            opacity="0.9"
+          />
+        </motion.g>
       </svg>
     </motion.div>
   )
