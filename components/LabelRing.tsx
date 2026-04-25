@@ -177,10 +177,20 @@ export function LabelRing({ containerRef }: Props) {
       setSectionTops(tops)
     }
     measure()
-    // Re-measure when layout might change.
+    // Re-measure on viewport changes.
     window.addEventListener("resize", measure)
     window.addEventListener("load", measure)
+    // Re-measure when document body height changes (lazy images, font swaps,
+    // accordion expansions). ResizeObserver fires once with the initial size,
+    // so subsequent firings reflect actual layout shifts.
+    const ro = new ResizeObserver(measure)
+    ro.observe(document.body)
+    // Re-measure once fonts are swapped in (FOUT/FOIT shifts metrics).
+    if (document.fonts && typeof document.fonts.ready?.then === "function") {
+      document.fonts.ready.then(measure)
+    }
     return () => {
+      ro.disconnect()
       window.removeEventListener("resize", measure)
       window.removeEventListener("load", measure)
     }
@@ -253,13 +263,13 @@ export function LabelRing({ containerRef }: Props) {
   const ringRotationRaw = useTransform(scrollY, (y) =>
     computeRingRotation(y, sectionTops, markerAngle, sectionAngles),
   )
-  // Reduced-motion: lock to discrete rotation for current active section.
-  // Uses scrollY as the trigger MV so the type matches ringRotationRaw; the
-  // closure captures activeIndex, and React re-renders on activeIndex changes
-  // to recreate this MV with the new value.
-  const ringRotationDiscrete = useTransform(scrollY, () =>
-    markerAngle - SECTIONS[activeIndex].angle,
-  )
+  // Reduced-motion path: a plain MotionValue whose .set() fires only when the
+  // active section or marker angle changes. Avoids per-scroll-tick recompute
+  // for the very users who explicitly opted into less motion.
+  const ringRotationDiscrete = useMotionValue(markerAngle - SECTIONS[activeIndex].angle)
+  useEffect(() => {
+    ringRotationDiscrete.set(markerAngle - SECTIONS[activeIndex].angle)
+  }, [activeIndex, markerAngle, ringRotationDiscrete])
   const ringRotation = prefersReducedMotion ? ringRotationDiscrete : ringRotationRaw
 
   return (
