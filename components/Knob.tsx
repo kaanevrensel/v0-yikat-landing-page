@@ -1,6 +1,6 @@
 "use client"
 
-import { type RefObject, useEffect, useState } from "react"
+import { type RefObject, useEffect, useRef, useState } from "react"
 import { motion, useScroll, useTransform, useReducedMotion, useMotionValue } from "framer-motion"
 import {
   BASE_SIZE,
@@ -15,6 +15,7 @@ import {
   MIN_SCROLLED_SIZE,
   DESKTOP_BREAKPOINT,
 } from "@/lib/knob-geometry"
+import { useActiveSection } from "@/hooks/use-active-section"
 
 type Props = {
   containerRef: RefObject<HTMLDivElement | null>
@@ -82,9 +83,7 @@ export function Knob({ containerRef }: Props) {
   }, [])
 
   const prefersReducedMotion = useReducedMotion()
-  const { scrollY, scrollYProgress } = useScroll()
-  const rawAngle = useTransform(scrollYProgress, [0, 1], [0, 1080])
-  const angle = prefersReducedMotion ? 0 : rawAngle
+  const { scrollY } = useScroll()
 
   // Morph driver: scroll-tied with eased shape, no spring smoothing.
   const rawProgress = useTransform(scrollY, [MORPH_START, MORPH_END], [0, 1], { clamp: true })
@@ -97,6 +96,29 @@ export function Knob({ containerRef }: Props) {
   // Desktop: knob center at left edge, vertically centered (half-clipped).
   // Mobile:  knob center at top  edge, horizontally centered (half-clipped).
   const isDesktop = viewport.w >= DESKTOP_BREAKPOINT
+
+  // Pointer's local origin is at 12 o'clock (POINTER_Y = C - R_BODY).
+  // To land at MARKER_ANGLE in CSS-angle convention (0° = 3 o'clock):
+  //   desktop (MARKER_ANGLE = 0°)  → rotate 90° CW
+  //   mobile  (MARKER_ANGLE = 90°) → rotate 180° CW
+  const pointerSvgAngle = isDesktop ? 90 : 180
+
+  // Active-section tracking for pointer-pulse. freezeRef is a no-op local
+  // since Knob doesn't initiate clicks; LabelRing owns the freeze logic.
+  const freezeRef = useRef(false)
+  const [activeIndex] = useActiveSection(freezeRef)
+
+  const [pulse, setPulse] = useState(0)
+  const lastActiveRef = useRef(activeIndex)
+  useEffect(() => {
+    if (lastActiveRef.current !== activeIndex) {
+      lastActiveRef.current = activeIndex
+      if (!prefersReducedMotion) {
+        setPulse((n) => n + 1)
+      }
+    }
+  }, [activeIndex, prefersReducedMotion])
+
   const destLeftPx = isDesktop ? 0 : viewport.w / 2
   const destTopPx = isDesktop ? viewport.h / 2 : 0
   const destScale = isDesktop
@@ -165,16 +187,11 @@ export function Knob({ containerRef }: Props) {
         width={BASE_SIZE}
         height={BASE_SIZE}
       >
-        <motion.g
-          style={{
-            rotate: angle,
-            transformOrigin: `${C}px ${C}px`,
-            transformBox: "view-box",
-          }}
-        >
+        <g transform={`rotate(${pointerSvgAngle} ${C} ${C})`}>
           <circle cx={C} cy={C} r={R_BODY} fill="#3286E7" />
           <circle cx={C} cy={C} r={R_DOT} fill="#F4F6FA" opacity="0.95" />
           <rect
+            key={`pointer-${pulse}`}
             x={POINTER_X}
             y={POINTER_Y}
             width={POINTER_W}
@@ -182,8 +199,9 @@ export function Knob({ containerRef }: Props) {
             rx={POINTER_RX}
             fill="#F4F6FA"
             opacity="0.9"
+            style={{ animation: pulse > 0 ? "knob-pointer-pulse 200ms ease-out" : undefined }}
           />
-        </motion.g>
+        </g>
       </svg>
     </motion.div>
   )

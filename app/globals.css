@@ -155,6 +155,12 @@
   animation: drum-spin 18s linear infinite;
 }
 
+@keyframes knob-pointer-pulse {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .drum-spin { animation: none; }
   .animate-ping,
