@@ -164,16 +164,6 @@ export function Knob({ containerRef }: Props) {
         width={BASE_SIZE}
         height={BASE_SIZE}
       >
-        <defs>
-          <linearGradient id="knobBody" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#3D93F2" />
-            <stop offset="100%" stopColor="#2778DB" />
-          </linearGradient>
-          <linearGradient id="knobTop" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#4FA0F5" />
-            <stop offset="100%" stopColor="#2E86F0" />
-          </linearGradient>
-        </defs>
         <motion.g
           style={{
             rotate: angle,
@@ -181,8 +171,8 @@ export function Knob({ containerRef }: Props) {
             transformBox: "view-box",
           }}
         >
-          <circle cx={C} cy={C} r={R_BODY} fill="url(#knobBody)" />
-          <circle cx={C} cy={C} r={R_TOP} fill="url(#knobTop)" />
+          <circle cx={C} cy={C} r={R_BODY} fill="#3286E7" />
+          <circle cx={C} cy={C} r={R_TOP} fill="#3F93F2" />
           <circle cx={C} cy={C} r={R_DOT} fill="#F4F6FA" opacity="0.95" />
           <rect
             x={POINTER_X}
