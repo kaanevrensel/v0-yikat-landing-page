@@ -6,6 +6,7 @@ import { ChevronDown } from "lucide-react"
 import { SectionReveal, revealItem } from "@/components/SectionReveal"
 import { HeroMachine } from "@/components/HeroMachine"
 import { Knob } from "@/components/Knob"
+import { LabelRing } from "@/components/LabelRing"
 
 export function HeroSection() {
   const machineRef = useRef<HTMLDivElement>(null)
@@ -61,6 +62,7 @@ export function HeroSection() {
       </div>
 
       <Knob containerRef={machineRef} />
+      <LabelRing containerRef={machineRef} />
     </SectionReveal>
   )
 }
