@@ -110,13 +110,28 @@ export function LabelRing({ containerRef }: Props) {
   )
 
   const freezeRef = useRef(false)
+  const freezeTimerRef = useRef<number | null>(null)
   const [activeIndex, setActiveManual] = useActiveSection(freezeRef)
 
+  useEffect(() => {
+    return () => {
+      if (freezeTimerRef.current !== null) {
+        window.clearTimeout(freezeTimerRef.current)
+      }
+    }
+  }, [])
+
   const handleClick = useCallback((index: number, id: string) => {
+    if (freezeTimerRef.current !== null) {
+      window.clearTimeout(freezeTimerRef.current)
+    }
     freezeRef.current = true
     setActiveManual(index)
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
-    window.setTimeout(() => { freezeRef.current = false }, 900)
+    freezeTimerRef.current = window.setTimeout(() => {
+      freezeRef.current = false
+      freezeTimerRef.current = null
+    }, 900)
   }, [setActiveManual])
 
   return (
@@ -160,6 +175,7 @@ export function LabelRing({ containerRef }: Props) {
             onClick={() => handleClick(i, section.id)}
             aria-label={section.ariaLabel}
             aria-current={isActive ? "true" : undefined}
+            className="focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2798ff] rounded"
             style={{
               position: "absolute",
               left: cx,
