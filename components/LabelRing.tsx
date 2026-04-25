@@ -24,6 +24,8 @@ import {
   MARKER_ANGLE_DESKTOP,
   MARKER_ANGLE_MOBILE,
   LABEL_RING_GAP,
+  VISIBILITY_GATE_START,
+  VISIBILITY_GATE_END,
 } from "@/lib/knob-geometry"
 import { SECTIONS, SECTION_IDS } from "@/lib/sections"
 import { useActiveSection } from "@/hooks/use-active-section"
@@ -254,6 +256,14 @@ export function LabelRing({ containerRef }: Props) {
   const zeroMV = useMotionValue(0)
   const morphProgress = prefersReducedMotion ? zeroMV : easedProgress
 
+  // Ring visibility gate: hide labels while knob is still in the machine
+  // (would otherwise orbit a tiny in-machine knob and look broken).
+  // Both gates created unconditionally (rules of hooks); pick at the boolean.
+  const ringOpacityScrollGate = useTransform(scrollY, (y): number => (y >= MORPH_END ? 1 : 0))
+  const ringOpacityMorphGate = useTransform(morphProgress, [VISIBILITY_GATE_START, VISIBILITY_GATE_END], [0, 1], { clamp: true })
+  const ringOpacityGate = prefersReducedMotion ? ringOpacityScrollGate : ringOpacityMorphGate
+  const ringOpacity = useTransform(ringOpacityGate, (g) => (isMeasured ? g : 0))
+
   const isDesktop = viewport.w >= DESKTOP_BREAKPOINT
   const destLeftPx = isDesktop ? 0 : viewport.w / 2
   const destTopPx = isDesktop ? viewport.h / 2 : 0
@@ -342,7 +352,7 @@ export function LabelRing({ containerRef }: Props) {
         transformOrigin: "center",
         pointerEvents: "none",
         zIndex: 40,
-        opacity: isMeasured ? 1 : 0,
+        opacity: ringOpacity,
       }}
     >
       <motion.div
