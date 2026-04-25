@@ -141,7 +141,7 @@ export function Knob({ containerRef }: Props) {
   const R_TOP = 34 * KNOB_FILL_SCALE      // ≈ 193.182
   const R_DOT = 2.2 * KNOB_FILL_SCALE     // 12.5
   const POINTER_W = 3.6 * KNOB_FILL_SCALE // ≈ 20.455
-  const POINTER_H = 8 * KNOB_FILL_SCALE   // ≈ 45.455 — spans the outer band (R_BODY − R_TOP)
+  const POINTER_H = R_BODY - R_TOP        // spans the outer band
   const POINTER_RX = 1.6 * KNOB_FILL_SCALE // ≈ 9.091
   const POINTER_X = C - POINTER_W / 2     // centered horizontally at 250
   const POINTER_Y = C - R_BODY            // outer edge sits at knob outer edge
