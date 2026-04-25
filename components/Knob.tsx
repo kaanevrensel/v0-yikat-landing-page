@@ -37,16 +37,15 @@ function easeInOutCubic(t: number): number {
   return 0.5 * f * f * f + 1
 }
 
+const lerp = (r: number, d: number, p: number) => r + (d - r) * p
+
 export function Knob({ containerRef }: Props) {
-  const [rect, setRect] = useState<DOMRect | null>(null)
   const [isMeasured, setIsMeasured] = useState(false)
 
   // Rest MotionValues, fed via .set() inside the RO/scroll effect (Task 4).
-  // These mirror the values returned by computePosition() and will replace the
-  // `position` derivation in the JSX in Task 5. Created unconditionally to obey
-  // rules of hooks. Defaults: 0 for left/top (offscreen until measured; the
-  // isMeasured opacity gate hides the knob anyway) and DEFAULT_REST_SCALE for
-  // restScale (matches the SSR fallback path).
+  // Created unconditionally to obey rules of hooks. Defaults: 0 for left/top
+  // (offscreen until measured; the isMeasured opacity gate hides the knob
+  // anyway) and DEFAULT_REST_SCALE for restScale (matches the SSR fallback path).
   const restLeftMV = useMotionValue(0)
   const restTopMV = useMotionValue(0)
   const restScaleMV = useMotionValue(DEFAULT_REST_SCALE)
@@ -57,7 +56,6 @@ export function Knob({ containerRef }: Props) {
 
     const update = () => {
       const r = el.getBoundingClientRect()
-      setRect(r)
       const p = computePosition(r)
       restLeftMV.set(p.restLeft)
       restTopMV.set(p.restTop)
@@ -89,26 +87,20 @@ export function Knob({ containerRef }: Props) {
     return () => window.removeEventListener("resize", update)
   }, [])
 
-  const position = rect
-    ? computePosition(rect)
-    : { restLeft: 0, restTop: 0, restScale: DEFAULT_REST_SCALE }
-
   const prefersReducedMotion = useReducedMotion()
   const { scrollY, scrollYProgress } = useScroll()
   const rawAngle = useTransform(scrollYProgress, [0, 1], [0, 1080])
   const smoothAngle = useSpring(rawAngle, { stiffness: 50, damping: 20 })
   const angle = prefersReducedMotion ? 0 : smoothAngle
 
-  // Morph driver chain (Task 2). Produces a unit-progress MotionValue that will
-  // drive rest→destination blending in Tasks 3–5. Not consumed yet.
+  // Morph driver chain (Task 2). Produces a unit-progress MotionValue that
+  // drives the rest→destination blend below.
   const rawProgress = useTransform(scrollY, [MORPH_START, MORPH_END], [0, 1], { clamp: true })
   const easedProgress = useTransform(rawProgress, easeInOutCubic)
   const morphProgressRaw = useSpring(easedProgress, { stiffness: 50, damping: 20 })
   // Reduced-motion: pin to 0. zeroMV is created unconditionally to obey rules of hooks.
   const zeroMV = useMotionValue(0)
-  // morphProgress is intentionally unused in Task 2 — it will be consumed in Task 5.
   const morphProgress = prefersReducedMotion ? zeroMV : morphProgressRaw
-  void morphProgress
 
   // Responsive morph destination (Task 3). Plain numbers derived from viewport.
   // Desktop: knob center at left edge, vertically centered (half-clipped).
@@ -121,7 +113,6 @@ export function Knob({ containerRef }: Props) {
     : viewport.w / BASE_SIZE
 
   // Destination MotionValues, fed via effect on viewport change.
-  // Intentionally unconsumed in Task 3 — Task 5 will wire them into the blend.
   const destLeftMV = useMotionValue(0)
   const destTopMV = useMotionValue(0)
   const destScaleMV = useMotionValue(0)
@@ -130,15 +121,23 @@ export function Knob({ containerRef }: Props) {
     destTopMV.set(destTopPx)
     destScaleMV.set(destScale)
   }, [destLeftPx, destTopPx, destScale, destLeftMV, destTopMV, destScaleMV])
-  void destLeftMV
-  void destTopMV
-  void destScaleMV
-  // Rest MVs (Task 4) are fed via the RO/scroll effect above but not yet
-  // consumed in JSX — Task 5 will replace `position.restLeft/restTop/restScale`
-  // with blended MVs that read from these.
-  void restLeftMV
-  void restTopMV
-  void restScaleMV
+
+  // Blended MotionValues (Task 5). At morphProgress=0 these return the rest
+  // values exactly (pixel-identity at scrollY=0). As morphProgress eases to 1,
+  // they migrate to the destination. Reduced-motion pins morphProgress to 0,
+  // so the blend stays at rest forever.
+  const left = useTransform(
+    [restLeftMV, destLeftMV, morphProgress],
+    ([r, d, p]: number[]) => lerp(r, d, p),
+  )
+  const top = useTransform(
+    [restTopMV, destTopMV, morphProgress],
+    ([r, d, p]: number[]) => lerp(r, d, p),
+  )
+  const scale = useTransform(
+    [restScaleMV, destScaleMV, morphProgress],
+    ([r, d, p]: number[]) => lerp(r, d, p),
+  )
 
   // Pre-compute scaled geometry (radii/pointer) for the 500-unit viewBox.
   const R_SHADOW = 44 * KNOB_FILL_SCALE   // 250
@@ -156,13 +155,13 @@ export function Knob({ containerRef }: Props) {
       aria-hidden="true"
       style={{
         position: "fixed",
-        left: position.restLeft,
-        top: position.restTop,
+        left,
+        top,
         x: "-50%",
         y: "-50%",
         width: BASE_SIZE,
         height: BASE_SIZE,
-        scale: position.restScale,
+        scale,
         transformOrigin: "center",
         pointerEvents: "none",
         zIndex: 30,
