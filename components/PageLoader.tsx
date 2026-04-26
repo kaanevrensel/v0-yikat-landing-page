@@ -10,17 +10,21 @@ export function PageLoader() {
 
   useEffect(() => {
     const t0 = Date.now()
+    let timerId: number | undefined
     const startExit = () => setExiting(true)
     const onReady = () => {
       const remaining = Math.max(0, 500 - (Date.now() - t0))
-      window.setTimeout(startExit, remaining)
+      timerId = window.setTimeout(startExit, remaining)
     }
     if (document.readyState === "complete") {
       onReady()
     } else {
       window.addEventListener("load", onReady, { once: true })
     }
-    return () => window.removeEventListener("load", onReady)
+    return () => {
+      window.removeEventListener("load", onReady)
+      window.clearTimeout(timerId)
+    }
   }, [])
 
   if (!visible) return null
@@ -35,6 +39,8 @@ export function PageLoader() {
     alignItems: "center",
     justifyContent: "center",
     gap: "14px",
+    // Presentation only — never block hero interaction
+    pointerEvents: "none",
   }
 
   const labelStyle: CSSProperties = {
