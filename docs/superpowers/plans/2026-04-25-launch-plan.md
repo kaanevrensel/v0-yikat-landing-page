@@ -97,3 +97,15 @@ For each item:
 
 - Prior plans on branch: `docs/superpowers/plans/2026-04-21-landing-polish.md`, `2026-04-22-major-polish.md`, `2026-04-23-knob-extraction.md`
 - Session-resume handoff: `docs/session-resume.md`
+
+---
+
+## Polish backlog (post-implementation, pre-prod)
+
+- **Navbar glass presence tuning** — Candidate 2 implementation correct but glass reads as faint over white hero background. Investigate at polish time:
+  - Threshold tuning: align glass-appear scroll point with the moment knob/dial passes under the nav (currently a fixed 40px threshold, knob crosses nav much later)
+  - Hero treatment: does the hero need a subtle gradient/texture behind the nav strip so glass has something to refract
+  - Edge treatment: hairline border or shadow under the bar to give it surface presence even when refraction is weak
+  - Decision: tune in place, or revisit Candidate 1 (Ghost-to-Present) if Candidate 2 can't be made to read
+  - Source: user browser test 2026-04-27, screenshot reviewed
+  - Files likely touched: SiteNav.tsx, possibly app/page.tsx hero section
