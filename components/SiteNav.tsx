@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { useState, useEffect } from "react"
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
+import { motion, AnimatePresence, useReducedMotion, useScroll } from "framer-motion"
 import { Menu, X } from "lucide-react"
 
 const WHATSAPP_URL =
@@ -17,7 +17,13 @@ const links = [
 
 export function SiteNav() {
   const [open, setOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  // Suppress the 150ms crossfade on initial render so anchor-link mid-page
+  // loads (e.g. /landing#hizmetler) don't flash a transition between the
+  // transparent and glass states. Cleared on the first real scroll event.
+  const [noTransition, setNoTransition] = useState(true)
   const prefersReducedMotion = useReducedMotion()
+  const { scrollY } = useScroll()
 
   useEffect(() => {
     if (!open) return
@@ -26,11 +32,55 @@ export function SiteNav() {
     return () => window.removeEventListener("keydown", onKey)
   }, [open])
 
+  // Initial sync: if the page already starts scrolled (anchor-link load,
+  // browser scroll restoration), set the glass state immediately without
+  // animation. The MV listener below handles every subsequent crossing.
+  useEffect(() => {
+    if (scrollY.get() > 0) setIsScrolled(true)
+    // Release the no-transition guard on the next frame so the very first
+    // scroll-driven crossfade still animates normally.
+    const id = requestAnimationFrame(() => setNoTransition(false))
+    return () => cancelAnimationFrame(id)
+  }, [scrollY])
+
+  // Threshold (not ramp): toggle a boolean only when scroll crosses 0.
+  // Early-return guard avoids per-frame React re-renders.
+  useEffect(() => {
+    const unsubscribe = scrollY.on("change", (v) => {
+      const next = v > 0
+      setIsScrolled((prev) => (prev === next ? prev : next))
+    })
+    return () => unsubscribe()
+  }, [scrollY])
+
+  // Suppress the CSS transition when reduced-motion is requested OR on the
+  // initial render (anchor-link guard). Otherwise: 150ms ease-out crossfade
+  // on background-color, border-color, box-shadow only — blur stays constant.
+  const suppressTransition = noTransition || prefersReducedMotion
+
   return (
     <>
-      <header
+      <motion.header
         role="banner"
-        className="fixed inset-x-0 top-0 z-50 h-14 border-b border-[#E5E7EB] bg-[#FAFAF7] md:h-16"
+        data-no-transition={suppressTransition ? "" : undefined}
+        className="fixed inset-x-0 top-0 z-50 h-14 backdrop-blur-[18px] backdrop-saturate-[180%] md:h-16"
+        style={{
+          backgroundColor: isScrolled
+            ? "rgba(250, 250, 247, 0.70)"
+            : "rgba(250, 250, 247, 0)",
+          borderBottom: isScrolled
+            ? "1px solid rgba(15, 23, 42, 0.06)"
+            : "1px solid rgba(15, 23, 42, 0)",
+          boxShadow: isScrolled
+            ? "inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 1px 12px rgba(15, 23, 42, 0.04)"
+            : "inset 0 1px 0 rgba(255, 255, 255, 0), 0 1px 12px rgba(15, 23, 42, 0)",
+          WebkitBackdropFilter: "blur(18px) saturate(180%)",
+          transitionProperty: suppressTransition
+            ? "none"
+            : "background-color, border-color, box-shadow",
+          transitionDuration: suppressTransition ? "0ms" : "150ms",
+          transitionTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
+        }}
       >
         <div className="mx-auto flex h-full w-full max-w-[1400px] items-center justify-between px-6 lg:px-[80px]">
           <a href="#basla" aria-label="YIKAT ana sayfa" className="flex items-center">
@@ -49,7 +99,7 @@ export function SiteNav() {
               <a
                 key={l.href}
                 href={l.href}
-                className="text-sm font-medium text-[#0F172A] transition-colors hover:text-[#2798ff]"
+                className="-mx-2 rounded-md px-2 py-0.5 text-sm font-medium text-[#0F172A] transition-colors hover:bg-[rgba(39,152,255,0.06)] hover:text-[#2798ff]"
               >
                 {l.label}
               </a>
@@ -61,7 +111,7 @@ export function SiteNav() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-9 items-center rounded-full bg-[#2798ff] px-4 text-sm font-medium text-white transition-colors hover:bg-[#1a7de8] md:h-10 md:px-5"
+              className="inline-flex h-9 items-center rounded-full bg-[#2798ff] px-4 text-sm font-medium text-white transition-[background-color,transform] duration-100 ease-out hover:bg-[#1a7de8] active:scale-[0.97] md:h-10 md:px-5"
             >
               Sipariş Ver
             </a>
@@ -76,7 +126,7 @@ export function SiteNav() {
             </button>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       <AnimatePresence>
         {open && (
