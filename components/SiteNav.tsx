@@ -56,15 +56,18 @@ export function SiteNav() {
   // Suppress the CSS transition when reduced-motion is requested OR on the
   // initial render (anchor-link guard). Otherwise: 150ms ease-out crossfade
   // on background-color, border-color, box-shadow only — blur stays constant.
-  const suppressTransition = noTransition || prefersReducedMotion
+  // Normalize boolean | null from useReducedMotion() to boolean.
+  const suppressTransition = noTransition || prefersReducedMotion === true
 
   return (
     <>
       <motion.header
         role="banner"
         data-no-transition={suppressTransition ? "" : undefined}
-        className="fixed inset-x-0 top-0 z-50 h-14 backdrop-blur-[18px] backdrop-saturate-[180%] md:h-16"
+        className="fixed inset-x-0 top-0 z-50 h-14 md:h-16"
         style={{
+          backdropFilter: "blur(18px) saturate(180%)",
+          WebkitBackdropFilter: "blur(18px) saturate(180%)",
           backgroundColor: isScrolled
             ? "rgba(250, 250, 247, 0.70)"
             : "rgba(250, 250, 247, 0)",
@@ -74,7 +77,6 @@ export function SiteNav() {
           boxShadow: isScrolled
             ? "inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 1px 12px rgba(15, 23, 42, 0.04)"
             : "inset 0 1px 0 rgba(255, 255, 255, 0), 0 1px 12px rgba(15, 23, 42, 0)",
-          WebkitBackdropFilter: "blur(18px) saturate(180%)",
           transitionProperty: suppressTransition
             ? "none"
             : "background-color, border-color, box-shadow",
