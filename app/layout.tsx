@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { PageLoader } from '@/components/PageLoader'
 import './globals.css'
 
 const inter = Inter({
@@ -61,6 +62,7 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className={`${inter.variable} font-sans antialiased`}>
+      <PageLoader />
       <script
   type="application/ld+json"
   dangerouslySetInnerHTML={{
