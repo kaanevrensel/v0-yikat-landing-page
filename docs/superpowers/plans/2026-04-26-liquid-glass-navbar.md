@@ -1,5 +1,101 @@
 # Master plan item 3 — Liquid-Glass Navbar (candidates + recommendation)
 
+---
+
+## Revision: emil-design-eng pass (2026-04-27)
+
+> **Status:** ⏳ Awaiting user decision. Original A/B/C candidates superseded. Three fresh candidates below, generated through the Emil Kowalski design engineering lens. Implementation plan (further below) still applies to whichever candidate you pick — it was written for B-style scroll-aware mechanics, but adapts directly to any of the three new candidates (the simplest path is noted per candidate).
+
+> **Visual companion:** `.superpowers/brainstorm/75931-1777238564/content/navbar-candidates.html` (served at `http://localhost:51236` while this session's brainstorm server is up).
+
+### Core lens question this pass answered
+
+*Where does the glass earn its presence, and where is it decoration?*
+
+Emil's framework: a continuous opacity/blur ramp as the user scrolls (Original B) is **decoration** — it's performing "glass-ness" on every scroll frame with no meaningful boundary. A **threshold** (or zero-to-present) communicates a decision: "you've moved; the nav is now needed." That shift from ramp → threshold is the defining change in this revision.
+
+### New Candidate 1 — "Ghost-to-Present" (Threshold Frost)
+
+**Design rationale (Emil voice).** At scroll=0 the nav is a ghost — enough background to show structure (`rgba(250,250,247,0.13)`) but essentially transparent, hero breathing completely through it. At scroll ≥ 40px: a single crossfade to full frost (200ms ease-out, CSS class toggle — not a MotionValue ramp). One moment of change. That moment communicates spatial navigation; the ramp communicates nothing except "I'm getting more opaque."
+
+**Visual character.**
+- `scroll=0`: hairline border at `rgba(255,255,255,0.14)` (white, subtle on hero gradient), bg barely-there, blur applied but with near-zero bg — nearly invisible.
+- `scroll≥40px`: full frost: `rgba(250,250,247,0.72)`, blur 18px saturate 180%, `rgba(15,23,42,0.07)` border, subtle bottom shadow.
+- Interaction: CTA gets `active:scale-[0.97]` (100ms ease-out); links get a `rgba(15,23,42,0.04)` hover pill behind text.
+
+**Technical approach.** `useScroll` → `scrollY.on('change', (v) => setScrolled(v > 40))` sets a boolean → CSS class toggle on `motion.header` → CSS transition handles the crossfade. No per-frame MotionValue updates. No blur radius animation (zero Firefox repaint risk). RM: always glass-state.
+
+**Implementation complexity.** ~20 LOC delta to `SiteNav.tsx`. No new deps.
+
+**Trade-offs.**
+- Pro: simplest implementation after Candidate 3; zero per-frame JS after threshold crossed.
+- Pro: hero still breathes (ghost state is nearly invisible).
+- Con: ghost state has ~13% bg — not fully transparent over hero. Some faint tinting visible.
+- Con: "user pauses at exactly 40px" edge case causes frozen mid-transition (rare, acceptable).
+
+### New Candidate 2 — "Zero-to-Glass" (Apple-style floating nav) ← **Recommended**
+
+**Design rationale (Emil voice).** At scroll=0 the nav has ZERO background. Logo and links float directly over the hero gradient — the nav literally does not exist as a surface. The dial, washing machine, hero copy own the viewport entirely. As soon as the user scrolls past 0 (any scroll), the glass appears fast (150ms ease-out), fully formed. This is the Apple.com / Linear / Vercel landing page pattern, and it's correct: the nav earns its surface only once the user has committed to leaving the hero. "The best interface element is the one you don't notice until you need it."
+
+**Visual character.**
+- `scroll=0`: `background: transparent`, `border: none`. Only blur is applied (18px — for partial-scroll compositing), but with 0% bg it's invisible. Logo and links sit directly on hero gradient.
+- `scroll>0`: `rgba(250,250,247,0.70)`, blur 18px saturate 180%, `rgba(15,23,42,0.06)` border, inner highlight, bottom shadow. Arrives in 150ms.
+- Interaction: CTA `active:scale-[0.97]`; optional active-section link indicator (2px `#2798ff` underline, scale-in 120ms) via optional `activeSection?: string` prop (prop is optional — API still zero-required-props).
+
+**Technical approach.** Same as Candidate 1 but threshold is `scrollY > 0` (any scroll). One boolean state. CSS class toggle. RM: always glass-state. Active link indicator is pure CSS + optional prop injection — no IntersectionObserver added to SiteNav itself (the parent can pass `activeSection` from the existing `useActiveSection` hook if desired, or leave undefined).
+
+**Edge case: anchor-link mid-page load.** When user lands on `#hizmetler` directly, page is already scrolled — nav should appear instantly (no transition). Fix: add `data-no-transition` to header on first render, remove it after first `scroll` event. Suppresses the flash.
+
+**Implementation complexity.** ~25 LOC delta to `SiteNav.tsx`. No new deps. Optional prop addition.
+
+**Trade-offs.**
+- Pro: hero gets 100% of the viewport at scroll=0 — strongest composition of the three.
+- Pro: established, validated Apple/Linear pattern — Emil explicitly defers to Apple's interface decisions.
+- Pro: active link indicator is a natural addition that makes nav and dial speak the same design language.
+- Con: logo/links must be legible over hero bg without a surface behind them. The YIKAT hero is light blue (`#dbeafe` range) — `#0F172A` text is fully legible. If hero ever goes dark, this needs revisiting.
+- Con: anchor-link edge case requires the no-transition guard (small extra code).
+
+### New Candidate 3 — "Constant Substance" (Always-Glass, Interaction-First)
+
+**Design rationale (Emil voice).** Don't use scroll behavior to earn the glass. Make the glass earn itself through perfect interaction quality. Every pressable element responds correctly. Hover states are honest — not just a color change, but a real pill (`rgba(39,152,255,0.06)` behind the text). The mobile drawer inherits the glass surface (continuous material). The aggregate of these invisible correctnesses creates something that feels right without any single element being flashy.
+
+**Visual character.**
+- `scroll=0 and all positions`: `rgba(250,250,247,0.68)`, blur 16px saturate 175%, `rgba(15,23,42,0.06)` border, inner highlight `rgba(255,255,255,0.45)`. Identical everywhere.
+- Interaction: CTA `active:scale-[0.97]`; link hover: `-mx-2 px-3 rounded-md transition-colors hover:bg-[rgba(39,152,255,0.06)]` pill.
+- Mobile drawer: inherits same glass bg/blur instead of opaque `#FAFAF7` — continuous glass surface when open.
+
+**Technical approach.** Pure CSS changes to `SiteNav.tsx`. Replace opaque `bg-[#FAFAF7]` with glass values. Add hover and active state classes. No JS additions, no scroll listener, no MotionValues.
+
+**Implementation complexity.** ~10 LOC delta. Truly the simplest path.
+
+**Trade-offs.**
+- Pro: simplest implementation. Zero scroll listener. Zero MotionValues. Zero performance overhead.
+- Pro: mobile drawer glass continuity is a genuinely sophisticated detail.
+- Con: frost at constant density competes with the hero dial/gradient at scroll=0. The redesign's centrepiece has to share the viewport with a permanent frosted panel.
+- Con: "one density fits all contexts" is a compromise value — must be right over both the hero gradient AND the white sections.
+
+### Which original candidates survived?
+
+| Original | Verdict |
+|---|---|
+| **A — Static Frost** | DNA lives in Candidate 3 (constant glass), but without Emil's interaction quality additions. Pure A is underdone. |
+| **B — Scroll-Aware Frost (previously recommended)** | **Superseded.** Core insight (frost responds to scroll) survives in Candidates 1 and 2 as threshold-based approaches. The mechanism changes from MotionValue ramp → boolean class toggle. The ramp itself is decoration. |
+| **C — True Liquid SVG** | Rejected. Performance risk on iOS, Firefox fallback, and the distortion adds noise not information. |
+
+### Recommendation: Candidate 2 — Zero-to-Glass
+
+1. The YIKAT hero + dial is the centrepiece. Candidate 2 gives it the entire viewport at scroll=0. Candidates 1 and 3 both put a visible frost surface over the hero.
+2. The threshold pattern (any-scroll → glass appears) is more decisive than a ramp and simpler than Candidate 1's ghost state tuning.
+3. The active link indicator is a natural optional enhancement that ties the nav and the dial into visual dialogue — making two independent components feel like a system.
+4. This is the established Apple.com / Linear / Vercel pattern. Emil explicitly studies and respects these implementations.
+5. If the floating-logo-over-hero feels too bold in browser, Candidate 1 is the safe fallback — same mechanism, just adds the ghost state instead of zero.
+
+---
+
+## Original candidates (pre-emil-design-eng pass — for reference)
+
+> **Original recommendation (Candidate B) is superseded pending user decision. See revision section above.**
+
 > **Status:** ⏳ Awaiting user pick. Implementation plan inside applies to recommended candidate (B). Switch to A or C requires re-scoping the implementation section only — constraints and test plan still hold.
 
 > **For agentic workers:** REQUIRED SUB-SKILL once dispatched: `superpowers:subagent-driven-development`. Steps use `- [ ]` checkboxes.
