@@ -139,14 +139,15 @@ function LabelButton({ section, isActive, isDesktop, cx, cy, ringRotation, marke
   const fontWeight = useTransform(absDistance, (d) => (d <= 22.5 ? 600 : 500))
 
   // Active-arrival weight pulse: bump pulseKey when isActive flips false→true.
+  // Gated on !prefersReducedMotion to match Knob.tsx pointer-pulse behavior.
   const [pulseKey, setPulseKey] = useState(0)
   const wasActiveRef = useRef(isActive)
   useEffect(() => {
-    if (isActive && !wasActiveRef.current) {
+    if (isActive && !wasActiveRef.current && !prefersReducedMotion) {
       setPulseKey((k) => k + 1)
     }
     wasActiveRef.current = isActive
-  }, [isActive])
+  }, [isActive, prefersReducedMotion])
 
   return (
     <motion.button
