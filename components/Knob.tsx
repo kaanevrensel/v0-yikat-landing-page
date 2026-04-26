@@ -88,9 +88,12 @@ export function Knob({ containerRef }: Props) {
   // Morph driver: scroll-tied with eased shape, no spring smoothing.
   const rawProgress = useTransform(scrollY, [MORPH_START, MORPH_END], [0, 1], { clamp: true })
   const easedProgress = useTransform(rawProgress, easeInOutCubic)
-  // Reduced-motion: pin to 0. zeroMV is created unconditionally to obey rules of hooks.
-  const zeroMV = useMotionValue(0)
-  const morphProgress = prefersReducedMotion ? zeroMV : easedProgress
+  // Reduced-motion: snap to end-state at MORPH_START (no easing, no intermediate
+  // frame). Honors the "no animation" promise by jumping straight to destination
+  // rather than interpolating, while preserving feature parity with the animated
+  // path. Created unconditionally to obey rules of hooks.
+  const morphProgressRM = useTransform(scrollY, (y): number => (y >= MORPH_START ? 1 : 0))
+  const morphProgress = prefersReducedMotion ? morphProgressRM : easedProgress
 
   // Responsive morph destination — plain numbers derived from viewport.
   // Desktop: knob center at left edge, vertically centered (half-clipped).

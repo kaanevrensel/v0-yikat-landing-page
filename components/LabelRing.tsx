@@ -4,6 +4,7 @@ import { type RefObject, useEffect, useState, useRef, useCallback } from "react"
 import {
   motion,
   useScroll,
+  useSpring,
   useTransform,
   useMotionValue,
   useReducedMotion,
@@ -90,10 +91,11 @@ type LabelButtonProps = {
   cy: number
   ringRotation: MotionValue<number>
   markerAngle: number
+  prefersReducedMotion: boolean
   onClick: () => void
 }
 
-function LabelButton({ section, isActive, isDesktop, cx, cy, ringRotation, markerAngle, onClick }: LabelButtonProps) {
+function LabelButton({ section, isActive, isDesktop, cx, cy, ringRotation, markerAngle, prefersReducedMotion, onClick }: LabelButtonProps) {
   const isHighlighted = section.highlight === true
 
   // Per-label angular distance from marker, signed in (-180°, 180°].
@@ -112,6 +114,12 @@ function LabelButton({ section, isActive, isDesktop, cx, cy, ringRotation, marke
     const t = (d - 45) / 45
     return 0.55 - easeOutQuad(t) * 0.55
   })
+  // Reduced-motion: ring rotation snaps on activeIndex change, which would
+  // produce a hard opacity step as labels swap slots. Tween the result over
+  // 120ms to soften the swap into a crossfade. Created unconditionally; the
+  // boolean below picks the right MV for style.opacity.
+  const opacityRM = useSpring(opacity, { duration: 120, bounce: 0 })
+  const finalOpacity = prefersReducedMotion ? opacityRM : opacity
 
   // Scale: easeInOutCubic from 1.0 → 0.78 over 0°→90°, clamps below.
   const scale = useTransform(absDistance, (d) => {
@@ -155,7 +163,7 @@ function LabelButton({ section, isActive, isDesktop, cx, cy, ringRotation, marke
         x: "-50%",
         y: "-50%",
         rotate: counterRotate,
-        opacity,
+        opacity: finalOpacity,
         scale,
         color,
         fontSize: isDesktop ? 16 : 13,
@@ -253,12 +261,18 @@ export function LabelRing({ containerRef }: Props) {
   const { scrollY } = useScroll()
   const rawProgress = useTransform(scrollY, [MORPH_START, MORPH_END], [0, 1], { clamp: true })
   const easedProgress = useTransform(rawProgress, easeInOutCubic)
-  const zeroMV = useMotionValue(0)
-  const morphProgress = prefersReducedMotion ? zeroMV : easedProgress
+  // Reduced-motion: snap to end-state at MORPH_START. Mirrors Knob.tsx so
+  // the ring tracks the knob's morph perfectly under RM.
+  const morphProgressRM = useTransform(scrollY, (y): number => (y >= MORPH_START ? 1 : 0))
+  const morphProgress = prefersReducedMotion ? morphProgressRM : easedProgress
 
   // Ring visibility gate: hide labels while knob is still in the machine
   // (would otherwise orbit a tiny in-machine knob and look broken).
-  // Both gates created unconditionally (rules of hooks); pick at the boolean.
+  // Under RM, morphProgress now snaps 0→1 at MORPH_START, so the morph-based
+  // gate would also work — but we keep the scrollY gate at MORPH_END to
+  // preserve the original intent: labels appear ONLY after morph fully done,
+  // not at the start of morph. Both gates created unconditionally (rules of
+  // hooks); pick at the boolean.
   const ringOpacityScrollGate = useTransform(scrollY, (y): number => (y >= MORPH_END ? 1 : 0))
   const ringOpacityMorphGate = useTransform(morphProgress, [VISIBILITY_GATE_START, VISIBILITY_GATE_END], [0, 1], { clamp: true })
   const ringOpacityGate = prefersReducedMotion ? ringOpacityScrollGate : ringOpacityMorphGate
@@ -384,6 +398,7 @@ export function LabelRing({ containerRef }: Props) {
               cy={cy}
               ringRotation={ringRotation}
               markerAngle={markerAngle}
+              prefersReducedMotion={prefersReducedMotion === true}
               onClick={() => handleClick(i, section.id)}
             />
           )
