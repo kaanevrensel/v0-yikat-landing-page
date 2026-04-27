@@ -1,11 +1,11 @@
 # Section Emojis — Asset Spec
 
-Replace the native-OS emoji placeholder rendering in `components/SectionEmoji.tsx` by dropping PNG assets here, then swap the component's `<span>` for `<img src="/emojis/{id}.png" />`.
+Replace the native-OS emoji placeholder rendering in `components/SectionEmoji.tsx` by dropping PNG assets here, then adding the section id to `PNG_SECTIONS` in that file.
 
 ## Files expected (one per section)
 
-- `hizmetler.png` — laundry basket (Hizmetler section)
-- `nasil.png` — phone with WhatsApp glow (Nasıl çalışır section)
+- `hizmetler.png` ✅ — duffle bag with YIKAT star (Hizmetler section)
+- `nasil.png` ✅ — phone with yıkat lock screen (Nasıl çalışır section)
 - `fiyatlar.png` — money / coin stack (Fiyatlar section)
 - `neden.png` — sparkles / quality mark (Neden YIKAT section)
 - `yorumlar.png` — speech bubble (Yorumlar section)
@@ -16,24 +16,18 @@ Replace the native-OS emoji placeholder rendering in `components/SectionEmoji.ts
 
 - **Format:** PNG with transparent background (no halo, no rectangle)
 - **Style:** 3D glossy (Apple/Telegram reference), full-color, dimensional — not flat, not line-art
-- **Size:** 360×360 px source (= 180px display × 2 for retina)
-- **Mobile also uses 360px source** (downscaled to 110px by CSS); no separate mobile asset needed
-- **Color profile:** sRGB; if possible avoid pure black/white outlines — soft rim lights are fine
-- **File weight:** aim < 80 KB each (use pngquant / tinypng after export)
+- **Source dimensions:** 512×512 px at 72 ppi (provides 4× retina for 120px desktop target)
+- **Color profile:** sRGB. No pure-black outlines — soft rim lights are fine
+- **File weight:** aim < 80 KB each (use sharp / pngquant / tinypng after export)
+- **Target display sizes:** 120px desktop (≥768px), 80px mobile
 
-## Swap procedure
+## Adding a new PNG
 
-Once PNGs are in place, update `components/SectionEmoji.tsx`:
+1. Drop the PNG here at `/public/emojis/{section-id}.png`
+2. Add the section id to `PNG_SECTIONS` in `components/SectionEmoji.tsx`:
+   ```ts
+   const PNG_SECTIONS = new Set(["hizmetler", "nasil", "your-new-id"] as const)
+   ```
+   That's all. The component picks it up automatically.
 
-```tsx
-<img
-  src={`/emojis/${id}.png`}
-  alt={alt}
-  width={180}
-  height={180}
-  className={prefersReducedMotion ? "emoji-static" : "emoji-breathe"}
-  style={{ animationDelay: prefersReducedMotion ? undefined : phaseDelay }}
-/>
-```
-
-Drop the `<span>{emoji}</span>` branch entirely at that point.
+When all 7 sections have PNGs, the `PNG_SECTIONS` Set and the `<span>` fallback branch in `SectionEmoji.tsx` can be deleted — switch to always-`<img>`.

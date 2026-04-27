@@ -46,7 +46,6 @@ export function SectionEmoji({ emoji, id, index, alt = "" }: SectionEmojiProps) 
           style={animStyle}
           loading="lazy"
           decoding="async"
-          aria-hidden={alt === "" ? true : undefined}
         />
       ) : (
         <span
