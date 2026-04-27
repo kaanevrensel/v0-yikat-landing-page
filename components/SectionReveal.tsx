@@ -4,9 +4,16 @@ import { motion, type Variants } from "framer-motion"
 import { type ReactNode } from "react"
 
 const container: Variants = {
-  hidden: {},
+  hidden: { opacity: 0, y: 28 },
   visible: {
-    transition: { staggerChildren: 0.11, delayChildren: 0 },
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.38,
+      ease: [0.16, 1, 0.3, 1],
+      staggerChildren: 0.11,
+      delayChildren: 0.22,
+    },
   },
 }
 
