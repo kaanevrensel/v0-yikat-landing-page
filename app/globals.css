@@ -137,13 +137,13 @@
 }
 .emoji-breathe,
 .emoji-static {
-  font-size: 110px;
+  font-size: 80px;
   line-height: 1;
 }
 @media (min-width: 768px) {
   .emoji-breathe,
   .emoji-static {
-    font-size: 180px;
+    font-size: 120px;
   }
 }
 

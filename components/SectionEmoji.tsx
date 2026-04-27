@@ -4,9 +4,9 @@ import { motion, useReducedMotion } from "framer-motion"
 import { revealItem } from "@/components/SectionReveal"
 
 interface SectionEmojiProps {
-  /** Native emoji character as placeholder (e.g., "🧺"). */
+  /** Native emoji character — fallback for sections without a PNG asset. */
   emoji: string
-  /** Section id — used to pick a PNG at /public/emojis/{id}.png if it exists. */
+  /** Section id — resolves to /public/emojis/{id}.png when that file exists. */
   id: string
   /** Index 0..6 used to calculate breathing phase offset so emojis don't pulse in unison. */
   index: number
@@ -14,41 +14,51 @@ interface SectionEmojiProps {
   alt?: string
 }
 
-/**
- * Per-section 3D emoji. Placeholder renders the native OS emoji via `<span>`.
- * Will be swapped to a PNG at `/public/emojis/{id}.png` in a future iteration;
- * the `id` prop is reserved for that swap.
- *
- * Breathing animation: scale(1) ↔ scale(1.03), 3.5s ease-in-out. Each section
- * has a phase offset of `index * 438ms` (≈ 3500/8) so 7 emojis pulse at
- * different points in the cycle. Reduced-motion renders static size only.
- */
+// Sections that have a PNG at /public/emojis/{id}.png.
+// Add an id here when its asset lands; other sections fall back to the native emoji span.
+const PNG_SECTIONS = new Set(["hizmetler", "nasil"])
+
+// RM handled by <MotionConfig reducedMotion="user"> in app/page.tsx — covers
+// both the motion.div wrapper and the breathing CSS animation.
 export function SectionEmoji({ emoji, id, index, alt = "" }: SectionEmojiProps) {
   const prefersReducedMotion = useReducedMotion()
-  const phaseDelay = `-${index * 438}ms` // negative offset starts each emoji mid-cycle
+  const phaseDelay = `-${index * 438}ms`
+  const cls = prefersReducedMotion ? "emoji-static" : "emoji-breathe"
+  const animStyle = {
+    display: "inline-block" as const,
+    transformOrigin: "center",
+    willChange: "transform",
+    animationDelay: prefersReducedMotion ? undefined : phaseDelay,
+  }
 
   return (
     <motion.div
       variants={revealItem}
       className="flex items-start justify-center md:justify-end"
     >
-      {/* Kept as plain <span> (not motion.span) so the CSS `transform: scale(...)`
-          from emoji-breathe doesn't collide with Framer's transform on the parent
-          motion.div. Wrapping this in a motion element would clobber the animation. */}
-      <span
-        aria-hidden={alt === "" || undefined}
-        aria-label={alt || undefined}
-        role={alt ? "img" : undefined}
-        className={prefersReducedMotion ? "emoji-static" : "emoji-breathe"}
-        style={{
-          display: "inline-block",
-          transformOrigin: "center",
-          willChange: "transform",
-          animationDelay: prefersReducedMotion ? undefined : phaseDelay,
-        }}
-      >
-        {emoji}
-      </span>
+      {PNG_SECTIONS.has(id) ? (
+        <img
+          src={`/emojis/${id}.png`}
+          alt={alt}
+          width={120}
+          height={120}
+          className={`${cls} w-20 md:w-[120px]`}
+          style={animStyle}
+          loading="lazy"
+          decoding="async"
+          aria-hidden={alt === "" ? true : undefined}
+        />
+      ) : (
+        <span
+          aria-hidden={alt === "" || undefined}
+          aria-label={alt || undefined}
+          role={alt ? "img" : undefined}
+          className={cls}
+          style={animStyle}
+        >
+          {emoji}
+        </span>
+      )}
     </motion.div>
   )
 }
