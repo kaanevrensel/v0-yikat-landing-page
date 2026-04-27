@@ -8,7 +8,7 @@
 
 ## Sequence
 
-### 1. Knob morph to viewport edge (Task 2.4b)
+### ✅ 1. Knob morph to viewport edge (Task 2.4b)
 
 - **Goal:** As user scrolls past hero, the Knob grows and migrates to the viewport left-edge (desktop) or top-edge (mobile). Machine body fades simultaneously, so the knob "detaches" naturally. Starting state is pixel-identical to current rest state after `efa011c`. No pop, teleport, or first-paint flash.
 - **Sub-plan:** YES — `docs/superpowers/plans/2026-04-25-knob-morph.md` (brainstorm → UI/UX consult → plan).
@@ -16,7 +16,7 @@
 - **Depends on:** `efa011c` landed (already on branch).
 - **Verify done:** Browser verification at desktop ≥1280 and mobile 375 shows smooth morph, rest-state parity at scrollY=0, reduced-motion respected (knob holds at rest), no glitches on resize-mid-morph or scroll-reversal. Spec + code-quality reviewers approve with zero Critical/Important.
 
-### 2. Label ring around knob (Task 2.4c)
+### ✅ 2. Label ring around knob (Task 2.4c)
 
 - **Goal:** 8 section labels orbit the morphed knob at its destination. Clicking a label scrolls to that section. Active section visually highlighted via existing `useActiveSection` hook.
 - **Sub-plan:** YES — `docs/superpowers/plans/YYYY-MM-DD-knob-label-ring.md` (date-stamped when reached).
@@ -24,7 +24,7 @@
 - **Depends on:** Item 1. Labels anchor to the knob's morphed position, so morph destination must be stable first.
 - **Verify done:** All 8 labels render at destination across breakpoints, click scrolls smoothly to correct section, active highlight tracks scroll. No overlap with SiteNav at any width. Keyboard-accessible.
 
-### 3. SiteNav liquid-glass treatment
+### ✅ 3. SiteNav liquid-glass treatment
 
 - **Goal:** Apply liquid-glass styling (backdrop-blur + subtle translucency + layered gradients) to the fixed site nav. Ties it into the iOS-26-style dial aesthetic of the hero.
 - **Sub-plan:** YES — short design brainstorm + 1-file implementation plan.
@@ -32,7 +32,7 @@
 - **Depends on:** None. SiteNav z-index stays z-50 per the 2.4b constraint — this item refines visual treatment without touching stacking order.
 - **Verify done:** Glass effect visible over all section backgrounds (hero, pricing, FAQ — different bg colors). Reduced-motion = static glass (no animated sweeps). Readable at all scroll positions. Works on Safari (backdrop-filter fallback if needed).
 
-### 4. Loading state (washing-machine spinner)
+### ✅ 4. Loading state (washing-machine spinner)
 
 - **Goal:** On initial page load, show centered spinning washing-machine icon until Next hydration + critical images are ready. Hide on ready with a clean fade.
 - **Sub-plan:** No brainstorm — single-task plan inline (component + mount logic + hide criteria).
@@ -40,7 +40,7 @@
 - **Depends on:** None.
 - **Verify done:** Hard-reload shows spinner → fades to content, no flash of bare content before ready. Reduced-motion = static machine icon (no spin). Verified on DevTools slow 3G throttle.
 
-### 5. Section enter/exit transitions
+### ✅ 5. Section enter/exit transitions
 
 - **Goal:** Each of the 7 main sections has clear enter animation on viewport entry (existing `SectionReveal` partly covers this) and — where appropriate — a subtle exit or parallax treatment. Matches Phase 3 of `docs/superpowers/plans/2026-04-22-major-polish.md`.
 - **Sub-plan:** Light — reference Phase 3 of major-polish plan + supplementary notes, no fresh brainstorm.
@@ -48,7 +48,7 @@
 - **Depends on:** None — section-level work, independent of hero/knob.
 - **Verify done:** Scroll through all 7 sections; each has clear, performant enter animation. No layout shift (CLS stays 0). Reduced-motion = content appears immediately, no animation.
 
-### 6. Emoji shrink (180/110 → 120/80)
+### ✅ 6. Emoji shrink (180/110 → 120/80)
 
 - **Goal:** Reduce section-emoji footprint per Phase 4 of major-polish plan.
 - **Sub-plan:** None — direct single-commit edit.
@@ -56,15 +56,16 @@
 - **Depends on:** None.
 - **Verify done:** DevTools measurement confirms 120/80 dimensions. Visual check: emojis still read as section anchors without dominating the layout.
 
-### 7. KVKK page
+### ✅ 7. KVKK page
 
 - **Goal:** Port KVKK (Turkish data-privacy compliance) content from live site `yikat.tech` into a `/kvkk` route in this repo. Apply existing design-system typography for readability.
 - **Sub-plan:** Small content-port plan (fetch source text → apply styling → add to footer link).
 - **Complexity:** Small-medium (~1–3h depending on content length).
 - **Depends on:** None.
 - **Verify done:** `/kvkk` renders full Turkish content, typography consistent with rest of site, mobile-readable, linked from footer.
+- **Resolution:** Pre-flight discovery (commit `43f46bf`) confirmed `app/kvkk/page.tsx` already complete with all 9 maddeler verbatim and footer link wired. Candidate 1 (ship as-is) selected. No code change.
 
-### 8. Final production build check
+### ✅ 8. Final production build check
 
 - **Goal:** Confirm `pnpm build` clean, `pnpm exec tsc --noEmit` clean, no runtime console errors on local production server (`next start`). Branch ready for user-handled deployment.
 - **Sub-plan:** None — verification checklist.
