@@ -3,6 +3,9 @@
 import { motion, type Variants } from "framer-motion"
 import { type ReactNode } from "react"
 
+// RM handled by <MotionConfig reducedMotion="user"> in app/page.tsx — covers
+// both the container wrapper animation and revealItem children. If used outside
+// that wrapper, add useReducedMotion() here.
 const container: Variants = {
   hidden: { opacity: 0, y: 28 },
   visible: {
@@ -17,9 +20,6 @@ const container: Variants = {
   },
 }
 
-// Reduced-motion support relies on the <MotionConfig reducedMotion="user"> in
-// app/page.tsx wrapping the tree — not on useReducedMotion here. If this
-// component is ever used outside that wrapper, add the hook back.
 export const revealItem: Variants = {
   hidden: { opacity: 0, y: 16 },
   visible: {
