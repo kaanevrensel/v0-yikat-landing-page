@@ -56,7 +56,7 @@ export function HeroSection() {
 
           <motion.div variants={revealItem} className="mt-16 flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-[#64748B]">
             <span>Programı seç</span>
-            <ChevronDown className="size-3.5 animate-bounce" aria-hidden="true" />
+            <ChevronDown className="size-3.5 hero-cue-float" aria-hidden="true" />
           </motion.div>
         </div>
       </div>
