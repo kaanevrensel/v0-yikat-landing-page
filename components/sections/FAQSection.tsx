@@ -74,7 +74,7 @@ export function FAQSection() {
                 <Accordion type="single" collapsible className="divide-y divide-[#E5E7EB] border-y border-[#E5E7EB]">
                   {faqs.map((faq, i) => (
                     <AccordionItem key={i} value={`faq-${i}`} className="border-b-0">
-                      <AccordionTrigger className="py-5 text-left text-lg font-semibold text-[#0F172A] hover:no-underline">
+                      <AccordionTrigger className="py-5 text-left text-lg font-semibold text-[#0F172A] hover:no-underline hover:bg-[#F5F5F2] -mx-2 px-2 rounded-md transition-colors">
                         {faq.q}
                       </AccordionTrigger>
                       <AccordionContent className="pb-6 text-base leading-relaxed text-[#64748B]">
