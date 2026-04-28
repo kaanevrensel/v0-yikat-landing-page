@@ -32,10 +32,6 @@ export function SectionEyebrow({ angle, number, label, className = "", onDark = 
       variants={revealItem}
       className={`flex items-center gap-3 ${className}`}
     >
-      {/* Angle rotation is a visual no-op on this radially-symmetric fill —
-          Phase 6 will add a small white indicator line (scaled analogue of
-          INDICATOR_LENGTH in DialNavigator) to make rotation readable. API
-          keeps the `angle` prop so callers don't churn. */}
       <svg
         viewBox="0 0 80 80"
         className="size-10 flex-shrink-0"
@@ -50,6 +46,7 @@ export function SectionEyebrow({ angle, number, label, className = "", onDark = 
           </radialGradient>
         </defs>
         <circle cx={40} cy={40} r={32} fill={`url(#${gradientId})`} />
+        <rect x={37.5} y={9.5} width={5} height={14} rx={2} fill="rgba(255,255,255,0.88)" />
       </svg>
 
       <span
