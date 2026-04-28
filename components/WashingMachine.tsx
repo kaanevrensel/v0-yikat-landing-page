@@ -22,7 +22,7 @@ export function WashingMachine({ className }: WashingMachineProps) {
 
   // Machine body fades across the hero's scroll depth; knob stays opaque
   const bodyOpacity = useTransform(scrollY, [0, 380], [1, 0], { clamp: true })
-  const effectiveBodyOpacity = prefersReducedMotion ? 0 : bodyOpacity
+  const effectiveBodyOpacity = prefersReducedMotion ? 1 : bodyOpacity
 
   return (
     <svg
