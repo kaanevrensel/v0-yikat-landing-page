@@ -50,8 +50,6 @@ export function ReviewsSection() {
                 <SectionEmoji emoji={meta.emoji!} id={meta.id} index={sectionIndex} />
               </div>
 
-              {/* Reserved-space placeholder sized to match a future 3-card grid,
-                  so real reviews drop in without CLS. */}
               <motion.div
                 variants={revealItem}
                 className="mt-16 grid gap-6 sm:grid-cols-3"
