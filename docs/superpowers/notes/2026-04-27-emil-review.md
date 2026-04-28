@@ -170,3 +170,11 @@ Removing three dashed boxes requires deleting ~15 lines and optionally the entir
 
 **3. C3 + I4 — CTA button + loader ease-in (micro-correctness bundle)**
 Both are 1-line changes. Bundle them: the CTA button touches the conversion action; the loader touches the very first second of the experience. Neither has visual scope-creep risk. Correct these two and the motion quality across the page has a noticeably more intentional feel.
+
+---
+
+## Resolutions
+
+### I1 — Hero ChevronDown animation
+
+**Resolution (2026-04-28):** Custom float (commit a976dc0) was implemented and reverted. After live testing, user judged the calm float too subtle for the chevron's purpose (draw eye downward). Reverted to original animate-bounce behavior. Emil review's diagnosis acknowledged but design call deferred to user testing. Closed as 'not actioned' rather than 'not fixed' — the bounce is now an explicit design decision, not an oversight.
