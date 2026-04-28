@@ -1,10 +1,26 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { Star } from "lucide-react"
 import { SectionReveal, revealItem } from "@/components/SectionReveal"
 import { SECTIONS } from "@/lib/sections"
 import { SectionEyebrow } from "@/components/SectionEyebrow"
 import { SectionEmoji } from "@/components/SectionEmoji"
+
+const reviews = [
+  {
+    quote: "Böyle bir hizmetin olduğunu bilseydim evime çamaşır makinesi almazdım, mükemmel servis.",
+    author: "Yusuf H.",
+  },
+  {
+    quote: "Kıyafetlerim tertemiz ve hiç leke kalmamış. Paketleme çok özenli. Ayrıca 1 gün sonra geri teslim aldım, çok hızlıydı.",
+    author: "Adem Y.",
+  },
+  {
+    quote: "Teslimat çok hızlıydı ve paket acayip güzel kokuyordu.",
+    author: "Mehmet M.",
+  },
+]
 
 export function ReviewsSection() {
   return (
@@ -40,14 +56,19 @@ export function ReviewsSection() {
                 variants={revealItem}
                 className="mt-16 grid gap-6 sm:grid-cols-3"
               >
-                {[0, 1, 2].map((i) => (
+                {reviews.map((review) => (
                   <div
-                    key={i}
-                    className="flex min-h-[240px] items-center justify-center rounded-xl border border-dashed border-[#E5E7EB] bg-white p-8 text-center"
+                    key={review.author}
+                    className="rounded-xl border border-[#E5E7EB] bg-white p-8 shadow-[0_1px_3px_rgba(0,0,0,0.05)] flex flex-col gap-4"
                   >
-                    <p className="text-sm text-[#64748B]">
-                      Yakında müşteri yorumları burada.
-                    </p>
+                    <span className="sr-only">5 yıldız</span>
+                    <div className="flex gap-0.5" aria-hidden="true">
+                      {[0, 1, 2, 3, 4].map((s) => (
+                        <Star key={s} className="size-4" fill="#2798ff" color="#2798ff" />
+                      ))}
+                    </div>
+                    <p className="text-base leading-relaxed text-[#0F172A]/80 flex-1">{review.quote}</p>
+                    <p className="text-sm font-medium text-[#0F172A]">{review.author}</p>
                   </div>
                 ))}
               </motion.div>
