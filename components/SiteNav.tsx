@@ -124,7 +124,15 @@ export function SiteNav() {
               onClick={() => setOpen((v) => !v)}
               className="inline-flex size-9 items-center justify-center rounded-md text-[#0F172A] transition-colors hover:bg-[#F5F5F2] md:hidden"
             >
-              {open ? <X className="size-5" /> : <Menu className="size-5" />}
+              <motion.span
+                key={open ? "x" : "menu"}
+                initial={{ opacity: 0, rotate: open ? -30 : 30 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="inline-flex"
+              >
+                {open ? <X className="size-5" /> : <Menu className="size-5" />}
+              </motion.span>
             </button>
           </div>
         </div>
