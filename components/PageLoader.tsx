@@ -57,7 +57,7 @@ export function PageLoader() {
           key="loader"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.3, ease: "easeIn" }}
+          transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
           style={overlayStyle}
         >
           <Porthole spin={prefersReducedMotion !== true} />

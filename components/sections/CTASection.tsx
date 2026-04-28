@@ -46,7 +46,7 @@ export function CTASection({ whatsappUrl }: CTASectionProps) {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 rounded-lg bg-white px-8 py-4 font-medium text-[#0F172A] shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-all hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#2798ff]"
+                  className="inline-flex items-center gap-3 rounded-lg bg-white px-8 py-4 font-medium text-[#0F172A] shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-[box-shadow,transform] duration-100 ease-out hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#2798ff]"
                 >
                   WhatsApp'tan sipariş ver
                   <ArrowUpRight className="size-4" aria-hidden="true" />
