@@ -13,11 +13,17 @@ This is the YIKAT landing page redesign (`feat/landing-redesign` branch). Worktr
 
 ## Model rules — non-negotiable
 
-- **Implementer agents: Opus 4.7.** Never Haiku 4.5. Sonnet only with explicit user approval per dispatch.
-- **Reviewer agents: Opus 4.7.** Same rule.
-- **Orchestrator (top-level chat): Sonnet 4.6 default; Opus 4.7 when user invokes `/effort` or `/model`.**
+- **Implementer agents: Opus 4.7 ALWAYS.**
+- **Spec reviewer agents: Opus 4.7 ALWAYS.**
+- **Code quality reviewer agents: Opus 4.7 ALWAYS.**
+- **Orchestrator (planning, summarizing, routing, plan file authoring): Opus 4.7 ALWAYS.**
+- **NEVER Haiku 4.5** for any role.
+- **NEVER Sonnet (any version)** for any role.
+- **Surface the model used in every final report** so the user can verify compliance at a glance.
 
-When dispatching via `Agent` tool, always include `model: "opus"` for both implementer and reviewer subagents. If a dispatch prompt does not specify, default to Opus 4.7.
+When dispatching via `Agent` tool, always include `model: "opus"` for every subagent. If a dispatch prompt does not specify, default to Opus 4.7.
+
+**Rationale:** Sonnet was acceptable for non-code orchestration in earlier drafts. Reverted: orchestrator decisions (plan structure, math verification, candidate scoring) directly steer implementer behavior. Quality of plans determines quality of code that follows. Opus across all roles, no exceptions.
 
 ---
 
