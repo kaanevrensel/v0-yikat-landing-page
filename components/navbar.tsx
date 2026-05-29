@@ -2,23 +2,25 @@
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
+import { AppDownloadButton } from "@/components/app-download-button"
 
 const navLinks = [
-  { label: "Nasıl Çalışır?", href: "#nasil-calisir" },
-  { label: "Hizmetler", href: "#paketler" },
-  { label: "SSS", href: "#sss" },
+  { label: "Hizmetler", href: "/#hizmetler" },
+  { label: "Nasıl Çalışır", href: "/#nasil-calisir" },
+  { label: "Bölgeler", href: "/#bolgeler" },
+  { label: "Partner Ol", href: "/partnerlik" },
 ]
 
-export function Navbar({ whatsappUrl }: { whatsappUrl: string }) {
+export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 10)
+    handler()
     window.addEventListener("scroll", handler, { passive: true })
     return () => window.removeEventListener("scroll", handler)
   }, [])
@@ -28,22 +30,18 @@ export function Navbar({ whatsappUrl }: { whatsappUrl: string }) {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-card/80 backdrop-blur-xl border-b border-border shadow-sm"
-          : "bg-transparent"
+          ? "bg-background/80 backdrop-blur-xl border-b border-border"
+          : "bg-transparent",
       )}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        {/* Logo */}
-        <a
-          href="#"
-          aria-label="YIKAT Ana Sayfa"
-        >
+        <a href="/" aria-label="YIKAT ana sayfa" className="shrink-0">
           <Image
             src="/images/yikat-logo-blue.png"
             alt="YIKAT"
             width={240}
             height={96}
-            className="h-20 w-auto"
+            className="h-12 w-auto sm:h-14"
             priority
           />
         </a>
@@ -54,61 +52,59 @@ export function Navbar({ whatsappUrl }: { whatsappUrl: string }) {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               {link.label}
             </a>
           ))}
-          <Button
-            asChild
-            className="rounded-full bg-primary px-5 text-primary-foreground hover:bg-primary/90"
+          <AppDownloadButton
+            label="App İndir"
             size="sm"
-          >
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              {"Sipariş Ver"}
-            </a>
-          </Button>
+            showArrow={false}
+            event="nav_app_download_click"
+            className="px-5 text-sm"
+          />
         </div>
 
-        {/* Mobile menu button */}
-        <button
-          className="inline-flex items-center justify-center rounded-md p-2 text-foreground md:hidden"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Menu"
-        >
-          {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-        </button>
+        {/* Mobile: sticky App İndir + hamburger */}
+        <div className="flex items-center gap-2 md:hidden">
+          <AppDownloadButton
+            label="App İndir"
+            size="sm"
+            showArrow={false}
+            event="nav_app_download_click_mobile"
+            className="px-4 text-sm"
+          />
+          <button
+            className="inline-flex items-center justify-center rounded-md p-2 text-foreground"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Menüyü aç/kapat"
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+        </div>
       </nav>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-b border-border bg-card/95 backdrop-blur-xl md:hidden"
+            className="overflow-hidden border-b border-border bg-background/95 backdrop-blur-xl md:hidden"
           >
-            <div className="flex flex-col gap-4 px-6 py-5">
+            <div className="flex flex-col gap-1 px-6 py-4">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className="rounded-lg py-2.5 text-sm text-foreground transition-colors hover:text-primary"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
                 </a>
               ))}
-              <Button
-                asChild
-                className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
-                size="sm"
-              >
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                  {"Sipariş Ver"}
-                </a>
-              </Button>
             </div>
           </motion.div>
         )}

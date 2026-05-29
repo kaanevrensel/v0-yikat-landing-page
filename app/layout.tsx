@@ -6,40 +6,45 @@ import './globals.css'
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
   variable: '--font-inter',
+  display: 'swap',
 })
 
+const SITE_URL = 'https://www.yikat.tech'
+
 export const metadata: Metadata = {
-  title: 'Çekmeköy Çamaşır ve Ayakkabı Yıkama Servisi | Kapıdan Alım, Kapıya Teslim — YIKAT',
-  description: 'Çekmeköy çamaşır yıkama servisi. Evden çamaşır toplama, yıkama, ütüleme ve kapıya teslim. Kilo bazlı fiyatlandırma, 24–48 saat teslim. WhatsApp ile sipariş.',  
+  metadataBase: new URL(SITE_URL),
+  title: 'YIKAT — Kuru Temizleme, Çamaşır ve Ütü | Kapıdan Alım, Kapıya Teslim',
+  description:
+    'Siz işinize bakın, kıyafet bize emanet. Kuru temizleme, çamaşır, ütü ve daha fazlası. Kapıdan toplama, profesyonel temizlik, kapıya teslim. İstanbul Anadolu Yakası’nda seçilmiş partner kuru temizlemecilerle. Tüm sipariş uygulamada.',
+  keywords: [
+    'kuru temizleme istanbul',
+    'kuru temizleme kapıdan',
+    'çamaşır yıkama servisi',
+    'ütü hizmeti',
+    'kapıdan alım kapıya teslim',
+    'YIKAT',
+  ],
   icons: {
-    icon: [
-      {
-        url: '/images/yikat-logo-blue.png',
-        type: 'image/png',
-      },
-    ],
+    icon: [{ url: '/images/yikat-logo-blue.png', type: 'image/png' }],
     apple: '/images/yikat-logo-blue.png',
   },
   openGraph: {
     type: 'website',
-    url: 'https://www.yikat.tech/',
-    title: 'YIKAT — Çamaşır ve Ayakkabı Yıkama Servisi',
-    description: 'Çekmeköy çamaşır yıkama servisi. Kapıdan toplama, yıkama, ütüleme ve teslim. Kilo bazlı fiyat, 24–48 saat.',
+    url: SITE_URL,
+    title: 'YIKAT — Siz işinize bakın. Kıyafet bize emanet.',
+    description:
+      'Kuru temizleme, çamaşır, ütü ve daha fazlası. Kapıdan toplama, profesyonel temizlik, kapıya teslim. Tüm sipariş uygulamada.',
     locale: 'tr_TR',
     siteName: 'YIKAT',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'YIKAT — Çamaşır ve Ayakkabı Yıkama Servisi',
-    description: 'Kapıdan alım, kapıya teslim. Kilo bazlı çamaşır ve ayakkabı yıkama hizmeti.',
+    title: 'YIKAT — Siz işinize bakın. Kıyafet bize emanet.',
+    description:
+      'Premium temizlik aggregator. Kapıdan alım, kapıya teslim. Tüm sipariş uygulamada.',
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  alternates: {
-    canonical: 'https://www.yikat.tech/',
-  },
+  robots: { index: true, follow: true },
+  alternates: { canonical: SITE_URL },
   verification: {
     google: 'STVQceqys-HuTc9IuB8MElUcaltLIoRKCwBQ-FkwUYA',
   },
@@ -51,6 +56,85 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'YIKAT',
+  alternateName: 'Yıkat',
+  url: SITE_URL,
+  logo: `${SITE_URL}/images/yikat-logo-blue.png`,
+  email: 'destek@yikat.tech',
+  telephone: '+908503033193',
+  sameAs: [],
+}
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DryCleaningOrLaundry',
+  name: 'YIKAT',
+  description:
+    'Kuru temizleme, çamaşır ve ütü hizmetini kapıdan alıp kapıya teslim eden, seçilmiş partner kuru temizlemecilerle çalışan premium temizlik aggregator. Tüm sipariş mobil uygulamada tamamlanır.',
+  url: SITE_URL,
+  telephone: '+908503033193',
+  email: 'destek@yikat.tech',
+  priceRange: '₺₺',
+  openingHours: 'Mo-Su 08:00-22:00',
+  areaServed: [
+    { '@type': 'AdministrativeArea', name: 'İstanbul Anadolu Yakası' },
+    { '@type': 'City', name: 'İstanbul' },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'YIKAT Hizmetleri',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Kuru Temizleme' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Çamaşır Yıkama' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Ütü Hizmeti' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Ayakkabı Temizleme' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hacimli Tekstil Temizliği' } },
+    ],
+  },
+}
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Hangi bölgelerde hizmet veriyorsunuz?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'İstanbul Anadolu Yakası’ndan başlıyoruz ve listemiz her hafta büyüyor. Mahalleniz kapsamda mı, uygulamada adresinizi girince anında görürsünüz.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Kuru temizleme fiyatları nasıl belirleniyor?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Fiyatlar hizmet ve parça bazında, uygulama içinde şeffaf biçimde gösterilir. Adresinizi girdiğinizde size uygun fiyatları net olarak görürsünüz.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Hasar olursa ne oluyor?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'YIKAT Garantisi geçerlidir: memnun kalmazsanız ücretsiz yeniden temizleriz, hasar durumunda açık ve yazılı bir iade prosedürü işletiriz.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Ödeme nasıl yapılıyor?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Tüm sipariş ve ödeme akışı mobil uygulamada gerçekleşir. Kartınızı bir kez tanımlar, sonraki siparişlerde tek dokunuşla ödersiniz.',
+      },
+    },
+  ],
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -59,76 +143,19 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className={`${inter.variable} font-sans antialiased`}>
-      <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "CleaningService",
-      "name": "YIKAT",
-      "alternateName": "Yıkat Çamaşır Servisi",
-      "description": "Çamaşır ve ayakkabı temizliğini kapıdan alıp kapıya teslim eden, kilo bazlı fiyatlandırma ile çalışan pratik temizlik servisi.",
-      "url": "https://www.yikat.tech",
-      "telephone": "+908503033193",
-      "email": "destek@yikat.tech",
-      "priceRange": "₺₺",
-      "openingHours": "Mo-Su 08:00-22:00",
-      "areaServed": { "@type": "City", "name": "Çekmeköy" },
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Yıkat Hizmetleri",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": { "@type": "Service", "name": "Kiloyla Çamaşır Yıkama" },
-            "price": "110", "priceCurrency": "TRY"
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": { "@type": "Service", "name": "Ütü Hizmeti" },
-            "price": "30", "priceCurrency": "TRY"
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": { "@type": "Service", "name": "Ayakkabı Yıkama" }
-          }
-        ]
-      }
-    })
-  }}
-/>
-<script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "YIKAT nedir?",
-          "acceptedAnswer": { "@type": "Answer", "text": "YIKAT, çamaşır ve ayakkabı temizliğini kapıdan alıp kapıya teslim eden bir hizmet servisidir. Kilo bazlı fiyatlandırma ile çalışır." }
-        },
-        {
-          "@type": "Question",
-          "name": "Hangi bölgelerde hizmet veriyorsunuz?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Şu an İstanbul genelinde hizmet vermekteyiz." }
-        },
-        {
-          "@type": "Question",
-          "name": "Çamaşırlarım ne kadar sürede teslim edilir?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Standart siparişlerde teslim süresi 24–48 saattir." }
-        },
-        {
-          "@type": "Question",
-          "name": "Ödeme nasıl yapılıyor?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Nakit, kredi kartı veya havale ile ödeme yapabilirsiniz." }
-        }
-      ]
-    })
-  }}
-         />
-         {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+        {children}
         <Analytics />
       </body>
     </html>
