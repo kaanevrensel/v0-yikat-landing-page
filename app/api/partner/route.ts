@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import { Resend } from "resend"
 
 const FROM = "yikat yazılım <yikat@yikat.tech>"
-const TO = ["zefek10@gmail.com"]
+const TO = ["zefek10@gmail.com", "ahmet@yikat.tech"]
 
 function row(label: string, value?: string) {
   if (!value) return ""
