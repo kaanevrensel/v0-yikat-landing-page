@@ -1,104 +1,165 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import { useState } from "react"
 import { motion } from "framer-motion"
+import { Star, MapPin } from "lucide-react"
+import { AppDownloadButton } from "@/components/app-download-button"
 
-export function HeroSection({ whatsappUrl }: { whatsappUrl: string }) {
+export function HeroSection() {
+  const [address, setAddress] = useState("")
+  const entered = address.trim().length > 2
+
   return (
-    <section className="relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28 lg:pt-44 lg:pb-36">
-      {/* Background gradient */}
+    <section className="relative overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-28">
+      {/* Soft brand gradient + drifting accents */}
       <div
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(180deg, oklch(0.93 0.03 230) 0%, oklch(0.97 0.01 240) 50%, oklch(0.99 0.002 240) 100%)",
+            "linear-gradient(180deg, #e6f1fb 0%, #f3f8ff 45%, #ffffff 100%)",
         }}
       />
-      {/* Subtle animated decorative circles */}
       <div
-        className="pointer-events-none absolute -top-32 -right-32 size-96 rounded-full bg-primary/5 blur-3xl motion-reduce:animate-none"
-        style={{ animation: "hero-drift-1 25s ease-in-out infinite" }}
+        className="pointer-events-none absolute -top-32 -right-24 size-96 rounded-full bg-primary/10 blur-3xl motion-reduce:animate-none"
+        style={{ animation: "hero-drift-1 28s ease-in-out infinite" }}
       />
       <div
-        className="pointer-events-none absolute -bottom-24 -left-24 size-80 rounded-full bg-primary/5 blur-3xl motion-reduce:animate-none"
-        style={{ animation: "hero-drift-2 30s ease-in-out infinite" }}
-      />
-      <div
-        className="pointer-events-none absolute top-1/3 left-1/2 size-72 -translate-x-1/2 rounded-full bg-primary/[0.03] blur-3xl motion-reduce:animate-none"
-        style={{ animation: "hero-drift-1 35s ease-in-out infinite reverse" }}
+        className="pointer-events-none absolute top-1/2 -left-24 size-80 rounded-full bg-primary/5 blur-3xl motion-reduce:animate-none"
+        style={{ animation: "hero-drift-2 32s ease-in-out infinite" }}
       />
 
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center text-center">
-          {/* Status badge */}
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[60%_40%] lg:gap-8 lg:px-8">
+        {/* Left column */}
+        <div className="text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-1.5 text-xs font-medium uppercase tracking-wide text-primary"
           >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary">
-              <span className="relative flex size-2">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex size-2 rounded-full bg-primary" />
-              </span>
-              {"Çekmeköy • 08:00–22:00"}
-            </div>
+            <span className="relative flex size-2">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex size-2 rounded-full bg-primary" />
+            </span>
+            Yeni · İstanbul Anadolu Yakası
           </motion.div>
 
-          {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="max-w-3xl text-balance text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+            transition={{ duration: 0.6, delay: 0.08 }}
+            className="mt-6 text-balance text-[2rem] leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem]"
           >
-           {"Çamaşır ve Ayakkabı Yıkat"}
-           <br />
-           <span className="text-primary">{"Kapıdan Teslim."}</span>
+            Siz işinize bakın.
+            <br />
+            <span className="text-primary">Kıyafet bize emanet.</span>
           </motion.h1>
 
-          {/* Subheadline */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
+            transition={{ duration: 0.6, delay: 0.16 }}
+            className="mx-auto mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg lg:mx-0"
           >
-            {"Evden çamaşır toplama, yıkama, ütüleme ve kapıya teslim hizmeti."}
-            <br className="hidden sm:block" />
-            {"Kilo bazlı fiyatlandırma, 24–48 saat teslim. Çekmeköy genelinde hizmet veriyoruz."}
+            Kuru temizleme, çamaşır, ütü ve daha fazlası. Kapıdan toplama,
+            profesyonel temizlik, kapıya teslim. İstanbul’da seçilmiş partner
+            kuru temizlemecilerle.
           </motion.p>
 
-          {/* CTAs */}
+          {/* Address input + App CTA — desktop only (Brief §9.3) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-8 flex flex-col items-center gap-3 sm:flex-row"
+            transition={{ duration: 0.6, delay: 0.24 }}
+            className="mt-8"
           >
-            <Button
-              asChild
-              size="lg"
-              className="rounded-full bg-primary px-7 text-base font-semibold text-primary-foreground hover:bg-primary/90"
+            <div className="hidden items-center gap-2 rounded-full border border-border bg-background p-1.5 shadow-sm sm:flex sm:max-w-md lg:mx-0">
+              <div className="flex flex-1 items-center gap-2 pl-3 text-muted-foreground">
+                <MapPin className="size-4 shrink-0" />
+                <input
+                  type="text"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="Mahalleni yaz, başlayalım"
+                  aria-label="Adres"
+                  className="w-full bg-transparent py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+                />
+              </div>
+              <AppDownloadButton
+                label="App’i İndir"
+                size="default"
+                showArrow={false}
+                event="hero_app_download_click"
+                className="px-5"
+              />
+            </div>
+
+            {/* Mobile: straight to App download */}
+            <div className="sm:hidden">
+              <AppDownloadButton
+                label="App’i İndir"
+                event="hero_app_download_click"
+                className="w-full justify-center"
+              />
+            </div>
+
+            <p
+              className="mt-2 text-center text-xs text-muted-foreground transition-opacity sm:text-left"
+              style={{ opacity: entered ? 1 : 0 }}
+              aria-hidden={!entered}
             >
-              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                {"Sipariş Ver"}
-                <ArrowRight className="ml-1 size-4" />
-              </a>
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              asChild
-              className="rounded-full border-border px-7 text-base font-semibold text-foreground"
-            >
-              <a href="#nasil-calisir">{"Nasıl Çalışır?"}</a>
-            </Button>
+              Adresini uygulamada gireceksin — hadi başlayalım.
+            </p>
           </motion.div>
 
-
+          {/* Social proof mini */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.32 }}
+            className="mt-6 flex items-center justify-center gap-2 lg:justify-start"
+          >
+            <div className="flex" aria-hidden="true">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="size-4 fill-amber text-amber" />
+              ))}
+            </div>
+            <span className="text-sm text-muted-foreground">
+              Çekmeköy’de 1+ yıl, 1.500+ sipariş
+            </span>
+          </motion.div>
         </div>
+
+        {/* Right column — hero visual */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="relative mx-auto w-full max-w-md lg:max-w-none"
+        >
+          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-border bg-muted shadow-xl">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster="/images/yikat-logo-blue.png"
+              className="size-full object-cover motion-reduce:hidden"
+            >
+              <source src="/videos/laundry-bg.mp4" type="video/mp4" />
+            </video>
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy/30 via-transparent to-transparent" />
+          </div>
+          {/* Floating guarantee chip */}
+          <div className="absolute -bottom-4 -left-4 hidden rounded-2xl border border-border bg-background px-4 py-3 shadow-lg sm:block">
+            <p className="text-xs font-medium uppercase tracking-wide text-primary">
+              YIKAT Garantisi
+            </p>
+            <p className="mt-0.5 text-sm text-foreground">
+              Memnun kalmazsan ücretsiz tekrar
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

@@ -1,26 +1,31 @@
 import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
+import { TrustBand } from "@/components/trust-band"
+import { ServicesSection } from "@/components/services-section"
 import { HowItWorks } from "@/components/how-it-works"
-import { PricingSection } from "@/components/pricing-section"
 import { WhyYikat } from "@/components/why-yikat"
+import { AreaTeaser } from "@/components/area-teaser"
+import { Testimonials } from "@/components/testimonials"
+import { AppBand } from "@/components/app-band"
+import { PartnerCta } from "@/components/partner-cta"
 import { FaqSection } from "@/components/faq-section"
-import { CtaBand } from "@/components/cta-band"
 import { Footer } from "@/components/footer"
-
-const WHATSAPP_URL =
-  "https://wa.me/908503033193?text=Merhaba%2C%20sipari%C5%9F%20vermek%20istiyorum."
 
 export default function Home() {
   return (
     <>
-      <Navbar whatsappUrl={WHATSAPP_URL} />
+      <Navbar />
       <main>
-        <HeroSection whatsappUrl={WHATSAPP_URL} />
+        <HeroSection />
+        <TrustBand />
+        <ServicesSection />
         <HowItWorks />
-        <PricingSection whatsappUrl={WHATSAPP_URL} />
         <WhyYikat />
+        <AreaTeaser />
+        <Testimonials />
+        <AppBand />
+        <PartnerCta />
         <FaqSection />
-        <CtaBand whatsappUrl={WHATSAPP_URL} />
       </main>
       <Footer />
     </>
