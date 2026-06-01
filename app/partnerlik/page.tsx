@@ -106,11 +106,11 @@ export default function PartnerlikPage() {
 
         {/* How it works (partner) */}
         <section className="bg-muted py-20 sm:py-28">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <h2 className="text-center text-3xl tracking-tight text-foreground sm:text-4xl">
               Başvurudan ilk siparişe
             </h2>
-            <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-14 grid gap-6 sm:grid-cols-3">
               {steps.map((s) => (
                 <div key={s.num} className="flex flex-col">
                   <span className="text-5xl font-medium tracking-tight text-primary/20">{s.num}</span>
