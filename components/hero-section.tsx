@@ -61,9 +61,7 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.16 }}
             className="mx-auto mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg lg:mx-0"
           >
-            Kuru temizleme, çamaşır, ütü ve daha fazlası. Kapıdan toplama,
-            profesyonel temizlik, kapıya teslim. İstanbul’da seçilmiş partner
-            kuru temizlemecilerle.
+            Profesyonel temizlik ve yıkama hizmeti
           </motion.p>
 
           {/* Address input + App CTA — desktop only (Brief §9.3) */}
