@@ -4,12 +4,6 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { PartnerForm } from "@/components/partner-form"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
 import { trustStats } from "@/lib/site"
 
 export const metadata: Metadata = {
@@ -50,44 +44,9 @@ const valueProps = [
 const steps = [
   { num: "01", title: "Bilgilendirme", desc: "Başvuru sonrası ekibimiz dükkanınıza gelir, modeli birlikte gözden geçiririz." },
   { num: "02", title: "Sözleşme", desc: "Partner sözleşmesini imzalar, liste fiyatlarınızı netleştiririz." },
-  { num: "03", title: "Eğitim", desc: "Sipariş paneli kullanımı, kalite standartları ve kurye iletişimini öğrenirsiniz." },
-  { num: "04", title: "İlk sipariş", desc: "Pilot kapsama dahil olursunuz, müşteri trafiği başlar." },
+  { num: "03", title: "İlk sipariş", desc: "Pilot kapsama dahil olursunuz, müşteri trafiği başlar." },
 ]
 
-const partnerFaqs = [
-  {
-    q: "Komisyon ne zaman başlar?",
-    a: "Başlangıçta sıfır komisyonla çalışırsınız. Komisyon ve aşamalı tedarikçi indirimi koşulları partner sözleşmesinde açıkça tanımlanır; sözlü mutabakatla değişmez.",
-  },
-  {
-    q: "Müşteri benim adımı görür mü?",
-    a: "Operasyon YIKAT markası altında yürür. Müşteriye dönük marka deneyimi YIKAT’tır; sizin işiniz temizlik kalitesine odaklanmaktır.",
-  },
-  {
-    q: "Hasar olursa kim öder?",
-    a: "Hasar süreci sözleşmede tanımlı açık bir prosedürle işletilir. YIKAT Garantisi müşteri tarafında geçerlidir; partner sorumlulukları sözleşmede netleşir.",
-  },
-  {
-    q: "Sözleşme süresi ne kadar?",
-    a: "Standart partner sözleşmesi makul bir başlangıç süresi içerir ve şartları başvuru görüşmesinde paylaşılır.",
-  },
-  {
-    q: "İstediğim zaman çıkabilir miyim?",
-    a: "Çıkış koşulları sözleşmede şeffaf biçimde yer alır. Sizi bağlayan gizli madde yoktur.",
-  },
-  {
-    q: "Tedarikçi indirimi nasıl uygulanır?",
-    a: "6. ay sonrasında ölçek ve kalite kriterlerini karşılayan partnerlere otomatik toptan indirim devreye girer. Hesaplama yöntemi sözleşmede açıkça yazılıdır.",
-  },
-  {
-    q: "Hangi yazılım/teknolojiyi kullanacağım?",
-    a: "Tüm dijital altyapı YIKAT tarafından sağlanır: sipariş yönetim paneli, kurye organizasyonu ve müşteri iletişimi. Ek bir yatırım gerekmez.",
-  },
-  {
-    q: "Vergi/fatura işleyişi nasıl olacak?",
-    a: "Faturalandırma ve vergi işleyişi sözleşme aşamasında, mevzuata uygun şekilde netleştirilir.",
-  },
-]
 
 export default function PartnerlikPage() {
   return (
@@ -201,30 +160,6 @@ export default function PartnerlikPage() {
           </div>
         </section>
 
-        {/* Partner FAQ */}
-        <section className="bg-background py-20 sm:py-28">
-          <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-center text-3xl tracking-tight text-foreground sm:text-4xl">
-              Partner soruları
-            </h2>
-            <Accordion type="single" collapsible className="mt-12 space-y-3">
-              {partnerFaqs.map((faq, i) => (
-                <AccordionItem
-                  key={i}
-                  value={`pf-${i}`}
-                  className="rounded-xl border border-border bg-card px-5"
-                >
-                  <AccordionTrigger className="py-4 text-left text-sm font-medium text-foreground hover:no-underline sm:text-base">
-                    {faq.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
-                    {faq.a}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </section>
       </main>
       <Footer />
     </>
