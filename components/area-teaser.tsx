@@ -17,7 +17,7 @@ export function AreaTeaser() {
             Hizmet bölgesi
           </span>
           <p className="mx-auto mt-5 max-w-xl text-balance text-2xl leading-snug tracking-tight text-foreground sm:text-3xl">
-            Anadolu yakasından başlıyoruz. Sıradaki sizin mahalleniz olabilir.
+            Anadolu yakasına genişliyoruz. Sıradaki sizin mahalleniz olabilir.
           </p>
           <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
             Hangi mahallelerde olduğumuzu uygulamada adresini girince görürsün.
