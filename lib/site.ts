@@ -20,5 +20,4 @@ export const trustStats = [
   { value: '1.500+', label: 'tamamlanan sipariş' },
   { value: '12+', label: 'partner kuru temizlemeci' },
   { value: '18+', label: 'mahallede hizmet' },
-  { value: '1+ yıl', label: 'operasyon deneyimi' },
 ] as const

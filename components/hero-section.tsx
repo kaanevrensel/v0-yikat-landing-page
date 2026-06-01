@@ -125,7 +125,7 @@ export function HeroSection() {
               ))}
             </div>
             <span className="text-sm text-muted-foreground">
-              Çekmeköy’de 1+ yıl, 1.500+ sipariş
+              Çekmeköy’de 1.500+ sipariş
             </span>
           </motion.div>
         </div>
