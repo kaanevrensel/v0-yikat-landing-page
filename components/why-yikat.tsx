@@ -6,8 +6,8 @@ import { Clock, ShieldCheck, Camera, Store } from "lucide-react"
 const benefits = [
   {
     icon: Clock,
-    title: "Zamanını geri ver",
-    desc: "Sipariş, takip, teslim — hepsi telefonundan. WhatsApp’a, telefona, randevuya gerek yok.",
+    title: "Zamanını geri kazan",
+    desc: "Sipariş, takip, teslim — Hepsi uygulamadan tek tıkla. WhatsApp’a, telefona, randevuya gerek yok.",
   },
   {
     icon: ShieldCheck,
