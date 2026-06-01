@@ -109,19 +109,6 @@
     scroll-padding-top: 5rem;
   }
   body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings: 'cv11', 'ss01';
-    letter-spacing: -0.011em;
-  }
-  /*
-    Brief §8.2 — headings use medium weight only.
-    600/700 read too heavy for the premium tone; cap heading weight at 500.
-  */
-  h1, h2, h3, h4 {
-    font-weight: 500;
-    letter-spacing: -0.02em;
-  }
-  p {
-    line-height: 1.6;
+    @apply bg-background text-foreground;
   }
 }
