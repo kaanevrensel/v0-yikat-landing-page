@@ -31,18 +31,6 @@ export function HeroSection() {
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[60%_40%] lg:gap-8 lg:px-8">
         {/* Left column */}
         <div className="text-center lg:text-left">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-1.5 text-xs font-medium uppercase tracking-wide text-primary"
-          >
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-75" />
-              <span className="relative inline-flex size-2 rounded-full bg-primary" />
-            </span>
-            Yeni · İstanbul Anadolu Yakası
-          </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
