@@ -52,7 +52,7 @@ export function HeroSection() {
           >
             Siz işinize bakın.
             <br />
-            <span className="text-primary">Kıyafet bize emanet.</span>
+            <span className="text-primary">Kirliler bize emanet.</span>
           </motion.h1>
 
           <motion.p
