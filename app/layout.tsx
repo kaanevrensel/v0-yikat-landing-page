@@ -1,11 +1,18 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
+import localFont from 'next/font/local'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const inter = Inter({
-  subsets: ['latin', 'latin-ext'],
-  variable: '--font-inter',
+const okine = localFont({
+  src: [
+    { path: '../public/fonts/MADEOkineSansPERSONALUSE-Thin.otf', weight: '100' },
+    { path: '../public/fonts/MADEOkineSansPERSONALUSE-Light.otf', weight: '300' },
+    { path: '../public/fonts/MADEOkineSansPERSONALUSE-Regular.otf', weight: '400' },
+    { path: '../public/fonts/MADEOkineSansPERSONALUSE-Medium.otf', weight: '500' },
+    { path: '../public/fonts/MADEOkineSansPERSONALUSE-Bold.otf', weight: '700' },
+    { path: '../public/fonts/MADEOkineSansPERSONALUSE-Black.otf', weight: '900' },
+  ],
+  variable: '--font-okine',
   display: 'swap',
 })
 
@@ -142,7 +149,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${okine.variable} font-sans antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
