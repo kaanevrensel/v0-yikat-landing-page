@@ -18,7 +18,6 @@ export const siteConfig = {
 /** Conservative, claimable trust numbers (Brief §5.3 — do not inflate). */
 export const trustStats = [
   { value: '1.500+', label: 'tamamlanan sipariş' },
-  { value: '12+', label: 'partner kuru temizlemeci' },
-  { value: '18+', label: 'mahallede hizmet' },
+  { value: '14+', label: 'mahallede hizmet' },
   { value: '400+', label: 'memnun müşteri' },
 ] as const
