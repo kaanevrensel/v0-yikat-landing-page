@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Instagram, Linkedin, Twitter } from "lucide-react"
+import { Instagram, Linkedin } from "lucide-react"
 import { siteConfig } from "@/lib/site"
 
 /*
@@ -101,14 +101,11 @@ export function Footer() {
             </a>
           </p>
           <div className="flex items-center gap-4">
-            <a href="#" aria-label="Instagram" className="text-white/50 transition-colors hover:text-white">
+            <a href="https://www.instagram.com/yikat.app/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-white/50 transition-colors hover:text-white">
               <Instagram className="size-5" />
             </a>
-            <a href="#" aria-label="LinkedIn" className="text-white/50 transition-colors hover:text-white">
+            <a href="https://www.linkedin.com/company/yikat-laundry/?viewAsMember=true" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-white/50 transition-colors hover:text-white">
               <Linkedin className="size-5" />
-            </a>
-            <a href="#" aria-label="X" className="text-white/50 transition-colors hover:text-white">
-              <Twitter className="size-5" />
             </a>
           </div>
         </div>
