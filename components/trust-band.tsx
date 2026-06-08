@@ -12,7 +12,7 @@ export function TrustBand() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
-          className="grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-4"
+          className="flex flex-wrap justify-center gap-8 sm:gap-16"
         >
           {trustStats.map((stat) => (
             <div key={stat.label} className="text-center">
