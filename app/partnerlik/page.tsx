@@ -132,9 +132,9 @@ export default function PartnerlikPage() {
               1+ yıllık saha deneyimi ve binlerce tamamlanan sipariş. Anlaşmalı
               partner dükkanlarımızla büyüyoruz.
             </p>
-            <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4">
+            <div className="mt-12 flex flex-wrap justify-center gap-6">
               {trustStats.map((stat) => (
-                <div key={stat.label} className="rounded-2xl border border-border bg-card p-6">
+                <div key={stat.label} className="w-48 rounded-2xl border border-border bg-card p-6">
                   <div className="text-3xl tracking-tight text-foreground">{stat.value}</div>
                   <div className="mt-1 text-sm text-muted-foreground">{stat.label}</div>
                 </div>
