@@ -72,7 +72,7 @@ export function HeroCtas({ eventPrefix }: { eventPrefix: string }) {
 export function StaticHero() {
   const scene = SCENES[3]
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center px-4 pt-16" style={{ background: scene.bg }}>
+    <section className="relative flex min-h-dvh flex-col items-center justify-center px-4 pt-16" style={{ background: scene.bg }}>
       <span aria-hidden className="text-[120px] leading-none drop-shadow-xl md:text-[160px]">👟</span>
       <h1 className="mt-6 text-balance text-center text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
         Ayakkabın ilk günkü gibi.
@@ -95,20 +95,42 @@ const WINDOWS = [
   [0.69, 0.75, 1, 1],
 ] as const
 
-function sceneOpacity(progress: MotionValue<number>, i: number) {
+// Çamurun yıkama ortasında temizlenme aralığı ve CTA eşiği — WINDOWS ile birlikte okunur.
+const MUD_RINSE = [0.6, 0.72] as const
+const SHOE_CLEAN = [0.62, 0.74] as const
+const CTA_GATE = 0.72
+
+// Arka planlar yalnız fade-IN yapar; sonraki opak katman öncekini örter (DOM sırası).
+// Çift yönlü crossfade'de iki katman 0.5 opaklıkta binişince sayfa zemini sızıyordu.
+function useSceneBgOpacity(progress: MotionValue<number>, i: number) {
+  return useTransform(
+    progress,
+    i === 0 ? [0, 1] : [WINDOWS[i][0], WINDOWS[i][1]],
+    i === 0 ? [1, 1] : [0, 1],
+  )
+}
+
+function useSceneTextOpacity(progress: MotionValue<number>, i: number) {
   const [fadeInStart, fullStart, fullEnd, fadeOutEnd] = WINDOWS[i]
-  // İlk sahne başta görünür, son sahne sonda görünür kalır
-  return useTransform(progress, [fadeInStart, fullStart, fullEnd, fadeOutEnd], [i === 0 ? 1 : 0, 1, 1, i === 3 ? 1 : 0])
+  if (i === 0) return useTransform(progress, [0, fullEnd, fadeOutEnd], [1, 1, 0])
+  if (i === 3) return useTransform(progress, [fadeInStart, fullStart, 1], [0, 1, 1])
+  return useTransform(progress, [fadeInStart, fullStart, fullEnd, fadeOutEnd], [0, 1, 1, 0])
 }
 
-function sceneTextY(progress: MotionValue<number>, i: number) {
-  const [fadeInStart, fullStart] = WINDOWS[i]
-  return useTransform(progress, [fadeInStart, fullStart], [i === 0 ? 0 : 24, 0])
+// Jakub kalıbı: giren metin 24px yükselir, çıkan metin -24px ile sahneyi terk eder.
+function useSceneTextY(progress: MotionValue<number>, i: number) {
+  const [fadeInStart, fullStart, fullEnd, fadeOutEnd] = WINDOWS[i]
+  if (i === 0) return useTransform(progress, [fullEnd, fadeOutEnd], [0, -24])
+  if (i === 3) return useTransform(progress, [fadeInStart, fullStart], [24, 0])
+  return useTransform(progress, [fadeInStart, fullStart, fullEnd, fadeOutEnd], [24, 0, 0, -24])
 }
 
-function sceneTextBlur(progress: MotionValue<number>, i: number) {
-  const [fadeInStart, fullStart] = WINDOWS[i]
-  return useTransform(progress, [fadeInStart, fullStart], [i === 0 ? "blur(0px)" : "blur(8px)", "blur(0px)"])
+function useSceneTextBlur(progress: MotionValue<number>, i: number) {
+  return useTransform(
+    progress,
+    i === 0 ? [0, 1] : [WINDOWS[i][0], WINDOWS[i][1]],
+    i === 0 ? ["blur(0px)", "blur(0px)"] : ["blur(8px)", "blur(0px)"],
+  )
 }
 
 export function HeroScrollStory() {
@@ -116,45 +138,59 @@ export function HeroScrollStory() {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] })
 
-  // Not: sabit sayıda (4) sahne olduğu için hook çağrı sırası her render'da aynıdır.
-  const bg0 = sceneOpacity(scrollYProgress, 0)
-  const bg1 = sceneOpacity(scrollYProgress, 1)
-  const bg2 = sceneOpacity(scrollYProgress, 2)
-  const bg3 = sceneOpacity(scrollYProgress, 3)
+  // Sabit sayıda (4) sahne — hook çağrı sırası her render'da aynıdır; helper'lar map İÇİNDE ÇAĞRILMAZ.
+  const bg0 = useSceneBgOpacity(scrollYProgress, 0)
+  const bg1 = useSceneBgOpacity(scrollYProgress, 1)
+  const bg2 = useSceneBgOpacity(scrollYProgress, 2)
+  const bg3 = useSceneBgOpacity(scrollYProgress, 3)
   const bgOpacities = [bg0, bg1, bg2, bg3]
 
-  // Metin girişleri — Jakub kalıbı: opacity + translateY + blur (spec §4)
-  const ty0 = sceneTextY(scrollYProgress, 0)
-  const ty1 = sceneTextY(scrollYProgress, 1)
-  const ty2 = sceneTextY(scrollYProgress, 2)
-  const ty3 = sceneTextY(scrollYProgress, 3)
-  const tb0 = sceneTextBlur(scrollYProgress, 0)
-  const tb1 = sceneTextBlur(scrollYProgress, 1)
-  const tb2 = sceneTextBlur(scrollYProgress, 2)
-  const tb3 = sceneTextBlur(scrollYProgress, 3)
+  const to0 = useSceneTextOpacity(scrollYProgress, 0)
+  const to1 = useSceneTextOpacity(scrollYProgress, 1)
+  const to2 = useSceneTextOpacity(scrollYProgress, 2)
+  const to3 = useSceneTextOpacity(scrollYProgress, 3)
+  const textOpacities = [to0, to1, to2, to3]
+
+  const ty0 = useSceneTextY(scrollYProgress, 0)
+  const ty1 = useSceneTextY(scrollYProgress, 1)
+  const ty2 = useSceneTextY(scrollYProgress, 2)
+  const ty3 = useSceneTextY(scrollYProgress, 3)
   const textYs = [ty0, ty1, ty2, ty3]
+
+  const tb0 = useSceneTextBlur(scrollYProgress, 0)
+  const tb1 = useSceneTextBlur(scrollYProgress, 1)
+  const tb2 = useSceneTextBlur(scrollYProgress, 2)
+  const tb3 = useSceneTextBlur(scrollYProgress, 3)
   const textBlurs = [tb0, tb1, tb2, tb3]
 
-  // Ayakkabı durum katmanları
-  const mudOpacity = useTransform(scrollYProgress, [0.19, 0.25, 0.6, 0.72], [0, 1, 1, 0])
-  const foamOpacity = useTransform(scrollYProgress, [0.44, 0.5, 0.69, 0.75], [0, 1, 1, 0])
-  const waveX = useTransform(scrollYProgress, [0.44, 0.75], ["-120%", "120%"])
-  const sparkleOpacity = useTransform(scrollYProgress, [0.75, 0.82, 1], [0, 1, 1])
+  const mudOpacity = useTransform(
+    scrollYProgress,
+    [WINDOWS[1][0], WINDOWS[1][1], MUD_RINSE[0], MUD_RINSE[1]],
+    [0, 1, 1, 0],
+  )
+  const foamOpacity = useTransform(
+    scrollYProgress,
+    [WINDOWS[2][0], WINDOWS[2][1], WINDOWS[2][2], WINDOWS[2][3]],
+    [0, 1, 1, 0],
+  )
+  const waveX = useTransform(scrollYProgress, [WINDOWS[2][0], WINDOWS[2][3]], ["-120%", "120%"])
+  const sparkleOpacity = useTransform(scrollYProgress, [WINDOWS[3][1], 0.82, 1], [0, 1, 1])
   const shoeFilter = useTransform(
     scrollYProgress,
-    [0.19, 0.25, 0.62, 0.74],
+    [WINDOWS[1][0], WINDOWS[1][1], SHOE_CLEAN[0], SHOE_CLEAN[1]],
     ["brightness(1) sepia(0)", "brightness(0.75) sepia(0.6)", "brightness(0.75) sepia(0.6)", "brightness(1) sepia(0)"],
   )
   const hintOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0])
-  const ctaPointer = useTransform(scrollYProgress, (v) => (v > 0.72 ? "auto" : "none"))
+  // Görünmezken klavye odağından da çıkar (WCAG 2.4.7) — pointerEvents yerine visibility.
+  const ctaVisibility = useTransform(scrollYProgress, (v) => (v > CTA_GATE ? "visible" : "hidden"))
 
   if (prefersReduced) return <StaticHero />
 
   return (
-    // Pin alanı: mobil 160vh, md+ 220vh (spec §4)
-    <section ref={ref} aria-label="YIKAT hikayesi" className="relative h-[160vh] md:h-[220vh]">
-      <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
-        {/* Arka plan katmanları */}
+    // Scrub mesafesi = yükseklik − 1 ekran → mobil ~1.6, masaüstü ~2.2 ekran (spec §4).
+    <section ref={ref} aria-label="YIKAT hikayesi" className="relative h-[260vh] md:h-[320vh]">
+      <div className="sticky top-0 flex h-dvh items-center justify-center overflow-hidden">
+        {/* Arka plan katmanları — yalnız fade-in, sonraki katman öncekini örter */}
         {SCENES.map((scene, i) => (
           <motion.div
             key={scene.key}
@@ -166,11 +202,12 @@ export function HeroScrollStory() {
 
         {/* Sabit kadraj: ayakkabı + durum katmanları */}
         <div className="relative z-10 flex flex-col items-center">
-          <div className="relative">
+          {/* drop-shadow sarmalayıcıda: içteki animasyonlu filter onu ezemez */}
+          <div className="relative drop-shadow-xl">
             <motion.span
               aria-hidden
-              className="block text-[120px] leading-none drop-shadow-xl md:text-[180px]"
-              style={{ filter: shoeFilter }}
+              className="block text-[120px] leading-none md:text-[180px]"
+              style={{ filter: shoeFilter, willChange: "filter" }}
             >
               👟
             </motion.span>
@@ -197,13 +234,13 @@ export function HeroScrollStory() {
             </motion.div>
           </div>
 
-          {/* Sahne metinleri — tek h1 ilk sahnede (spec §4) */}
-          <div className="relative mt-8 h-28 w-full max-w-2xl px-4 text-center">
+          {/* Grid yığını: kapsayıcı en uzun sahne metnine göre boyutlanır — CTA ile çakışamaz (eski h-28 taşıyordu) */}
+          <div className="mt-8 grid w-full max-w-2xl px-4 text-center">
             {SCENES.map((scene, i) => (
               <motion.div
                 key={scene.key}
-                className="absolute inset-x-0 top-0"
-                style={{ opacity: bgOpacities[i], y: textYs[i], filter: textBlurs[i] }}
+                className="col-start-1 row-start-1"
+                style={{ opacity: textOpacities[i], y: textYs[i], filter: textBlurs[i] }}
               >
                 {i === 0 ? (
                   <h1 className="text-balance text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
@@ -225,20 +262,22 @@ export function HeroScrollStory() {
             ))}
           </div>
 
-          {/* Final CTA'ları — yalnız son sahnede tıklanabilir */}
-          <motion.div className="mt-4" style={{ opacity: bg3, pointerEvents: ctaPointer }}>
+          {/* Final CTA'ları — yalnız son sahnede görünür VE odaklanabilir */}
+          <motion.div className="mt-4" style={{ opacity: to3, visibility: ctaVisibility }}>
             <HeroCtas eventPrefix="hero" />
           </motion.div>
         </div>
 
-        {/* Kaydırma ipucu */}
-        <motion.div
-          aria-hidden
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 text-muted-foreground"
-          style={{ opacity: hintOpacity }}
-        >
-          <ChevronDown className="size-6 animate-bounce" />
-        </motion.div>
+        {/* Kaydırma ipucu — konum dış div'de, animasyon içte (transform çakışması olmaz) */}
+        <div aria-hidden className="absolute bottom-6 left-1/2 -translate-x-1/2 text-muted-foreground">
+          <motion.div
+            style={{ opacity: hintOpacity }}
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ChevronDown className="size-6" />
+          </motion.div>
+        </div>
       </div>
     </section>
   )
