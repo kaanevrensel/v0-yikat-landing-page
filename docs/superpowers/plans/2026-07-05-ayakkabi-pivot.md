@@ -1847,6 +1847,15 @@ function useSceneTextY(progress: MotionValue<number>, i: number) {
 }
 ```
 
+- [ ] **Adım 2d2: Footer logosu** (Görev 12 review: beyaz logo da 1024×1024 kare — 110×32 deklarasyonla 32px kareye çöküyor) — `components/footer.tsx`te logo satırını navbar kalıbıyla değiştir:
+```tsx
+            <div className="flex items-center gap-2">
+              <Image src="/images/yikat-logo-white.png" alt="" width={28} height={28} className="size-7" />
+              <span className="text-lg font-semibold tracking-tight text-white">YIKAT</span>
+            </div>
+```
+(commit listesine `components/footer.tsx` eklenir)
+
 - [ ] **Adım 2e: BeforeAfter mobil kaydırma tuzağı + slider cilası** (Görev 10 review) — `components/before-after.tsx` CompareCard'da:
 1. Kart className'inde `touch-none` → `touch-pan-y` (dikey kaydırma sayfayı kaydırır, yatay sürükleme slider'ı sürer).
 2. `onPointerUp` satırının altına `onPointerCancel={() => (dragging.current = false)}` ekle (pan-y ile tarayıcı scroll devralınca cancel gelir — ikisi birlikte şart).
