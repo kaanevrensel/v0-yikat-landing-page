@@ -1522,6 +1522,14 @@ export default function Home() {
 }
 ```
 
+- [ ] **Adım 1b: Görev 4 review bulgularını uygula** (kalite denetçisi önerileri)
+
+1. `faqJsonLd` objesini ve onu basan `<script>` etiketini `app/layout.tsx`ten `app/page.tsx`e taşı (FAQ içeriği yalnız ana sayfada görünür — Google kuralı: işaretlenen içerik o sayfada görünmeli). `localBusinessJsonLd` layout'ta kalır.
+2. Her iki JSON-LD basımında `JSON.stringify(x)` yerine `JSON.stringify(x).replace(/</g, "\\u003c")` kullan (script-breakout sertleştirmesi).
+3. `lib/site.ts` siteConfig'e `phoneE164: "+908503033193",` alanı ekle (phoneHref'in hemen üstüne); layout'taki JSON-LD `telephone` alanı `siteConfig.phoneE164` olsun.
+4. `localBusinessJsonLd`e ekle: `"@id": siteConfig.url,` ve `hasMap: siteConfig.mapsPlaceUrl,`.
+5. Yasal sayfalara self-canonical ekle (sitemap-canonical çelişkisini çözer): `app/kvkk/page.tsx` metadata'sına `alternates: { canonical: "https://www.yikat.tech/kvkk" }`, `app/mesafeli-satis-sozlesmesi/page.tsx`e `alternates: { canonical: "https://www.yikat.tech/mesafeli-satis-sozlesmesi" }` — sayfaların başka hiçbir yerine dokunma.
+
 - [ ] **Adım 2: Tam doğrulama**
 
 ```bash
