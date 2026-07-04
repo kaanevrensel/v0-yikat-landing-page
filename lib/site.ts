@@ -6,6 +6,7 @@ export const siteConfig = {
   name: "YIKAT",
   url: "https://www.yikat.tech",
   phone: "0850 303 31 93",
+  phoneE164: "+908503033193",
   phoneHref: "tel:+908503033193",
   email: "destek@yikat.tech",
   address: {

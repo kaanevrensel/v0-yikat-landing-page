@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Mesafeli Satış Sözleşmesi - YIKAT",
   description:
     "YIKAT Mesafeli Satış Sözleşmesi ve Ön Bilgilendirme Formu. 6502 sayılı Tüketicinin Korunması Hakkında Kanun kapsamında.",
+  alternates: { canonical: "https://www.yikat.tech/mesafeli-satis-sozlesmesi" },
 }
 
 export default function MesafeliSatisSozlesmesiPage() {

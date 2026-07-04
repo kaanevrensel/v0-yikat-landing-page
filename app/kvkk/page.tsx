@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "KVKK Aydınlatma Metni - YIKAT",
   description:
     "YIKAT Kişisel Verilerin İşlenmesine İlişkin Aydınlatma Metni. 6698 sayılı KVKK kapsamında haklarınız.",
+  alternates: { canonical: "https://www.yikat.tech/kvkk" },
 }
 
 export default function KvkkPage() {

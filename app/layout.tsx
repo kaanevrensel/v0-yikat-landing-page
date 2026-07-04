@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-import { siteConfig, faqs } from "@/lib/site"
+import { siteConfig } from "@/lib/site"
 import "./globals.css"
 
 const inter = Inter({
@@ -56,11 +56,13 @@ const localBusinessJsonLd = {
   alternateName: "Yıkat Ayakkabı Yıkama",
   description:
     "Bakırköy'de profesyonel ayakkabı yıkama dükkanı. Spor, deri, süet ve çocuk ayakkabıları için malzemesine uygun yıkama, aynı gün teslim.",
+  "@id": siteConfig.url,
   url: siteConfig.url,
-  telephone: "+908503033193",
+  telephone: siteConfig.phoneE164,
   email: siteConfig.email,
   image: `${siteConfig.url}/images/yikat-logo-blue.png`,
   priceRange: "₺₺",
+  hasMap: siteConfig.mapsPlaceUrl,
   address: {
     "@type": "PostalAddress",
     streetAddress: siteConfig.address.street,
@@ -86,27 +88,13 @@ const localBusinessJsonLd = {
   ],
 }
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.slice(0, 4).map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
-  })),
-}
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="tr">
       <body className={`${inter.variable} font-sans antialiased`}>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd).replace(/</g, "\\u003c") }}
         />
         {children}
         <Analytics />
