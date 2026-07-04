@@ -1809,9 +1809,47 @@ Desktop nav linklerinin ve telefon ikonunun rengi: `text-muted-foreground` → `
 }
 ```
 
+- [ ] **Adım 2b: MotionConfig sarmalayıcı** (Görev 9 review: whileInView bölümleri reduced-motion'a saygı duymuyor) — `components/motion-provider.tsx` oluştur:
+```tsx
+"use client"
+
+import { MotionConfig } from "framer-motion"
+
+export function MotionProvider({ children }: { children: React.ReactNode }) {
+  return <MotionConfig reducedMotion="user">{children}</MotionConfig>
+}
+```
+Görev 13'te app/page.tsx kompozisyonu `<MotionProvider>` ile sarılacak (Navbar dahil, Footer hariç olabilir — hepsini sarmak da güvenli).
+
+- [ ] **Adım 2c: ValueBand ikon-veri bağlaşımı + başlık hiyerarşisi** (Görev 9 review):
+1. `lib/site.ts` valueProps öğelerine `icon` alanı ekle: sırasıyla `icon: "clock",`, `icon: "shield",`, `icon: "gem",` (title satırının üstüne).
+2. `components/value-band.tsx`te `const ICONS = [Clock, ShieldCheck, Gem]` → 
+```tsx
+const ICONS = { clock: Clock, shield: ShieldCheck, gem: Gem } as const
+```
+ve `const Icon = ICONS[i]` → `const Icon = ICONS[v.icon]`; map imzasından kullanılmayan `i` parametresini ve delay'i koruyarak (`delay: i * 0.08` kalır) düzenle.
+3. ValueBand section'ının başına görünmez başlık ekle (belge hiyerarşisi h1→h3 atlamasın): `<h2 className="sr-only">Neden YIKAT</h2>`.
+
+- [ ] **Adım 2d: Hero koşullu hook düzleştirme** (hero re-review nit; eslint gelecek-uyumluluğu) — `components/hero-scroll-story.tsx`te `useSceneTextOpacity` ve `useSceneTextY` if-dallarını, diğer iki helper gibi önce dizileri hesaplayıp TEK koşulsuz `useTransform` çağrısına çevir:
+```tsx
+function useSceneTextOpacity(progress: MotionValue<number>, i: number) {
+  const [fadeInStart, fullStart, fullEnd, fadeOutEnd] = WINDOWS[i]
+  const input = i === 0 ? [0, fullEnd, fadeOutEnd] : i === 3 ? [fadeInStart, fullStart, 1] : [fadeInStart, fullStart, fullEnd, fadeOutEnd]
+  const output = i === 0 ? [1, 1, 0] : i === 3 ? [0, 1, 1] : [0, 1, 1, 0]
+  return useTransform(progress, input, output)
+}
+
+function useSceneTextY(progress: MotionValue<number>, i: number) {
+  const [fadeInStart, fullStart, fullEnd, fadeOutEnd] = WINDOWS[i]
+  const input = i === 0 ? [fullEnd, fadeOutEnd] : i === 3 ? [fadeInStart, fullStart] : [fadeInStart, fullStart, fullEnd, fadeOutEnd]
+  const output = i === 0 ? [0, -24] : i === 3 ? [24, 0] : [24, 0, 0, -24]
+  return useTransform(progress, input, output)
+}
+```
+
 - [ ] **Adım 3: Doğrula + commit**
 
-`npx tsc --noEmit` temiz; `git add components/navbar.tsx app/globals.css && git commit -m "pivot: navbar contrast/a11y polish + reduced-motion scroll guard"`
+`npx tsc --noEmit` temiz; `git add components/navbar.tsx app/globals.css components/motion-provider.tsx components/value-band.tsx components/hero-scroll-story.tsx lib/site.ts && git commit -m "pivot: a11y/motion polish — navbar contrast, MotionConfig, icon keys, hook flatten"`
 
 ---
 
