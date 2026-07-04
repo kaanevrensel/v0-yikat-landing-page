@@ -1551,6 +1551,54 @@ git add app/page.tsx && git commit -m "pivot: assemble single-page shoe-wash hom
 
 ---
 
+### Görev 13b: Navbar cilası + erişilebilirlik (Görev 6 review bulguları)
+
+**Files:** Modify `components/navbar.tsx`, Modify `app/globals.css`
+
+- [ ] **Adım 1: `components/navbar.tsx` düzeltmeleri** (tam eşleşen string değişimleri):
+
+1. Kontrast + border pop + açık menü dikişi: `const [open, setOpen] = useState(false)` satırından sonra `const solid = scrolled || open` ekle; header className'ını şununla değiştir:
+```tsx
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
+        solid ? "border-border bg-background/80 backdrop-blur-xl" : "border-transparent bg-transparent",
+      )}
+```
+Desktop nav linklerinin ve telefon ikonunun rengi: `text-muted-foreground` → `cn(solid ? "text-muted-foreground" : "text-foreground/80")` (hover sınıfları kalır).
+2. Logo: kare asset 96×28 ile ezilmesin — logo satırını şununla değiştir:
+```tsx
+        <Link href="/" aria-label="YIKAT ana sayfa" className="flex items-center gap-2">
+          <Image src="/images/yikat-logo-blue.png" alt="" width={28} height={28} priority className="size-7" />
+          <span className="text-lg font-semibold tracking-tight text-foreground">YIKAT</span>
+        </Link>
+```
+3. Hamburger: `className="md:hidden"` → `className="-m-2 p-2 md:hidden"`, butona `aria-controls="mobile-menu"` ekle; `motion.div`e `id="mobile-menu"` ekle; içindeki `<div className="flex flex-col gap-1 px-4 py-3">` → `<nav aria-label="Mobil menü" className="flex flex-col gap-1 px-4 py-3">` (kapanışı `</nav>`).
+4. Escape ile kapanma — mevcut scroll useEffect'inin altına:
+```tsx
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false)
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [open])
+```
+5. Mobil CTA'lar menüyü kapatsın: mobil Yol Tarifi onClick → `() => { setOpen(false); track("nav_directions_click_mobile") }`; mobil Ara onClick → `() => { setOpen(false); track("nav_call_click_mobile") }`.
+
+- [ ] **Adım 2: `app/globals.css` reduced-motion smooth-scroll koruması** — `html { scroll-behavior: smooth; ... }` bloğunun altına:
+```css
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+```
+
+- [ ] **Adım 3: Doğrula + commit**
+
+`npx tsc --noEmit` temiz; `git add components/navbar.tsx app/globals.css && git commit -m "pivot: navbar contrast/a11y polish + reduced-motion scroll guard"`
+
+---
+
 ### Görev 14: CLAUDE.md güncellemesi
 
 **Files:**
