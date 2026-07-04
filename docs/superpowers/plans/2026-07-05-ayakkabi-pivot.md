@@ -1891,10 +1891,17 @@ function useSceneTextY(progress: MotionValue<number>, i: number) {
 
 Aynı dosyada "## Architecture", "## SEO layout" ve "## Known gotchas" bölümlerinde artık geçersiz olan satırları güncelle: rota listesi (`/` + 2 yasal sayfa), `lib/site.ts`in yeni içeriği (siteConfig/valueProps/priceMenu/faqs), API rotalarının ve formların kaldırıldığı, `RESEND_API_KEY`in artık kullanılmadığı, dinamik sitemap/robots, redirects. Kısa tut — CLAUDE.md haritadır, spec detay kaynağıdır.
 
+- [ ] **Adım 2b: Build artefaktı hijyeni** — `tsconfig.tsbuildinfo` her tsc çalışmasında kirlenen izlenen bir dosya:
+
+```bash
+git rm --cached tsconfig.tsbuildinfo
+printf '\n# TypeScript incremental build cache\ntsconfig.tsbuildinfo\n' >> .gitignore
+```
+
 - [ ] **Adım 3: Commit**
 
 ```bash
-git add CLAUDE.md && git commit -m "pivot: update CLAUDE.md for shoe-wash store site"
+git add CLAUDE.md .gitignore && git commit -m "pivot: update CLAUDE.md for shoe-wash store site; ignore tsbuildinfo"
 ```
 
 ---
@@ -1919,11 +1926,11 @@ pnpm start & SERVER_PID=$!
 sleep 4
 for r in hizmetler nasil-calisir partnerlik sss iletisim; do curl -so /dev/null -w "/$r -> %{http_code} %{redirect_url}\n" http://localhost:3000/$r; done
 curl -s http://localhost:3000 | grep -o '<title>[^<]*</title>'
-curl -s http://localhost:3000 | grep -o 'application/ld+json' | wc -l
+curl -s http://localhost:3000 | grep -o '<script type="application/ld+json">' | wc -l
 kill $SERVER_PID
 ```
 
-Beklenen: 5 rota `308` + `http://localhost:3000/`; title `Ayakkabı Yıkama Bakırköy — YIKAT | Aynı Gün Teslim`; JSON-LD sayısı `2`.
+Beklenen: 5 rota `308` + `http://localhost:3000/`; title `Ayakkabı Yıkama Bakırköy — YIKAT | Aynı Gün Teslim`; JSON-LD script tag sayısı `2` (ham substring grep'i KULLANMA — RSC flight payload'ı literal string'i çoğaltır, 4 döner).
 
 - [ ] **Adım 2b: Lighthouse (spec §10)**
 
