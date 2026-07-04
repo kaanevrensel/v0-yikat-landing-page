@@ -1847,9 +1847,15 @@ function useSceneTextY(progress: MotionValue<number>, i: number) {
 }
 ```
 
+- [ ] **Adım 2e: BeforeAfter mobil kaydırma tuzağı + slider cilası** (Görev 10 review) — `components/before-after.tsx` CompareCard'da:
+1. Kart className'inde `touch-none` → `touch-pan-y` (dikey kaydırma sayfayı kaydırır, yatay sürükleme slider'ı sürer).
+2. `onPointerUp` satırının altına `onPointerCancel={() => (dragging.current = false)}` ekle (pan-y ile tarayıcı scroll devralınca cancel gelir — ikisi birlikte şart).
+3. Slider div'ine `aria-valuetext={`%${Math.round(pct)} kirli görünümde`}` ve className'e `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary` ekle.
+4. Tutamaçtaki `⇔` metni yerine lucide `ChevronsLeftRight` ikonu (`<ChevronsLeftRight className="size-3.5" />`, import ekle) — platformlar arası tutarlı glif.
+
 - [ ] **Adım 3: Doğrula + commit**
 
-`npx tsc --noEmit` temiz; `git add components/navbar.tsx app/globals.css components/motion-provider.tsx components/value-band.tsx components/hero-scroll-story.tsx lib/site.ts && git commit -m "pivot: a11y/motion polish — navbar contrast, MotionConfig, icon keys, hook flatten"`
+`npx tsc --noEmit` temiz; `git add components/navbar.tsx app/globals.css components/motion-provider.tsx components/value-band.tsx components/before-after.tsx components/hero-scroll-story.tsx lib/site.ts && git commit -m "pivot: a11y/motion polish — navbar contrast, MotionConfig, icon keys, touch-pan-y, hook flatten"`
 
 ---
 
