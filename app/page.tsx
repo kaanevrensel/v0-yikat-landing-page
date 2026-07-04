@@ -1,3 +1,4 @@
+import { MotionProvider } from "@/components/motion-provider"
 import { Navbar } from "@/components/navbar"
 import { HeroScrollStory } from "@/components/hero-scroll-story"
 import { ValueBand } from "@/components/value-band"
@@ -27,18 +28,20 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
       />
-      <Navbar />
-      <main>
-        <HeroScrollStory />
-        <ValueBand />
-        <HowItWorks />
-        <BeforeAfter />
-        <PriceMenu />
-        <VisitSection />
-        <FaqSection />
-        <ComingSoonBand />
-      </main>
-      <Footer />
+      <MotionProvider>
+        <Navbar />
+        <main>
+          <HeroScrollStory />
+          <ValueBand />
+          <HowItWorks />
+          <BeforeAfter />
+          <PriceMenu />
+          <VisitSection />
+          <FaqSection />
+          <ComingSoonBand />
+        </main>
+        <Footer />
+      </MotionProvider>
     </>
   )
 }

@@ -8,7 +8,10 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div>
-            <Image src="/images/yikat-logo-white.png" alt="YIKAT" width={110} height={32} className="h-8 w-auto" />
+            <div className="flex items-center gap-2">
+              <Image src="/images/yikat-logo-white.png" alt="" width={28} height={28} className="size-7" />
+              <span className="text-lg font-semibold tracking-tight text-white">YIKAT</span>
+            </div>
             <p className="mt-4 max-w-xs text-sm text-white/70">
               Bakırköy'de profesyonel ayakkabı yıkama. Aynı gün teslim.
             </p>

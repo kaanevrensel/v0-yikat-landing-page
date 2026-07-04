@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useState } from "react"
 import { motion } from "framer-motion"
+import { ChevronsLeftRight } from "lucide-react"
 
 // Placeholder panel — Higgsfield/gerçek fotoğraflar gelince <Image> ile değişecek (Görev 17).
 function ShoePanel({ dirty }: { dirty: boolean }) {
@@ -47,6 +48,7 @@ function CompareCard({ label }: { label: string }) {
         aria-valuemin={5}
         aria-valuemax={95}
         aria-valuenow={Math.round(pct)}
+        aria-valuetext={`%${Math.round(pct)} kirli görünümde`}
         tabIndex={0}
         onKeyDown={(e) => {
           if (e.key === "ArrowLeft") setPct((p) => Math.max(5, p - 5))
@@ -59,7 +61,8 @@ function CompareCard({ label }: { label: string }) {
         }}
         onPointerMove={(e) => dragging.current && updateFromClientX(e.clientX)}
         onPointerUp={() => (dragging.current = false)}
-        className="relative aspect-[4/3] cursor-ew-resize touch-none select-none overflow-hidden rounded-3xl border"
+        onPointerCancel={() => (dragging.current = false)}
+        className="relative aspect-[4/3] cursor-ew-resize touch-pan-y select-none overflow-hidden rounded-3xl border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       >
         {/* Alt katman: temiz */}
         <div className="absolute inset-0">
@@ -73,7 +76,7 @@ function CompareCard({ label }: { label: string }) {
         <div className="absolute inset-y-0 z-10" style={{ left: `${pct}%` }}>
           <div className="h-full w-0.5 -translate-x-1/2 bg-white shadow-[0_0_8px_rgba(4,44,83,0.4)]" />
           <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white px-2 py-1 text-xs font-semibold text-navy shadow-md">
-            ⇔
+            <ChevronsLeftRight className="size-3.5" />
           </div>
         </div>
         <span className="absolute left-3 top-3 rounded-full bg-[#8a6237] px-2.5 py-0.5 text-xs font-bold text-white">

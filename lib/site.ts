@@ -31,14 +31,17 @@ export const siteConfig = {
 // Güven şeridi — rakamsız değer önerileri (spec §2.2)
 export const valueProps = [
   {
+    icon: "clock",
     title: "Aynı Gün Teslim",
     description: "Sabah bırak, akşam al. Ayakkabın aynı gün tertemiz hazır.",
   },
   {
+    icon: "shield",
     title: "YIKAT Garantisi",
     description: "Memnun kalmazsan ücretsiz tekrar yıkarız.",
   },
   {
+    icon: "gem",
     title: "Malzeme Uzmanlığı",
     description: "Süet, deri, spor — her malzemeye kendine uygun yöntem.",
   },

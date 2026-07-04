@@ -112,17 +112,17 @@ function useSceneBgOpacity(progress: MotionValue<number>, i: number) {
 
 function useSceneTextOpacity(progress: MotionValue<number>, i: number) {
   const [fadeInStart, fullStart, fullEnd, fadeOutEnd] = WINDOWS[i]
-  if (i === 0) return useTransform(progress, [0, fullEnd, fadeOutEnd], [1, 1, 0])
-  if (i === 3) return useTransform(progress, [fadeInStart, fullStart, 1], [0, 1, 1])
-  return useTransform(progress, [fadeInStart, fullStart, fullEnd, fadeOutEnd], [0, 1, 1, 0])
+  const input = i === 0 ? [0, fullEnd, fadeOutEnd] : i === 3 ? [fadeInStart, fullStart, 1] : [fadeInStart, fullStart, fullEnd, fadeOutEnd]
+  const output = i === 0 ? [1, 1, 0] : i === 3 ? [0, 1, 1] : [0, 1, 1, 0]
+  return useTransform(progress, input, output)
 }
 
 // Jakub kalıbı: giren metin 24px yükselir, çıkan metin -24px ile sahneyi terk eder.
 function useSceneTextY(progress: MotionValue<number>, i: number) {
   const [fadeInStart, fullStart, fullEnd, fadeOutEnd] = WINDOWS[i]
-  if (i === 0) return useTransform(progress, [fullEnd, fadeOutEnd], [0, -24])
-  if (i === 3) return useTransform(progress, [fadeInStart, fullStart], [24, 0])
-  return useTransform(progress, [fadeInStart, fullStart, fullEnd, fadeOutEnd], [24, 0, 0, -24])
+  const input = i === 0 ? [fullEnd, fadeOutEnd] : i === 3 ? [fadeInStart, fullStart] : [fadeInStart, fullStart, fullEnd, fadeOutEnd]
+  const output = i === 0 ? [0, -24] : i === 3 ? [24, 0] : [24, 0, 0, -24]
+  return useTransform(progress, input, output)
 }
 
 function useSceneTextBlur(progress: MotionValue<number>, i: number) {
