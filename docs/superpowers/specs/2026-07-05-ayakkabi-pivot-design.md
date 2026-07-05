@@ -59,7 +59,7 @@ Yeni site tek sayfalık ana sayfa + yasal sayfalardan oluşur:
 
 **Teknik yaklaşım:**
 - Bölüm ~2.2 ekran boyu; içerik `position: sticky` ile sabitlenir, framer-motion `useScroll` + `useTransform` sahne geçişlerini scroll'a bağlar (scrub — kullanıcı hızı kontrol eder).
-- Katmanlı görsel mimari: sabit çerçevede ayakkabı katmanı (durum varyantları crossfade) + arka plan katmanı (crossfade/parallax-hafif). Tam video scrub değil — katmanlı görüntü seti (performans ve kontrol daha iyi).
+- Katmanlı görsel mimari: sabit çerçevede ayakkabı katmanı (durum varyantları crossfade) + arka plan katmanı (crossfade/parallax-hafif). ~~Tam video scrub değil — katmanlı görüntü seti (performans ve kontrol daha iyi).~~ **Revize (2026-07-05):** masaüstünde scroll-scrub video, mobilde statik keyframe crossfade — bkz. `2026-07-05-hero-scrub-video-design.md`.
 - Görseller: **Higgsfield MCP** ile üretilir (Soul/tutarlı obje). Gereken set: aynı kadraj/açıyla 4 sahne × (ayakkabı durumu + arka plan). İlk implementasyon **placeholder görsellerle** yapılır; Higgsfield kareleri hazır olunca dosya değişimiyle güncellenir.
 - `prefers-reduced-motion`: pin ve animasyon yok; statik final sahnesi (temiz ayakkabı + başlık + CTA) gösterilir.
 - Mobil: aynı akış, kısaltılmış pin (~1.6 ekran), düşük çözünürlüklü görsel seti; 60fps hedefi, sadece transform/opacity anime edilir.
