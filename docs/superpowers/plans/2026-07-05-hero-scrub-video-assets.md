@@ -21,7 +21,20 @@ Not: `nano_banana_pro` istekleri sunucu tarafından `nano_banana_2`'ye yönlendi
 | klip 1: sokak→çamur | 13cbfc79-946c-495a-8422-e5e8d3588251 | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_011208_13cbfc79-946c-495a-8422-e5e8d3588251.mp4 | 2026-07-05 |
 | klip 2: çamur→yıkama (v2, doğal adım döngüsü; v1 kayma nedeniyle reddedildi: ff871a3d-702a-4158-b815-1b20093ca055) | b8d8e370-10ac-477a-b36f-8080debc688a | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_012620_b8d8e370-10ac-477a-b36f-8080debc688a.mp4 | 2026-07-05 |
 | klip 3: yıkama→temiz | 6fd7ddd9-a7af-4fee-bec7-78c87aee2c3b | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_013139_6fd7ddd9-a7af-4fee-bec7-78c87aee2c3b.mp4 | 2026-07-05 |
-| klip seti bütün onayı (1→2→3) | — | — | 2026-07-05 |
+| klip 1 v3: sokak→çamur (klip 2 hareket referanslı; v2 d7492105 adımlama nedeniyle elendi) | 286f9842-0915-454c-ae78-6183f9fa3a1f | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_021114_286f9842-0915-454c-ae78-6183f9fa3a1f.mp4 | 2026-07-05 |
+| klip 3 v2: yıkama→temiz (doğal adım döngüsü) | b476003f-39bf-4760-a16d-1370b30d5eaa | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_020539_b476003f-39bf-4760-a16d-1370b30d5eaa.mp4 | 2026-07-05 |
+| **FINAL hero-scrub.mp4**: klip 1v3 + 2v2 + 3v2, 1080p GOP6 CRF24, 12.13 sn, 9.22 MB — canlı scroll testiyle onaylandı (localhost, doğrusal scrub) | — | public/videos/hero-scrub.mp4 | 2026-07-05 |
+
+## Elenen tek-çekim denemeleri (öğrenilenler)
+
+| Deneme | Job ID | Sonuç |
+|---|---|---|
+| Kling 3.0 tek çekim 12sn (18 kr) | 3eb6b4b7-f455-4ea3-a26f-54ff198acc09 | Yürüyüş üretemedi |
+| Seedance Mini + video referansı (30 kr) | 0d9dcef1-5b14-4409-9390-3959a18f0de3 | Adımlar iyi, anlatı kayboldu (maviye sürüklendi) |
+| Seedance Mini + zaman çizelgesi (30 kr) | 6ba44078-f506-4a58-ac4e-ac041dfc572d | Fazlar doğru, geçişlerde yürüyüş bozuldu |
+| Kling Motion Control recast | d5c86736 (failed, ücretsiz) | Bacak-only karede karakter tespiti başarısız |
+
+**Nihai mimari kararı (2026-07-05, canlı testle):** 3-klipli birleşik video + **doğrusal** scroll→zaman eşlemesi (parçalı hold eşlemesi kaldırıldı — video scroll ile kesintisiz eş zamanlı akar; klip ek yerleri scroll akışında algılanmıyor). Metin pencereleri videonun gerçek sahne anlarına (%0/%33/%66/%100) hizalandı.
 
 ## Geçersiz kılınan ara üretimler (tarihçe)
 

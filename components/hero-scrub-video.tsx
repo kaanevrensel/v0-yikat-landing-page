@@ -3,27 +3,13 @@
 import { useEffect, useRef, useState } from "react"
 import { useMotionValueEvent, type MotionValue } from "framer-motion"
 
-// ffprobe ile ölçülen kümülatif klip sınırları (saniye): 3 klip × 4.0417 sn.
-const CLIP_BOUNDS = [0, 4.04, 8.08, 12.13] as const
+// ffprobe ile ölçülen video süresi (saniye).
+const VIDEO_DURATION = 12.13
 
-// WINDOWS crossfade pencereleriyle hizalı parçalı eşleme (spec §3):
-// hold aralığında video keyframe'de durur, crossfade penceresinde ilgili klip oynar.
-const SCROLL_STOPS = [0.19, 0.25, 0.44, 0.5, 0.69, 0.75] as const
-const TIME_STOPS = [
-  CLIP_BOUNDS[0], CLIP_BOUNDS[1],
-  CLIP_BOUNDS[1], CLIP_BOUNDS[2],
-  CLIP_BOUNDS[2], CLIP_BOUNDS[3],
-] as const
-
+// Doğrusal eşleme (kullanıcı kararı, 2026-07-05): video scroll ile birebir eş zamanlı
+// akar, hiç durmaz — "durup hızlı geçme" hissi veren parçalı hold eşlemesi kaldırıldı.
 function scrollToTime(v: number): number {
-  if (v <= SCROLL_STOPS[0]) return TIME_STOPS[0]
-  for (let i = 1; i < SCROLL_STOPS.length; i++) {
-    if (v <= SCROLL_STOPS[i]) {
-      const f = (v - SCROLL_STOPS[i - 1]) / (SCROLL_STOPS[i] - SCROLL_STOPS[i - 1])
-      return TIME_STOPS[i - 1] + f * (TIME_STOPS[i] - TIME_STOPS[i - 1])
-    }
-  }
-  return TIME_STOPS[TIME_STOPS.length - 1]
+  return Math.min(Math.max(v, 0), 1) * VIDEO_DURATION
 }
 
 // Masaüstü scrub katmanı: SSR'da ve <md'de hiç render edilmez (hydration güvenli);

@@ -108,15 +108,17 @@ export function StaticHero() {
   )
 }
 
-// Sahne pencereleri (scrollYProgress 0..1): her sahne ~%25'lik dilim, %6 crossfade.
+// Sahne pencereleri (scrollYProgress 0..1) — videonun doğrusal zamanına hizalı:
+// sahne "anları" videoda %0 / %33 / %66 / %100'de (3 geçiş klibinin sınırları).
+// Metinler o anların çevresinde okunur; video hiç durmaz (doğrusal scrub).
 const WINDOWS = [
-  [0, 0, 0.19, 0.25],
-  [0.19, 0.25, 0.44, 0.5],
-  [0.44, 0.5, 0.69, 0.75],
-  [0.69, 0.75, 1, 1],
+  [0, 0, 0.1, 0.17],
+  [0.26, 0.33, 0.41, 0.48],
+  [0.59, 0.66, 0.74, 0.81],
+  [0.9, 0.96, 1, 1],
 ] as const
 
-const CTA_GATE = 0.72
+const CTA_GATE = 0.92
 
 // Arka planlar yalnız fade-IN yapar; sonraki opak katman öncekini örter (DOM sırası).
 function useSceneBgOpacity(progress: MotionValue<number>, i: number) {

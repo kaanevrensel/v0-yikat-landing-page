@@ -34,12 +34,13 @@ export const metadata: Metadata = {
     locale: "tr_TR",
     title: "Ayakkabı Yıkama Bakırköy — YIKAT",
     description: "Ayakkabın ilk günkü gibi. Aynı gün teslim, YIKAT Garantisi.",
-    // og:image Higgsfield asset'i üretilince eklenecek (Görev 18)
+    images: [{ url: "/images/og.png", width: 1200, height: 630, alt: "YIKAT — Ayakkabı Yıkama Bakırköy" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Ayakkabı Yıkama Bakırköy — YIKAT",
     description: "Ayakkabın ilk günkü gibi. Aynı gün teslim.",
+    images: ["/images/og.png"],
   },
 }
 
