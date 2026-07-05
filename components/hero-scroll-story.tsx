@@ -1,6 +1,7 @@
 "use client"
 
 import { useRef } from "react"
+import Image from "next/image"
 import {
   motion,
   useReducedMotion,
@@ -10,15 +11,19 @@ import {
 } from "framer-motion"
 import { ChevronDown, MapPin, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { HeroScrubVideo } from "@/components/hero-scrub-video"
 import { siteConfig } from "@/lib/site"
 import { track } from "@/lib/analytics"
 
-// Sabit kamera kuralı (spec §4): ayakkabı hep merkezde, sadece arka plan + durum değişir.
-// Higgsfield görselleri gelene kadar: arka plan CSS gradyanı, ayakkabı emoji placeholder (Görev 17'de değişecek).
+// Sabit kadrajlı takip çekimi (spec + 2026-07-05 konsept revizyonu): ayakkabılar giyili,
+// kadraj sabit, sahneden sahneye dünya ilerler. Kareler Higgsfield kompozit keyframe'leri;
+// gradyan yalnız görsel yüklenene dek fallback zemin.
 export const SCENES = [
   {
     key: "sokak",
     bg: "linear-gradient(160deg, #d7dde4 0%, #eef1f4 60%, #f8fafc 100%)",
+    img: "/images/hero/keyframe-sokak.webp",
+    imgMobile: "/images/hero/keyframe-sokak-mobile.webp",
     title: "Ayakkabın ilk günkü gibi.",
     sub: "Bakırköy'de profesyonel ayakkabı yıkama",
     dark: false,
@@ -26,6 +31,8 @@ export const SCENES = [
   {
     key: "camur",
     bg: "linear-gradient(160deg, #3f3122 0%, #6b4a2b 55%, #8a6237 100%)",
+    img: "/images/hero/keyframe-camur.webp",
+    imgMobile: "/images/hero/keyframe-camur-mobile.webp",
     title: "Sokak zor.",
     sub: "Çamur, toz, leke…",
     dark: true,
@@ -33,6 +40,8 @@ export const SCENES = [
   {
     key: "yikat",
     bg: "linear-gradient(160deg, #042c53 0%, #1f5eb8 55%, #4a8cff 100%)",
+    img: "/images/hero/keyframe-yikat.webp",
+    imgMobile: "/images/hero/keyframe-yikat-mobile.webp",
     title: "YIKAT yıkar.",
     sub: "Malzemesine uygun, profesyonel yıkama",
     dark: true,
@@ -40,11 +49,17 @@ export const SCENES = [
   {
     key: "temiz",
     bg: "linear-gradient(160deg, #e6f1fb 0%, #f3f8ff 55%, #ffffff 100%)",
+    img: "/images/hero/keyframe-temiz.webp",
+    imgMobile: "/images/hero/keyframe-temiz-mobile.webp",
     title: "Aynı gün tertemiz teslim.",
     sub: "Sabah bırak, akşam 20:00'ye kadar al.",
     dark: false,
   },
 ] as const
+
+// Fotoğraf üstünde okunabilirlik: koyu sahnede koyu, açık sahnede açık ışıma.
+const DARK_SHADOW = "[text-shadow:0_2px_24px_rgba(4,44,83,0.55)]"
+const LIGHT_SHADOW = "[text-shadow:0_1px_16px_rgba(255,255,255,0.65)]"
 
 export function HeroCtas({ eventPrefix }: { eventPrefix: string }) {
   return (
@@ -72,16 +87,22 @@ export function HeroCtas({ eventPrefix }: { eventPrefix: string }) {
 export function StaticHero() {
   const scene = SCENES[3]
   return (
-    <section className="relative flex min-h-dvh flex-col items-center justify-center px-4 pt-16" style={{ background: scene.bg }}>
-      <span aria-hidden className="text-[120px] leading-none drop-shadow-xl md:text-[160px]">👟</span>
-      <h1 className="mt-6 text-balance text-center text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
-        Ayakkabın ilk günkü gibi.
-      </h1>
-      <p className="mt-3 text-center text-lg text-muted-foreground">
-        Bakırköy'de profesyonel ayakkabı yıkama — aynı gün teslim.
-      </p>
-      <div className="mt-8">
-        <HeroCtas eventPrefix="hero_static" />
+    <section
+      className="relative flex min-h-dvh flex-col items-center justify-end overflow-hidden px-4 pb-[12vh] pt-16"
+      style={{ background: scene.bg }}
+    >
+      <Image alt="" fill priority sizes="100vw" className="hidden object-cover md:block" src={scene.img} />
+      <Image alt="" fill priority sizes="100vw" className="object-cover md:hidden" src={scene.imgMobile} />
+      <div className="relative z-10 flex flex-col items-center">
+        <h1 className={`text-balance text-center text-4xl font-semibold tracking-tight text-foreground md:text-5xl ${LIGHT_SHADOW}`}>
+          Ayakkabın ilk günkü gibi.
+        </h1>
+        <p className={`mt-3 text-center text-lg text-muted-foreground ${LIGHT_SHADOW}`}>
+          Bakırköy'de profesyonel ayakkabı yıkama — aynı gün teslim.
+        </p>
+        <div className="mt-8">
+          <HeroCtas eventPrefix="hero_static" />
+        </div>
       </div>
     </section>
   )
@@ -95,13 +116,9 @@ const WINDOWS = [
   [0.69, 0.75, 1, 1],
 ] as const
 
-// Çamurun yıkama ortasında temizlenme aralığı ve CTA eşiği — WINDOWS ile birlikte okunur.
-const MUD_RINSE = [0.6, 0.72] as const
-const SHOE_CLEAN = [0.62, 0.74] as const
 const CTA_GATE = 0.72
 
 // Arka planlar yalnız fade-IN yapar; sonraki opak katman öncekini örter (DOM sırası).
-// Çift yönlü crossfade'de iki katman 0.5 opaklıkta binişince sayfa zemini sızıyordu.
 function useSceneBgOpacity(progress: MotionValue<number>, i: number) {
   return useTransform(
     progress,
@@ -163,23 +180,6 @@ export function HeroScrollStory() {
   const tb3 = useSceneTextBlur(scrollYProgress, 3)
   const textBlurs = [tb0, tb1, tb2, tb3]
 
-  const mudOpacity = useTransform(
-    scrollYProgress,
-    [WINDOWS[1][0], WINDOWS[1][1], MUD_RINSE[0], MUD_RINSE[1]],
-    [0, 1, 1, 0],
-  )
-  const foamOpacity = useTransform(
-    scrollYProgress,
-    [WINDOWS[2][0], WINDOWS[2][1], WINDOWS[2][2], WINDOWS[2][3]],
-    [0, 1, 1, 0],
-  )
-  const waveX = useTransform(scrollYProgress, [WINDOWS[2][0], WINDOWS[2][3]], ["-120%", "120%"])
-  const sparkleOpacity = useTransform(scrollYProgress, [WINDOWS[3][1], 0.82, 1], [0, 1, 1])
-  const shoeFilter = useTransform(
-    scrollYProgress,
-    [WINDOWS[1][0], WINDOWS[1][1], SHOE_CLEAN[0], SHOE_CLEAN[1]],
-    ["brightness(1) sepia(0)", "brightness(0.75) sepia(0.6)", "brightness(0.75) sepia(0.6)", "brightness(1) sepia(0)"],
-  )
   const hintOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0])
   // Görünmezken klavye odağından da çıkar (WCAG 2.4.7) — pointerEvents yerine visibility.
   const ctaVisibility = useTransform(scrollYProgress, (v) => (v > CTA_GATE ? "visible" : "hidden"))
@@ -189,53 +189,26 @@ export function HeroScrollStory() {
   return (
     // Scrub mesafesi = yükseklik − 1 ekran → mobil ~1.6, masaüstü ~2.2 ekran (spec §4).
     <section ref={ref} aria-label="YIKAT hikayesi" className="relative h-[260vh] md:h-[320vh]">
-      <div className="sticky top-0 flex h-dvh items-center justify-center overflow-hidden">
-        {/* Arka plan katmanları — yalnız fade-in, sonraki katman öncekini örter */}
+      <div className="sticky top-0 h-dvh overflow-hidden">
+        {/* Statik keyframe katmanları — mobilde deneyimin kendisi, masaüstünde video fallback'i */}
         {SCENES.map((scene, i) => (
           <motion.div
             key={scene.key}
             aria-hidden
             className="absolute inset-0"
             style={{ background: scene.bg, opacity: bgOpacities[i] }}
-          />
+          >
+            <Image alt="" fill priority={i === 0} sizes="100vw" className="hidden object-cover md:block" src={scene.img} />
+            <Image alt="" fill priority={i === 0} sizes="100vw" className="object-cover md:hidden" src={scene.imgMobile} />
+          </motion.div>
         ))}
 
-        {/* Sabit kadraj: ayakkabı + durum katmanları */}
-        <div className="relative z-10 flex flex-col items-center">
-          {/* drop-shadow sarmalayıcıda: içteki animasyonlu filter onu ezemez */}
-          <div className="relative drop-shadow-xl">
-            <motion.span
-              aria-hidden
-              className="block text-[120px] leading-none md:text-[180px]"
-              style={{ filter: shoeFilter, willChange: "filter" }}
-            >
-              👟
-            </motion.span>
-            {/* Çamur sıçramaları */}
-            <motion.div aria-hidden style={{ opacity: mudOpacity }}>
-              <span className="absolute -bottom-1 left-4 h-3 w-8 rounded-full bg-[#5b4226]" />
-              <span className="absolute bottom-3 right-6 h-2.5 w-5 rounded-full bg-[#6b4a2b]" />
-              <span className="absolute -bottom-2 right-14 h-2 w-6 rounded-full bg-[#4d3b28]" />
-            </motion.div>
-            {/* Köpük + su dalgası */}
-            <motion.div aria-hidden className="absolute inset-0 overflow-hidden" style={{ opacity: foamOpacity }}>
-              <motion.div
-                className="absolute inset-y-0 w-[140%] bg-gradient-to-r from-transparent via-white/70 to-transparent"
-                style={{ x: waveX, skewX: "-12deg" }}
-              />
-              <span className="absolute left-2 top-2 size-4 rounded-full bg-white/80" />
-              <span className="absolute right-4 top-8 size-3 rounded-full bg-white/70" />
-              <span className="absolute bottom-6 left-10 size-2.5 rounded-full bg-white/60" />
-            </motion.div>
-            {/* Işıltı */}
-            <motion.div aria-hidden style={{ opacity: sparkleOpacity }}>
-              <span className="absolute -left-6 top-2 text-2xl">✨</span>
-              <span className="absolute -right-5 top-10 text-xl">✨</span>
-            </motion.div>
-          </div>
+        {/* Masaüstü scrub videosu — md+ ve canplaythrough sonrası statiklerin üstüne biner */}
+        <HeroScrubVideo progress={scrollYProgress} />
 
-          {/* Grid yığını: kapsayıcı en uzun sahne metnine göre boyutlanır — CTA ile çakışamaz (eski h-28 taşıyordu) */}
-          <div className="mt-8 grid w-full max-w-2xl px-4 text-center">
+        {/* Metin + CTA alt üçte-birde: kompozit karede ayakkabılar merkezde, üstüne binmez */}
+        <div className="absolute inset-x-0 bottom-[10vh] z-10 flex flex-col items-center">
+          <div className="grid w-full max-w-2xl px-4 text-center">
             {SCENES.map((scene, i) => (
               <motion.div
                 key={scene.key}
@@ -243,19 +216,19 @@ export function HeroScrollStory() {
                 style={{ opacity: textOpacities[i], y: textYs[i], filter: textBlurs[i] }}
               >
                 {i === 0 ? (
-                  <h1 className="text-balance text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
+                  <h1 className={`text-balance text-4xl font-semibold tracking-tight text-foreground md:text-5xl ${LIGHT_SHADOW}`}>
                     {scene.title}
                   </h1>
                 ) : (
                   <p
                     className={`text-balance text-4xl font-semibold tracking-tight md:text-5xl ${
-                      scene.dark ? "text-white" : "text-foreground"
+                      scene.dark ? `text-white ${DARK_SHADOW}` : `text-foreground ${LIGHT_SHADOW}`
                     }`}
                   >
                     {scene.title}
                   </p>
                 )}
-                <p className={`mt-3 text-lg ${scene.dark ? "text-white/80" : "text-muted-foreground"}`}>
+                <p className={`mt-3 text-lg ${scene.dark ? `text-white/85 ${DARK_SHADOW}` : `text-muted-foreground ${LIGHT_SHADOW}`}`}>
                   {scene.sub}
                 </p>
               </motion.div>
