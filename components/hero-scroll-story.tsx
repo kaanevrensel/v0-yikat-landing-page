@@ -61,6 +61,18 @@ export const SCENES = [
 const DARK_SHADOW = "[text-shadow:0_2px_24px_rgba(4,44,83,0.55)]"
 const LIGHT_SHADOW = "[text-shadow:0_1px_16px_rgba(255,255,255,0.65)]"
 
+// LCP karesi için art-direction: <picture> tarayıcının preload tarayıcısına tek doğru
+// kırpımı erken keşfettirir — çift <Image priority> her cihazda iki eager indirme yapıyordu.
+// images.unoptimized: true olduğundan next/image burada ek değer katmıyor.
+function SceneLcpPicture({ scene }: { scene: (typeof SCENES)[number] }) {
+  return (
+    <picture>
+      <source media="(min-width: 768px)" srcSet={scene.img} />
+      <img src={scene.imgMobile} alt="" className="absolute inset-0 h-full w-full object-cover" />
+    </picture>
+  )
+}
+
 export function HeroCtas({ eventPrefix }: { eventPrefix: string }) {
   return (
     <div className="flex flex-wrap items-center justify-center gap-3">
@@ -91,8 +103,7 @@ export function StaticHero() {
       className="relative flex min-h-dvh flex-col items-center justify-end overflow-hidden px-4 pb-[12vh] pt-16"
       style={{ background: scene.bg }}
     >
-      <Image alt="" fill priority sizes="100vw" className="hidden object-cover md:block" src={scene.img} />
-      <Image alt="" fill priority sizes="100vw" className="object-cover md:hidden" src={scene.imgMobile} />
+      <SceneLcpPicture scene={scene} />
       <div className="relative z-10 flex flex-col items-center">
         <h1 className={`text-balance text-center text-4xl font-semibold tracking-tight text-foreground md:text-5xl ${LIGHT_SHADOW}`}>
           Ayakkabın ilk günkü gibi.
@@ -118,7 +129,8 @@ const WINDOWS = [
   [0.9, 0.96, 1, 1],
 ] as const
 
-const CTA_GATE = 0.92
+// Metin fade-in başlangıcıyla (0.90) hizalı — gate daha geç olursa CTA yarı-opak "pat" diye belirir.
+const CTA_GATE = 0.9
 
 // Arka planlar yalnız fade-IN yapar; sonraki opak katman öncekini örter (DOM sırası).
 function useSceneBgOpacity(progress: MotionValue<number>, i: number) {
@@ -200,8 +212,14 @@ export function HeroScrollStory() {
             className="absolute inset-0"
             style={{ background: scene.bg, opacity: bgOpacities[i] }}
           >
-            <Image alt="" fill priority={i === 0} sizes="100vw" className="hidden object-cover md:block" src={scene.img} />
-            <Image alt="" fill priority={i === 0} sizes="100vw" className="object-cover md:hidden" src={scene.imgMobile} />
+            {i === 0 ? (
+              <SceneLcpPicture scene={scene} />
+            ) : (
+              <>
+                <Image alt="" fill sizes="100vw" className="hidden object-cover md:block" src={scene.img} />
+                <Image alt="" fill sizes="100vw" className="object-cover md:hidden" src={scene.imgMobile} />
+              </>
+            )}
           </motion.div>
         ))}
 

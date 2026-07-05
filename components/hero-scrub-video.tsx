@@ -22,7 +22,11 @@ export function HeroScrubVideo({ progress }: { progress: MotionValue<number> }) 
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)")
-    const update = () => setIsDesktop(mq.matches)
+    const update = () => {
+      setIsDesktop(mq.matches)
+      // md sınırından çıkınca video unmount olur; yeni mount tekrar canplaythrough beklemeli.
+      if (!mq.matches) setReady(false)
+    }
     update()
     mq.addEventListener("change", update)
     return () => mq.removeEventListener("change", update)
@@ -40,7 +44,9 @@ export function HeroScrubVideo({ progress }: { progress: MotionValue<number> }) 
     targetTime.current = scrollToTime(progress.get())
     let raf = 0
     const tick = () => {
-      const diff = targetTime.current - video.currentTime
+      // Gerçek süre sabitten kısaysa (yeniden encode vb.) süre sonunda seek fırtınası olmasın.
+      const cap = Number.isFinite(video.duration) && video.duration > 0 ? video.duration - 0.05 : VIDEO_DURATION
+      const diff = Math.min(targetTime.current, cap) - video.currentTime
       if (Math.abs(diff) > 0.01) video.currentTime = video.currentTime + diff * 0.18
       raf = requestAnimationFrame(tick)
     }
