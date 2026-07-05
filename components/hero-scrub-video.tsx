@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react"
 import { useMotionValueEvent, type MotionValue } from "framer-motion"
 
-// Görev 5'te ffprobe ile ölçülen kümülatif klip sınırları (saniye).
-const CLIP_BOUNDS = [0, 4, 8, 12] as const
+// ffprobe ile ölçülen kümülatif klip sınırları (saniye): 3 klip × 4.0417 sn.
+const CLIP_BOUNDS = [0, 4.04, 8.08, 12.13] as const
 
 // WINDOWS crossfade pencereleriyle hizalı parçalı eşleme (spec §3):
 // hold aralığında video keyframe'de durur, crossfade penceresinde ilgili klip oynar.
