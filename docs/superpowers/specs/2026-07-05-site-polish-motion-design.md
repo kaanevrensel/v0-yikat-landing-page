@@ -43,11 +43,11 @@ Tarih: 2026-07-05 · Durum: kullanıcı seçimiyle kapsam onaylı (4 paket) · A
 | `components/ui/marquee.tsx` (vendor) | MUI Marquee — coming-soon şeridi |
 | `components/foam-divider.tsx` (yeni, özel) | SVG ayraç |
 | `components/coming-soon-band.tsx` | marquee yeniden yazımı |
-| `components/how-it-works.tsx` | akan çizgi + ikon stagger + BlurHeading |
-| `components/visit-section.tsx` | açık/kapalı nabzı + ripple CTA + BlurHeading |
+| `components/how-it-works.tsx` | akan çizgi + ikon stagger + BlurText |
+| `components/visit-section.tsx` | açık/kapalı nabzı + ripple CTA + BlurText |
 | `components/navbar.tsx` | ıslak cam scroll state |
-| `components/faq-section.tsx` | içerik enter reçetesi + BlurHeading |
-| `components/price-menu.tsx` | BlurHeading (yalnız başlık) |
+| `components/faq-section.tsx` | içerik enter reçetesi + BlurText |
+| `components/price-menu.tsx` | BlurText (yalnız başlık) |
 | `components/hero-scroll-story.tsx` | HeroCtas ripple sınıfı + Magnet (yalnız CTA sarmalayıcı — hero mimarisine DOKUNULMAZ) |
 | `app/page.tsx` | FoamDivider yerleşimi (2 nokta) |
 | `app/globals.css` | ripple + marquee keyframe'leri (`@theme inline`) |
