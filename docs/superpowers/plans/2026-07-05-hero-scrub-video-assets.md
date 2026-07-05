@@ -14,6 +14,12 @@ Not: `nano_banana_pro` istekleri sunucu tarafından `nano_banana_2`'ye yönlendi
 | keyframe-yikat | nano_banana_2 (2k, 16:9, 2-ref edit) | 3bd1ec41-2b6f-45a8-b13e-3ad0b84c53de | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_010304_3bd1ec41-2b6f-45a8-b13e-3ad0b84c53de.png | 2026-07-05 |
 | keyframe-temiz | nano_banana_2 (2k, 16:9, 2-ref edit) | 7e3dd8d1-fdf5-4aff-a905-0aa22a727f08 | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_010306_7e3dd8d1-fdf5-4aff-a905-0aa22a727f08.png | 2026-07-05 |
 
+## Onaylı geçiş klipleri (Seedance 2.0 std 1080p, 4 sn, sessiz)
+
+| Klip | Job ID | URL | Onay |
+|---|---|---|---|
+| klip 1: sokak→çamur | 13cbfc79-946c-495a-8422-e5e8d3588251 | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_011208_13cbfc79-946c-495a-8422-e5e8d3588251.mp4 | 2026-07-05 |
+
 ## Geçersiz kılınan ara üretimler (tarihçe)
 
 | Asset | Job ID | Neden |
