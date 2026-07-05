@@ -3,11 +3,24 @@
 Onay kuralı: her satır, çıktının kullanıcıya gösterilip onaylandığını belgeler (spec: `2026-07-05-hero-scrub-video-design.md` §2).
 Not: `nano_banana_pro` istekleri sunucu tarafından `nano_banana_2`'ye yönlendiriliyor (kayıtlı model = gerçekleşen model).
 
-**Konsept revizyonu (2026-07-05, kullanıcı):** Ayakkabılar giyilmiş olacak (dizden aşağı, yürüyüş anı); arka plan sahneden sahneye yolun devamı olarak ilerleyecek (sabit kadrajlı takip çekimi); kamera açısı (alçak, yere yakın, yan profil) korunuyor. Bu revizyondan önceki üretimler geçersiz sayıldı.
+**Konsept revizyonu (2026-07-05, kullanıcı):** Ayakkabılar giyilmiş (dizden aşağı, yürüyüş anı); arka plan sahneden sahneye yolun devamı; kamera açısı alçak/yan profil. **Stil revizyonu (2026-07-05, kullanıcı):** krem premium deri sneaker + açık gri kumaş pantolon; yıkama sahnesi stilize (giyili ayakkabı üstünde köpük).
+
+## Nihai onaylı keyframe seti (v4 stili)
 
 | Asset | Model | Job/Generation ID | URL | Onay |
 |---|---|---|---|---|
-| ~~keyframe-sokak (v1, giyilmemiş)~~ | nano_banana_2 (2k, 16:9) | 645a68d6-6956-4591-9c74-b289304ae832 | (geçersiz — konsept revizyonu) | onay geri alındı |
-| keyframe-sokak (v3: giyilmiş, ön ayak basmış) | nano_banana_2 (2k, 16:9, edit) | 6d62a6de-783e-44ee-ac00-a9206425caf2 | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_003420_6d62a6de-783e-44ee-ac00-a9206425caf2.png | 2026-07-05 |
-| keyframe-camur (v3: üst kumaş da kirli) | nano_banana_2 (2k, 16:9, edit) | 2323541f-b8e0-4717-8882-9f1ffe816ee3 | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_003830_2323541f-b8e0-4717-8882-9f1ffe816ee3.png | 2026-07-05 |
-| keyframe-yikat (stilize: giyili + köpük, mavi ortam) | nano_banana_2 (2k, 16:9, edit) | 85ab35ce-3d4c-4b76-9c7d-ac9d3a3d2fe8 | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_004333_85ab35ce-3d4c-4b76-9c7d-ac9d3a3d2fe8.png | 2026-07-05 |
+| keyframe-sokak | nano_banana_2 (2k, 16:9, edit) | 18f118ca-ccd0-4096-989a-1d1d6c6ef433 | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_010052_18f118ca-ccd0-4096-989a-1d1d6c6ef433.png | 2026-07-05 |
+| keyframe-camur | nano_banana_2 (2k, 16:9, 2-ref edit) | 880e520f-8bd5-4ffd-acce-7d317424b8ea | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_010259_880e520f-8bd5-4ffd-acce-7d317424b8ea.png | 2026-07-05 |
+| keyframe-yikat | nano_banana_2 (2k, 16:9, 2-ref edit) | 3bd1ec41-2b6f-45a8-b13e-3ad0b84c53de | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_010304_3bd1ec41-2b6f-45a8-b13e-3ad0b84c53de.png | 2026-07-05 |
+| keyframe-temiz | nano_banana_2 (2k, 16:9, 2-ref edit) | 7e3dd8d1-fdf5-4aff-a905-0aa22a727f08 | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_010306_7e3dd8d1-fdf5-4aff-a905-0aa22a727f08.png | 2026-07-05 |
+
+## Geçersiz kılınan ara üretimler (tarihçe)
+
+| Asset | Job ID | Neden |
+|---|---|---|
+| keyframe-sokak v1 (giyilmemiş ürün karesi) | 645a68d6-6956-4591-9c74-b289304ae832 | Konsept revizyonu (giyilmiş/yürüyüş) |
+| keyframe-sokak v2 (iki ayak havada) | d994d543-b952-458a-a5df-d50d59359e89 | Kullanıcı basan-ayak varyantı istedi |
+| keyframe-sokak v3 (örgü sneaker + kot) | 6d62a6de-783e-44ee-ac00-a9206425caf2 | Stil revizyonu (deri sneaker + kumaş pantolon) |
+| keyframe-camur v2/v3 (örgü sneaker + kot) | ee49d3ee-bb7c-4ea0-bff5-e7552d6885a9, 2323541f-b8e0-4717-8882-9f1ffe816ee3 | Stil revizyonu |
+| keyframe-yikat v1 (örgü sneaker + kot) | 85ab35ce-3d4c-4b76-9c7d-ac9d3a3d2fe8 | Stil revizyonu |
+| keyframe-temiz v1 (örgü sneaker + kot) | 422f2c6d-b750-441d-82f6-cb752b762e09 | Stil revizyonu |
