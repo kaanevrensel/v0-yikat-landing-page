@@ -19,7 +19,9 @@ Not: `nano_banana_pro` istekleri sunucu tarafından `nano_banana_2`'ye yönlendi
 | Klip | Job ID | URL | Onay |
 |---|---|---|---|
 | klip 1: sokak→çamur | 13cbfc79-946c-495a-8422-e5e8d3588251 | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_011208_13cbfc79-946c-495a-8422-e5e8d3588251.mp4 | 2026-07-05 |
-| klip 2: çamur→yıkama (v2, doğal adım döngüsü; v1 b'de kayma nedeniyle reddedildi: ff871a3d-702a-4158-b815-1b20093ca055) | b8d8e370-10ac-477a-b36f-8080debc688a | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_012620_b8d8e370-10ac-477a-b36f-8080debc688a.mp4 | 2026-07-05 |
+| klip 2: çamur→yıkama (v2, doğal adım döngüsü; v1 kayma nedeniyle reddedildi: ff871a3d-702a-4158-b815-1b20093ca055) | b8d8e370-10ac-477a-b36f-8080debc688a | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_012620_b8d8e370-10ac-477a-b36f-8080debc688a.mp4 | 2026-07-05 |
+| klip 3: yıkama→temiz | 6fd7ddd9-a7af-4fee-bec7-78c87aee2c3b | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_013139_6fd7ddd9-a7af-4fee-bec7-78c87aee2c3b.mp4 | 2026-07-05 |
+| klip seti bütün onayı (1→2→3) | — | — | 2026-07-05 |
 
 ## Geçersiz kılınan ara üretimler (tarihçe)
 
