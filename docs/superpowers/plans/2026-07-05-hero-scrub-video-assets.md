@@ -9,3 +9,4 @@ Not: `nano_banana_pro` istekleri sunucu tarafından `nano_banana_2`'ye yönlendi
 |---|---|---|---|---|
 | ~~keyframe-sokak (v1, giyilmemiş)~~ | nano_banana_2 (2k, 16:9) | 645a68d6-6956-4591-9c74-b289304ae832 | (geçersiz — konsept revizyonu) | onay geri alındı |
 | keyframe-sokak (v3: giyilmiş, ön ayak basmış) | nano_banana_2 (2k, 16:9, edit) | 6d62a6de-783e-44ee-ac00-a9206425caf2 | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_003420_6d62a6de-783e-44ee-ac00-a9206425caf2.png | 2026-07-05 |
+| keyframe-camur (v3: üst kumaş da kirli) | nano_banana_2 (2k, 16:9, edit) | 2323541f-b8e0-4717-8882-9f1ffe816ee3 | https://d8j0ntlcm91z4.cloudfront.net/user_35R0VUgrrx4UBlj1QR19MdZaZdi/hf_20260705_003830_2323541f-b8e0-4717-8882-9f1ffe816ee3.png | 2026-07-05 |
