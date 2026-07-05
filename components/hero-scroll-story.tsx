@@ -12,6 +12,7 @@ import {
 import { ChevronDown, MapPin, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { HeroScrubVideo } from "@/components/hero-scrub-video"
+import Magnet from "@/components/magnet"
 import { siteConfig } from "@/lib/site"
 import { track } from "@/lib/analytics"
 
@@ -76,17 +77,19 @@ function SceneLcpPicture({ scene }: { scene: (typeof SCENES)[number] }) {
 export function HeroCtas({ eventPrefix }: { eventPrefix: string }) {
   return (
     <div className="flex flex-wrap items-center justify-center gap-3">
-      <Button asChild size="lg" className="rounded-full">
-        <a
-          href={siteConfig.directionsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => track(`${eventPrefix}_directions_click`)}
-        >
-          <MapPin className="size-4" /> Yol Tarifi Al
-        </a>
-      </Button>
-      <Button asChild size="lg" variant="outline" className="rounded-full bg-background/70">
+      <Magnet maxShift={8}>
+        <Button asChild size="lg" className="cta-ripple rounded-full">
+          <a
+            href={siteConfig.directionsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => track(`${eventPrefix}_directions_click`)}
+          >
+            <MapPin className="size-4" /> Yol Tarifi Al
+          </a>
+        </Button>
+      </Magnet>
+      <Button asChild size="lg" variant="outline" className="cta-ripple rounded-full bg-background/70">
         <a href={siteConfig.phoneHref} onClick={() => track(`${eventPrefix}_call_click`)}>
           <Phone className="size-4" /> {siteConfig.phone}
         </a>

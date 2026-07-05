@@ -5,6 +5,7 @@ import { ValueBand } from "@/components/value-band"
 import { HowItWorks } from "@/components/how-it-works"
 import { BeforeAfter } from "@/components/before-after"
 import { PriceMenu } from "@/components/price-menu"
+import { FoamDivider } from "@/components/foam-divider"
 import { VisitSection } from "@/components/visit-section"
 import { FaqSection } from "@/components/faq-section"
 import { ComingSoonBand } from "@/components/coming-soon-band"
@@ -32,9 +33,11 @@ export default function Home() {
         <Navbar />
         <main>
           <HeroScrollStory />
+          <FoamDivider className="text-muted" />
           <ValueBand />
           <HowItWorks />
           <BeforeAfter />
+          <FoamDivider flip className="text-muted" />
           <PriceMenu />
           <VisitSection />
           <FaqSection />

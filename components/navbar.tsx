@@ -43,6 +43,13 @@ export function Navbar() {
         solid ? "border-border bg-background/80 backdrop-blur-xl" : "border-transparent bg-transparent",
       )}
     >
+      <span
+        aria-hidden
+        className={cn(
+          "pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent transition-opacity duration-300",
+          solid ? "opacity-100" : "opacity-0",
+        )}
+      />
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" aria-label="YIKAT ana sayfa" className="flex items-center gap-2">
           <Image src="/images/yikat-logo-blue.png" alt="" width={28} height={28} priority className="size-7" />
