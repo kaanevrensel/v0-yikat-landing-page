@@ -36,7 +36,7 @@ Görev sırası bağımlılığı: 1 → 2 → (3,4,5,6 sırayla; hepsi 1-2'ye b
 
 ---
 
-### Görev 1: RB/MUI kaynaklarını vendorla (lisans kontrolü dahil)
+### Görev 1: Bileşen tedariki — REVİZE 2026-07-06: lisans kapısı tetiklendi (RB = MIT+Commons Clause, repo public) → RB bileşenleri temiz-oda yazılır (components/{blur-text,magnet,circular-text}.tsx, tam kod yürütücü prompt'unda), yalnız MUI Marquee vendorlanır (Adım 4-6 geçerli). Adım 1-3 İPTAL.
 
 **Files:**
 - Create: `components/reactbits/blur-text.tsx`, `components/reactbits/magnet.tsx`, `components/reactbits/circular-text.tsx`, `components/ui/marquee.tsx`
@@ -183,8 +183,8 @@ import { useCallback, useRef, useState } from "react"
 import Image from "next/image"
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
 import { ChevronsLeftRight } from "lucide-react"
-import BlurText from "@/components/reactbits/blur-text"
-import CircularText from "@/components/reactbits/circular-text"
+import BlurText from "@/components/blur-text"
+import CircularText from "@/components/circular-text"
 
 type Bubble = { id: number; xPct: number; topPct: number; size: number }
 
@@ -420,13 +420,13 @@ Mevcut blur/bg davranışına dokunma (ıslak cam zaten var).
 
 - [ ] **Adım 4: HeroCtas — ripple + Magnet**
 
-`components/hero-scroll-story.tsx`'te: import ekle `import Magnet from "@/components/reactbits/magnet"` ve `HeroCtas` gövdesini şöyle güncelle (Button className'lerine `cta-ripple` eklenir, birincil CTA Magnet'e sarılır; Magnet prop adlarını Görev 1 raporuna göre uyarla — hedef ≤8px kayma):
+`components/hero-scroll-story.tsx`'te: import ekle `import Magnet from "@/components/magnet"` ve `HeroCtas` gövdesini şöyle güncelle (Button className'lerine `cta-ripple` eklenir, birincil CTA Magnet'e sarılır; Magnet prop adlarını Görev 1 raporuna göre uyarla — hedef ≤8px kayma):
 
 ```tsx
 export function HeroCtas({ eventPrefix }: { eventPrefix: string }) {
   return (
     <div className="flex flex-wrap items-center justify-center gap-3">
-      <Magnet padding={40} magnetStrength={12}>
+      <Magnet maxShift={8}>
         <Button asChild size="lg" className="cta-ripple rounded-full">
           <a
             href={siteConfig.directionsUrl}
@@ -448,7 +448,7 @@ export function HeroCtas({ eventPrefix }: { eventPrefix: string }) {
 }
 ```
 
-(Magnet dokunmatikte kendiliğinden etkisiz — mousemove yok; ekstra gate gerekmez. `magnetStrength` RB'de "böl" katsayısıdır: büyük değer = az kayma; 8px hedefi için değeri raporlanan API'ye göre seç.)
+(Magnet dokunmatikte kendiliğinden etkisiz — mousemove yok; ekstra gate gerekmez.)
 
 - [ ] **Adım 5: Doğrula + commit**
 
@@ -474,7 +474,7 @@ Dosyayı şu içerikle değiştir:
 
 import { motion } from "framer-motion"
 import { Clock, Footprints, Sparkles } from "lucide-react"
-import BlurText from "@/components/reactbits/blur-text"
+import BlurText from "@/components/blur-text"
 
 const STEPS = [
   { no: "01", icon: Footprints, title: "Getir", text: "Ayakkabını dükkana bırak. İki dakikanı alır." },
@@ -547,8 +547,8 @@ Dosyada şu değişiklikleri yap:
 ```tsx
 import { useEffect, useState } from "react"
 import { useReducedMotion } from "framer-motion"
-import BlurText from "@/components/reactbits/blur-text"
-import Magnet from "@/components/reactbits/magnet"
+import BlurText from "@/components/blur-text"
+import Magnet from "@/components/magnet"
 ```
 
 (b) dosyaya (export'tan önce) şu bileşeni ekle:
@@ -599,7 +599,7 @@ function OpenStatus() {
 
 (d) h2'yi BlurText'e çevir (koyu zeminde beyaz kalır): `<BlurText text="Dükkana bekleriz" animateBy="words" delay={60} className="text-3xl font-semibold tracking-tight md:text-4xl" />` (as="h2" notu geçerli).
 
-(e) İki CTA Button'ına `cta-ripple` sınıfı ekle; birincil (Yol Tarifi Al) Button'ı `<Magnet padding={40} magnetStrength={12}>...</Magnet>` ile sar (Görev 4'teki HeroCtas kalıbıyla aynı).
+(e) İki CTA Button'ına `cta-ripple` sınıfı ekle; birincil (Yol Tarifi Al) Button'ı `<Magnet maxShift={8}>...</Magnet>` ile sar (Görev 4'teki HeroCtas kalıbıyla aynı).
 
 - [ ] **Adım 3: faq-section — içerik enter reçetesi + BlurText**
 
