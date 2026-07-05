@@ -45,11 +45,11 @@ Next.js 16 App Router + React 19 + TypeScript (strict) + Tailwind CSS v4 + shadc
 
 **Section components** (`components/*.tsx`, one per homepage section, composed in `app/page.tsx`): `navbar`, `hero-scroll-story`, `value-band`, `how-it-works`, `before-after`, `price-menu`, `visit-section`, `faq-section`, `coming-soon-band`, `footer`. All are `"use client"` except `footer.tsx`. `components/motion-provider.tsx` wraps the whole page in `<MotionConfig reducedMotion="user">` (framer-motion respects the OS reduced-motion setting globally).
 
-**Hero (`hero-scroll-story.tsx`)**: a 4-scene scroll-pinned story (sokak → çamur → yıkat → temiz) built on framer-motion `useScroll`/`useTransform` against a fixed camera — the shoe never moves, only background/state layers cross-fade in/out. Scene timing lives in a `WINDOWS` constants array (start/end of each scene's fade-in/hold/fade-out). `StaticHero` is the reduced-motion (and no-JS-scroll) fallback, rendering only the final "temiz" scene as a static section. Scene backgrounds and the shoe are currently CSS gradients + an emoji placeholder (👟) — real Higgsfield-generated imagery is a separate, not-yet-done phase (see plan Faz 2, Görev 16–18).
+**Hero (`hero-scroll-story.tsx`)**: the 4-scene scroll story (sokak → çamur → yıkat → temiz) is now told with real Higgsfield composite keyframe photography (`public/images/hero/`, desktop+mobile WebP pairs) and, on desktop, a scroll-scrubbed video (`components/hero-scrub-video.tsx`, `public/videos/hero-scrub.mp4`, ~12s/9.2MB) that progressively enhances in on `md+` viewports after `canplaythrough`, using a LINEAR scroll→time mapping driven by an rAF lerp loop. Mobile, and the fallback before the video has buffered, use the same keyframe-crossfade path. `StaticHero` (reduced-motion fallback) renders the clean-shoe ("temiz") photo statically. The emoji/gradient placeholder era is over — the Higgsfield asset phase is complete (plan: `docs/superpowers/plans/2026-07-05-hero-scrub-video.md`, production manifest: `docs/superpowers/plans/2026-07-05-hero-scrub-video-assets.md`).
 
 ## SEO layout
 
-- Metadata lives in `app/layout.tsx`: Bakırköy-targeted title/description/keywords, OG/Twitter tags (`og:image` still missing — planned once Higgsfield assets exist), Google verification token, self-canonical to the homepage.
+- Metadata lives in `app/layout.tsx`: Bakırköy-targeted title/description/keywords, OG/Twitter tags (`og:image` now set to `public/images/og.png`, a 1200×630 export of the keyframe-temiz hero photo), Google verification token, self-canonical to the homepage.
 - `app/layout.tsx` also inlines a `LocalBusiness` JSON-LD block (with `@id`, `hasMap`, `address`, `openingHoursSpecification`, and `geo` coordinates) on every page. **The `geo` lat/long in `lib/site.ts` is an approximation — verify it against the store's real Google Maps pin before launch.**
 - `app/page.tsx` inlines a separate `FAQPage` JSON-LD (first 4 of the 8 `faqs`) — homepage-only, not in the root layout.
 - `app/robots.ts` and `app/sitemap.ts` are dynamic (no more static hand-maintained `public/robots.txt`/`public/sitemap.xml`); the sitemap lists `/`, `/kvkk`, `/mesafeli-satis-sozlesmesi`.
@@ -62,7 +62,7 @@ Active stylesheet is **`app/globals.css`** (Tailwind v4 CSS-first: `@theme inlin
 - Brand palette: primary `#4A8CFF`, navy `#042C53` (custom `bg-navy`/`text-navy-foreground` tokens — used by `footer.tsx`), accent `#E6F1FB`, muted/band `#F3F4F6`, text `#1F2937`, amber `#BA7517`. Radius base `0.875rem`. Light-only — no `.dark` palette is defined.
 - Typography: Inter via `next/font/google` (`latin-ext` for Turkish), `--font-sans`. Body has `font-feature-settings: 'cv11','ss01'` and tightened letter-spacing; h1–h4 are 600/-0.02em.
 - **MADE Okine Sans**: 12 .otf files still sit in `public/fonts/` but remain wired to nothing (no `@font-face`, no `next/font/local` — verified via repo-wide grep) — intended future display face. Filenames say PERSONAL USE license; resolve licensing before shipping it.
-- Recurring visuals: rounded-full pill CTAs, rounded-2xl/3xl cards, the hero's 4-scene gradient backgrounds + emoji shoe, amber-accented value-band icons.
+- Recurring visuals: rounded-full pill CTAs, rounded-2xl/3xl cards, the hero's 4-scene Higgsfield keyframe photography + desktop scroll-scrub video, amber-accented value-band icons.
 
 ## Known gotchas
 

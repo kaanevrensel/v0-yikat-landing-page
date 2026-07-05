@@ -1944,6 +1944,8 @@ Kullanıcıya söyle: `pnpm dev` çalışırken `http://localhost:3000`i incele.
 
 ## Faz 2 — Asset entegrasyonu (Higgsfield oturumu sonrası; kod hazır, dosya bekliyor)
 
+**Yerini aldı (2026-07-05):** Hero asset üretimi + og:image işleri `2026-07-05-hero-scrub-video.md` planıyla TAMAMLANDI (Görev 16-18'in hero/og kalemleri kapandı). Bu fazda kalan işler: before/after çiftleri (`public/images/results/`) ve statik harita (`public/images/map-bakirkoy.webp`) — Görev 17'nin before-after.tsx ve visit-section.tsx maddeleri geçerliliğini koruyor.
+
 Bu fazın ön koşulu: yeni Claude oturumunda `/mcp` ile Higgsfield OAuth girişi. Üretilecek set (hepsi aynı kadraj/açı — sabit kamera kuralı):
 
 | Asset | Dosya | Kullanım |
@@ -1956,19 +1958,19 @@ Bu fazın ön koşulu: yeni Claude oturumunda `/mcp` ile Higgsfield OAuth giriş
 
 ### Görev 16: Higgsfield üretimi
 
-- [ ] Yeni oturumda Higgsfield MCP araçlarıyla yukarıdaki tabloyu üret (Soul/tutarlı obje modu; prompt'larda "same shoe, same camera angle, fixed framing" zorunlu). Dosyaları tabloda verilen adlarla kaydet.
+- [x] Yeni oturumda Higgsfield MCP araçlarıyla yukarıdaki tabloyu üret (Soul/tutarlı obje modu; prompt'larda "same shoe, same camera angle, fixed framing" zorunlu). Dosyaları tabloda verilen adlarla kaydet.
 
 ### Görev 17: Görselleri bağla
 
-- [ ] `hero-scroll-story.tsx` arka planlar: her sahne katmanı (`motion.div`, zaten `absolute inset-0` — `fill` için geçerli konumlu ebeveyn) içine masaüstü/mobil çifti: `<Image alt="" fill className="hidden object-cover md:block" src="/images/hero/bg-<sahne>.webp" />` + `<Image alt="" fill className="object-cover md:hidden" src="/images/hero/bg-<sahne>-mobile.webp" />`. Gradyan `bg` fallback olarak kalır.
-- [ ] `hero-scroll-story.tsx` ayakkabı: emoji `<span>` yerine sabit ölçülü sarmalayıcı `<div className="relative h-[220px] w-[220px] md:h-[300px] md:w-[300px]">` içinde üst üste `<Image alt="" fill className="object-contain" src="/images/hero/shoe-*.webp" />` katmanları (temiz kare hep altta ve opak; `mudOpacity` → çamurlu, `foamOpacity` → köpüklü, `sparkleOpacity` → parlak karenin `motion.div` sarmalayıcısına bağlanır). `shoeFilter` kaldırılır. DİKKAT: `fill` kullanılan her katmanın ebeveyni bu sabit ölçülü `relative` div'dir — aksi halde görsel sayfaya taşar.
+- [x] `hero-scroll-story.tsx` arka planlar: her sahne katmanı (`motion.div`, zaten `absolute inset-0` — `fill` için geçerli konumlu ebeveyn) içine masaüstü/mobil çifti: `<Image alt="" fill className="hidden object-cover md:block" src="/images/hero/bg-<sahne>.webp" />` + `<Image alt="" fill className="object-cover md:hidden" src="/images/hero/bg-<sahne>-mobile.webp" />`. Gradyan `bg` fallback olarak kalır.
+- [x] `hero-scroll-story.tsx` ayakkabı: emoji `<span>` yerine sabit ölçülü sarmalayıcı `<div className="relative h-[220px] w-[220px] md:h-[300px] md:w-[300px]">` içinde üst üste `<Image alt="" fill className="object-contain" src="/images/hero/shoe-*.webp" />` katmanları (temiz kare hep altta ve opak; `mudOpacity` → çamurlu, `foamOpacity` → köpüklü, `sparkleOpacity` → parlak karenin `motion.div` sarmalayıcısına bağlanır). `shoeFilter` kaldırılır. DİKKAT: `fill` kullanılan her katmanın ebeveyni bu sabit ölçülü `relative` div'dir — aksi halde görsel sayfaya taşar. (Not: gerçekleşen mimari bu maddeden saptı — ayrı ayakkabı katmanı yerine giyili-ayakkabı kompozit keyframe'ler + masaüstü scrub video kullanıldı; bkz. `2026-07-05-hero-scrub-video.md`.)
 - [ ] `before-after.tsx`: `ShoePanel` yerine `<Image>` çiftleri (`CompareCard`ın iki katman div'i zaten `absolute inset-0` — `fill` + `object-cover` doğrudan çalışır); "Temsili görsel" ibaresi gerçek fotoğraf gelene kadar kalır.
 - [ ] `visit-section.tsx`: harita kartı `motion.a` zaten `relative overflow-hidden` — içine `<Image src="/images/map-bakirkoy.webp" alt="YIKAT Bakırköy konumu" fill className="object-cover" />`; içindeki metin bloğu görsel üstünde rozet olarak kalır (`relative z-10` ver) ya da kaldırılır.
 - [ ] Doğrula: `pnpm build` + görsel kontrol + **Lighthouse tekrarı** (mobil, Performance ≥ 90 — gerçek görseller LCP'yi değiştirir). Not: `images.unoptimized: true` bilinçli olarak kalıyor; görseller zaten önceden boyutlandırılmış WebP. Commit: `pivot: wire higgsfield hero/results/map assets`.
 
 ### Görev 18: og:image
 
-- [ ] `app/layout.tsx` openGraph'a ekle: `images: [{ url: "/images/og.png", width: 1200, height: 630, alt: "YIKAT — Ayakkabı Yıkama Bakırköy" }]` ve twitter'a `images: ["/images/og.png"]`. Commit: `pivot: add og image`.
+- [x] `app/layout.tsx` openGraph'a ekle: `images: [{ url: "/images/og.png", width: 1200, height: 630, alt: "YIKAT — Ayakkabı Yıkama Bakırköy" }]` ve twitter'a `images: ["/images/og.png"]`. Commit: `pivot: add og image`.
 
 ---
 

@@ -1,6 +1,9 @@
 # Hero Scrub Video — Tasarım Spec'i
 
 Tarih: 2026-07-05 · Durum: onaylı tasarım (implementasyon planı ayrı yazılacak)
+
+**Gerçekleşme revizyonları (2026-07-05, kullanıcı onaylı):** (1) Konsept: ayakkabılar giyili (dizden aşağı, yürüyüş), sabit kadrajlı takip çekimi; arka plan sahneden sahneye yolun devamı olarak ilerler. (2) §3'teki parçalı scroll→zaman eşlemesi canlı testte kaldırıldı — eşleme doğrusaldır (video scroll ile kesintisiz akar), WINDOWS metin pencereleri videonun gerçek sahne anlarına (%0/%33/%66/%100) taşındı. (3) Üretim hattında klipler hareket-referanslı üretildi; ayrıntı ve elenen denemeler için manifest: `../plans/2026-07-05-hero-scrub-video-assets.md`.
+
 Revize ettiği karar: `2026-07-05-ayakkabi-pivot-design.md` §4'teki "Tam video scrub değil — katmanlı görüntü seti" cümlesi. Kullanıcı, interaktif davranış demosunu inceledikten sonra masaüstünde scroll-scrub videoya karar verdi; mobilde statik keyframe crossfade seçildi.
 
 ## 1. Karar özeti
