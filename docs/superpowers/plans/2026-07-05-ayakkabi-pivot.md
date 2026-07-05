@@ -1978,5 +1978,5 @@ Bu fazın ön koşulu: yeni Claude oturumunda `/mcp` ile Higgsfield OAuth giriş
 
 - [ ] Fiyat menüsü gelince: `lib/site.ts` `priceMenu` price alanları doldurulur (ör. `"499 ₺"`), başka değişiklik gerekmez.
 - [ ] Yasal metinler gelince: `app/kvkk/page.tsx` ve `app/mesafeli-satis-sozlesmesi/page.tsx` içerikleri değiştirilir.
-- [ ] Gerçek önce/sonra fotoğrafları gelince: `public/images/results/*` değiştirilir, "Temsili görsel" ibaresi kaldırılır.
+- [ ] Gerçek önce/sonra fotoğrafları gelince: `public/images/results/*` değiştirilir, "Temsili görsel" ibaresi kaldırılır. (2026-07-06: bölüm şimdilik tek kart AI-türetimi çiftle canlı; fotoğraflar gelince ikinci kart geri eklenir ve "Temsili görsel" kalkar)
 - [ ] Merge onayı: kullanıcı onayıyla `git checkout main && git merge pivot-ayakkabi && git push` (canlıya çıkış).

@@ -7,6 +7,8 @@ import { motion, useReducedMotion } from "framer-motion"
 
 type BlurTextProps = {
   text: string
+  // DİKKAT: as="p" kullanılacaksa aria stratejisi güncellenmeli — paragraph rolü aria-label'ı
+  // yok sayar ve içerik aria-hidden olduğundan ekran okuyucuda sessiz kalır (şu an tüm kullanım h2).
   as?: "h2" | "p"
   delay?: number // birim başına ms
   animateBy?: "words" | "characters"
