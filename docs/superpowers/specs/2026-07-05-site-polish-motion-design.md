@@ -2,7 +2,9 @@
 
 Tarih: 2026-07-05 · Durum: kullanıcı seçimiyle kapsam onaylı (4 paket) · Ağırlık: Jakub birincil (üretim cilası), Jhey ikincil (seçili dokunuşlar), Emil CTA/nav'da (kısıtlama)
 
-**İlkeler:** Sayfanın yıldızı hero — diğer bölümler sessiz-akıcı kalır. Tüm animasyonlar yalnız `transform`/`opacity`/`filter`; hepsi `prefers-reduced-motion`'da sakinleşir (MotionConfig `reducedMotion="user"` zaten global). Kütüphane kopyası yerine RB/MUI desenleri mevcut framer-motion diliyle yazılır (bağımlılık eklenmez; `ogl`/`react-icons` gerekmez). Kredi harcaması yalnız istenirse ileride ikinci b/a çifti için.
+**İlkeler:** Sayfanın yıldızı hero — diğer bölümler sessiz-akıcı kalır. Tüm animasyonlar yalnız `transform`/`opacity`/`filter`; hepsi `prefers-reduced-motion`'da sakinleşir (MotionConfig `reducedMotion="user"` zaten global). Kredi harcaması yalnız istenirse ileride ikinci b/a çifti için.
+
+**Bileşen tedarik stratejisi (kullanıcı kararı, 2026-07-05):** React Bits bileşenleri **gerçek kaynak kodla vendorlanır** — resmi repo `DavidHDev/react-bits`'ten TS+Tailwind varyantları `components/reactbits/{blur-text,magnet,circular-text}.tsx` olarak alınır (dosya başına kaynak URL + lisans notu yorum satırı; repo lisansı vendorlamadan önce doğrulanır). Magic UI parçaları (Marquee, Ripple) resmî shadcn registry'sinden (`magicui.design/r/*`) `components/ui/` altına alınır. Vendorlanan bileşenlere yalnız marka ayarı yapılır (renk/token/props); iç mantığa dokunulmaz — upstream'den güncellenebilirlik korunur. RB/MUI'de karşılığı olmayan özel parçalar (köpük ayracı, köpük patlaması, akan çizgi, açık/kapalı nabzı, ıslak cam) bizim bileşenlerimiz olarak yazılır. WebGL bileşenleri (`ogl` gerektirenler) kapsam dışı kalmaya devam eder.
 
 ## Paket 1 — Gerçek before/after (TEK kart) + köpük patlaması
 
@@ -26,8 +28,8 @@ Tarih: 2026-07-05 · Durum: kullanıcı seçimiyle kapsam onaylı (4 paket) · A
 
 - **Coming-soon Marquee:** `coming-soon-band.tsx` yeniden yazılır: "Kapıdan alım · Kuru temizleme · Çamaşır · Ütü · Hacimli tekstil" öğeleri + her öğede küçük "yakında" rozeti, MUI marquee keyframe'iyle (`--animate-marquee`, ~40s, hover'da durur). Reduced-motion'da animasyon durur, içerik statik tek satır fallback. `aria-label` ile tam metin erişilebilir; dekoratif kopya `aria-hidden`.
 - **CircularText rozeti:** before-after bölümünün sağ üst köşesine dönen damga: "AYNI GÜN TESLİM • YIKAT • AYNI GÜN TESLİM • " (SVG `textPath`, 30s linear sonsuz dönüş, ~96px, amber vurgu). Reduced-motion'da dönmez. md+ only (mobilde kalabalık).
-- **BlurText başlıklar:** tüm bölüm h2'leri (`how-it-works`, `before-after`, `price-menu`, `visit`, `faq`) kelime bazlı blur-reveal'e geçer — mevcut `whileInView` kalıbının kelimelere bölünmüş hali (`components/blur-heading.tsx`: kelime başına 60ms stagger, blur 8px→0, y 12px→0, once: true). Hero metin diliyle aynı aksan. Reduced-motion'da düz görünür (MotionConfig halleder).
-- **Magnet CTA:** yalnız masaüstü (pointer: fine) hero + visit ana CTA'sında düşük şiddet mıknatıs (`components/magnet.tsx`, max 8px kayma, spring stiffness 200/damping 20). Emil kuralı: dönüşüm butonunda gecikme yaratmaz, yalnız transform.
+- **BlurText başlıklar:** tüm bölüm h2'leri (`how-it-works`, `before-after`, `price-menu`, `visit`, `faq`) vendorlanan RB `BlurText` ile kelime bazlı blur-reveal'e geçer (kelime başına ~60ms, blur→0, yukarıdan; `threshold` viewport'a göre ayarlanır, tek sefer). Hero metin diliyle aynı aksan. Reduced-motion'da düz görünür.
+- **Magnet CTA:** yalnız masaüstü (pointer: fine) hero + visit ana CTA'sında vendorlanan RB `Magnet` (düşük şiddet: magnitude ~0.2, maxDistance ~120). Emil kuralı: dönüşüm butonunda gecikme yaratmaz, yalnız transform.
 
 ## Dosya haritası
 
@@ -35,9 +37,11 @@ Tarih: 2026-07-05 · Durum: kullanıcı seçimiyle kapsam onaylı (4 paket) · A
 |---|---|
 | `public/images/results/spor-{once,sonra}.webp` | onaylı b/a çifti (yeni) |
 | `components/before-after.tsx` | gerçek görseller, tek kart, köpük patlaması |
-| `components/foam-divider.tsx` (yeni) | SVG ayraç |
-| `components/blur-heading.tsx` (yeni) | kelime bazlı h2 reveal |
-| `components/magnet.tsx` (yeni) | mıknatıs sarmalayıcı |
+| `components/reactbits/blur-text.tsx` (vendor) | RB BlurText — h2 reveal'ler bunu sarar |
+| `components/reactbits/magnet.tsx` (vendor) | RB Magnet — CTA sarmalayıcı |
+| `components/reactbits/circular-text.tsx` (vendor) | RB CircularText — dönen damga |
+| `components/ui/marquee.tsx` (vendor) | MUI Marquee — coming-soon şeridi |
+| `components/foam-divider.tsx` (yeni, özel) | SVG ayraç |
 | `components/coming-soon-band.tsx` | marquee yeniden yazımı |
 | `components/how-it-works.tsx` | akan çizgi + ikon stagger + BlurHeading |
 | `components/visit-section.tsx` | açık/kapalı nabzı + ripple CTA + BlurHeading |
