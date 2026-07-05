@@ -13,3 +13,4 @@ node_modules/
 .superpowers/
 # TypeScript incremental build cache
 tsconfig.tsbuildinfo
+.hero-work/
