@@ -2,6 +2,7 @@
 
 // reactbits.dev BlurText deseninden ilhamla temiz-oda yazım (RB lisansı MIT+Commons Clause
 // olduğundan kaynak kopyalanmadı). Kelime/karakter bazlı blur-reveal — hero metin diliyle aynı aksan.
+import { useEffect, useState } from "react"
 import { motion, useReducedMotion } from "framer-motion"
 
 type BlurTextProps = {
@@ -19,26 +20,37 @@ const item = {
 
 export default function BlurText({ text, as = "h2", delay = 60, animateBy = "words", className }: BlurTextProps) {
   const prefersReduced = useReducedMotion()
+  // Hydration güvenliği: SSR'da useReducedMotion null döner — reduced-motion dalına ancak
+  // mount SONRASI geçilir ki sunucu ve ilk istemci render DOM'u hep aynı (animasyonlu) yapı olsun.
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const Tag = as
-  if (prefersReduced) return <Tag className={className}>{text}</Tag>
+  if (prefersReduced && mounted) return <Tag className={className}>{text}</Tag>
 
   const units = animateBy === "words" ? text.split(" ") : Array.from(text)
   const MotionTag = as === "h2" ? motion.h2 : motion.p
 
   return (
     <MotionTag
+      aria-label={text}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
       variants={{ hidden: {}, visible: { transition: { staggerChildren: delay / 1000 } } }}
       className={className}
     >
-      {units.map((u, i) => (
-        <motion.span key={`${u}-${i}`} variants={item} className="inline-block will-change-transform">
-          {u}
-          {animateBy === "words" && i < units.length - 1 ? " " : ""}
-        </motion.span>
-      ))}
+      {/* Ekran okuyucu metni parent aria-label'dan alır; parçalı span'ler dekoratif. */}
+      <span aria-hidden className="contents">
+        {units.map((u, i) => (
+          <motion.span key={`${u}-${i}`} variants={item} className="inline-block">
+            {u}
+            {animateBy === "words" && i < units.length - 1 ? " " : ""}
+          </motion.span>
+        ))}
+      </span>
     </MotionTag>
   )
 }

@@ -21,7 +21,7 @@ Tarih: 2026-07-05 · Durum: kullanıcı seçimiyle kapsam onaylı (4 paket) · A
 ## Paket 3 — Akış & canlılık
 
 - **How-it-works akan çizgi:** md+ ekranda 3 kartın arkasında yatay SVG çizgi; `whileInView`'da `pathLength` 0→1 (1.1s, easeInOut), kart ikonları çizginin varış sırasına göre spring stagger (`bounce: 0.25` — tek oynak dokunuş, delay 0.15×i). Mobilde çizgi yok (dikey grid), kartların mevcut stagger'ı kalır.
-- **"Şu an açık" nabzı (visit-section):** Europe/Istanbul saatiyle 09:00-20:00 kontrolü; açıkken yeşil nokta + "Şu an açık — 20:00'ye kadar bırakabilirsin", kapalıyken nötr nokta + "Yarın 09:00'da açılıyor". Hydration güvenliği: SSR'da nötr metin ("Her gün 09:00–20:00"), mount sonrası güncellenir. Nabız: 2s'de bir scale 1→1.6 + opacity söner (yalnız açıkken; reduced-motion'da statik nokta).
+- **"Şu an açık" nabzı (visit-section):** Europe/Istanbul saatiyle 09:00-20:00 kontrolü; açıkken yeşil nokta + "Şu an açık — 20:00'ye kadar bırakabilirsin", kapalıyken nötr nokta + (saat <09:00 ise "bugün", değilse "yarın") 09:00'da açılıyor. Hydration güvenliği: SSR'da nötr metin ("Her gün 09:00–20:00"), mount sonrası güncellenir. Nabız: 2s'de bir scale 1→1.6 + opacity söner (yalnız açıkken; reduced-motion'da statik nokta).
 - **FAQ mikro-cila:** accordion içeriği açılırken Jakub enter reçetesi (opacity 0→1, y 6px, blur 4px→0, 250ms). Chevron mevcutsa 180° dönüş kalır — damla ikonu denemesi YOK (mevcut Radix yapısını bozmaya değmez; YAGNI).
 
 ## Paket 4 — Şerit & rozet

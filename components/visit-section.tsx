@@ -14,6 +14,7 @@ import Magnet from "@/components/magnet"
 function OpenStatus() {
   const prefersReduced = useReducedMotion()
   const [status, setStatus] = useState<"unknown" | "open" | "closed">("unknown")
+  const [opensToday, setOpensToday] = useState(false)
 
   useEffect(() => {
     const compute = () => {
@@ -21,13 +22,23 @@ function OpenStatus() {
         new Intl.DateTimeFormat("tr-TR", { hour: "numeric", hour12: false, timeZone: "Europe/Istanbul" }).format(new Date()),
       )
       setStatus(hour >= 9 && hour < 20 ? "open" : "closed")
+      setOpensToday(hour < 9)
     }
     compute()
     const id = setInterval(compute, 60_000)
     return () => clearInterval(id)
   }, [])
 
-  if (status === "unknown") return <span>{siteConfig.hours.label}</span>
+  if (status === "unknown")
+    return (
+      <span className="flex flex-col gap-1">
+        <span>{siteConfig.hours.label}</span>
+        <span aria-hidden className="invisible flex items-center gap-2 text-sm">
+          <span className="size-2.5" />
+          Şu an açık — 20:00'ye kadar bırakabilirsin
+        </span>
+      </span>
+    )
 
   return (
     <span className="flex flex-col gap-1">
@@ -42,7 +53,7 @@ function OpenStatus() {
         {status === "open" ? (
           <span className="text-emerald-300">Şu an açık — 20:00'ye kadar bırakabilirsin</span>
         ) : (
-          <span className="text-white/70">Şu an kapalı — yarın 09:00'da açılıyor</span>
+          <span className="text-white/70">{`Şu an kapalı — ${opensToday ? "bugün" : "yarın"} 09:00'da açılıyor`}</span>
         )}
       </span>
     </span>
