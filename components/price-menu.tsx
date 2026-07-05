@@ -2,20 +2,19 @@
 
 import { motion } from "framer-motion"
 import { priceMenu } from "@/lib/site"
+import BlurText from "@/components/blur-text"
 
 export function PriceMenu() {
   return (
     <section id="fiyatlar" className="scroll-mt-20 py-20 sm:py-28">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
+        <BlurText
+          as="h2"
+          text="Fiyat menüsü"
+          animateBy="words"
+          delay={60}
           className="text-center text-3xl font-semibold tracking-tight md:text-4xl"
-        >
-          Fiyat menüsü
-        </motion.h2>
+        />
         <p className="mx-auto mt-3 max-w-xl text-center text-muted-foreground">
           Kategoriye göre sabit fiyat. Menü çok yakında burada — şimdilik dükkanda.
         </p>

@@ -1,10 +1,53 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
+import { motion, useReducedMotion } from "framer-motion"
 import { Clock, MapPin, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { siteConfig } from "@/lib/site"
 import { track } from "@/lib/analytics"
+import BlurText from "@/components/blur-text"
+import Magnet from "@/components/magnet"
+
+// Gerçek İstanbul saatine göre açık/kapalı durumu. SSR + ilk render nötr metin basar
+// (hydration uyuşmazlığı olmaz); durum yalnız mount sonrası hesaplanır.
+function OpenStatus() {
+  const prefersReduced = useReducedMotion()
+  const [status, setStatus] = useState<"unknown" | "open" | "closed">("unknown")
+
+  useEffect(() => {
+    const compute = () => {
+      const hour = Number(
+        new Intl.DateTimeFormat("tr-TR", { hour: "numeric", hour12: false, timeZone: "Europe/Istanbul" }).format(new Date()),
+      )
+      setStatus(hour >= 9 && hour < 20 ? "open" : "closed")
+    }
+    compute()
+    const id = setInterval(compute, 60_000)
+    return () => clearInterval(id)
+  }, [])
+
+  if (status === "unknown") return <span>{siteConfig.hours.label}</span>
+
+  return (
+    <span className="flex flex-col gap-1">
+      <span>{siteConfig.hours.label}</span>
+      <span className="flex items-center gap-2 text-sm">
+        <span className="relative flex size-2.5">
+          {status === "open" && !prefersReduced && (
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60 [animation-duration:2s]" />
+          )}
+          <span className={`relative inline-flex size-2.5 rounded-full ${status === "open" ? "bg-emerald-400" : "bg-white/40"}`} />
+        </span>
+        {status === "open" ? (
+          <span className="text-emerald-300">Şu an açık — 20:00'ye kadar bırakabilirsin</span>
+        ) : (
+          <span className="text-white/70">Şu an kapalı — yarın 09:00'da açılıyor</span>
+        )}
+      </span>
+    </span>
+  )
+}
 
 export function VisitSection() {
   return (
@@ -16,7 +59,13 @@ export function VisitSection() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Dükkana bekleriz</h2>
+          <BlurText
+            as="h2"
+            text="Dükkana bekleriz"
+            animateBy="words"
+            delay={60}
+            className="text-3xl font-semibold tracking-tight md:text-4xl"
+          />
           <ul className="mt-8 space-y-5">
             <li className="flex items-start gap-4">
               <MapPin className="mt-0.5 size-5 shrink-0 text-[#9cc3f5]" />
@@ -24,7 +73,7 @@ export function VisitSection() {
             </li>
             <li className="flex items-start gap-4">
               <Clock className="mt-0.5 size-5 shrink-0 text-[#9cc3f5]" />
-              <span>{siteConfig.hours.label}</span>
+              <OpenStatus />
             </li>
             <li className="flex items-start gap-4">
               <Phone className="mt-0.5 size-5 shrink-0 text-[#9cc3f5]" />
@@ -34,21 +83,23 @@ export function VisitSection() {
             </li>
           </ul>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild size="lg" className="rounded-full bg-white text-navy hover:bg-white/90">
-              <a
-                href={siteConfig.directionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => track("visit_directions_click")}
-              >
-                <MapPin className="size-4" /> Yol Tarifi Al
-              </a>
-            </Button>
+            <Magnet maxShift={8}>
+              <Button asChild size="lg" className="cta-ripple rounded-full bg-white text-navy hover:bg-white/90">
+                <a
+                  href={siteConfig.directionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track("visit_directions_click")}
+                >
+                  <MapPin className="size-4" /> Yol Tarifi Al
+                </a>
+              </Button>
+            </Magnet>
             <Button
               asChild
               size="lg"
               variant="outline"
-              className="rounded-full border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
+              className="cta-ripple rounded-full border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
             >
               <a href={siteConfig.phoneHref} onClick={() => track("visit_call_click")}>
                 <Phone className="size-4" /> Ara

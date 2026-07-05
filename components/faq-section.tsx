@@ -8,20 +8,19 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { faqs } from "@/lib/site"
+import BlurText from "@/components/blur-text"
 
 export function FaqSection() {
   return (
     <section id="sss" className="scroll-mt-20 py-20 sm:py-28">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
+        <BlurText
+          as="h2"
+          text="Sıkça sorulan sorular"
+          animateBy="words"
+          delay={60}
           className="text-center text-3xl font-semibold tracking-tight md:text-4xl"
-        >
-          Sıkça sorulan sorular
-        </motion.h2>
+        />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -33,7 +32,15 @@ export function FaqSection() {
             {faqs.map((f, i) => (
               <AccordionItem key={f.q} value={`faq-${i}`}>
                 <AccordionTrigger className="text-left">{f.q}</AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">{f.a}</AccordionContent>
+                <AccordionContent className="text-muted-foreground">
+                  <motion.div
+                    initial={{ opacity: 0, y: 6, filter: "blur(4px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                  >
+                    {f.a}
+                  </motion.div>
+                </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
