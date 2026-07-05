@@ -36,15 +36,37 @@ export function Navbar() {
     return () => window.removeEventListener("keydown", onKey)
   }, [open])
 
+  // reactbits.dev GlassSurface deseninden ilhamla temiz-oda "glass" yüzey (kaynak kopyalanmadı;
+  // RB lisansı MIT+Commons Clause). Ağır SVG displacement bilinçle atlandı — hero videosu üstünde
+  // her frame yeniden hesaplanıp jank yaratırdı. Signature: blur + saturate + rim ışığı + sheen.
+  const glass: React.CSSProperties = solid
+    ? {
+        backdropFilter: "blur(16px) saturate(180%)",
+        WebkitBackdropFilter: "blur(16px) saturate(180%)",
+        background: "rgba(255,255,255,0.72)",
+        boxShadow:
+          "inset 0 1px 0 0 rgba(255,255,255,0.65), inset 0 -1px 0 0 rgba(255,255,255,0.15), 0 8px 30px rgba(4,44,83,0.10)",
+      }
+    : {
+        backdropFilter: "blur(12px) saturate(160%)",
+        WebkitBackdropFilter: "blur(12px) saturate(160%)",
+        background: "rgba(255,255,255,0.30)",
+        boxShadow: "inset 0 1px 0 0 rgba(255,255,255,0.5)",
+      }
+
   return (
     <header
+      style={glass}
       className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b backdrop-blur-lg transition-all duration-300",
-        solid
-          ? "border-border bg-background/75 shadow-[0_1px_12px_rgba(4,44,83,0.06)]"
-          : "border-white/10 bg-background/40",
+        "fixed inset-x-0 top-0 z-50 border-b transition-all duration-300",
+        solid ? "border-border" : "border-white/15",
       )}
     >
+      {/* Cam sheeni — yalnız üst barda, üstten aşağı ince ışıma (GlassSurface iç parlaklığı) */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white/20 to-transparent"
+      />
       <span
         aria-hidden
         className={cn(
@@ -52,7 +74,7 @@ export function Navbar() {
           solid ? "opacity-100" : "opacity-0",
         )}
       />
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <nav className="relative z-10 mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" aria-label="YIKAT ana sayfa" className="flex items-center gap-2">
           <Image src="/images/yikat-logo-blue.png" alt="" width={28} height={28} priority className="size-7" />
           <span className="text-lg font-semibold tracking-tight text-foreground">YIKAT</span>

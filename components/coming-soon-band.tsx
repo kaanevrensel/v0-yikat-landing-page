@@ -5,8 +5,6 @@ import { motion, useReducedMotion } from "framer-motion"
 
 // Master plan (uygulama + kapıdan alım) sinyali — dükkan sitesinde uygulamayı fısıldayan tek yer.
 // Form yok, app-store bağlantısı yok (uygulama henüz yok): saf teaser.
-const SERVICES = ["Kuru temizleme", "Çamaşır", "Ütü", "Ayakkabı", "Hacimli tekstil"]
-
 function AppScreen() {
   const prefersReduced = useReducedMotion()
   return (
@@ -68,16 +66,6 @@ export function ComingSoonBand() {
                 Kapıdan alım, kapıya teslim. Kuru temizlemeden ayakkabı bakımına, tüm tekstil işiniz İstanbul'un her
                 yerinde tek uygulamada. Bakırköy dükkanımız açık — gerisi çok yakında yanınızda.
               </p>
-              <ul className="mt-6 flex flex-wrap gap-2">
-                {SERVICES.map((s) => (
-                  <li
-                    key={s}
-                    className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/80 ring-1 ring-white/15"
-                  >
-                    {s}
-                  </li>
-                ))}
-              </ul>
             </div>
 
             <div className="mx-auto">
