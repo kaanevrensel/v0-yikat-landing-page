@@ -126,3 +126,42 @@
     line-height: 1.6;
   }
 }
+
+/* --- Site cilası: marquee (MUI) + CTA ripple (su kimliği) --- */
+@theme inline {
+  --animate-marquee: marquee var(--duration, 40s) linear infinite;
+  --animate-marquee-vertical: marquee-vertical var(--duration, 40s) linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - var(--gap, 1rem))); }
+}
+@keyframes marquee-vertical {
+  from { transform: translateY(0); }
+  to { transform: translateY(calc(-100% - var(--gap, 1rem))); }
+}
+
+/* CTA ripple: tıklama anında içten dışa tek su halkası. Saf CSS — yüksek frekanslı öğede JS yok. */
+.cta-ripple { position: relative; overflow: hidden; }
+.cta-ripple::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 130%;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgb(255 255 255 / 0.45) 0%, transparent 62%);
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+.cta-ripple:active::after { animation: cta-ripple 420ms ease-out; }
+@keyframes cta-ripple {
+  0% { transform: scale(0); opacity: 0.85; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta-ripple:active::after { animation: none; }
+}
