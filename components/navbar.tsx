@@ -106,9 +106,8 @@ export function Navbar() {
           )}
         />
         <nav aria-label="Ana menü" className="relative z-10 flex h-12 items-center gap-1 pl-4 pr-2 md:gap-2">
-          <Link href="/" aria-label="YIKAT ana sayfa" className="flex items-center gap-2 pr-1">
-            <Image src="/images/yikat-logo-blue.png" alt="" width={24} height={24} priority className="size-6" />
-            <span className="text-base font-semibold tracking-tight text-foreground">YIKAT</span>
+          <Link href="/" aria-label="YIKAT ana sayfa" className="flex items-center pr-1">
+            <Image src="/images/yikat-logo-blue.png" alt="" width={28} height={28} priority className="size-7" />
           </Link>
 
           <div className="hidden items-center md:flex" onPointerLeave={() => setHovered(null)}>
