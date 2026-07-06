@@ -105,7 +105,7 @@ export function Navbar() {
             solid ? "opacity-100" : "opacity-0",
           )}
         />
-        <nav className="relative z-10 flex h-12 items-center gap-1 pl-4 pr-2 md:gap-2">
+        <nav aria-label="Ana menü" className="relative z-10 flex h-12 items-center gap-1 pl-4 pr-2 md:gap-2">
           <Link href="/" aria-label="YIKAT ana sayfa" className="flex items-center gap-2 pr-1">
             <Image src="/images/yikat-logo-blue.png" alt="" width={24} height={24} priority className="size-6" />
             <span className="text-base font-semibold tracking-tight text-foreground">YIKAT</span>
@@ -117,6 +117,9 @@ export function Navbar() {
                 key={l.href}
                 href={l.href}
                 onPointerEnter={() => setHovered(l.href)}
+                // Klavye paritesi: Tab odağı da vurgu hapını taşısın (fare hover'ıyla aynı sinyal).
+                onFocus={() => setHovered(l.href)}
+                onBlur={() => setHovered(null)}
                 className={cn(
                   "relative rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
                   liquidTarget === l.href ? "text-foreground" : solid ? "text-muted-foreground" : "text-foreground/80",

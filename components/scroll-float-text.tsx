@@ -5,6 +5,7 @@
 // tasarlandı). Yumuşatılmış doz: squash-stretch (scaleY 2.3) ve back-overshoot bilinçle yok;
 // karakterler verilen scroll penceresine scrub'lı, kademeli süzülür. Hook disiplini: karakter başına
 // hook'lar FloatChar alt bileşeninde yaşar (text sabit → eleman sayısı render'lar arası sabit).
+import { Fragment } from "react"
 import { motion, useTransform, type MotionValue } from "framer-motion"
 
 type ScrollFloatTextProps = {
@@ -37,27 +38,53 @@ function FloatChar({
 }
 
 export function ScrollFloatText({ text, progress, range }: ScrollFloatTextProps) {
-  const chars = Array.from(text)
+  const totalChars = Array.from(text).length
   const [start, end] = range
   const windowSize = end - start
   // Her karakter pencerenin %55'ini kullanır; başlangıç anları kalan %45'e eşit yayılır —
   // son karakter tam `end`'de yerine oturur (blok, sahnenin "tam görünür" anıyla senkron).
   const charSpan = windowSize * 0.55
-  const step = chars.length > 1 ? (windowSize - charSpan) / (chars.length - 1) : 0
+  const step = totalChars > 1 ? (windowSize - charSpan) / (totalChars - 1) : 0
+
+  // Kelime bazlı gruplama: inline-block karakter span'leri her karakter arasına satır kırma
+  // fırsatı açar ve mobilde başlık kelime ortasından bölünürdü ("Aynı gün ter / temiz teslim.").
+  // Karakterler whitespace-nowrap kelime sarmalayıcılarında yaşar; kırılma yalnız boşluklarda.
+  // Kaskad zamanlaması global karakter indeksiyle (boşluklar dahil) hesaplanır — davranış aynı.
+  const words: { word: string; startIndex: number }[] = []
+  {
+    let idx = 0
+    for (const w of text.split(" ")) {
+      words.push({ word: w, startIndex: idx })
+      idx += Array.from(w).length + 1 // +1: kelimeyi izleyen boşluk
+    }
+  }
+
   return (
     <>
       {/* Ekran okuyucu bütün metni buradan okur; animasyonlu span'ler dekoratif.
           (aria-label <p> üzerinde güvenilmez — blur-text.tsx'teki not.) */}
       <span className="sr-only">{text}</span>
       <span aria-hidden className="contents">
-        {chars.map((c, i) => (
-          <FloatChar
-            key={`${c}-${i}`}
-            char={c}
-            progress={progress}
-            from={start + i * step}
-            to={start + i * step + charSpan}
-          />
+        {words.map(({ word, startIndex }, wi) => (
+          <Fragment key={`${word}-${wi}`}>
+            <span className="inline-block whitespace-nowrap">
+              {Array.from(word).map((c, ci) => {
+                const i = startIndex + ci
+                return (
+                  <FloatChar
+                    key={`${c}-${i}`}
+                    char={c}
+                    progress={progress}
+                    from={start + i * step}
+                    to={start + i * step + charSpan}
+                  />
+                )
+              })}
+            </span>
+            {/* Kelimeler arası boşluk sarmalayıcının DIŞINDA: inline-block içindeki son boşluk
+                kırpılır (BlurText dersi) ve satır kırılma fırsatı yalnız burada olmalı. */}
+            {wi < words.length - 1 ? " " : null}
+          </Fragment>
         ))}
       </span>
     </>
