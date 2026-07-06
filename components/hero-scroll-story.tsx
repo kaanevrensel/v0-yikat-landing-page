@@ -13,6 +13,7 @@ import { ChevronDown, MapPin, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { HeroScrubVideo } from "@/components/hero-scrub-video"
 import Magnet from "@/components/magnet"
+import { ScrollFloatText } from "@/components/scroll-float-text"
 import { siteConfig } from "@/lib/site"
 import { track } from "@/lib/analytics"
 
@@ -236,7 +237,7 @@ export function HeroScrollStory() {
               <motion.div
                 key={scene.key}
                 className="col-start-1 row-start-1"
-                style={{ opacity: textOpacities[i], y: textYs[i], filter: textBlurs[i] }}
+                style={{ opacity: textOpacities[i], y: textYs[i] }}
               >
                 {i === 0 ? (
                   <h1 className={`text-balance text-4xl font-semibold tracking-tight text-foreground md:text-5xl ${LIGHT_SHADOW}`}>
@@ -248,12 +249,18 @@ export function HeroScrollStory() {
                       scene.dark ? `text-white ${DARK_SHADOW}` : `text-foreground ${LIGHT_SHADOW}`
                     }`}
                   >
-                    {scene.title}
+                    {/* Karakter kaskadı sahnenin giriş penceresinde ([fadeInStart, fullStart]) yaşar. */}
+                    <ScrollFloatText text={scene.title} progress={scrollYProgress} range={[WINDOWS[i][0], WINDOWS[i][1]]} />
                   </p>
                 )}
-                <p className={`mt-3 text-lg ${scene.dark ? `text-white/85 ${DARK_SHADOW}` : `text-muted-foreground ${LIGHT_SHADOW}`}`}>
+                {/* Blur bloğun tamamından alt metne indi: karakter kaskadı parent filter altında
+                    çamurlaşmasın. Sahne 0'ın blur'u sabit blur(0px) — bağlamak zararsız. */}
+                <motion.p
+                  style={{ filter: textBlurs[i] }}
+                  className={`mt-3 text-lg ${scene.dark ? `text-white/85 ${DARK_SHADOW}` : `text-muted-foreground ${LIGHT_SHADOW}`}`}
+                >
                   {scene.sub}
-                </p>
+                </motion.p>
               </motion.div>
             ))}
           </div>
