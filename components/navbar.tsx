@@ -1,9 +1,11 @@
 "use client"
 
 // Liquid-glass PillNav — reactbits.dev PillNav deseninden konsept ilhamıyla temiz-oda biçim
-// (bileşen MCP kataloğunda yok; kaynak kopyalanmadı). Cam dili önceki full-width navbar'ın
-// kanıtlanmış katmanları: blur+saturate iki yoğunluk, rim ışığı, üst sheen. Ağır SVG displacement
-// bilinçle yok — hero videosu üstünde her frame yeniden hesaplanıp jank yaratırdı.
+// (bileşen MCP kataloğunda yok; kaynak kopyalanmadı). Mimari "blur-first, lens-enhancement"
+// (spec: docs/superpowers/specs/2026-07-07-liquid-glass-navbar-design.md): temel katman her motorda
+// blur+saturate + 4-kenar speküler rim + 135° sheen; GERÇEK lensing (SVG displacement backdrop'u)
+// yalnız Chromium md+ kapısıyla ve translateZ(0) katman izolasyonuyla eklenir (liquid-lens.tsx) —
+// koşulsuz displacement'ın video üstünde jank yarattığı eski tespit kapı+izolasyonla aşıldı.
 // "Liquid" davranış: link grubunun arkasındaki tek vurgu hapı layoutId ile hover/aktif bölüme akar.
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
@@ -87,7 +89,9 @@ export function Navbar() {
       ? lens
         ? "rgba(255,255,255,0.60)"
         : "rgba(255,255,255,0.75)"
-      : lens
+      : // 0.28, AÇIK tonlu sokak keyframe'ine çapalı (üst bant taş/gök/açık gri) — hero
+        // görseli koyulaşırsa okunabilirlik için ilk yeniden doğrulanacak değer budur.
+        lens
         ? "rgba(255,255,255,0.28)"
         : "rgba(255,255,255,0.35)",
     boxShadow: solid

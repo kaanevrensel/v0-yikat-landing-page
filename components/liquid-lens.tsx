@@ -12,7 +12,10 @@
 import { useEffect, useState } from "react"
 
 export const LENS_FILTER_ID = "yikat-lens"
-const MAX_SHIFT_PX = 26 // maksimum kenar kayması (feDisplacementMap scale)
+// feDisplacementMap scale değeri. DİKKAT: 128±127 kanal kodlaması nedeniyle EFEKTİF maksimum
+// kayma bu değerin yaklaşık yarısıdır (~13px) — görsel ayar bu gerçek değerle doğrulandı;
+// efekti güçlendirmek isteyen scale'i ikiye katlamalı, kodlamayı değil.
+const MAX_SHIFT_PX = 26
 const EDGE_BAND_PX = 20 // kenardan içeri lens bandı — merkez berrak kalır
 
 // Klasik rounded-rect SDF: içeride negatif, kenarda 0, dışarıda pozitif (px cinsinden).
@@ -65,8 +68,12 @@ export function useLensCapable() {
   useEffect(() => {
     const ua = (navigator as { userAgentData?: { brands?: { brand: string }[] } }).userAgentData
     const chromium = !!ua?.brands?.some((b) => /Chromium|Google Chrome|Microsoft Edge/i.test(b.brand))
-    const mdUp = window.matchMedia("(min-width: 768px)").matches
-    setCapable(chromium && mdUp)
+    // md+ kapısı canlı: pencere 768px eşiğini geçerse lens açılır/kapanır (perf kuralı korunur).
+    const mq = window.matchMedia("(min-width: 768px)")
+    const update = () => setCapable(chromium && mq.matches)
+    update()
+    mq.addEventListener("change", update)
+    return () => mq.removeEventListener("change", update)
   }, [])
   return capable
 }
