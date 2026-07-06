@@ -210,3 +210,21 @@
 @media (prefers-reduced-motion: reduce) {
   .cursor-bubble { display: none; }
 }
+
+/* Liquid glass erişilebilirlik kemerleri — Apple'ın Reduced Transparency / Increase Contrast
+   otomatik adaptasyonlarının web karşılığı (spec: 2026-07-07-liquid-glass-navbar-design.md). */
+@media (prefers-reduced-transparency: reduce) {
+  .liquid-glass {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+  }
+}
+@media (prefers-contrast: more) {
+  .liquid-glass {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #ffffff !important;
+    border-color: #1f2937 !important;
+  }
+}

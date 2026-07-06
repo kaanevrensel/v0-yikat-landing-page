@@ -11,6 +11,7 @@ import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { MapPin, Menu, Phone, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { LensFilter, LENS_FILTER_ID, useLensCapable, useLiquidLens } from "@/components/liquid-lens"
 import { siteConfig } from "@/lib/site"
 import { track } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
@@ -28,7 +29,13 @@ export function Navbar() {
   const [active, setActive] = useState<string | null>(null)
   const [hovered, setHovered] = useState<string | null>(null)
   const visibleIds = useRef(new Set<string>())
+  const pillRef = useRef<HTMLDivElement>(null)
   const solid = scrolled || open
+
+  // Gerçek lensing yalnız Chromium md+ (spec: 2026-07-07-liquid-glass-navbar-design.md);
+  // diğer motorlar aşağıdaki katmanlı frost'u alır (blur-first, lens-enhancement).
+  const lensCapable = useLensCapable()
+  const lens = useLiquidLens(pillRef, lensCapable)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
@@ -66,36 +73,46 @@ export function Navbar() {
     return () => io.disconnect()
   }, [])
 
-  const glass: React.CSSProperties = solid
-    ? {
-        backdropFilter: "blur(16px) saturate(180%)",
-        WebkitBackdropFilter: "blur(16px) saturate(180%)",
-        background: "rgba(255,255,255,0.75)",
-        boxShadow:
-          "inset 0 1px 0 0 rgba(255,255,255,0.65), inset 0 -1px 0 0 rgba(255,255,255,0.15), 0 8px 30px rgba(4,44,83,0.12)",
-      }
-    : {
-        backdropFilter: "blur(12px) saturate(160%)",
-        WebkitBackdropFilter: "blur(12px) saturate(160%)",
-        background: "rgba(255,255,255,0.35)",
-        boxShadow: "inset 0 1px 0 0 rgba(255,255,255,0.5), 0 4px 20px rgba(4,44,83,0.08)",
-      }
+  // Apple "regular" varyantı portu: blur iki scroll durumu arasında SABİT (backdrop'u video
+  // üstünde yeniden filtreletmemek için — araştırma bulgusu); durumlar yalnız background
+  // alfası + gölge + kenarlıkla ayrışır. Lens aktifken kırılma zinciri + düşük alfa: kırılma
+  // görünür kalır, brightness lüminans ayarını üstlenir. Rim = 4-kenar inset speküler.
+  const frost = lens
+    ? `url(#${LENS_FILTER_ID}) blur(2px) saturate(165%) brightness(1.05)`
+    : "blur(14px) saturate(170%)"
+  const glass: React.CSSProperties = {
+    backdropFilter: frost,
+    WebkitBackdropFilter: frost,
+    background: solid
+      ? lens
+        ? "rgba(255,255,255,0.60)"
+        : "rgba(255,255,255,0.75)"
+      : lens
+        ? "rgba(255,255,255,0.28)"
+        : "rgba(255,255,255,0.35)",
+    boxShadow: solid
+      ? "inset 0 1px 1px rgba(255,255,255,0.60), inset 0 -1px 1px rgba(255,255,255,0.25), inset 1px 0 1px rgba(255,255,255,0.18), inset -1px 0 1px rgba(255,255,255,0.18), 0 8px 30px rgba(4,44,83,0.12)"
+      : "inset 0 1px 1px rgba(255,255,255,0.55), inset 0 -1px 1px rgba(255,255,255,0.30), inset 1px 0 1px rgba(255,255,255,0.20), inset -1px 0 1px rgba(255,255,255,0.20), 0 4px 20px rgba(4,44,83,0.08)",
+  }
 
   const liquidTarget = hovered ?? active
 
   return (
     <header className="fixed inset-x-3 top-3 z-50 md:inset-x-0 md:mx-auto md:w-fit">
       <div
+        ref={pillRef}
         style={glass}
+        // liquid-glass: reduced-transparency/contrast kemerleri (globals.css); translateZ(0)
+        // hap'a kendi kompozit katmanını verir (video üstü backdrop perf — araştırma bulgusu).
         className={cn(
-          "relative overflow-hidden rounded-full border transition-all duration-300",
+          "liquid-glass relative overflow-hidden rounded-full border transition-all duration-300 [transform:translateZ(0)]",
           solid ? "border-white/50" : "border-white/25",
         )}
       >
-        {/* Cam sheeni: üst yarıda ince ışıma (liquid glass speküler yüzeyi) */}
+        {/* Cam sheeni: 135° speküler süpürme (Apple highlight katmanının statik portu) */}
         <span
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-full bg-gradient-to-b from-white/25 to-transparent"
+          className="pointer-events-none absolute inset-0 rounded-full bg-[linear-gradient(135deg,rgba(255,255,255,0.38),rgba(255,255,255,0.06)_30%,transparent_58%)]"
         />
         {/* Alt specular çizgi — kaydırınca belirir */}
         <span
@@ -119,8 +136,9 @@ export function Navbar() {
                 // Klavye paritesi: Tab odağı da vurgu hapını taşısın (fare hover'ıyla aynı sinyal).
                 onFocus={() => setHovered(l.href)}
                 onBlur={() => setHovered(null)}
+                // Jel basış (Apple .interactive() portu): hafif esneme; reduced-motion'da kapalı.
                 className={cn(
-                  "relative rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
+                  "relative rounded-full px-3 py-1.5 text-sm font-medium transition-[color,transform] duration-150 active:scale-[0.96] motion-reduce:transform-none",
                   liquidTarget === l.href ? "text-foreground" : solid ? "text-muted-foreground" : "text-foreground/80",
                 )}
               >
@@ -141,13 +159,17 @@ export function Navbar() {
             aria-label={`Ara: ${siteConfig.phone}`}
             onClick={() => track("nav_call_click")}
             className={cn(
-              "hidden rounded-full p-2 transition-colors hover:text-foreground md:block",
+              "hidden rounded-full p-2 transition-[color,transform] duration-150 hover:text-foreground active:scale-[0.94] motion-reduce:transform-none md:block",
               solid ? "text-muted-foreground" : "text-foreground/80",
             )}
           >
             <Phone className="size-4" />
           </a>
-          <Button asChild size="sm" className="hidden rounded-full md:inline-flex">
+          <Button
+            asChild
+            size="sm"
+            className="hidden rounded-full transition-transform duration-150 active:scale-[0.96] motion-reduce:transform-none md:inline-flex"
+          >
             <a
               href={siteConfig.directionsUrl}
               target="_blank"
@@ -159,7 +181,7 @@ export function Navbar() {
           </Button>
 
           <button
-            className="ml-auto p-2 md:hidden"
+            className="ml-auto p-2 transition-transform duration-150 active:scale-[0.94] motion-reduce:transform-none md:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -185,7 +207,7 @@ export function Navbar() {
               background: "rgba(255,255,255,0.85)",
               boxShadow: "inset 0 1px 0 0 rgba(255,255,255,0.65), 0 12px 40px rgba(4,44,83,0.14)",
             }}
-            className="mt-2 overflow-hidden rounded-2xl border border-white/50 md:hidden"
+            className="liquid-glass mt-2 overflow-hidden rounded-2xl border border-white/50 md:hidden"
           >
             <nav aria-label="Mobil menü" className="flex flex-col gap-1 px-3 py-3">
               {NAV_LINKS.map((l) => (
@@ -228,6 +250,9 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Lens filtresi: yalnız Chromium md+ üretilir; harita hap boyutuyla birebir. */}
+      {lens && <LensFilter lens={lens} />}
     </header>
   )
 }
