@@ -47,7 +47,9 @@ export default function BlurText({ text, as = "h2", delay = 60, animateBy = "wor
       {/* Ekran okuyucu metni parent aria-label'dan alır; parçalı span'ler dekoratif. */}
       <span aria-hidden className="contents">
         {units.map((u, i) => (
-          <motion.span key={`${u}-${i}`} variants={item} className="inline-block">
+          // whitespace-pre: inline-block span'in SONUNDAKİ boşluk normalde kırpılır — kelimeler
+          // görsel olarak birleşirdi ("Üçadımda,aynıgün"); pre bunu korur.
+          <motion.span key={`${u}-${i}`} variants={item} className="inline-block whitespace-pre">
             {u}
             {animateBy === "words" && i < units.length - 1 ? " " : ""}
           </motion.span>

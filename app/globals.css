@@ -165,3 +165,24 @@
 @media (prefers-reduced-motion: reduce) {
   .cta-ripple:active::after { animation: none; }
 }
+
+/* ShinyText bandı (RB ilhamı, temiz-oda): rozetin üstünden ~1sn'lik ışık süpürmesi + ~5.5sn bekleme.
+   Yalnız transform animasyonu (compositor-only); parent'ta relative + overflow-hidden şart. */
+.shine-band {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 60%;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent, rgb(255 255 255 / 0.28), transparent);
+  transform: translateX(-160%);
+  animation: shine-sweep 6.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes shine-sweep {
+  0% { transform: translateX(-160%); }
+  16%, 100% { transform: translateX(300%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shine-band { animation: none; display: none; }
+}

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { Clock, Footprints, Sparkles } from "lucide-react"
 import BlurText from "@/components/blur-text"
+import { CardSpotlight } from "@/components/spotlight-card"
 
 const STEPS = [
   { no: "01", icon: Footprints, title: "Getir", text: "Ayakkabını dükkana bırak. İki dakikanı alır." },
@@ -55,6 +56,7 @@ export function HowItWorks() {
                 </div>
                 <h3 className="mt-4 text-lg font-semibold">{s.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{s.text}</p>
+                <CardSpotlight />
               </motion.div>
             ))}
           </div>

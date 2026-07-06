@@ -2,6 +2,8 @@
 
 import Image from "next/image"
 import { motion, useReducedMotion } from "framer-motion"
+import ShinyText from "@/components/shiny-text"
+import { CardSpotlight } from "@/components/spotlight-card"
 
 // Master plan (uygulama + kapıdan alım) sinyali — dükkan sitesinde uygulamayı fısıldayan tek yer.
 // Form yok, app-store bağlantısı yok (uygulama henüz yok): saf teaser.
@@ -50,15 +52,17 @@ export function ComingSoonBand() {
           <span aria-hidden className="pointer-events-none absolute -right-6 -top-8 size-32 rounded-full bg-white/5" />
           <span aria-hidden className="pointer-events-none absolute bottom-4 left-1/3 size-16 rounded-full bg-white/5" />
 
+          {/* İçerik grid'i relative olduğundan spotlight içeriğin ALTINDA, gradyanın üstünde boyanır. */}
+          <CardSpotlight glowColor="rgba(255, 255, 255, 0.07)" size={480} />
+
           <div className="relative grid items-center gap-10 md:grid-cols-2">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white ring-1 ring-white/15">
-                <span className="relative flex size-2">
-                  <ReducedPing />
-                  <span className="relative inline-flex size-2 rounded-full bg-amber-400" />
-                </span>
+              {/* Rozet: amber nokta statik — karttaki ambient döngüler ShinyText süpürmesi + telefon
+                  süzülmesiyle sınırlı kalsın diye eski animate-ping halkası kaldırıldı. */}
+              <ShinyText className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white ring-1 ring-white/15">
+                <span className="size-2 rounded-full bg-amber-400" />
                 Çok yakında
-              </span>
+              </ShinyText>
               <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight text-white md:text-4xl">
                 YIKAT uygulaması çok yakında
               </h2>
@@ -75,14 +79,5 @@ export function ComingSoonBand() {
         </motion.div>
       </div>
     </section>
-  )
-}
-
-// Nabız halkası — reduced-motion'da görünmez (animate-ping kapalı).
-function ReducedPing() {
-  const prefersReduced = useReducedMotion()
-  if (prefersReduced) return null
-  return (
-    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-70 [animation-duration:2s]" />
   )
 }
