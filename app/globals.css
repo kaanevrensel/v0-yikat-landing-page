@@ -186,3 +186,27 @@
 @media (prefers-reduced-motion: reduce) {
   .shine-band { animation: none; display: none; }
 }
+
+/* BubbleCursor (RB imleç-izi ailesinden konsept ilhamı, temiz-oda): imleç yolunda sabun baloncuğu.
+   transform+opacity-only; animationend'de node JS'le silinir. Çift halka (beyaz + primer) hem açık
+   hem navy zeminde okunur. */
+.cursor-bubble {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  border: 1px solid rgb(255 255 255 / 0.5);
+  box-shadow: 0 0 0 1px rgb(74 140 255 / 0.15), inset 0 0 4px rgb(255 255 255 / 0.3);
+  background: radial-gradient(circle at 30% 30%, rgb(255 255 255 / 0.55), rgb(255 255 255 / 0) 45%),
+    radial-gradient(circle, rgb(74 140 255 / 0.1), rgb(74 140 255 / 0.04));
+  opacity: 0;
+  transform: translateY(0) scale(0.6);
+  animation: bubble-rise 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+@keyframes bubble-rise {
+  12% { opacity: 0.8; }
+  100% { opacity: 0; transform: translateY(-36px) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cursor-bubble { display: none; }
+}

@@ -1,4 +1,5 @@
 import { MotionProvider } from "@/components/motion-provider"
+import { BubbleCursor } from "@/components/bubble-cursor"
 import { Navbar } from "@/components/navbar"
 import { HeroScrollStory } from "@/components/hero-scroll-story"
 import { ValueBand } from "@/components/value-band"
@@ -30,6 +31,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
       />
       <MotionProvider>
+        <BubbleCursor />
         <Navbar />
         <main>
           <HeroScrollStory />
