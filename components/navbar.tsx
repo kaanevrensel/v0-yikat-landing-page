@@ -1,6 +1,11 @@
 "use client"
 
-import { useEffect, useState } from "react"
+// Liquid-glass PillNav — reactbits.dev PillNav deseninden konsept ilhamıyla temiz-oda biçim
+// (bileşen MCP kataloğunda yok; kaynak kopyalanmadı). Cam dili önceki full-width navbar'ın
+// kanıtlanmış katmanları: blur+saturate iki yoğunluk, rim ışığı, üst sheen. Ağır SVG displacement
+// bilinçle yok — hero videosu üstünde her frame yeniden hesaplanıp jank yaratırdı.
+// "Liquid" davranış: link grubunun arkasındaki tek vurgu hapı layoutId ile hover/aktif bölüme akar.
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
@@ -20,6 +25,9 @@ const NAV_LINKS = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [active, setActive] = useState<string | null>(null)
+  const [hovered, setHovered] = useState<string | null>(null)
+  const visibleIds = useRef(new Set<string>())
   const solid = scrolled || open
 
   useEffect(() => {
@@ -36,75 +44,108 @@ export function Navbar() {
     return () => window.removeEventListener("keydown", onKey)
   }, [open])
 
-  // reactbits.dev GlassSurface deseninden ilhamla temiz-oda "glass" yüzey (kaynak kopyalanmadı;
-  // RB lisansı MIT+Commons Clause). Ağır SVG displacement bilinçle atlandı — hero videosu üstünde
-  // her frame yeniden hesaplanıp jank yaratırdı. Signature: blur + saturate + rim ışığı + sheen.
+  // Aktif bölüm takibi: viewport ortasındaki dar bantla kesişen anchor hedefi kazanır;
+  // hiçbiri kesişmiyorsa (hero, footer) vurgu hapı görünmez.
+  useEffect(() => {
+    const targets = NAV_LINKS.map((l) => document.querySelector<HTMLElement>(l.href)).filter(
+      (t): t is HTMLElement => t !== null,
+    )
+    if (!targets.length) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          const id = `#${e.target.id}`
+          if (e.isIntersecting) visibleIds.current.add(id)
+          else visibleIds.current.delete(id)
+        }
+        setActive(NAV_LINKS.map((l) => l.href).find((h) => visibleIds.current.has(h)) ?? null)
+      },
+      { rootMargin: "-40% 0px -55% 0px" },
+    )
+    targets.forEach((t) => io.observe(t))
+    return () => io.disconnect()
+  }, [])
+
   const glass: React.CSSProperties = solid
     ? {
         backdropFilter: "blur(16px) saturate(180%)",
         WebkitBackdropFilter: "blur(16px) saturate(180%)",
-        background: "rgba(255,255,255,0.72)",
+        background: "rgba(255,255,255,0.75)",
         boxShadow:
-          "inset 0 1px 0 0 rgba(255,255,255,0.65), inset 0 -1px 0 0 rgba(255,255,255,0.15), 0 8px 30px rgba(4,44,83,0.10)",
+          "inset 0 1px 0 0 rgba(255,255,255,0.65), inset 0 -1px 0 0 rgba(255,255,255,0.15), 0 8px 30px rgba(4,44,83,0.12)",
       }
     : {
         backdropFilter: "blur(12px) saturate(160%)",
         WebkitBackdropFilter: "blur(12px) saturate(160%)",
-        background: "rgba(255,255,255,0.30)",
-        boxShadow: "inset 0 1px 0 0 rgba(255,255,255,0.5)",
+        background: "rgba(255,255,255,0.35)",
+        boxShadow: "inset 0 1px 0 0 rgba(255,255,255,0.5), 0 4px 20px rgba(4,44,83,0.08)",
       }
 
-  return (
-    <header
-      style={glass}
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b transition-all duration-300",
-        solid ? "border-border" : "border-white/15",
-      )}
-    >
-      {/* Cam sheeni — yalnız üst barda, üstten aşağı ince ışıma (GlassSurface iç parlaklığı) */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white/20 to-transparent"
-      />
-      <span
-        aria-hidden
-        className={cn(
-          "pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent transition-opacity duration-300",
-          solid ? "opacity-100" : "opacity-0",
-        )}
-      />
-      <nav className="relative z-10 mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" aria-label="YIKAT ana sayfa" className="flex items-center gap-2">
-          <Image src="/images/yikat-logo-blue.png" alt="" width={28} height={28} priority className="size-7" />
-          <span className="text-lg font-semibold tracking-tight text-foreground">YIKAT</span>
-        </Link>
+  const liquidTarget = hovered ?? active
 
-        <div className="hidden items-center gap-6 md:flex">
-          {NAV_LINKS.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-foreground",
-                solid ? "text-muted-foreground" : "text-foreground/80",
-              )}
-            >
-              {l.label}
-            </Link>
-          ))}
+  return (
+    <header className="fixed inset-x-3 top-3 z-50 md:inset-x-0 md:mx-auto md:w-fit">
+      <div
+        style={glass}
+        className={cn(
+          "relative overflow-hidden rounded-full border transition-all duration-300",
+          solid ? "border-white/50" : "border-white/25",
+        )}
+      >
+        {/* Cam sheeni: üst yarıda ince ışıma (liquid glass speküler yüzeyi) */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-full bg-gradient-to-b from-white/25 to-transparent"
+        />
+        {/* Alt specular çizgi — kaydırınca belirir */}
+        <span
+          aria-hidden
+          className={cn(
+            "pointer-events-none absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent transition-opacity duration-300",
+            solid ? "opacity-100" : "opacity-0",
+          )}
+        />
+        <nav className="relative z-10 flex h-12 items-center gap-1 pl-4 pr-2 md:gap-2">
+          <Link href="/" aria-label="YIKAT ana sayfa" className="flex items-center gap-2 pr-1">
+            <Image src="/images/yikat-logo-blue.png" alt="" width={24} height={24} priority className="size-6" />
+            <span className="text-base font-semibold tracking-tight text-foreground">YIKAT</span>
+          </Link>
+
+          <div className="hidden items-center md:flex" onPointerLeave={() => setHovered(null)}>
+            {NAV_LINKS.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onPointerEnter={() => setHovered(l.href)}
+                className={cn(
+                  "relative rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
+                  liquidTarget === l.href ? "text-foreground" : solid ? "text-muted-foreground" : "text-foreground/80",
+                )}
+              >
+                {liquidTarget === l.href && (
+                  <motion.span
+                    layoutId="nav-liquid-pill"
+                    transition={{ type: "spring", duration: 0.45, bounce: 0 }}
+                    className="absolute inset-0 rounded-full bg-white/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_1px_6px_rgba(4,44,83,0.08)]"
+                  />
+                )}
+                <span className="relative z-10">{l.label}</span>
+              </Link>
+            ))}
+          </div>
+
           <a
             href={siteConfig.phoneHref}
             aria-label={`Ara: ${siteConfig.phone}`}
             onClick={() => track("nav_call_click")}
             className={cn(
-              "transition-colors hover:text-foreground",
+              "hidden rounded-full p-2 transition-colors hover:text-foreground md:block",
               solid ? "text-muted-foreground" : "text-foreground/80",
             )}
           >
             <Phone className="size-4" />
           </a>
-          <Button asChild size="sm" className="rounded-full">
+          <Button asChild size="sm" className="hidden rounded-full md:inline-flex">
             <a
               href={siteConfig.directionsUrl}
               target="_blank"
@@ -114,30 +155,37 @@ export function Navbar() {
               <MapPin className="size-4" /> Yol Tarifi
             </a>
           </Button>
-        </div>
 
-        <button
-          className="-m-2 p-2 md:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          aria-label="Menü"
-        >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
-        </button>
-      </nav>
+          <button
+            className="ml-auto p-2 md:hidden"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label="Menü"
+          >
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+        </nav>
+      </div>
 
+      {/* Mobil menü: hapın altına kopuk cam kart */}
       <AnimatePresence>
         {open && (
           <motion.div
             id="mobile-menu"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="overflow-hidden border-b bg-background md:hidden"
+            initial={{ opacity: 0, y: -8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            style={{
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
+              background: "rgba(255,255,255,0.85)",
+              boxShadow: "inset 0 1px 0 0 rgba(255,255,255,0.65), 0 12px 40px rgba(4,44,83,0.14)",
+            }}
+            className="mt-2 overflow-hidden rounded-2xl border border-white/50 md:hidden"
           >
-            <nav aria-label="Mobil menü" className="flex flex-col gap-1 px-4 py-3">
+            <nav aria-label="Mobil menü" className="flex flex-col gap-1 px-3 py-3">
               {NAV_LINKS.map((l) => (
                 <Link
                   key={l.href}
