@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { WebVitalsReporter } from "@/components/web-vitals-reporter"
 import { priceMenu, siteConfig } from "@/lib/site"
 import "./globals.css"
 
@@ -120,6 +121,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         {children}
         <Analytics />
+        <WebVitalsReporter />
       </body>
     </html>
   )

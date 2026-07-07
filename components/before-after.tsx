@@ -6,10 +6,12 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
 import { ChevronsLeftRight } from "lucide-react"
 import BlurText from "@/components/blur-text"
 import CircularText from "@/components/circular-text"
+import { results, type ResultPair } from "@/lib/site"
 
 type Bubble = { id: number; xPct: number; topPct: number; size: number }
 
-function CompareCard({ label }: { label: string }) {
+function CompareCard({ pair }: { pair: ResultPair }) {
+  const { label } = pair
   const ref = useRef<HTMLDivElement>(null)
   const [pct, setPct] = useState(50)
   const dragging = useRef(false)
@@ -78,10 +80,10 @@ function CompareCard({ label }: { label: string }) {
         className="relative aspect-[4/3] cursor-ew-resize touch-pan-y select-none overflow-hidden rounded-3xl border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       >
         {/* Alt katman: temiz (YIKAT sonrası) */}
-        <Image alt="" fill sizes="(min-width: 768px) 672px, 100vw" className="object-cover" src="/images/results/spor-sonra.webp" />
+        <Image alt="" fill sizes="(min-width: 768px) 672px, 100vw" className="object-cover" src={pair.after} />
         {/* Üst katman: kirli — clip-path ile soldan pct% görünür */}
         <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pct}% 0 0)` }}>
-          <Image alt="" fill sizes="(min-width: 768px) 672px, 100vw" className="object-cover" src="/images/results/spor-once.webp" />
+          <Image alt="" fill sizes="(min-width: 768px) 672px, 100vw" className="object-cover" src={pair.before} />
         </div>
         {/* Köpük patlaması */}
         <AnimatePresence>
@@ -113,7 +115,10 @@ function CompareCard({ label }: { label: string }) {
           TEMİZ
         </span>
       </div>
-      <p className="mt-2 text-center text-xs text-muted-foreground">{label} · Temsili görsel</p>
+      {/* representative=false yalnız sahip onaylı GERÇEK müşteri fotoğrafında kullanılır. */}
+      <p className="mt-2 text-center text-xs text-muted-foreground">
+        {label} · {pair.representative ? "Temsili görsel" : "Gerçek müşteri sonucu"}
+      </p>
     </div>
   )
 }
@@ -137,7 +142,9 @@ export function BeforeAfter() {
           Çizgiyi sürükle — sol kirli, sağ YIKAT sonrası.
         </p>
         <div className="mx-auto mt-12 max-w-2xl">
-          <CompareCard label="Spor ayakkabı" />
+          {results.map((pair) => (
+            <CompareCard key={pair.label} pair={pair} />
+          ))}
         </div>
       </div>
     </section>

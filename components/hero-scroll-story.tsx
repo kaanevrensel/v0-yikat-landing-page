@@ -1,7 +1,6 @@
 "use client"
 
 import { useRef } from "react"
-import Image from "next/image"
 import {
   motion,
   useReducedMotion,
@@ -71,7 +70,12 @@ function SceneLcpPicture({ scene }: { scene: (typeof SCENES)[number] }) {
   return (
     <picture>
       <source media="(min-width: 768px)" srcSet={scene.img} />
-      <img src={scene.imgMobile} alt="" className="absolute inset-0 h-full w-full object-cover" />
+      <img
+        src={scene.imgMobile}
+        alt=""
+        fetchPriority="high"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
     </picture>
   )
 }
@@ -221,10 +225,18 @@ export function HeroScrollStory() {
             {i === 0 ? (
               <SceneLcpPicture scene={scene} />
             ) : (
-              <>
-                <Image alt="" fill sizes="100vw" className="hidden object-cover md:block" src={scene.img} />
-                <Image alt="" fill sizes="100vw" className="object-cover md:hidden" src={scene.imgMobile} />
-              </>
+              // <picture> art-direction: CSS'le gizlenen çift <Image> (unoptimized=düz img)
+              // her cihazda İKİ varyantı da indiriyordu; source/media tek doğru kırpımı seçer.
+              <picture>
+                <source media="(min-width: 768px)" srcSet={scene.img} />
+                <img
+                  src={scene.imgMobile}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </picture>
             )}
           </motion.div>
         ))}
