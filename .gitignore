@@ -14,3 +14,8 @@ node_modules/
 # TypeScript incremental build cache
 tsconfig.tsbuildinfo
 .hero-work/
+
+# test/perf artefaktları
+test-results/
+playwright-report/
+.lighthouseci/
