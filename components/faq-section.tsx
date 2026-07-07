@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useReducedMotion } from "framer-motion"
+import { motion } from "framer-motion"
 import {
   Accordion,
   AccordionContent,
@@ -11,7 +11,6 @@ import { faqs } from "@/lib/site"
 import BlurText from "@/components/blur-text"
 
 export function FaqSection() {
-  const prefersReduced = useReducedMotion()
   return (
     <section id="sss" className="scroll-mt-20 py-20 sm:py-28">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
@@ -33,15 +32,10 @@ export function FaqSection() {
             {faqs.map((f, i) => (
               <AccordionItem key={f.q} value={`faq-${i}`}>
                 <AccordionTrigger className="text-left">{f.q}</AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  <motion.div
-                    initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 6, filter: "blur(4px)" }}
-                    animate={prefersReduced ? { opacity: 1 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
-                    transition={{ duration: prefersReduced ? 0.15 : 0.25, ease: "easeOut" }}
-                  >
-                    {f.a}
-                  </motion.div>
-                </AccordionContent>
+                {/* İç mikro-reveal kaldırıldı: forceMount ile içerik hep DOM'da olduğundan
+                    mount-animasyonu yalnız ilk yüklemede (görünmezken) çalışırdı; açılışın
+                    anlatıcısı accordion-down yükseklik animasyonu. */}
+                <AccordionContent className="text-muted-foreground">{f.a}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>

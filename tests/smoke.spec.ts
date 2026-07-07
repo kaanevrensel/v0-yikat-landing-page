@@ -62,12 +62,44 @@ test("404 sayfası Türkçe ve dönüşüm çıkışlı", async ({ page }) => {
   await expect(page.locator(`a[href='${siteConfig.phoneHref}']`)).toBeAttached()
 })
 
-test("axe: critical/serious ihlal yok (ana sayfa)", async ({ page }) => {
-  await page.goto("/")
-  await page.waitForTimeout(1500) // giriş animasyonları otursun
+async function expectNoSeriousAxe(page: import("@playwright/test").Page, label: string) {
   const results = await new AxeBuilder({ page }).analyze()
   const bad = results.violations.filter((v) => v.impact === "critical" || v.impact === "serious")
-  expect(
-    bad.map((v) => `${v.id}: ${v.nodes.length} node — ${v.help}`),
-  ).toEqual([])
+  expect(bad.map((v) => `${label} → ${v.id}: ${v.nodes.length} node — ${v.help}`)).toEqual([])
+}
+
+// whileInView blokları scroll 0'da opacity:0 kalır ve axe görsel kuralları (color-contrast)
+// görünmez düğümde atlar — taramadan önce sayfayı sonuna dek kaydırıp girişleri tetikliyoruz.
+async function scrollThrough(page: import("@playwright/test").Page) {
+  await page.evaluate(async () => {
+    for (let y = 0; y <= document.body.scrollHeight; y += 700) {
+      window.scrollTo(0, y)
+      await new Promise((r) => setTimeout(r, 120))
+    }
+  })
+  await page.waitForTimeout(800) // son girişler otursun
+}
+
+test("axe: critical/serious ihlal yok (ana sayfa, tam scroll)", async ({ page }) => {
+  await page.goto("/")
+  await scrollThrough(page)
+  await expectNoSeriousAxe(page, "/")
+})
+
+test("axe: mobil viewport + menü açıkken ihlal yok", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto("/")
+  await scrollThrough(page)
+  await page.evaluate(() => window.scrollTo(0, 0))
+  await page.click("header button[aria-controls='mobile-menu']")
+  await page.waitForTimeout(500)
+  await expectNoSeriousAxe(page, "mobil+menü")
+})
+
+test("axe: 404 ve legal sayfalar", async ({ page }) => {
+  for (const path of ["/olmayan-bir-sayfa", "/kvkk", "/mesafeli-satis-sozlesmesi"]) {
+    await page.goto(path)
+    await page.waitForTimeout(800)
+    await expectNoSeriousAxe(page, path)
+  }
 })

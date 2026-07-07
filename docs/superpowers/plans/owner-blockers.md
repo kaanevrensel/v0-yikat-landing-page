@@ -45,8 +45,9 @@ Dükkan sahibinden girdi gelmeden ilerleyemeyen maddelerin TEK listesi. Bir madd
 
 ## 8. Marka mavisi + beyaz küçük metin (sistemik kontrast kararı)
 - **Durum:** `#4A8CFF` üstünde beyaz, 18px altı metinde WCAG AA'yı (4.5:1) geçemiyor (3.23:1).
-  2026-07-08'de axe'ın yakaladığı iki nokta (navbar CTA, "TEMİZ" rozeti) markanın kendi koyu
-  gradyan tonuna (#1f5eb8) çekildi; foto üstündeki büyük CTA'lar axe tarafından hesaplanamıyor.
+  2026-07-08 review turlarıyla DÜZ RENK dolgulu tüm küçük-metin yüzeyleri #1f5eb8'e çekildi:
+  navbar masaüstü+mobil CTA'ları, hero final CTA'sı, "TEMİZ" rozeti, 404 etiketi+butonu, skip-link.
+  #4A8CFF artık yalnız büyük metin/ikon/vurgu ve zemin rollerinde.
 - **Bekleyen:** Marka kararı — primer buton dolgusunun sistematik olarak #1f5eb8'e mi kayacağı,
   yoksa #4A8CFF'in yalnız büyük metin/ikon vurgusu olarak mı kalacağı.
 

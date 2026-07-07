@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  eslint-plugin-jsx-a11y: 6.10.2
+
 importers:
 
   .:
@@ -70,7 +73,7 @@ importers:
         specifier: 16.1.6
         version: 16.1.6(@typescript-eslint/parser@8.63.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.7.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.7.3)
       eslint-plugin-jsx-a11y:
-        specifier: ^6.10.2
+        specifier: 6.10.2
         version: 6.10.2(eslint@9.39.4(jiti@2.6.1))
       postcss:
         specifier: ^8.5

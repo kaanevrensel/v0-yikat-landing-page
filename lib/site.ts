@@ -73,7 +73,7 @@ export const results: ResultPair[] = [
   },
 ]
 
-// SSS — hem sayfadaki accordion hem layout'taki FAQPage JSON-LD buradan beslenir.
+// SSS — hem sayfadaki accordion hem app/page.tsx'teki FAQPage JSON-LD buradan beslenir (tamamı).
 export const faqs = [
   {
     q: "Hangi ayakkabılar yıkanıyor?",

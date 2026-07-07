@@ -85,7 +85,8 @@ export function HeroCtas({ eventPrefix }: { eventPrefix: string }) {
   return (
     <div className="flex flex-wrap items-center justify-center gap-3">
       <Magnet maxShift={8}>
-        <Button asChild size="lg" className="cta-ripple rounded-full">
+        {/* bg-[#1f5eb8]: buton dolgusu düz renk — 14px beyaz metin #4A8CFF üstünde AA geçemiyor. */}
+        <Button asChild size="lg" className="cta-ripple rounded-full bg-[#1f5eb8] hover:bg-[#1a4fa0]">
           <a
             href={directionsUrl}
             target="_blank"

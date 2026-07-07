@@ -268,7 +268,7 @@ export default function KvkkPage() {
         <div className="mt-12 border-t border-border pt-8">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-primary/80"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[#1f5eb8] transition-colors hover:text-[#1a4fa0]"
           >
             <ArrowLeft className="size-4" />
             {"Ana Sayfaya Dön"}

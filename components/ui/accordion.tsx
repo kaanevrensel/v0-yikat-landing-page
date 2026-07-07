@@ -55,7 +55,11 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Content
       data-slot="accordion-content"
-      className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm"
+      // forceMount: cevaplar SSR HTML'inde bulunsun (FAQPage JSON-LD ile içerik paritesi —
+      // Google yapılandırılmış verinin sayfada da var olmasını ister). Kapalı durumda hidden;
+      // açılış animasyonu (accordion-down) aynen çalışır, kapanış anlık (çıkışlar sade).
+      forceMount
+      className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm data-[state=closed]:hidden"
       {...props}
     >
       <div className={cn('pt-0 pb-4', className)}>{children}</div>

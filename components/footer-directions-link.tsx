@@ -1,13 +1,15 @@
 "use client"
 
 // Footer server component kaldığı için analytics'li tek link bu minik client bileşene çıkarıldı.
-import { siteConfig } from "@/lib/site"
+import { useDirectionsUrl } from "@/hooks/use-directions-url"
 import { track } from "@/lib/analytics"
 
 export function FooterDirectionsLink() {
+  // Diğer yüzeylerle tutarlı: iOS'ta Apple Haritalar.
+  const directionsUrl = useDirectionsUrl()
   return (
     <a
-      href={siteConfig.directionsUrl}
+      href={directionsUrl}
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => track("footer_directions_click")}

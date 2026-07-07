@@ -35,7 +35,7 @@ export default function Home() {
         {/* WCAG 2.4.1: sticky nav + 300vh hero'yu klavyeyle atlama yolu. */}
         <a
           href="#icerik"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground focus:shadow-lg"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-[#1f5eb8] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg"
         >
           İçeriğe atla
         </a>

@@ -276,7 +276,8 @@ export function Navbar() {
                 </Link>
               ))}
               <div className="mt-2 flex gap-2">
-                <Button asChild size="sm" className="flex-1 rounded-full">
+                {/* bg-[#1f5eb8]: 14px beyaz metin #4A8CFF üstünde AA geçemiyor (masaüstü CTA ile aynı karar). */}
+                <Button asChild size="sm" className="flex-1 rounded-full bg-[#1f5eb8] hover:bg-[#1a4fa0]">
                   <a
                     href={directionsUrl}
                     target="_blank"

@@ -49,7 +49,7 @@ Next.js 16 App Router + React 19 + TypeScript (strict) + Tailwind CSS v4 + shadc
 
 ## SEO layout
 
-- Metadata lives in `app/layout.tsx`: Bakırköy-targeted title/description/keywords, OG/Twitter tags (`og:image` now set to `public/images/og.png`, a 1200×630 export of the keyframe-temiz hero photo), Google verification token, self-canonical to the homepage.
+- Metadata lives in `app/layout.tsx`: Bakırköy-targeted title/description/keywords, OG/Twitter tags (`og:image` now set to `public/images/og.jpg`, a 1200×630 export of the keyframe-temiz hero photo), Google verification token, self-canonical to the homepage.
 - `app/layout.tsx` also inlines a `LocalBusiness` JSON-LD block (with `@id`, `hasMap`, `address`, `openingHoursSpecification`, and `geo` coordinates) on every page. **The `geo` lat/long in `lib/site.ts` is an approximation — verify it against the store's real Google Maps pin before launch.**
 - `app/page.tsx` inlines a separate `FAQPage` JSON-LD (`faqs`'ın TAMAMI, 9 madde) — homepage-only, not in the root layout. LocalBusiness şeması `paymentAccepted`/`currenciesAccepted`/`hasOfferCatalog` (fiyatsız) taşır; `sameAs` yalnız `socialLinks` dolunca üretilir. CWV telemetrisi `components/web-vitals-reporter.tsx` → `track()`.
 - `app/robots.ts` and `app/sitemap.ts` are dynamic (no more static hand-maintained `public/robots.txt`/`public/sitemap.xml`); the sitemap lists `/`, `/kvkk`, `/mesafeli-satis-sozlesmesi`.

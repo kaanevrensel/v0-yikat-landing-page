@@ -11,9 +11,11 @@ export default defineConfig({
     baseURL: "http://localhost:3210",
   },
   webServer: {
-    command: "pnpm dev --port 3210",
+    // Production build'e karşı koşulur: dev sunucusunun rota-bazlı soğuk derlemeleri paralel
+    // worker'larda ERR_ABORTED/timeout flakiness'i üretiyordu; prod deterministik ve hızlı.
+    command: "pnpm build && pnpm start --port 3210",
     url: "http://localhost:3210",
     reuseExistingServer: true,
-    timeout: 120_000,
+    timeout: 240_000,
   },
 })
