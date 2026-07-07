@@ -111,7 +111,8 @@ function CompareCard({ pair }: { pair: ResultPair }) {
         <span className="absolute left-3 top-3 z-10 rounded-full bg-[#8a6237] px-2.5 py-0.5 text-xs font-bold text-white">
           KİRLİ
         </span>
-        <span className="absolute right-3 top-3 z-10 rounded-full bg-primary px-2.5 py-0.5 text-xs font-bold text-white">
+        {/* bg-[#1f5eb8]: markanın gradyan tonu — #4A8CFF üstünde beyaz 12px 3.23:1 kalıyordu (AA 4.5). */}
+        <span className="absolute right-3 top-3 z-10 rounded-full bg-[#1f5eb8] px-2.5 py-0.5 text-xs font-bold text-white">
           TEMİZ
         </span>
       </div>

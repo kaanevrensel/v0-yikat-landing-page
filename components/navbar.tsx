@@ -198,10 +198,12 @@ export function Navbar() {
           >
             <Phone className="size-4" />
           </a>
+          {/* bg-[#1f5eb8]: 14px beyaz metin #4A8CFF üstünde 3.23:1 kalıyordu (AA 4.5) — marka
+              gradyanının koyu tonu; sistemik primary+beyaz kararı owner-blockers'ta. */}
           <Button
             asChild
             size="sm"
-            className="hidden rounded-full transition-transform duration-150 active:scale-[0.96] motion-reduce:transform-none md:inline-flex"
+            className="hidden rounded-full bg-[#1f5eb8] hover:bg-[#1a4fa0] transition-transform duration-150 active:scale-[0.96] motion-reduce:transform-none md:inline-flex"
           >
             <a
               href={directionsUrl}

@@ -27,7 +27,8 @@
   --secondary: #f3f4f6;
   --secondary-foreground: #1f2937;
   --muted: #f3f4f6;
-  --muted-foreground: #6b7280;
+  /* #6b7280 bg-muted üstünde 4.39:1 kalıyordu (WCAG AA 4.5 sınırı) — mürekkebe bir adım. */
+  --muted-foreground: #5c6672;
   --accent: #e6f1fb;
   --accent-foreground: #042c53;
   --navy: #042c53;
