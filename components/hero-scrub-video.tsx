@@ -19,6 +19,19 @@ export function HeroScrubVideo({ progress }: { progress: MotionValue<number> }) 
   const targetTime = useRef(0)
   const [ready, setReady] = useState(false)
   const [isDesktop, setIsDesktop] = useState(false)
+  const [src, setSrc] = useState<string | null>(null)
+
+  // Video LCP ile bant genişliği yarışmasın: src ancak window 'load' SONRASI atanır
+  // (keyframe fallback o ana dek tam deneyim). ~3.4MB optimize encode (1536px, CRF26, GOP12).
+  useEffect(() => {
+    const start = () => setSrc("/videos/hero-scrub.mp4")
+    if (document.readyState === "complete") {
+      start()
+      return
+    }
+    window.addEventListener("load", start, { once: true })
+    return () => window.removeEventListener("load", start)
+  }, [])
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)")
@@ -54,7 +67,7 @@ export function HeroScrubVideo({ progress }: { progress: MotionValue<number> }) 
     return () => cancelAnimationFrame(raf)
   }, [isDesktop, ready, progress])
 
-  if (!isDesktop) return null
+  if (!isDesktop || !src) return null
 
   return (
     <video
@@ -66,7 +79,7 @@ export function HeroScrubVideo({ progress }: { progress: MotionValue<number> }) 
       disablePictureInPicture
       onCanPlayThrough={() => setReady(true)}
       className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${ready ? "opacity-100" : "opacity-0"}`}
-      src="/videos/hero-scrub.mp4"
+      src={src}
     />
   )
 }
