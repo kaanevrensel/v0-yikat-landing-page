@@ -101,6 +101,25 @@ export function Navbar() {
 
   const liquidTarget = hovered ?? active
 
+  // Kaydırılabilir vurgu hapı: koşullu layoutId yerine TEK KALICI eleman, ölçülen link konumuna
+  // spring'le kayar — hover, klavye odağı ve TIKLAMA (aşağıda optimistic aktif) dahil her geçiş
+  // kesintisiz kayma olur; hedef yokken hap yerinde söner, yeniden belirirken son konumdan akar.
+  const linkRefs = useRef(new Map<string, HTMLAnchorElement>())
+  const [pillPos, setPillPos] = useState({ x: 0, w: 0, visible: false })
+  useEffect(() => {
+    const measure = () => {
+      const el = liquidTarget ? linkRefs.current.get(liquidTarget) : undefined
+      if (!el) {
+        setPillPos((p) => (p.visible ? { ...p, visible: false } : p))
+        return
+      }
+      setPillPos({ x: el.offsetLeft, w: el.offsetWidth, visible: true })
+    }
+    measure()
+    window.addEventListener("resize", measure)
+    return () => window.removeEventListener("resize", measure)
+  }, [liquidTarget])
+
   return (
     <header className="fixed inset-x-3 top-3 z-50 md:inset-x-0 md:mx-auto md:w-fit">
       <div
@@ -131,28 +150,36 @@ export function Navbar() {
             <Image src="/images/yikat-logo-blue.png" alt="" width={28} height={28} priority className="size-7" />
           </Link>
 
-          <div className="hidden items-center md:flex" onPointerLeave={() => setHovered(null)}>
+          <div className="relative hidden items-center md:flex" onPointerLeave={() => setHovered(null)}>
+            {/* Kayan vurgu hapı: kalıcı tek eleman — x/width ölçümle, spring'le (bounce 0). */}
+            <motion.span
+              aria-hidden
+              initial={false}
+              animate={{ x: pillPos.x, width: pillPos.w, opacity: pillPos.visible ? 1 : 0 }}
+              transition={{ type: "spring", duration: 0.45, bounce: 0, opacity: { duration: 0.18 } }}
+              className="absolute inset-y-0 left-0 rounded-full bg-white/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_1px_6px_rgba(4,44,83,0.08)]"
+            />
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.href}
+                ref={(el) => {
+                  if (el) linkRefs.current.set(l.href, el)
+                  else linkRefs.current.delete(l.href)
+                }}
                 href={l.href}
                 onPointerEnter={() => setHovered(l.href)}
                 // Klavye paritesi: Tab odağı da vurgu hapını taşısın (fare hover'ıyla aynı sinyal).
                 onFocus={() => setHovered(l.href)}
                 onBlur={() => setHovered(null)}
+                // Optimistic aktif: tıklamada hap hemen hedefe kayar; IntersectionObserver
+                // scroll oturunca aynı hedefi doğrular.
+                onClick={() => setActive(l.href)}
                 // Jel basış (Apple .interactive() portu): hafif esneme; reduced-motion'da kapalı.
                 className={cn(
                   "relative rounded-full px-3 py-1.5 text-sm font-medium transition-[color,transform] duration-150 active:scale-[0.96] motion-reduce:transform-none",
                   liquidTarget === l.href ? "text-foreground" : solid ? "text-muted-foreground" : "text-foreground/80",
                 )}
               >
-                {liquidTarget === l.href && (
-                  <motion.span
-                    layoutId="nav-liquid-pill"
-                    transition={{ type: "spring", duration: 0.45, bounce: 0 }}
-                    className="absolute inset-0 rounded-full bg-white/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_1px_6px_rgba(4,44,83,0.08)]"
-                  />
-                )}
                 <span className="relative z-10">{l.label}</span>
               </Link>
             ))}
