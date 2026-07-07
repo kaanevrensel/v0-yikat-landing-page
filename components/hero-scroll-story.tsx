@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button"
 import { HeroScrubVideo } from "@/components/hero-scrub-video"
 import Magnet from "@/components/magnet"
 import { ScrollFloatText } from "@/components/scroll-float-text"
+import { useDirectionsUrl } from "@/hooks/use-directions-url"
 import { siteConfig } from "@/lib/site"
 import { track } from "@/lib/analytics"
 
@@ -76,12 +77,13 @@ function SceneLcpPicture({ scene }: { scene: (typeof SCENES)[number] }) {
 }
 
 export function HeroCtas({ eventPrefix }: { eventPrefix: string }) {
+  const directionsUrl = useDirectionsUrl()
   return (
     <div className="flex flex-wrap items-center justify-center gap-3">
       <Magnet maxShift={8}>
         <Button asChild size="lg" className="cta-ripple rounded-full">
           <a
-            href={siteConfig.directionsUrl}
+            href={directionsUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track(`${eventPrefix}_directions_click`)}

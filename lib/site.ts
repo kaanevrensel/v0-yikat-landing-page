@@ -26,6 +26,9 @@ export const siteConfig = {
     "https://maps.apple.com/?daddr=Cevizlik+Mah.+%C4%B0skele+Cd.+15C+Bak%C4%B1rk%C3%B6y+%C4%B0stanbul",
   // Yaklaşık konum — açılıştan önce dükkanın gerçek Google Maps pin'iyle doğrulanacak
   geo: { latitude: 40.9781, longitude: 28.8724 },
+  // Sahip GBP'yi sahiplenip gerçek profil linklerini verince doldurulacak — boşken JSON-LD
+  // sameAs üretilmez (app/layout.tsx koşullu bakar). Bkz: docs/superpowers/plans/owner-blockers.md
+  socialLinks: { googleBusinessProfile: "", instagram: "" },
 } as const
 
 // Güven şeridi — rakamsız değer önerileri (spec §2.2)
@@ -56,6 +59,20 @@ export const priceMenu: PriceItem[] = [
   { category: "Çocuk Ayakkabısı", note: "Tüm çocuk modelleri", price: null },
 ]
 
+// Önce/sonra sonuç çiftleri — before-after.tsx buradan beslenir. representative: true =
+// "Temsili görsel" rozeti (hero keyframe'lerinden AI-türetimi çift). Gerçek müşteri fotoğrafı
+// eklemek SAHİP ONAYI ister (representative: false + "Gerçek müşteri sonucu" rozeti); 3+ gerçek
+// çift birikince Carousel/Stack kararı CLAUDE.md'deki gelecek-koşullu nota tabidir.
+export type ResultPair = { label: string; before: string; after: string; representative: boolean }
+export const results: ResultPair[] = [
+  {
+    label: "Spor ayakkabı",
+    before: "/images/results/spor-once.webp",
+    after: "/images/results/spor-sonra.webp",
+    representative: true,
+  },
+]
+
 // SSS — hem sayfadaki accordion hem layout'taki FAQPage JSON-LD buradan beslenir.
 export const faqs = [
   {
@@ -69,6 +86,10 @@ export const faqs = [
   {
     q: "Ne kadar sürede teslim ediyorsunuz?",
     a: "Aynı gün. Sabah bıraktığın ayakkabıyı aynı gün akşam 20:00'ye kadar teslim alabilirsin.",
+  },
+  {
+    q: "Randevu gerekli mi?",
+    a: "Hayır. Randevusuz gel, ayakkabını bırak — aynı gün akşam 20:00'ye kadar teslim.",
   },
   {
     q: "Memnun kalmazsam ne oluyor?",

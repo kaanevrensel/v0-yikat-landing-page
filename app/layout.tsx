@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-import { siteConfig } from "@/lib/site"
+import { priceMenu, siteConfig } from "@/lib/site"
 import "./globals.css"
 
 const inter = Inter({
@@ -87,6 +87,27 @@ const localBusinessJsonLd = {
     { "@type": "AdministrativeArea", name: "Bakırköy" },
     { "@type": "City", name: "İstanbul" },
   ],
+  // Kaynağı SSS'teki gerçek beyan ("Nakit ve kart geçerli") — uydurma veri değil.
+  paymentAccepted: "Cash, Credit Card",
+  currenciesAccepted: "TRY",
+  // Hizmet kataloğu priceMenu'den türetilir; price:null kuralı gereği Offer'larda fiyat alanı YOK
+  // ("Menü yakında" string'i şemaya sızmaz). Sahip menüyü verince fiyatlar tek noktadan akabilir.
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Ayakkabı Yıkama Hizmetleri",
+    itemListElement: priceMenu.map((p) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name: `${p.category} Yıkama`, description: p.note },
+    })),
+  },
+  // sameAs yalnız gerçek profil linkleri girildiğinde üretilir (owner-blockers.md).
+  ...(() => {
+    // as string[]: siteConfig `as const` olduğundan boş alanlar "" literal tipinde kalıyor.
+    const sameAs = (
+      [siteConfig.socialLinks.googleBusinessProfile, siteConfig.socialLinks.instagram] as string[]
+    ).filter(Boolean)
+    return sameAs.length > 0 ? { sameAs } : {}
+  })(),
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

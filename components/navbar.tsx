@@ -14,6 +14,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { MapPin, Menu, Phone, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { LensFilter, LENS_FILTER_ID, useLensCapable, useLiquidLens } from "@/components/liquid-lens"
+import { useDirectionsUrl } from "@/hooks/use-directions-url"
 import { siteConfig } from "@/lib/site"
 import { track } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
@@ -38,6 +39,7 @@ export function Navbar() {
   // diğer motorlar aşağıdaki katmanlı frost'u alır (blur-first, lens-enhancement).
   const lensCapable = useLensCapable()
   const lens = useLiquidLens(pillRef, lensCapable)
+  const directionsUrl = useDirectionsUrl()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
@@ -202,7 +204,7 @@ export function Navbar() {
             className="hidden rounded-full transition-transform duration-150 active:scale-[0.96] motion-reduce:transform-none md:inline-flex"
           >
             <a
-              href={siteConfig.directionsUrl}
+              href={directionsUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => track("nav_directions_click")}
@@ -211,8 +213,28 @@ export function Navbar() {
             </a>
           </Button>
 
+          {/* Mobil bar CTA'ları: iki dönüşüm yolu hamburger arkasından çıktı (44px hedefler,
+              ayrı analytics adları — menü kartındaki *_mobile olaylarıyla karışmaz). */}
+          <a
+            href={siteConfig.phoneHref}
+            aria-label={`Ara: ${siteConfig.phone}`}
+            onClick={() => track("nav_call_click_mobile_bar")}
+            className="ml-auto flex size-11 items-center justify-center rounded-full text-foreground/90 transition-transform duration-150 active:scale-[0.94] motion-reduce:transform-none md:hidden"
+          >
+            <Phone className="size-5" />
+          </a>
+          <a
+            href={directionsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Yol tarifi al"
+            onClick={() => track("nav_directions_click_mobile_bar")}
+            className="hidden size-11 items-center justify-center rounded-full text-foreground/90 transition-transform duration-150 active:scale-[0.94] motion-reduce:transform-none min-[380px]:flex md:hidden"
+          >
+            <MapPin className="size-5" />
+          </a>
           <button
-            className="ml-auto p-2 transition-transform duration-150 active:scale-[0.94] motion-reduce:transform-none md:hidden"
+            className="p-2 transition-transform duration-150 active:scale-[0.94] motion-reduce:transform-none md:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -254,7 +276,7 @@ export function Navbar() {
               <div className="mt-2 flex gap-2">
                 <Button asChild size="sm" className="flex-1 rounded-full">
                   <a
-                    href={siteConfig.directionsUrl}
+                    href={directionsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => {

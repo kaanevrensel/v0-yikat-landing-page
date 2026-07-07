@@ -16,7 +16,8 @@ import { faqs } from "@/lib/site"
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqs.slice(0, 4).map((f) => ({
+  // Tüm SSS şemada: fiyat/saat/ödeme/konum soruları tam da yerel arama sorgularıyla eşleşenler.
+  mainEntity: faqs.map((f) => ({
     "@type": "Question",
     name: f.q,
     acceptedAnswer: { "@type": "Answer", text: f.a },
@@ -31,9 +32,16 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
       />
       <MotionProvider>
+        {/* WCAG 2.4.1: sticky nav + 300vh hero'yu klavyeyle atlama yolu. */}
+        <a
+          href="#icerik"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground focus:shadow-lg"
+        >
+          İçeriğe atla
+        </a>
         <BubbleCursor />
         <Navbar />
-        <main>
+        <main id="icerik" tabIndex={-1}>
           <HeroScrollStory />
           <FoamDivider className="text-muted" />
           <ValueBand />
@@ -41,9 +49,12 @@ export default function Home() {
           <BeforeAfter />
           <FoamDivider flip className="text-muted" />
           <PriceMenu />
+          {/* Açık→navy sert kesimlere köpük ritmi (su kimliği) */}
+          <FoamDivider className="text-navy" />
           <VisitSection />
           <FaqSection />
           <ComingSoonBand />
+          <FoamDivider className="text-navy" />
         </main>
         <Footer />
       </MotionProvider>

@@ -8,6 +8,7 @@ import { siteConfig } from "@/lib/site"
 import { track } from "@/lib/analytics"
 import BlurText from "@/components/blur-text"
 import Magnet from "@/components/magnet"
+import { useDirectionsUrl } from "@/hooks/use-directions-url"
 
 // Gerçek İstanbul saatine göre açık/kapalı durumu. SSR + ilk render nötr metin basar
 // (hydration uyuşmazlığı olmaz); durum yalnız mount sonrası hesaplanır.
@@ -61,6 +62,7 @@ function OpenStatus() {
 }
 
 export function VisitSection() {
+  const directionsUrl = useDirectionsUrl()
   return (
     <section id="ziyaret" className="scroll-mt-20 bg-navy py-20 text-navy-foreground sm:py-28">
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 md:grid-cols-2 lg:px-8">
@@ -97,7 +99,7 @@ export function VisitSection() {
             <Magnet maxShift={8}>
               <Button asChild size="lg" className="cta-ripple rounded-full bg-white text-navy hover:bg-white/90">
                 <a
-                  href={siteConfig.directionsUrl}
+                  href={directionsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => track("visit_directions_click")}

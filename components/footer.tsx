@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { FooterDirectionsLink } from "@/components/footer-directions-link"
 import { siteConfig } from "@/lib/site"
 
 export function Footer() {
@@ -18,6 +19,10 @@ export function Footer() {
           </div>
           <div className="text-sm text-white/70">
             <p>{siteConfig.address.full}</p>
+            {/* Sayfa sonuna gelen ziyaretçi için eksik olan ikinci dönüşüm çıkışı — sessiz text-link. */}
+            <p className="mt-2">
+              <FooterDirectionsLink />
+            </p>
             <p className="mt-2">{siteConfig.hours.label}</p>
             <p className="mt-2">
               <a href={siteConfig.phoneHref} className="hover:text-white">
