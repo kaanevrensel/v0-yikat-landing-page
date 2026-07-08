@@ -247,7 +247,10 @@ export function HeroScrollStory() {
 
         {/* Metin + CTA alt üçte-birde: kompozit karede ayakkabılar merkezde, üstüne binmez */}
         <div className="absolute inset-x-0 bottom-[10vh] z-10 flex flex-col items-center">
-          <div className="grid w-full max-w-2xl px-4 text-center">
+          {/* Mobilde sahne metinleri CLEAR liquid glass kartta (Apple clear varyantı: yüksek
+              saydamlık + minimum blur + ince rim; okunabilirliği sahne-bazlı text-shadow'lar taşır).
+              md+ değişmez. Erişilebilirlik kemeri globals.css'te (.hero-glass-card). */}
+          <div className="hero-glass-card grid w-full max-w-2xl px-4 text-center max-md:w-[calc(100%-2rem)] max-md:rounded-3xl max-md:border max-md:border-white/35 max-md:bg-white/10 max-md:px-5 max-md:py-5 max-md:shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_30px_rgba(4,44,83,0.18)] max-md:backdrop-blur-[3px] max-md:backdrop-saturate-150">
             {SCENES.map((scene, i) => (
               <motion.div
                 key={scene.key}
