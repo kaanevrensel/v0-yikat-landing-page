@@ -3,22 +3,21 @@
 Dükkan sahibinden girdi gelmeden ilerleyemeyen maddelerin TEK listesi. Bir madde çözülünce
 "ne gelince ne yapılacak" adımı uygulanır ve satır buradan silinir. (2026-07-08 itibarıyla derlendi.)
 
-## 1. Fiyat menüsü
-- **Bekleyen:** Kategori bazlı gerçek fiyat listesi (spor / deri / süet-nubuk / çocuk).
-- **Gelince:** `lib/site.ts` → `priceMenu` içindeki `price: null` alanları `"499 ₺"` formatıyla doldur.
-  Fiyat menüsü bölümü ve LocalBusiness `hasOfferCatalog` şeması aynı kaynaktan otomatik güncellenir
-  (şemaya fiyat ekleme kararı o gün ayrıca verilir).
+## 1. Fiyat menüsü — KISMEN ÇÖZÜLDÜ (2026-07-11: genel aralık 400–1000 ₺ yayında, `siteConfig.priceRangeLabel`)
+- **Bekleyen:** Kategori bazlı KESİN fiyatlar (spor / deri / süet-nubuk / çocuk).
+- **Gelince:** `lib/site.ts` → `priceMenu` içindeki `price: null` alanları `"499 ₺"` formatıyla doldur;
+  `hasOfferCatalog` Offer'larına fiyat eklenebilir hale gelir; aralık etiketi kesin menüyle uyumlanır.
 
 ## 2. Yeni legal metinler
 - **Bekleyen:** Ayakkabı-yıkama modeline uygun KVKK + mesafeli satış (veya hizmet koşulları) metinleri.
 - **Gelince:** `/kvkk` ve `/mesafeli-satis-sozlesmesi` sayfa içerikleri değiştirilir. (Eski aggregator
   metinleri BİLİNÇLİ olarak canlı — "eski metin > hiç metin" kararı, CLAUDE.md gotchas.)
 
-## 3. Gerçek Google Maps pin'i (launch-blocker)
-- **Bekleyen:** Dükkânın doğrulanmış pin koordinatı (sahip Google Maps'te işletmeyi işaretleyip paylaşacak).
-- **Gelince:** `lib/site.ts` → `siteConfig.geo` güncellenir; `mapsPlaceUrl`/`directionsUrl`/`appleDirectionsUrl`
-  hedefleri pin'le tutarlı mı kontrol edilir. Statik harita görseli (visit-section placeholder'ının
-  gerçek görselle değişimi) BU maddeden sonra üretilir — pin görsele gömüleceği için sıralama zorunlu.
+## 3. Gerçek Google Maps pin'i — ✅ ÇÖZÜLDÜ (2026-07-11: 40.977817, 28.877776 `siteConfig.geo`'da)
+- **Kalan:** Statik harita görseli (visit-section placeholder'ı) artık üretilebilir — pin kesinleşti.
+  GBP kaydında harita pini bu koordinata elle oturtulacak (Faz 3.1). Sahip tabela beyanı: "yıkat"
+  (küçük harf logo) — GBP işletme adı buna göre girilecek, tabela fotoğrafı kanıt olarak saklanacak.
+  Deri ayakkabı YIKANIYOR; GBP'ye "Leather cleaning service" ikincil kategorisi EKLENMEYECEK (sahip kararı).
 
 ## 4. Google Business Profile (GBP) sahiplenme
 - **Bekleyen:** GBP kaydının sahiplenilmesi + doğrulanması; profil URL'si ve place-id.

@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { priceMenu } from "@/lib/site"
+import { priceMenu, siteConfig } from "@/lib/site"
 import BlurText from "@/components/blur-text"
 
 export function PriceMenu() {
@@ -16,7 +16,9 @@ export function PriceMenu() {
           className="text-center text-3xl font-semibold tracking-tight md:text-4xl"
         />
         <p className="mx-auto mt-3 max-w-xl text-center text-muted-foreground">
-          Kategoriye göre sabit fiyat. Menü çok yakında burada — şimdilik dükkanda.
+          Sneaker yıkamadan süet temizliğine, kategoriye göre sabit fiyat —{" "}
+          <span className="font-semibold text-foreground">{siteConfig.priceRangeLabel}</span> aralığında. Kesin
+          menü çok yakında burada.
         </p>
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {priceMenu.map((item, i) => (

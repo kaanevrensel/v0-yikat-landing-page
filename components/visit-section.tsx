@@ -95,6 +95,11 @@ export function VisitSection() {
               </a>
             </li>
           </ul>
+          {/* Doğal konum paragrafı (tek, gerçek) — programatik mahalle sayfası ASLA açılmaz (spec). */}
+          <p className="mt-6 max-w-md text-sm text-white/70">
+            Bakırköy çarşı içindeyiz — İskele Caddesi'nde, iskeleye yürüme mesafesinde. Ataköy, Yeşilköy,
+            Kartaltepe ve Florya'dan birkaç dakikada ulaşabilirsin.
+          </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Magnet maxShift={8}>
               <Button asChild size="lg" className="cta-ripple rounded-full bg-white text-navy hover:bg-white/90">

@@ -27,7 +27,7 @@ export const SCENES = [
     img: "/images/hero/keyframe-sokak.webp",
     imgMobile: "/images/hero/keyframe-sokak-mobile.webp",
     title: "Ayakkabın ilk günkü gibi.",
-    sub: "Bakırköy'de profesyonel ayakkabı yıkama",
+    sub: "Bakırköy'de profesyonel ayakkabı yıkama — aynı gün teslim",
     dark: false,
   },
   {

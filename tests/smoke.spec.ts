@@ -46,12 +46,16 @@ test("JSON-LD blokları geçerli: LocalBusiness + tüm SSS'li FAQPage", async ({
   await page.goto("/")
   const blocks = await page.$$eval("script[type='application/ld+json']", (s) => s.map((x) => x.textContent ?? ""))
   const parsed = blocks.map((b) => JSON.parse(b))
-  const lb = parsed.find((p) => p["@type"] === "LocalBusiness")
+  const lb = parsed.find((p) => p["@type"] === "DryCleaningOrLaundry")
   const faq = parsed.find((p) => p["@type"] === "FAQPage")
   expect(lb?.telephone).toBe(siteConfig.phoneE164)
+  expect(lb?.priceRange).toBe(siteConfig.priceRangeLabel)
   expect(lb?.hasOfferCatalog?.itemListElement?.length).toBeGreaterThan(0)
-  // price:null kuralı: şemada fiyat alanı sızmamalı
+  // Kesin menü gelene dek Offer'larda fiyat alanı sızmamalı; kendi siteye yıldız şeması ASLA
+  // (Google: kendi yorumunu kontrol eden varlığa review/aggregateRating uygunsuz).
   expect(JSON.stringify(lb)).not.toContain('"price"')
+  expect(JSON.stringify(lb)).not.toContain("aggregateRating")
+  expect(JSON.stringify(lb)).not.toContain('"review"')
   expect(faq?.mainEntity?.length).toBe(faqs.length)
 })
 

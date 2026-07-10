@@ -17,6 +17,9 @@ export const siteConfig = {
     full: "Cevizlik Mah. İskele Cd. No: 15C, 34142 Bakırköy/İstanbul",
   },
   hours: { label: "Her gün 09:00 – 20:00", opens: "09:00", closes: "20:00" },
+  // Sahip beyanı (2026-07-11): kategoriye göre sabit fiyat, bu aralıkta. Kesin menü gelince
+  // priceMenu doldurulur; bu etiket UI + JSON-LD priceRange'in tek kaynağıdır.
+  priceRangeLabel: "400–1000 ₺",
   // Google/Apple Maps derin linkleri (Yol Tarifi CTA'ları)
   directionsUrl:
     "https://www.google.com/maps/dir/?api=1&destination=Cevizlik+Mah.+%C4%B0skele+Cd.+15C+Bak%C4%B1rk%C3%B6y+%C4%B0stanbul",
@@ -24,8 +27,9 @@ export const siteConfig = {
     "https://www.google.com/maps/search/?api=1&query=Cevizlik+Mah.+%C4%B0skele+Cd.+15C+Bak%C4%B1rk%C3%B6y+%C4%B0stanbul",
   appleDirectionsUrl:
     "https://maps.apple.com/?daddr=Cevizlik+Mah.+%C4%B0skele+Cd.+15C+Bak%C4%B1rk%C3%B6y+%C4%B0stanbul",
-  // Yaklaşık konum — açılıştan önce dükkanın gerçek Google Maps pin'iyle doğrulanacak
-  geo: { latitude: 40.9781, longitude: 28.8724 },
+  // GERÇEK pin (sahip paylaşımı 2026-07-11, maps.app.goo.gl/r4Z4ebDJxrPf9avY6) — Google'ın
+  // yapılandırılmış veri şartı olan ≥5 ondalık hassasiyette. Launch-blocker kapandı.
+  geo: { latitude: 40.977817, longitude: 28.877776 },
   // Sahip GBP'yi sahiplenip gerçek profil linklerini verince doldurulacak — boşken JSON-LD
   // sameAs üretilmez (app/layout.tsx koşullu bakar). Bkz: docs/superpowers/plans/owner-blockers.md
   socialLinks: { googleBusinessProfile: "", instagram: "" },
@@ -46,14 +50,14 @@ export const valueProps = [
   {
     icon: "gem",
     title: "Malzeme Uzmanlığı",
-    description: "Süet, deri, spor — her malzemeye kendine uygun yöntem.",
+    description: "Sneaker, süet, deri — her malzemeye kendine uygun yöntem.",
   },
 ] as const
 
 // Fiyat menüsü — price null iken "Menü yakında" gösterilir; menü gelince "499 ₺" gibi doldurulur.
 export type PriceItem = { category: string; note: string; price: string | null }
 export const priceMenu: PriceItem[] = [
-  { category: "Spor Ayakkabı", note: "Kumaş, mesh ve karışık malzeme", price: null },
+  { category: "Spor Ayakkabı", note: "Sneaker, kumaş, mesh ve karışık malzeme", price: null },
   { category: "Deri Ayakkabı", note: "Klasik ve günlük deri modeller", price: null },
   { category: "Süet & Nubuk", note: "Hassas yüzeylere özel bakım", price: null },
   { category: "Çocuk Ayakkabısı", note: "Tüm çocuk modelleri", price: null },
@@ -88,6 +92,10 @@ export const faqs = [
     a: "Aynı gün. Sabah bıraktığın ayakkabıyı aynı gün akşam 20:00'ye kadar teslim alabilirsin.",
   },
   {
+    q: "Sneaker yıkama aynı gün teslim edilir mi?",
+    a: "Evet. Sneaker dahil tüm ayakkabılarda aynı gün teslim geçerli — sabah bırak, akşam 20:00'ye kadar al.",
+  },
+  {
     q: "Randevu gerekli mi?",
     a: "Hayır. Randevusuz gel, ayakkabını bırak — aynı gün akşam 20:00'ye kadar teslim.",
   },
@@ -96,8 +104,8 @@ export const faqs = [
     a: "YIKAT Garantisi: Sonuçtan memnun kalmazsan ücretsiz tekrar yıkıyoruz.",
   },
   {
-    q: "Fiyatlar ne kadar?",
-    a: "Fiyat menümüz dükkanda; yakında bu sayfada da yayınlanacak. Kategoriye (spor, deri, süet/nubuk, çocuk) göre sabit fiyat uygulanır.",
+    q: "Ayakkabı yıkama ücreti ne kadar?",
+    a: "Kategoriye (spor/sneaker, deri, süet-nubuk, çocuk) göre sabit fiyat uygulanır; fiyatlar 400–1000 ₺ aralığındadır. Kesin menü dükkanda — yakında bu sayfada da yayınlanacak.",
   },
   {
     q: "Çalışma saatleriniz ne?",

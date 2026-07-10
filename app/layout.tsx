@@ -15,13 +15,15 @@ const bricolage = Bricolage_Grotesque({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: "Ayakkabı Yıkama Bakırköy — YIKAT | Aynı Gün Teslim",
+  // "Aynı gün teslim" SERP'te sıfır rakibin verdiği vaat (2026-07-10 SERP taraması) — başlıkta öne.
+  title: "Ayakkabı Yıkama Bakırköy — Aynı Gün Teslim | YIKAT",
   description:
-    "Bakırköy İskele Caddesi'nde profesyonel ayakkabı yıkama. Spor, deri, süet — malzemesine uygun yıkama, aynı gün teslim, YIKAT Garantisi. Her gün 09:00–20:00.",
+    "Bakırköy İskele Caddesi'nde profesyonel ayakkabı yıkama. Sneaker, süet, deri — malzemesine uygun yıkama, aynı gün teslim, randevusuz. Her gün 09:00–20:00, 400–1000 ₺.",
   keywords: [
     "ayakkabı yıkama bakırköy",
     "ayakkabı temizleme",
     "sneaker yıkama",
+    "sneaker temizleme istanbul",
     "süet ayakkabı temizliği",
     "deri ayakkabı bakımı",
     "YIKAT",
@@ -35,14 +37,14 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     siteName: "YIKAT",
     locale: "tr_TR",
-    title: "Ayakkabı Yıkama Bakırköy — YIKAT",
-    description: "Ayakkabın ilk günkü gibi. Aynı gün teslim, YIKAT Garantisi.",
+    title: "Ayakkabı Yıkama Bakırköy — Aynı Gün Teslim | YIKAT",
+    description: "Ayakkabın ilk günkü gibi. Aynı gün teslim, randevusuz — her gün 09:00–20:00.",
     images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "YIKAT — Ayakkabı Yıkama Bakırköy" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ayakkabı Yıkama Bakırköy — YIKAT",
-    description: "Ayakkabın ilk günkü gibi. Aynı gün teslim.",
+    title: "Ayakkabı Yıkama Bakırköy — Aynı Gün Teslim | YIKAT",
+    description: "Ayakkabın ilk günkü gibi. Aynı gün teslim, randevusuz.",
     images: ["/images/og.jpg"],
   },
 }
@@ -55,7 +57,8 @@ export const viewport: Viewport = {
 
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  // En spesifik mevcut alt-tip (Google şartı; ShoeCleaning tipi yok, additionalType desteklenmiyor).
+  "@type": "DryCleaningOrLaundry",
   name: "YIKAT",
   alternateName: "Yıkat Ayakkabı Yıkama",
   description:
@@ -65,7 +68,8 @@ const localBusinessJsonLd = {
   telephone: siteConfig.phoneE164,
   email: siteConfig.email,
   image: `${siteConfig.url}/images/yikat-logo-blue.png`,
-  priceRange: "₺₺",
+  // Sahip beyanı — <100 karakter (Google şartı; aşarsa hiç gösterilmez).
+  priceRange: siteConfig.priceRangeLabel,
   hasMap: siteConfig.mapsPlaceUrl,
   address: {
     "@type": "PostalAddress",
