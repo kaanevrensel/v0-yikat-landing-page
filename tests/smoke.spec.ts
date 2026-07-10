@@ -7,7 +7,7 @@ import { faqs, siteConfig } from "../lib/site"
 
 test("ana sayfa: h1 ve ana CTA'lar görünür", async ({ page }) => {
   await page.goto("/")
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Ayakkabın ilk günkü gibi.")
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Temiz ayakkabı, başka yürüyüş.")
   await expect(page.locator(`a[href='${siteConfig.phoneHref}']`).first()).toBeAttached()
 })
 

@@ -26,7 +26,7 @@ export const SCENES = [
     bg: "linear-gradient(160deg, #d7dde4 0%, #eef1f4 60%, #f8fafc 100%)",
     img: "/images/hero/keyframe-sokak.webp",
     imgMobile: "/images/hero/keyframe-sokak-mobile.webp",
-    title: "Ayakkabın ilk günkü gibi.",
+    title: "Temiz ayakkabı, başka yürüyüş.",
     sub: "Bakırköy'de profesyonel ayakkabı yıkama — aynı gün teslim",
     dark: false,
   },
@@ -46,7 +46,7 @@ export const SCENES = [
     bg: "linear-gradient(160deg, #042c53 0%, #1f5eb8 55%, #4a8cff 100%)",
     img: "/images/hero/keyframe-yikat.webp",
     imgMobile: "/images/hero/keyframe-yikat-mobile.webp",
-    title: "Sen yıkama, yıkat.",
+    title: "Eskitme, yıkat.",
     sub: "Makineye atma, fırçayla uğraşma — ustasına bırak.",
     dark: true,
   },
@@ -55,7 +55,7 @@ export const SCENES = [
     bg: "linear-gradient(160deg, #e6f1fb 0%, #f3f8ff 55%, #ffffff 100%)",
     img: "/images/hero/keyframe-temiz.webp",
     imgMobile: "/images/hero/keyframe-temiz-mobile.webp",
-    title: "Aynı gün, ilk günkü gibi.",
+    title: "Aynı gün hazır.",
     sub: "Sabah bırak, akşam 20:00'ye kadar al.",
     dark: false,
   },
@@ -119,7 +119,7 @@ export function StaticHero() {
       <SceneLcpPicture scene={scene} />
       <div className="relative z-10 flex flex-col items-center">
         <h1 className={`text-balance text-center text-4xl font-semibold tracking-tight text-foreground md:text-5xl ${LIGHT_SHADOW}`}>
-          Ayakkabın ilk günkü gibi.
+          Temiz ayakkabı, başka yürüyüş.
         </h1>
         <p className={`mt-3 text-center text-lg text-muted-foreground ${LIGHT_SHADOW}`}>
           Bakırköy'de profesyonel ayakkabı yıkama — aynı gün teslim.
