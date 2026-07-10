@@ -42,7 +42,19 @@
 
 ## Faz 3 — Google Business Profile (sahiple oturum)
 
-- [ ] **3.1** `business.google.com/create` → ad: tabeladaki birebir hali (Faz 0.3); "müşteri ziyaret edebilir": Evet; adres `lib/site.ts` formatıyla karakteri karakterine; pin elle gerçek noktaya.
+> **REVİZYON (2026-07-11):** Sahip daha önce YIKAT için GBP açmış (eski/farklı adreste — muhtemelen
+> pivot öncesi dönem). YENİ PROFİL AÇILMAZ (duplicate = çift askı riski); mevcut profil TAŞINIR.
+> Yorum/geçmiş varsa korunur. Eski kayıt hizmet-bölgesi (adres gizli) tipindeyse vitrine çevrilir.
+
+- [ ] **3.0** Mevcut profili bul: business.google.com → profil listesi. Erişim varsa 3.1'e; hesap
+      farklı/erişim yoksa profil üzerinden "sahiplik talebi" (request ownership) akışı başlatılır.
+      Profil askıdaysa önce itiraz/yeniden aktifleştirme.
+- [ ] **3.1** Mevcut profilde DÜZENLE → ad: "yıkat" (tabela beyanı; anahtar kelime ekleme YOK);
+      adres: `Cevizlik Mah. İskele Cd. No: 15C, Bakırköy/İstanbul` (site formatıyla birebir); pin
+      elle 40.977817, 28.877776'ya; "müşteri ziyaret edebilir": Evet (eski kayıt kapıdan-hizmet/adres-gizli
+      ise vitrin adresine çevir). Eski kategori kuru temizleme/çamaşır kaldıysa GÜNCELLE (Faz 3.2).
+      NOT: adres değişikliği çoğu zaman YENİDEN DOĞRULAMA tetikler — video hazırlığı (3.4) elde olsun.
+      Eski profili "kapalı" İŞARETLEME — taşınan işletmede yanlış sinyal; doğrusu adres güncellemek.
 - [ ] **3.2** Kategori: birincil "Shoe shining service" TR karşılığı (panelde ara); ikincil yalnız Faz 0.4 onaylıysa "Leather cleaning service". Kategori doldurma YOK.
 - [ ] **3.3** Telefon `0850 303 31 93`, site `https://www.yikat.tech`; saatler her gün 09:00–20:00 (+ bayram/özel günleri işle — açık-olma sinyali 5. faktör).
 - [ ] **3.4** Doğrulama: Google'ın istediği yöntemle; video isterse tek çekim planı: dış tabela + İskele Cd. sokak kanıtı/komşular + ekipman + kasa/POS. İnceleme ~5 iş günü; profil o güne dek görünmez.
