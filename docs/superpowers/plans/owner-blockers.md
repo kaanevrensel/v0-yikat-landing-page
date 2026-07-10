@@ -26,7 +26,7 @@ Dükkan sahibinden girdi gelmeden ilerleyemeyen maddelerin TEK listesi. Bir madd
   üretilir); place-id'li "Google'da değerlendir" linki visit-section'a İKİNCİL sessiz link olarak
   eklenir (yorum gösterimi ancak gerçek yorumlar birikince ayrıca tasarlanır).
 
-## 5. MADE Okine Sans font kararı
+## 5. MADE Okine Sans font kararı — BÜYÜK OLASILIKLA GEÇERSİZ (2026-07-10: site yüzü olarak Bricolage Grotesque seçildi, OFL lisanslı; MADE fikrinden vazgeçilecekse public/fonts/ silinmeli)
 - **Bekleyen:** Karar — (a) ticari lisans satın al, (b) vazgeç. Dosyalar hâlâ `public/fonts/` altında
   PERSONAL USE lisanslı ve herkese açık URL'den erişilebilir durumda (sahip bilinçli olarak sildirmedi,
   2026-07-08 kararı: dosyalara dokunulmadı).

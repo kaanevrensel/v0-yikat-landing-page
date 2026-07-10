@@ -1,13 +1,15 @@
 import type { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
+import { Bricolage_Grotesque } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { WebVitalsReporter } from "@/components/web-vitals-reporter"
 import { priceMenu, siteConfig } from "@/lib/site"
 import "./globals.css"
 
-const inter = Inter({
+// Site yüzü: Bricolage Grotesque (SIL OFL 1.1, sahip kararı 2026-07-10 — her yerde).
+// Değişken font: opsz ekseni küçük boyutlarda metin-optik kesim sağlar; latin-ext Türkçe için.
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-inter",
+  variable: "--font-bricolage",
   display: "swap",
 })
 
@@ -114,7 +116,7 @@ const localBusinessJsonLd = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="tr">
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${bricolage.variable} font-sans antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd).replace(/</g, "\\u003c") }}

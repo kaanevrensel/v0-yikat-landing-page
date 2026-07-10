@@ -60,7 +60,7 @@ Next.js 16 App Router + React 19 + TypeScript (strict) + Tailwind CSS v4 + shadc
 Active stylesheet is **`app/globals.css`** (Tailwind v4 CSS-first: `@theme inline`, no tailwind.config). **`styles/globals.css` is a dead legacy file — editing it does nothing.**
 
 - Brand palette: primary `#4A8CFF`, navy `#042C53` (custom `bg-navy`/`text-navy-foreground` tokens — used by `footer.tsx`), accent `#E6F1FB`, muted/band `#F3F4F6`, text `#1F2937`, amber `#BA7517`. Radius base `0.875rem`. Light-only — no `.dark` palette is defined.
-- Typography: Inter via `next/font/google` (`latin-ext` for Turkish), `--font-sans`. Body has `font-feature-settings: 'cv11','ss01'` and tightened letter-spacing; h1–h4 are 600/-0.02em.
+- Typography (2026-07-10, sahip kararı): **Bricolage Grotesque** her yerde — `next/font/google` (`latin-ext`), değişken font (opsz/wdth/wght), `--font-bricolage` → `--font-sans`. SIL OFL 1.1 (lisans temiz). Inter kaldırıldı; gövde letter-spacing 0, h1–h4 600/-0.02em.
 - **MADE Okine Sans**: 12 .otf files still sit in `public/fonts/` but remain wired to nothing (no `@font-face`, no `next/font/local` — verified via repo-wide grep) — intended future display face. Filenames say PERSONAL USE license; resolve licensing before shipping it.
 - Recurring visuals: rounded-full pill CTAs, rounded-2xl/3xl cards, the hero's 4-scene Higgsfield keyframe photography + desktop scroll-scrub video, amber-accented value-band icons. globals.css ayrıca marquee keyframe'lerini ve `.cta-ripple` utility'sini içerir.
 
