@@ -30,13 +30,15 @@ export const SCENES = [
     sub: "Bakırköy'de profesyonel ayakkabı yıkama — aynı gün teslim",
     dark: false,
   },
+  // KOPYA KURALI (sahip, 2026-07-11): "yıkat" marka adı AYNI ZAMANDA emir kipi — cümlelerde
+  // YÜKLEM olarak kullanılır ("sen yıkama, yıkat"). ASLA özne-isim olarak yazılmaz ("YIKAT yıkar" YASAK).
   {
     key: "camur",
     bg: "linear-gradient(160deg, #3f3122 0%, #6b4a2b 55%, #8a6237 100%)",
     img: "/images/hero/keyframe-camur.webp",
     imgMobile: "/images/hero/keyframe-camur-mobile.webp",
-    title: "Sokak zor.",
-    sub: "Çamur, toz, leke…",
+    title: "Sokak izini bırakır.",
+    sub: "Çamur, toz, leke — hepsi bir günün işi.",
     dark: true,
   },
   {
@@ -44,8 +46,8 @@ export const SCENES = [
     bg: "linear-gradient(160deg, #042c53 0%, #1f5eb8 55%, #4a8cff 100%)",
     img: "/images/hero/keyframe-yikat.webp",
     imgMobile: "/images/hero/keyframe-yikat-mobile.webp",
-    title: "YIKAT yıkar.",
-    sub: "Malzemesine uygun, profesyonel yıkama",
+    title: "Sen yıkama, yıkat.",
+    sub: "Makineye atma, fırçayla uğraşma — ustasına bırak.",
     dark: true,
   },
   {
@@ -53,7 +55,7 @@ export const SCENES = [
     bg: "linear-gradient(160deg, #e6f1fb 0%, #f3f8ff 55%, #ffffff 100%)",
     img: "/images/hero/keyframe-temiz.webp",
     imgMobile: "/images/hero/keyframe-temiz-mobile.webp",
-    title: "Aynı gün tertemiz teslim.",
+    title: "Aynı gün, ilk günkü gibi.",
     sub: "Sabah bırak, akşam 20:00'ye kadar al.",
     dark: false,
   },

@@ -55,6 +55,10 @@ Next.js 16 App Router + React 19 + TypeScript (strict) + Tailwind CSS v4 + shadc
 - `app/robots.ts` and `app/sitemap.ts` are dynamic (no more static hand-maintained `public/robots.txt`/`public/sitemap.xml`); the sitemap lists `/`, `/kvkk`, `/mesafeli-satis-sozlesmesi`.
 - `/kvkk` and `/mesafeli-satis-sozlesmesi` each set their own `alternates.canonical` (self-canonical, not inherited from root).
 
+## Kopya sesi (sahip kuralı, 2026-07-11 — İHLAL ETME)
+
+**"yıkat" marka adı bilinçli olarak emir kipinden seçildi** — kopyada YÜKLEM/eylem olarak kullanılır ("Sen yıkama, yıkat."). Marka adını özne-isim yapan kalıplar ("YIKAT yıkar", "YIKAT sizin için…") **yasak**; özne gerekiyorsa "biz/dükkânımız" kullanılır. Bu kural site, GBP, post — her kopya için geçerli.
+
 ## Design system
 
 Active stylesheet is **`app/globals.css`** (Tailwind v4 CSS-first: `@theme inline`, no tailwind.config). **`styles/globals.css` is a dead legacy file — editing it does nothing.**
