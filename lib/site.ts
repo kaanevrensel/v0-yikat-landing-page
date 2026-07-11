@@ -63,20 +63,6 @@ export const priceMenu: PriceItem[] = [
   { category: "Çocuk Ayakkabısı", note: "Tüm çocuk modelleri", price: null },
 ]
 
-// Önce/sonra sonuç çiftleri — before-after.tsx buradan beslenir. representative: true =
-// "Temsili görsel" rozeti (hero keyframe'lerinden AI-türetimi çift). Gerçek müşteri fotoğrafı
-// eklemek SAHİP ONAYI ister (representative: false + "Gerçek müşteri sonucu" rozeti); 3+ gerçek
-// çift birikince Carousel/Stack kararı CLAUDE.md'deki gelecek-koşullu nota tabidir.
-export type ResultPair = { label: string; before: string; after: string; representative: boolean }
-export const results: ResultPair[] = [
-  {
-    label: "Spor ayakkabı",
-    before: "/images/results/spor-once.webp",
-    after: "/images/results/spor-sonra.webp",
-    representative: true,
-  },
-]
-
 // SSS — hem sayfadaki accordion hem app/page.tsx'teki FAQPage JSON-LD buradan beslenir (tamamı).
 export const faqs = [
   {

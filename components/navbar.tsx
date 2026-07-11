@@ -21,7 +21,6 @@ import { cn } from "@/lib/utils"
 
 const NAV_LINKS = [
   { href: "#nasil-calisir", label: "Nasıl Çalışır" },
-  { href: "#sonuclar", label: "Sonuçlar" },
   { href: "#fiyatlar", label: "Fiyatlar" },
   { href: "#sss", label: "SSS" },
 ]

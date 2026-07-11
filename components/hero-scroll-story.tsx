@@ -43,7 +43,9 @@ export const SCENES = [
   },
   {
     key: "yikat",
-    bg: "linear-gradient(160deg, #042c53 0%, #1f5eb8 55%, #4a8cff 100%)",
+    // Son durak #1f5eb8 (eski #4a8cff): fallback gradyan görsel yüklenene dek TEK zemin —
+    // beyaz metin #4a8cff üstünde 3.2:1 kalıyordu (axe, yavaş yüklemede harf harf yakalıyordu).
+    bg: "linear-gradient(160deg, #042c53 0%, #16437f 55%, #1f5eb8 100%)",
     img: "/images/hero/keyframe-yikat.webp",
     imgMobile: "/images/hero/keyframe-yikat-mobile.webp",
     title: "Eskitme, yıkat.",

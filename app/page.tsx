@@ -4,7 +4,6 @@ import { Navbar } from "@/components/navbar"
 import { HeroScrollStory } from "@/components/hero-scroll-story"
 import { ValueBand } from "@/components/value-band"
 import { HowItWorks } from "@/components/how-it-works"
-import { BeforeAfter } from "@/components/before-after"
 import { PriceMenu } from "@/components/price-menu"
 import { FoamDivider } from "@/components/foam-divider"
 import { VisitSection } from "@/components/visit-section"
@@ -46,7 +45,6 @@ export default function Home() {
           <FoamDivider className="text-muted" />
           <ValueBand />
           <HowItWorks />
-          <BeforeAfter />
           <FoamDivider flip className="text-muted" />
           <PriceMenu />
           {/* Açık→navy sert kesimlere köpük ritmi (su kimliği) */}

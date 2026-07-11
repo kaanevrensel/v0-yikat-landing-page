@@ -32,11 +32,9 @@ Dükkan sahibinden girdi gelmeden ilerleyemeyen maddelerin TEK listesi. Bir madd
 - **Gelince:** (a) ise lisanslı dosyalarla `next/font/local` display-face entegrasyonu; (b) ise
   `public/fonts/` silinir ve CLAUDE.md font notu düşürülür.
 
-## 6. Gerçek müşteri önce/sonra fotoğrafları
+## 6. Gerçek müşteri önce/sonra fotoğrafları — BÖLÜM KALDIRILDI (2026-07-11 sahip kararı: 'Farkı kendin gör' tamamen çıkarıldı; temsili AI görseller silindi)
 - **Bekleyen:** Müşteri izni alınmış gerçek çiftler (aynı açı/ışıkta önce+sonra) + sahip onayı.
-- **Gelince:** `lib/site.ts` → `results` dizisine `representative: false` ile ekle ("Gerçek müşteri
-  sonucu" rozeti otomatik). 3+ gerçek çift birikince Carousel/Stack kararı CLAUDE.md gelecek-koşullu
-  notundaki şartlara tabi (kıyas kaydırıcısıyla drag çakışması önlenmeli).
+- **Gelince:** bölüm sıfırdan tasarlanır (eski kod git geçmişinde: before-after.tsx, ae0ec21 öncesi).
 
 ## 7. Gerçek sipariş istatistikleri (uzun vadeli)
 - **Bekleyen:** Doğrulanabilir sipariş sayıları birikmesi + sahibin siteye rakam koyma onayı (spec değişikliği).
