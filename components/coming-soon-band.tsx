@@ -21,13 +21,13 @@ function AppScreen() {
       {/* Telefon çerçevesi */}
       <div className="h-[300px] w-[150px] rounded-[2.25rem] border border-white/15 bg-navy/70 p-2 shadow-2xl">
         {/* Ekran: uygulama açılış görünümü */}
-        <div className="relative flex h-full w-full flex-col items-center justify-center gap-3 overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-[#1f5eb8] to-[#042c53]">
+        <div className="relative flex h-full w-full flex-col items-center justify-center gap-3 overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-[#2563eb] to-[#153e9e]">
           <span className="absolute left-1/2 top-2 h-1 w-10 -translate-x-1/2 rounded-full bg-white/30" />
           <div className="flex size-16 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/20">
             <Image src="/images/yikat-logo-white.png" alt="" width={36} height={36} className="size-9" />
           </div>
           <span className="text-base font-semibold tracking-tight text-white">YIKAT</span>
-          <span className="text-[11px] font-medium text-white/60">çok yakında</span>
+          <span className="text-[11px] font-medium text-white/80">çok yakında</span>
         </div>
       </div>
     </motion.div>
@@ -46,7 +46,7 @@ export function ComingSoonBand() {
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#042c53] via-[#0a3d75] to-[#1f5eb8] px-6 py-12 sm:px-12 sm:py-14"
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#153e9e] via-[#1d4fc4] to-[#2563eb] px-6 py-12 sm:px-12 sm:py-14"
         >
           {/* Su kimliği: köşelerde soluk kabarcıklar */}
           <span aria-hidden className="pointer-events-none absolute -right-6 -top-8 size-32 rounded-full bg-white/5" />
@@ -66,7 +66,7 @@ export function ComingSoonBand() {
               <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight text-white md:text-4xl">
                 YIKAT uygulaması çok yakında
               </h2>
-              <p className="mt-3 max-w-md text-pretty text-white/75">
+              <p className="mt-3 max-w-md text-pretty text-white">
                 Kapıdan alım, kapıya teslim. Kuru temizlemeden ayakkabı bakımına, tüm tekstil işiniz İstanbul'un her
                 yerinde tek uygulamada. Bakırköy dükkanımız açık — gerisi çok yakında yanınızda.
               </p>

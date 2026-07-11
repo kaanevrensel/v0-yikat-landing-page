@@ -16,8 +16,8 @@ export default function NotFound() {
   return (
     <div className="flex min-h-dvh flex-col bg-background">
       <main className="flex flex-1 flex-col items-center justify-center px-4 py-24 text-center">
-        {/* text-[#1f5eb8]: #4A8CFF beyaz zeminde 14px için AA altı (3.24:1). */}
-        <p className="text-sm font-semibold text-[#1f5eb8]">404</p>
+        {/* text-[#2563eb]: #4A8CFF beyaz zeminde 14px için AA altı (3.24:1). */}
+        <p className="text-sm font-semibold text-[#2563eb]">404</p>
         <h1 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">
           Bu sayfa köpüklerin arasında kaybolmuş.
         </h1>
@@ -26,7 +26,7 @@ export default function NotFound() {
           adres aşağıda.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <Button asChild size="lg" className="cta-ripple rounded-full bg-[#1f5eb8] hover:bg-[#1a4fa0]">
+          <Button asChild size="lg" className="cta-ripple rounded-full bg-[#2563eb] hover:bg-[#1d4fc4]">
             <Link href="/">Ana sayfaya dön</Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="cta-ripple rounded-full">

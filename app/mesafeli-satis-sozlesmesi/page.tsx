@@ -491,7 +491,7 @@ export default function MesafeliSatisSozlesmesiPage() {
             </p>
             <p className="mt-3">
               {"Erişim: "}
-              <Link href="/kvkk" className="font-medium text-[#1f5eb8] underline underline-offset-4 hover:text-[#1a4fa0]">
+              <Link href="/kvkk" className="font-medium text-[#2563eb] underline underline-offset-4 hover:text-[#1d4fc4]">
                 {"yikat.tech/kvkk"}
               </Link>
             </p>

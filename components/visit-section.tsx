@@ -49,12 +49,12 @@ function OpenStatus() {
           {status === "open" && !prefersReduced && (
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60 [animation-duration:2s]" />
           )}
-          <span className={`relative inline-flex size-2.5 rounded-full ${status === "open" ? "bg-emerald-400" : "bg-white/40"}`} />
+          <span className={`relative inline-flex size-2.5 rounded-full ${status === "open" ? "bg-emerald-400" : "bg-white/60"}`} />
         </span>
         {status === "open" ? (
           <span className="text-emerald-300">Şu an açık — 20:00'ye kadar bırakabilirsin</span>
         ) : (
-          <span className="text-white/70">{`Şu an kapalı — ${opensToday ? "bugün" : "yarın"} 09:00'da açılıyor`}</span>
+          <span className="text-white">{`Şu an kapalı — ${opensToday ? "bugün" : "yarın"} 09:00'da açılıyor`}</span>
         )}
       </span>
     </span>
@@ -96,7 +96,7 @@ export function VisitSection() {
             </li>
           </ul>
           {/* Doğal konum paragrafı (tek, gerçek) — programatik mahalle sayfası ASLA açılmaz (spec). */}
-          <p className="mt-6 max-w-md text-sm text-white/70">
+          <p className="mt-6 max-w-md text-sm text-white">
             Bakırköy çarşı içindeyiz — İskele Caddesi'nde, iskeleye yürüme mesafesinde. Ataköy, Yeşilköy,
             Kartaltepe ve Florya'dan birkaç dakikada ulaşabilirsin.
           </p>
@@ -129,7 +129,7 @@ export function VisitSection() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track("visit_apple_maps_click")}
-            className="mt-3 inline-block text-sm text-white/60 underline-offset-4 hover:text-white hover:underline"
+            className="mt-3 inline-block text-sm text-white underline-offset-4 hover:text-white hover:underline"
           >
             Apple Haritalar'da aç
           </a>
@@ -151,7 +151,7 @@ export function VisitSection() {
           <div className="text-center">
             <MapPin className="mx-auto size-10 text-[#9cc3f5]" />
             <p className="mt-3 font-semibold">İskele Cd. 15C, Bakırköy</p>
-            <p className="mt-1 text-sm text-white/70">Haritada açmak için tıkla</p>
+            <p className="mt-1 text-sm text-white">Haritada açmak için tıkla</p>
           </div>
         </motion.a>
       </div>

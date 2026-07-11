@@ -13,11 +13,11 @@ export function Footer() {
               <Image src="/images/yikat-logo-white.png" alt="" width={28} height={28} className="size-7" />
               <span className="text-lg font-semibold tracking-tight text-white">YIKAT</span>
             </div>
-            <p className="mt-4 max-w-xs text-sm text-white/70">
+            <p className="mt-4 max-w-xs text-sm text-white">
               Bakırköy'de profesyonel ayakkabı yıkama. Aynı gün teslim.
             </p>
           </div>
-          <div className="text-sm text-white/70">
+          <div className="text-sm text-white">
             <p>{siteConfig.address.full}</p>
             {/* Sayfa sonuna gelen ziyaretçi için eksik olan ikinci dönüşüm çıkışı — sessiz text-link. */}
             <p className="mt-2">
@@ -34,7 +34,7 @@ export function Footer() {
               </a>
             </p>
           </div>
-          <div className="flex flex-col gap-2 text-sm text-white/70">
+          <div className="flex flex-col gap-2 text-sm text-white">
             <Link href="/kvkk" className="hover:text-white">
               KVKK Aydınlatma Metni
             </Link>
@@ -43,7 +43,7 @@ export function Footer() {
             </Link>
           </div>
         </div>
-        <p className="mt-10 border-t border-white/10 pt-6 text-xs text-white/50">
+        <p className="mt-10 border-t border-white/20 pt-6 text-xs text-white/95">
           © 2026 YIKAT. Tüm hakları saklıdır.
         </p>
       </div>

@@ -43,9 +43,9 @@ export const SCENES = [
   },
   {
     key: "yikat",
-    // Son durak #1f5eb8 (eski #4a8cff): fallback gradyan görsel yüklenene dek TEK zemin —
+    // Saks ailesi fallback (beyaz metin her durakta AA): görsel yüklenene dek TEK zemin —
     // beyaz metin #4a8cff üstünde 3.2:1 kalıyordu (axe, yavaş yüklemede harf harf yakalıyordu).
-    bg: "linear-gradient(160deg, #042c53 0%, #16437f 55%, #1f5eb8 100%)",
+    bg: "linear-gradient(160deg, #123b8f 0%, #1d4fc4 55%, #2563eb 100%)",
     img: "/images/hero/keyframe-yikat.webp",
     imgMobile: "/images/hero/keyframe-yikat-mobile.webp",
     title: "Eskitme, yıkat.",
@@ -89,8 +89,8 @@ export function HeroCtas({ eventPrefix }: { eventPrefix: string }) {
   return (
     <div className="flex flex-wrap items-center justify-center gap-3">
       <Magnet maxShift={8}>
-        {/* bg-[#1f5eb8]: buton dolgusu düz renk — 14px beyaz metin #4A8CFF üstünde AA geçemiyor. */}
-        <Button asChild size="lg" className="cta-ripple rounded-full bg-[#1f5eb8] hover:bg-[#1a4fa0]">
+        {/* bg-[#2563eb]: buton dolgusu düz renk — 14px beyaz metin #4A8CFF üstünde AA geçemiyor. */}
+        <Button asChild size="lg" className="cta-ripple rounded-full bg-[#2563eb] hover:bg-[#1d4fc4]">
           <a
             href={directionsUrl}
             target="_blank"
