@@ -19,11 +19,13 @@ import { siteConfig } from "@/lib/site"
 import { track } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
 
+// Kök-anchor ("/#..."): linkler hizmet sayfalarından da ana sayfadaki bölümlere gider.
 const NAV_LINKS = [
-  { href: "#nasil-calisir", label: "Nasıl Çalışır" },
-  { href: "#fiyatlar", label: "Fiyatlar" },
-  { href: "#sss", label: "SSS" },
+  { href: "/#nasil-calisir", label: "Nasıl Çalışır" },
+  { href: "/#fiyatlar", label: "Fiyatlar" },
+  { href: "/#sss", label: "SSS" },
 ]
+const anchorOf = (href: string) => href.slice(href.indexOf("#"))
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -57,7 +59,7 @@ export function Navbar() {
   // Aktif bölüm takibi: viewport ortasındaki dar bantla kesişen anchor hedefi kazanır;
   // hiçbiri kesişmiyorsa (hero, footer) vurgu hapı görünmez.
   useEffect(() => {
-    const targets = NAV_LINKS.map((l) => document.querySelector<HTMLElement>(l.href)).filter(
+    const targets = NAV_LINKS.map((l) => document.querySelector<HTMLElement>(anchorOf(l.href))).filter(
       (t): t is HTMLElement => t !== null,
     )
     if (!targets.length) return
@@ -68,7 +70,7 @@ export function Navbar() {
           if (e.isIntersecting) visibleIds.current.add(id)
           else visibleIds.current.delete(id)
         }
-        setActive(NAV_LINKS.map((l) => l.href).find((h) => visibleIds.current.has(h)) ?? null)
+        setActive(NAV_LINKS.map((l) => l.href).find((h) => visibleIds.current.has(anchorOf(h))) ?? null)
       },
       { rootMargin: "-40% 0px -55% 0px" },
     )

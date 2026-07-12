@@ -125,6 +125,15 @@ export function VisitSection() {
             </Button>
           </div>
           <a
+            href={siteConfig.whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => track("visit_whatsapp_click")}
+            className="mt-3 mr-4 inline-block text-sm text-white underline-offset-4 hover:underline"
+          >
+            WhatsApp'tan yaz
+          </a>
+          <a
             href={siteConfig.appleDirectionsUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -135,7 +144,7 @@ export function VisitSection() {
           </a>
         </motion.div>
 
-        {/* Statik harita placeholder'ı — tıklayınca Google Maps (spec §3.6). Gerçek statik harita görseli Görev 17'de. */}
+        {/* Gerçek statik harita (Carto/OSM render'ı, pin: siteConfig.geo — 2026-07-12) */}
         <motion.a
           href={siteConfig.mapsPlaceUrl}
           target="_blank"

@@ -30,8 +30,10 @@ export const siteConfig = {
   // GERÇEK pin (sahip paylaşımı 2026-07-11, maps.app.goo.gl/r4Z4ebDJxrPf9avY6) — Google'ın
   // yapılandırılmış veri şartı olan ≥5 ondalık hassasiyette. Launch-blocker kapandı.
   geo: { latitude: 40.977817, longitude: 28.877776 },
+  // WhatsApp: 0850 hattı üzerinden (sahip GBP'ye de aynı linki koydu, 2026-07-11).
+  whatsappHref: "https://wa.me/908503033193",
   // Sahip GBP'yi sahiplenip gerçek profil linklerini verince doldurulacak — boşken JSON-LD
-  // sameAs üretilmez (app/layout.tsx koşullu bakar). Bkz: docs/superpowers/plans/owner-blockers.md
+  // sameAs üretilmez ve footer sosyal satırı render edilmez. Bkz: owner-blockers.md
   socialLinks: { googleBusinessProfile: "", instagram: "" },
 } as const
 

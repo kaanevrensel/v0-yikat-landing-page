@@ -28,7 +28,16 @@ export const metadata: Metadata = {
     "deri ayakkabı bakımı",
     "YIKAT",
   ],
-  icons: { icon: "/images/yikat-logo-blue.png", apple: "/images/yikat-logo-blue.png" },
+  icons: {
+    icon: [
+      { url: "/icons/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/favicon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/icons/apple-touch-icon.png",
+  },
   alternates: { canonical: siteConfig.url },
   robots: { index: true, follow: true },
   verification: { google: "STVQceqys-HuTc9IuB8MElUcaltLIoRKCwBQ-FkwUYA" },

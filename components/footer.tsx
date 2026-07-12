@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
-import { FooterDirectionsLink } from "@/components/footer-directions-link"
+import { FooterDirectionsLink, FooterServiceLinks, FooterWhatsAppLink } from "@/components/footer-directions-link"
+import { services } from "@/lib/services"
 import { siteConfig } from "@/lib/site"
 
 export function Footer() {
@@ -25,14 +26,21 @@ export function Footer() {
             </p>
             <p className="mt-2">{siteConfig.hours.label}</p>
             <p className="mt-2">
-              <a href={siteConfig.phoneHref} className="hover:text-white">
+              <a href={siteConfig.phoneHref} className="hover:underline">
                 {siteConfig.phone}
               </a>
               {" · "}
-              <a href={`mailto:${siteConfig.email}`} className="hover:text-white">
+              <a href={`mailto:${siteConfig.email}`} className="hover:underline">
                 {siteConfig.email}
               </a>
             </p>
+            <p className="mt-2">
+              <FooterWhatsAppLink />
+            </p>
+          </div>
+          <div className="flex flex-col gap-2 text-sm text-white">
+            <span className="font-semibold">Hizmetler</span>
+            <FooterServiceLinks services={services.map((s) => ({ slug: s.slug, nav: s.nav }))} />
           </div>
           <div className="flex flex-col gap-2 text-sm text-white">
             <Link href="/kvkk" className="hover:text-white">
@@ -43,9 +51,19 @@ export function Footer() {
             </Link>
           </div>
         </div>
-        <p className="mt-10 border-t border-white/20 pt-6 text-xs text-white/95">
-          © 2026 YIKAT. Tüm hakları saklıdır.
-        </p>
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-white/20 pt-6 text-xs text-white/95">
+          <p>© 2026 YIKAT. Tüm hakları saklıdır.</p>
+          {(siteConfig.socialLinks.googleBusinessProfile || siteConfig.socialLinks.instagram) && (
+            <p className="flex gap-4">
+              {siteConfig.socialLinks.googleBusinessProfile && (
+                <a href={siteConfig.socialLinks.googleBusinessProfile} target="_blank" rel="noopener noreferrer" className="hover:underline">Google</a>
+              )}
+              {siteConfig.socialLinks.instagram && (
+                <a href={siteConfig.socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="hover:underline">Instagram</a>
+              )}
+            </p>
+          )}
+        </div>
       </div>
     </footer>
   )
