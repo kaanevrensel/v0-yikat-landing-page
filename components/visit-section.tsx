@@ -51,8 +51,9 @@ function OpenStatus() {
           )}
           <span className={`relative inline-flex size-2.5 rounded-full ${status === "open" ? "bg-emerald-400" : "bg-white/60"}`} />
         </span>
+        {/* Saks (#2563eb) üzerinde emerald-300 3.39:1 kalıyor; emerald-50 ≈4.9:1 (AA) — yeşil sinyal nokta + tonda sürüyor */}
         {status === "open" ? (
-          <span className="text-emerald-300">Şu an açık — 20:00'ye kadar bırakabilirsin</span>
+          <span className="text-emerald-50">Şu an açık — 20:00'ye kadar bırakabilirsin</span>
         ) : (
           <span className="text-white">{`Şu an kapalı — ${opensToday ? "bugün" : "yarın"} 09:00'da açılıyor`}</span>
         )}

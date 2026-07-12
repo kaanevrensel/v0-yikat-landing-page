@@ -77,9 +77,19 @@ test("404 sayfası Türkçe ve dönüşüm çıkışlı", async ({ page }) => {
 })
 
 async function expectNoSeriousAxe(page: import("@playwright/test").Page, label: string) {
-  const results = await new AxeBuilder({ page }).analyze()
-  const bad = results.violations.filter((v) => v.impact === "critical" || v.impact === "serious")
-  expect(bad.map((v) => `${label} → ${v.id}: ${v.nodes.length} node — ${v.help}`)).toEqual([])
+  // Paralel worker yükü altında analiz, framer-motion girişleri otururken araya girebiliyor;
+  // yarı saydam animasyon anları sahte color-contrast düğümleri üretir. Gerçek ihlal kalıcıdır:
+  // ihlal görürsek animasyonlar bitsin diye bekleyip yeniden ölçüyoruz (en fazla 3 deneme).
+  let bad: string[] = []
+  for (let attempt = 0; attempt < 3; attempt++) {
+    if (attempt > 0) await page.waitForTimeout(1500)
+    const results = await new AxeBuilder({ page }).analyze()
+    bad = results.violations
+      .filter((v) => v.impact === "critical" || v.impact === "serious")
+      .map((v) => `${label} → ${v.id}: ${v.nodes.length} node — ${v.help}`)
+    if (bad.length === 0) break
+  }
+  expect(bad).toEqual([])
 }
 
 // whileInView blokları scroll 0'da opacity:0 kalır ve axe görsel kuralları (color-contrast)
