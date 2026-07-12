@@ -135,7 +135,8 @@ const SCENE_MS = 4000
 export function HeroScrollStory() {
   const prefersReduced = useReducedMotion()
   // Otomatik akış (2026-07-12 sahip kararı: scroll-scrub → autoplay): tek doğruluk kaynağı
-  // aktif sahne indeksi. Masaüstünde video saati sürer, aksi halde zamanlayıcı döngüsü.
+  // aktif sahne indeksi. Video oynuyorsa (her ekran boyutunda) saat videodur, aksi halde
+  // zamanlayıcı döngüsü.
   const [active, setActive] = useState(0)
   const [videoDriving, setVideoDriving] = useState(false)
 
@@ -149,9 +150,9 @@ export function HeroScrollStory() {
 
   return (
     <section aria-label="YIKAT hikayesi" className="relative h-dvh overflow-hidden">
-      {/* Statik keyframe katmanları — mobilde deneyimin kendisi, masaüstünde video fallback'i.
-          Katman 0 sabit taban; sonrakiler aktif sahneye dek üst üste biner (DOM sırası örter),
-          döngü başa sararken hepsi birlikte söner. */}
+      {/* Statik keyframe katmanları — video hazır olana dek (ve autoplay reddedilirse)
+          deneyimin kendisi, her ekran boyutunda. Katman 0 sabit taban; sonrakiler aktif
+          sahneye dek üst üste biner (DOM sırası örter), döngü başa sararken hepsi birlikte söner. */}
       {SCENES.map((scene, i) => (
         <motion.div
           key={scene.key}
@@ -181,8 +182,8 @@ export function HeroScrollStory() {
         </motion.div>
       ))}
 
-      {/* Masaüstü otomatik videosu — md+ ve canplaythrough sonrası statiklerin üstüne biner,
-          oynamaya başlayınca sahne saatini devralır */}
+      {/* Otomatik hero videosu — tüm ekranlarda (mobil dahil, 2026-07-12 sahip kararı)
+          canplaythrough sonrası statiklerin üstüne biner, oynamaya başlayınca sahne saatini devralır */}
       <HeroAutoVideo onSceneChange={setActive} onDrivingChange={setVideoDriving} />
 
       {/* Metin + CTA alt üçte-birde: kompozit karede ayakkabılar merkezde, üstüne binmez.

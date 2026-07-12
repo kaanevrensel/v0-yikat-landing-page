@@ -11,10 +11,14 @@ export function timeToScene(t: number): number {
   return 3
 }
 
-// Masaüstü otomatik hero videosu (2026-07-12 sahip kararı: scroll-scrub → autoplay loop).
-// SSR'da ve <md'de hiç render edilmez (hydration güvenli); canplaythrough gelene dek görünmez —
-// altındaki statik keyframe katmanları + zamanlayıcı tam deneyim sunar. Oynamaya başlayınca
-// sahne metinlerini video saatine bağlar (onSceneChange), zamanlayıcıyı devre dışı bırakır.
+// Otomatik hero videosu (2026-07-12 sahip kararları: scroll-scrub → autoplay loop; mobil de
+// keyframe döngüsü değil videoyu oynatır — md kapısı kaldırıldı). SSR'da render edilmez
+// (src, mount + window 'load' sonrası atanır; hydration güvenli); canplaythrough gelene dek
+// görünmez — altındaki statik keyframe katmanları + zamanlayıcı tam deneyim sunar. Oynamaya
+// başlayınca sahne metinlerini video saatine bağlar (onSceneChange), zamanlayıcıyı devre dışı
+// bırakır. Dikey ekranda object-cover merkez kırpımı 16:9 karenin ~500px'lik orta kolonunu
+// gösterir — ön ayakkabı 4 sahnede de bu bantta (2026-07-12 kare kare doğrulandı, ffmpeg
+// crop önizlemeleri), object-position gerekmez.
 export function HeroAutoVideo({
   onSceneChange,
   onDrivingChange,
@@ -24,7 +28,6 @@ export function HeroAutoVideo({
 }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [ready, setReady] = useState(false)
-  const [isDesktop, setIsDesktop] = useState(false)
   const [src, setSrc] = useState<string | null>(null)
 
   // Video LCP ile bant genişliği yarışmasın: src ancak window 'load' SONRASI atanır
@@ -39,21 +42,10 @@ export function HeroAutoVideo({
     return () => window.removeEventListener("load", start)
   }, [])
 
+  // Hazır olunca oynat ve metin saatini devral; autoplay reddedilirse (örn. iOS Düşük Güç
+  // Modu, veri tasarrufu ayarları) zamanlayıcı keyframe döngüsüne geri düş.
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)")
-    const update = () => {
-      setIsDesktop(mq.matches)
-      // md sınırından çıkınca video unmount olur; yeni mount tekrar canplaythrough beklemeli.
-      if (!mq.matches) setReady(false)
-    }
-    update()
-    mq.addEventListener("change", update)
-    return () => mq.removeEventListener("change", update)
-  }, [])
-
-  // Hazır olunca oynat ve metin saatini devral; autoplay reddedilirse zamanlayıcıya geri düş.
-  useEffect(() => {
-    if (!isDesktop || !ready) return
+    if (!ready) return
     const video = videoRef.current
     if (!video) return
     let driving = false
@@ -70,9 +62,9 @@ export function HeroAutoVideo({
       video.removeEventListener("timeupdate", onTime)
       if (driving) onDrivingChange(false)
     }
-  }, [isDesktop, ready, onSceneChange, onDrivingChange])
+  }, [ready, onSceneChange, onDrivingChange])
 
-  if (!isDesktop || !src) return null
+  if (!src) return null
 
   return (
     <video
