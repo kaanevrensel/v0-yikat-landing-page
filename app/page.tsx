@@ -31,16 +31,9 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
       />
       <MotionProvider>
-        {/* WCAG 2.4.1: sticky nav + 300vh hero'yu klavyeyle atlama yolu. */}
-        <a
-          href="#icerik"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-[#2563eb] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg"
-        >
-          İçeriğe atla
-        </a>
         <BubbleCursor />
         <Navbar />
-        <main id="icerik" tabIndex={-1}>
+        <main>
           <HeroScrollStory />
           <FoamDivider className="text-muted" />
           <ValueBand />

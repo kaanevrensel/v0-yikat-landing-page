@@ -51,14 +51,8 @@ export function ServicePageView({ service }: { service: Service }) {
         />
       ))}
       <MotionProvider>
-        <a
-          href="#icerik"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-[#2563eb] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg"
-        >
-          İçeriğe atla
-        </a>
         <Navbar />
-        <main id="icerik" tabIndex={-1}>
+        <main>
           {/* Giriş bandı */}
           <section className="relative flex min-h-[64vh] items-end overflow-hidden pb-14 pt-32">
             <img
