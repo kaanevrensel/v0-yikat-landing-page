@@ -19,13 +19,17 @@ Dükkan sahibinden girdi gelmeden ilerleyemeyen maddelerin TEK listesi. Bir madd
   (küçük harf logo) — GBP işletme adı buna göre girilecek, tabela fotoğrafı kanıt olarak saklanacak.
   Deri ayakkabı YIKANIYOR; GBP'ye "Leather cleaning service" ikincil kategorisi EKLENMEYECEK (sahip kararı).
 
+## 4a. Instagram hesabı (yeni, 2026-07-12)
+- **Bekleyen:** Sahip işletme hesabı açacak (önerilen kullanıcı adı: yikat.tech veya yikatbakirkoy; bio: konum+aynı gün teslim+site linki).
+- **Gelince:** `lib/site.ts` → `socialLinks.instagram` doldur — footer sosyal satırı ve JSON-LD `sameAs` otomatik devreye girer.
+
 ## 4. Google Business Profile (GBP) sahiplenme
 - **Bekleyen:** GBP kaydının sahiplenilmesi + doğrulanması; profil URL'si ve place-id.
 - **Gelince:** `lib/site.ts` → `socialLinks.googleBusinessProfile` doldur (JSON-LD `sameAs` otomatik
   üretilir); place-id'li "Google'da değerlendir" linki visit-section'a İKİNCİL sessiz link olarak
   eklenir (yorum gösterimi ancak gerçek yorumlar birikince ayrıca tasarlanır).
 
-## 5. MADE Okine Sans font kararı — BÜYÜK OLASILIKLA GEÇERSİZ (2026-07-10: site yüzü olarak Bricolage Grotesque seçildi, OFL lisanslı; MADE fikrinden vazgeçilecekse public/fonts/ silinmeli)
+## 5. MADE Okine Sans — ✅ KAPANDI (2026-07-12: sahip onayıyla public/fonts/ silindi; dosyalar git geçmişinde)
 - **Bekleyen:** Karar — (a) ticari lisans satın al, (b) vazgeç. Dosyalar hâlâ `public/fonts/` altında
   PERSONAL USE lisanslı ve herkese açık URL'den erişilebilir durumda (sahip bilinçli olarak sildirmedi,
   2026-07-08 kararı: dosyalara dokunulmadı).
@@ -51,5 +55,4 @@ Dükkan sahibinden girdi gelmeden ilerleyemeyen maddelerin TEK listesi. Bir madd
 ## Sahibe iletilecek açık sorular
 1. Fiyat menüsü ne zaman netleşir?
 2. GBP kaydını birlikte mi sahiplenelim (10 dk sürer), yoksa erişimi paylaşır mısın?
-3. MADE Okine ticari lisansı alınacak mı, font fikrinden vazgeçildi mi?
 4. Müşteri fotoğrafı için izin akışı: teslimde sözlü izin + telefon notu yeterli mi, yazılı mı olsun?
