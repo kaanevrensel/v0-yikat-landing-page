@@ -121,12 +121,14 @@ export function StaticHero() {
     >
       <SceneLcpPicture scene={scene} />
       <div className="relative z-10 flex flex-col items-center">
-        <h1 className={`text-balance text-center text-4xl font-semibold tracking-tight text-foreground md:text-5xl ${LIGHT_SHADOW}`}>
-          Temiz ayakkabı, başka yürüyüş.
-        </h1>
-        <p className={`mt-3 text-center text-lg text-muted-foreground ${LIGHT_SHADOW}`}>
-          Bakırköy'de profesyonel ayakkabı yıkama — aynı gün teslim.
-        </p>
+        <div className="hero-glass-card rounded-3xl border border-white/35 bg-white/10 px-6 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_30px_rgba(4,44,83,0.18)] backdrop-blur-[3px] backdrop-saturate-150">
+          <h1 className={`text-balance text-center text-4xl font-semibold tracking-tight text-foreground md:text-5xl ${LIGHT_SHADOW}`}>
+            Temiz ayakkabı, başka yürüyüş.
+          </h1>
+          <p className={`mt-3 text-center text-lg text-muted-foreground ${LIGHT_SHADOW}`}>
+            Bakırköy'de profesyonel ayakkabı yıkama — aynı gün teslim.
+          </p>
+        </div>
         <div className="mt-8">
           <HeroCtas eventPrefix="hero_static" />
         </div>
@@ -254,15 +256,16 @@ export function HeroScrollStory() {
             bottom 10vh→6vh (sahip, 2026-07-12): metinler fotoğrafın daha sakin/koyu yansıma
             bandına insin — üst kısımdaki renkler okunabilirliği düşürüyordu. */}
         <div className="absolute inset-x-0 bottom-[6vh] z-10 flex flex-col items-center">
-          {/* Mobilde sahne metinleri CLEAR liquid glass kartta (Apple clear varyantı: yüksek
-              saydamlık + minimum blur + ince rim; okunabilirliği sahne-bazlı text-shadow'lar taşır).
-              md+ değişmez. Erişilebilirlik kemeri globals.css'te (.hero-glass-card). */}
-          <div className="hero-glass-card grid w-full max-w-2xl px-4 text-center max-md:w-[calc(100%-2rem)] max-md:rounded-3xl max-md:border max-md:border-white/35 max-md:bg-white/10 max-md:px-5 max-md:py-5 max-md:shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_30px_rgba(4,44,83,0.18)] max-md:backdrop-blur-[3px] max-md:backdrop-saturate-150">
+          {/* Sahne metinleri CLEAR liquid glass kartta (Apple clear varyantı: yüksek saydamlık +
+              minimum blur + ince rim; okunabilirliği sahne-bazlı text-shadow'lar taşır).
+              2026-07-12 sahip isteği: çerçeve tüm kırılımlarda. Kemer globals.css'te (.hero-glass-card). */}
+          <div className="hero-glass-card grid w-[calc(100%-2rem)] max-w-2xl rounded-3xl border border-white/35 bg-white/10 px-5 py-5 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_30px_rgba(4,44,83,0.18)] backdrop-blur-[3px] backdrop-saturate-150">
             {SCENES.map((scene, i) => (
               <motion.div
                 key={scene.key}
+                // self-center: kart yüksekliği en uzun sahneye göre sabit — kısa sahneler ortalanır.
                 // İlk iki sahnenin metni sahip isteğiyle biraz daha aşağıda (pt, transform'la çakışmaz)
-                className={`col-start-1 row-start-1 ${i < 2 ? "pt-6" : ""}`}
+                className={`col-start-1 row-start-1 self-center ${i < 2 ? "pt-6" : ""}`}
                 style={{ opacity: textOpacities[i], y: textYs[i] }}
               >
                 {i === 0 ? (

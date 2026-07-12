@@ -83,7 +83,7 @@ export const services: Service[] = [
     metaTitle: "Süet ve Nubuk Ayakkabı Temizleme Bakırköy | YIKAT",
     metaDescription:
       "Süet ve nubuk ayakkabılar suya boğmadan, hassas yüzeye özel fırça ve ürünlerle temizlenir. Bakırköy'de, aynı gün teslim.",
-    h1: "Süet & nubuk temizleme — hassas dokuya hassas bakım",
+    h1: "Süet & nubuk temizleme.\nHassas dokuya hassas bakım.",
     intro:
       "Süet ve nubuk, su ve yanlış fırçayla kolay bozulan yüzeylerdir. Dükkânımızda suya boğmadan, hassas yüzeye özel fırça ve ürünlerle temizlenir; dokusu korunur.",
     heroImg: "/images/services/suet-hero.webp",
