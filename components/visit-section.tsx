@@ -155,14 +155,23 @@ export function VisitSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-3xl border border-white/15 bg-white/5 transition-colors hover:bg-white/10"
+          className="group relative block aspect-[4/3] overflow-hidden rounded-3xl border border-white/15"
           aria-label="Haritada aç: YIKAT Bakırköy"
         >
-          <div className="text-center">
-            <MapPin className="mx-auto size-10 text-[#9cc3f5]" />
-            <p className="mt-3 font-semibold">İskele Cd. 15C, Bakırköy</p>
-            <p className="mt-1 text-sm text-white">Haritada açmak için tıkla</p>
-          </div>
+          <img
+            src="/images/map/dukkan-harita.webp"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          />
+          {/* OSM/CARTO atıfı — lisans gereği görselin üstünde durur */}
+          <span className="absolute right-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-medium text-[#1F2937]">
+            © OpenStreetMap katkıcıları · CARTO
+          </span>
+          <span className="absolute bottom-4 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#1d4fc4] shadow-lg">
+            <MapPin className="size-4" /> Haritada aç
+          </span>
         </motion.a>
       </div>
     </section>
