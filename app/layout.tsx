@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   // "Aynı gün teslim" SERP'te sıfır rakibin verdiği vaat (2026-07-10 SERP taraması) — başlıkta öne.
   title: "Ayakkabı Yıkama Bakırköy — Aynı Gün Teslim | YIKAT",
   description:
-    "Bakırköy İskele Caddesi'nde profesyonel ayakkabı yıkama. Sneaker, süet, deri — malzemesine uygun yıkama, aynı gün teslim, randevusuz. Her gün 09:00–20:00, 400–1000 ₺.",
+    "Bakırköy İskele Caddesi'nde profesyonel ayakkabı yıkama. Sneaker, süet, deri — malzemesine uygun yıkama, aynı gün teslim. Her gün 09:00–20:00, 400–1000 ₺.",
   keywords: [
     "ayakkabı yıkama bakırköy",
     "ayakkabı temizleme",
@@ -47,13 +47,13 @@ export const metadata: Metadata = {
     siteName: "YIKAT",
     locale: "tr_TR",
     title: "Ayakkabı Yıkama Bakırköy — Aynı Gün Teslim | YIKAT",
-    description: "Temiz ayakkabı, başka yürüyüş. Aynı gün teslim, randevusuz — her gün 09:00–20:00.",
+    description: "Temiz ayakkabı, başka yürüyüş. Aynı gün teslim — her gün 09:00–20:00.",
     images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "YIKAT — Ayakkabı Yıkama Bakırköy" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Ayakkabı Yıkama Bakırköy — Aynı Gün Teslim | YIKAT",
-    description: "Temiz ayakkabı, başka yürüyüş. Aynı gün teslim, randevusuz.",
+    description: "Temiz ayakkabı, başka yürüyüş. Aynı gün teslim.",
     images: ["/images/og.jpg"],
   },
 }

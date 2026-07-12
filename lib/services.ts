@@ -27,10 +27,10 @@ export const services: Service[] = [
     nav: "Sneaker Yıkama",
     metaTitle: "Sneaker Yıkama Bakırköy — Aynı Gün Teslim | YIKAT",
     metaDescription:
-      "Bakırköy'de profesyonel sneaker ve spor ayakkabı yıkama. Kumaş, mesh, karışık malzeme — elde, malzemesine uygun ürünle. Aynı gün teslim, randevusuz.",
+      "Bakırköy'de profesyonel sneaker ve spor ayakkabı yıkama. Kumaş, mesh, karışık malzeme — elde, malzemesine uygun ürünle. Aynı gün teslim.",
     h1: "Sneaker yıkama — makineye atma, ustasına bırak",
     intro:
-      "Kumaş, mesh ve karışık malzemeli sneaker'lar dükkânımızda elde, malzemesine uygun ürünlerle yıkanır. Sabah bırak, aynı gün akşam 20:00'ye kadar tertemiz teslim al — randevu gerekmez.",
+      "Kumaş, mesh ve karışık malzemeli sneaker'lar dükkânımızda elde, malzemesine uygun ürünlerle yıkanır. Sabah bırak, aynı gün akşam 20:00'ye kadar tertemiz teslim al.",
     heroImg: "/images/services/sneaker-hero.webp",
     risks: [
       {
@@ -82,7 +82,7 @@ export const services: Service[] = [
     nav: "Süet & Nubuk",
     metaTitle: "Süet ve Nubuk Ayakkabı Temizleme Bakırköy | YIKAT",
     metaDescription:
-      "Süet ve nubuk ayakkabılar suya boğmadan, hassas yüzeye özel fırça ve ürünlerle temizlenir. Bakırköy'de, aynı gün teslim, randevusuz.",
+      "Süet ve nubuk ayakkabılar suya boğmadan, hassas yüzeye özel fırça ve ürünlerle temizlenir. Bakırköy'de, aynı gün teslim.",
     h1: "Süet & nubuk temizleme — hassas dokuya hassas bakım",
     intro:
       "Süet ve nubuk, su ve yanlış fırçayla kolay bozulan yüzeylerdir. Dükkânımızda suya boğmadan, hassas yüzeye özel fırça ve ürünlerle temizlenir; dokusu korunur.",

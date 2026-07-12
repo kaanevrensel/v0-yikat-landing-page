@@ -149,7 +149,7 @@ export function ServicePageView({ service }: { service: Service }) {
                 Eskitme, yıkat.
               </h2>
               <p className="mt-2 text-white">
-                {siteConfig.hours.label} · {siteConfig.address.district} çarşı içi · Randevusuz
+                {siteConfig.hours.label} · {siteConfig.address.district} çarşı içi
               </p>
               <div className="mt-6 flex justify-center">
                 <HeroCtas eventPrefix={`svc_${service.slug.replaceAll("-", "_")}_alt`} />
