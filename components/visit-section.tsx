@@ -98,7 +98,7 @@ export function VisitSection() {
           </ul>
           {/* Doğal konum paragrafı (tek, gerçek) — programatik mahalle sayfası ASLA açılmaz (spec). */}
           <p className="mt-6 max-w-md text-sm text-white">
-            İstanbul Caddesi'nin bir alt sokağındayız — Bakırköy ve Yenimahalle Marmaray istasyonlarının
+            İstanbul Caddesi'nin bir alt sokağındayız. Bakırköy ve Yenimahalle Marmaray istasyonlarının
             ikisine de 8 dakika uzaklıkta. Marmaray'dan inip bırak, dönüşte tertemiz al.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
