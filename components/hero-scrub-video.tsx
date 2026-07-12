@@ -11,10 +11,14 @@ export function timeToScene(t: number): number {
   return 3
 }
 
-// Otomatik hero videosu (2026-07-12 sahip kararları: scroll-scrub → autoplay loop; mobil de
-// keyframe döngüsü değil videoyu oynatır — md kapısı kaldırıldı). SSR'da render edilmez
-// (src, mount + window 'load' sonrası atanır; hydration güvenli); canplaythrough gelene dek
-// görünmez — altındaki statik keyframe katmanları + zamanlayıcı tam deneyim sunar. Oynamaya
+// Otomatik hero videosu — tüm ekranlarda (2026-07-12 sahip kararları: scroll-scrub → autoplay
+// loop; mobil de videoyu oynatır; keyframe döngüsü YALNIZ videonun henüz/hiç oynayamadığı
+// anların fallback'idir). mp4 faststart (moov önde) + canplay tetiği: ilk saniyeler iner inmez
+// oynamaya başlar — canplaythrough beklemek 9.2MB'ın tamamını istiyordu ve mobil ağda uzun süre
+// görsel döngü gösteriyordu (sahip geri bildirimi, 2026-07-12: "direk video oynasın").
+// SSR'da render edilmez (src, mount + window 'load' sonrası atanır; hydration güvenli).
+// Görünürlük fiili oynatmaya bağlı (playing): autoplay reddedilirse (örn. iOS Düşük Güç Modu)
+// video görünmez kalır, zamanlayıcı keyframe döngüsü deneyimi taşımayı sürdürür. Oynamaya
 // başlayınca sahne metinlerini video saatine bağlar (onSceneChange), zamanlayıcıyı devre dışı
 // bırakır. Dikey ekranda object-cover merkez kırpımı 16:9 karenin ~500px'lik orta kolonunu
 // gösterir — ön ayakkabı 4 sahnede de bu bantta (2026-07-12 kare kare doğrulandı, ffmpeg
@@ -28,10 +32,11 @@ export function HeroAutoVideo({
 }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [ready, setReady] = useState(false)
+  const [playing, setPlaying] = useState(false)
   const [src, setSrc] = useState<string | null>(null)
 
   // Video LCP ile bant genişliği yarışmasın: src ancak window 'load' SONRASI atanır
-  // (keyframe fallback o ana dek tam deneyim).
+  // (ilk keyframe o ana dek poster görevi görür; sayfa hafif, load hızlı gelir).
   useEffect(() => {
     const start = () => setSrc("/videos/hero-scrub.mp4")
     if (document.readyState === "complete") {
@@ -42,8 +47,9 @@ export function HeroAutoVideo({
     return () => window.removeEventListener("load", start)
   }, [])
 
-  // Hazır olunca oynat ve metin saatini devral; autoplay reddedilirse (örn. iOS Düşük Güç
-  // Modu, veri tasarrufu ayarları) zamanlayıcı keyframe döngüsüne geri düş.
+  // Oynayabilecek kadar veri gelir gelmez başlat ve metin saatini devral; autoplay
+  // reddedilirse zamanlayıcı keyframe döngüsüne geri düş. İlk turda ağ takılırsa video
+  // kısa süre duraklayıp kendiliğinden sürer (loop #2'den itibaren tamamı tamponda).
   useEffect(() => {
     if (!ready) return
     const video = videoRef.current
@@ -54,6 +60,7 @@ export function HeroAutoVideo({
       .play()
       .then(() => {
         driving = true
+        setPlaying(true)
         onDrivingChange(true)
         video.addEventListener("timeupdate", onTime)
       })
@@ -76,8 +83,8 @@ export function HeroAutoVideo({
       autoPlay
       preload="auto"
       disablePictureInPicture
-      onCanPlayThrough={() => setReady(true)}
-      className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${ready ? "opacity-100" : "opacity-0"}`}
+      onCanPlay={() => setReady(true)}
+      className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${playing ? "opacity-100" : "opacity-0"}`}
       src={src}
     />
   )
