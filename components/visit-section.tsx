@@ -165,9 +165,9 @@ export function VisitSection() {
             decoding="async"
             className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
           />
-          {/* OSM/CARTO atıfı — lisans gereği görselin üstünde durur */}
-          <span className="absolute right-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-medium text-[#1F2937]">
-            © OpenStreetMap katkıcıları · CARTO
+          {/* OSM/CARTO atıfı — lisans gereği kaldırılamaz (ODbL); en silik meşru biçim: minik köşe etiketi */}
+          <span className="absolute bottom-1.5 right-2 rounded bg-white/60 px-1.5 py-0.5 text-[9px] leading-none text-[#1F2937]/75">
+            © OSM · CARTO
           </span>
           <span className="absolute bottom-4 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#1d4fc4] shadow-lg">
             <MapPin className="size-4" /> Haritada aç
