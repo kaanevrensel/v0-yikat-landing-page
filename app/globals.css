@@ -233,24 +233,6 @@
   }
 }
 
-/* Harf konturu (sahip isteği 2026-07-12): görsel üstündeki yazılarda kart çerçevesi değil,
-   harflerin dış sınırında ince kontur + yumuşak ışıma. text-stroke yerine 8 yönlü text-shadow:
-   her motorda aynı render, glif inceltmez; em-tabanlı olduğundan puntoyla ölçeklenir. */
-.text-contour-dark {
-  --tc: rgba(4, 44, 83, 0.6);
-  text-shadow:
-    0.035em 0 0 var(--tc), -0.035em 0 0 var(--tc), 0 0.035em 0 var(--tc), 0 -0.035em 0 var(--tc),
-    0.025em 0.025em 0 var(--tc), -0.025em 0.025em 0 var(--tc), 0.025em -0.025em 0 var(--tc), -0.025em -0.025em 0 var(--tc),
-    0 0.05em 0.5em rgba(4, 44, 83, 0.55);
-}
-.text-contour-light {
-  --tc: rgba(255, 255, 255, 0.75);
-  text-shadow:
-    0.035em 0 0 var(--tc), -0.035em 0 0 var(--tc), 0 0.035em 0 var(--tc), 0 -0.035em 0 var(--tc),
-    0.025em 0.025em 0 var(--tc), -0.025em 0.025em 0 var(--tc), 0.025em -0.025em 0 var(--tc), -0.025em -0.025em 0 var(--tc),
-    0 0.03em 0.35em rgba(255, 255, 255, 0.65);
-}
-
 /* Hero clear-glass kartı (yalnız mobil): saydamlık azaltma tercihinde kart opak naviye döner,
    sahne-bazlı metin renkleri/gölgeleri beyaza sabitlenir (beyaz-üstüne-beyaz riskine karşı). */
 @media (prefers-reduced-transparency: reduce) and (max-width: 767px) {

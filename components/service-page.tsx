@@ -69,12 +69,11 @@ export function ServicePageView({ service }: { service: Service }) {
               >
                 <ArrowLeft className="size-4" /> Ana sayfa
               </Link>
-              {/* h1 verideki \n ile satır kırar (whitespace-pre-line) — deri sayfasında \n yok, tek satır kalır.
-                  Okunabilirliği harf konturu taşır (.text-contour-dark, sahip isteği 2026-07-12). */}
-              <h1 className="text-contour-dark mt-4 max-w-3xl whitespace-pre-line text-balance text-4xl font-semibold tracking-tight text-white md:text-5xl">
+              {/* h1 verideki \n ile satır kırar (whitespace-pre-line) — deri sayfasında \n yok, tek satır kalır */}
+              <h1 className="mt-4 max-w-3xl whitespace-pre-line text-balance text-4xl font-semibold tracking-tight text-white md:text-5xl">
                 {service.h1}
               </h1>
-              <p className="text-contour-dark mt-4 max-w-2xl text-pretty text-lg text-white">{service.intro}</p>
+              <p className="mt-4 max-w-2xl text-pretty text-lg text-white">{service.intro}</p>
               <div className="mt-8 flex justify-start [&>div]:justify-start">
                 <HeroCtas eventPrefix={`svc_${service.slug.replaceAll("-", "_")}`} />
               </div>

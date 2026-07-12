@@ -64,10 +64,9 @@ export const SCENES = [
   },
 ] as const
 
-// Fotoğraf üstünde okunabilirlik: harf konturu + ışıma (globals.css .text-contour-*).
-// Koyu sahnede koyu kontur (beyaz harf), açık sahnede açık kontur (koyu harf).
-const DARK_SHADOW = "text-contour-dark"
-const LIGHT_SHADOW = "text-contour-light"
+// Fotoğraf üstünde okunabilirlik: koyu sahnede koyu, açık sahnede açık ışıma.
+const DARK_SHADOW = "[text-shadow:0_2px_24px_rgba(4,44,83,0.55)]"
+const LIGHT_SHADOW = "[text-shadow:0_1px_16px_rgba(255,255,255,0.65)]"
 
 // LCP karesi için art-direction: <picture> tarayıcının preload tarayıcısına tek doğru
 // kırpımı erken keşfettirir — çift <Image priority> her cihazda iki eager indirme yapıyordu.
