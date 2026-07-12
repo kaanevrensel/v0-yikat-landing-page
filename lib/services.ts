@@ -28,7 +28,7 @@ export const services: Service[] = [
     metaTitle: "Sneaker Yıkama Bakırköy — Aynı Gün Teslim | YIKAT",
     metaDescription:
       "Bakırköy'de profesyonel sneaker ve spor ayakkabı yıkama. Kumaş, mesh, karışık malzeme — elde, malzemesine uygun ürünle. Aynı gün teslim.",
-    h1: "Sneaker yıkama — makineye atma, ustasına bırak",
+    h1: "Sneaker temizliği. Makineye atma, ustasına bırak.",
     intro:
       "Kumaş, mesh ve karışık malzemeli sneaker'lar dükkânımızda elde, malzemesine uygun ürünlerle yıkanır. Sabah bırak, aynı gün akşam 20:00'ye kadar tertemiz teslim al.",
     heroImg: "/images/services/sneaker-hero.webp",
