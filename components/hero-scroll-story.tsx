@@ -28,7 +28,8 @@ export const SCENES = [
     imgMobile: "/images/hero/keyframe-sokak-mobile.webp",
     title: "Temiz ayakkabı, başka yürüyüş.",
     sub: "Bakırköy'de profesyonel ayakkabı yıkama — aynı gün teslim",
-    dark: false,
+    // Sahip kararı (2026-07-12): son sahne hariç tüm sahne metinleri beyaz.
+    dark: true,
   },
   // KOPYA KURALI (sahip, 2026-07-11): "yıkat" marka adı AYNI ZAMANDA emir kipi — cümlelerde
   // YÜKLEM olarak kullanılır ("sen yıkama, yıkat"). ASLA özne-isim olarak yazılmaz ("YIKAT yıkar" YASAK).
@@ -258,11 +259,16 @@ export function HeroScrollStory() {
             {SCENES.map((scene, i) => (
               <motion.div
                 key={scene.key}
-                className="col-start-1 row-start-1"
+                // İlk iki sahnenin metni sahip isteğiyle biraz daha aşağıda (pt, transform'la çakışmaz)
+                className={`col-start-1 row-start-1 ${i < 2 ? "pt-6" : ""}`}
                 style={{ opacity: textOpacities[i], y: textYs[i] }}
               >
                 {i === 0 ? (
-                  <h1 className={`text-balance text-4xl font-semibold tracking-tight text-foreground md:text-5xl ${LIGHT_SHADOW}`}>
+                  <h1
+                    className={`text-balance text-4xl font-semibold tracking-tight md:text-5xl ${
+                      scene.dark ? `text-white ${DARK_SHADOW}` : `text-foreground ${LIGHT_SHADOW}`
+                    }`}
+                  >
                     {scene.title}
                   </h1>
                 ) : (
