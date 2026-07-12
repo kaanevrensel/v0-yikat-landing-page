@@ -250,8 +250,10 @@ export function HeroScrollStory() {
         {/* Masaüstü scrub videosu — md+ ve canplaythrough sonrası statiklerin üstüne biner */}
         <HeroScrubVideo progress={scrollYProgress} />
 
-        {/* Metin + CTA alt üçte-birde: kompozit karede ayakkabılar merkezde, üstüne binmez */}
-        <div className="absolute inset-x-0 bottom-[10vh] z-10 flex flex-col items-center">
+        {/* Metin + CTA alt üçte-birde: kompozit karede ayakkabılar merkezde, üstüne binmez.
+            bottom 10vh→6vh (sahip, 2026-07-12): metinler fotoğrafın daha sakin/koyu yansıma
+            bandına insin — üst kısımdaki renkler okunabilirliği düşürüyordu. */}
+        <div className="absolute inset-x-0 bottom-[6vh] z-10 flex flex-col items-center">
           {/* Mobilde sahne metinleri CLEAR liquid glass kartta (Apple clear varyantı: yüksek
               saydamlık + minimum blur + ince rim; okunabilirliği sahne-bazlı text-shadow'lar taşır).
               md+ değişmez. Erişilebilirlik kemeri globals.css'te (.hero-glass-card). */}
