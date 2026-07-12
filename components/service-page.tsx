@@ -146,7 +146,7 @@ export function ServicePageView({ service }: { service: Service }) {
           <section className="mx-auto max-w-4xl px-4 pb-20 sm:px-6">
             <div className="rounded-3xl bg-navy px-6 py-10 text-center text-white sm:px-12">
               <h2 className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">
-                Uğraşma — getir, aynı gün geri al.
+                Eskitme, yıkat.
               </h2>
               <p className="mt-2 text-white">
                 {siteConfig.hours.label} · {siteConfig.address.district} çarşı içi · Randevusuz
