@@ -31,7 +31,7 @@ export const services: Service[] = [
     h1: "Sneaker yıkama — makineye atma, ustasına bırak",
     intro:
       "Kumaş, mesh ve karışık malzemeli sneaker'lar dükkânımızda elde, malzemesine uygun ürünlerle yıkanır. Sabah bırak, aynı gün akşam 20:00'ye kadar tertemiz teslim al — randevu gerekmez.",
-    heroImg: "/images/hero/keyframe-yikat.webp",
+    heroImg: "/images/services/sneaker-hero.webp",
     risks: [
       {
         title: "Çamaşır makinesi formu bozabilir",
@@ -86,7 +86,7 @@ export const services: Service[] = [
     h1: "Süet & nubuk temizleme — hassas dokuya hassas bakım",
     intro:
       "Süet ve nubuk, su ve yanlış fırçayla kolay bozulan yüzeylerdir. Dükkânımızda suya boğmadan, hassas yüzeye özel fırça ve ürünlerle temizlenir; dokusu korunur.",
-    heroImg: "/images/hero/keyframe-temiz.webp",
+    heroImg: "/images/services/suet-hero.webp",
     risks: [
       {
         title: "Su, süetin dokusunu bozar",
@@ -141,7 +141,7 @@ export const services: Service[] = [
     h1: "Deri ayakkabı temizlik & bakımı",
     intro:
       "Deri, doğru bakımla yıllarca taşır; bakımsız kaldığında kurur ve çatlar. Klasik ve günlük deri ayakkabıların dükkânımızda suya boğmadan temizlenir, deriyi besleyen bakımla teslim edilir.",
-    heroImg: "/images/hero/keyframe-sokak.webp",
+    heroImg: "/images/services/deri-hero.webp",
     risks: [
       {
         title: "Deri suyu sevmez",
