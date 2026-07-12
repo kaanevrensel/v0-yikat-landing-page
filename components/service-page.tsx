@@ -63,21 +63,18 @@ export function ServicePageView({ service }: { service: Service }) {
             />
             <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#0b2a66]/85 via-[#0b2a66]/35 to-transparent" />
             <div className="relative mx-auto w-full max-w-4xl px-4 sm:px-6">
-              {/* Görsel üstündeki metinler clear-glass çerçevede (sahip isteği 2026-07-12);
-                  kemer globals.css'te (.hero-glass-card) */}
-              <div className="hero-glass-card inline-block max-w-3xl rounded-3xl border border-white/35 bg-white/10 px-6 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_30px_rgba(4,44,83,0.18)] backdrop-blur-[3px] backdrop-saturate-150">
-                <Link
-                  href="/"
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-white/90 underline-offset-4 hover:underline"
-                >
-                  <ArrowLeft className="size-4" /> Ana sayfa
-                </Link>
-                {/* h1 verideki \n ile satır kırar (whitespace-pre-line) — deri sayfasında \n yok, tek satır kalır */}
-                <h1 className="mt-4 whitespace-pre-line text-balance text-4xl font-semibold tracking-tight text-white md:text-5xl">
-                  {service.h1}
-                </h1>
-                <p className="mt-4 max-w-2xl text-pretty text-lg text-white">{service.intro}</p>
-              </div>
+              <Link
+                href="/"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-white/90 underline-offset-4 hover:underline"
+              >
+                <ArrowLeft className="size-4" /> Ana sayfa
+              </Link>
+              {/* h1 verideki \n ile satır kırar (whitespace-pre-line) — deri sayfasında \n yok, tek satır kalır.
+                  Okunabilirliği harf konturu taşır (.text-contour-dark, sahip isteği 2026-07-12). */}
+              <h1 className="text-contour-dark mt-4 max-w-3xl whitespace-pre-line text-balance text-4xl font-semibold tracking-tight text-white md:text-5xl">
+                {service.h1}
+              </h1>
+              <p className="text-contour-dark mt-4 max-w-2xl text-pretty text-lg text-white">{service.intro}</p>
               <div className="mt-8 flex justify-start [&>div]:justify-start">
                 <HeroCtas eventPrefix={`svc_${service.slug.replaceAll("-", "_")}`} />
               </div>
