@@ -1,7 +1,9 @@
 "use client"
 
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { priceMenu, siteConfig } from "@/lib/site"
+import { services } from "@/lib/services"
 import BlurText from "@/components/blur-text"
 
 export function PriceMenu() {
@@ -28,19 +30,28 @@ export function PriceMenu() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="flex items-center justify-between rounded-2xl border bg-card px-5 py-4"
+              className="rounded-2xl border bg-card transition-shadow hover:shadow-md"
             >
-              <div>
-                <h3 className="font-semibold">{item.category}</h3>
-                <p className="text-sm text-muted-foreground">{item.note}</p>
-              </div>
-              {item.price ? (
-                <span className="text-lg font-semibold">{item.price}</span>
-              ) : (
-                <span className="rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">
-                  Menü yakında
-                </span>
-              )}
+              {(() => {
+                const svc = services.find((sv) => sv.priceCategory === item.category)
+                const inner = (
+                  <span className="flex items-center justify-between px-5 py-4">
+                    <span>
+                      <h3 className="font-semibold">{item.category}</h3>
+                      <p className="text-sm text-muted-foreground">{item.note}</p>
+                      {svc && <span className="mt-1 inline-block text-sm font-medium text-[#1d4fc4]">Detaylı bilgi →</span>}
+                    </span>
+                    {item.price ? (
+                      <span className="text-lg font-semibold">{item.price}</span>
+                    ) : (
+                      <span className="shrink-0 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">
+                        Menü yakında
+                      </span>
+                    )}
+                  </span>
+                )
+                return svc ? <Link href={`/${svc.slug}`} className="block rounded-2xl">{inner}</Link> : inner
+              })()}
             </motion.div>
           ))}
         </div>

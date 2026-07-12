@@ -6,7 +6,10 @@ import { siteConfig } from "@/lib/site"
 // bu yüzden gerçek içerik-değişim tarihleri elle tutulur (içerik değişince güncelle).
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    { url: siteConfig.url, lastModified: new Date("2026-07-11") },
+    { url: siteConfig.url, lastModified: new Date("2026-07-12") },
+    { url: `${siteConfig.url}/sneaker-yikama`, lastModified: new Date("2026-07-12") },
+    { url: `${siteConfig.url}/suet-nubuk-temizleme`, lastModified: new Date("2026-07-12") },
+    { url: `${siteConfig.url}/deri-ayakkabi-bakimi`, lastModified: new Date("2026-07-12") },
     { url: `${siteConfig.url}/kvkk`, lastModified: new Date("2026-07-08") },
     { url: `${siteConfig.url}/mesafeli-satis-sozlesmesi`, lastModified: new Date("2026-07-08") },
   ]

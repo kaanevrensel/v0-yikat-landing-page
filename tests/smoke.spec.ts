@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test"
 import AxeBuilder from "@axe-core/playwright"
 import { faqs, siteConfig } from "../lib/site"
+import { services } from "../lib/services"
 
 // Dükkânın iki dönüşüm yolu (tel + yol tarifi), eski rota yönlendirmeleri, JSON-LD ve
 // temel a11y — bir motion refaktörü bunlardan birini bozarsa burada kırmızı yanar.
@@ -59,6 +60,15 @@ test("JSON-LD blokları geçerli: LocalBusiness + tüm SSS'li FAQPage", async ({
   expect(faq?.mainEntity?.length).toBe(faqs.length)
 })
 
+test("hizmet sayfaları canlı: 200 + doğru h1 + tel CTA", async ({ page }) => {
+  for (const s of services) {
+    const res = await page.goto(`/${s.slug}`)
+    expect(res?.status(), s.slug).toBe(200)
+    await expect(page.getByRole("heading", { level: 1 })).toContainText(s.h1.slice(0, 20))
+    await expect(page.locator(`a[href='${siteConfig.phoneHref}']`).first()).toBeAttached()
+  }
+})
+
 test("404 sayfası Türkçe ve dönüşüm çıkışlı", async ({ page }) => {
   const res = await page.goto("/olmayan-bir-sayfa")
   expect(res?.status()).toBe(404)
@@ -101,7 +111,7 @@ test("axe: mobil viewport + menü açıkken ihlal yok", async ({ page }) => {
 })
 
 test("axe: 404 ve legal sayfalar", async ({ page }) => {
-  for (const path of ["/olmayan-bir-sayfa", "/kvkk", "/mesafeli-satis-sozlesmesi"]) {
+  for (const path of ["/olmayan-bir-sayfa", "/kvkk", "/mesafeli-satis-sozlesmesi", ...services.map((s) => `/${s.slug}`)]) {
     await page.goto(path)
     await page.waitForTimeout(800)
     await expectNoSeriousAxe(page, path)
