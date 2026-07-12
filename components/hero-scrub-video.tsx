@@ -1,28 +1,34 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { useMotionValueEvent, type MotionValue } from "framer-motion"
 
-// ffprobe ile ölçülen video süresi (saniye).
-const VIDEO_DURATION = 12.13
-
-// Doğrusal eşleme (kullanıcı kararı, 2026-07-05): video scroll ile birebir eş zamanlı
-// akar, hiç durmaz — "durup hızlı geçme" hissi veren parçalı hold eşlemesi kaldırıldı.
-function scrollToTime(v: number): number {
-  return Math.min(Math.max(v, 0), 1) * VIDEO_DURATION
+// Videonun sahne "anları" 0 / 4 / 8 / 12 sn (3 geçiş klibinin sınırları, ffprobe süre 12.13s).
+// Metin, iki anın ortasında değişir — böylece her başlık kendi anının çevresinde okunur.
+export function timeToScene(t: number): number {
+  if (t < 2) return 0
+  if (t < 6) return 1
+  if (t < 10) return 2
+  return 3
 }
 
-// Masaüstü scrub katmanı: SSR'da ve <md'de hiç render edilmez (hydration güvenli);
-// canplaythrough gelene dek görünmez — altındaki statik keyframe katmanları tam deneyim sunar.
-export function HeroScrubVideo({ progress }: { progress: MotionValue<number> }) {
+// Masaüstü otomatik hero videosu (2026-07-12 sahip kararı: scroll-scrub → autoplay loop).
+// SSR'da ve <md'de hiç render edilmez (hydration güvenli); canplaythrough gelene dek görünmez —
+// altındaki statik keyframe katmanları + zamanlayıcı tam deneyim sunar. Oynamaya başlayınca
+// sahne metinlerini video saatine bağlar (onSceneChange), zamanlayıcıyı devre dışı bırakır.
+export function HeroAutoVideo({
+  onSceneChange,
+  onDrivingChange,
+}: {
+  onSceneChange: (i: number) => void
+  onDrivingChange: (driving: boolean) => void
+}) {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const targetTime = useRef(0)
   const [ready, setReady] = useState(false)
   const [isDesktop, setIsDesktop] = useState(false)
   const [src, setSrc] = useState<string | null>(null)
 
   // Video LCP ile bant genişliği yarışmasın: src ancak window 'load' SONRASI atanır
-  // (keyframe fallback o ana dek tam deneyim). ~3.4MB optimize encode (1536px, CRF26, GOP12).
+  // (keyframe fallback o ana dek tam deneyim).
   useEffect(() => {
     const start = () => setSrc("/videos/hero-scrub.mp4")
     if (document.readyState === "complete") {
@@ -45,27 +51,26 @@ export function HeroScrubVideo({ progress }: { progress: MotionValue<number> }) 
     return () => mq.removeEventListener("change", update)
   }, [])
 
-  useMotionValueEvent(progress, "change", (v) => {
-    targetTime.current = scrollToTime(v)
-  })
-
-  // Seek gecikmesini maskeleyen lerp: her frame hedefe %18 yaklaş.
+  // Hazır olunca oynat ve metin saatini devral; autoplay reddedilirse zamanlayıcıya geri düş.
   useEffect(() => {
     if (!isDesktop || !ready) return
     const video = videoRef.current
     if (!video) return
-    targetTime.current = scrollToTime(progress.get())
-    let raf = 0
-    const tick = () => {
-      // Gerçek süre sabitten kısaysa (yeniden encode vb.) süre sonunda seek fırtınası olmasın.
-      const cap = Number.isFinite(video.duration) && video.duration > 0 ? video.duration - 0.05 : VIDEO_DURATION
-      const diff = Math.min(targetTime.current, cap) - video.currentTime
-      if (Math.abs(diff) > 0.01) video.currentTime = video.currentTime + diff * 0.18
-      raf = requestAnimationFrame(tick)
+    let driving = false
+    const onTime = () => onSceneChange(timeToScene(video.currentTime))
+    video
+      .play()
+      .then(() => {
+        driving = true
+        onDrivingChange(true)
+        video.addEventListener("timeupdate", onTime)
+      })
+      .catch(() => onDrivingChange(false))
+    return () => {
+      video.removeEventListener("timeupdate", onTime)
+      if (driving) onDrivingChange(false)
     }
-    raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
-  }, [isDesktop, ready, progress])
+  }, [isDesktop, ready, onSceneChange, onDrivingChange])
 
   if (!isDesktop || !src) return null
 
@@ -74,7 +79,9 @@ export function HeroScrubVideo({ progress }: { progress: MotionValue<number> }) 
       ref={videoRef}
       aria-hidden
       muted
+      loop
       playsInline
+      autoPlay
       preload="auto"
       disablePictureInPicture
       onCanPlayThrough={() => setReady(true)}

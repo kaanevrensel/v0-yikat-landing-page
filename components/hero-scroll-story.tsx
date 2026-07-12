@@ -1,18 +1,11 @@
 "use client"
 
-import { useRef } from "react"
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-  type MotionValue,
-} from "framer-motion"
+import { useEffect, useState } from "react"
+import { motion, useReducedMotion } from "framer-motion"
 import { ChevronDown, MapPin, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { HeroScrubVideo } from "@/components/hero-scrub-video"
+import { HeroAutoVideo } from "@/components/hero-scrub-video"
 import Magnet from "@/components/magnet"
-import { ScrollFloatText } from "@/components/scroll-float-text"
 import { useDirectionsUrl } from "@/hooks/use-directions-url"
 import { siteConfig } from "@/lib/site"
 import { track } from "@/lib/analytics"
@@ -135,183 +128,112 @@ export function StaticHero() {
   )
 }
 
-// Sahne pencereleri (scrollYProgress 0..1) — videonun doğrusal zamanına hizalı:
-// sahne "anları" videoda %0 / %33 / %66 / %100'de (3 geçiş klibinin sınırları).
-// Metinler o anların çevresinde okunur; video hiç durmaz (doğrusal scrub).
-const WINDOWS = [
-  [0, 0, 0.1, 0.17],
-  [0.26, 0.33, 0.41, 0.48],
-  [0.59, 0.66, 0.74, 0.81],
-  [0.9, 0.96, 1, 1],
-] as const
-
-// Metin fade-in başlangıcıyla (0.90) hizalı — gate daha geç olursa CTA yarı-opak "pat" diye belirir.
-const CTA_GATE = 0.9
-
-// Arka planlar yalnız fade-IN yapar; sonraki opak katman öncekini örter (DOM sırası).
-function useSceneBgOpacity(progress: MotionValue<number>, i: number) {
-  return useTransform(
-    progress,
-    i === 0 ? [0, 1] : [WINDOWS[i][0], WINDOWS[i][1]],
-    i === 0 ? [1, 1] : [0, 1],
-  )
-}
-
-function useSceneTextOpacity(progress: MotionValue<number>, i: number) {
-  const [fadeInStart, fullStart, fullEnd, fadeOutEnd] = WINDOWS[i]
-  const input = i === 0 ? [0, fullEnd, fadeOutEnd] : i === 3 ? [fadeInStart, fullStart, 1] : [fadeInStart, fullStart, fullEnd, fadeOutEnd]
-  const output = i === 0 ? [1, 1, 0] : i === 3 ? [0, 1, 1] : [0, 1, 1, 0]
-  return useTransform(progress, input, output)
-}
-
-// Jakub kalıbı: giren metin 24px yükselir, çıkan metin -24px ile sahneyi terk eder.
-function useSceneTextY(progress: MotionValue<number>, i: number) {
-  const [fadeInStart, fullStart, fullEnd, fadeOutEnd] = WINDOWS[i]
-  const input = i === 0 ? [fullEnd, fadeOutEnd] : i === 3 ? [fadeInStart, fullStart] : [fadeInStart, fullStart, fullEnd, fadeOutEnd]
-  const output = i === 0 ? [0, -24] : i === 3 ? [24, 0] : [24, 0, 0, -24]
-  return useTransform(progress, input, output)
-}
-
-function useSceneTextBlur(progress: MotionValue<number>, i: number) {
-  return useTransform(
-    progress,
-    i === 0 ? [0, 1] : [WINDOWS[i][0], WINDOWS[i][1]],
-    i === 0 ? ["blur(0px)", "blur(0px)"] : ["blur(8px)", "blur(0px)"],
-  )
-}
+// Sahne süresi (video yokken / henüz oynamıyorken): zamanlayıcı bu aralıkla ilerler.
+// Video oynamaya başlayınca saat videonun kendisidir (timeToScene, hero-scrub-video.tsx).
+const SCENE_MS = 4000
 
 export function HeroScrollStory() {
   const prefersReduced = useReducedMotion()
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] })
+  // Otomatik akış (2026-07-12 sahip kararı: scroll-scrub → autoplay): tek doğruluk kaynağı
+  // aktif sahne indeksi. Masaüstünde video saati sürer, aksi halde zamanlayıcı döngüsü.
+  const [active, setActive] = useState(0)
+  const [videoDriving, setVideoDriving] = useState(false)
 
-  // Sabit sayıda (4) sahne — hook çağrı sırası her render'da aynıdır; helper'lar map İÇİNDE ÇAĞRILMAZ.
-  const bg0 = useSceneBgOpacity(scrollYProgress, 0)
-  const bg1 = useSceneBgOpacity(scrollYProgress, 1)
-  const bg2 = useSceneBgOpacity(scrollYProgress, 2)
-  const bg3 = useSceneBgOpacity(scrollYProgress, 3)
-  const bgOpacities = [bg0, bg1, bg2, bg3]
-
-  const to0 = useSceneTextOpacity(scrollYProgress, 0)
-  const to1 = useSceneTextOpacity(scrollYProgress, 1)
-  const to2 = useSceneTextOpacity(scrollYProgress, 2)
-  const to3 = useSceneTextOpacity(scrollYProgress, 3)
-  const textOpacities = [to0, to1, to2, to3]
-
-  const ty0 = useSceneTextY(scrollYProgress, 0)
-  const ty1 = useSceneTextY(scrollYProgress, 1)
-  const ty2 = useSceneTextY(scrollYProgress, 2)
-  const ty3 = useSceneTextY(scrollYProgress, 3)
-  const textYs = [ty0, ty1, ty2, ty3]
-
-  const tb0 = useSceneTextBlur(scrollYProgress, 0)
-  const tb1 = useSceneTextBlur(scrollYProgress, 1)
-  const tb2 = useSceneTextBlur(scrollYProgress, 2)
-  const tb3 = useSceneTextBlur(scrollYProgress, 3)
-  const textBlurs = [tb0, tb1, tb2, tb3]
-
-  const hintOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0])
-  // Görünmezken klavye odağından da çıkar (WCAG 2.4.7) — pointerEvents yerine visibility.
-  const ctaVisibility = useTransform(scrollYProgress, (v) => (v > CTA_GATE ? "visible" : "hidden"))
+  useEffect(() => {
+    if (videoDriving) return
+    const id = setInterval(() => setActive((a) => (a + 1) % SCENES.length), SCENE_MS)
+    return () => clearInterval(id)
+  }, [videoDriving])
 
   if (prefersReduced) return <StaticHero />
 
   return (
-    // Scrub mesafesi = yükseklik − 1 ekran → mobil ~1.6, masaüstü ~2.2 ekran (spec §4).
-    <section ref={ref} aria-label="YIKAT hikayesi" className="relative h-[260vh] md:h-[320vh]">
-      <div className="sticky top-0 h-dvh overflow-hidden">
-        {/* Statik keyframe katmanları — mobilde deneyimin kendisi, masaüstünde video fallback'i */}
-        {SCENES.map((scene, i) => (
-          <motion.div
-            key={scene.key}
-            aria-hidden
-            className="absolute inset-0"
-            style={{ background: scene.bg, opacity: bgOpacities[i] }}
-          >
-            {i === 0 ? (
-              <SceneLcpPicture scene={scene} />
-            ) : (
-              // <picture> art-direction: CSS'le gizlenen çift <Image> (unoptimized=düz img)
-              // her cihazda İKİ varyantı da indiriyordu; source/media tek doğru kırpımı seçer.
-              <picture>
-                <source media="(min-width: 768px)" srcSet={scene.img} />
-                <img
-                  src={scene.imgMobile}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-              </picture>
-            )}
-          </motion.div>
-        ))}
+    <section aria-label="YIKAT hikayesi" className="relative h-dvh overflow-hidden">
+      {/* Statik keyframe katmanları — mobilde deneyimin kendisi, masaüstünde video fallback'i.
+          Katman 0 sabit taban; sonrakiler aktif sahneye dek üst üste biner (DOM sırası örter),
+          döngü başa sararken hepsi birlikte söner. */}
+      {SCENES.map((scene, i) => (
+        <motion.div
+          key={scene.key}
+          aria-hidden
+          className="absolute inset-0"
+          initial={false}
+          animate={{ opacity: i === 0 || active >= i ? 1 : 0 }}
+          transition={{ duration: 0.9, ease: "easeInOut" }}
+          style={{ background: scene.bg }}
+        >
+          {i === 0 ? (
+            <SceneLcpPicture scene={scene} />
+          ) : (
+            // <picture> art-direction: CSS'le gizlenen çift <Image> (unoptimized=düz img)
+            // her cihazda İKİ varyantı da indiriyordu; source/media tek doğru kırpımı seçer.
+            <picture>
+              <source media="(min-width: 768px)" srcSet={scene.img} />
+              <img
+                src={scene.imgMobile}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </picture>
+          )}
+        </motion.div>
+      ))}
 
-        {/* Masaüstü scrub videosu — md+ ve canplaythrough sonrası statiklerin üstüne biner */}
-        <HeroScrubVideo progress={scrollYProgress} />
+      {/* Masaüstü otomatik videosu — md+ ve canplaythrough sonrası statiklerin üstüne biner,
+          oynamaya başlayınca sahne saatini devralır */}
+      <HeroAutoVideo onSceneChange={setActive} onDrivingChange={setVideoDriving} />
 
-        {/* Metin + CTA alt üçte-birde: kompozit karede ayakkabılar merkezde, üstüne binmez.
-            bottom 10vh→6vh (sahip, 2026-07-12): metinler fotoğrafın daha sakin/koyu yansıma
-            bandına insin — üst kısımdaki renkler okunabilirliği düşürüyordu. */}
-        <div className="absolute inset-x-0 bottom-[6vh] z-10 flex flex-col items-center">
-          {/* Mobilde sahne metinleri CLEAR liquid glass kartta (Apple clear varyantı: yüksek
-              saydamlık + minimum blur + ince rim). md+ kart yok — okunabilirliği harf konturu
-              taşır (.text-contour-*, sahip isteği 2026-07-12). Kemer globals.css'te. */}
-          <div className="hero-glass-card grid w-full max-w-2xl px-4 text-center max-md:w-[calc(100%-2rem)] max-md:rounded-3xl max-md:border max-md:border-white/35 max-md:bg-white/10 max-md:px-5 max-md:py-5 max-md:shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_8px_30px_rgba(4,44,83,0.18)] max-md:backdrop-blur-[3px] max-md:backdrop-saturate-150">
-            {SCENES.map((scene, i) => (
-              <motion.div
-                key={scene.key}
-                // self-center: kart yüksekliği en uzun sahneye göre sabit — kısa sahneler ortalanır.
-                // İlk iki sahnenin metni sahip isteğiyle biraz daha aşağıda (pt, transform'la çakışmaz)
-                className={`col-start-1 row-start-1 self-center ${i < 2 ? "pt-6" : ""}`}
-                style={{ opacity: textOpacities[i], y: textYs[i] }}
-              >
-                {i === 0 ? (
-                  <h1
-                    className={`text-balance text-4xl font-semibold tracking-tight md:text-5xl ${
-                      scene.dark ? `text-white ${DARK_SHADOW}` : `text-foreground ${LIGHT_SHADOW}`
-                    }`}
-                  >
-                    {scene.title}
-                  </h1>
-                ) : (
-                  <p
-                    className={`text-balance text-4xl font-semibold tracking-tight md:text-5xl ${
-                      scene.dark ? `text-white ${DARK_SHADOW}` : `text-foreground ${LIGHT_SHADOW}`
-                    }`}
-                  >
-                    {/* Karakter kaskadı sahnenin giriş penceresinde ([fadeInStart, fullStart]) yaşar. */}
-                    <ScrollFloatText text={scene.title} progress={scrollYProgress} range={[WINDOWS[i][0], WINDOWS[i][1]]} />
-                  </p>
-                )}
-                {/* Blur bloğun tamamından alt metne indi: karakter kaskadı parent filter altında
-                    çamurlaşmasın. Sahne 0'ın blur'u sabit blur(0px) — bağlamak zararsız. */}
-                <motion.p
-                  style={{ filter: textBlurs[i] }}
-                  className={`mt-3 text-lg ${scene.dark ? `text-white/85 ${DARK_SHADOW}` : `text-muted-foreground ${LIGHT_SHADOW}`}`}
+      {/* Metin + CTA alt üçte-birde: kompozit karede ayakkabılar merkezde, üstüne binmez.
+          bottom 6vh (sahip, 2026-07-12): metinler fotoğrafın sakin/koyu yansıma bandında. */}
+      <div className="absolute inset-x-0 bottom-[6vh] z-10 flex flex-col items-center">
+        <div className="grid w-full max-w-2xl px-4 text-center">
+          {SCENES.map((scene, i) => (
+            <motion.div
+              key={scene.key}
+              // self-center: blok yüksekliği en uzun sahneye göre sabit — kısa sahneler ortalanır.
+              // İlk iki sahnenin metni sahip isteğiyle biraz daha aşağıda (pt, transform'la çakışmaz)
+              className={`col-start-1 row-start-1 self-center ${i < 2 ? "pt-6" : ""}`}
+              initial={false}
+              animate={{ opacity: active === i ? 1 : 0, y: active === i ? 0 : 16 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              {i === 0 ? (
+                <h1
+                  className={`text-balance text-4xl font-semibold tracking-tight md:text-5xl ${
+                    scene.dark ? `text-white ${DARK_SHADOW}` : `text-foreground ${LIGHT_SHADOW}`
+                  }`}
                 >
-                  {scene.sub}
-                </motion.p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Final CTA'ları — yalnız son sahnede görünür VE odaklanabilir */}
-          <motion.div className="mt-4" style={{ opacity: to3, visibility: ctaVisibility }}>
-            <HeroCtas eventPrefix="hero" />
-          </motion.div>
+                  {scene.title}
+                </h1>
+              ) : (
+                <p
+                  className={`text-balance text-4xl font-semibold tracking-tight md:text-5xl ${
+                    scene.dark ? `text-white ${DARK_SHADOW}` : `text-foreground ${LIGHT_SHADOW}`
+                  }`}
+                >
+                  {scene.title}
+                </p>
+              )}
+              <p className={`mt-3 text-lg ${scene.dark ? `text-white/85 ${DARK_SHADOW}` : `text-muted-foreground ${LIGHT_SHADOW}`}`}>
+                {scene.sub}
+              </p>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Kaydırma ipucu — konum dış div'de, animasyon içte (transform çakışması olmaz) */}
-        <div aria-hidden className="absolute bottom-6 left-1/2 -translate-x-1/2 text-muted-foreground">
-          <motion.div
-            style={{ opacity: hintOpacity }}
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ChevronDown className="size-6" />
-          </motion.div>
+        {/* CTA'lar otomatik akışta hep görünür — dönüşüm yolu sahne beklemez */}
+        <div className="mt-4">
+          <HeroCtas eventPrefix="hero" />
         </div>
+      </div>
+
+      {/* Kaydırma ipucu — konum dış div'de, animasyon içte (transform çakışması olmaz) */}
+      <div aria-hidden className="absolute bottom-6 left-1/2 -translate-x-1/2 text-muted-foreground">
+        <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>
+          <ChevronDown className="size-6" />
+        </motion.div>
       </div>
     </section>
   )
