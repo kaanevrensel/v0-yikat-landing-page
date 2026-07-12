@@ -75,7 +75,8 @@ export function ServicePageView({ service }: { service: Service }) {
               >
                 <ArrowLeft className="size-4" /> Ana sayfa
               </Link>
-              <h1 className="mt-4 max-w-2xl text-balance text-4xl font-semibold tracking-tight text-white md:text-5xl">
+              {/* h1 verideki \n ile satır kırar (whitespace-pre-line) — diğer hizmetlerde \n yok, tek satır kalır */}
+              <h1 className="mt-4 max-w-3xl whitespace-pre-line text-balance text-4xl font-semibold tracking-tight text-white md:text-5xl">
                 {service.h1}
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-lg text-white">{service.intro}</p>
