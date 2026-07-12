@@ -105,6 +105,6 @@ export const faqs = [
   },
   {
     q: "Neredesiniz?",
-    a: "Cevizlik Mah. İskele Cd. No: 15C, Bakırköy/İstanbul. Bakırköy çarşı bölgesinde, iskeleye yürüme mesafesinde.",
+    a: "Cevizlik Mah. İskele Cd. No: 15C, Bakırköy/İstanbul — İstanbul Caddesi'nin bir alt sokağında. Bakırköy ve Yenimahalle Marmaray istasyonlarına 8 dakika uzaklıkta.",
   },
 ] as const
