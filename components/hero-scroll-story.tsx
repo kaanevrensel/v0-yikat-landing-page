@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { motion, useReducedMotion } from "framer-motion"
 import { ChevronDown, MapPin, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -128,31 +128,48 @@ export function StaticHero() {
   )
 }
 
-// Sahne süresi (video yokken / henüz oynamıyorken): zamanlayıcı bu aralıkla ilerler.
-// Video oynamaya başlayınca saat videonun kendisidir (timeToScene, hero-scrub-video.tsx).
+// Sahne süresi (yalnız "dongu" modunda): zamanlayıcı bu aralıkla ilerler.
 const SCENE_MS = 4000
+// Bekleme emniyeti: bu süre içinde video başlayamadıysa (çok yavaş ağ) döngü devralır —
+// hero sonsuza dek donuk kalmaz; video hazır olduğunda yine öne geçer.
+const WAIT_MS = 8000
+
+// Hero modları (sahip, 2026-07-12: "websitesini açar açmaz videonun oynaması lazım"):
+// - "bekleme": ilk kare sabit poster, kareler DÖNMEZ — video her an başlayacak.
+// - "video":   video oynuyor, sahne saati video zamanı (timeToScene).
+// - "dongu":   video oynayamıyor (autoplay reddi / medya hatası / WAIT_MS aşıldı) —
+//              4sn'lik keyframe crossfade döngüsü, eski fallback davranışı.
+type HeroMode = "bekleme" | "video" | "dongu"
 
 export function HeroScrollStory() {
   const prefersReduced = useReducedMotion()
   // Otomatik akış (2026-07-12 sahip kararı: scroll-scrub → autoplay): tek doğruluk kaynağı
-  // aktif sahne indeksi. Video oynuyorsa (her ekran boyutunda) saat videodur, aksi halde
-  // zamanlayıcı döngüsü.
+  // aktif sahne indeksi; kim ilerleteceğini mode belirler.
   const [active, setActive] = useState(0)
-  const [videoDriving, setVideoDriving] = useState(false)
+  const [mode, setMode] = useState<HeroMode>("bekleme")
+
+  const handleVideoPlaying = useCallback(() => setMode("video"), [])
+  const handleVideoBlocked = useCallback(() => setMode("dongu"), [])
 
   useEffect(() => {
-    if (videoDriving) return
+    if (mode !== "bekleme") return
+    const id = setTimeout(() => setMode("dongu"), WAIT_MS)
+    return () => clearTimeout(id)
+  }, [mode])
+
+  useEffect(() => {
+    if (mode !== "dongu") return
     const id = setInterval(() => setActive((a) => (a + 1) % SCENES.length), SCENE_MS)
     return () => clearInterval(id)
-  }, [videoDriving])
+  }, [mode])
 
   if (prefersReduced) return <StaticHero />
 
   return (
     <section aria-label="YIKAT hikayesi" className="relative h-dvh overflow-hidden">
-      {/* Statik keyframe katmanları — video hazır olana dek (ve autoplay reddedilirse)
-          deneyimin kendisi, her ekran boyutunda. Katman 0 sabit taban; sonrakiler aktif
-          sahneye dek üst üste biner (DOM sırası örter), döngü başa sararken hepsi birlikte söner. */}
+      {/* Statik keyframe katmanları — beklemede ilk kare sabit poster, "dongu" modunda
+          crossfade döngüsü. Katman 0 sabit taban; sonrakiler aktif sahneye dek üst üste
+          biner (DOM sırası örter), döngü başa sararken hepsi birlikte söner. */}
       {SCENES.map((scene, i) => (
         <motion.div
           key={scene.key}
@@ -182,9 +199,9 @@ export function HeroScrollStory() {
         </motion.div>
       ))}
 
-      {/* Otomatik hero videosu — tüm ekranlarda (mobil dahil, 2026-07-12 sahip kararı)
-          canplaythrough sonrası statiklerin üstüne biner, oynamaya başlayınca sahne saatini devralır */}
-      <HeroAutoVideo onSceneChange={setActive} onDrivingChange={setVideoDriving} />
+      {/* Otomatik hero videosu — tüm ekranlarda, src SSR'da gömülü (indirme HTML parse'ta
+          başlar); oynamaya başlar başlamaz statiklerin üstüne biner ve sahne saatini devralır */}
+      <HeroAutoVideo onSceneChange={setActive} onPlaying={handleVideoPlaying} onBlocked={handleVideoBlocked} />
 
       {/* Metin + CTA alt üçte-birde: kompozit karede ayakkabılar merkezde, üstüne binmez.
           bottom 6vh (sahip, 2026-07-12): metinler fotoğrafın sakin/koyu yansıma bandında. */}

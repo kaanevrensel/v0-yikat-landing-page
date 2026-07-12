@@ -11,67 +11,61 @@ export function timeToScene(t: number): number {
   return 3
 }
 
-// Otomatik hero videosu — tüm ekranlarda (2026-07-12 sahip kararları: scroll-scrub → autoplay
-// loop; mobil de videoyu oynatır; keyframe döngüsü YALNIZ videonun henüz/hiç oynayamadığı
-// anların fallback'idir). mp4 faststart (moov önde) + canplay tetiği: ilk saniyeler iner inmez
-// oynamaya başlar — canplaythrough beklemek 9.2MB'ın tamamını istiyordu ve mobil ağda uzun süre
-// görsel döngü gösteriyordu (sahip geri bildirimi, 2026-07-12: "direk video oynasın").
-// SSR'da render edilmez (src, mount + window 'load' sonrası atanır; hydration güvenli).
-// Görünürlük fiili oynatmaya bağlı (playing): autoplay reddedilirse (örn. iOS Düşük Güç Modu)
-// video görünmez kalır, zamanlayıcı keyframe döngüsü deneyimi taşımayı sürdürür. Oynamaya
-// başlayınca sahne metinlerini video saatine bağlar (onSceneChange), zamanlayıcıyı devre dışı
-// bırakır. Dikey ekranda object-cover merkez kırpımı 16:9 karenin ~500px'lik orta kolonunu
-// gösterir — ön ayakkabı 4 sahnede de bu bantta (2026-07-12 kare kare doğrulandı, ffmpeg
-// crop önizlemeleri), object-position gerekmez.
+// Otomatik hero videosu — tüm ekranlarda, SAYFA AÇILIR AÇILMAZ (sahip, 2026-07-12: "websitesini
+// açar açmaz videonun oynaması lazım"). src SSR HTML'inde gömülüdür: tarayıcı dosyayı HTML
+// parse sırasında keşfeder ve preload=auto ile hemen indirmeye başlar — hydration'ı bile
+// beklemez (eski window-load kapısı LCP önceliğiyle konmuştu; sahip kararıyla video öncelikli).
+// Dosya faststart (moov önde) + canplay tetiği: ilk saniyeler iner inmez oynar, 9.2MB'ın
+// tamamı beklenmez. Görünürlük fiili oynatmaya bağlı (playing); oynatma engellenirse (iOS
+// Düşük Güç Modu) veya medya hatasında onBlocked ile bildirir — keyframe zamanlayıcı döngüsü
+// YALNIZ o zaman başlar (hero-scroll-story "bekleme" modu). Oynarken sahne metin saati video
+// zamanıdır (onSceneChange). Dikey ekranda object-cover merkez kırpımı 16:9 karenin ~500px'lik
+// orta kolonunu gösterir — ön ayakkabı 4 sahnede de bu bantta (2026-07-12 ffmpeg kare
+// doğrulaması), object-position gerekmez.
 export function HeroAutoVideo({
   onSceneChange,
-  onDrivingChange,
+  onPlaying,
+  onBlocked,
 }: {
   onSceneChange: (i: number) => void
-  onDrivingChange: (driving: boolean) => void
+  onPlaying: () => void
+  onBlocked: () => void
 }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [ready, setReady] = useState(false)
   const [playing, setPlaying] = useState(false)
-  const [src, setSrc] = useState<string | null>(null)
 
-  // Video LCP ile bant genişliği yarışmasın: src ancak window 'load' SONRASI atanır
-  // (ilk keyframe o ana dek poster görevi görür; sayfa hafif, load hızlı gelir).
+  // Hydration'dan ÖNCE olup biteni yakala: src SSR'da gömülü olduğundan canplay/error,
+  // React handler'ları bağlanmadan ateşlenmiş olabilir (örn. önbellekten anında hazır video
+  // veya erken medya hatası) — olay kaçtıysa mevcut duruma bakarak telafi et.
   useEffect(() => {
-    const start = () => setSrc("/videos/hero-scrub.mp4")
-    if (document.readyState === "complete") {
-      start()
+    const video = videoRef.current
+    if (!video) return
+    if (video.error) {
+      onBlocked()
       return
     }
-    window.addEventListener("load", start, { once: true })
-    return () => window.removeEventListener("load", start)
-  }, [])
+    if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) setReady(true)
+  }, [onBlocked])
 
-  // Oynayabilecek kadar veri gelir gelmez başlat ve metin saatini devral; autoplay
-  // reddedilirse zamanlayıcı keyframe döngüsüne geri düş. İlk turda ağ takılırsa video
-  // kısa süre duraklayıp kendiliğinden sürer (loop #2'den itibaren tamamı tamponda).
+  // Oynayabilecek kadar veri gelir gelmez başlat ve metin saatini devral. İlk turda ağ
+  // takılırsa video kısa süre duraklayıp kendiliğinden sürer (loop #2'den itibaren tamamı
+  // tamponda; ayrıca /videos/* immutable cache'li — yenilemede anında oynar).
   useEffect(() => {
     if (!ready) return
     const video = videoRef.current
     if (!video) return
-    let driving = false
     const onTime = () => onSceneChange(timeToScene(video.currentTime))
     video
       .play()
       .then(() => {
-        driving = true
         setPlaying(true)
-        onDrivingChange(true)
+        onPlaying()
         video.addEventListener("timeupdate", onTime)
       })
-      .catch(() => onDrivingChange(false))
-    return () => {
-      video.removeEventListener("timeupdate", onTime)
-      if (driving) onDrivingChange(false)
-    }
-  }, [ready, onSceneChange, onDrivingChange])
-
-  if (!src) return null
+      .catch(() => onBlocked())
+    return () => video.removeEventListener("timeupdate", onTime)
+  }, [ready, onSceneChange, onPlaying, onBlocked])
 
   return (
     <video
@@ -84,8 +78,13 @@ export function HeroAutoVideo({
       preload="auto"
       disablePictureInPicture
       onCanPlay={() => setReady(true)}
+      onError={() => {
+        // Medya hatası (codec/ağ): donmuş kare keyframe'lerin üstünü örtmesin, döngü devralsın.
+        setPlaying(false)
+        onBlocked()
+      }}
       className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${playing ? "opacity-100" : "opacity-0"}`}
-      src={src}
+      src="/videos/hero-scrub.mp4"
     />
   )
 }
