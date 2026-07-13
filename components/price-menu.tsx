@@ -18,7 +18,7 @@ export function PriceMenu() {
           className="text-center text-3xl font-semibold tracking-tight md:text-4xl"
         />
         <p className="mx-auto mt-3 max-w-xl text-center text-muted-foreground">
-          Sneaker yıkamadan süet temizliğine, kategoriye göre sabit fiyat —{" "}
+          Sneaker yıkamadan süet temizliğine, kategoriye göre sabit fiyat,{" "}
           <span className="font-semibold text-foreground">{siteConfig.priceRangeLabel}</span> aralığında. Kesin
           menü çok yakında burada.
         </p>

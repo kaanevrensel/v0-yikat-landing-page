@@ -22,7 +22,7 @@ export default function NotFound() {
           Bu sayfa köpüklerin arasında kaybolmuş.
         </h1>
         <p className="mx-auto mt-3 max-w-md text-pretty text-muted-foreground">
-          Aradığın sayfa taşınmış ya da hiç olmamış olabilir. Dükkan yerinde duruyor — ayakkabın için doğru
+          Aradığın sayfa taşınmış ya da hiç olmamış olabilir. Dükkan yerinde duruyor. Ayakkabın için doğru
           adres aşağıda.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">

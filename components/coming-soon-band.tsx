@@ -37,7 +37,7 @@ function AppScreen() {
 export function ComingSoonBand() {
   return (
     <section
-      aria-label="YIKAT uygulaması çok yakında — kapıdan alım, kapıya teslim, tüm tekstil bakımı tek uygulamada."
+      aria-label="YIKAT uygulaması çok yakında. Kapıdan alım, kapıya teslim, tüm tekstil bakımı tek uygulamada."
       className="py-16 sm:py-20"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -68,7 +68,7 @@ export function ComingSoonBand() {
               </h2>
               <p className="mt-3 max-w-md text-pretty text-white">
                 Kapıdan alım, kapıya teslim. Kuru temizlemeden ayakkabı bakımına, tüm tekstil işiniz İstanbul'un her
-                yerinde tek uygulamada. Bakırköy dükkanımız açık — gerisi çok yakında yanınızda.
+                yerinde tek uygulamada. Bakırköy dükkanımız açık. Gerisi çok yakında yanınızda.
               </p>
             </div>
 

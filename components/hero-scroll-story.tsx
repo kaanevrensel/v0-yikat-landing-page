@@ -20,7 +20,7 @@ export const SCENES = [
     img: "/images/hero/keyframe-sokak.webp",
     imgMobile: "/images/hero/keyframe-sokak-mobile.webp",
     title: "Temiz ayakkabı, başka yürüyüş.",
-    sub: "Bakırköy'de profesyonel ayakkabı yıkama — aynı gün teslim",
+    sub: "Bakırköy'de profesyonel ayakkabı yıkama, aynı gün teslim",
     // Sahip kararı (2026-07-12): son sahne hariç tüm sahne metinleri beyaz.
     dark: true,
   },
@@ -32,7 +32,7 @@ export const SCENES = [
     img: "/images/hero/keyframe-camur.webp",
     imgMobile: "/images/hero/keyframe-camur-mobile.webp",
     title: "Sokak izini bırakır.",
-    sub: "Çamur, toz, leke — hepsi bir günün işi.",
+    sub: "Çamur, toz, leke. Hepsi bir günün işi.",
     dark: true,
   },
   {
@@ -43,7 +43,7 @@ export const SCENES = [
     img: "/images/hero/keyframe-yikat.webp",
     imgMobile: "/images/hero/keyframe-yikat-mobile.webp",
     title: "Eskitme, yıkat.",
-    sub: "Makineye atma, fırçayla uğraşma — ustasına bırak.",
+    sub: "Makineye atma, fırçayla uğraşma. Ustasına bırak.",
     dark: true,
   },
   {
@@ -118,7 +118,7 @@ export function StaticHero() {
           Temiz ayakkabı, başka yürüyüş.
         </h1>
         <p className={`mt-3 text-center text-lg text-muted-foreground ${LIGHT_SHADOW}`}>
-          Bakırköy'de profesyonel ayakkabı yıkama — aynı gün teslim.
+          Bakırköy'de profesyonel ayakkabı yıkama, aynı gün teslim.
         </p>
         <div className="mt-8">
           <HeroCtas eventPrefix="hero_static" />

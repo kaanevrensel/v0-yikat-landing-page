@@ -52,7 +52,7 @@ export const valueProps = [
   {
     icon: "gem",
     title: "Malzeme Uzmanlığı",
-    description: "Sneaker, süet, deri — her malzemeye kendine uygun yöntem.",
+    description: "Sneaker, süet, deri. Her malzemeye kendine uygun yöntem.",
   },
 ] as const
 
@@ -81,11 +81,11 @@ export const faqs = [
   },
   {
     q: "Sneaker yıkama aynı gün teslim edilir mi?",
-    a: "Evet. Sneaker dahil tüm ayakkabılarda aynı gün teslim geçerli — sabah bırak, akşam 20:00'ye kadar al.",
+    a: "Evet. Sneaker dahil tüm ayakkabılarda aynı gün teslim geçerli. Sabah bırak, akşam 20:00'ye kadar al.",
   },
   {
     q: "Randevu gerekli mi?",
-    a: "Hayır. Randevusuz gel, ayakkabını bırak — aynı gün akşam 20:00'ye kadar teslim.",
+    a: "Hayır. Randevusuz gel, ayakkabını bırak. Aynı gün akşam 20:00'ye kadar teslim.",
   },
   {
     q: "Memnun kalmazsam ne oluyor?",
@@ -93,7 +93,7 @@ export const faqs = [
   },
   {
     q: "Ayakkabı yıkama ücreti ne kadar?",
-    a: "Kategoriye (spor/sneaker, deri, süet-nubuk, çocuk) göre sabit fiyat uygulanır; fiyatlar 400–1000 ₺ aralığındadır. Kesin menü dükkanda — yakında bu sayfada da yayınlanacak.",
+    a: "Kategoriye (spor/sneaker, deri, süet-nubuk, çocuk) göre sabit fiyat uygulanır; fiyatlar 400–1000 ₺ aralığındadır. Kesin menü dükkanda. Yakında bu sayfada da yayınlanacak.",
   },
   {
     q: "Çalışma saatleriniz ne?",
@@ -105,6 +105,6 @@ export const faqs = [
   },
   {
     q: "Neredesiniz?",
-    a: "Cevizlik Mah. İskele Cd. No: 15C, Bakırköy/İstanbul — İstanbul Caddesi'nin bir alt sokağında. Bakırköy ve Yenimahalle Marmaray istasyonlarına 8 dakika uzaklıkta.",
+    a: "Cevizlik Mah. İskele Cd. No: 15C, Bakırköy/İstanbul. İstanbul Caddesi'nin bir alt sokağında. Bakırköy ve Yenimahalle Marmaray istasyonlarına 8 dakika uzaklıkta.",
   },
 ] as const

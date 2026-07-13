@@ -27,7 +27,7 @@ export const services: Service[] = [
     nav: "Sneaker Yıkama",
     metaTitle: "Sneaker Yıkama Bakırköy — Aynı Gün Teslim | YIKAT",
     metaDescription:
-      "Bakırköy'de profesyonel sneaker ve spor ayakkabı yıkama. Kumaş, mesh, karışık malzeme — elde, malzemesine uygun ürünle. Aynı gün teslim.",
+      "Bakırköy'de profesyonel sneaker ve spor ayakkabı yıkama. Kumaş, mesh, karışık malzeme. Elde, malzemesine uygun ürünle. Aynı gün teslim.",
     h1: "Sneaker temizliği.\nMakineye atma, ustasına bırak.",
     intro:
       "Kumaş, mesh ve karışık malzemeli sneaker'lar dükkânımızda elde, malzemesine uygun ürünlerle yıkanır. Sabah bırak, aynı gün akşam 20:00'ye kadar tertemiz teslim al.",
@@ -48,19 +48,19 @@ export const services: Service[] = [
     ],
     steps: [
       { title: "Ön inceleme", text: "Malzeme ve lekeler tek tek kontrol edilir; yıkama yöntemi ayakkabıya göre seçilir." },
-      { title: "Söküm", text: "Bağcık ve tabanlık ayrılır, ayrı temizlenir — kumaşın her noktasına ulaşılır." },
+      { title: "Söküm", text: "Bağcık ve tabanlık ayrılır, ayrı temizlenir. Kumaşın her noktasına ulaşılır." },
       { title: "Derin temizlik", text: "Malzemesine uygun ürünle elde, suya boğmadan derin yıkama yapılır." },
-      { title: "Şekilli kurutma", text: "Form koruyucuyla, doğrudan ısıya tutmadan kurutulur — deformasyon olmaz." },
+      { title: "Şekilli kurutma", text: "Form koruyucuyla, doğrudan ısıya tutmadan kurutulur. Deformasyon olmaz." },
       { title: "Son kontrol", text: "Bağcıklar takılır, son kontrol yapılır; akşam 20:00'ye kadar teslim." },
     ],
     notes: [
-      "Beyaz tabanlardaki sararma çoğu zaman belirgin biçimde açılır; ancak malzemenin yaşına ve durumuna göre sonuç değişebilir — dükkânda görünce net konuşuruz.",
+      "Beyaz tabanlardaki sararma çoğu zaman belirgin biçimde açılır; ancak malzemenin yaşına ve durumuna göre sonuç değişebilir. Dükkânda görünce net konuşuruz.",
       "Bu hizmet temizlik ve bakım içindir; boya, yenileme veya onarım kapsamda değildir.",
     ],
     faqs: [
       {
         q: "Sneaker çamaşır makinesinde yıkanır mı?",
-        a: "Önermiyoruz: sıcak su ve tambur darbesi taban yapıştırıcısını ve formu bozabilir. Dükkânda elde, malzemesine uygun ürünle yıkanır — risk almana gerek yok.",
+        a: "Önermiyoruz: sıcak su ve tambur darbesi taban yapıştırıcısını ve formu bozabilir. Dükkânda elde, malzemesine uygun ürünle yıkanır. Risk almana gerek yok.",
       },
       {
         q: "Sneaker yıkama aynı gün teslim edilir mi?",
@@ -102,20 +102,20 @@ export const services: Service[] = [
       },
     ],
     steps: [
-      { title: "Yüzey analizi", text: "Süet mi nubuk mu, leke türü ne — yöntem ve ürün buna göre seçilir." },
+      { title: "Yüzey analizi", text: "Süet mi nubuk mu, leke türü ne? Yöntem ve ürün buna göre seçilir." },
       { title: "Kuru ön temizlik", text: "Toz ve yüzey kiri, dokuya uygun fırçayla hav yönünde alınır." },
       { title: "Hassas derin temizlik", text: "Suya boğmadan, hassas yüzeye özel ürünlerle leke ve kir çözülür." },
       { title: "Doğal kurutma", text: "Doğrudan ısı olmadan kurutulur; havın yatmasına izin verilmez." },
       { title: "Doku tazeleme", text: "Hav, fırçayla yönüne uygun kaldırılır; ayakkabı aynı gün teslim edilir." },
     ],
     notes: [
-      "Eski, yüzeye işlemiş lekelerde iyileşme sağlanır ancak her iz tamamen çıkmayabilir — durumu dükkânda görünce net söyleriz.",
+      "Eski, yüzeye işlemiş lekelerde iyileşme sağlanır ancak her iz tamamen çıkmayabilir. Durumu dükkânda görünce net söyleriz.",
       "Zamanla solmuş rengi geri getirme (boyama) bu hizmetin kapsamında değildir.",
     ],
     faqs: [
       {
         q: "Süet ayakkabı yıkanır mı?",
-        a: "Evet — ama suya boğmadan. Süet ve nubuk, hassas yüzeye özel fırça ve ürünlerle temizlenir; klasik yıkama süete zarar verir.",
+        a: "Evet, ama suya boğmadan. Süet ve nubuk, hassas yüzeye özel fırça ve ürünlerle temizlenir; klasik yıkama süete zarar verir.",
       },
       {
         q: "Yağmur ve tuz lekeleri çıkar mı?",
@@ -169,7 +169,7 @@ export const services: Service[] = [
     faqs: [
       {
         q: "Deri ayakkabı su ile yıkanır mı?",
-        a: "Klasik anlamda yıkanmaz — deri suya boğulmadan, deriye uygun ürünlerle temizlenir ve ardından bakım yapılır.",
+        a: "Klasik anlamda yıkanmaz. Deri suya boğulmadan, deriye uygun ürünlerle temizlenir ve ardından bakım yapılır.",
       },
       {
         q: "Derideki çatlaklar geçer mi?",
