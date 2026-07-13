@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: service.metaTitle,
     description: service.metaDescription,
     url: `${siteConfig.url}/${service.slug}`,
-    images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "YIKAT — Ayakkabı Yıkama Bakırköy" }],
+    images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "YIKAT, Ayakkabı Yıkama Bakırköy" }],
   },
 }
 

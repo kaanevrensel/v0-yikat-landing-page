@@ -36,7 +36,7 @@ function OpenStatus() {
         <span>{siteConfig.hours.label}</span>
         <span aria-hidden className="invisible flex items-center gap-2 text-sm">
           <span className="size-2.5" />
-          Şu an açık — 20:00'ye kadar bırakabilirsin
+          Şu an açık, 20:00'ye kadar bırakabilirsin
         </span>
       </span>
     )

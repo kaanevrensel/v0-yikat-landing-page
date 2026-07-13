@@ -25,7 +25,7 @@ export const services: Service[] = [
   {
     slug: "sneaker-yikama",
     nav: "Sneaker Yıkama",
-    metaTitle: "Sneaker Yıkama Bakırköy — Aynı Gün Teslim | YIKAT",
+    metaTitle: "Sneaker Yıkama Bakırköy, Aynı Gün Teslim | YIKAT",
     metaDescription:
       "Bakırköy'de profesyonel sneaker ve spor ayakkabı yıkama. Kumaş, mesh, karışık malzeme. Elde, malzemesine uygun ürünle. Aynı gün teslim.",
     h1: "Sneaker temizliği.\nMakineye atma, ustasına bırak.",

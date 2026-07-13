@@ -16,7 +16,7 @@ export function serviceJsonLd(service: Service) {
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      name: `${service.nav} — YIKAT`,
+      name: `${service.nav}, YIKAT`,
       serviceType: service.nav,
       url: `${siteConfig.url}/${service.slug}`,
       provider: { "@type": "DryCleaningOrLaundry", "@id": siteConfig.url, name: "YIKAT" },
