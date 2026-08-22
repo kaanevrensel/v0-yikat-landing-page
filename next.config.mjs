@@ -4,11 +4,22 @@ const nextConfig = {
   images: { unoptimized: true },
   async redirects() {
     // Pivot: agregatör dönemi rotaları ana sayfaya (kalıcı — Next 308 döner, SEO'da 301 ile eşdeğer)
-    return ["/hizmetler", "/nasil-calisir", "/partnerlik", "/sss", "/iletisim"].map((source) => ({
+    const pivot = ["/hizmetler", "/nasil-calisir", "/partnerlik", "/sss", "/iletisim"].map((source) => ({
       source,
       destination: "/",
       permanent: true,
     }))
+    // Mobil uygulamanın gizlilik politikası TEK yerde yaşar (uygulamanın kendi
+    // yasal metinleri; app.yikat.tech aynı kaynaktan render eder). Mağaza
+    // kayıtlarında ve linklerde www altındaki bu adresler oraya gider — metin
+    // burada kopyalanmaz ki iki sürüm birbirinden ayrışmasın. /kvkk web
+    // sitesinin kendi aydınlatma metni olarak kalır.
+    const appPolicy = ["/gizlilik", "/gizlilik-politikasi", "/privacy"].map((source) => ({
+      source,
+      destination: "https://app.yikat.tech/legal/gizlilik",
+      permanent: false,
+    }))
+    return [...pivot, ...appPolicy]
   },
   async headers() {
     // Hero videosu yenilemede yeniden inmesin: immutable + 1 yıl (sahip şikayeti 2026-07-12:

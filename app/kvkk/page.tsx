@@ -49,6 +49,22 @@ export default function KvkkPage() {
             {"YIKAT, çamaşır yıkama, kurutma, ütü ve ayakkabı yıkama hizmetlerini adresinizden teslim alıp, kendi çamaşırhanesinde işleyerek yeniden adresinize teslim eden bir temizlik hizmeti sunmaktadır. Siparişler web sitesi veya WhatsApp üzerinden verilmekte, teslim alma ve teslim işlemleri kurye aracılığıyla gerçekleştirilmektedir."}
           </p>
 
+          {/* Mobil uygulama: ayrı veri işleme (Supabase, Resend, PostHog, Sentry,
+              Nominatim) — metni uygulama kendi yasal sayfalarında yayınlar; burada
+              kopyalanmaz ki iki sürüm ayrışmasın. */}
+          <div className="rounded-xl border border-border bg-card p-4 text-sm sm:text-base">
+            <p className="font-medium text-foreground">{"YIKAT mobil uygulaması"}</p>
+            <p className="mt-1">
+              {"Mobil uygulamada işlenen verilere ilişkin gizlilik politikası ve aydınlatma metni ayrıca yayınlanır: "}
+              <Link
+                href="https://app.yikat.tech/legal/gizlilik"
+                className="font-medium text-foreground underline underline-offset-4"
+              >
+                {"app.yikat.tech/legal/gizlilik"}
+              </Link>
+            </p>
+          </div>
+
           {/* Section 1 */}
           <section>
             <h2 className="text-xl font-semibold text-foreground sm:text-2xl">
