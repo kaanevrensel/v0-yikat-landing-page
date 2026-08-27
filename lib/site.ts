@@ -10,11 +10,14 @@ export const siteConfig = {
   phoneHref: "tel:+908503033193",
   email: "destek@yikat.tech",
   address: {
-    street: "Cevizlik Mah. İskele Cd. No: 15C",
+    // Adres düzeltmesi (sahip, 2026-08-26): resmi adres Sakızağacı Mah. İskele Caddesi
+    // No:15-B. Posta kodu 34142 değişmedi (Sakızağacı Mah. aynı posta bölgesinde).
+    // NAP kuralı (2026-07-10 SEO spec): bu format karakteri karakterine her platformda.
+    street: "Sakızağacı Mahallesi İskele Caddesi No:15-B",
     district: "Bakırköy",
     city: "İstanbul",
     postalCode: "34142",
-    full: "Cevizlik Mah. İskele Cd. No: 15C, 34142 Bakırköy/İstanbul",
+    full: "Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul",
   },
   hours: { label: "Her gün 09:00 – 20:00", opens: "09:00", closes: "20:00" },
   // Sahip beyanı (2026-07-11): kategoriye göre sabit fiyat, bu aralıkta. Kesin menü gelince
@@ -22,13 +25,15 @@ export const siteConfig = {
   priceRangeLabel: "400–1000 ₺",
   // Google/Apple Maps derin linkleri (Yol Tarifi CTA'ları)
   directionsUrl:
-    "https://www.google.com/maps/dir/?api=1&destination=Cevizlik+Mah.+%C4%B0skele+Cd.+15C+Bak%C4%B1rk%C3%B6y+%C4%B0stanbul",
+    "https://www.google.com/maps/dir/?api=1&destination=Sak%C4%B1za%C4%9Fac%C4%B1+Mahallesi+%C4%B0skele+Caddesi+15-B+Bak%C4%B1rk%C3%B6y+%C4%B0stanbul",
   mapsPlaceUrl:
-    "https://www.google.com/maps/search/?api=1&query=Cevizlik+Mah.+%C4%B0skele+Cd.+15C+Bak%C4%B1rk%C3%B6y+%C4%B0stanbul",
+    "https://www.google.com/maps/search/?api=1&query=Sak%C4%B1za%C4%9Fac%C4%B1+Mahallesi+%C4%B0skele+Caddesi+15-B+Bak%C4%B1rk%C3%B6y+%C4%B0stanbul",
   appleDirectionsUrl:
-    "https://maps.apple.com/?daddr=Cevizlik+Mah.+%C4%B0skele+Cd.+15C+Bak%C4%B1rk%C3%B6y+%C4%B0stanbul",
+    "https://maps.apple.com/?daddr=Sak%C4%B1za%C4%9Fac%C4%B1+Mahallesi+%C4%B0skele+Caddesi+15-B+Bak%C4%B1rk%C3%B6y+%C4%B0stanbul",
   // GERÇEK pin (sahip paylaşımı 2026-07-11, maps.app.goo.gl/r4Z4ebDJxrPf9avY6) — Google'ın
   // yapılandırılmış veri şartı olan ≥5 ondalık hassasiyette. Launch-blocker kapandı.
+  // 2026-08-26 adres düzeltmesinde (15C → Sakızağacı Mah. 15-B) pin korundu: aynı İskele
+  // Caddesi dükkânı. Dükkân fiziken taşındıysa sahipten yeni pin al + dukkan-harita.webp yenile.
   geo: { latitude: 40.977817, longitude: 28.877776 },
   // WhatsApp: 0850 hattı üzerinden (sahip GBP'ye de aynı linki koydu, 2026-07-11).
   whatsappHref: "https://wa.me/908503033193",
@@ -105,6 +110,6 @@ export const faqs = [
   },
   {
     q: "Neredesiniz?",
-    a: "Cevizlik Mah. İskele Cd. No: 15C, Bakırköy/İstanbul. İstanbul Caddesi'nin bir alt sokağında. Bakırköy ve Yenimahalle Marmaray istasyonlarına 8 dakika uzaklıkta.",
+    a: "Sakızağacı Mahallesi İskele Caddesi No:15-B, Bakırköy/İstanbul. İstanbul Caddesi'nin bir alt sokağında. Bakırköy ve Yenimahalle Marmaray istasyonlarına 8 dakika uzaklıkta.",
   },
 ] as const
