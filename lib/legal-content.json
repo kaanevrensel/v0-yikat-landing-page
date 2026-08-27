@@ -1,0 +1,512 @@
+{
+ "_generated": "GENERATED FILE — do not edit. Source of truth: yikat-app mobile/src/features/legal/docs.ts (the texts shown in-app and on app.yikat.tech/legal/*). Regenerate: extract COMPANY/LEGAL_DOCS via deno (see landing CLAUDE.md), pick the docs below, and re-run the picker. Edited 2026-08-27 for the iyzico merchant review (deficiency list).",
+ "company": {
+  "legalName": "Ahmet Kaan Evrensel (şahıs işletmesi)",
+  "brand": "YIKAT",
+  "address": "Çatalmeşe Mah. Saray Cad. No: 98-100H Çekmeköy/İstanbul",
+  "taxOffice": "Sarıgazi V.D.",
+  "taxNo": "10514514528 (T.C. Kimlik No)",
+  "phoneDisplay": "0850 303 31 93",
+  "phoneDial": "+908503033193",
+  "email": "destek@yikat.tech",
+  "web": "www.yikat.tech",
+  "webUrl": "https://www.yikat.tech"
+ },
+ "effectiveDate": "24 Ağustos 2026",
+ "docs": {
+  "gizlilik": {
+   "navTitle": "Gizlilik",
+   "heading": "Gizlilik Politikası",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "YIKAT olarak gizliliğinize önem veriyoruz. Bu politika, YIKAT mobil uygulamasını kullandığınızda hangi verileri topladığımızı, nasıl kullandığımızı ve haklarınızı özetler. Hukuki ayrıntılar için KVKK Aydınlatma Metni'ni esas alın."
+    },
+    {
+     "type": "rows",
+     "rows": [
+      {
+       "label": "Veri Sorumlusu",
+       "value": "Ahmet Kaan Evrensel (şahıs işletmesi)"
+      },
+      {
+       "label": "Adres",
+       "value": "Çatalmeşe Mah. Saray Cad. No: 98-100H Çekmeköy/İstanbul"
+      },
+      {
+       "label": "E-posta",
+       "value": "destek@yikat.tech"
+      },
+      {
+       "label": "Web",
+       "value": "www.yikat.tech"
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "text": "1. Topladığımız Veriler"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Siz verdiğiniz: ad-soyad, e-posta, telefon, teslimat adresi (açık adres, kat, kapı/zil kodu, tarif, bölge), alıcı adı-telefonu, sipariş notları, değerlendirmeler.",
+      "İzin verirseniz (isteğe bağlı): adres formunu hızlı doldurmak için cihazınızın anlık konumu yalnızca o an kullanılır (yalnızca uygulamayı kullanırken). Cihazınızın anlık konum koordinatı bize gönderilmez ve saklanmaz; işletim sisteminiz bu koordinatı adres metnine çevirir, siz de gerekirse düzelterek adresi kaydedersiniz.",
+      "Kaydettiğiniz adresten üretilen: bir adresi kaydettiğinizde veya güncellediğinizde, adresinizi doğru hizmet bölgesine ve size en yakın iş ortağına yönlendirebilmek için adres metniniz yaklaşık bir koordinata (enlem/boylam) çevrilir ve bu koordinat adres kaydınızla birlikte saklanır. Çeviriyi OpenStreetMap / Nominatim servisi yapar; bu sırada adres metniniz bu servise iletilir (bkz. §3).",
+      "Hizmeti kullanırken oluşan: sipariş ve ödeme geçmişi, seçilen ödeme yöntemi, davet (referans) ilişkisi, giriş kayıtları, anlık bildirim için cihaz bildirim anahtarı, uygulama içi kullanım olayları ve hata/çökme kayıtları (bkz. §4), temel teknik log kayıtları.",
+      "Toplamadıklarımız: cihazınızın anlık konum koordinatını saklamayız; arka planda konum takibi yapılmaz; ekran veya oturum kaydı alınmaz; reklam kimliği kullanılmaz, reklam ağlarıyla veri paylaşılmaz ve uygulamalar/siteler arası takip yapılmaz; özel nitelikli veriler toplanmaz."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "2. Verileri Nasıl Kullanıyoruz"
+    },
+    {
+     "type": "paragraph",
+     "text": "Hesabınızı yönetmek; siparişi almak, kapıdan alım–teslim planlamak ve ilgili kuru temizleme iş ortağına yönlendirmek; ödeme ve faturalandırma; sipariş/teslimat bildirimleri; destek; kampanya ve davet programı; hizmet kalitesini ölçmek; ve yasal yükümlülükleri yerine getirmek için."
+    },
+    {
+     "type": "section",
+     "text": "3. Veri Paylaşımı"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Kuru temizleme iş ortakları: yalnızca bölge, sipariş kalemleri ve zaman aralıkları paylaşılır — adınız, telefonunuz ve açık adresiniz paylaşılmaz.",
+      "Hizmet sağlayıcılar (işleyenler): barındırma/veritabanı Supabase (Almanya), e-posta Resend, anlık bildirim Expo, kullanım analitiği PostHog (AB — Frankfurt, Almanya), hata/çökme kayıtları Sentry (Almanya); online kart ödemesi kullanıma açıldığında iyzico (iyzi Ödeme ve Elektronik Para Hizmetleri A.Ş.). Bu sağlayıcılar verileri yalnızca bizim adımıza ve talimatımızla işler. Kart numaranız ve CVV YIKAT'ta saklanmaz — iyzico'nun ödeme altyapısında işlenir.",
+      "Adres–koordinat çevirisi: OpenStreetMap / Nominatim (OpenStreetMap Foundation — Birleşik Krallık). Bir adresi kaydettiğinizde veya güncellediğinizde yalnızca adres metniniz (açık adres ve il) bu servise sorgu olarak iletilir; adınız, telefonunuz, kapı/zil kodunuz, sipariş bilgileriniz ve hesap bilgileriniz iletilmez.",
+      "Yetkili merciler: yasal zorunluluk hâlinde.",
+      "Verilerinizi pazarlama amacıyla üçüncü kişilere satmayız."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "4. Kullanım Analitiği ve Hata Kayıtları"
+    },
+    {
+     "type": "paragraph",
+     "text": "Uygulamayı iyileştirmek ve arızaları görebilmek için iki sınırlı ölçüm aracı kullanırız: kullanım analitiği için PostHog (sunucular AB — Frankfurt, Almanya) ve hata/çökme kaydı için Sentry (sunucular Almanya). İkisi de uygulama açıldığında çalışır; kim olduğunuzu bilmek veya sizi reklam amacıyla profillemek için kullanılmaz."
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Kullanım analitiği — topladıklarımız: takma adlı bir kullanıcı kimliği (giriş sisteminin ürettiği rastgele kimlik; adınızla veya e-postanızla eşleştirilmez), sipariş akışındaki adımlara ilişkin sınırlı sayıda olay (hizmet görüntüleme, sepet, zaman seçimi, sipariş oluşturma, giriş) ve bu olaylarla birlikte sipariş numarası ile sipariş tutarı, ayrıca cihaz ve uygulama sürümü gibi temel teknik bağlam.",
+      "Kullanım analitiği — toplamadıklarımız: adınız, e-postanız, telefonunuz, adresiniz ve sipariş içerikleriniz bu olaylarda yer almaz; ekran/oturum kaydı yapılmaz; otomatik olay toplama (autocapture) kapalıdır.",
+      "Hata kayıtları: uygulama beklenmedik şekilde hata verdiğinde teknik hata izi ile cihaz/uygulama sürümü bilgisi Sentry'ye gönderilir. Bu kayıtlara kullanıcı kimliğiniz eklenmez ve IP adresiniz kayda iliştirilmez.",
+      "Amaç ve hukuki sebep: hizmetin iyileştirilmesi, hataların tespiti ve sipariş akışındaki aksaklıkların giderilmesi amacıyla, KVKK md. 5/2-f uyarınca meşru menfaatimize dayanarak ve ölçülülük ilkesine uygun şekilde işlenir. Bu ölçümler zorunlu değildir ancak bugün uygulama içinden ayrı olarak kapatılamamaktadır; kapatılmasını istiyorsanız destek@yikat.tech adresine yazabilirsiniz.",
+      "Saklama: analitik ve hata kayıtları yalnızca bu amaç için gerekli süre boyunca tutulur."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "5. Yurt Dışı"
+    },
+    {
+     "type": "paragraph",
+     "text": "Altyapı sağlayıcılarımızın sunucuları yurt dışında bulunduğundan (Supabase, PostHog ve Sentry — Almanya; Resend ve Expo — ABD merkezli; adres–koordinat çevirisi için OpenStreetMap / Nominatim — Birleşik Krallık) verileriniz KVKK md. 9'a uygun olarak yurt dışında işlenebilir. Ayrıntı: KVKK Aydınlatma Metni §6."
+    },
+    {
+     "type": "section",
+     "text": "6. Güvenlik"
+    },
+    {
+     "type": "paragraph",
+     "text": "Verilerinize erişim yetkiyle sınırlandırılmıştır; aktarımlar şifreli kanallarla yapılır; veritabanı düzeyinde satır-bazlı erişim kuralları uygulanır. Hiçbir sistem %100 güvenli olmamakla birlikte verilerinizi korumak için makul teknik ve idari tedbirleri alırız."
+    },
+    {
+     "type": "section",
+     "text": "7. Saklama ve Silme"
+    },
+    {
+     "type": "paragraph",
+     "text": "Verilerinizi amaç ve mevzuatın gerektirdiği süre kadar saklarız. Hesabınızı uygulamadan silebilirsiniz; ~30 günlük bekleme sonrası verileriniz anonimleştirilir, yasal saklama gerektiren kayıtlar mevzuattaki süre (10 yıla kadar) boyunca tutulur. Anonimleştirme sırasında adres kaydınızdaki açık adres, tarif ve koordinat bilgisi de silinir."
+    },
+    {
+     "type": "section",
+     "text": "8. Çocukların Gizliliği"
+    },
+    {
+     "type": "paragraph",
+     "text": "YIKAT 18 yaşından küçüklere yönelik değildir; bilerek çocuk verisi toplamayız."
+    },
+    {
+     "type": "section",
+     "text": "9. Haklarınız"
+    },
+    {
+     "type": "paragraph",
+     "text": "KVKK md. 11 kapsamındaki haklarınızı KVKK İlgili Kişi Başvuru Formu ile kullanabilirsiniz."
+    },
+    {
+     "type": "section",
+     "text": "10. Değişiklikler"
+    },
+    {
+     "type": "paragraph",
+     "text": "Bu politikayı zaman zaman güncelleyebiliriz; önemli değişiklikleri uygulama üzerinden duyururuz. Güncel sürüm her zaman uygulamada yer alır. Yürürlük tarihi: 24 Ağustos 2026."
+    },
+    {
+     "type": "section",
+     "text": "11. İletişim"
+    },
+    {
+     "type": "paragraph",
+     "text": "Sorularınız için: 0850 303 31 93 · destek@yikat.tech · Çatalmeşe Mah. Saray Cad. No: 98-100H Çekmeköy/İstanbul"
+    }
+   ]
+  },
+  "mesafeli": {
+   "navTitle": "Mesafeli Satış",
+   "heading": "Mesafeli Satış Sözleşmesi",
+   "subtitle": "6502 sayılı Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği uyarınca",
+   "blocks": [
+    {
+     "type": "section",
+     "text": "1. Taraflar"
+    },
+    {
+     "type": "paragraph",
+     "text": "SATICI (\"YIKAT\")"
+    },
+    {
+     "type": "rows",
+     "rows": [
+      {
+       "label": "Ünvan",
+       "value": "Ahmet Kaan Evrensel (şahıs işletmesi)"
+      },
+      {
+       "label": "Adres",
+       "value": "Çatalmeşe Mah. Saray Cad. No: 98-100H Çekmeköy/İstanbul"
+      },
+      {
+       "label": "Vergi Dairesi / No",
+       "value": "Sarıgazi V.D. / 10514514528 (T.C. Kimlik No)"
+      },
+      {
+       "label": "MERSIS",
+       "value": "Yok (şahıs işletmesi)"
+      },
+      {
+       "label": "Telefon",
+       "value": "0850 303 31 93"
+      },
+      {
+       "label": "E-posta",
+       "value": "destek@yikat.tech"
+      },
+      {
+       "label": "Web",
+       "value": "www.yikat.tech"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "ALICI (\"MÜŞTERİ\")"
+    },
+    {
+     "type": "paragraph",
+     "text": "Ad-soyad, adres ve iletişim bilgileri; sipariş sırasında uygulamada belirtilen ve sipariş özetinde kayıt altına alınan bilgilerdir."
+    },
+    {
+     "type": "section",
+     "text": "2. Konu"
+    },
+    {
+     "type": "paragraph",
+     "text": "İşbu sözleşmenin konusu, Müşteri'nin YIKAT mobil uygulaması üzerinden elektronik ortamda sipariş verdiği; aşağıda nitelikleri ve satış bedeli belirtilen hizmetlerin sunulması ile tarafların KVKK ve tüketici mevzuatından doğan hak ve yükümlülüklerinin belirlenmesidir."
+    },
+    {
+     "type": "section",
+     "text": "3. Hizmetin Niteliği ve Bedeli"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Hizmet: kapıdan alıp teslim ederek kuru temizleme, çamaşır yıkama, ütü, ayakkabı temizliği ve hacimli ürün (yorgan/battaniye vb.) yıkama hizmetleri.",
+      "Bedel: Uygulamada her hizmet için geçerli fiyatlar üzerinden hesaplanır ve tüm vergiler dâhil olarak gösterilir. Çamaşır ve kuru temizleme gibi tartı/adet/inceleme ile netleşen hizmetlerde uygulamada gösterilen tutar tahminîdir; kesin tutar, ürünler teslim alınıp tartıldığında/incelendiğinde belirlenir ve Müşteri'ye bildirilir.",
+      "Sipariş özeti (hizmet kalemleri, miktarları, tahmini/kesin tutar, sipariş numarası, alım ve teslim zaman aralıkları) bu sözleşmenin ayrılmaz ekidir."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "4. Ödeme"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Ödeme yöntemleri: bugün yalnızca kapıda nakit ve kapıda kart ile ödeme alınmaktadır. Online kart ödemesi henüz kullanıma açılmamıştır; açıldığında iyzico (iyzi Ödeme ve Elektronik Para Hizmetleri A.Ş.) güvenli ödeme altyapısı aracılığıyla, 3D Secure doğrulamasıyla alınacaktır. Kart bilgileri YIKAT tarafından görülmez/saklanmaz (bkz. Ödeme ve Güvenli Alışveriş). Bu sözleşmenin online kart ödemesine ilişkin hükümleri, yalnızca bu yöntem uygulamada seçilebilir hâle geldiğinde uygulanır.",
+      "Kesin tutar tartı/inceleme sonrası belirlenen hizmetlerde ödeme, kesin tutar üzerinden alınır; online kartta tahmini tutar için ön provizyon (bloke) uygulanabilir ve kesin tutar tahsil edilir (bkz. İptal ve İade Koşulları §3).",
+      "Ödeme tamamlanmadan teslimat gerçekleştirilemezse ürünler, ödeme tamamlanana kadar YIKAT'ta muhafaza edilebilir."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "5. İfa / Teslimat"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Hizmet, Müşteri'nin uygulamada belirttiği adresten alım ve adrese teslim şeklinde, seçilen zaman aralıklarında ifa edilir.",
+      "Alım/teslim için adreste yetkili bir kişinin bulunması Müşteri'nin sorumluluğundadır; Müşteri \"alıcı\" olarak başka bir kişi belirtebilir.",
+      "Mücbir sebep, olumsuz hava koşulları, adrese ulaşılamaması veya ürünün niteliğinin hizmete uygun olmaması hâllerinde Satıcı Müşteri'yi bilgilendirir ve makul alternatif sunar."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "6. Cayma Hakkı"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Mesafeli Sözleşmeler Yönetmeliği uyarınca tüketici, kural olarak 14 gün içinde gerekçe göstermeksizin cayma hakkına sahiptir.",
+      "İstisna (önemli): YIKAT hizmetleri, Müşteri'nin onayıyla ifasına başlanan hizmetler niteliğindedir. Müşteri, ürünlerin alınması ve işleme konulmasıyla birlikte hizmetin ifasına derhâl başlanmasını talep ve kabul eder. Yönetmelik md. 15 uyarınca, ifasına başlanan/tamamlanan hizmetlerde ve niteliği gereği iade edilemeyecek (işlem görmüş) ürünlerde cayma hakkı kullanılamaz.",
+      "Henüz ifasına başlanmamış (ürünler teslim alınmamış) bir sipariş için Müşteri, uygulama üzerinden siparişini 30 dakika içinde ücretsiz iptal edebilir; bu süreden sonra ve alım gerçekleşmeden önce de destek@yikat.tech / 0850 303 31 93 üzerinden iptal talep edilebilir."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "7. Genel Hükümler"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Müşteri, işbu sözleşmeyi ve Ön Bilgilendirme Formu'nu okuyup elektronik ortamda onayladığını kabul eder. Bu onay, siparişin Satıcı tarafından teyidi/ifası ile sözleşme kurulmuş sayılır.",
+      "Müşteri, ürünlerin niteliğine, lekelerin/eskimelerin durumuna ve üretici bakım etiketine bağlı olarak bazı sonuçların garanti edilemeyebileceğini kabul eder; Satıcı özen yükümlülüğü çerçevesinde sorumludur.",
+      "Ayıplı hizmet hâlinde Müşteri, mevzuattan doğan haklarını kullanabilir."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "8. Delil Sözleşmesi"
+    },
+    {
+     "type": "paragraph",
+     "text": "6100 sayılı Hukuk Muhakemeleri Kanunu md. 193 uyarınca, YIKAT'ın elektronik kayıtları (uygulama logları, sipariş ve bildirim kayıtları) taraflar arasında kesin delil sayılır."
+    },
+    {
+     "type": "section",
+     "text": "9. Uyuşmazlıkların Çözümü"
+    },
+    {
+     "type": "paragraph",
+     "text": "Bu sözleşmeden doğan uyuşmazlıklarda Müşteri; her yıl Ticaret Bakanlığı'nca belirlenen parasal sınırlar dâhilinde Tüketici Hakem Heyetlerine, sınırı aşan uyuşmazlıklarda Tüketici Mahkemelerine başvurabilir. Müşteri, kendi yerleşim yerindeki hakem heyeti/mahkemeye başvurabilir."
+    },
+    {
+     "type": "section",
+     "text": "10. Yürürlük"
+    },
+    {
+     "type": "paragraph",
+     "text": "Müşteri'nin elektronik ortamda onayı ile yürürlüğe girer. Bir nüshası sipariş kaydı ile birlikte Müşteri'nin erişimine sunulur."
+    }
+   ]
+  },
+  "onBilgilendirme": {
+   "navTitle": "Ön Bilgilendirme",
+   "heading": "Ön Bilgilendirme Formu",
+   "subtitle": "Mesafeli Sözleşmeler Yönetmeliği md. 5 uyarınca, sipariş onayından önce sunulur",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Bu form, mesafeli satış sözleşmesi kurulmadan önce sizi bilgilendirmek için sunulur. Siparişi onaylamanız, bu formu ve Mesafeli Satış Sözleşmesi'ni okuyup kabul ettiğiniz anlamına gelir."
+    },
+    {
+     "type": "section",
+     "text": "1. Satıcı"
+    },
+    {
+     "type": "rows",
+     "rows": [
+      {
+       "label": "Ünvan",
+       "value": "Ahmet Kaan Evrensel (şahıs işletmesi)"
+      },
+      {
+       "label": "Adres",
+       "value": "Çatalmeşe Mah. Saray Cad. No: 98-100H Çekmeköy/İstanbul"
+      },
+      {
+       "label": "Telefon",
+       "value": "0850 303 31 93"
+      },
+      {
+       "label": "E-posta",
+       "value": "destek@yikat.tech"
+      },
+      {
+       "label": "MERSIS",
+       "value": "Yok (şahıs işletmesi)"
+      },
+      {
+       "label": "Web",
+       "value": "www.yikat.tech"
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "text": "2. Hizmetin Temel Nitelikleri"
+    },
+    {
+     "type": "paragraph",
+     "text": "Kapıdan alıp teslim ederek kuru temizleme, çamaşır yıkama, ütü, ayakkabı temizliği ve hacimli ürün yıkama. Sipariş kalemleriniz ve miktarları sipariş özetinde gösterilir."
+    },
+    {
+     "type": "section",
+     "text": "3. Toplam Bedel ve Ödeme"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Tüm vergiler dâhil tutar uygulamada gösterilir. Tartı/inceleme ile netleşen hizmetlerde gösterilen tutar tahminîdir; kesin tutar ürün teslim alınınca belirlenir.",
+      "Ödeme: bugün yalnızca kapıda nakit veya kapıda kart. Online kart ödemesi (iyzico güvenli ödeme altyapısı, 3D Secure ile) henüz kullanıma açılmamıştır; açıldığında sipariş ekranında seçilebilir olacaktır. Kart bilgileri YIKAT'ta saklanmaz; bkz. Ödeme ve Güvenli Alışveriş + İptal ve İade Koşulları.",
+      "Ek teslimat ücreti varsa sipariş özetinde ayrıca belirtilir."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "4. İfa / Teslimat"
+    },
+    {
+     "type": "paragraph",
+     "text": "Hizmet, belirttiğiniz adresten alım ve adrese teslim ile seçtiğiniz zaman aralıklarında ifa edilir. Teslimat hizmet bölgeleriyle sınırlıdır (İstanbul, genişlemekte)."
+    },
+    {
+     "type": "section",
+     "text": "5. Cayma Hakkı ve İstisnası"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Kural olarak 14 gün içinde cayma hakkınız vardır.",
+      "Ancak YIKAT hizmetleri, onayınızla ifasına derhâl başlanan hizmetlerdir; ürünleriniz teslim alınıp işleme konulduğunda (Yönetmelik md. 15) cayma hakkı kullanılamaz. İfaya başlanmadan önce siparişinizi uygulamadan (oluşturduktan sonraki 30 dakika içinde ücretsiz) veya 0850 303 31 93 / destek@yikat.tech ile iptal edebilirsiniz."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "6. Şikâyet ve Uyuşmazlık"
+    },
+    {
+     "type": "paragraph",
+     "text": "Şikâyetlerinizi 0850 303 31 93 / destek@yikat.tech üzerinden iletebilirsiniz. Uyuşmazlıklarda parasal sınırlara göre Tüketici Hakem Heyeti veya Tüketici Mahkemesi'ne başvurabilirsiniz."
+    },
+    {
+     "type": "section",
+     "text": "7. Kayıt"
+    },
+    {
+     "type": "paragraph",
+     "text": "Bu form ve onayınız, sipariş kaydıyla birlikte saklanır ve uygulamadan erişiminize sunulur."
+    }
+   ]
+  },
+  "iptalIade": {
+   "navTitle": "İptal ve İade",
+   "heading": "İptal ve İade Koşulları",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Bu metin, YIKAT siparişlerinin iptali ve (online kart ödemelerinde) iade süreçlerini açıklar. Mesafeli Satış Sözleşmesi'nin ayrılmaz bir parçasıdır."
+    },
+    {
+     "type": "section",
+     "text": "1. Sipariş İptali"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Alım yapılmadan önce: Siparişinizi, oluşturduktan sonra 30 dakika içinde uygulamadan ücretsiz iptal edebilirsiniz. Bu süreden sonra ve ürünleriniz henüz teslim alınmadan önce de 0850 303 31 93 / destek@yikat.tech üzerinden iptal talep edebilirsiniz.",
+      "Hizmete başlandıktan sonra: Ürünleriniz teslim alınıp işleme konulduktan sonra hizmetin ifasına başlanmış sayılır; bu aşamadan sonra iptal/cayma kural olarak mümkün değildir (bkz. Cayma Hakkı). Tamamlanan iş için ücret tahsil edilir."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "2. Cayma Hakkı"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Mesafeli Sözleşmeler Yönetmeliği uyarınca kural olarak 14 gün içinde cayma hakkınız vardır.",
+      "İstisna: YIKAT hizmetleri, onayınızla ifasına derhâl başlanan hizmetlerdir; ürünleriniz teslim alınıp işleme konulduğunda (Yönetmelik md. 15) cayma hakkı kullanılamaz. Ayrıntı: Mesafeli Satış Sözleşmesi §6."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "3. İade (Online Kart Ödemelerinde)"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "İade her zaman ödemenin yapıldığı karta yapılır; başka bir hesaba/karta veya nakit olarak yapılmaz.",
+      "Ön provizyon (bloke) modeli: sipariş anında tahmini tutar kartınızda bloke edilir; sipariş hizmete başlanmadan iptal edilirse bloke serbest bırakılır (tahsilat olmaz); hizmet tamamlanınca kesin tutar (tartı/inceleme sonrası, blokeyi aşmayacak şekilde) tahsil edilir; bloke edilen tutarın kesin tutarı aşan kısmı serbest kalır.",
+      "Kısmi iade / fark iadesi: tahsil edilen tutarda sonradan bir düzeltme gerekirse, fark aynı karta iade edilir.",
+      "İade süresi: iade talebinizin onaylanmasının ardından tutar, bankanız/kart kuruluşunuzun süreçlerine bağlı olarak genellikle birkaç iş günü içinde kartınıza yansır. Yansıma süresi YIKAT'ın kontrolü dışında olup bankanıza bağlıdır.",
+      "İade işlemleri iyzico ödeme altyapısı üzerinden gerçekleştirilir."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "4. Kapıda Ödeme (Nakit / Kart) Siparişleri"
+    },
+    {
+     "type": "paragraph",
+     "text": "Kapıda ödemeli siparişlerde, hizmete başlanmadan iptal hâlinde herhangi bir tahsilat yapılmaz; ödeme yalnızca teslimde alınır."
+    },
+    {
+     "type": "section",
+     "text": "5. Ayıplı Hizmet, Hasar/Kayıp ve Yeniden Yıkama"
+    },
+    {
+     "type": "paragraph",
+     "text": "Hizmetin ayıplı olması hâlinde tüketici, 6502 sayılı Kanun'dan doğan haklarını (yenileme, bedel iadesi vb.) kullanabilir. Ürünün niteliği, mevcut leke/yıpranma ve üretici bakım etiketine bağlı bazı sonuçlar garanti edilemeyebilir; YIKAT özen yükümlülüğü çerçevesinde sorumludur."
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Hasar/kayıp bildirimi: teslimden itibaren 48 saat içinde. İnceleme, kanıt ve tazminat üst sınırı dâhil ayrıntılar: Üyelik ve Kullanım Koşulları §7.",
+      "Memnun değilseniz: 24 saat içinde ücretsiz yeniden işleme (Kullanım Koşulları §8)."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "6. Teslim Alınan Ürünlerin İadesi ve Lojistik Bedeli"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Ürünler teslim alındıktan sonra, işleme başlanmadan iptal edilirse veya ürün işlemeye uygun bulunmazsa ürünler size iade edilir.",
+      "Bu durumda, uygulamada sipariş öncesi gösterilen makul bir alım/iade lojistik bedeli tahsil edilebilir. (Bu bedel, teslimat anında adreste bulunulamaması nedeniyle uygulanabilecek tekrar teslimat bedelinden farklıdır — bkz. Kullanım Koşulları §4.)"
+     ]
+    },
+    {
+     "type": "section",
+     "text": "7. Talep ve İletişim"
+    },
+    {
+     "type": "paragraph",
+     "text": "İptal/iade taleplerinizi uygulama üzerinden veya 0850 303 31 93 / destek@yikat.tech ile iletebilirsiniz. Uyuşmazlıklarda parasal sınırlara göre Tüketici Hakem Heyeti veya Tüketici Mahkemesi'ne başvurabilirsiniz."
+    }
+   ]
+  },
+  "teslimat": {
+   "navTitle": "Teslimat",
+   "heading": "Teslimat",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "YIKAT hizmetlerinde teslimat; ürünlerin belirttiğiniz adresten teslim alınması ve işlem sonrası aynı adrese teslim edilmesi şeklinde gerçekleşir. Aşağıdaki koşullar, Mesafeli Satış Sözleşmesi’nin “İfa / Teslimat” bölümünün aynısıdır."
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Hizmet, Müşteri'nin uygulamada belirttiği adresten alım ve adrese teslim şeklinde, seçilen zaman aralıklarında ifa edilir.",
+      "Alım/teslim için adreste yetkili bir kişinin bulunması Müşteri'nin sorumluluğundadır; Müşteri \"alıcı\" olarak başka bir kişi belirtebilir.",
+      "Mücbir sebep, olumsuz hava koşulları, adrese ulaşılamaması veya ürünün niteliğinin hizmete uygun olmaması hâllerinde Satıcı Müşteri'yi bilgilendirir ve makul alternatif sunar."
+     ]
+    }
+   ]
+  }
+ }
+}

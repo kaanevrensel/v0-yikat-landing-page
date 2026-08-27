@@ -4,13 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Single-page marketing site for **YIKAT**, a physical shoe-washing store (ayakkabı yıkama dükkanı) at Cevizlik Mah. İskele Cd. No: 15C, Bakırköy, İstanbul. All UI copy is Turkish. The store is walk-in only with same-day turnaround — there is no app, no online ordering, and no forms. Every conversion path is "get directions" or "call," not app download.
+Single-page marketing site for **YIKAT**, a physical shoe-washing store (ayakkabı yıkama dükkanı) at Sakızağacı Mahallesi İskele Caddesi No:15-B, Bakırköy, İstanbul (address corrected 2026-08-26; the old "Cevizlik Mah. İskele Cd. No: 15C" wording lives only in history docs). All UI copy is Turkish. The store is walk-in only with same-day turnaround — there is no app, no online ordering, and no forms. Every conversion path is "get directions" or "call," not app download.
 
 ## Business context: master plan vs. current pivot
 
 **Master plan (long-term, paused):** an app-first aggregator routing door-to-door orders (kapıdan alım, kapıya teslim) to vetted partner dry cleaners, covering five services (kuru temizleme, çamaşır, ütü, ayakkabı, hacimli tekstil) across İstanbul Anadolu Yakası. That build was fully removed from the working tree (see history below) but is **not cancelled** — it's represented on-site only by `components/coming-soon-band.tsx`.
 
-**ACTIVE SHORT-TERM PIVOT (implemented July 2026):** the site IS now the single-page site of the physical shoe-washing store at Cevizlik Mah. İskele Cd. 15C, Bakırköy (European side — all old "Anadolu Yakası" positioning is gone). Rules locked in the approved spec (`docs/superpowers/specs/2026-07-05-ayakkabi-pivot-design.md`):
+**ACTIVE SHORT-TERM PIVOT (implemented July 2026):** the site IS now the single-page site of the physical shoe-washing store at Sakızağacı Mahallesi İskele Caddesi No:15-B, Bakırköy (European side — all old "Anadolu Yakası" positioning is gone). Rules locked in the approved spec (`docs/superpowers/specs/2026-07-05-ayakkabi-pivot-design.md`):
 
 - Walk-in only, same-day turnaround ("aynı gün teslim" is THE value prop), open every day 09:00–20:00, cash+card.
 - Zero old data: no Çekmeköy, no laundry-era stats (1.500+ orders etc.). Trust is value-prop based until real shoe-order numbers accumulate.
@@ -70,7 +70,18 @@ Active stylesheet is **`app/globals.css`** (Tailwind v4 CSS-first: `@theme inlin
 
 ## Known gotchas
 
-- `/kvkk` and `/mesafeli-satis-sozlesmesi` still describe the **old pre-pivot aggregator/laundry business** (web/WhatsApp orders, own facility, door-to-door pickup, fixed package prices). They were deliberately left untouched during the pivot — kept live (not deleted) because a legal page existing with stale text beats no legal page — until the owner supplies new legal copy that matches the shoe-wash-store model.
+- **Legal pages (updated 2026-08-27, iyzico üye işyeri incelemesi eksik-belge listesi):**
+  `/mesafeli-satis-sozlesmesi`, `/gizlilik-politikasi` and `/teslimat-ve-iade` render
+  **generated content** from `lib/legal-content.json` via `components/legal/*` — the single
+  source of truth is yikat-app `mobile/src/features/legal/docs.ts` (the iyzico-named texts
+  shown in-app and on app.yikat.tech/legal/*). NEVER edit page text here; regenerate the JSON
+  from docs.ts (deno-extract `COMPANY`/`LEGAL_DOCS`, pick gizlilik/mesafeli/on-bilgilendirme/
+  iptal-iade + the mesafeli "İfa / Teslimat" slice) when docs.ts changes. `/iletisim` is a real
+  page again (removed from the pivot redirects); `/gizlilik` + `/privacy` now redirect to the
+  local `/gizlilik-politikasi`. The footer carries the "iyzico ile Öde" + Visa + Mastercard band
+  (`components/payment-band.tsx`, official artwork in `public/images/odeme/`). `/kvkk` keeps the
+  site's own aydınlatma metni; parts still describe the pre-pivot business — owner/lawyer pass
+  pending.
 - `priceMenu` prices in `lib/site.ts` are all `price: null` placeholders ("Menü yakında") until the owner delivers the real price list.
 - Önce/sonra bölümü ("Farkı kendin gör", #sonuclar) SAHİP KARARIYLA TAMAMEN KALDIRILDI (2026-07-11): bileşen+AI görselleri silindi, nav linki çıkarıldı. Gerçek müşteri fotoğrafları birikirse bölüm sıfırdan tasarlanır (owner-blockers #6). `circular-text.tsx` bu yüzden bağsız — marquee gibi vendored bekliyor.
 - `images.unoptimized: true` in next.config.mjs is deliberate (kept from the pre-pivot config). Hero sahne görselleri `<picture>` art-direction ile tek varyant indirir. Hero videosu ORİJİNAL kalitede (1920×1080, 9.2MB — sahip kararı 2026-07-08: kalite > ağırlık; sıkıştırma denemesi geri alındı), `src` SSR HTML'de gömülüdür — indirme HTML parse'ta başlar, hydration/`load` beklenmez (eski window-load kapısı sahip kararıyla kaldırıldı, 2026-07-12: video LCP'den öncelikli) ve video MOBİLDE DE oynar (9.2MB mobil veri maliyeti bilinçli kabul — video oynayana dek ilk keyframe SABİT poster, dosya faststart olduğundan `canplay` ilk saniyeler inince gelir; ayrı 9:16 mobil video varyantı YOK, merkez kırpım yeterli). `/videos/*` next.config.mjs `headers()` ile immutable+1yıl cache'lidir: video İÇERİĞİ değişirse dosya ADI da değişmeli (yoksa istemciler 1 yıl eskisini oynatır). Mobil keyframe'ler Higgsfield outpaint+downscale ile 9:16 1170×2096 (ayakkabı kadraja tam sığar, retina-net) — video devreye girince kadraj outpaint görsele göre bir kez daralır (kabul edilen geçiş); sahne metni okunabilirliğini her ekranda sahne-bazlı yumuşak text-shadow ışıması taşır (2026-07-12: cam kart çerçevesi de harf konturu da denendi, ikisi de sahip kararıyla geri alındı — yeniden önermeyin).

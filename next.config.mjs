@@ -3,20 +3,22 @@ const nextConfig = {
   typescript: { ignoreBuildErrors: true },
   images: { unoptimized: true },
   async redirects() {
-    // Pivot: agregatör dönemi rotaları ana sayfaya (kalıcı — Next 308 döner, SEO'da 301 ile eşdeğer)
-    const pivot = ["/hizmetler", "/nasil-calisir", "/partnerlik", "/sss", "/iletisim"].map((source) => ({
+    // Pivot: agregatör dönemi rotaları ana sayfaya (kalıcı — Next 308 döner, SEO'da 301 ile eşdeğer).
+    // /iletisim listeden ÇIKTI (2026-08-27): iyzico üye işyeri incelemesi sitede iletişim
+    // sayfası istiyor — artık gerçek bir sayfa (app/iletisim).
+    const pivot = ["/hizmetler", "/nasil-calisir", "/partnerlik", "/sss"].map((source) => ({
       source,
       destination: "/",
       permanent: true,
     }))
-    // Mobil uygulamanın gizlilik politikası TEK yerde yaşar (uygulamanın kendi
-    // yasal metinleri; app.yikat.tech aynı kaynaktan render eder). Mağaza
-    // kayıtlarında ve linklerde www altındaki bu adresler oraya gider — metin
-    // burada kopyalanmaz ki iki sürüm birbirinden ayrışmasın. /kvkk web
-    // sitesinin kendi aydınlatma metni olarak kalır.
-    const appPolicy = ["/gizlilik", "/gizlilik-politikasi", "/privacy"].map((source) => ({
+    // 2026-08-27: iyzico incelemesi gizlilik politikası İÇERİĞİNİ bu sitede istiyor —
+    // /gizlilik-politikasi artık yerel bir sayfa (içerik yine tek kaynaktan, yikat-app
+    // docs.ts'ten ÜRETİLİR; bkz. lib/legal-content.json). Eski app.yikat.tech
+    // yönlendirmeleri yerel sayfaya çevrildi ki mağaza kayıtlarındaki www linkleri
+    // kırılmasın; app.yikat.tech/legal/gizlilik aynı metni render etmeye devam eder.
+    const appPolicy = ["/gizlilik", "/privacy"].map((source) => ({
       source,
-      destination: "https://app.yikat.tech/legal/gizlilik",
+      destination: "/gizlilik-politikasi",
       permanent: false,
     }))
     return [...pivot, ...appPolicy]

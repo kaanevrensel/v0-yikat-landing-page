@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { FooterDirectionsLink, FooterServiceLinks, FooterWhatsAppLink } from "@/components/footer-directions-link"
+import { PaymentBand } from "@/components/payment-band"
 import { services } from "@/lib/services"
 import { siteConfig } from "@/lib/site"
 
@@ -43,13 +44,28 @@ export function Footer() {
             <FooterServiceLinks services={services.map((s) => ({ slug: s.slug, nav: s.nav }))} />
           </div>
           <div className="flex flex-col gap-2 text-sm text-white">
+            <Link href="/iletisim" className="hover:text-white">
+              İletişim
+            </Link>
+            <Link href="/gizlilik-politikasi" className="hover:text-white">
+              Gizlilik Politikası
+            </Link>
             <Link href="/kvkk" className="hover:text-white">
               KVKK Aydınlatma Metni
             </Link>
             <Link href="/mesafeli-satis-sozlesmesi" className="hover:text-white">
               Mesafeli Satış Sözleşmesi
             </Link>
+            <Link href="/teslimat-ve-iade" className="hover:text-white">
+              Teslimat ve İade
+            </Link>
           </div>
+        </div>
+        {/* iyzico üye işyeri incelemesi: "iyzico ile Öde" + Visa + Mastercard
+            markaları sitede görünür olmalı (eksik-belge e-postası 2026-08-27).
+            Footer'da: her sayfada görünür, satış vaadi değil bilgi bandı. */}
+        <div className="mt-10 border-t border-white/20 pt-6">
+          <PaymentBand tone="dark" />
         </div>
         <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-white/20 pt-6 text-xs text-white/95">
           <p>© 2026 YIKAT. Tüm hakları saklıdır.</p>

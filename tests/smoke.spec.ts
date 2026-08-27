@@ -28,18 +28,42 @@ test("yol tarifi CTA'ları Google Maps directions hedefine gider (masaüstü Chr
 })
 
 test("eski aggregator rotaları ana sayfaya 308 döner", async ({ request }) => {
-  for (const path of ["/hizmetler", "/nasil-calisir", "/partnerlik", "/sss", "/iletisim"]) {
+  // /iletisim listede DEĞİL (2026-08-27): iyzico incelemesi için yeniden gerçek sayfa.
+  for (const path of ["/hizmetler", "/nasil-calisir", "/partnerlik", "/sss"]) {
     const res = await request.get(path, { maxRedirects: 0 })
     expect(res.status(), path).toBe(308)
     expect(res.headers()["location"], path).toBe("/")
   }
 })
 
-test("legal sayfalar canlı", async ({ page }) => {
-  for (const path of ["/kvkk", "/mesafeli-satis-sozlesmesi"]) {
+test("gizlilik yönlendirmeleri yerel sayfaya gider", async ({ request }) => {
+  for (const path of ["/gizlilik", "/privacy"]) {
+    const res = await request.get(path, { maxRedirects: 0 })
+    expect(res.status(), path).toBe(307)
+    expect(res.headers()["location"], path).toBe("/gizlilik-politikasi")
+  }
+})
+
+test("legal + iletişim sayfaları canlı (iyzico eksik-belge listesi)", async ({ page }) => {
+  for (const path of [
+    "/kvkk",
+    "/mesafeli-satis-sozlesmesi",
+    "/gizlilik-politikasi",
+    "/teslimat-ve-iade",
+    "/iletisim",
+  ]) {
     const res = await page.goto(path)
     expect(res?.status(), path).toBe(200)
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
+  }
+})
+
+test("iyzico ile Öde + Visa + Mastercard markaları footer'da", async ({ page }) => {
+  await page.goto("/")
+  const footer = page.locator("footer")
+  await expect(footer.getByText("iyzico ile Öde")).toBeVisible()
+  for (const alt of ["iyzico", "Visa", "Mastercard"]) {
+    await expect(footer.locator(`img[alt='${alt}']`), alt).toBeAttached()
   }
 })
 
@@ -121,7 +145,15 @@ test("axe: mobil viewport + menü açıkken ihlal yok", async ({ page }) => {
 })
 
 test("axe: 404 ve legal sayfalar", async ({ page }) => {
-  for (const path of ["/olmayan-bir-sayfa", "/kvkk", "/mesafeli-satis-sozlesmesi", ...services.map((s) => `/${s.slug}`)]) {
+  for (const path of [
+    "/olmayan-bir-sayfa",
+    "/kvkk",
+    "/mesafeli-satis-sozlesmesi",
+    "/gizlilik-politikasi",
+    "/teslimat-ve-iade",
+    "/iletisim",
+    ...services.map((s) => `/${s.slug}`),
+  ]) {
     await page.goto(path)
     await page.waitForTimeout(800)
     await expectNoSeriousAxe(page, path)
