@@ -1,10 +1,10 @@
 {
- "_generated": "GENERATED FILE — do not edit. Source of truth: yikat-app mobile/src/features/legal/docs.ts (the texts shown in-app and on app.yikat.tech/legal/*). Regenerate: extract COMPANY/LEGAL_DOCS via deno (see landing CLAUDE.md), pick the docs below, and re-run the picker. Regenerated 2026-08-27 for live online card payment via iyzico (pre-authorization model) and Google/Apple sign-in. MANUAL OVERRIDE 2026-08-29 (owner): company.address and every address row/line were corrected from the old \"Çatalmeşe Mah. Saray Cad. No: 98-100H Çekmeköy/İstanbul\" to the real store address \"Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul\" (same string as lib/site.ts address.full, NAP rule). Fix COMPANY.address in yikat-app docs.ts too, otherwise the next regeneration reverts this. Open owner question: taxOffice is still \"Sarıgazi V.D.\" — verify against the new registered address.",
+ "_generated": "GENERATED FILE — do not edit. Source of truth: yikat-app mobile/src/features/legal/docs.ts (the texts shown in-app and on app.yikat.tech/legal/*). Regenerate: extract COMPANY/LEGAL_DOCS via deno (see landing CLAUDE.md), pick the docs below, and re-run the picker. Regenerated 2026-08-27 for live online card payment via iyzico (pre-authorization model) and Google/Apple sign-in. MANUAL OVERRIDE 2026-08-29 (owner): company.address and every address row/line were corrected from the old \"Çatalmeşe Mah. Saray Cad. No: 98-100H Çekmeköy/İstanbul\" to the real store address \"Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul\" (same string as lib/site.ts address.full, NAP rule). Fix COMPANY.address in yikat-app docs.ts too, otherwise the next regeneration reverts this. taxOffice was corrected the same way to \"Bakırköy V.D.\" (owner confirmed 2026-08-29); taxNo (T.C. Kimlik No) is unchanged.",
  "company": {
   "legalName": "Ahmet Kaan Evrensel (şahıs işletmesi)",
   "brand": "YIKAT",
   "address": "Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul",
-  "taxOffice": "Sarıgazi V.D.",
+  "taxOffice": "Bakırköy V.D.",
   "taxNo": "10514514528 (T.C. Kimlik No)",
   "phoneDisplay": "0850 303 31 93",
   "phoneDial": "+908503033193",
@@ -202,7 +202,7 @@
       },
       {
        "label": "Vergi Dairesi / No",
-       "value": "Sarıgazi V.D. / 10514514528 (T.C. Kimlik No)"
+       "value": "Bakırköy V.D. / 10514514528 (T.C. Kimlik No)"
       },
       {
        "label": "MERSIS",

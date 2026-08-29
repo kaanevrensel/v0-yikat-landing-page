@@ -80,9 +80,9 @@ Active stylesheet is **`app/globals.css`** (Tailwind v4 CSS-first: `@theme inlin
   lives in that JSON (2026-08-29, sahip talimatı):** every company address (`company.address` +
   the Adres rows in gizlilik/mesafeli/onBilgilendirme + the gizlilik contact line) was corrected
   from the old Çekmeköy address to the dükkân address, character-for-character equal to
-  `siteConfig.address.full`. Re-apply it after any regeneration until `COMPANY.address` in
-  yikat-app `docs.ts` is fixed upstream (`company.taxOffice` is still "Sarıgazi V.D." — owner
-  must confirm). `/iletisim` is a real
+  `siteConfig.address.full`; `company.taxOffice` was corrected the same day to "Bakırköy V.D."
+  (sahip teyidi, `taxNo` değişmedi). Re-apply both after any regeneration until `COMPANY` in
+  yikat-app `docs.ts` is fixed upstream. `/iletisim` is a real
   page again (removed from the pivot redirects); `/gizlilik` + `/privacy` now redirect to the
   local `/gizlilik-politikasi`. The footer carries the "iyzico ile Öde" + Visa + Mastercard band
   (`components/payment-band.tsx`, official artwork in `public/images/odeme/`). `/kvkk` keeps the
