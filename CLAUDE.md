@@ -76,7 +76,13 @@ Active stylesheet is **`app/globals.css`** (Tailwind v4 CSS-first: `@theme inlin
   source of truth is yikat-app `mobile/src/features/legal/docs.ts` (the iyzico-named texts
   shown in-app and on app.yikat.tech/legal/*). NEVER edit page text here; regenerate the JSON
   from docs.ts (deno-extract `COMPANY`/`LEGAL_DOCS`, pick gizlilik/mesafeli/on-bilgilendirme/
-  iptal-iade + the mesafeli "İfa / Teslimat" slice) when docs.ts changes. `/iletisim` is a real
+  iptal-iade + the mesafeli "İfa / Teslimat" slice) when docs.ts changes. **One manual override
+  lives in that JSON (2026-08-29, sahip talimatı):** every company address (`company.address` +
+  the Adres rows in gizlilik/mesafeli/onBilgilendirme + the gizlilik contact line) was corrected
+  from the old Çekmeköy address to the dükkân address, character-for-character equal to
+  `siteConfig.address.full`. Re-apply it after any regeneration until `COMPANY.address` in
+  yikat-app `docs.ts` is fixed upstream (`company.taxOffice` is still "Sarıgazi V.D." — owner
+  must confirm). `/iletisim` is a real
   page again (removed from the pivot redirects); `/gizlilik` + `/privacy` now redirect to the
   local `/gizlilik-politikasi`. The footer carries the "iyzico ile Öde" + Visa + Mastercard band
   (`components/payment-band.tsx`, official artwork in `public/images/odeme/`). `/kvkk` keeps the
