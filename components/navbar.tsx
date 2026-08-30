@@ -9,7 +9,6 @@
 // "Liquid" davranış: link grubunun arkasındaki tek vurgu hapı layoutId ile hover/aktif bölüme akar.
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { MapPin, Menu, Phone, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -18,6 +17,7 @@ import { useDirectionsUrl } from "@/hooks/use-directions-url"
 import { siteConfig } from "@/lib/site"
 import { track } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
+import { Logo } from "@/components/logo"
 
 // Kök-anchor ("/#..."): linkler hizmet sayfalarından da ana sayfadaki bölümlere gider.
 const NAV_LINKS = [
@@ -150,7 +150,7 @@ export function Navbar() {
         />
         <nav aria-label="Ana menü" className="relative z-10 flex h-12 items-center gap-1 pl-4 pr-2 md:gap-2">
           <Link href="/" aria-label="YIKAT ana sayfa" className="flex items-center pr-1">
-            <Image src="/images/yikat-logo-blue.png" alt="" width={60} height={31} priority className="h-[31px] w-[60px]" />
+            <Logo width={60} className="text-[#269AFF]" />
           </Link>
 
           <div className="relative hidden items-center md:flex" onPointerLeave={() => setHovered(null)}>

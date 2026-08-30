@@ -1,9 +1,9 @@
 "use client"
 
-import Image from "next/image"
 import { motion, useReducedMotion } from "framer-motion"
 import ShinyText from "@/components/shiny-text"
 import { CardSpotlight } from "@/components/spotlight-card"
+import { Logo } from "@/components/logo"
 
 // Master plan (uygulama + kapıdan alım) sinyali — dükkan sitesinde uygulamayı fısıldayan tek yer.
 // Form yok, app-store bağlantısı yok (uygulama henüz yok): saf teaser.
@@ -24,7 +24,7 @@ function AppScreen() {
         <div className="relative flex h-full w-full flex-col items-center justify-center gap-3 overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-[#2563eb] to-[#153e9e]">
           <span className="absolute left-1/2 top-2 h-1 w-10 -translate-x-1/2 rounded-full bg-white/30" />
           <div className="flex size-16 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/20">
-            <Image src="/images/yikat-logo-white.png" alt="" width={36} height={19} className="h-[19px] w-9" />
+            <Logo width={36} className="text-white" />
           </div>
           <span className="text-base font-semibold tracking-tight text-white">YIKAT</span>
           <span className="text-[11px] font-medium text-white/80">çok yakında</span>

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react"
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
+import { Logo } from "@/components/logo"
 
 // /kvkk sayfasının başlık + gövde iskeleti, yasal sayfalarda ortak kullanım
 // için çıkarıldı (iyzico üye işyeri incelemesi sayfaları, 2026-08-27).
@@ -26,13 +26,7 @@ export function LegalPageShell({
             {"Geri Dön"}
           </Link>
           <div className="ml-auto">
-            <Image
-              src="/images/yikat-logo-blue.png"
-              alt="YIKAT"
-              width={80}
-              height={32}
-              className="h-6 w-auto"
-            />
+            <Logo width={46} className="text-[#269AFF]" />
           </div>
         </div>
       </header>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
+import { Logo } from "@/components/logo"
 
 export const metadata: Metadata = {
   title: "KVKK Aydınlatma Metni - YIKAT",
@@ -24,13 +24,7 @@ export default function KvkkPage() {
             {"Geri Dön"}
           </Link>
           <div className="ml-auto">
-            <Image
-              src="/images/yikat-logo-blue.png"
-              alt="YIKAT"
-              width={80}
-              height={32}
-              className="h-6 w-auto"
-            />
+            <Logo width={46} className="text-[#269AFF]" />
           </div>
         </div>
       </header>
