@@ -150,7 +150,7 @@ export function Navbar() {
         />
         <nav aria-label="Ana menü" className="relative z-10 flex h-12 items-center gap-1 pl-4 pr-2 md:gap-2">
           <Link href="/" aria-label="YIKAT ana sayfa" className="flex items-center pr-1">
-            <Image src="/images/yikat-logo-blue.png" alt="" width={60} height={60} priority className="size-[60px]" />
+            <Image src="/images/yikat-logo-blue.png" alt="" width={60} height={31} priority className="h-[31px] w-[60px]" />
           </Link>
 
           <div className="relative hidden items-center md:flex" onPointerLeave={() => setHovered(null)}>

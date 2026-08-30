@@ -12,7 +12,7 @@ export function Footer() {
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div>
             <div className="flex items-center gap-2">
-              <Image src="/images/yikat-logo-white.png" alt="" width={28} height={28} className="size-7" />
+              <Image src="/images/yikat-logo-white.png" alt="" width={28} height={15} className="h-[15px] w-7" />
               <span className="text-lg font-semibold tracking-tight text-white">YIKAT</span>
             </div>
             <p className="mt-4 max-w-xs text-sm text-white">
