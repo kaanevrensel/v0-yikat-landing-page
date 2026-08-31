@@ -4,9 +4,9 @@ import { ArrowLeft } from "lucide-react"
 import { Logo } from "@/components/logo"
 
 export const metadata: Metadata = {
-  title: "KVKK Aydınlatma Metni - YIKAT",
+  title: "KVKK Aydınlatma Metni - Yıkat",
   description:
-    "YIKAT Kişisel Verilerin İşlenmesine İlişkin Aydınlatma Metni. 6698 sayılı KVKK kapsamında haklarınız.",
+    "Yıkat Kişisel Verilerin İşlenmesine İlişkin Aydınlatma Metni. 6698 sayılı KVKK kapsamında haklarınız.",
   alternates: { canonical: "https://www.yikat.tech/kvkk" },
 }
 
@@ -37,17 +37,17 @@ export default function KvkkPage() {
 
         <div className="mt-8 space-y-8 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <p>
-            {"YIKAT olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu'nun 10. maddesi ile Aydınlatma Yükümlülüğünün Yerine Getirilmesinde Uyulacak Usul ve Esaslar Hakkında Tebliğ kapsamında, kişisel verilerinizin işlenmesine ilişkin sizleri bilgilendirmek amacıyla işbu aydınlatma metnini hazırladık."}
+            {"Yıkat olarak, 6698 sayılı Kişisel Verilerin Korunması Kanunu'nun 10. maddesi ile Aydınlatma Yükümlülüğünün Yerine Getirilmesinde Uyulacak Usul ve Esaslar Hakkında Tebliğ kapsamında, kişisel verilerinizin işlenmesine ilişkin sizleri bilgilendirmek amacıyla işbu aydınlatma metnini hazırladık."}
           </p>
           <p>
-            {"YIKAT, çamaşır yıkama, kurutma, ütü ve ayakkabı yıkama hizmetlerini adresinizden teslim alıp, kendi çamaşırhanesinde işleyerek yeniden adresinize teslim eden bir temizlik hizmeti sunmaktadır. Siparişler web sitesi veya WhatsApp üzerinden verilmekte, teslim alma ve teslim işlemleri kurye aracılığıyla gerçekleştirilmektedir."}
+            {"Yıkat, çamaşır yıkama, kurutma, ütü ve ayakkabı yıkama hizmetlerini adresinizden teslim alıp, kendi çamaşırhanesinde işleyerek yeniden adresinize teslim eden bir temizlik hizmeti sunmaktadır. Siparişler web sitesi veya WhatsApp üzerinden verilmekte, teslim alma ve teslim işlemleri kurye aracılığıyla gerçekleştirilmektedir."}
           </p>
 
           {/* Mobil uygulama: ayrı veri işleme (Supabase, Resend, PostHog, Sentry,
               Nominatim) — metni uygulama kendi yasal sayfalarında yayınlar; burada
               kopyalanmaz ki iki sürüm ayrışmasın. */}
           <div className="rounded-xl border border-border bg-card p-4 text-sm sm:text-base">
-            <p className="font-medium text-foreground">{"YIKAT mobil uygulaması"}</p>
+            <p className="font-medium text-foreground">{"Yıkat mobil uygulaması"}</p>
             <p className="mt-1">
               {"Mobil uygulamada işlenen verilere ilişkin gizlilik politikası ve aydınlatma metni ayrıca yayınlanır: "}
               <Link
@@ -65,14 +65,14 @@ export default function KvkkPage() {
               {"1. İşlenen Kişisel Veri Kategorileri"}
             </h2>
             <p className="mt-3">
-              {"YIKAT hizmetlerinden yararlanmanız sırasında aşağıdaki kişisel veri kategorileri işlenmektedir:"}
+              {"Yıkat hizmetlerinden yararlanmanız sırasında aşağıdaki kişisel veri kategorileri işlenmektedir:"}
             </p>
             <ul className="mt-3 list-disc space-y-2 pl-5">
-              <li><strong className="text-foreground">{"Özel nitelikli kişisel veri:"}</strong> {"YIKAT, hizmet süreci kapsamında özel nitelikli kişisel veri (sağlık, biyometrik, din, ırk vb.) işlememektedir."}</li>
+              <li><strong className="text-foreground">{"Özel nitelikli kişisel veri:"}</strong> {"Yıkat, hizmet süreci kapsamında özel nitelikli kişisel veri (sağlık, biyometrik, din, ırk vb.) işlememektedir."}</li>
               <li><strong className="text-foreground">{"Çerez/Analitik Verileri:"}</strong> {"Çerez tanımlayıcıları, sayfa görüntülenme verileri, oturum bilgileri. Web sitesi kullanım analizi ve iyileştirme için işlenmektedir."}</li>
               <li><strong className="text-foreground">{"Teknik Veriler:"}</strong> {"IP adresi, cihaz bilgisi, tarayıcı türü, log kayıtları. Web sitesi güvenliği ve performans analizi için işlenmektedir."}</li>
               <li><strong className="text-foreground">{"İletişim Kayıtları:"}</strong> {"Çağrı kayıtları, WhatsApp mesajları, e-posta yazışmaları. Destek taleplerinin takibi ve çözümü için işlenmektedir."}</li>
-              <li><strong className="text-foreground">{"Ödeme Bilgileri:"}</strong> {"Ödeme yöntemi, işlem referans numarası. Ödemenin doğrulanması için işlenmektedir. YIKAT kart bilgilerini doğrudan işlemez ve saklamaz; kart verileri ödeme sağlayıcısı tarafından işlenir."}</li>
+              <li><strong className="text-foreground">{"Ödeme Bilgileri:"}</strong> {"Ödeme yöntemi, işlem referans numarası. Ödemenin doğrulanması için işlenmektedir. Yıkat kart bilgilerini doğrudan işlemez ve saklamaz; kart verileri ödeme sağlayıcısı tarafından işlenir."}</li>
               <li><strong className="text-foreground">{"Sipariş Bilgileri:"}</strong> {"Paket türü, teslim notu. Hizmetin doğru şekilde yerine getirilmesi için işlenmektedir."}</li>
               <li><strong className="text-foreground">{"Adres Bilgileri:"}</strong> {"Açık adres, il, ilçe. Kurye ile teslim alma ve teslim işlemleri için işlenmektedir."}</li>
               <li><strong className="text-foreground">{"İletişim Bilgileri:"}</strong> {"Telefon numarası, e-posta adresi. Sipariş bildirimleri ve destek iletişimi için işlenmektedir."}</li>
@@ -135,7 +135,7 @@ export default function KvkkPage() {
               {"Kişisel verileriniz, Kanun'un 5. maddesinin 2. fıkrasında yer alan aşağıdaki hukuki sebeplere dayanılarak işlenmektedir:"}
             </p>
             <ul className="mt-3 list-disc space-y-2 pl-5">
-              <li><strong className="text-foreground">{"Özel nitelikli veri (m.6):"}</strong> {"YIKAT, özel nitelikli kişisel veri işlememekte olup bu madde kapsamında bir işleme faaliyeti bulunmamaktadır."}</li>
+              <li><strong className="text-foreground">{"Özel nitelikli veri (m.6):"}</strong> {"Yıkat, özel nitelikli kişisel veri işlememekte olup bu madde kapsamında bir işleme faaliyeti bulunmamaktadır."}</li>
               <li><strong className="text-foreground">{"Açık rıza (m.5/1):"}</strong> {"Ticari elektronik ileti gönderimi, pazarlama amaçlı profilleme ve çerez bazlı izleme (zorunlu olmayan çerezler) için iletişim bilgileri ve çerez/analitik verileri işlenmektedir."}</li>
               <li><strong className="text-foreground">{"(f) Meşru menfaat:"}</strong> {"Hizmet kalitesinin arttırılması, iş süreçlerinin geliştirilmesi ve dolandırıcılık önleme amacıyla teknik veriler, sipariş bilgileri ve analitik verileri işlenmektedir."}</li>
               <li><strong className="text-foreground">{"(d) Bir hakkın tesisi, kullanılması veya korunması:"}</strong> {"Olası uyuşmazlıklarda delil muhafazası ve hukuki süreçlerin yürütülmesi amacıyla sipariş, iletişim kayıtları ve ödeme bilgileri işlenmektedir."}</li>
@@ -172,7 +172,7 @@ export default function KvkkPage() {
               {"5. Yurt Dışına Aktarım"}
             </h2>
             <p className="mt-3">
-              {"YIKAT'ın kullandığı bazı üçüncü parti hizmet sağlayıcılarının sunucuları yurt dışında (AB veya ABD) konumlu olabilir. Aşağıda mevcut durum özetlenmiştir:"}
+              {"Yıkat'ın kullandığı bazı üçüncü parti hizmet sağlayıcılarının sunucuları yurt dışında (AB veya ABD) konumlu olabilir. Aşağıda mevcut durum özetlenmiştir:"}
             </p>
             <ul className="mt-3 list-disc space-y-2 pl-5">
               <li>{"E-posta gönderim — E-posta iletimi"}</li>
@@ -202,7 +202,7 @@ export default function KvkkPage() {
               <li><strong className="text-foreground">{"Kimlik ve iletişim bilgileri:"}</strong> {"Üyelik süresi + 10 yıl (6098 s. TBK genel zamanaşımı süresi)."}</li>
             </ul>
             <p className="mt-3">
-              {"Saklama süresi sona eren veriler, YIKAT'ın Kişisel Veri Saklama ve İmha Politikasına uygun olarak silinir, yok edilir veya anonim hale getirilir."}
+              {"Saklama süresi sona eren veriler, Yıkat'ın Kişisel Veri Saklama ve İmha Politikasına uygun olarak silinir, yok edilir veya anonim hale getirilir."}
             </p>
           </section>
 
@@ -267,9 +267,9 @@ export default function KvkkPage() {
               {"9. Diğer Hususlar"}
             </h2>
             <ul className="mt-3 list-disc space-y-2 pl-5">
-              <li>{"YIKAT, kişisel verilerin güvenliğini sağlamak için gerekli teknik ve idari tedbirleri almaktadır."}</li>
+              <li>{"Yıkat, kişisel verilerin güvenliğini sağlamak için gerekli teknik ve idari tedbirleri almaktadır."}</li>
               <li>{"Aydınlatma metni, bilgilendirme amacı taşımakta olup bir rıza metni değildir. Açık rıza gerektiren işlemler için ayrıca onay alınır."}</li>
-              <li>{"YIKAT, işbu aydınlatma metnini mevzuat değişiklikleri veya veri işleme süreçlerindeki güncellemeler doğrultusunda değiştirme hakkını saklı tutar. Güncel metin her zaman yikat.tech adresinde yayımlanır."}</li>
+              <li>{"Yıkat, işbu aydınlatma metnini mevzuat değişiklikleri veya veri işleme süreçlerindeki güncellemeler doğrultusunda değiştirme hakkını saklı tutar. Güncel metin her zaman yikat.tech adresinde yayımlanır."}</li>
             </ul>
           </section>
         </div>

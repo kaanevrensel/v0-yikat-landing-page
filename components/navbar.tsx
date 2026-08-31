@@ -149,7 +149,7 @@ export function Navbar() {
           )}
         />
         <nav aria-label="Ana menü" className="relative z-10 flex h-12 items-center gap-1 pl-4 pr-2 md:gap-2">
-          <Link href="/" aria-label="YIKAT ana sayfa" className="flex items-center pr-1">
+          <Link href="/" aria-label="Yıkat ana sayfa" className="flex items-center pr-1">
             <Logo width={60} className="text-[#269AFF]" />
           </Link>
 

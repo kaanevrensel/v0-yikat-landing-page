@@ -16,7 +16,7 @@ const bricolage = Bricolage_Grotesque({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   // "Aynı gün teslim" SERP'te sıfır rakibin verdiği vaat (2026-07-10 SERP taraması) — başlıkta öne.
-  title: "Ayakkabı Yıkama Bakırköy, Aynı Gün Teslim | YIKAT",
+  title: "Ayakkabı Yıkama Bakırköy, Aynı Gün Teslim | Yıkat",
   description:
     "Bakırköy İskele Caddesi'nde profesyonel ayakkabı yıkama. Sneaker, süet, deri. Malzemesine uygun yıkama, aynı gün teslim. Her gün 09:00–20:00, 400–1000 ₺.",
   keywords: [
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "sneaker temizleme istanbul",
     "süet ayakkabı temizliği",
     "deri ayakkabı bakımı",
-    "YIKAT",
+    "Yıkat",
   ],
   icons: {
     icon: [
@@ -44,15 +44,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: siteConfig.url,
-    siteName: "YIKAT",
+    siteName: "Yıkat",
     locale: "tr_TR",
-    title: "Ayakkabı Yıkama Bakırköy, Aynı Gün Teslim | YIKAT",
+    title: "Ayakkabı Yıkama Bakırköy, Aynı Gün Teslim | Yıkat",
     description: "Temiz ayakkabı, başka yürüyüş. Aynı gün teslim. Her gün 09:00–20:00.",
-    images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "YIKAT, Ayakkabı Yıkama Bakırköy" }],
+    images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "Yıkat, Ayakkabı Yıkama Bakırköy" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ayakkabı Yıkama Bakırköy, Aynı Gün Teslim | YIKAT",
+    title: "Ayakkabı Yıkama Bakırköy, Aynı Gün Teslim | Yıkat",
     description: "Temiz ayakkabı, başka yürüyüş. Aynı gün teslim.",
     images: ["/images/og.jpg"],
   },
@@ -68,7 +68,7 @@ const localBusinessJsonLd = {
   "@context": "https://schema.org",
   // En spesifik mevcut alt-tip (Google şartı; ShoeCleaning tipi yok, additionalType desteklenmiyor).
   "@type": "DryCleaningOrLaundry",
-  name: "YIKAT",
+  name: "Yıkat",
   alternateName: "Yıkat Ayakkabı Yıkama",
   description:
     "Bakırköy'de profesyonel ayakkabı yıkama dükkanı. Spor, deri, süet ve çocuk ayakkabıları için malzemesine uygun yıkama, aynı gün teslim.",

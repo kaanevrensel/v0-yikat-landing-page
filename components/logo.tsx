@@ -24,7 +24,7 @@ export function Logo({ width = 120, className }: LogoProps) {
       height={Math.round((width / 1584) * 821)}
       viewBox="0 0 1584 821"
       role="img"
-      aria-label="YIKAT"
+      aria-label="Yıkat"
       className={className}
     >
       <g transform="translate(0.000000,821.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">

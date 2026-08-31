@@ -166,7 +166,7 @@ export function HeroScrollStory() {
   if (prefersReduced) return <StaticHero />
 
   return (
-    <section aria-label="YIKAT hikayesi" className="relative h-dvh overflow-hidden">
+    <section aria-label="Yıkat hikayesi" className="relative h-dvh overflow-hidden">
       {/* Statik keyframe katmanları — beklemede ilk kare sabit poster, "dongu" modunda
           crossfade döngüsü. Katman 0 sabit taban; sonrakiler aktif sahneye dek üst üste
           biner (DOM sırası örter), döngü başa sararken hepsi birlikte söner. */}

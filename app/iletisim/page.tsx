@@ -13,9 +13,9 @@ import legal from "@/lib/legal-content.json"
 // işletme kimliği lib/legal-content.json'daki COMPANY'den gelir.
 
 export const metadata: Metadata = {
-  title: "İletişim - YIKAT",
+  title: "İletişim - Yıkat",
   description:
-    "YIKAT iletişim: Bakırköy dükkân adresi, telefon, WhatsApp, e-posta ve çalışma saatleri.",
+    "Yıkat iletişim: Bakırköy dükkân adresi, telefon, WhatsApp, e-posta ve çalışma saatleri.",
   alternates: { canonical: "https://www.yikat.tech/iletisim" },
 }
 
@@ -77,7 +77,7 @@ export default function IletisimPage() {
         </p>
         <p>
           <strong className="text-foreground">{"Marka:"}</strong>{" "}
-          {"YIKAT — Yıkat tescilli bir markadır."}
+          {"Yıkat tescilli bir markadır."}
         </p>
         <p>
           <strong className="text-foreground">{"İşletme adresi:"}</strong> {company.address}

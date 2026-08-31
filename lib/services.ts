@@ -25,7 +25,7 @@ export const services: Service[] = [
   {
     slug: "sneaker-yikama",
     nav: "Sneaker Yıkama",
-    metaTitle: "Sneaker Yıkama Bakırköy, Aynı Gün Teslim | YIKAT",
+    metaTitle: "Sneaker Yıkama Bakırköy, Aynı Gün Teslim | Yıkat",
     metaDescription:
       "Bakırköy'de profesyonel sneaker ve spor ayakkabı yıkama. Kumaş, mesh, karışık malzeme. Elde, malzemesine uygun ürünle. Aynı gün teslim.",
     h1: "Sneaker temizliği.\nMakineye atma, ustasına bırak.",
@@ -80,7 +80,7 @@ export const services: Service[] = [
   {
     slug: "suet-nubuk-temizleme",
     nav: "Süet & Nubuk",
-    metaTitle: "Süet ve Nubuk Ayakkabı Temizleme Bakırköy | YIKAT",
+    metaTitle: "Süet ve Nubuk Ayakkabı Temizleme Bakırköy | Yıkat",
     metaDescription:
       "Süet ve nubuk ayakkabılar suya boğmadan, hassas yüzeye özel fırça ve ürünlerle temizlenir. Bakırköy'de, aynı gün teslim.",
     h1: "Süet & nubuk temizleme.\nHassas dokuya hassas bakım.",
@@ -135,7 +135,7 @@ export const services: Service[] = [
   {
     slug: "deri-ayakkabi-bakimi",
     nav: "Deri Bakımı",
-    metaTitle: "Deri Ayakkabı Temizleme ve Bakımı Bakırköy | YIKAT",
+    metaTitle: "Deri Ayakkabı Temizleme ve Bakımı Bakırköy | Yıkat",
     metaDescription:
       "Klasik ve günlük deri ayakkabılar için temizlik ve bakım: suya boğmadan temizlik, kuruma ve çatlamaya karşı bakım. Bakırköy'de, aynı gün teslim.",
     h1: "Deri ayakkabı temizlik & bakımı",

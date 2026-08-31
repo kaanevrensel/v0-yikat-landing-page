@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/site"
 
 // Ana sayfanın title/canonical/robots:index'ini miras almasın.
 export const metadata: Metadata = {
-  title: "Sayfa bulunamadı | YIKAT",
+  title: "Sayfa bulunamadı | Yıkat",
   robots: { index: false, follow: true },
 }
 

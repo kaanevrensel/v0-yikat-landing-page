@@ -11,9 +11,9 @@ import legal from "@/lib/legal-content.json"
 // yikat-app docs.ts) — burada içerik yazılmaz.
 
 export const metadata: Metadata = {
-  title: "Gizlilik Politikası - YIKAT",
+  title: "Gizlilik Politikası - Yıkat",
   description:
-    "YIKAT gizlilik politikası: hangi verileri topladığımız, nasıl kullandığımız ve KVKK kapsamındaki haklarınız.",
+    "Yıkat gizlilik politikası: hangi verileri topladığımız, nasıl kullandığımız ve KVKK kapsamındaki haklarınız.",
   alternates: { canonical: "https://www.yikat.tech/gizlilik-politikasi" },
 }
 

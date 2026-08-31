@@ -2,7 +2,7 @@
  "_generated": "GENERATED FILE — do not edit. Source of truth: yikat-app mobile/src/features/legal/docs.ts (the texts shown in-app and on app.yikat.tech/legal/*). Regenerate: extract COMPANY/LEGAL_DOCS via deno (see landing CLAUDE.md), pick the docs below, and re-run the picker. Regenerated 2026-08-27 for live online card payment via iyzico (pre-authorization model) and Google/Apple sign-in. KÜNYE 2026-08-29 (owner, new tax certificate): company.address and every address row/line carry \"Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul\" (same string as lib/site.ts address.full — NAP rule), company.taxOffice \"Bakırköy V.D.\". These same values were written into yikat-app docs.ts COMPANY on 2026-08-29, so this is NO LONGER A MANUAL OVERRIDE: the next regeneration reproduces them and nothing needs re-applying by hand. taxNo (T.C. Kimlik No) unchanged.",
  "company": {
   "legalName": "Ahmet Kaan Evrensel (şahıs işletmesi)",
-  "brand": "YIKAT",
+  "brand": "Yıkat",
   "address": "Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul",
   "taxOffice": "Bakırköy V.D.",
   "taxNo": "10514514528 (T.C. Kimlik No)",
@@ -20,7 +20,7 @@
    "blocks": [
     {
      "type": "paragraph",
-     "text": "YIKAT olarak gizliliğinize önem veriyoruz. Bu politika, YIKAT mobil uygulamasını kullandığınızda hangi verileri topladığımızı, nasıl kullandığımızı ve haklarınızı özetler. Hukuki ayrıntılar için KVKK Aydınlatma Metni'ni esas alın."
+     "text": "Yıkat olarak gizliliğinize önem veriyoruz. Bu politika, Yıkat mobil uygulamasını kullandığınızda hangi verileri topladığımızı, nasıl kullandığımızı ve haklarınızı özetler. Hukuki ayrıntılar için KVKK Aydınlatma Metni'ni esas alın."
     },
     {
      "type": "rows",
@@ -55,7 +55,7 @@
       "Kaydettiğiniz adresten üretilen: bir adresi kaydettiğinizde veya güncellediğinizde, adresinizi doğru hizmet bölgesine ve size en yakın iş ortağına yönlendirebilmek için adres metniniz yaklaşık bir koordinata (enlem/boylam) çevrilir ve bu koordinat adres kaydınızla birlikte saklanır. Çeviriyi OpenStreetMap / Nominatim servisi yapar; bu sırada adres metniniz bu servise iletilir (bkz. §3).",
       "Hizmeti kullanırken oluşan: sipariş ve ödeme geçmişi, seçilen ödeme yöntemi, online kart ödemelerinde ödemenin sonucu ve maskelenmiş kart bilgisi (son 4 hane, kart markası) ile ödemeyi başlattığınız IP adresi, davet (referans) ilişkisi, giriş kayıtları, anlık bildirim için cihaz bildirim anahtarı, uygulama içi kullanım olayları ve hata/çökme kayıtları (bkz. §4), temel teknik log kayıtları.",
       "Google veya Apple ile giriş yaparsanız: Giriş yöntemi olarak Google ya da Apple hesabınızı seçerseniz, ilgili sağlayıcı bize yalnızca ad-soyadınızı, e-posta adresinizi ve o hesap için ürettiği kullanıcı kimliğini iletir. Google veya Apple hesabınızın şifresi bize hiçbir zaman ulaşmaz; kişi listenize, e-postalarınıza, takviminize veya fotoğraflarınıza erişmeyiz. Apple ile girişte \"E-postamı Gizle\" seçeneğini kullanırsanız, bize gerçek adresiniz yerine Apple'ın ürettiği yönlendirme adresi (…@privaterelay.appleid.com) ulaşır ve siparişe ilişkin e-postalarınızı bu adres üzerinden alırsınız. Ayrıntı: §10.",
-      "Toplamadıklarımız: cihazınızın anlık konum koordinatını saklamayız; arka planda konum takibi yapılmaz; ekran veya oturum kaydı alınmaz; reklam kimliği kullanılmaz, reklam ağlarıyla veri paylaşılmaz ve YIKAT uygulamalar/siteler arası takip yapmaz (Google veya Apple ile girişi seçerseniz, ilgili sağlayıcının kendi tarafında bu girişi görmesi hakkında bkz. §3 ve §10); özel nitelikli veriler toplanmaz."
+      "Toplamadıklarımız: cihazınızın anlık konum koordinatını saklamayız; arka planda konum takibi yapılmaz; ekran veya oturum kaydı alınmaz; reklam kimliği kullanılmaz, reklam ağlarıyla veri paylaşılmaz ve Yıkat uygulamalar/siteler arası takip yapmaz (Google veya Apple ile girişi seçerseniz, ilgili sağlayıcının kendi tarafında bu girişi görmesi hakkında bkz. §3 ve §10); özel nitelikli veriler toplanmaz."
      ]
     },
     {
@@ -76,7 +76,7 @@
       "Kuru temizleme iş ortakları: yalnızca bölge, sipariş kalemleri ve zaman aralıkları paylaşılır — adınız, telefonunuz ve açık adresiniz paylaşılmaz.",
       "Hizmet sağlayıcılar (işleyenler): barındırma/veritabanı Supabase (Almanya), e-posta Resend, anlık bildirim Expo, kullanım analitiği PostHog (AB — Frankfurt, Almanya), hata/çökme kayıtları Sentry (Almanya). Bu sağlayıcılar verileri yalnızca bizim adımıza ve talimatımızla işler.",
       "Ödeme kuruluşu: Online kart ile ödemeyi seçerseniz, ödemenin alınabilmesi ve dolandırıcılığın önlenmesi amacıyla ad-soyadınız, e-posta adresiniz, telefon numaranız, sipariş adresiniz, IP adresiniz ile sipariş numaranız ve tutarı iyzico (iyzi Ödeme ve Elektronik Para Hizmetleri A.Ş.) ile paylaşılır. Kart numaranız ve CVV bize hiçbir zaman ulaşmaz; bunları doğrudan iyzico'nun sayfasında girersiniz ve bize yalnızca ödemenin sonucu ile maskelenmiş kart bilgisi döner. T.C. kimlik numaranızı toplamıyoruz ve iyzico'ya iletmiyoruz. iyzico Türkiye'de yerleşiktir; bu aktarım yurt içi bir aktarımdır.",
-      "Giriş sağlayıcıları: Google ile giriş yapmayı seçerseniz Google Ireland Limited / Google LLC, Apple ile giriş yapmayı seçerseniz Apple Distribution International Ltd. / Apple Inc. Bu adımda ilgili sağlayıcı, YIKAT'a giriş yapmak istediğinizi ve bunun zamanını öğrenir; biz de sağlayıcıdan ad-soyadınızı, e-posta adresinizi ve kullanıcı kimliğinizi alırız. Siparişleriniz, adresiniz ve ödeme bilgileriniz bu sağlayıcılarla paylaşılmaz. Bu giriş yöntemlerini kullanmak zorunda değilsiniz; e-posta adresinizle de giriş yapabilirsiniz.",
+      "Giriş sağlayıcıları: Google ile giriş yapmayı seçerseniz Google Ireland Limited / Google LLC, Apple ile giriş yapmayı seçerseniz Apple Distribution International Ltd. / Apple Inc. Bu adımda ilgili sağlayıcı, Yıkat'a giriş yapmak istediğinizi ve bunun zamanını öğrenir; biz de sağlayıcıdan ad-soyadınızı, e-posta adresinizi ve kullanıcı kimliğinizi alırız. Siparişleriniz, adresiniz ve ödeme bilgileriniz bu sağlayıcılarla paylaşılmaz. Bu giriş yöntemlerini kullanmak zorunda değilsiniz; e-posta adresinizle de giriş yapabilirsiniz.",
       "Adres–koordinat çevirisi: OpenStreetMap / Nominatim (OpenStreetMap Foundation — Birleşik Krallık). Bir adresi kaydettiğinizde veya güncellediğinizde yalnızca adres metniniz (açık adres ve il) bu servise sorgu olarak iletilir; adınız, telefonunuz, kapı/zil kodunuz, sipariş bilgileriniz ve hesap bilgileriniz iletilmez.",
       "Yetkili merciler: yasal zorunluluk hâlinde.",
       "Verilerinizi pazarlama amacıyla üçüncü kişilere satmayız."
@@ -130,7 +130,7 @@
     },
     {
      "type": "paragraph",
-     "text": "YIKAT 18 yaşından küçüklere yönelik değildir; bilerek çocuk verisi toplamayız."
+     "text": "Yıkat 18 yaşından küçüklere yönelik değildir; bilerek çocuk verisi toplamayız."
     },
     {
      "type": "section",
@@ -152,7 +152,7 @@
      "type": "bullets",
      "items": [
       "Bize ulaşan: ad-soyadınız, e-posta adresiniz ve sağlayıcının o hesap için ürettiği kullanıcı kimliği. Şifreniz bize ulaşmaz; hesabınızın diğer içeriklerine erişmeyiz.",
-      "Sağlayıcıya giden: YIKAT'a giriş yapmak istediğiniz bilgisi ve bunun zamanı. Siparişleriniz, adresiniz ve ödeme bilgileriniz sağlayıcıyla paylaşılmaz.",
+      "Sağlayıcıya giden: Yıkat'a giriş yapmak istediğiniz bilgisi ve bunun zamanı. Siparişleriniz, adresiniz ve ödeme bilgileriniz sağlayıcıyla paylaşılmaz.",
       "Apple'da \"E-postamı Gizle\": gerçek e-posta adresiniz yerine Apple'ın yönlendirme adresi bize ulaşır; sipariş e-postalarınızı bu adres üzerinden alırsınız ve yönlendirmeyi dilediğiniz zaman Apple ayarlarından durdurabilirsiniz.",
       "Hukuki sebep: hesabınızın oluşturulması ve kimliğinizin doğrulanması, sözleşmenin kurulması ve ifası için gereklidir (KVKK md. 5/2-c). Bu işleme açık rızaya dayanmaz; giriş yöntemini siz seçersiniz.",
       "Vazgeçmek: Google veya Apple ile girişi kullanmayı bırakmak isterseniz e-posta adresinizle giriş yapmaya devam edebilirsiniz; hesabınızı ise uygulamadan silebilirsiniz (bkz. §7)."
@@ -187,7 +187,7 @@
     },
     {
      "type": "paragraph",
-     "text": "SATICI (\"YIKAT\")"
+     "text": "SATICI (\"Yıkat\")"
     },
     {
      "type": "rows",
@@ -236,7 +236,7 @@
     },
     {
      "type": "paragraph",
-     "text": "İşbu sözleşmenin konusu, Müşteri'nin YIKAT mobil uygulaması üzerinden elektronik ortamda sipariş verdiği; aşağıda nitelikleri ve satış bedeli belirtilen hizmetlerin sunulması ile tarafların KVKK ve tüketici mevzuatından doğan hak ve yükümlülüklerinin belirlenmesidir."
+     "text": "İşbu sözleşmenin konusu, Müşteri'nin Yıkat mobil uygulaması üzerinden elektronik ortamda sipariş verdiği; aşağıda nitelikleri ve satış bedeli belirtilen hizmetlerin sunulması ile tarafların KVKK ve tüketici mevzuatından doğan hak ve yükümlülüklerinin belirlenmesidir."
     },
     {
      "type": "section",
@@ -257,12 +257,12 @@
     {
      "type": "bullets",
      "items": [
-      "Ödeme yöntemleri: kapıda nakit, kapıda kart ve uygulama üzerinden online kart ödemesi. Online kart ödemesi, iyzico (iyzi Ödeme ve Elektronik Para Hizmetleri A.Ş.) güvenli ödeme altyapısı üzerinden ve kartınızı veren bankanın 3D Secure doğrulamasıyla alınır. Kart numaranız ve CVV bilgileriniz YIKAT tarafından görülmez ve saklanmaz; bunları doğrudan iyzico'nun güvenli ödeme sayfasında girersiniz (bkz. Ödeme ve Güvenli Alışveriş).",
-      "Ön provizyon (bloke) ile ödeme: Online kart ödemesinde sipariş anında kartınızdan tahsilat yapılmaz. Sipariş tutarı kartınızda ön provizyon olarak bloke edilir; bu tutar kartınızın kullanılabilir limitinden düşer ancak hesabınızdan çıkmaz ve o anda YIKAT'a aktarılmaz.",
+      "Ödeme yöntemleri: kapıda nakit, kapıda kart ve uygulama üzerinden online kart ödemesi. Online kart ödemesi, iyzico (iyzi Ödeme ve Elektronik Para Hizmetleri A.Ş.) güvenli ödeme altyapısı üzerinden ve kartınızı veren bankanın 3D Secure doğrulamasıyla alınır. Kart numaranız ve CVV bilgileriniz Yıkat tarafından görülmez ve saklanmaz; bunları doğrudan iyzico'nun güvenli ödeme sayfasında girersiniz (bkz. Ödeme ve Güvenli Alışveriş).",
+      "Ön provizyon (bloke) ile ödeme: Online kart ödemesinde sipariş anında kartınızdan tahsilat yapılmaz. Sipariş tutarı kartınızda ön provizyon olarak bloke edilir; bu tutar kartınızın kullanılabilir limitinden düşer ancak hesabınızdan çıkmaz ve o anda Yıkat'a aktarılmaz.",
       "Kesin tutarın tahsili: Hizmet tamamlandığında kesin tutar, bloke edilen tutar üzerinden ve onu hiçbir şekilde aşmayacak biçimde tahsil edilir. Bloke edilen tutarın tahsil edilmeyen kısmı serbest bırakılır (bkz. İptal ve İade Koşulları §3).",
       "Tahsil edilen tutar neden daha düşük olabilir: Bir ürününüz işleme uygun bulunmaz veya siparişinizden çıkarılırsa yalnızca kalan hizmetlerin bedeli tahsil edilir. Tahsilat tutarı bloke edilen tutarı aşamaz; daha yüksek bir tutar gerekirse bu tutar sizin ayrıca onayınızla alınır.",
       "Online kart ödemesi, tutarı sipariş anında kesinleşen (sabit fiyatlı) hizmetlerde seçilebilir. Tartı veya inceleme ile netleşen hizmetlerde (örneğin kiloyla çamaşır) ödeme teslimde kapıda alınır.",
-      "Ödeme tamamlanmadan teslimat gerçekleştirilemezse ürünler, ödeme tamamlanana kadar YIKAT'ta muhafaza edilebilir."
+      "Ödeme tamamlanmadan teslimat gerçekleştirilemezse ürünler, ödeme tamamlanana kadar Yıkat'ta muhafaza edilebilir."
      ]
     },
     {
@@ -285,7 +285,7 @@
      "type": "bullets",
      "items": [
       "Mesafeli Sözleşmeler Yönetmeliği uyarınca tüketici, kural olarak 14 gün içinde gerekçe göstermeksizin cayma hakkına sahiptir.",
-      "İstisna (önemli): YIKAT hizmetleri, Müşteri'nin onayıyla ifasına başlanan hizmetler niteliğindedir. Müşteri, ürünlerin alınması ve işleme konulmasıyla birlikte hizmetin ifasına derhâl başlanmasını talep ve kabul eder. Yönetmelik md. 15 uyarınca, ifasına başlanan/tamamlanan hizmetlerde ve niteliği gereği iade edilemeyecek (işlem görmüş) ürünlerde cayma hakkı kullanılamaz.",
+      "İstisna (önemli): Yıkat hizmetleri, Müşteri'nin onayıyla ifasına başlanan hizmetler niteliğindedir. Müşteri, ürünlerin alınması ve işleme konulmasıyla birlikte hizmetin ifasına derhâl başlanmasını talep ve kabul eder. Yönetmelik md. 15 uyarınca, ifasına başlanan/tamamlanan hizmetlerde ve niteliği gereği iade edilemeyecek (işlem görmüş) ürünlerde cayma hakkı kullanılamaz.",
       "Henüz ifasına başlanmamış (ürünler teslim alınmamış) bir sipariş için Müşteri, uygulama üzerinden siparişini 30 dakika içinde ücretsiz iptal edebilir; bu süreden sonra ve alım gerçekleşmeden önce de destek@yikat.tech / 0850 303 31 93 üzerinden iptal talep edilebilir."
      ]
     },
@@ -307,7 +307,7 @@
     },
     {
      "type": "paragraph",
-     "text": "6100 sayılı Hukuk Muhakemeleri Kanunu md. 193 uyarınca, YIKAT'ın elektronik kayıtları (uygulama logları, sipariş ve bildirim kayıtları) taraflar arasında kesin delil sayılır."
+     "text": "6100 sayılı Hukuk Muhakemeleri Kanunu md. 193 uyarınca, Yıkat'ın elektronik kayıtları (uygulama logları, sipariş ve bildirim kayıtları) taraflar arasında kesin delil sayılır."
     },
     {
      "type": "section",
@@ -385,7 +385,7 @@
      "type": "bullets",
      "items": [
       "Tüm vergiler dâhil tutar uygulamada gösterilir. Tartı/inceleme ile netleşen hizmetlerde gösterilen tutar tahminîdir; kesin tutar ürün teslim alınınca belirlenir.",
-      "Ödeme: kapıda nakit, kapıda kart veya uygulamadan online kart. Online kart ödemesinde sipariş anında tahsilat yapılmaz; tutar kartınızda ön provizyon olarak bloke edilir ve hizmet tamamlanınca, bloke edilen tutarı aşmamak üzere kesin tutar tahsil edilir. Ödeme iyzico güvenli ödeme altyapısı ve 3D Secure ile alınır; kart bilgileriniz YIKAT'ta saklanmaz. Online kart ödemesi sabit fiyatlı hizmetlerde seçilebilir. Ayrıntı: Ödeme ve Güvenli Alışveriş ile İptal ve İade Koşulları.",
+      "Ödeme: kapıda nakit, kapıda kart veya uygulamadan online kart. Online kart ödemesinde sipariş anında tahsilat yapılmaz; tutar kartınızda ön provizyon olarak bloke edilir ve hizmet tamamlanınca, bloke edilen tutarı aşmamak üzere kesin tutar tahsil edilir. Ödeme iyzico güvenli ödeme altyapısı ve 3D Secure ile alınır; kart bilgileriniz Yıkat'ta saklanmaz. Online kart ödemesi sabit fiyatlı hizmetlerde seçilebilir. Ayrıntı: Ödeme ve Güvenli Alışveriş ile İptal ve İade Koşulları.",
       "Ek teslimat ücreti varsa sipariş özetinde ayrıca belirtilir."
      ]
     },
@@ -405,7 +405,7 @@
      "type": "bullets",
      "items": [
       "Kural olarak 14 gün içinde cayma hakkınız vardır.",
-      "Ancak YIKAT hizmetleri, onayınızla ifasına derhâl başlanan hizmetlerdir; ürünleriniz teslim alınıp işleme konulduğunda (Yönetmelik md. 15) cayma hakkı kullanılamaz. İfaya başlanmadan önce siparişinizi uygulamadan (oluşturduktan sonraki 30 dakika içinde ücretsiz) veya 0850 303 31 93 / destek@yikat.tech ile iptal edebilirsiniz."
+      "Ancak Yıkat hizmetleri, onayınızla ifasına derhâl başlanan hizmetlerdir; ürünleriniz teslim alınıp işleme konulduğunda (Yönetmelik md. 15) cayma hakkı kullanılamaz. İfaya başlanmadan önce siparişinizi uygulamadan (oluşturduktan sonraki 30 dakika içinde ücretsiz) veya 0850 303 31 93 / destek@yikat.tech ile iptal edebilirsiniz."
      ]
     },
     {
@@ -432,7 +432,7 @@
    "blocks": [
     {
      "type": "paragraph",
-     "text": "Bu metin, YIKAT siparişlerinin iptali ve (online kart ödemelerinde) iade süreçlerini açıklar. Mesafeli Satış Sözleşmesi'nin ayrılmaz bir parçasıdır."
+     "text": "Bu metin, Yıkat siparişlerinin iptali ve (online kart ödemelerinde) iade süreçlerini açıklar. Mesafeli Satış Sözleşmesi'nin ayrılmaz bir parçasıdır."
     },
     {
      "type": "section",
@@ -453,7 +453,7 @@
      "type": "bullets",
      "items": [
       "Mesafeli Sözleşmeler Yönetmeliği uyarınca kural olarak 14 gün içinde cayma hakkınız vardır.",
-      "İstisna: YIKAT hizmetleri, onayınızla ifasına derhâl başlanan hizmetlerdir; ürünleriniz teslim alınıp işleme konulduğunda (Yönetmelik md. 15) cayma hakkı kullanılamaz. Ayrıntı: Mesafeli Satış Sözleşmesi §6."
+      "İstisna: Yıkat hizmetleri, onayınızla ifasına derhâl başlanan hizmetlerdir; ürünleriniz teslim alınıp işleme konulduğunda (Yönetmelik md. 15) cayma hakkı kullanılamaz. Ayrıntı: Mesafeli Satış Sözleşmesi §6."
      ]
     },
     {
@@ -467,7 +467,7 @@
       "Ön provizyon (bloke) modeli: sipariş anında tutar kartınızda bloke edilir; sipariş hizmete başlanmadan iptal edilirse bloke serbest bırakılır (tahsilat olmaz); hizmet tamamlanınca kesin tutar (blokeyi aşmayacak şekilde) tahsil edilir; bloke edilen tutarın kesin tutarı aşan kısmı serbest kalır.",
       "Blokenin süresi: Bir ön provizyon, kartınızı veren bankanın belirlediği süre boyunca geçerlidir. Bu süre içinde tahsilat yapılmazsa bloke kendiliğinden çözülür; böyle bir durumda hizmetin bedeli için sizinle iletişime geçilir.",
       "Kısmi iade / fark iadesi: tahsil edilen tutarda sonradan bir düzeltme gerekirse, fark aynı karta iade edilir.",
-      "İade süresi: iade talebinizin onaylanmasının ardından tutar, bankanız/kart kuruluşunuzun süreçlerine bağlı olarak genellikle birkaç iş günü içinde kartınıza yansır. Yansıma süresi YIKAT'ın kontrolü dışında olup bankanıza bağlıdır.",
+      "İade süresi: iade talebinizin onaylanmasının ardından tutar, bankanız/kart kuruluşunuzun süreçlerine bağlı olarak genellikle birkaç iş günü içinde kartınıza yansır. Yansıma süresi Yıkat'ın kontrolü dışında olup bankanıza bağlıdır.",
       "İade işlemleri iyzico ödeme altyapısı üzerinden gerçekleştirilir."
      ]
     },
@@ -485,7 +485,7 @@
     },
     {
      "type": "paragraph",
-     "text": "Hizmetin ayıplı olması hâlinde tüketici, 6502 sayılı Kanun'dan doğan haklarını (yenileme, bedel iadesi vb.) kullanabilir. Ürünün niteliği, mevcut leke/yıpranma ve üretici bakım etiketine bağlı bazı sonuçlar garanti edilemeyebilir; YIKAT özen yükümlülüğü çerçevesinde sorumludur."
+     "text": "Hizmetin ayıplı olması hâlinde tüketici, 6502 sayılı Kanun'dan doğan haklarını (yenileme, bedel iadesi vb.) kullanabilir. Ürünün niteliği, mevcut leke/yıpranma ve üretici bakım etiketine bağlı bazı sonuçlar garanti edilemeyebilir; Yıkat özen yükümlülüğü çerçevesinde sorumludur."
     },
     {
      "type": "bullets",
@@ -521,7 +521,7 @@
    "blocks": [
     {
      "type": "paragraph",
-     "text": "YIKAT hizmetlerinde teslimat; ürünlerin belirttiğiniz adresten teslim alınması ve işlem sonrası aynı adrese teslim edilmesi şeklinde gerçekleşir. Aşağıdaki koşullar, Mesafeli Satış Sözleşmesi’nin “İfa / Teslimat” bölümünün aynısıdır."
+     "text": "Yıkat hizmetlerinde teslimat; ürünlerin belirttiğiniz adresten teslim alınması ve işlem sonrası aynı adrese teslim edilmesi şeklinde gerçekleşir. Aşağıdaki koşullar, Mesafeli Satış Sözleşmesi’nin “İfa / Teslimat” bölümünün aynısıdır."
     },
     {
      "type": "bullets",

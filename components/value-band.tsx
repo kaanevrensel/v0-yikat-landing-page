@@ -9,7 +9,7 @@ const ICONS = { clock: Clock, shield: ShieldCheck, gem: Gem } as const
 export function ValueBand() {
   return (
     <section className="bg-muted py-12">
-      <h2 className="sr-only">Neden YIKAT</h2>
+      <h2 className="sr-only">Neden Yıkat</h2>
       <div className="mx-auto grid max-w-6xl gap-6 px-4 sm:grid-cols-3 sm:px-6 lg:px-8">
         {valueProps.map((v, i) => {
           const Icon = ICONS[v.icon]

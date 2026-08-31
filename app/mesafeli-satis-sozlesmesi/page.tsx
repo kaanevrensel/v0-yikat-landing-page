@@ -14,9 +14,9 @@ import legal from "@/lib/legal-content.json"
 // git geçmişinde durur.
 
 export const metadata: Metadata = {
-  title: "Mesafeli Satış Sözleşmesi - YIKAT",
+  title: "Mesafeli Satış Sözleşmesi - Yıkat",
   description:
-    "YIKAT Mesafeli Satış Sözleşmesi ve Ön Bilgilendirme Formu. 6502 sayılı Tüketicinin Korunması Hakkında Kanun kapsamında.",
+    "Yıkat Mesafeli Satış Sözleşmesi ve Ön Bilgilendirme Formu. 6502 sayılı Tüketicinin Korunması Hakkında Kanun kapsamında.",
   alternates: { canonical: "https://www.yikat.tech/mesafeli-satis-sozlesmesi" },
 }
 

@@ -13,7 +13,7 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2">
               <Logo width={28} className="text-white" />
-              <span className="text-lg font-semibold tracking-tight text-white">YIKAT</span>
+              <span className="text-lg font-semibold tracking-tight text-white">Yıkat</span>
             </div>
             <p className="mt-4 max-w-xs text-sm text-white">
               Bakırköy'de profesyonel ayakkabı yıkama. Aynı gün teslim.
@@ -68,7 +68,7 @@ export function Footer() {
           <PaymentBand tone="dark" />
         </div>
         <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-white/20 pt-6 text-xs text-white/95">
-          <p>© 2026 YIKAT. Tüm hakları saklıdır.</p>
+          <p>© 2026 Yıkat. Tüm hakları saklıdır.</p>
           {(siteConfig.socialLinks.googleBusinessProfile || siteConfig.socialLinks.instagram) && (
             <p className="flex gap-4">
               {siteConfig.socialLinks.googleBusinessProfile && (

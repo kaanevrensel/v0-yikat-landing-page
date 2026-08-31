@@ -11,9 +11,9 @@ import legal from "@/lib/legal-content.json"
 // lib/legal-content.json'dan (tek kaynak: yikat-app docs.ts).
 
 export const metadata: Metadata = {
-  title: "Teslimat ve İade - YIKAT",
+  title: "Teslimat ve İade - Yıkat",
   description:
-    "YIKAT teslimat koşulları ile sipariş iptali ve iade (cayma hakkı, online kart iadeleri) koşulları.",
+    "Yıkat teslimat koşulları ile sipariş iptali ve iade (cayma hakkı, online kart iadeleri) koşulları.",
   alternates: { canonical: "https://www.yikat.tech/teslimat-ve-iade" },
 }
 

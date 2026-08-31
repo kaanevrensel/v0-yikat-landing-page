@@ -3,7 +3,7 @@
 // Kural: Çekmeköy/eski döneme ait hiçbir veri ve rakam kullanılmaz (spec §2).
 
 export const siteConfig = {
-  name: "YIKAT",
+  name: "Yıkat",
   url: "https://www.yikat.tech",
   phone: "0850 303 31 93",
   phoneE164: "+908503033193",
@@ -51,7 +51,7 @@ export const valueProps = [
   },
   {
     icon: "shield",
-    title: "YIKAT Garantisi",
+    title: "Yıkat Garantisi",
     description: "Memnun kalmazsan ücretsiz tekrar yıkarız.",
   },
   {
@@ -94,7 +94,7 @@ export const faqs = [
   },
   {
     q: "Memnun kalmazsam ne oluyor?",
-    a: "YIKAT Garantisi: Sonuçtan memnun kalmazsan ücretsiz tekrar yıkıyoruz.",
+    a: "Yıkat Garantisi: Sonuçtan memnun kalmazsan ücretsiz tekrar yıkıyoruz.",
   },
   {
     q: "Ayakkabı yıkama ücreti ne kadar?",

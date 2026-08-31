@@ -26,7 +26,7 @@ function AppScreen() {
           <div className="flex size-16 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/20">
             <Logo width={36} className="text-white" />
           </div>
-          <span className="text-base font-semibold tracking-tight text-white">YIKAT</span>
+          <span className="text-base font-semibold tracking-tight text-white">Yıkat</span>
           <span className="text-[11px] font-medium text-white/80">çok yakında</span>
         </div>
       </div>
@@ -37,7 +37,7 @@ function AppScreen() {
 export function ComingSoonBand() {
   return (
     <section
-      aria-label="YIKAT uygulaması çok yakında. Kapıdan alım, kapıya teslim, tüm tekstil bakımı tek uygulamada."
+      aria-label="Yıkat uygulaması çok yakında. Kapıdan alım, kapıya teslim, tüm tekstil bakımı tek uygulamada."
       className="py-16 sm:py-20"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -64,7 +64,7 @@ export function ComingSoonBand() {
                 Çok yakında
               </ShinyText>
               <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight text-white md:text-4xl">
-                YIKAT uygulaması çok yakında
+                Yıkat uygulaması çok yakında
               </h2>
               <p className="mt-3 max-w-md text-pretty text-white">
                 Kapıdan alım, kapıya teslim. Kuru temizlemeden ayakkabı bakımına, tüm tekstil işiniz İstanbul'un her

@@ -162,7 +162,7 @@ export function VisitSection() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5, delay: 0.1 }}
           className="group relative block aspect-[4/3] overflow-hidden rounded-3xl border border-white/15"
-          aria-label="Haritada aç: YIKAT Bakırköy"
+          aria-label="Haritada aç: Yıkat Bakırköy"
         >
           <img
             src="/images/map/dukkan-harita.webp"

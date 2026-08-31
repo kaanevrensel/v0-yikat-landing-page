@@ -16,10 +16,10 @@ export function serviceJsonLd(service: Service) {
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      name: `${service.nav}, YIKAT`,
+      name: `${service.nav}, Yıkat`,
       serviceType: service.nav,
       url: `${siteConfig.url}/${service.slug}`,
-      provider: { "@type": "DryCleaningOrLaundry", "@id": siteConfig.url, name: "YIKAT" },
+      provider: { "@type": "DryCleaningOrLaundry", "@id": siteConfig.url, name: "Yıkat" },
       areaServed: [
         { "@type": "AdministrativeArea", name: "Bakırköy" },
         { "@type": "City", name: "İstanbul" },
