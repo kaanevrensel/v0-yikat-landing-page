@@ -58,8 +58,10 @@ No live account should be deleted solely for a UI smoke test.
 - Offline React server rendering: passed for the deletion page's canonical URL,
   mailto recipient/subject/body, retention disclosures, credential-free markup,
   sitemap entry, and visible default `BlurText` headings and paragraphs.
-- `pnpm build`: blocked when `next/font` attempted to fetch Bricolage Grotesque
-  from Google Fonts; this session cannot establish that network connection.
-- Browser tests and rendered visual verification were not executed: browser
-  access was unavailable. Their presence is not a passing browser test result.
-- This change was not deployed and the support mailbox was not exercised.
+- Local `pnpm build` was blocked by the Google Fonts network request; local
+  computer use was unavailable. No manual rendered review is claimed.
+- Remote [quality run 33991086744](https://github.com/kaanevrensel/v0-yikat-landing-page/actions/runs/33991086744)
+  passed the production build, typecheck, lint and all **22 Playwright browser
+  tests** at source commit `371d3f687d759564eee019bbb5e46f2c1c606112`.
+- The branch preview built successfully. Production deployment and monitored
+  support fulfillment remain unverified; the support mailbox was not exercised.
