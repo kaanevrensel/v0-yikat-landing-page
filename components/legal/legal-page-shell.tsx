@@ -20,9 +20,9 @@ export function LegalPageShell({
         <div className="mx-auto flex max-w-4xl items-center gap-4 px-4 py-4 sm:px-6">
           <Link
             href="/"
-            className="flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            className="inline-flex min-h-11 min-w-11 items-center gap-2 rounded-md text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4"
           >
-            <ArrowLeft className="size-4" />
+            <ArrowLeft className="size-4" aria-hidden />
             {"Geri Dön"}
           </Link>
           <div className="ml-auto">

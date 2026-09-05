@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteConfig.url}/kvkk`, lastModified: new Date("2026-07-08") },
     { url: `${siteConfig.url}/mesafeli-satis-sozlesmesi`, lastModified: new Date("2026-08-27") },
     { url: `${siteConfig.url}/gizlilik-politikasi`, lastModified: new Date("2026-08-27") },
+    { url: `${siteConfig.url}/hesap-silme`, lastModified: new Date("2026-09-05") },
     { url: `${siteConfig.url}/teslimat-ve-iade`, lastModified: new Date("2026-08-27") },
     { url: `${siteConfig.url}/iletisim`, lastModified: new Date("2026-08-27") },
   ]

@@ -30,7 +30,7 @@ The full task-by-task history of the pivot is in `docs/superpowers/plans/2026-07
 Package manager is **pnpm** (both lockfiles exist, but node_modules is pnpm-installed).
 
 - `pnpm dev` — dev server
-- `pnpm build` — production build. **`next.config.mjs` sets `typescript.ignoreBuildErrors: true`, so a green build does NOT mean type-safe.** Run `pnpm typecheck` to actually typecheck.
+- `pnpm build` — production build, including the Next.js TypeScript gate. `ignoreBuildErrors` was removed in the 2026-09-05 audit. Keep `pnpm typecheck` as the fast standalone check and CI gate.
 - Kalite kapıları GitHub Actions'ta da koşar (`.github/workflows/quality.yml`: lint+typecheck+Playwright; push/PR). Yerelde: `pnpm lint` (ESLint 9 flat, next/core-web-vitals + jsx-a11y; `components/ui/**` bilinçle dışarıda; iki gerekçeli kural istisnası eslint.config.mjs'te), `pnpm typecheck`, `pnpm test` (Playwright smoke + axe, sistem Chrome `channel`, port 3210), `pnpm perf` (Lighthouse CI; `CHROME_PATH` ortam değişkeni ister; eşikler baseline-ratchet: LCP<5.5s, CLS<0.1, ağırlık<1MB, a11y≥95).
 
 No env vars are required — the `RESEND_API_KEY`-backed `/api/partner` route and its dependency were removed in the pivot (verify: `grep -r RESEND .` and `grep resend package.json` both come back empty).
@@ -70,6 +70,7 @@ Active stylesheet is **`app/globals.css`** (Tailwind v4 CSS-first: `@theme inlin
 
 ## Known gotchas
 
+- **Account deletion (2026-09-05):** `/hesap-silme` is a public support-request page for Yıkat Gitsin / Yıkat, linked from the footer and sitemap. It opens an email to the support mailbox; it performs no privileged write. Handling and verification requirements are in `docs/account-deletion-support.md`. Preserve the distinction between requesting deletion, the 30-day cancellation window, and retained legal records.
 - **Legal pages (updated 2026-08-27, iyzico üye işyeri incelemesi eksik-belge listesi):**
   `/mesafeli-satis-sozlesmesi`, `/gizlilik-politikasi` and `/teslimat-ve-iade` render
   **generated content** from `lib/legal-content.json` via `components/legal/*` — the single

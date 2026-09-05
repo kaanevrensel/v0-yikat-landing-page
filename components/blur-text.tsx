@@ -7,8 +7,6 @@ import { motion, useReducedMotion } from "framer-motion"
 
 type BlurTextProps = {
   text: string
-  // DİKKAT: as="p" kullanılacaksa aria stratejisi güncellenmeli — paragraph rolü aria-label'ı
-  // yok sayar ve içerik aria-hidden olduğundan ekran okuyucuda sessiz kalır (şu an tüm kullanım h2).
   as?: "h2" | "p"
   delay?: number // birim başına ms
   animateBy?: "words" | "characters"
@@ -16,8 +14,9 @@ type BlurTextProps = {
 }
 
 const item = {
-  hidden: { opacity: 0, y: 12, filter: "blur(8px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.45, ease: "easeOut" as const } },
+  // Readable by default, including SSR or a failed observer. Motion starts only
+  // when in view and never owns the heading's visibility.
+  visible: { y: [6, 0], filter: ["blur(2px)", "blur(0px)"], transition: { duration: 0.45, ease: "easeOut" as const } },
 }
 
 export default function BlurText({ text, as = "h2", delay = 60, animateBy = "words", className }: BlurTextProps) {
@@ -37,14 +36,14 @@ export default function BlurText({ text, as = "h2", delay = 60, animateBy = "wor
 
   return (
     <MotionTag
-      aria-label={text}
-      initial="hidden"
+      initial={false}
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
-      variants={{ hidden: {}, visible: { transition: { staggerChildren: delay / 1000 } } }}
+      variants={{ visible: { transition: { staggerChildren: delay / 1000 } } }}
       className={className}
     >
-      {/* Ekran okuyucu metni parent aria-label'dan alır; parçalı span'ler dekoratif. */}
+      {/* One accessible string works for paragraphs and headings alike. */}
+      <span className="sr-only">{text}</span>
       <span aria-hidden className="contents">
         {units.map((u, i) => (
           // whitespace-pre: inline-block span'in SONUNDAKİ boşluk normalde kırpılır — kelimeler

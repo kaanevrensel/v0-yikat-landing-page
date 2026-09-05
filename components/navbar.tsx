@@ -149,7 +149,7 @@ export function Navbar() {
           )}
         />
         <nav aria-label="Ana menü" className="relative z-10 flex h-12 items-center gap-1 pl-4 pr-2 md:gap-2">
-          <Link href="/" aria-label="Yıkat ana sayfa" className="flex items-center pr-1">
+          <Link href="/" aria-label="Yıkat ana sayfa" className="flex min-h-11 min-w-11 items-center rounded-md pr-1">
             <Logo width={60} className="text-[#269AFF]" />
           </Link>
 
@@ -179,7 +179,7 @@ export function Navbar() {
                 onClick={() => setActive(l.href)}
                 // Jel basış (Apple .interactive() portu): hafif esneme; reduced-motion'da kapalı.
                 className={cn(
-                  "relative rounded-full px-3 py-1.5 text-sm font-medium transition-[color,transform] duration-150 active:scale-[0.96] motion-reduce:transform-none",
+                  "relative inline-flex min-h-11 items-center rounded-full px-3 py-1.5 text-sm font-medium transition-[color,transform] duration-150 active:scale-[0.96] motion-reduce:transform-none",
                   liquidTarget === l.href ? "text-foreground" : solid ? "text-muted-foreground" : "text-foreground/80",
                 )}
               >
@@ -193,7 +193,7 @@ export function Navbar() {
             aria-label={`Ara: ${siteConfig.phone}`}
             onClick={() => track("nav_call_click")}
             className={cn(
-              "hidden rounded-full p-2 transition-[color,transform] duration-150 hover:text-foreground active:scale-[0.94] motion-reduce:transform-none md:block",
+              "hidden size-11 items-center justify-center rounded-full p-2 transition-[color,transform] duration-150 hover:text-foreground active:scale-[0.94] motion-reduce:transform-none md:flex",
               solid ? "text-muted-foreground" : "text-foreground/80",
             )}
           >
@@ -204,7 +204,7 @@ export function Navbar() {
           <Button
             asChild
             size="sm"
-            className="hidden rounded-full bg-[#2563eb] hover:bg-[#1d4fc4] transition-transform duration-150 active:scale-[0.96] motion-reduce:transform-none md:inline-flex"
+            className="hidden min-h-11 rounded-full bg-[#2563eb] hover:bg-[#1d4fc4] transition-transform duration-150 active:scale-[0.96] motion-reduce:transform-none md:inline-flex"
           >
             <a
               href={directionsUrl}
@@ -237,7 +237,7 @@ export function Navbar() {
             <MapPin className="size-5" />
           </a>
           <button
-            className="p-2 transition-transform duration-150 active:scale-[0.94] motion-reduce:transform-none md:hidden"
+            className="flex size-11 shrink-0 items-center justify-center rounded-full p-2 transition-transform duration-150 active:scale-[0.94] motion-reduce:transform-none md:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -271,14 +271,14 @@ export function Navbar() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-2 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+                  className="flex min-h-11 items-center rounded-lg px-2 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
                 >
                   {l.label}
                 </Link>
               ))}
-              <div className="mt-2 flex gap-2">
+              <div className="mt-2 flex flex-wrap gap-2">
                 {/* bg-[#2563eb]: 14px beyaz metin #4A8CFF üstünde AA geçemiyor (masaüstü CTA ile aynı karar). */}
-                <Button asChild size="sm" className="flex-1 rounded-full bg-[#2563eb] hover:bg-[#1d4fc4]">
+                <Button asChild size="sm" className="h-auto min-h-11 min-w-0 flex-1 basis-32 whitespace-normal rounded-full bg-[#2563eb] py-2 hover:bg-[#1d4fc4]">
                   <a
                     href={directionsUrl}
                     target="_blank"
@@ -291,7 +291,7 @@ export function Navbar() {
                     <MapPin className="size-4" /> Yol Tarifi
                   </a>
                 </Button>
-                <Button asChild size="sm" variant="outline" className="flex-1 rounded-full">
+                <Button asChild size="sm" variant="outline" className="h-auto min-h-11 min-w-0 flex-1 basis-32 whitespace-normal rounded-full py-2">
                   <a
                     href={siteConfig.phoneHref}
                     onClick={() => {
