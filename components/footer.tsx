@@ -26,12 +26,11 @@ export function Footer() {
               <FooterDirectionsLink />
             </p>
             <p className="mt-2">{siteConfig.hours.label}</p>
-            <p className="mt-2">
-              <a href={siteConfig.phoneHref} className="hover:underline">
+            <p className="mt-2 flex flex-wrap items-center gap-x-3">
+              <a href={siteConfig.phoneHref} className="inline-flex min-h-11 items-center hover:underline">
                 {siteConfig.phone}
               </a>
-              {" · "}
-              <a href={`mailto:${siteConfig.email}`} className="hover:underline">
+              <a href={`mailto:${siteConfig.email}`} className="inline-flex min-h-11 items-center hover:underline">
                 {siteConfig.email}
               </a>
             </p>
@@ -44,19 +43,22 @@ export function Footer() {
             <FooterServiceLinks services={services.map((s) => ({ slug: s.slug, nav: s.nav }))} />
           </div>
           <div className="flex flex-col gap-2 text-sm text-white">
-            <Link href="/iletisim" className="hover:text-white">
+            <Link href="/iletisim" className="inline-flex min-h-11 items-center hover:underline">
               İletişim
             </Link>
-            <Link href="/gizlilik-politikasi" className="hover:text-white">
+            <Link href="/gizlilik-politikasi" className="inline-flex min-h-11 items-center hover:underline">
               Gizlilik Politikası
             </Link>
-            <Link href="/kvkk" className="hover:text-white">
+            <Link href="/hesap-silme" className="inline-flex min-h-11 items-center hover:underline">
+              Hesap Silme
+            </Link>
+            <Link href="/kvkk" className="inline-flex min-h-11 items-center hover:underline">
               KVKK Aydınlatma Metni
             </Link>
-            <Link href="/mesafeli-satis-sozlesmesi" className="hover:text-white">
+            <Link href="/mesafeli-satis-sozlesmesi" className="inline-flex min-h-11 items-center hover:underline">
               Mesafeli Satış Sözleşmesi
             </Link>
-            <Link href="/teslimat-ve-iade" className="hover:text-white">
+            <Link href="/teslimat-ve-iade" className="inline-flex min-h-11 items-center hover:underline">
               Teslimat ve İade
             </Link>
           </div>
@@ -70,12 +72,12 @@ export function Footer() {
         <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-white/20 pt-6 text-xs text-white/95">
           <p>© 2026 Yıkat. Tüm hakları saklıdır.</p>
           {(siteConfig.socialLinks.googleBusinessProfile || siteConfig.socialLinks.instagram) && (
-            <p className="flex gap-4">
+            <p className="flex flex-wrap gap-x-4">
               {siteConfig.socialLinks.googleBusinessProfile && (
-                <a href={siteConfig.socialLinks.googleBusinessProfile} target="_blank" rel="noopener noreferrer" className="hover:underline">Google</a>
+                <a href={siteConfig.socialLinks.googleBusinessProfile} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center hover:underline">Google</a>
               )}
               {siteConfig.socialLinks.instagram && (
-                <a href={siteConfig.socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="hover:underline">Instagram</a>
+                <a href={siteConfig.socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center hover:underline">Instagram</a>
               )}
             </p>
           )}

@@ -15,7 +15,7 @@ export function FooterDirectionsLink() {
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => track("footer_directions_click")}
-      className="hover:underline"
+      className="inline-flex min-h-11 items-center hover:underline"
     >
       Yol tarifi al →
     </a>
@@ -29,7 +29,7 @@ export function FooterWhatsAppLink() {
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => track("footer_whatsapp_click")}
-      className="hover:underline"
+      className="inline-flex min-h-11 items-center hover:underline"
     >
       WhatsApp'tan yaz
     </a>
@@ -41,7 +41,7 @@ export function FooterServiceLinks({ services }: { services: { slug: string; nav
   return (
     <>
       {services.map((s) => (
-        <Link key={s.slug} href={`/${s.slug}`} className="hover:underline" onClick={() => track("footer_service_click")}>
+        <Link key={s.slug} href={`/${s.slug}`} className="inline-flex min-h-11 items-center hover:underline" onClick={() => track("footer_service_click")}>
           {s.nav}
         </Link>
       ))}
