@@ -5,7 +5,7 @@ import { services } from "@/lib/services"
 import { siteConfig } from "@/lib/site"
 import { Logo } from "@/components/logo"
 
-export function Footer() {
+export function Footer({ showTechnologyCredit = false }: { showTechnologyCredit?: boolean }) {
   return (
     <footer className="bg-navy py-12 text-navy-foreground">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -71,6 +71,14 @@ export function Footer() {
         </div>
         <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-white/20 pt-6 text-xs text-white/95">
           <p>© 2026 Yıkat. Tüm hakları saklıdır.</p>
+          {showTechnologyCredit && (
+            <p>
+              Teknoloji desteği:{" "}
+              <a href="https://benian.ai/" className="inline-flex min-h-11 min-w-11 items-center underline underline-offset-4">
+                BENIAN
+              </a>
+            </p>
+          )}
           {(siteConfig.socialLinks.googleBusinessProfile || siteConfig.socialLinks.instagram) && (
             <p className="flex flex-wrap gap-x-4">
               {siteConfig.socialLinks.googleBusinessProfile && (
