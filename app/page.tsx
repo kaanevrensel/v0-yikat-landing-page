@@ -47,7 +47,7 @@ export default function Home() {
           <ComingSoonBand />
           <FoamDivider className="text-navy" />
         </main>
-        <Footer />
+        <Footer showTechnologyCredit />
       </MotionProvider>
     </>
   )
