@@ -1,5 +1,5 @@
 {
- "_generated": "GENERATED FILE — do not edit. Source of truth: yikat-app mobile/src/features/legal/docs.ts (the texts shown in-app and on app.yikat.tech/legal/*). Regenerate: extract COMPANY/LEGAL_DOCS via deno (see landing CLAUDE.md), pick the docs below, and re-run the picker. Regenerated 2026-08-27 for live online card payment via iyzico (pre-authorization model) and Google/Apple sign-in. KÜNYE 2026-08-29 (owner, new tax certificate): company.address and every address row/line carry \"Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul\" (same string as lib/site.ts address.full — NAP rule), company.taxOffice \"Bakırköy V.D.\". These same values were written into yikat-app docs.ts COMPANY on 2026-08-29, so this is NO LONGER A MANUAL OVERRIDE: the next regeneration reproduces them and nothing needs re-applying by hand. taxNo (T.C. Kimlik No) unchanged.",
+ "_generated": "GENERATED FILE — do not edit. Source of truth: yikat-app mobile/src/features/legal/docs.ts (the texts shown in-app and on app.yikat.tech/legal/*). Regenerate: extract COMPANY/LEGAL_DOCS via deno (see landing CLAUDE.md), pick the docs below, and re-run the picker. Regenerated 2026-08-27 for live online card payment via iyzico (pre-authorization model) and Google/Apple sign-in. KÜNYE 2026-08-29 (owner, new tax certificate): company.address and every address row/line carry \"Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul\" (same string as lib/site.ts address.full — NAP rule), company.taxOffice \"Bakırköy V.D.\". These same values were written into yikat-app docs.ts COMPANY on 2026-08-29, so this is NO LONGER A MANUAL OVERRIDE: the next regeneration reproduces them and nothing needs re-applying by hand. taxNo (T.C. Kimlik No) unchanged. Privacy policy and shared Meta campaign-measurement blocks regenerated 2026-10-01 from mobile/src/features/legal/docs.ts; the other generated documents are unchanged.",
  "company": {
   "legalName": "Ahmet Kaan Evrensel (şahıs işletmesi)",
   "brand": "Yıkat",
@@ -12,7 +12,7 @@
   "web": "www.yikat.tech",
   "webUrl": "https://www.yikat.tech"
  },
- "effectiveDate": "27 Ağustos 2026",
+ "effectiveDate": "1 Ekim 2026",
  "docs": {
   "gizlilik": {
    "navTitle": "Gizlilik",
@@ -20,7 +20,7 @@
    "blocks": [
     {
      "type": "paragraph",
-     "text": "Yıkat olarak gizliliğinize önem veriyoruz. Bu politika, Yıkat mobil uygulamasını kullandığınızda hangi verileri topladığımızı, nasıl kullandığımızı ve haklarınızı özetler. Hukuki ayrıntılar için KVKK Aydınlatma Metni'ni esas alın."
+     "text": "Yıkat olarak gizliliğinize önem veriyoruz. Bu politika, Yıkat mobil uygulamasını kullandığınızda hangi verileri topladığımızı, nasıl kullandığımızı ve haklarınızı özetler. Mağaza kampanyalarına ilişkin reklam ölçümü ayrıca §13'te açıklanır. Hukuki ayrıntılar için KVKK Aydınlatma Metni'ni esas alın."
     },
     {
      "type": "rows",
@@ -55,7 +55,7 @@
       "Kaydettiğiniz adresten üretilen: bir adresi kaydettiğinizde veya güncellediğinizde, adresinizi doğru hizmet bölgesine ve size en yakın iş ortağına yönlendirebilmek için adres metniniz yaklaşık bir koordinata (enlem/boylam) çevrilir ve bu koordinat adres kaydınızla birlikte saklanır. Çeviriyi OpenStreetMap / Nominatim servisi yapar; bu sırada adres metniniz bu servise iletilir (bkz. §3).",
       "Hizmeti kullanırken oluşan: sipariş ve ödeme geçmişi, seçilen ödeme yöntemi, online kart ödemelerinde ödemenin sonucu ve maskelenmiş kart bilgisi (son 4 hane, kart markası) ile ödemeyi başlattığınız IP adresi, davet (referans) ilişkisi, giriş kayıtları, anlık bildirim için cihaz bildirim anahtarı, uygulama içi kullanım olayları ve hata/çökme kayıtları (bkz. §4), temel teknik log kayıtları.",
       "Google veya Apple ile giriş yaparsanız: Giriş yöntemi olarak Google ya da Apple hesabınızı seçerseniz, ilgili sağlayıcı bize yalnızca ad-soyadınızı, e-posta adresinizi ve o hesap için ürettiği kullanıcı kimliğini iletir. Google veya Apple hesabınızın şifresi bize hiçbir zaman ulaşmaz; kişi listenize, e-postalarınıza, takviminize veya fotoğraflarınıza erişmeyiz. Apple ile girişte \"E-postamı Gizle\" seçeneğini kullanırsanız, bize gerçek adresiniz yerine Apple'ın ürettiği yönlendirme adresi (…@privaterelay.appleid.com) ulaşır ve siparişe ilişkin e-postalarınızı bu adres üzerinden alırsınız. Ayrıntı: §10.",
-      "Toplamadıklarımız: cihazınızın anlık konum koordinatını saklamayız; arka planda konum takibi yapılmaz; ekran veya oturum kaydı alınmaz; reklam kimliği kullanılmaz, reklam ağlarıyla veri paylaşılmaz ve Yıkat uygulamalar/siteler arası takip yapmaz (Google veya Apple ile girişi seçerseniz, ilgili sağlayıcının kendi tarafında bu girişi görmesi hakkında bkz. §3 ve §10); özel nitelikli veriler toplanmaz."
+      "Toplamadıklarımız: cihazınızın anlık konum koordinatını saklamayız; arka planda konum takibi yapılmaz; ekran veya oturum kaydı alınmaz; uygulamada cihazın reklam kimliği kullanılmaz; özel nitelikli veriler toplanmaz. Mağaza kampanyalarındaki telefon ve sipariş eşleştirmesine dayalı Meta reklam ölçümü için bkz. §13. Google veya Apple ile girişi seçerseniz, ilgili sağlayıcının kendi tarafında bu girişi görmesi hakkında bkz. §3 ve §10."
      ]
     },
     {
@@ -93,9 +93,9 @@
     {
      "type": "bullets",
      "items": [
-      "Kullanım analitiği — topladıklarımız: takma adlı bir kullanıcı kimliği (giriş sisteminin ürettiği rastgele kimlik; adınızla veya e-postanızla eşleştirilmez), sipariş akışındaki adımlara ilişkin sınırlı sayıda olay (hizmet görüntüleme, sepet, zaman seçimi, sipariş oluşturma, giriş) ve bu olaylarla birlikte sipariş numarası ile sipariş tutarı, ayrıca cihaz ve uygulama sürümü gibi temel teknik bağlam.",
+      "Kullanım analitiği — topladıklarımız: takma adlı bir kullanıcı kimliği (giriş sisteminin ürettiği rastgele kimlik; adınızla veya e-postanızla eşleştirilmez), sipariş akışındaki adımlara ilişkin sınırlı sayıda olay (hizmet görüntüleme, sepet, zaman seçimi, sipariş oluşturma, giriş) ve bu olaylarla birlikte sipariş numarası, ayrıca cihaz ve uygulama sürümü gibi temel teknik bağlam.",
       "Kullanım analitiği — toplamadıklarımız: adınız, e-postanız, telefonunuz, adresiniz ve sipariş içerikleriniz bu olaylarda yer almaz; ekran/oturum kaydı yapılmaz; otomatik olay toplama (autocapture) kapalıdır.",
-      "Hata kayıtları: uygulama beklenmedik şekilde hata verdiğinde teknik hata izi ile cihaz/uygulama sürümü bilgisi Sentry'ye gönderilir. Bu kayıtlara kullanıcı kimliğiniz eklenmez ve IP adresiniz kayda iliştirilmez.",
+      "Hata kayıtları: uygulama beklenmedik şekilde hata verdiğinde teknik hata izi ile cihaz/uygulama sürümü bilgisi Sentry'ye gönderilir. Hataya giden son adımların teknik izi de kayda eklenir: açılan ekranlar ve yapılan ağ isteklerinin adresleri — bu adreslerin sorgu kısmı, içinde adres veya iletişim bilgisi taşıyabileceği için cihazdan çıkmadan temizlenir. Ayrıca uygulamanın açık kalıp kalmadığını gösteren oturum sinyali gönderilir. Bu kayıtlara kullanıcı kimliğiniz eklenmez ve IP adresiniz kayda iliştirilmez.",
       "Amaç ve hukuki sebep: hizmetin iyileştirilmesi, hataların tespiti ve sipariş akışındaki aksaklıkların giderilmesi amacıyla, KVKK md. 5/2-f uyarınca meşru menfaatimize dayanarak ve ölçülülük ilkesine uygun şekilde işlenir. Bu ölçümler zorunlu değildir ancak bugün uygulama içinden ayrı olarak kapatılamamaktadır; kapatılmasını istiyorsanız destek@yikat.tech adresine yazabilirsiniz.",
       "Saklama: analitik ve hata kayıtları yalnızca bu amaç için gerekli süre boyunca tutulur."
      ]
@@ -106,7 +106,7 @@
     },
     {
      "type": "paragraph",
-     "text": "Altyapı sağlayıcılarımızın sunucuları yurt dışında bulunduğundan (Supabase, PostHog ve Sentry: Almanya; Resend ve Expo: ABD merkezli; adres-koordinat çevirisi için OpenStreetMap / Nominatim: Birleşik Krallık; Google veya Apple ile giriş yapmayı seçerseniz Google: İrlanda/ABD ve Apple: İrlanda/ABD) verileriniz KVKK md. 9'a uygun olarak yurt dışında işlenebilir. Ödeme kuruluşumuz iyzico Türkiye'de yerleşiktir; ödeme verileriniz yurt dışına aktarılmaz. Ayrıntı: KVKK Aydınlatma Metni §6."
+     "text": "Altyapı sağlayıcılarımızın sunucuları yurt dışında bulunduğundan (Supabase, PostHog ve Sentry: Almanya; Resend ve Expo: ABD merkezli; adres-koordinat çevirisi için OpenStreetMap / Nominatim: Birleşik Krallık; Google veya Apple ile giriş yapmayı seçerseniz Google: İrlanda/ABD ve Apple: İrlanda/ABD) verileriniz KVKK md. 9'a uygun olarak yurt dışında işlenebilir. Ödeme kuruluşumuz iyzico Türkiye'de yerleşiktir; bu kuruluşa yapılan ödeme aktarımı yurt içindedir. Mağaza kampanyalarına ilişkin Meta reklam ölçümü ve bu kapsamda yurt dışına iletilen sipariş tutarı dâhil sınırlı veriler §13'te ayrıca açıklanır. Altyapı aktarımlarının ayrıntısı: KVKK Aydınlatma Metni §6."
     },
     {
      "type": "section",
@@ -164,7 +164,7 @@
     },
     {
      "type": "paragraph",
-     "text": "Bu politikayı zaman zaman güncelleyebiliriz; önemli değişiklikleri uygulama üzerinden duyururuz. Güncel sürüm her zaman uygulamada yer alır. Yürürlük tarihi: 27 Ağustos 2026."
+     "text": "Bu politikayı zaman zaman güncelleyebiliriz; önemli değişiklikleri uygulama üzerinden duyururuz. Güncel sürüm her zaman uygulamada yer alır. Yürürlük tarihi: 1 Ekim 2026."
     },
     {
      "type": "section",
@@ -173,6 +173,30 @@
     {
      "type": "paragraph",
      "text": "Sorularınız için: 0850 303 31 93 · destek@yikat.tech · Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul"
+    },
+    {
+     "type": "section",
+     "text": "13. Mağaza Kampanyalarının Reklam Ölçümü"
+    },
+    {
+     "type": "paragraph",
+     "text": "Mağaza kampanyalarının hangi reklamlar üzerinden siparişe dönüştüğünü ölçmek için, kampanya koduyla kaydedilen ve iptal edilmemiş mağaza siparişlerine ilişkin sınırlı veriler Meta ile paylaşılır. Bu veriler; ülke koduyla standartlaştırılmış telefon numaranızın SHA-256 özet değeri, sipariş ve olay numarası, siparişin zamanı, indirim sonrası tutarı ve para birimidir (TRY). Telefon numaranız bu ölçüm aktarımında açık olarak gönderilmez; adınız, adresiniz, mesaj içeriğiniz ve kart bilgileriniz bu satın alma olayına eklenmez."
+    },
+    {
+     "type": "paragraph",
+     "text": "SHA-256 özetleme, telefon numarasını anonim hâle getirmez. Meta bu değeri kendi kayıtlarıyla eşleştirerek reklam ile sipariş arasındaki ilişkiyi belirleyebilir. Ölçüm; reklamın siparişe katkısını ve satın alma başına maliyeti değerlendirmek amacıyla yapılır."
+    },
+    {
+     "type": "paragraph",
+     "text": "WhatsApp mesajlaşma entegrasyonu kullanıma alındığında, reklamdan gelen ilk mesajla iletilen telefon numarası (wa_id), reklam tıklama kimliği (ctwa_clid), reklam kimliği ve zaman bilgisi siparişle eşleştirme için kaydedilir. Uygun mesajlaşma olaylarının ölçümünde, örneğin mağazayı ziyaret etme niyetinizi belirttiğinizde, olay türü ve zamanı ile reklam tıklama kimliği ve işletmemizin WhatsApp hesap kimliği Meta ile paylaşılır. Bu bağlantı kurulmadan mesajlaşma olayları gönderilmez; mağazada gerçekleşen satın alma, mağaza olayı olarak ölçülür."
+    },
+    {
+     "type": "paragraph",
+     "text": "Bu ölçüm verilerinin alıcısı Meta olup veriler Meta hizmetlerinin yurt dışındaki sistemlerinde işlenir. Reklam ölçümü, uygulama içi kullanım analitiği ve hizmet bildirimlerinden ayrı bir veri işleme amacıdır. Bu bilgilendirme açık rıza beyanı değildir."
+    },
+    {
+     "type": "paragraph",
+     "text": "KVKK md. 11 kapsamındaki haklarınız ve reklam ölçümüne ilişkin bilgi, düzeltme, silme veya itiraz talepleriniz için destek@yikat.tech adresine ya da Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul adresine başvurabilirsiniz. Talebiniz en geç 30 gün içinde yanıtlanır."
     }
    ]
   },
@@ -533,5 +557,27 @@
     }
    ]
   }
- }
+ },
+ "metaCampaignMeasurement": [
+  {
+   "type": "paragraph",
+   "text": "Mağaza kampanyalarının hangi reklamlar üzerinden siparişe dönüştüğünü ölçmek için, kampanya koduyla kaydedilen ve iptal edilmemiş mağaza siparişlerine ilişkin sınırlı veriler Meta ile paylaşılır. Bu veriler; ülke koduyla standartlaştırılmış telefon numaranızın SHA-256 özet değeri, sipariş ve olay numarası, siparişin zamanı, indirim sonrası tutarı ve para birimidir (TRY). Telefon numaranız bu ölçüm aktarımında açık olarak gönderilmez; adınız, adresiniz, mesaj içeriğiniz ve kart bilgileriniz bu satın alma olayına eklenmez."
+  },
+  {
+   "type": "paragraph",
+   "text": "SHA-256 özetleme, telefon numarasını anonim hâle getirmez. Meta bu değeri kendi kayıtlarıyla eşleştirerek reklam ile sipariş arasındaki ilişkiyi belirleyebilir. Ölçüm; reklamın siparişe katkısını ve satın alma başına maliyeti değerlendirmek amacıyla yapılır."
+  },
+  {
+   "type": "paragraph",
+   "text": "WhatsApp mesajlaşma entegrasyonu kullanıma alındığında, reklamdan gelen ilk mesajla iletilen telefon numarası (wa_id), reklam tıklama kimliği (ctwa_clid), reklam kimliği ve zaman bilgisi siparişle eşleştirme için kaydedilir. Uygun mesajlaşma olaylarının ölçümünde, örneğin mağazayı ziyaret etme niyetinizi belirttiğinizde, olay türü ve zamanı ile reklam tıklama kimliği ve işletmemizin WhatsApp hesap kimliği Meta ile paylaşılır. Bu bağlantı kurulmadan mesajlaşma olayları gönderilmez; mağazada gerçekleşen satın alma, mağaza olayı olarak ölçülür."
+  },
+  {
+   "type": "paragraph",
+   "text": "Bu ölçüm verilerinin alıcısı Meta olup veriler Meta hizmetlerinin yurt dışındaki sistemlerinde işlenir. Reklam ölçümü, uygulama içi kullanım analitiği ve hizmet bildirimlerinden ayrı bir veri işleme amacıdır. Bu bilgilendirme açık rıza beyanı değildir."
+  },
+  {
+   "type": "paragraph",
+   "text": "KVKK md. 11 kapsamındaki haklarınız ve reklam ölçümüne ilişkin bilgi, düzeltme, silme veya itiraz talepleriniz için destek@yikat.tech adresine ya da Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul adresine başvurabilirsiniz. Talebiniz en geç 30 gün içinde yanıtlanır."
+  }
+ ]
 }

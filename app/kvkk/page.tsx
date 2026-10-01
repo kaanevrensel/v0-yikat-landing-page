@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { Logo } from "@/components/logo"
+import { LegalBlocks, type LegalBlock } from "@/components/legal/legal-blocks"
+import legal from "@/lib/legal-content.json"
 
 export const metadata: Metadata = {
   title: "KVKK Aydınlatma Metni - Yıkat",
@@ -271,6 +273,15 @@ export default function KvkkPage() {
               <li>{"Aydınlatma metni, bilgilendirme amacı taşımakta olup bir rıza metni değildir. Açık rıza gerektiren işlemler için ayrıca onay alınır."}</li>
               <li>{"Yıkat, işbu aydınlatma metnini mevzuat değişiklikleri veya veri işleme süreçlerindeki güncellemeler doğrultusunda değiştirme hakkını saklı tutar. Güncel metin her zaman yikat.tech adresinde yayımlanır."}</li>
             </ul>
+          </section>
+          <section>
+            <h2 className="text-xl font-semibold text-foreground sm:text-2xl">
+              {"10. Mağaza Kampanyalarının Reklam Ölçümü"}
+            </h2>
+            <p className="mt-3">{"Son güncelleme: 1 Ekim 2026"}</p>
+            <div className="mt-3">
+              <LegalBlocks blocks={legal.metaCampaignMeasurement as LegalBlock[]} />
+            </div>
           </section>
         </div>
 
