@@ -278,7 +278,7 @@ export default function KvkkPage() {
             <h2 className="text-xl font-semibold text-foreground sm:text-2xl">
               {"10. Mağaza Kampanyalarının Reklam Ölçümü"}
             </h2>
-            <p className="mt-3">{"Son güncelleme: 1 Ekim 2026"}</p>
+            <p className="mt-3">{`Son güncelleme: ${legal.effectiveDate}`}</p>
             <div className="mt-3">
               <LegalBlocks blocks={legal.metaCampaignMeasurement as LegalBlock[]} />
             </div>

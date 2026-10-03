@@ -1,5 +1,5 @@
 {
- "_generated": "GENERATED FILE — do not edit. Source of truth: yikat-app mobile/src/features/legal/docs.ts (the texts shown in-app and on app.yikat.tech/legal/*). Regenerate: extract COMPANY/LEGAL_DOCS via deno (see landing CLAUDE.md), pick the docs below, and re-run the picker. Regenerated 2026-08-27 for live online card payment via iyzico (pre-authorization model) and Google/Apple sign-in. KÜNYE 2026-08-29 (owner, new tax certificate): company.address and every address row/line carry \"Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul\" (same string as lib/site.ts address.full — NAP rule), company.taxOffice \"Bakırköy V.D.\". These same values were written into yikat-app docs.ts COMPANY on 2026-08-29, so this is NO LONGER A MANUAL OVERRIDE: the next regeneration reproduces them and nothing needs re-applying by hand. taxNo (T.C. Kimlik No) unchanged. Privacy policy and shared Meta campaign-measurement blocks regenerated 2026-10-01 from mobile/src/features/legal/docs.ts; the other generated documents are unchanged.",
+ "_generated": "GENERATED FILE — do not edit. Source of truth: yikat-app mobile/src/features/legal/docs.ts (the texts shown in-app and on app.yikat.tech/legal/*). Regenerate: extract COMPANY/LEGAL_DOCS via deno (see landing CLAUDE.md), pick the docs below, and re-run the picker. Regenerated 2026-08-27 for live online card payment via iyzico (pre-authorization model) and Google/Apple sign-in. KÜNYE 2026-08-29 (owner, new tax certificate): company.address and every address row/line carry \"Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul\" (same string as lib/site.ts address.full — NAP rule), company.taxOffice \"Bakırköy V.D.\". These same values were written into yikat-app docs.ts COMPANY on 2026-08-29, so this is NO LONGER A MANUAL OVERRIDE: the next regeneration reproduces them and nothing needs re-applying by hand. taxNo (T.C. Kimlik No) unchanged. Privacy policy and shared Meta campaign-measurement blocks regenerated 2026-10-02 from mobile/src/features/legal/docs.ts; the other generated documents are unchanged.",
  "company": {
   "legalName": "Ahmet Kaan Evrensel (şahıs işletmesi)",
   "brand": "Yıkat",
@@ -12,7 +12,7 @@
   "web": "www.yikat.tech",
   "webUrl": "https://www.yikat.tech"
  },
- "effectiveDate": "1 Ekim 2026",
+ "effectiveDate": "2 Ekim 2026",
  "docs": {
   "gizlilik": {
    "navTitle": "Gizlilik",
@@ -164,7 +164,7 @@
     },
     {
      "type": "paragraph",
-     "text": "Bu politikayı zaman zaman güncelleyebiliriz; önemli değişiklikleri uygulama üzerinden duyururuz. Güncel sürüm her zaman uygulamada yer alır. Yürürlük tarihi: 1 Ekim 2026."
+     "text": "Bu politikayı zaman zaman güncelleyebiliriz; önemli değişiklikleri uygulama üzerinden duyururuz. Güncel sürüm her zaman uygulamada yer alır. Yürürlük tarihi: 2 Ekim 2026."
     },
     {
      "type": "section",
@@ -180,7 +180,11 @@
     },
     {
      "type": "paragraph",
-     "text": "Mağaza kampanyalarının hangi reklamlar üzerinden siparişe dönüştüğünü ölçmek için, kampanya koduyla kaydedilen ve iptal edilmemiş mağaza siparişlerine ilişkin sınırlı veriler Meta ile paylaşılır. Bu veriler; ülke koduyla standartlaştırılmış telefon numaranızın SHA-256 özet değeri, sipariş ve olay numarası, siparişin zamanı, indirim sonrası tutarı ve para birimidir (TRY). Telefon numaranız bu ölçüm aktarımında açık olarak gönderilmez; adınız, adresiniz, mesaj içeriğiniz ve kart bilgileriniz bu satın alma olayına eklenmez."
+     "text": "Meta reklamlarının mağaza satışlarına katkısını ölçmek için satın alma olayları Meta ile paylaşılır. Bu aktarım yalnızca, sipariş kaynağı Meta reklamı olarak kaydedilmiş, ilgili Meta kampanyasıyla açıkça eşleştirilmiş ve ödemesi tamamlanmış mağaza siparişleri için yapılır. Veriler gönderilmeden önce siparişin durumu tekrar kontrol edilir; iptal edilmiş, tamamen veya kısmen iade edilmiş, ödemesi tamamlanmamış ya da tutarı sıfır olan siparişler gönderilmez. İndirim veya kampanya kodu kullanılması tek başına bu aktarımı başlatmaz."
+    },
+    {
+     "type": "paragraph",
+     "text": "Paylaşılan sınırlı veriler; ülke koduyla standartlaştırılmış telefon numaranızın SHA-256 özet değeri, sipariş ve olay numarası, ödemenin zamanı, indirim sonrası tahsil edilen tutar, para birimi (TRY) ve eşleştirilen Meta kampanyasının kimliğidir. Telefon numaranız bu ölçüm aktarımında açık olarak gönderilmez; adınız, adresiniz, mesaj içeriğiniz ve kart bilgileriniz bu satın alma olayına eklenmez."
     },
     {
      "type": "paragraph",
@@ -561,7 +565,11 @@
  "metaCampaignMeasurement": [
   {
    "type": "paragraph",
-   "text": "Mağaza kampanyalarının hangi reklamlar üzerinden siparişe dönüştüğünü ölçmek için, kampanya koduyla kaydedilen ve iptal edilmemiş mağaza siparişlerine ilişkin sınırlı veriler Meta ile paylaşılır. Bu veriler; ülke koduyla standartlaştırılmış telefon numaranızın SHA-256 özet değeri, sipariş ve olay numarası, siparişin zamanı, indirim sonrası tutarı ve para birimidir (TRY). Telefon numaranız bu ölçüm aktarımında açık olarak gönderilmez; adınız, adresiniz, mesaj içeriğiniz ve kart bilgileriniz bu satın alma olayına eklenmez."
+   "text": "Meta reklamlarının mağaza satışlarına katkısını ölçmek için satın alma olayları Meta ile paylaşılır. Bu aktarım yalnızca, sipariş kaynağı Meta reklamı olarak kaydedilmiş, ilgili Meta kampanyasıyla açıkça eşleştirilmiş ve ödemesi tamamlanmış mağaza siparişleri için yapılır. Veriler gönderilmeden önce siparişin durumu tekrar kontrol edilir; iptal edilmiş, tamamen veya kısmen iade edilmiş, ödemesi tamamlanmamış ya da tutarı sıfır olan siparişler gönderilmez. İndirim veya kampanya kodu kullanılması tek başına bu aktarımı başlatmaz."
+  },
+  {
+   "type": "paragraph",
+   "text": "Paylaşılan sınırlı veriler; ülke koduyla standartlaştırılmış telefon numaranızın SHA-256 özet değeri, sipariş ve olay numarası, ödemenin zamanı, indirim sonrası tahsil edilen tutar, para birimi (TRY) ve eşleştirilen Meta kampanyasının kimliğidir. Telefon numaranız bu ölçüm aktarımında açık olarak gönderilmez; adınız, adresiniz, mesaj içeriğiniz ve kart bilgileriniz bu satın alma olayına eklenmez."
   },
   {
    "type": "paragraph",
