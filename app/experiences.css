@@ -227,7 +227,7 @@
 }
 
 /* Home's app pocket: one sculptural invitation rather than another demo. */
-.app-invitation { position: relative; overflow: clip; background: #2388df; padding: 24px; }
+.app-invitation { position: relative; overflow: clip; background: var(--home-transition-blue, #2388df); padding: 24px; }
 .app-pocket-scene { width: min(1150px,100%); height: 650px; margin: auto; position: relative; isolation: isolate; }
 .app-pocket-circles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; }
 .app-pocket-circles i { position: absolute; width: 740px; height: 570px; left: -25px; top: 80px; border: 1px solid #aee0ff63; border-radius: 50%; transform: rotate(-20deg); background: #75c6ff1c; }
