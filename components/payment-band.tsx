@@ -28,7 +28,7 @@ export function PaymentBand({ tone = "dark" }: { tone?: "dark" | "light" }) {
             key={m.alt}
             className="inline-flex h-8 items-center rounded-md border border-black/10 bg-white px-2.5"
           >
-            <Image src={m.src} alt={m.alt} width={m.width} height={m.height} className="h-4 w-auto" />
+            <Image unoptimized src={m.src} alt={m.alt} width={m.width} height={m.height} className="h-4 w-auto" />
           </span>
         ))}
       </div>

@@ -49,7 +49,7 @@ export function PhonePreview({ mode = "home" }: { mode?: PhoneMode }) {
                   Keşfet <ArrowRight size={12} />
                 </span>
               </div>
-              <Image
+              <Image unoptimized
                 src="/images/services/ayakkabi.png"
                 alt=""
                 width={145}
@@ -64,7 +64,7 @@ export function PhonePreview({ mode = "home" }: { mode?: PhoneMode }) {
                 { name: "Yorgan & battaniye", src: "hacimli" },
               ].map((s) => (
                 <div key={s.name}>
-                  <Image
+                  <Image unoptimized
                     src={`/images/services/${s.src}.png`}
                     alt=""
                     width={85}
@@ -141,7 +141,7 @@ export function PhonePreview({ mode = "home" }: { mode?: PhoneMode }) {
               <strong>Siparişin</strong>
             </div>
             <div className="phone-track-art">
-              <Image
+              <Image unoptimized
                 src="/images/services/ayakkabi.png"
                 alt=""
                 width={160}
@@ -194,7 +194,7 @@ export function PhonePreview({ mode = "home" }: { mode?: PhoneMode }) {
               Sevdiğin düzen, hep elinin altında.
             </p>
             <div className="phone-favorite">
-              <Image
+              <Image unoptimized
                 src="/images/services/kiloyla.png"
                 alt=""
                 width={160}

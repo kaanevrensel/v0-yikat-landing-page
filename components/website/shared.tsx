@@ -74,7 +74,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Image src="/images/app/app-store-tr.svg" alt="App Store’dan indir" width={227} height={60}/>
+              <Image unoptimized src="/images/app/app-store-tr.svg" alt="App Store’dan indir" width={227} height={60}/>
             </a>
             <div className="android-note">
               <Smartphone size={23} />

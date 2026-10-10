@@ -5,7 +5,9 @@ const nextConfig = {
   devIndicators: false,
   distDir: process.env.YIKAT_BUILD_DIR || ".next",
   turbopack: { root: fileURLToPath(new URL(".", import.meta.url)) },
-  images: { unoptimized: true },
+  // Discovery pages use responsive delivery. Existing artwork and app screens
+  // opt out per image to retain the owner's previously approved source quality.
+  images: { unoptimized: false },
   async redirects() {
     // Pivot: agregatör dönemi rotaları ana sayfaya (kalıcı — Next 308 döner, SEO'da 301 ile eşdeğer).
     // /iletisim listeden ÇIKTI (2026-08-27): iyzico üye işyeri incelemesi sitede iletişim
