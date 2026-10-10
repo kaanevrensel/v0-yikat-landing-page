@@ -84,7 +84,7 @@ for (const width of [320, 390, 1280]) {
   test(`discovery layouts and keyboard controls are usable at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 })
     await page.emulateMedia({ reducedMotion: "reduce" })
-    for (const path of ["/bakirkoy-ayakkabi-temizleme", "/ayakkabi-temizleme", "/sneaker-yikama", "/rehber/ayakkabi-makinede-yikanir-mi", "/rehber"]) {
+    for (const path of ["/bakirkoy-ayakkabi-temizleme", "/ayakkabi-temizleme", "/sneaker-yikama", "/rehber/ayakkabi-makinede-yikanir-mi", "/rehber/spor-ayakkabi-nasil-temizlenir", "/rehber/deri-ayakkabi-nasil-temizlenir", "/rehber/gomlek-nasil-utulenir", "/rehber"]) {
       await page.goto(path)
       await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
       const widths = await page.evaluate(() => ({ doc: document.documentElement.scrollWidth, viewport: innerWidth }))

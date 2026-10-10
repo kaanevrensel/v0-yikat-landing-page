@@ -13,8 +13,8 @@ impressions. Its CSV is saved separately; page totals are not additive because o
 search can include multiple URLs. Neither metric means 33 independent citations,
 visitors or new recommendations from this release.
 
-This release adds 11 URLs: one actual Bakırköy location, one shoe-cleaning hub,
-a guide index and eight distinct care guides. It improves the three existing
+This release adds 14 URLs: one actual Bakırköy location, one shoe-cleaning hub,
+a guide index and eleven distinct care guides. It improves the three existing
 material-service URLs. Primary navigation and the image-led homepage stay intact.
 The shop's actual address, Maps identity, photographs and owner-confirmed daily
 10:00–22:00 hours are consistent throughout. No invented prices, reviews, repair
@@ -67,9 +67,12 @@ Microsoft Bing Webmaster Tools Keyword Research, native verified property:
 | Reading washing/care labels | `/rehber/yikama-sembolleri` |
 | What dry cleaning means | `/rehber/kuru-temizleme-nedir` |
 | Duvet label, capacity and drying decisions | `/rehber/yorgan-nasil-yikanir` |
+| Sports-shoe care steps and material boundaries | `/rehber/spor-ayakkabi-nasil-temizlenir` |
+| Leather cleaning versus polish and repair | `/rehber/deri-ayakkabi-nasil-temizlenir` |
+| Shirt ironing sequence and label limits | `/rehber/gomlek-nasil-utulenir` |
 
 Laundry and dry-cleaning transactional terms have demand but require confirmed
-service availability before commercial pages are published. The three textile
+service availability before commercial pages are published. The four textile
 guides are educational and tell readers to verify acceptance before planning a
 service. No cloned neighborhood pages or made-up expert biographies are used.
 
@@ -136,3 +139,5 @@ full one-worker rerun passed. CI runs the required two-worker gate.
 
 Live deployment and native submission receipts are recorded separately after
 release. No ranking, citation or traffic increase is claimed from publication.
+
+The final coverage pass maps all 50 available-service/educational priority phrases to dedicated pages; six transactional phrases remain gated on service availability. The adidas leather citation resolves directly to its actual leather Superstar example. New shirt guidance cites reachable Tefal and current GINETEX pages; retired Philips URLs that redirect to shopping or return 404 were excluded.

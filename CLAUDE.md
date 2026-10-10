@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Owner requested local/general SEO and AI discovery. Implementation and research:
   `docs/seo/2026-10-10-search-program.md` and the adjacent priority keyword CSV.
 - New public destinations: `/bakirkoy-ayakkabi-temizleme`, `/ayakkabi-temizleme`,
-  `/rehber` and eight statically generated `/rehber/[slug]` guides. Three existing
+  `/rehber` and eleven statically generated `/rehber/[slug]` guides. Three existing
   material-service URLs use the same current shell. Preserve the three primary nav links.
 - Owner confirmed Kaan's later hours: **every day 10:00–22:00**, superseding all
   historical 09:00–20:00 notes below. Google Maps identity and exact pin were checked

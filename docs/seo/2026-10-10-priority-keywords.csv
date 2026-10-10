@@ -46,9 +46,9 @@ kuru temizleme nasıl yapılır,P1,care,/rehber/kuru-temizleme-nedir,publish,290
 yorgan nasıl yıkanır,P1,care,/rehber/yorgan-nasil-yikanir,publish,390,50,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
 yorgan kaç derecede yıkanır,P1,care,/rehber/yorgan-nasil-yikanir,publish,480,70,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
 yün yorgan nasıl yıkanır,P1,care,/rehber/yorgan-nasil-yikanir,publish,,,,Editorial or Search Console seed; Google exact row unreported,2025-09 through 2026-08
-gömlek nasıl ütülenir,P2,care,,later_editorial_review,880,110,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
-deri ayakkabı nasıl temizlenir,P2,care,,later_editorial_review,390,50,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
-spor ayakkabı nasıl temizlenir,P2,care,,later_editorial_review,1300,140,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+gömlek nasıl ütülenir,P1,care,/rehber/gomlek-nasil-utulenir,publish,880,110,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+deri ayakkabı nasıl temizlenir,P1,care,/rehber/deri-ayakkabi-nasil-temizlenir,publish,390,50,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+spor ayakkabı nasıl temizlenir,P1,care,/rehber/spor-ayakkabi-nasil-temizlenir,publish,1300,140,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
 bakırköy kuru temizleme,deferred,unconfirmed_service,,verify_availability_first,170,140,50,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
 kuru temizleme,deferred,unconfirmed_service,,verify_availability_first,74000,14800,720,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
 çamaşır yıkama,deferred,unconfirmed_service,,verify_availability_first,1600,260,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
