@@ -10,6 +10,7 @@ import "./editorial.css"
 import "./objects.css"
 import "./craft.css"
 import "./experiences.css"
+import "./discovery.css"
 
 // Site yüzü: Bricolage Grotesque (SIL OFL 1.1, sahip kararı 2026-07-10 — her yerde).
 // Değişken font: opsz ekseni küçük boyutlarda metin-optik kesim sağlar; latin-ext Türkçe için.
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: "Yıkat Gitsin | Temizlik ve bakım",
   description:
-    "Kapından alınsın, özenle temizlensin, sana hazır dönsün. Yıkat Gitsin uygulamasını keşfet, WhatsApp’tan yaz veya Bakırköy atölyemize gel.",
+    "Bakırköy’de ayakkabını malzemesine uygun yıkat. Sneaker, deri, süet ve nubuk bakımı; dükkân bilgileri, bakım rehberleri ve Yıkat Gitsin uygulaması.",
   keywords: [
     "ayakkabı yıkama bakırköy",
     "ayakkabı temizleme",
@@ -82,14 +83,14 @@ const localBusinessJsonLd = {
   name: "Yıkat",
   alternateName: "Yıkat Ayakkabı Yıkama",
   description:
-    "Bakırköy'de profesyonel ayakkabı yıkama dükkanı. Spor, deri, süet ve çocuk ayakkabıları için malzemesine uygun yıkama, aynı gün teslim.",
-  "@id": siteConfig.url,
+    "Bakırköy Sakızağacı’nda ayakkabı temizleme ve bakım dükkânı. Sneaker, deri, süet, nubuk ve çocuk ayakkabıları için malzemeye göre değerlendirme.",
+  "@id": `${siteConfig.url}/#business`,
   url: siteConfig.url,
   telephone: siteConfig.phoneE164,
   email: siteConfig.email,
-  image: `${siteConfig.url}/images/yikat-logo-blue.png`,
-  // Sahip beyanı — <100 karakter (Google şartı; aşarsa hiç gösterilmez).
-  priceRange: siteConfig.priceRangeLabel,
+  image: `${siteConfig.url}/images/shop/bakirkoy-owner-202608.webp`,
+  logo: `${siteConfig.url}/images/yikat-logo-blue.png`,
+  // No current itemized menu: do not publish an old price range as a live quote.
   hasMap: siteConfig.mapsPlaceUrl,
   address: {
     "@type": "PostalAddress",
@@ -110,10 +111,8 @@ const localBusinessJsonLd = {
     latitude: siteConfig.geo.latitude,
     longitude: siteConfig.geo.longitude,
   },
-  areaServed: [
-    { "@type": "AdministrativeArea", name: "Bakırköy" },
-    { "@type": "City", name: "İstanbul" },
-  ],
+  // A physical shop is not a promise of city-wide collection.
+  areaServed: { "@type": "AdministrativeArea", name: "Bakırköy" },
   // Kaynağı SSS'teki gerçek beyan ("Nakit ve kart geçerli") — uydurma veri değil.
   paymentAccepted: "Cash, Credit Card",
   currenciesAccepted: "TRY",
@@ -145,6 +144,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd).replace(/</g, "\\u003c") }}
         />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org", "@type": "WebSite", "@id": `${siteConfig.url}/#website`,
+          name: "Yıkat", alternateName: "Yıkat Gitsin", url: siteConfig.url, inLanguage: "tr-TR",
+          publisher: { "@id": `${siteConfig.url}/#business` },
+        }).replace(/</g, "\\u003c") }} />
         {children}
         <Analytics />
         <WebVitalsReporter />

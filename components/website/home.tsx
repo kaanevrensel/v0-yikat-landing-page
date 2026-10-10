@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import { ChevronRight, Play, X } from "lucide-react";
 import { useDownload } from "./shared";
@@ -103,6 +104,7 @@ export function HomePage() {
             </div>
           </div>
           <a className="destination-link" href={directions} target="_blank" rel="noopener noreferrer">Yol tarifi al <ChevronRight size={19} aria-hidden="true" /></a>
+          <Link className="shop-detail-link" href="/bakirkoy-ayakkabi-temizleme">Dükkân, saatler ve hizmetler</Link>
         </div>
         <div className="shop-map-wrap">
           <a className="shop-folded-map" href={directions} target="_blank" rel="noopener noreferrer" aria-label="Bakırköy dükkânına yol tarifi al">

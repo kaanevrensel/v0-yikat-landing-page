@@ -22,8 +22,8 @@ function OpenStatus() {
       const hour = Number(
         new Intl.DateTimeFormat("tr-TR", { hour: "numeric", hour12: false, timeZone: "Europe/Istanbul" }).format(new Date()),
       )
-      setStatus(hour >= 9 && hour < 20 ? "open" : "closed")
-      setOpensToday(hour < 9)
+      setStatus(hour >= Number(siteConfig.hours.opens.slice(0, 2)) && hour < Number(siteConfig.hours.closes.slice(0, 2)) ? "open" : "closed")
+      setOpensToday(hour < Number(siteConfig.hours.opens.slice(0, 2)))
     }
     compute()
     const id = setInterval(compute, 60_000)
@@ -36,7 +36,7 @@ function OpenStatus() {
         <span>{siteConfig.hours.label}</span>
         <span aria-hidden className="invisible flex items-center gap-2 text-sm">
           <span className="size-2.5" />
-          Şu an açık, 20:00'ye kadar bırakabilirsin
+          Şu an açık, 22:00'ye kadar bırakabilirsin
         </span>
       </span>
     )
@@ -53,9 +53,9 @@ function OpenStatus() {
         </span>
         {/* Saks (#2563eb) üzerinde emerald-300 3.39:1 kalıyor; emerald-50 ≈4.9:1 (AA) — yeşil sinyal nokta + tonda sürüyor */}
         {status === "open" ? (
-          <span className="text-emerald-50">Şu an açık — 20:00'ye kadar bırakabilirsin</span>
+          <span className="text-emerald-50">Şu an açık — 22:00'ye kadar bırakabilirsin</span>
         ) : (
-          <span className="text-white">{`Şu an kapalı — ${opensToday ? "bugün" : "yarın"} 09:00'da açılıyor`}</span>
+          <span className="text-white">{`Şu an kapalı — ${opensToday ? "bugün" : "yarın"} 10:00'da açılıyor`}</span>
         )}
       </span>
     </span>

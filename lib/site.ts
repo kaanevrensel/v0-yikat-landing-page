@@ -19,7 +19,7 @@ export const siteConfig = {
     postalCode: "34142",
     full: "Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul",
   },
-  hours: { label: "Her gün 09:00 – 20:00", opens: "09:00", closes: "20:00" },
+  hours: { label: "Her gün 10:00 – 22:00", opens: "10:00", closes: "22:00" },
   // Sahip beyanı (2026-07-11): kategoriye göre sabit fiyat, bu aralıkta. Kesin menü gelince
   // priceMenu doldurulur; bu etiket UI + JSON-LD priceRange'in tek kaynağıdır.
   priceRangeLabel: "400–1000 ₺",
@@ -27,27 +27,27 @@ export const siteConfig = {
   directionsUrl:
     "https://www.google.com/maps/dir/?api=1&destination=Sak%C4%B1za%C4%9Fac%C4%B1+Mahallesi+%C4%B0skele+Caddesi+15-B+Bak%C4%B1rk%C3%B6y+%C4%B0stanbul",
   mapsPlaceUrl:
-    "https://www.google.com/maps/search/?api=1&query=Sak%C4%B1za%C4%9Fac%C4%B1+Mahallesi+%C4%B0skele+Caddesi+15-B+Bak%C4%B1rk%C3%B6y+%C4%B0stanbul",
+    "https://www.google.com/maps?cid=11452704591158275657",
   appleDirectionsUrl:
     "https://maps.apple.com/?daddr=Sak%C4%B1za%C4%9Fac%C4%B1+Mahallesi+%C4%B0skele+Caddesi+15-B+Bak%C4%B1rk%C3%B6y+%C4%B0stanbul",
   // GERÇEK pin (sahip paylaşımı 2026-07-11, maps.app.goo.gl/r4Z4ebDJxrPf9avY6) — Google'ın
   // yapılandırılmış veri şartı olan ≥5 ondalık hassasiyette. Launch-blocker kapandı.
   // 2026-08-26 adres düzeltmesinde (15C → Sakızağacı Mah. 15-B) pin korundu: aynı İskele
   // Caddesi dükkânı. Dükkân fiziken taşındıysa sahipten yeni pin al + dukkan-harita.webp yenile.
-  geo: { latitude: 40.977817, longitude: 28.877776 },
+  geo: { latitude: 40.9778141, longitude: 28.8777991 },
   // WhatsApp: 0850 hattı üzerinden (sahip GBP'ye de aynı linki koydu, 2026-07-11).
   whatsappHref: "https://wa.me/908503033193",
-  // Sahip GBP'yi sahiplenip gerçek profil linklerini verince doldurulacak — boşken JSON-LD
-  // sameAs üretilmez ve footer sosyal satırı render edilmez. Bkz: owner-blockers.md
-  socialLinks: { googleBusinessProfile: "", instagram: "" },
+  // Google Maps identity verified 2026-10-10 against name, address and phone.
+  // Hours confirmed by Emre: use Kaan's later brief, daily 10:00–22:00.
+  socialLinks: { googleBusinessProfile: "https://www.google.com/maps?cid=11452704591158275657", instagram: "" },
 } as const
 
 // Güven şeridi — rakamsız değer önerileri (spec §2.2)
 export const valueProps = [
   {
     icon: "clock",
-    title: "Aynı Gün Teslim",
-    description: "Sabah bırak, akşam al. Ayakkabın aynı gün tertemiz hazır.",
+    title: "Birlikte planlayalım",
+    description: "Teslim zamanını ayakkabının durumuna ve işlem ihtiyacına göre netleştirelim.",
   },
   {
     icon: "shield",
@@ -82,15 +82,15 @@ export const faqs = [
   },
   {
     q: "Ne kadar sürede teslim ediyorsunuz?",
-    a: "Aynı gün. Sabah bıraktığın ayakkabıyı aynı gün akşam 20:00'ye kadar teslim alabilirsin.",
+    a: "Teslim zamanını ayakkabının durumuna, kuruma ihtiyacına ve günlük yoğunluğa göre netleştiriyoruz. Belirli bir saate ihtiyacın varsa önce WhatsApp’tan sor.",
   },
   {
     q: "Sneaker yıkama aynı gün teslim edilir mi?",
-    a: "Evet. Sneaker dahil tüm ayakkabılarda aynı gün teslim geçerli. Sabah bırak, akşam 20:00'ye kadar al.",
+    a: "Aynı gün uygunluğunu ayakkabıyı değerlendirerek netleştirelim. Her model ve işlem için önceden garanti vermiyoruz.",
   },
   {
     q: "Randevu gerekli mi?",
-    a: "Hayır. Randevusuz gel, ayakkabını bırak. Aynı gün akşam 20:00'ye kadar teslim.",
+    a: "Ayakkabını doğrudan dükkâna getirebilirsin. Güncel ücret ve teslim zamanını kabul sırasında netleştirelim.",
   },
   {
     q: "Memnun kalmazsam ne oluyor?",
@@ -98,11 +98,11 @@ export const faqs = [
   },
   {
     q: "Ayakkabı yıkama ücreti ne kadar?",
-    a: "Kategoriye (spor/sneaker, deri, süet-nubuk, çocuk) göre sabit fiyat uygulanır; fiyatlar 400–1000 ₺ aralığındadır. Kesin menü dükkanda. Yakında bu sayfada da yayınlanacak.",
+    a: "Güncel ücret için ayakkabının türünü ve durumunu paylaş. İşlem kapsamını ve fiyatı dükkânda veya WhatsApp’tan netleştirelim.",
   },
   {
     q: "Çalışma saatleriniz ne?",
-    a: "Her gün 09:00 – 20:00. Pazar günleri de açığız.",
+    a: "Her gün 10:00 – 22:00. Pazar günleri de açığız.",
   },
   {
     q: "Ödeme nasıl yapılıyor?",
@@ -110,6 +110,6 @@ export const faqs = [
   },
   {
     q: "Neredesiniz?",
-    a: "Sakızağacı Mahallesi İskele Caddesi No:15-B, Bakırköy/İstanbul. İstanbul Caddesi'nin bir alt sokağında. Bakırköy ve Yenimahalle Marmaray istasyonlarına 8 dakika uzaklıkta.",
+    a: "Sakızağacı Mahallesi İskele Caddesi No:15-B, Bakırköy/İstanbul. Yol tarifi bağlantısı ve dükkân fotoğrafı için Bakırköy sayfamıza bakabilirsin.",
   },
 ] as const

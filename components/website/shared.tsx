@@ -363,6 +363,9 @@ export function WebsiteFooter() {
           <Link href="/">Ana sayfa</Link>
           <Link href="/urun">Ürün</Link>
           <Link href="/partnerler">İş ortakları</Link>
+          <Link href="/bakirkoy-ayakkabi-temizleme">Bakırköy dükkânı</Link>
+          <Link href="/ayakkabi-temizleme">Ayakkabı temizleme</Link>
+          <Link href="/rehber">Bakım rehberi</Link>
         </div>
         <div className="footer-contact">
           <p>Bir mesaj uzağındayız.</p>
