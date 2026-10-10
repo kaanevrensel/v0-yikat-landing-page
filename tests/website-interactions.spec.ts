@@ -189,12 +189,19 @@ test("four-step care starts with the order and yields to manual navigation", asy
   await expect(scene.getByRole("heading", { name: "4 Adımda Yıkat" })).toBeVisible()
   await expect(scene.locator(".care-stage")).toHaveAttribute("aria-label", "Sipariş alındı")
   const steps = scene.getByRole("group", { name: "Siparişin dört adımı" })
-  await expect(steps.getByRole("button", { name: "Kapından alalım", exact: true })).toHaveAttribute("aria-pressed", "true", { timeout: 6500 })
+  // The whole story now takes six seconds, rather than sixteen-plus.
+  for (const name of ["Kapından alalım", "Temizleniyor", "Kapına bırakalım", "Sipariş ver"]) {
+    await expect(steps.getByRole("button", { name, exact: true })).toHaveAttribute("aria-pressed", "true", { timeout: 2800 })
+  }
   await steps.getByRole("button", { name: "Kapına bırakalım", exact: true }).click()
   await steps.getByRole("button", { name: "Temizleniyor", exact: true }).click()
   await expect(scene.locator(".care-stage")).toHaveAttribute("aria-label", "Temizleniyor")
-  await page.waitForTimeout(4500)
+  await page.waitForTimeout(1800)
   await expect(scene.locator(".care-stage")).toHaveAttribute("aria-label", "Temizleniyor")
+  await expect(scene.locator('.care-stage-layer[data-active="true"]')).toHaveCSS("opacity", "1")
+  for (const layer of await scene.locator('.care-stage-layer[data-active="false"]').all()) {
+    await expect(layer).toHaveCSS("opacity", "0")
+  }
   const first = steps.getByRole("button", { name: "Sipariş ver", exact: true })
   await first.focus()
   await first.press("Enter")
@@ -202,7 +209,7 @@ test("four-step care starts with the order and yields to manual navigation", asy
   await expect(scene.locator(".care-stage")).toHaveAttribute("aria-label", "Sipariş alındı")
 })
 
-test("washing film loads on request and pauses when it leaves the screen", async ({ page }) => {
+test("washing film preserves play intent across scrolling and respects a manual pause", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 844 })
   await page.emulateMedia({ reducedMotion: "reduce" })
   const requests: string[] = []
@@ -216,8 +223,76 @@ test("washing film loads on request and pauses when it leaves the screen", async
   const film = page.locator(".washing-film video")
   await film.scrollIntoViewIfNeeded()
   expect(requests.filter(url => url.endsWith(".mp4"))).toHaveLength(0)
+  // Give pause/resume assertions time without running into the short shot's end.
+  await film.evaluate(node => { (node as HTMLVideoElement).playbackRate = .25 })
   await page.getByRole("button", { name: "Dükkân videosunu oynat" }).click()
   await expect.poll(() => film.evaluate(node => (node as HTMLVideoElement).currentTime)).toBeGreaterThan(0)
   await page.locator("footer").scrollIntoViewIfNeeded()
   await expect.poll(() => film.evaluate(node => (node as HTMLVideoElement).paused)).toBe(true)
+  const pausedAt = await film.evaluate(node => (node as HTMLVideoElement).currentTime)
+  await film.scrollIntoViewIfNeeded()
+  await expect.poll(() => film.evaluate(node => (node as HTMLVideoElement).currentTime)).toBeGreaterThan(pausedAt)
+  await page.getByRole("button", { name: "Dükkân videosunu duraklat" }).click()
+  await page.locator("footer").scrollIntoViewIfNeeded()
+  await film.scrollIntoViewIfNeeded()
+  await expect.poll(() => film.evaluate(node => (node as HTMLVideoElement).paused)).toBe(true)
+  await expect(page.getByRole("button", { name: "Dükkân videosunu oynat" })).toBeVisible()
+})
+
+test("washing film finishes without a hard loop and can be replayed", async ({ page }) => {
+  await page.goto("/")
+  const film = page.locator(".washing-film video")
+  await page.getByRole("button", { name: "Dükkân videosunu oynat" }).click()
+  await expect.poll(() => film.evaluate(node => (node as HTMLVideoElement).currentTime)).toBeGreaterThan(0)
+  await expect(page.getByRole("button", { name: "Dükkân videosunu tekrar oynat" })).toBeVisible({ timeout: 5000 })
+  await expect.poll(() => film.evaluate(node => (node as HTMLVideoElement).ended)).toBe(true)
+  await page.getByRole("button", { name: "Dükkân videosunu tekrar oynat" }).click()
+  await expect.poll(() => film.evaluate(node => !(node as HTMLVideoElement).paused && !(node as HTMLVideoElement).ended)).toBe(true)
+  await expect(page.getByRole("link", { name: "İşini büyüt", exact: true })).toHaveAttribute("href", "/partnerler")
+})
+
+test("cancelling a buffering film never starts it later; failed loads can be retried", async ({ page }) => {
+  let releaseDownload!: () => void
+  const downloadGate = new Promise<void>(resolve => { releaseDownload = resolve })
+  await page.route("**/videos/care/*.mp4", async route => {
+    await downloadGate
+    await route.continue()
+  })
+  await page.goto("/")
+  const film = page.locator(".washing-film video")
+  await page.getByRole("button", { name: "Dükkân videosunu oynat" }).click()
+  const pending = page.getByRole("button", { name: "Dükkân videosunu duraklat" })
+  await expect(pending).toHaveAttribute("aria-busy", "true")
+  await pending.click()
+  releaseDownload()
+  await expect.poll(() => film.evaluate(node => (node as HTMLVideoElement).readyState)).toBeGreaterThan(0)
+  await expect.poll(() => film.evaluate(node => (node as HTMLVideoElement).paused)).toBe(true)
+  await expect(page.getByRole("button", { name: "Dükkân videosunu oynat" })).toBeVisible()
+
+  await page.unroute("**/videos/care/*.mp4")
+  await page.route("**/videos/care/*.mp4", route => route.abort())
+  await page.reload()
+  await page.getByRole("button", { name: "Dükkân videosunu oynat" }).click()
+  const retry = page.getByRole("button", { name: "Videoyu yeniden dene" })
+  await expect(retry).toBeVisible()
+  await page.unroute("**/videos/care/*.mp4")
+  await retry.click()
+  await expect.poll(() => film.evaluate(node => (node as HTMLVideoElement).currentTime)).toBeGreaterThan(0)
+})
+
+test("four-step care works in a short viewport and stays still for reduced motion", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 568 })
+  await page.emulateMedia({ reducedMotion: "no-preference" })
+  await page.goto("/urun")
+  const stage = page.locator(".care-stage")
+  await stage.scrollIntoViewIfNeeded()
+  await expect(stage).toHaveAttribute("aria-label", "Sipariş alındı")
+  await expect(stage).toHaveAttribute("aria-label", "Kapından alındı", { timeout: 2800 })
+  await page.emulateMedia({ reducedMotion: "reduce" })
+  const scene = page.locator(".care-tracking")
+  await scene.getByRole("button", { name: "Temizleniyor", exact: true }).click()
+  await expect(scene.locator('.care-stage-layer[data-active="true"]')).toHaveCSS("transition-duration", "0s")
+  await expect(scene.locator('.care-stage-layer[data-active="true"] .care-wash-drum')).toHaveCSS("animation-name", "none")
+  await page.waitForTimeout(1800)
+  await expect(stage).toHaveAttribute("aria-label", "Temizleniyor")
 })

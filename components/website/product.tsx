@@ -211,13 +211,13 @@ const statuses = [
   },
 ];
 function TrackingDemo() {
-  const { ref, playing, active, select } = useSceneSequence(4);
+  const { ref, playing, active, select } = useSceneSequence(4, 1500);
   const [instant, setInstant] = useState(false);
   return (
     <section className="tracking-section care-tracking section-space" aria-labelledby="care-steps-title">
-      <div className="wide motion-scene" ref={ref} data-playing={playing} data-instant={instant}>
+      <div className="wide motion-scene" data-playing={playing} data-instant={instant}>
         <h2 id="care-steps-title" className="experience-heading">4 Adımda Yıkat</h2>
-        <div className="care-stage" aria-label={statuses[active].label}>
+        <div className="care-stage" ref={ref} aria-label={statuses[active].label}>
           <span className="care-stage-halo" aria-hidden="true" />
           {statuses.map(({ label, art }, i) => <div key={art} className="care-stage-layer" data-active={active === i} aria-hidden={active !== i}>
             <CareGlyph kind={art}/>
@@ -225,7 +225,7 @@ function TrackingDemo() {
           </div>)}
         </div>
         <div className="care-track" role="group" aria-label="Siparişin dört adımı">
-          <span className="care-track-progress" aria-hidden="true" style={{ transform: `scaleX(${active / 3})` }}/>
+          <span className="care-track-progress" data-reset={active === 0} aria-hidden="true" style={{ transform: `scaleX(${active / 3})` }}/>
           {statuses.map(({ action, art }, i) => (
             <button
               type="button"

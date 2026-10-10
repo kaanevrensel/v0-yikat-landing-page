@@ -14,6 +14,8 @@
 .washing-play { position: absolute; right: 18px; bottom: 18px; display: grid; place-items: center; width: 54px; height: 54px; border: 1px solid #c4def0; border-radius: 50%; background: #fff; color: #175f9c; box-shadow: 0 4px 0 #a1c5e0; cursor: pointer; }
 .washing-play:active { transform: translateY(3px); box-shadow: 0 1px 0 #a1c5e0; }
 .washing-play:focus-visible { outline: 3px solid #1a68c1; outline-offset: -6px; }
+.washing-loading { animation: washing-load .7s linear infinite; }
+@keyframes washing-load { to { transform: rotate(360deg); } }
 .washing-thread { position: absolute; width: 150%; height: 140%; inset: -20% -25%; overflow: visible; stroke: #b9dff7; stroke-width: 1.5; }
 .washing-thread-glint { stroke: #1d8de6; stroke-dasharray: 90 2100; animation: washing-thread 12s linear infinite; }
 .washing-seal { position: absolute; width: 90px; height: 90px; top: 18px; right: -24px; transform: rotate(14deg); }
@@ -30,7 +32,7 @@
   .washing-film { width: min(330px, calc(100% - 24px)); }
   .washing-seal { width: 70px; height: 70px; right: -20px; }
 }
-@media (prefers-reduced-motion: reduce) { .washing-thread-glint { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .washing-thread-glint, .washing-loading { animation: none; } }
 @media (min-width: 901px) {
   .object-hero { min-height: clamp(730px, 96svh, 920px); padding: 150px 44px 66px; }
   .object-choices { width: min(1480px, 100%); gap: clamp(22px, 3.4vw, 64px); margin: 0 auto; }
@@ -286,10 +288,14 @@
 
 /* The journey crossfades in place; scroll never skips its first frame. */
 .experience-heading { text-align: center; font-size: clamp(30px,4vw,54px); line-height: 1.12; margin: 0 auto 42px; color: #102c42; letter-spacing: -.025em; }
-.care-stage-layer { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transform: translateY(10px) scale(.98); transition: opacity .42s cubic-bezier(.22,1,.36,1), transform .55s cubic-bezier(.22,1,.36,1); pointer-events: none; }
-.care-stage-layer[data-active="true"] { opacity: 1; transform: translateY(0) scale(1); }
+.care-stage-layer { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transform: translateY(-4px) scale(.985); transition: opacity .1s linear, transform .16s cubic-bezier(.22,1,.36,1); pointer-events: none; }
+.care-stage-layer[data-active="true"] { opacity: 1; transform: translateY(0) scale(1); transition: opacity .16s linear .06s, transform .24s cubic-bezier(.22,1,.36,1) .04s; }
 .care-stage-layer > .care-glyph { position: relative; width: 215px; height: 215px; filter: drop-shadow(0 12px 7px #1a68c115); }
-.care-track-progress { position: absolute; left: 12%; width: 76%; height: 2px; top: 30px; background: #2388df; transform-origin: left; transition: transform .6s cubic-bezier(.22,1,.36,1); }
+.care-track-progress { position: absolute; left: 12%; width: 76%; height: 2px; top: 30px; background: #2388df; transform-origin: left; transition: transform .24s cubic-bezier(.22,1,.36,1); }
+.care-track-progress[data-reset="true"] { transition: none; }
+.care-stage-layer[data-active="true"] .care-wash-drum { transform-origin: 38px 44px; animation: care-drum-turn 1s linear infinite; }
+.care-tracking [data-playing="false"] .care-wash-drum, .care-tracking [data-instant="true"] .care-wash-drum { animation-play-state: paused; }
+@keyframes care-drum-turn { to { transform: rotate(360deg); } }
 .care-tracking [data-instant="true"] .care-stage-layer, .care-tracking [data-instant="true"] .care-track-progress { transition: none; }
 .download-content .app-store-badge { display: block; width: min(227px,100%); margin: 32px auto 18px; border-radius: 9px; }
 .app-store-badge img { display: block; width: 100%; height: auto; }
@@ -301,5 +307,6 @@
   .app-product-screen { border-width: 6px; border-radius: 29px; }
 }
 @media(prefers-reduced-motion:reduce) {
-  .care-stage-layer, .care-track-progress { transition: none; }
+  .care-stage-layer, .care-stage-layer[data-active="true"], .care-track-progress { transition: none; }
+  .care-stage-layer[data-active="true"] .care-wash-drum { animation: none; }
 }

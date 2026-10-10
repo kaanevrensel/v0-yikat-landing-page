@@ -43,6 +43,7 @@ export function useScenePlayback(threshold = 0.15) {
     );
     if (ref.current) observer.observe(ref.current);
     const update = () => setTabVisible(!document.hidden);
+    update();
     document.addEventListener("visibilitychange", update);
     return () => {
       observer.disconnect();
@@ -73,15 +74,15 @@ export function MotionScene({
   );
 }
 /** Begin at step one, advance only in view; an explicit choice takes control. */
-export function useSceneSequence(count: number) {
+export function useSceneSequence(count: number, intervalMs = 4200) {
   const { ref, playing } = useScenePlayback(0.5);
   const [active, setActive] = useState(0);
   const [manual, setManual] = useState(false);
   useEffect(() => {
     if (!playing || manual) return;
-    const timer = window.setTimeout(() => setActive(index => (index + 1) % count), 4200);
+    const timer = window.setTimeout(() => setActive(index => (index + 1) % count), intervalMs);
     return () => window.clearTimeout(timer);
-  }, [playing, manual, count, active]);
+  }, [playing, manual, count, active, intervalMs]);
   return {
     ref,
     playing,

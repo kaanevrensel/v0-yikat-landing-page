@@ -20,6 +20,7 @@ This section supersedes the July pivot descriptions below. The owner explicitly 
 - `/api/partner-applications` validates same-origin requests, consent, contact fields, service choices and a honeypot. Local development saves isolated receipts under ignored `.local-data/partner-applications/`. Published environments call the existing `submit_partner_application` RPC using server-only `YIKAT_PARTNER_SUPABASE_URL` and `YIKAT_PARTNER_ANON_KEY`; never use a privileged key. Production targets the live system, Vercel previews target TEST. The RPC enforces duplicate/cooldown limits. No new database schema or email integration. See `docs/design/2026-10-10-production-release.md`.
 - Preserve generated legal content and business contact data. No invented reviews, statistics, prices, guaranteed service areas or partner earnings. App download target is stored in `components/website/shared.tsx`.
 - Quality gates: `pnpm lint`, `pnpm typecheck`, `pnpm test --workers=2`, plus browser inspection of the three new routes and local partner form. Test output and screenshots stay ignored.
+- October 10 playback correction: the care film plays once with replay, resumes user-requested playback after an offscreen pause, and preserves manual pause. Product's four steps advance every 1.5 seconds with short transitions and an animated washer drum; the illustration itself controls visibility. Partner sequence timing stays unchanged. Home partnership CTA is “İşini büyüt”. See `docs/design/2026-10-10-playback-fixes.md`.
 
 ## Historical July implementation context
 
