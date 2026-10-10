@@ -1,19 +1,25 @@
 # Responsive media for discovery pages
 
-The first production mobile Lighthouse run measured the shop page at 87 performance,
-4.09 s simulated LCP and 824 KB transferred; the guide measured 96, 2.44 s and
-385 KB. Both reported 100 accessibility/best-practices/SEO and zero layout shift.
-These are lab observations, not field Core Web Vitals or ranking evidence.
+New discovery photographs and the map use responsive Next image delivery. A live
+640px shop photograph returns 68,564 bytes compared with the 311,506-byte original.
+Source assets are unchanged. Existing Home/Product artwork, app screens and
+payment/download assets explicitly retain unoptimized source delivery, preserving
+their previously approved quality.
 
-The store photograph was being fetched at its full source resolution even on a
-narrow display. Enable Next's existing responsive image delivery for the new
-discovery photographs/map. Remove the unconditional shop-image preload: on phones
-the first screen is the answer and contact actions, and the photograph follows.
-Existing Home/Product artwork, app screens and payment/download assets explicitly
-retain unoptimized source delivery, preserving their previously approved quality.
-No image content or source asset is regenerated, retouched or replaced.
+The shop hero photograph is eager with high fetch priority. At 390 × 844 it starts
+at y=687, so part is visible before scrolling; the lab trace identified it as LCP.
+Lazy loading delayed its request until after layout. Other below-fold photographs
+remain lazy. This follows Next's current image guidance:
+https://nextjs.org/docs/app/api-reference/components/image#loading
 
-A regression checks that a resized image is served successfully with fewer bytes,
-and that Home still serves its original artwork. The full existing UI suite also
-passes. Post-deployment lab measurements are recorded in the workspace release
-receipt; do not report an improvement until the live result has been measured.
+A regression checks successful smaller-image delivery and that Home still serves
+its original artwork. The full 47-test CI suite passed the responsive delivery
+release. The visible-photo loading correction uses the same suite. Post-deployment
+measurements and screenshots are recorded in the private workspace release receipt.
+
+Initial lab observations before responsive delivery: shop 87 performance, 4.09 s
+LCP, 824 KB; guide 96 performance, 2.44 s LCP, 385 KB. Both reported 100
+accessibility/best-practices/SEO and zero layout shift. A later 390 × 844 lab
+profile exposed lazy-loading delay; its scores are not a controlled comparison
+with the initial default viewport. Lab scores are not field Core Web Vitals or
+ranking evidence.

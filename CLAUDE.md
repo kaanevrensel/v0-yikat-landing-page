@@ -25,7 +25,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   artwork and app screens retain explicit `unoptimized` props to preserve the
   approved source delivery. This supersedes the historical global image setting.
   See `docs/seo/2026-10-10-mobile-media.md`.
-- Quality: full local lint/typecheck/build/46 tests pass with one worker. CI retains
+- Quality: lint/typecheck/build pass; full CI now has 47 passing tests. CI retains
   the two-worker gate; local multiworker teardown can hang for five minutes.
 
 ## Active website redesign — October 10, 2026
