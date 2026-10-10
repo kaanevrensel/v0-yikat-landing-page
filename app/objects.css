@@ -1,8 +1,9 @@
 /* The service objects are the homepage navigation. */
-.object-home { background: #f7fbff; }
-.object-hero { position: relative; isolation: isolate; min-height: min(720px, 100svh); padding: 136px 24px 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.object-home { --home-transition-blue: #2388df; background: #f7fbff; }
+.object-hero { position: relative; isolation: isolate; min-height: min(720px, 100svh); padding: 136px 24px 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(180deg, #f7fbff 22%, #e4f3ff 40%, #b6ddfb 57%, #70b7ee 73%, #3b97e5 88%, var(--home-transition-blue) 97%); }
 .object-hero h1 { margin: 0; color: #123b5b; text-align: center; font-size: clamp(54px, 6.3vw, 92px); line-height: 1.04; letter-spacing: -.04em; font-weight: 500; }
-.home-wash { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; contain: strict; mask-image: linear-gradient(transparent, #000 18%, #000 78%, transparent); }
+/* Fade only the moving water; the shared blue stays solid at the section boundary. */
+.home-wash { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; contain: strict; mask-image: linear-gradient(transparent, #000 18%, #000 78%, transparent 97%); }
 .home-wash :is(canvas, svg) { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
 .home-wash canvas[data-ready="true"] + .wash-still { visibility: hidden; }
 .object-choices { width: min(1300px, 100%); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: center; margin: 0 auto 34px; }
