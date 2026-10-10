@@ -26,7 +26,10 @@ The drying step is directly visible in the footage. No unverified chemicals,
 temperature, disinfection, turnaround guarantee or pricing was added.
 
 The film loads only after an explicit play action and pauses offscreen or in
-a hidden tab, including when the OS requests reduced motion. The surrounding
+a hidden tab, including when the OS requests reduced motion. The October 10
+playback fix resumes a user-requested play when the film returns, preserves
+manual pauses, and holds the ending for an explicit replay instead of looping
+the short shot. Loading/cancellation and retry are handled. The surrounding
 thread is decorative, pauses offscreen, and is still for reduced motion.
 
 Storefront and walking-route provenance: `public/images/shop/SOURCE.md`.

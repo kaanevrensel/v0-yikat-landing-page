@@ -15,7 +15,7 @@ export function PartnerInvitation() {
       <CareObject kind="tag" className="invitation-tag"/>
       <div className="invitation-label">
         <Logo width={100}/>
-        <Link href="/partnerler" className="object-discover">Birlikte çalışalım <ArrowRight size={20} aria-hidden="true"/></Link>
+        <Link href="/partnerler" className="object-discover">İşini büyüt <ArrowRight size={20} aria-hidden="true"/></Link>
       </div>
       <CareObject kind="parcel" className="invitation-parcel"/>
     </MotionScene>

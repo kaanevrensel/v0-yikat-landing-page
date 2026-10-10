@@ -63,8 +63,10 @@ export function CareGlyph({ kind, className = "" }: { kind: CareGlyphKind; class
         <path d="M19 16h10" stroke="#c0ecff" strokeWidth="4" strokeLinecap="round" />
         <circle cx="56" cy="16" r="3" fill="white" />
         <circle cx="38" cy="44" r="19" fill="#145b9d" stroke="#b7e4ff" strokeWidth="3" />
-        <circle cx="38" cy="44" r="14" fill="#73c6fc" />
-        <path d="M24 44c7-8 18 10 28 0a14 14 0 0 1-28 0Z" fill="#e4f6ff" />
+        <g className="care-wash-drum">
+          <circle cx="38" cy="44" r="14" fill="#73c6fc" />
+          <path d="M24 44c7-8 18 10 28 0a14 14 0 0 1-28 0Z" fill="#e4f6ff" />
+        </g>
         <CareStar x={47} y={36} radius={7} />
       </>}
       {kind === "ready" && <>
