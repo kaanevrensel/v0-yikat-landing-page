@@ -7,6 +7,19 @@ import { BUSINESS_ID, careSources } from "../lib/discovery"
 
 const routes = ["/bakirkoy-ayakkabi-temizleme", "/ayakkabi-temizleme", "/rehber", ...services.map(s => `/${s.slug}`), ...careGuides.map(g => `/rehber/${g.slug}`)]
 
+test("discovery photos have working responsive delivery while approved home artwork keeps its source", async ({ request }) => {
+  const shop = await (await request.get("/bakirkoy-ayakkabi-temizleme")).text()
+  expect(shop).toContain("/_next/image?url=%2Fimages%2Fshop%2Fbakirkoy-owner-202608.webp")
+  const original = await request.get("/images/shop/bakirkoy-owner-202608.webp")
+  const scaled = await request.get("/_next/image?url=%2Fimages%2Fshop%2Fbakirkoy-owner-202608.webp&w=640&q=75", { headers: { Accept: "image/webp" } })
+  expect(scaled.status()).toBe(200)
+  expect(scaled.headers()["content-type"]).toContain("image/")
+  expect((await scaled.body()).byteLength).toBeLessThan((await original.body()).byteLength)
+  const home = await (await request.get("/")).text()
+  expect(home).toContain('src="/images/services/hero-v2/')
+  expect(home).not.toContain("/_next/image?url=%2Fimages%2Fservices%2Fhero-v2")
+})
+
 test("every discovery URL serves unique canonical HTML, correct shop facts and public crawl access", async ({ request }) => {
   const titles = new Set<string>()
   for (const path of routes) {

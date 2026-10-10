@@ -76,7 +76,7 @@ export function HomePage() {
             >
               <button type="button" className="object-choice" onClick={(event) => choose(choice, event)} aria-haspopup="dialog">
                 <span className="object-art">
-                  <Image src={`/images/services/hero-v2/${choice.image}.webp`} alt="" width={512} height={512} priority loading="eager" sizes="(max-width: 600px) 34vw, (max-width: 900px) 22vw, 270px" draggable={false} />
+                  <Image unoptimized src={`/images/services/hero-v2/${choice.image}.webp`} alt="" width={512} height={512} priority loading="eager" sizes="(max-width: 600px) 34vw, (max-width: 900px) 22vw, 270px" draggable={false} />
                 </span>
                 <span className="object-label"><span>{choice.name}</span><ChevronRight aria-hidden="true" size={17} /></span>
               </button>
@@ -97,7 +97,7 @@ export function HomePage() {
         <div className="shop-welcome">
           <h2 id="shop-title">Bakırköy’deyiz</h2>
           <div className="shop-photo">
-            <Image src={night ? "/images/shop/bakirkoy-night-drive.webp" : "/images/shop/bakirkoy-owner-202608.webp"} alt={night ? "Bakırköy Yıkat dükkânının akşam ışıkları ve mavi tabelası" : "Bakırköy Yıkat dükkânının mavi tabelası ve cam giriş kapısı"} width={1000} height={1333} sizes="(max-width: 600px) 100vw, 480px" className={night ? "shop-night-photo" : ""}/>
+            <Image unoptimized src={night ? "/images/shop/bakirkoy-night-drive.webp" : "/images/shop/bakirkoy-owner-202608.webp"} alt={night ? "Bakırköy Yıkat dükkânının akşam ışıkları ve mavi tabelası" : "Bakırköy Yıkat dükkânının mavi tabelası ve cam giriş kapısı"} width={1000} height={1333} sizes="(max-width: 600px) 100vw, 480px" className={night ? "shop-night-photo" : ""}/>
             <div className="shop-photo-switch" role="group" aria-label="Dükkân fotoğrafını seç">
               <button type="button" aria-pressed={!night} onClick={() => setNight(false)}>Gündüz</button>
               <button type="button" aria-pressed={night} onClick={() => setNight(true)}>Akşam</button>
@@ -108,7 +108,7 @@ export function HomePage() {
         </div>
         <div className="shop-map-wrap">
           <a className="shop-folded-map" href={directions} target="_blank" rel="noopener noreferrer" aria-label="Bakırköy dükkânına yol tarifi al">
-            <Image src="/images/map/dukkan-harita.webp" alt="Bakırköy’deki dükkânın haritadaki konumu" fill sizes="(max-width: 700px) 100vw, 600px" />
+            <Image unoptimized src="/images/map/dukkan-harita.webp" alt="Bakırköy’deki dükkânın haritadaki konumu" fill sizes="(max-width: 700px) 100vw, 600px" />
             <span className="map-fold map-fold-one" /><span className="map-fold map-fold-two" />
             <span className="map-attribution">© OpenStreetMap · © CARTO</span>
             <span className="map-open-arrow" aria-hidden="true">↗</span>

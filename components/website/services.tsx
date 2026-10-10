@@ -117,7 +117,7 @@ export function ServiceShowcase() {
                   : { type: "spring", stiffness: 230, damping: 27 }
               }
             >
-              <Image
+              <Image unoptimized
                 draggable={false}
                 src={`/images/services/${item.image}.png`}
                 alt=""

@@ -21,6 +21,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   Never create a duplicate place or call a submission proof of indexing/ranking.
 - IndexNow: `node scripts/submit-indexnow.mjs /changed/path` checks live URLs/key
   without submission; add `--submit` only after the actual release is verified.
+- Discovery photos use responsive Next image delivery. Existing Home/Product
+  artwork and app screens retain explicit `unoptimized` props to preserve the
+  approved source delivery. This supersedes the historical global image setting.
+  See `docs/seo/2026-10-10-mobile-media.md`.
 - Quality: full local lint/typecheck/build/46 tests pass with one worker. CI retains
   the two-worker gate; local multiworker teardown can hang for five minutes.
 
