@@ -1,57 +1,57 @@
 keyword,priority,intent,destination,action,google_avg_monthly_turkey,google_avg_monthly_istanbul,google_avg_monthly_bakirkoy,evidence,period
-bakırköy ayakkabı temizleme,P0,local,/bakirkoy-ayakkabi-temizleme,publish,,,,Google historical exact row,2025-09 through 2026-08
-bakırköy ayakkabı yıkama,P0,local,/bakirkoy-ayakkabi-temizleme,publish,,,,Google historical exact row,2025-09 through 2026-08
-bakırköy sneaker temizleme,P0,local,/bakirkoy-ayakkabi-temizleme,publish,,,,Google historical exact row,2025-09 through 2026-08
-sakız ağacı ayakkabı temizleme,P0,local,/bakirkoy-ayakkabi-temizleme,publish,,,,Google historical exact row,2025-09 through 2026-08
-yakınımdaki ayakkabı temizleme,P0,local,/bakirkoy-ayakkabi-temizleme,publish,,,,Google historical exact row,2025-09 through 2026-08
-yıkat bakırköy,P0,local,/bakirkoy-ayakkabi-temizleme,publish,,,,Google historical exact row,2025-09 through 2026-08
-ayakkabı temizleme,P0,service,/ayakkabi-temizleme,publish,1900,390,20,Google historical exact row,2025-09 through 2026-08
-ayakkabı yıkama,P0,service,/ayakkabi-temizleme,publish,720,140,10,Google historical exact row,2025-09 through 2026-08
-ayakkabı kuru temizleme,P0,service,/ayakkabi-temizleme,publish,170,40,10,Google historical exact row,2025-09 through 2026-08
-ayakkabı temizleme fiyatları,P0,service,/ayakkabi-temizleme,publish,,,,Google historical exact row,2025-09 through 2026-08
-ayakkabı yıkama fiyatları,P0,service,/ayakkabi-temizleme,publish,,,,Google historical exact row,2025-09 through 2026-08
+bakırköy ayakkabı temizleme,P0,local,/bakirkoy-ayakkabi-temizleme,publish,,,,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+bakırköy ayakkabı yıkama,P0,local,/bakirkoy-ayakkabi-temizleme,publish,,,,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+bakırköy sneaker temizleme,P0,local,/bakirkoy-ayakkabi-temizleme,publish,,,,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+sakız ağacı ayakkabı temizleme,P0,local,/bakirkoy-ayakkabi-temizleme,publish,,,,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+yakınımdaki ayakkabı temizleme,P0,local,/bakirkoy-ayakkabi-temizleme,publish,,,,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+yıkat bakırköy,P0,local,/bakirkoy-ayakkabi-temizleme,publish,,,,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+ayakkabı temizleme,P0,service,/ayakkabi-temizleme,publish,1900,390,20,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+ayakkabı yıkama,P0,service,/ayakkabi-temizleme,publish,720,140,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+ayakkabı kuru temizleme,P0,service,/ayakkabi-temizleme,publish,170,40,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+ayakkabı temizleme fiyatları,P0,service,/ayakkabi-temizleme,publish,,,,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+ayakkabı yıkama fiyatları,P0,service,/ayakkabi-temizleme,publish,,,,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
 profesyonel ayakkabı temizleme,P0,service,/ayakkabi-temizleme,publish,,,,Editorial or Search Console seed; Google exact row unreported,2025-09 through 2026-08
-sneaker temizleme,P0,service,/sneaker-yikama,improve,50,20,10,Google historical exact row,2025-09 through 2026-08
+sneaker temizleme,P0,service,/sneaker-yikama,improve,50,20,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
 sneaker yıkama,P0,service,/sneaker-yikama,improve,,,,Editorial or Search Console seed; Google exact row unreported,2025-09 through 2026-08
-spor ayakkabı temizleme,P0,service,/sneaker-yikama,improve,720,170,10,Google historical exact row,2025-09 through 2026-08
+spor ayakkabı temizleme,P0,service,/sneaker-yikama,improve,720,170,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
 spor ayakkabı yıkama,P0,service,/sneaker-yikama,improve,,,,Editorial or Search Console seed; Google exact row unreported,2025-09 through 2026-08
-süet ayakkabı temizleme,P0,service,/suet-nubuk-temizleme,improve,1000,110,10,Google historical exact row,2025-09 through 2026-08
-nubuk ayakkabı temizleme,P0,service,/suet-nubuk-temizleme,improve,140,30,10,Google historical exact row,2025-09 through 2026-08
-deri ayakkabı bakımı,P0,service,/deri-ayakkabi-bakimi,improve,210,40,10,Google historical exact row,2025-09 through 2026-08
-deri ayakkabı temizleme,P0,service,/deri-ayakkabi-bakimi,improve,70,10,10,Google historical exact row,2025-09 through 2026-08
-ayakkabı makinede yıkanır mı,P1,care,/rehber/ayakkabi-makinede-yikanir-mi,publish,140,20,10,Google historical exact row,2025-09 through 2026-08
-spor ayakkabı makinede yıkanır mı,P1,care,/rehber/ayakkabi-makinede-yikanir-mi,publish,90,10,10,Google historical exact row,2025-09 through 2026-08
-ayakkabı kaç derecede yıkanır,P1,care,/rehber/ayakkabi-makinede-yikanir-mi,publish,1900,210,10,Google historical exact row,2025-09 through 2026-08
-ayakkabı hangi programda yıkanır,P1,care,/rehber/ayakkabi-makinede-yikanir-mi,publish,1900,210,10,Google historical exact row,2025-09 through 2026-08
-ayakkabı çamaşır makinesinde yıkanır mı,P1,care,/rehber/ayakkabi-makinede-yikanir-mi,publish,210,20,10,Google historical exact row,2025-09 through 2026-08
-beyaz ayakkabı nasıl temizlenir,P1,care,/rehber/beyaz-ayakkabi-nasil-temizlenir,publish,1600,170,10,Google historical exact row,2025-09 through 2026-08
-beyaz spor ayakkabı nasıl temizlenir,P1,care,/rehber/beyaz-ayakkabi-nasil-temizlenir,publish,1900,260,10,Google historical exact row,2025-09 through 2026-08
-beyaz ayakkabı temizleme,P1,care,/rehber/beyaz-ayakkabi-nasil-temizlenir,publish,1600,210,10,Google historical exact row,2025-09 through 2026-08
-beyaz ayakkabı sararması,P1,care,/rehber/beyaz-ayakkabi-nasil-temizlenir,publish,30,10,10,Google historical exact row,2025-09 through 2026-08
-süet ayakkabı nasıl temizlenir,P1,care,/rehber/suet-nubuk-ayakkabi-nasil-temizlenir,publish,3600,720,30,Google historical exact row,2025-09 through 2026-08
-nubuk ayakkabı nasıl temizlenir,P1,care,/rehber/suet-nubuk-ayakkabi-nasil-temizlenir,publish,880,140,10,Google historical exact row,2025-09 through 2026-08
-süet ayakkabı yıkanır mı,P1,care,/rehber/suet-nubuk-ayakkabi-nasil-temizlenir,publish,140,20,10,Google historical exact row,2025-09 through 2026-08
-nubuk ayakkabı yıkanır mı,P1,care,/rehber/suet-nubuk-ayakkabi-nasil-temizlenir,publish,20,10,0,Google historical exact row,2025-09 through 2026-08
-ayakkabı kokusu nasıl giderilir,P1,care,/rehber/ayakkabi-kokusu-nasil-giderilir,publish,2400,480,20,Google historical exact row,2025-09 through 2026-08
+süet ayakkabı temizleme,P0,service,/suet-nubuk-temizleme,improve,1000,110,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+nubuk ayakkabı temizleme,P0,service,/suet-nubuk-temizleme,improve,140,30,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+deri ayakkabı bakımı,P0,service,/deri-ayakkabi-bakimi,improve,210,40,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+deri ayakkabı temizleme,P0,service,/deri-ayakkabi-bakimi,improve,70,10,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+ayakkabı makinede yıkanır mı,P1,care,/rehber/ayakkabi-makinede-yikanir-mi,publish,140,20,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+spor ayakkabı makinede yıkanır mı,P1,care,/rehber/ayakkabi-makinede-yikanir-mi,publish,90,10,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+ayakkabı kaç derecede yıkanır,P1,care,/rehber/ayakkabi-makinede-yikanir-mi,publish,1900,210,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+ayakkabı hangi programda yıkanır,P1,care,/rehber/ayakkabi-makinede-yikanir-mi,publish,1900,210,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+ayakkabı çamaşır makinesinde yıkanır mı,P1,care,/rehber/ayakkabi-makinede-yikanir-mi,publish,210,20,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+beyaz ayakkabı nasıl temizlenir,P1,care,/rehber/beyaz-ayakkabi-nasil-temizlenir,publish,1600,170,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+beyaz spor ayakkabı nasıl temizlenir,P1,care,/rehber/beyaz-ayakkabi-nasil-temizlenir,publish,1900,260,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+beyaz ayakkabı temizleme,P1,care,/rehber/beyaz-ayakkabi-nasil-temizlenir,publish,1600,210,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+beyaz ayakkabı sararması,P1,care,/rehber/beyaz-ayakkabi-nasil-temizlenir,publish,30,10,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+süet ayakkabı nasıl temizlenir,P1,care,/rehber/suet-nubuk-ayakkabi-nasil-temizlenir,publish,3600,720,30,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+nubuk ayakkabı nasıl temizlenir,P1,care,/rehber/suet-nubuk-ayakkabi-nasil-temizlenir,publish,880,140,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+süet ayakkabı yıkanır mı,P1,care,/rehber/suet-nubuk-ayakkabi-nasil-temizlenir,publish,140,20,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+nubuk ayakkabı yıkanır mı,P1,care,/rehber/suet-nubuk-ayakkabi-nasil-temizlenir,publish,20,10,0,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+ayakkabı kokusu nasıl giderilir,P1,care,/rehber/ayakkabi-kokusu-nasil-giderilir,publish,2400,480,20,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
 ayakkabı kokusu,P1,care,/rehber/ayakkabi-kokusu-nasil-giderilir,publish,,,,Editorial or Search Console seed; Google exact row unreported,2025-09 through 2026-08
 spor ayakkabı kokusu nasıl giderilir,P1,care,/rehber/ayakkabi-kokusu-nasil-giderilir,publish,,,,Editorial or Search Console seed; Google exact row unreported,2025-09 through 2026-08
-ayakkabı nasıl kurutulur,P1,care,/rehber/ayakkabi-nasil-kurutulur,publish,70,10,0,Google historical exact row,2025-09 through 2026-08
+ayakkabı nasıl kurutulur,P1,care,/rehber/ayakkabi-nasil-kurutulur,publish,70,10,0,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
 ıslak ayakkabı nasıl kurutulur,P1,care,/rehber/ayakkabi-nasil-kurutulur,publish,,,,Editorial or Search Console seed; Google exact row unreported,2025-09 through 2026-08
 ayakkabı kurutma makinesine atılır mı,P1,care,/rehber/ayakkabi-nasil-kurutulur,publish,,,,Editorial or Search Console seed; Google exact row unreported,2025-09 through 2026-08
-çamaşır yıkama sembolleri,P1,care,/rehber/yikama-sembolleri,publish,390,90,10,Google historical exact row,2025-09 through 2026-08
+çamaşır yıkama sembolleri,P1,care,/rehber/yikama-sembolleri,publish,390,90,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
 yıkama sembolleri,P1,care,/rehber/yikama-sembolleri,publish,,,,Editorial or Search Console seed; Google exact row unreported,2025-09 through 2026-08
-kıyafet yıkama sembolleri,P1,care,/rehber/yikama-sembolleri,publish,320,40,10,Google historical exact row,2025-09 through 2026-08
-kuru temizleme nedir,P1,care,/rehber/kuru-temizleme-nedir,publish,480,70,10,Google historical exact row,2025-09 through 2026-08
-kuru temizleme nasıl yapılır,P1,care,/rehber/kuru-temizleme-nedir,publish,2900,320,10,Google historical exact row,2025-09 through 2026-08
-yorgan nasıl yıkanır,P1,care,/rehber/yorgan-nasil-yikanir,publish,390,50,10,Google historical exact row,2025-09 through 2026-08
-yorgan kaç derecede yıkanır,P1,care,/rehber/yorgan-nasil-yikanir,publish,480,70,10,Google historical exact row,2025-09 through 2026-08
+kıyafet yıkama sembolleri,P1,care,/rehber/yikama-sembolleri,publish,320,40,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+kuru temizleme nedir,P1,care,/rehber/kuru-temizleme-nedir,publish,480,70,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+kuru temizleme nasıl yapılır,P1,care,/rehber/kuru-temizleme-nedir,publish,2900,320,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+yorgan nasıl yıkanır,P1,care,/rehber/yorgan-nasil-yikanir,publish,390,50,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+yorgan kaç derecede yıkanır,P1,care,/rehber/yorgan-nasil-yikanir,publish,480,70,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
 yün yorgan nasıl yıkanır,P1,care,/rehber/yorgan-nasil-yikanir,publish,,,,Editorial or Search Console seed; Google exact row unreported,2025-09 through 2026-08
-gömlek nasıl ütülenir,P2,care,,later_editorial_review,880,110,10,Google historical exact row,2025-09 through 2026-08
-deri ayakkabı nasıl temizlenir,P2,care,,later_editorial_review,390,50,10,Google historical exact row,2025-09 through 2026-08
-spor ayakkabı nasıl temizlenir,P2,care,,later_editorial_review,1300,140,10,Google historical exact row,2025-09 through 2026-08
-bakırköy kuru temizleme,deferred,unconfirmed_service,,verify_availability_first,170,140,50,Google historical exact row,2025-09 through 2026-08
-kuru temizleme,deferred,unconfirmed_service,,verify_availability_first,74000,14800,720,Google historical exact row,2025-09 through 2026-08
-çamaşır yıkama,deferred,unconfirmed_service,,verify_availability_first,1600,260,10,Google historical exact row,2025-09 through 2026-08
-ütü hizmeti,deferred,unconfirmed_service,,verify_availability_first,110,50,10,Google historical exact row,2025-09 through 2026-08
-yorgan yıkama,deferred,unconfirmed_service,,verify_availability_first,1300,260,10,Google historical exact row,2025-09 through 2026-08
+gömlek nasıl ütülenir,P2,care,,later_editorial_review,880,110,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+deri ayakkabı nasıl temizlenir,P2,care,,later_editorial_review,390,50,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+spor ayakkabı nasıl temizlenir,P2,care,,later_editorial_review,1300,140,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+bakırköy kuru temizleme,deferred,unconfirmed_service,,verify_availability_first,170,140,50,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+kuru temizleme,deferred,unconfirmed_service,,verify_availability_first,74000,14800,720,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+çamaşır yıkama,deferred,unconfirmed_service,,verify_availability_first,1600,260,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+ütü hizmeti,deferred,unconfirmed_service,,verify_availability_first,110,50,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
+yorgan yıkama,deferred,unconfirmed_service,,verify_availability_first,1300,260,10,Google historical exact row; blank metrics are unreported,2025-09 through 2026-08
 kapıdan kuru temizleme,deferred,unconfirmed_service,,verify_availability_first,,,,Editorial or Search Console seed; Google exact row unreported,2025-09 through 2026-08
