@@ -1,5 +1,5 @@
 {
- "_generated": "GENERATED FILE — do not edit. Source of truth: yikat-app mobile/src/features/legal/docs.ts (the texts shown in-app and on app.yikat.tech/legal/*). Regenerate: extract COMPANY/LEGAL_DOCS via deno (see landing CLAUDE.md), pick the docs below, and re-run the picker. Regenerated 2026-08-27 for live online card payment via iyzico (pre-authorization model) and Google/Apple sign-in. KÜNYE 2026-08-29 (owner, new tax certificate): company.address and every address row/line carry \"Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul\" (same string as lib/site.ts address.full — NAP rule), company.taxOffice \"Bakırköy V.D.\". These same values were written into yikat-app docs.ts COMPANY on 2026-08-29, so this is NO LONGER A MANUAL OVERRIDE: the next regeneration reproduces them and nothing needs re-applying by hand. taxNo (T.C. Kimlik No) unchanged. Privacy policy and shared Meta campaign-measurement blocks regenerated 2026-10-02 from mobile/src/features/legal/docs.ts; the other generated documents are unchanged. Shoe photograph disclosure regenerated 2026-10-08 from the same canonical source.",
+ "_generated": "GENERATED FILE — do not edit. Source of truth: yikat-app mobile/src/features/legal/docs.ts (the texts shown in-app and on app.yikat.tech/legal/*). Regenerate: extract COMPANY/LEGAL_DOCS via deno (see landing CLAUDE.md), pick the docs below, and re-run the picker. Regenerated 2026-08-27 for live online card payment via iyzico (pre-authorization model) and Google/Apple sign-in. KÜNYE 2026-08-29 (owner, new tax certificate): company.address and every address row/line carry \"Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul\" (same string as lib/site.ts address.full — NAP rule), company.taxOffice \"Bakırköy V.D.\". These same values were written into yikat-app docs.ts COMPANY on 2026-08-29, so this is NO LONGER A MANUAL OVERRIDE: the next regeneration reproduces them and nothing needs re-applying by hand. taxNo (T.C. Kimlik No) unchanged. Privacy policy and shared Meta campaign-measurement blocks regenerated 2026-10-02 from mobile/src/features/legal/docs.ts; the other generated documents are unchanged. Shoe photograph disclosure regenerated 2026-10-08 from the same canonical source. Disclosed shoe category correction and return terms regenerated 2026-10-10 from canonical app documents.",
  "company": {
   "legalName": "Ahmet Kaan Evrensel (şahıs işletmesi)",
   "brand": "Yıkat",
@@ -12,7 +12,7 @@
   "web": "www.yikat.tech",
   "webUrl": "https://www.yikat.tech"
  },
- "effectiveDate": "8 Ekim 2026",
+ "effectiveDate": "10 Ekim 2026",
  "docs": {
   "gizlilik": {
    "navTitle": "Gizlilik",
@@ -181,7 +181,7 @@
     },
     {
      "type": "paragraph",
-     "text": "Bu politikayı zaman zaman güncelleyebiliriz; önemli değişiklikleri uygulama üzerinden duyururuz. Güncel sürüm her zaman uygulamada yer alır. Yürürlük tarihi: 8 Ekim 2026."
+     "text": "Bu politikayı zaman zaman güncelleyebiliriz; önemli değişiklikleri uygulama üzerinden duyururuz. Güncel sürüm her zaman uygulamada yer alır. Yürürlük tarihi: 10 Ekim 2026."
     },
     {
      "type": "section",
@@ -304,7 +304,8 @@
      "items": [
       "Ödeme yöntemleri: kapıda nakit, kapıda kart ve uygulama üzerinden online kart ödemesi. Online kart ödemesi, iyzico (iyzi Ödeme ve Elektronik Para Hizmetleri A.Ş.) güvenli ödeme altyapısı üzerinden ve kartınızı veren bankanın 3D Secure doğrulamasıyla alınır. Kart numaranız ve CVV bilgileriniz Yıkat tarafından görülmez ve saklanmaz; bunları doğrudan iyzico'nun güvenli ödeme sayfasında girersiniz (bkz. Ödeme ve Güvenli Alışveriş).",
       "Ön provizyon (bloke) ile ödeme: Online kart ödemesinde sipariş anında kartınızdan tahsilat yapılmaz. Sipariş tutarı kartınızda ön provizyon olarak bloke edilir; bu tutar kartınızın kullanılabilir limitinden düşer ancak hesabınızdan çıkmaz ve o anda Yıkat'a aktarılmaz.",
-      "Kesin tutarın tahsili: Hizmet tamamlandığında kesin tutar, bloke edilen tutar üzerinden ve onu hiçbir şekilde aşmayacak biçimde tahsil edilir. Bloke edilen tutarın tahsil edilmeyen kısmı serbest bırakılır (bkz. İptal ve İade Koşulları §3).",
+      "İlk sipariş tutarının tahsili: Hizmet tamamlandığında kesin tutar, bloke edilen tutar üzerinden ve onu hiçbir şekilde aşmayacak biçimde tahsil edilir. Bloke edilen tutarın tahsil edilmeyen kısmı serbest bırakılır (bkz. İptal ve İade Koşulları §3). Ayrı ayakkabı kategori farkı ödemesinin temizlikten önce tahsil edilmesi aşağıda açıklanmıştır.",
+      "Ayakkabı kategori farkı: Fotoğraf kaydı sırasında yeni koşulları gösterilmiş çiftlerde, dükkânda kategori veya çocuk ayakkabısı seçimi farklı teyit edilirse ek tutar sipariş detayında gösterilir ve ayrıca onayınıza sunulur. Fark, o çiftin fotoğraf kaydında korunan malzeme fiyatları ve çocuk indirimi üzerinden hesaplanır; ilk siparişin fiyat ve kampanya kayıtları değiştirilmez. Bu ayrı ödeme, uygulamada onayınızla temizlikten önce tahsil edilir; ön provizyon tek başına tahsilat sayılmaz. Ana sipariş kapıda ödemeli olsa da fark uygulamadan ödenir. Onaylanmayan veya ödenmeyen çift yıkanmadan geri gönderilir. Yeni koşullar gösterilmeden oluşturulan çift kayıtlarının önceki koşulları korunur; bu çiftlerde kategori farkı Yıkat tarafından karşılanır.",
       "Tahsil edilen tutar neden daha düşük olabilir: Bir ürününüz işleme uygun bulunmaz veya siparişinizden çıkarılırsa yalnızca kalan hizmetlerin bedeli tahsil edilir. Tahsilat tutarı bloke edilen tutarı aşamaz; daha yüksek bir tutar gerekirse bu tutar sizin ayrıca onayınızla alınır.",
       "Online kart ödemesi, tutarı sipariş anında kesinleşen (sabit fiyatlı) hizmetlerde seçilebilir. Tartı veya inceleme ile netleşen hizmetlerde (örneğin kiloyla çamaşır) ödeme teslimde kapıda alınır.",
       "Ödeme tamamlanmadan teslimat gerçekleştirilemezse ürünler, ödeme tamamlanana kadar Yıkat'ta muhafaza edilebilir."
@@ -431,6 +432,7 @@
      "items": [
       "Tüm vergiler dâhil tutar uygulamada gösterilir. Tartı/inceleme ile netleşen hizmetlerde gösterilen tutar tahminîdir; kesin tutar ürün teslim alınınca belirlenir.",
       "Ödeme: kapıda nakit, kapıda kart veya uygulamadan online kart. Online kart ödemesinde sipariş anında tahsilat yapılmaz; tutar kartınızda ön provizyon olarak bloke edilir ve hizmet tamamlanınca, bloke edilen tutarı aşmamak üzere kesin tutar tahsil edilir. Ödeme iyzico güvenli ödeme altyapısı ve 3D Secure ile alınır; kart bilgileriniz Yıkat'ta saklanmaz. Online kart ödemesi sabit fiyatlı hizmetlerde seçilebilir. Ayrıntı: Ödeme ve Güvenli Alışveriş ile İptal ve İade Koşulları.",
+      "Ayakkabı kategori farkı: Fotoğraf kaydı sırasında yeni koşulları gösterilmiş çiftlerde, dükkânda kategori veya çocuk ayakkabısı seçimi farklı teyit edilirse ek tutar sipariş detayında gösterilir ve ayrıca onayınıza sunulur. Fark, o çiftin fotoğraf kaydında korunan malzeme fiyatları ve çocuk indirimi üzerinden hesaplanır; ilk siparişin fiyat ve kampanya kayıtları değiştirilmez. Bu ayrı ödeme, uygulamada onayınızla temizlikten önce tahsil edilir; ön provizyon tek başına tahsilat sayılmaz. Ana sipariş kapıda ödemeli olsa da fark uygulamadan ödenir. Onaylanmayan veya ödenmeyen çift yıkanmadan geri gönderilir. Yeni koşullar gösterilmeden oluşturulan çift kayıtlarının önceki koşulları korunur; bu çiftlerde kategori farkı Yıkat tarafından karşılanır.",
       "Ek teslimat ücreti varsa sipariş özetinde ayrıca belirtilir."
      ]
     },
@@ -510,6 +512,8 @@
      "items": [
       "İade her zaman ödemenin yapıldığı karta yapılır; başka bir hesaba/karta veya nakit olarak yapılmaz.",
       "Ön provizyon (bloke) modeli: sipariş anında tutar kartınızda bloke edilir; sipariş hizmete başlanmadan iptal edilirse bloke serbest bırakılır (tahsilat olmaz); hizmet tamamlanınca kesin tutar (blokeyi aşmayacak şekilde) tahsil edilir; bloke edilen tutarın kesin tutarı aşan kısmı serbest kalır.",
+      "Ayakkabı kategori farkı: Fotoğraf kaydı sırasında yeni koşulları gösterilmiş çiftlerde, dükkânda kategori veya çocuk ayakkabısı seçimi farklı teyit edilirse ek tutar sipariş detayında gösterilir ve ayrıca onayınıza sunulur. Fark, o çiftin fotoğraf kaydında korunan malzeme fiyatları ve çocuk indirimi üzerinden hesaplanır; ilk siparişin fiyat ve kampanya kayıtları değiştirilmez. Bu ayrı ödeme, uygulamada onayınızla temizlikten önce tahsil edilir; ön provizyon tek başına tahsilat sayılmaz. Ana sipariş kapıda ödemeli olsa da fark uygulamadan ödenir. Onaylanmayan veya ödenmeyen çift yıkanmadan geri gönderilir. Yeni koşullar gösterilmeden oluşturulan çift kayıtlarının önceki koşulları korunur; bu çiftlerde kategori farkı Yıkat tarafından karşılanır.",
+      "Kategori farkı nedeniyle yıkanmadan geri gönderilen çiftin ilk siparişte o çifte düşen indirimli hizmet bedeli, henüz tahsil edilmemişse alınacak tutardan düşülür; tahsil edilmişse iade süreci başlatılır. Ayrı kategori farkı ödemesinin blokesinin çözülmesi veya tahsil edilmiş farkın iadesi ayrı takip edilir. İlk hizmet bedeli nakit veya kart ile dükkânda/teslimde alınmışsa geri ödeme ekip tarafından takip edilip kaydedilir. Ödeme ve iade kontrolü tamamlanmadan çift geri gönderime hazır sayılmaz; geri gönderime hazır durumu, müşteriye teslim edildiği anlamına gelmez.",
       "Blokenin süresi: Bir ön provizyon, kartınızı veren bankanın belirlediği süre boyunca geçerlidir. Bu süre içinde tahsilat yapılmazsa bloke kendiliğinden çözülür; böyle bir durumda hizmetin bedeli için sizinle iletişime geçilir.",
       "Kısmi iade / fark iadesi: tahsil edilen tutarda sonradan bir düzeltme gerekirse, fark aynı karta iade edilir.",
       "İade süresi: iade talebinizin onaylanmasının ardından tutar, bankanız/kart kuruluşunuzun süreçlerine bağlı olarak genellikle birkaç iş günü içinde kartınıza yansır. Yansıma süresi Yıkat'ın kontrolü dışında olup bankanıza bağlıdır.",
@@ -522,7 +526,7 @@
     },
     {
      "type": "paragraph",
-     "text": "Kapıda ödemeli siparişlerde, hizmete başlanmadan iptal hâlinde herhangi bir tahsilat yapılmaz; ödeme yalnızca teslimde alınır."
+     "text": "Kapıda ödemeli siparişlerde ilk hizmet bedeli teslimde alınır; hizmete başlanmadan iptal edilen hizmetin bedeli tahsil edilmez. Ayrı onaylanan ayakkabı kategori farkı ise ana sipariş kapıda ödemeli olsa da uygulamadan temizlikten önce tahsil edilir. Bu fark nedeniyle yıkanmadan iade istendiğinde ilk hizmet bedeli ve ayrı fark ödemesi yukarıdaki kurallara göre ayrı ayrı değerlendirilir."
     },
     {
      "type": "section",
