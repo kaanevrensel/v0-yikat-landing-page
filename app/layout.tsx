@@ -45,7 +45,13 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: siteConfig.url },
   robots: { index: true, follow: true },
-  verification: { google: "STVQceqys-HuTc9IuB8MElUcaltLIoRKCwBQ-FkwUYA" },
+  verification: {
+    google: [
+      "STVQceqys-HuTc9IuB8MElUcaltLIoRKCwBQ-FkwUYA",
+      "rJEiugQDezmZLCEBY3hXbFkFKyIcQW3heWUz3njtwos",
+    ],
+    other: { "msvalidate.01": "6573F2E41E63FCBCB097E4CCBBB288F7" },
+  },
   openGraph: {
     type: "website",
     url: siteConfig.url,
