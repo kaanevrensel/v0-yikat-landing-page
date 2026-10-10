@@ -4,6 +4,12 @@ import { Analytics } from "@vercel/analytics/next"
 import { WebVitalsReporter } from "@/components/web-vitals-reporter"
 import { priceMenu, siteConfig } from "@/lib/site"
 import "./globals.css"
+import "./marketing.css"
+import "./centered.css"
+import "./editorial.css"
+import "./objects.css"
+import "./craft.css"
+import "./experiences.css"
 
 // Site yüzü: Bricolage Grotesque (SIL OFL 1.1, sahip kararı 2026-07-10 — her yerde).
 // Değişken font: opsz ekseni küçük boyutlarda metin-optik kesim sağlar; latin-ext Türkçe için.
@@ -15,10 +21,9 @@ const bricolage = Bricolage_Grotesque({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  // "Aynı gün teslim" SERP'te sıfır rakibin verdiği vaat (2026-07-10 SERP taraması) — başlıkta öne.
-  title: "Ayakkabı Yıkama Bakırköy, Aynı Gün Teslim | Yıkat",
+  title: "Yıkat Gitsin | Temizlik ve bakım",
   description:
-    "Bakırköy İskele Caddesi'nde profesyonel ayakkabı yıkama. Sneaker, süet, deri. Malzemesine uygun yıkama, aynı gün teslim. Her gün 09:00–20:00, 400–1000 ₺.",
+    "Kapından alınsın, özenle temizlensin, sana hazır dönsün. Yıkat Gitsin uygulamasını keşfet, WhatsApp’tan yaz veya Bakırköy atölyemize gel.",
   keywords: [
     "ayakkabı yıkama bakırköy",
     "ayakkabı temizleme",
@@ -46,20 +51,20 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     siteName: "Yıkat",
     locale: "tr_TR",
-    title: "Ayakkabı Yıkama Bakırköy, Aynı Gün Teslim | Yıkat",
-    description: "Temiz ayakkabı, başka yürüyüş. Aynı gün teslim. Her gün 09:00–20:00.",
+    title: "Yıkat Gitsin | Temizlik ve bakım",
+    description: "Temizliğe ayırdığın zaman sana kalsın. Yıkat Gitsin iPhone’da yayında.",
     images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "Yıkat, Ayakkabı Yıkama Bakırköy" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ayakkabı Yıkama Bakırköy, Aynı Gün Teslim | Yıkat",
-    description: "Temiz ayakkabı, başka yürüyüş. Aynı gün teslim.",
+    title: "Yıkat Gitsin | Temizlik ve bakım",
+    description: "Temizliğe ayırdığın zaman sana kalsın. Yıkat Gitsin iPhone’da yayında.",
     images: ["/images/og.jpg"],
   },
 }
 
 export const viewport: Viewport = {
-  themeColor: "#4A8CFF",
+  themeColor: "#269AFF",
   width: "device-width",
   initialScale: 1,
 }

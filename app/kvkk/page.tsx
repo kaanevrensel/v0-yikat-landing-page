@@ -283,6 +283,15 @@ export default function KvkkPage() {
               <LegalBlocks blocks={legal.metaCampaignMeasurement as LegalBlock[]} />
             </div>
           </section>
+          <section>
+            <h2 className="text-xl font-semibold text-foreground sm:text-2xl">
+              {"11. Ayakkabı Fotoğrafları"}
+            </h2>
+            <p className="mt-3">{`Son güncelleme: ${legal.effectiveDate}`}</p>
+            <div className="mt-3">
+              <LegalBlocks blocks={legal.shoePhotos as LegalBlock[]} />
+            </div>
+          </section>
         </div>
 
         {/* Back to home */}
