@@ -1,191 +1,94 @@
-// Hizmet sayfaları — tek kaynak. KURALLAR: uydurma iddia yok (süreç ifadeleri sitedeki
-// doğrulanmış beyanlarla ve dürüst/temkinli genel bilgilerle sınırlı); "yıkat" kopyada yalnız
-// YÜKLEM olarak kullanılır (CLAUDE.md Kopya sesi); fiyat = sahip beyanı genel aralık.
-import { siteConfig } from "@/lib/site"
-
+// One existing URL per material intent. Verified shop scope; no invented prices or outcomes.
 export type ServiceFaq = { q: string; a: string }
 export type Service = {
-  slug: string
-  nav: string
-  metaTitle: string
-  metaDescription: string
-  h1: string
-  intro: string
-  heroImg: string
-  /** "Evde/kendin yapınca" riskleri — dönüşüm köprüsü, korku pazarlaması değil gerçekler. */
-  risks: { title: string; text: string }[]
-  steps: { title: string; text: string }[]
-  /** Dürüst sınırlar/notlar — E-E-A-T'nin güven ayağı. */
-  notes: string[]
-  faqs: ServiceFaq[]
-  priceCategory: string
+  slug: string; nav: string; metaTitle: string; metaDescription: string; h1: string; intro: string;
+  heroImg: string; risks: { title: string; text: string }[]; steps: { title: string; text: string }[];
+  notes: string[]; faqs: ServiceFaq[]; priceCategory: string; guideSlug: string; sourceIds: string[];
 }
+const timing = "Teslim zamanını ayakkabının durumuna, işlem ve kuruma ihtiyacına göre netleştirelim. Belirli bir saate ihtiyacın varsa gelmeden önce WhatsApp’tan yaz."
+const price = "Güncel ücret için ayakkabının tamamını, sorunlu bölgesini ve varsa bakım etiketini paylaş. İşlem kapsamını ve fiyatı kabulden önce netleştirelim."
 
 export const services: Service[] = [
   {
-    slug: "sneaker-yikama",
-    nav: "Sneaker Yıkama",
-    metaTitle: "Sneaker Yıkama Bakırköy, Aynı Gün Teslim | Yıkat",
-    metaDescription:
-      "Bakırköy'de profesyonel sneaker ve spor ayakkabı yıkama. Kumaş, mesh, karışık malzeme. Elde, malzemesine uygun ürünle. Aynı gün teslim.",
-    h1: "Sneaker temizliği.\nMakineye atma, ustasına bırak.",
-    intro:
-      "Kumaş, mesh ve karışık malzemeli sneaker'lar dükkânımızda elde, malzemesine uygun ürünlerle yıkanır. Sabah bırak, aynı gün akşam 20:00'ye kadar tertemiz teslim al.",
+    slug: "sneaker-yikama", nav: "Sneaker ve spor ayakkabı temizleme",
+    metaTitle: "Sneaker ve Spor Ayakkabı Temizleme — Bakırköy | Yıkat",
+    metaDescription: "Bakırköy’de sneaker, kumaş ve mesh spor ayakkabı temizleme. Malzemeye göre değerlendirme, işlem kapsamı, fiyat bilgisi ve dükkâna yol tarifi.",
+    h1: "Sneaker ve spor ayakkabını yıkat.",
+    intro: "Kumaş, mesh ve karışık malzemeli sneaker’larda aynı yöntem her parçaya uygun olmayabilir. Bakırköy dükkânında ayakkabının malzemesini, lekelerini ve mevcut durumunu birlikte değerlendirerek temizlik kapsamını netleştirelim.",
     heroImg: "/images/services/sneaker-hero.webp",
     risks: [
-      {
-        title: "Çamaşır makinesi formu bozabilir",
-        text: "Sıcak su ve tambur darbesi, sneaker'ın formunu ve taban yapıştırıcısını zorlar; ayrılma ve deformasyon riski gerçektir.",
-      },
-      {
-        title: "Yanlış deterjan rengi soldurur",
-        text: "Genel amaçlı deterjanlar kumaş boyasını ve baskıları yıpratabilir; agresif çamaşır suyu sararmayı artırabilir.",
-      },
-      {
-        title: "Yanlış kurutma koku bırakır",
-        text: "İçi tam kurumayan ayakkabı nem ve koku tutar; kalorifer/ütü gibi doğrudan ısı ise malzemeyi sertleştirir.",
-      },
+      { title: "Karışık malzeme", text: "Kumaş üst yüzey, süet detay, deri parça ve baskı aynı ayakkabıda bulunabilir. Yöntemi seçerken ayakkabının tamamına bakmak gerekir." },
+      { title: "Beyaz yüzey ve taban", text: "Kir ile aşınma veya renk değişimi aynı sorun değildir. Sararmayı görmeden tamamen giderileceği söylenemez." },
+      { title: "Mevcut hasar", text: "Açılmış taban, soyulma veya eski bir tamir varsa işlemden önce göster. Temizleme, onarım hizmeti anlamına gelmez." },
     ],
     steps: [
-      { title: "Ön inceleme", text: "Malzeme ve lekeler tek tek kontrol edilir; yıkama yöntemi ayakkabıya göre seçilir." },
-      { title: "Söküm", text: "Bağcık ve tabanlık ayrılır, ayrı temizlenir. Kumaşın her noktasına ulaşılır." },
-      { title: "Derin temizlik", text: "Malzemesine uygun ürünle elde, suya boğmadan derin yıkama yapılır." },
-      { title: "Şekilli kurutma", text: "Form koruyucuyla, doğrudan ısıya tutmadan kurutulur. Deformasyon olmaz." },
-      { title: "Son kontrol", text: "Bağcıklar takılır, son kontrol yapılır; akşam 20:00'ye kadar teslim." },
+      { title: "Ayakkabıyı inceleyelim", text: "Malzeme, leke ve mevcut yıpranmayı değerlendirelim. Daha önce evde uyguladığın ürünleri de paylaş." },
+      { title: "Kapsamı netleştirelim", text: "Uygun temizliği, güncel ücreti ve teslim zamanını kabul öncesinde konuşalım." },
+      { title: "Malzemeye uygun temizlik", text: "Bağcık, tabanlık, üst yüzey ve tabanı ayakkabının yapısına uygun biçimde ele alıyoruz." },
+      { title: "Kurutma ve son kontrol", text: "Temizliğin ardından kurutma ve son kontrol geliyor. Hazır olma durumunu yalnız geçen saatle değerlendirmiyoruz." },
     ],
-    notes: [
-      "Beyaz tabanlardaki sararma çoğu zaman belirgin biçimde açılır; ancak malzemenin yaşına ve durumuna göre sonuç değişebilir. Dükkânda görünce net konuşuruz.",
-      "Bu hizmet temizlik ve bakım içindir; boya, yenileme veya onarım kapsamda değildir.",
-    ],
+    notes: ["Temizlik ve bakım, taban değişimi, boyama veya restorasyonla aynı hizmet değildir.", "Eski lekeler, boya kaybı veya malzemedeki renk değişimi tamamen düzelmeyebilir. İşleme başlamadan beklentiyi konuşalım."],
     faqs: [
-      {
-        q: "Sneaker çamaşır makinesinde yıkanır mı?",
-        a: "Önermiyoruz: sıcak su ve tambur darbesi taban yapıştırıcısını ve formu bozabilir. Dükkânda elde, malzemesine uygun ürünle yıkanır. Risk almana gerek yok.",
-      },
-      {
-        q: "Sneaker yıkama aynı gün teslim edilir mi?",
-        a: "Evet. Sabah bıraktığın sneaker'ı aynı gün akşam 20:00'ye kadar teslim alırsın.",
-      },
-      {
-        q: "Beyaz sneaker'daki sararma çıkar mı?",
-        a: "Çoğu durumda belirgin biçimde açılır; malzemenin durumuna göre değişir. Ayakkabıyı görünce net bilgi veririz.",
-      },
-      {
-        q: "Sneaker yıkama ücreti ne kadar?",
-        a: `Kategoriye göre sabit fiyat, ${siteConfig.priceRangeLabel} aralığında. Kesin menü dükkânda.`,
-      },
+      { q: "Sneaker çamaşır makinesinde yıkanır mı?", a: "Her model için aynı yanıt yok. Tam modelin üretici talimatını kontrol et. Nike’ın genel önerisi ile adidas’ın 4DFWD için yayımladığı yöntem farklı; bakım rehberimizde kapsamlarını karşılaştırıyoruz." },
+      { q: "Sneaker yıkama aynı gün teslim edilir mi?", a: timing },
+      { q: "Beyaz spor ayakkabıdaki sararma çıkar mı?", a: "Kir, leke ve malzemenin renk değişimi ayrı değerlendirilir. Ayakkabıyı görmeden kesin beyazlatma veya yenileme sözü vermiyoruz." },
+      { q: "Spor ayakkabı yıkama fiyatı ne kadar?", a: price },
     ],
-    priceCategory: "Spor Ayakkabı",
+    priceCategory: "Spor Ayakkabı", guideSlug: "ayakkabi-makinede-yikanir-mi", sourceIds: ["nikeMachine", "adidas4d"],
   },
   {
-    slug: "suet-nubuk-temizleme",
-    nav: "Süet & Nubuk",
-    metaTitle: "Süet ve Nubuk Ayakkabı Temizleme Bakırköy | Yıkat",
-    metaDescription:
-      "Süet ve nubuk ayakkabılar suya boğmadan, hassas yüzeye özel fırça ve ürünlerle temizlenir. Bakırköy'de, aynı gün teslim.",
-    h1: "Süet & nubuk temizleme.\nHassas dokuya hassas bakım.",
-    intro:
-      "Süet ve nubuk, su ve yanlış fırçayla kolay bozulan yüzeylerdir. Dükkânımızda suya boğmadan, hassas yüzeye özel fırça ve ürünlerle temizlenir; dokusu korunur.",
+    slug: "suet-nubuk-temizleme", nav: "Süet ve nubuk ayakkabı temizleme",
+    metaTitle: "Süet ve Nubuk Ayakkabı Temizleme — Bakırköy | Yıkat",
+    metaDescription: "Bakırköy’de süet ve nubuk ayakkabı temizleme: hassas dokuya uygun değerlendirme, leke sınırları, bakım adımları ve dükkân bilgileri.",
+    h1: "Süet ve nubuk için özenli temizlik.",
+    intro: "Süet ve nubuk yüzeyleri klasik kumaş yıkaması gibi ele almıyoruz. Hassas dokuyu, lekenin türünü ve önceki işlemleri değerlendirerek uygun temizlik ve bakım yolunu birlikte netleştirelim.",
     heroImg: "/images/services/suet-hero.webp",
     risks: [
-      {
-        title: "Su, süetin dokusunu bozar",
-        text: "Süeti suya batırmak veya ıslak bezle ovmak dokuyu yatırır, kuruyunca sert ve lekeli bir yüzey bırakabilir.",
-      },
-      {
-        title: "Yanlış fırça havı yıpratır",
-        text: "Sert fırçayla ters yönde fırçalamak havı söker; parlak, geri dönmeyen izler oluşabilir.",
-      },
-      {
-        title: "Yağmur ve tuz izi kalıcılaşabilir",
-        text: "Bekleyen su/tuz lekeleri yüzeye işler; ne kadar erken müdahale edilirse sonuç o kadar iyi olur.",
-      },
+      { title: "Toz ve yüzey kiri", text: "Kuru yüzey kirini, su veya yağ iziyle karıştırmamak gerekir. İlk değerlendirmede lekenin kaynağını ve bekleme süresini paylaş." },
+      { title: "Doku ve renk", text: "Yatmış hav, aşınma ve solma temizlikten farklı konulardır. Yalnız fotoğraftan bütün yüzey için aynı sonucu varsaymayalım." },
+      { title: "Önceki ürünler", text: "Deri kremi, deterjan veya evde hazırlanan bir karışım kullandıysan belirt. Ürün adı ve işlem geçmişi değerlendirmeyi kolaylaştırır." },
     ],
     steps: [
-      { title: "Yüzey analizi", text: "Süet mi nubuk mu, leke türü ne? Yöntem ve ürün buna göre seçilir." },
-      { title: "Kuru ön temizlik", text: "Toz ve yüzey kiri, dokuya uygun fırçayla hav yönünde alınır." },
-      { title: "Hassas derin temizlik", text: "Suya boğmadan, hassas yüzeye özel ürünlerle leke ve kir çözülür." },
-      { title: "Doğal kurutma", text: "Doğrudan ısı olmadan kurutulur; havın yatmasına izin verilmez." },
-      { title: "Doku tazeleme", text: "Hav, fırçayla yönüne uygun kaldırılır; ayakkabı aynı gün teslim edilir." },
+      { title: "Yüzeyi değerlendirelim", text: "Süet veya nubuk dokuyu, renk geçişlerini ve mevcut lekeleri inceleyelim." },
+      { title: "Beklentiyi konuşalım", text: "Temizliğin kapsamını, mevcut izlerin sınırlarını, ücreti ve teslim uygunluğunu baştan netleştirelim." },
+      { title: "Hassas temizlik", text: "Yüzeye uygun fırça ve ürünlerle, ayakkabıyı suya boğmadan ilerliyoruz." },
+      { title: "Kurutma ve doku kontrolü", text: "Temizlik sonrasında kuruma ve yüzeyin durumunu kontrol ediyoruz." },
     ],
-    notes: [
-      "Eski, yüzeye işlemiş lekelerde iyileşme sağlanır ancak her iz tamamen çıkmayabilir. Durumu dükkânda görünce net söyleriz.",
-      "Zamanla solmuş rengi geri getirme (boyama) bu hizmetin kapsamında değildir.",
-    ],
+    notes: ["Solmuş rengi boyayarak yenileme veya aşınmış dokuyu onarma, burada anlatılan temizliğin kapsamı değildir.", "Yağ, eski ürün kalıntısı veya yerleşmiş lekelerin tamamen çıkacağı garanti edilemez."],
     faqs: [
-      {
-        q: "Süet ayakkabı yıkanır mı?",
-        a: "Evet, ama suya boğmadan. Süet ve nubuk, hassas yüzeye özel fırça ve ürünlerle temizlenir; klasik yıkama süete zarar verir.",
-      },
-      {
-        q: "Yağmur ve tuz lekeleri çıkar mı?",
-        a: "Çoğu iz belirgin biçimde açılır; ne kadar erken gelirse sonuç o kadar iyi. Yüzeye işlemiş eski izlerde durumu görünce net bilgi veririz.",
-      },
-      {
-        q: "Süet temizliği de aynı gün mü?",
-        a: "Evet. Sabah bırakılan süet/nubuk ayakkabı da aynı gün akşam 20:00'ye kadar hazır olur.",
-      },
-      {
-        q: "Süet temizleme ücreti ne kadar?",
-        a: `Kategoriye göre sabit fiyat, ${siteConfig.priceRangeLabel} aralığında. Kesin menü dükkânda.`,
-      },
+      { q: "Süet ve nubuk ayakkabı yıkanır mı?", a: "Klasik kumaş yıkamasıyla aynı şekilde ele alınmaz. Malzemeye uygun fırça, ürün ve kontrollü yöntem gerekir; üreticinin talimatı önceliklidir." },
+      { q: "Yağmur ve eski lekeler çıkar mı?", a: "Sonuç lekeye, dokunun durumuna ve önceki işlemlere göre değişir. Görmeden tüm izlerin çıkacağını söylemek doğru olmaz." },
+      { q: "Süet temizliği ne kadar sürer?", a: timing },
+      { q: "Süet ve nubuk temizleme ücreti ne kadar?", a: price },
     ],
-    priceCategory: "Süet & Nubuk",
+    priceCategory: "Süet & Nubuk", guideSlug: "suet-nubuk-ayakkabi-nasil-temizlenir", sourceIds: ["nikeSuede", "clarks"],
   },
   {
-    slug: "deri-ayakkabi-bakimi",
-    nav: "Deri Bakımı",
-    metaTitle: "Deri Ayakkabı Temizleme ve Bakımı Bakırköy | Yıkat",
-    metaDescription:
-      "Klasik ve günlük deri ayakkabılar için temizlik ve bakım: suya boğmadan temizlik, kuruma ve çatlamaya karşı bakım. Bakırköy'de, aynı gün teslim.",
-    h1: "Deri ayakkabı temizlik & bakımı",
-    intro:
-      "Deri, doğru bakımla yıllarca taşır; bakımsız kaldığında kurur ve çatlar. Klasik ve günlük deri ayakkabıların dükkânımızda suya boğmadan temizlenir, deriyi besleyen bakımla teslim edilir.",
+    slug: "deri-ayakkabi-bakimi", nav: "Deri ayakkabı temizliği ve bakımı",
+    metaTitle: "Deri Ayakkabı Temizleme ve Bakımı — Bakırköy | Yıkat",
+    metaDescription: "Klasik ve günlük deri ayakkabılar için Bakırköy’de temizlik ve bakım. Deri yüzey, mevcut çatlaklar, işlem sınırları ve ücret değerlendirmesi.",
+    h1: "Deri ayakkabına uygun bakım.",
+    intro: "Klasik ve günlük deri ayakkabıda önce yüzeyin türünü ve mevcut durumunu inceliyoruz. Kirin temizlenmesiyle çizik, soyulma veya çatlağın onarılması aynı iş değil; yapılabilecek bakımı birlikte değerlendirelim.",
     heroImg: "/images/services/deri-hero.webp",
     risks: [
-      {
-        title: "Deri suyu sevmez",
-        text: "Deriyi suya batırmak veya makinede yıkamak kurumaya, sertleşmeye ve şekil kaybına yol açar.",
-      },
-      {
-        title: "Bakımsız deri çatlar",
-        text: "Temizlenmeyen kir ve bakımsızlık derinin esnekliğini azaltır; oluşan çatlaklar geri dönmez.",
-      },
-      {
-        title: "Yanlış ürün yüzeyi matlaştırır",
-        text: "Genel amaçlı temizleyiciler derinin yüzey işlemesini bozabilir; leke yerine daha büyük bir sorun kalır.",
-      },
+      { title: "Deri yüzeyin türü", text: "Düz deri, kaplamalı yüzey ve süet görünümü aynı bakıma uygun olmayabilir. Ürünü seçmeden önce malzemeyi netleştirmek gerekir." },
+      { title: "Çizik ve çatlak", text: "Yüzey kiri temizleme konusu olabilir; mevcut çatlak veya soyulmanın ortadan kalkması farklı bir beklentidir. Hasarı kabulden önce göster." },
+      { title: "Eski bakım ürünü", text: "Daha önce kullanılan boya, cila veya temizleyiciyi belirt. Farklı ürünleri üst üste uygulamak yerine geçmişi bilerek değerlendirelim." },
     ],
     steps: [
-      { title: "Deri analizi", text: "Derinin türü ve durumu incelenir; ürün ve yöntem buna göre seçilir." },
-      { title: "Nazik temizlik", text: "Kir ve lekeler, deriye uygun ürünle suya boğmadan temizlenir." },
-      { title: "Bakım", text: "Deri, kurumaya ve çatlamaya karşı beslenir; esnekliği korunur." },
-      { title: "Kurutma ve son kontrol", text: "Doğal kurutma sonrası son kontrol yapılır; aynı gün teslim." },
+      { title: "Deriyi inceleyelim", text: "Yüzeyin türünü, lekeleri ve mevcut yıpranmayı değerlendirelim." },
+      { title: "Kapsamı konuşalım", text: "Temizlik ve bakımın sınırlarını, ücreti ve teslim zamanını netleştirelim." },
+      { title: "Nazik temizlik ve bakım", text: "Deriyi suya boğmadan, uygun ürün ve yöntemle temizliyoruz; bakım ihtiyacını yüzeye göre ele alıyoruz." },
+      { title: "Son kontrol", text: "İşlem ve kurutma sonrasında ayakkabıyı kontrol ediyoruz." },
     ],
-    notes: [
-      "Mevcut derin çatlaklar geri döndürülemez; düzenli bakım ilerlemesini yavaşlatır.",
-      "Bu hizmet temizlik ve bakım içindir; boyama/renk yenileme için dükkânda birlikte değerlendiririz.",
-    ],
+    notes: ["Mevcut derin çatlak veya soyulmayı temizliğin gidereceği varsayılmamalı.", "Boyama, renk yenileme, taban değişimi ve onarım bu sayfadaki hizmetle aynı kapsamda değildir."],
     faqs: [
-      {
-        q: "Deri ayakkabı su ile yıkanır mı?",
-        a: "Klasik anlamda yıkanmaz. Deri suya boğulmadan, deriye uygun ürünlerle temizlenir ve ardından bakım yapılır.",
-      },
-      {
-        q: "Derideki çatlaklar geçer mi?",
-        a: "Oluşmuş derin çatlaklar geri dönmez; bakım, derinin beslenmesini sağlayarak ilerlemeyi yavaşlatır. Erken bakım bu yüzden önemli.",
-      },
-      {
-        q: "Deri bakım da aynı gün mü teslim?",
-        a: "Evet. Sabah bırakılan deri ayakkabı aynı gün akşam 20:00'ye kadar hazır olur.",
-      },
-      {
-        q: "Deri temizlik ve bakım ücreti ne kadar?",
-        a: `Kategoriye göre sabit fiyat, ${siteConfig.priceRangeLabel} aralığında. Kesin menü dükkânda.`,
-      },
+      { q: "Deri ayakkabı suyla yıkanır mı?", a: "Düz deriye, kumaş ayakkabıdakiyle aynı ıslak işlemi uygulama. Üreticinin talimatına ve deri yüzeye uygun temizleyiciye göre ilerlemek gerekir." },
+      { q: "Derideki çatlaklar temizlikle geçer mi?", a: "Temizlik ve bakım, hasarlı yüzeyin onarılması anlamına gelmez. Mevcut çatlak ve soyulmayı önceden göstererek beklentiyi netleştirelim." },
+      { q: "Deri bakım ne kadar sürer?", a: timing },
+      { q: "Deri ayakkabı bakım fiyatı ne kadar?", a: price },
     ],
-    priceCategory: "Deri Ayakkabı",
+    priceCategory: "Deri Ayakkabı", guideSlug: "beyaz-ayakkabi-nasil-temizlenir", sourceIds: ["adidasLeather"],
   },
 ]
-
-export const serviceBySlug = (slug: string) => services.find((s) => s.slug === slug)
+export const serviceBySlug = (slug: string) => services.find(s => s.slug === slug)

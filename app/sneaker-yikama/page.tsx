@@ -1,22 +1,7 @@
-import type { Metadata } from "next"
 import { ServicePageView } from "@/components/service-page"
 import { serviceBySlug } from "@/lib/services"
-import { siteConfig } from "@/lib/site"
+import { discoveryMetadata } from "@/lib/discovery"
 
 const service = serviceBySlug("sneaker-yikama")!
-
-export const metadata: Metadata = {
-  title: service.metaTitle,
-  description: service.metaDescription,
-  alternates: { canonical: `${siteConfig.url}/${service.slug}` },
-  openGraph: {
-    title: service.metaTitle,
-    description: service.metaDescription,
-    url: `${siteConfig.url}/${service.slug}`,
-    images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "Yıkat, Ayakkabı Yıkama Bakırköy" }],
-  },
-}
-
-export default function Page() {
-  return <ServicePageView service={service} />
-}
+export const metadata = discoveryMetadata(service.metaTitle.replace(/ \| Yıkat$/, ""), service.metaDescription, `/${service.slug}`)
+export default function Page() { return <ServicePageView service={service}/> }

@@ -16,7 +16,7 @@ export function Footer({ showTechnologyCredit = false }: { showTechnologyCredit?
               <span className="text-lg font-semibold tracking-tight text-white">Yıkat</span>
             </div>
             <p className="mt-4 max-w-xs text-sm text-white">
-              Bakırköy'de profesyonel ayakkabı yıkama. Aynı gün teslim.
+              Bakırköy’de ayakkabı temizliği ve bakım.
             </p>
           </div>
           <div className="text-sm text-white">

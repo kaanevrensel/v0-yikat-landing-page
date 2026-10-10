@@ -2,6 +2,28 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Search discovery expansion — October 10, 2026
+
+- Owner requested local/general SEO and AI discovery. Implementation and research:
+  `docs/seo/2026-10-10-search-program.md` and the adjacent priority keyword CSV.
+- New public destinations: `/bakirkoy-ayakkabi-temizleme`, `/ayakkabi-temizleme`,
+  `/rehber` and eight statically generated `/rehber/[slug]` guides. Three existing
+  material-service URLs use the same current shell. Preserve the three primary nav links.
+- Owner confirmed Kaan's later hours: **every day 10:00–22:00**, superseding all
+  historical 09:00–20:00 notes below. Google Maps identity and exact pin were checked
+  live. Collection zones remain paused; no blanket same-day or citywide promises.
+- Discovery content lives in `lib/care-guides.ts`, `lib/discovery.ts`,
+  `components/discovery/`, `lib/services.ts` and scoped `app/discovery.css`.
+  Keep visible answers/citations/server HTML, distinct self-canonicals, accurate
+  dates and schema parity. Do not invent prices, reviews or service availability.
+- Both Google URL-prefix Search Console and Bing Webmaster ownership are verified.
+  Existing Google profile management and Apple Business sign-in await Kaan's help.
+  Never create a duplicate place or call a submission proof of indexing/ranking.
+- IndexNow: `node scripts/submit-indexnow.mjs /changed/path` checks live URLs/key
+  without submission; add `--submit` only after the actual release is verified.
+- Quality: full local lint/typecheck/build/46 tests pass with one worker. CI retains
+  the two-worker gate; local multiworker teardown can hang for five minutes.
+
 ## Active website redesign — October 10, 2026
 
 This section supersedes the July pivot descriptions below. The owner explicitly authorized committing, pushing and publishing the reviewed redesign on October 10. The user requested a website version of the current app with Home, Product and Partners pages; the iOS app is live and Android has no announced date. App collection is currently paused; keep WhatsApp and shop directions usable.
