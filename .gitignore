@@ -19,3 +19,10 @@ tsconfig.tsbuildinfo
 test-results/
 playwright-report/
 .lighthouseci/
+
+# Private localhost application receipts
+.local-data/
+output/
+.playwright-cli/
+
+.next-test/

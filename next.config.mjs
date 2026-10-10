@@ -1,11 +1,16 @@
+import { fileURLToPath } from "node:url"
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  devIndicators: false,
+  distDir: process.env.YIKAT_BUILD_DIR || ".next",
+  turbopack: { root: fileURLToPath(new URL(".", import.meta.url)) },
   images: { unoptimized: true },
   async redirects() {
     // Pivot: agregatör dönemi rotaları ana sayfaya (kalıcı — Next 308 döner, SEO'da 301 ile eşdeğer).
     // /iletisim listeden ÇIKTI (2026-08-27): iyzico üye işyeri incelemesi sitede iletişim
     // sayfası istiyor — artık gerçek bir sayfa (app/iletisim).
-    const pivot = ["/hizmetler", "/nasil-calisir", "/partnerlik", "/sss"].map((source) => ({
+    const pivot = ["/hizmetler", "/nasil-calisir", "/sss"].map((source) => ({
       source,
       destination: "/",
       permanent: true,
@@ -20,7 +25,7 @@ const nextConfig = {
       destination: "/gizlilik-politikasi",
       permanent: false,
     }))
-    return [...pivot, ...appPolicy]
+    return [...pivot, ...appPolicy, { source: "/partnerlik", destination: "/partnerler", permanent: true }, { source: "/partner-ol", destination: "/partnerler", permanent: true }]
   },
   async headers() {
     // Hero videosu yenilemede yeniden inmesin: immutable + 1 yıl (sahip şikayeti 2026-07-12:

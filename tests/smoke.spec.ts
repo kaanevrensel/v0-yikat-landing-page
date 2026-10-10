@@ -1,21 +1,21 @@
 import { test, expect } from "@playwright/test"
 import AxeBuilder from "@axe-core/playwright"
-import { faqs, siteConfig } from "../lib/site"
+import { siteConfig } from "../lib/site"
 import { services } from "../lib/services"
 
-// Dükkânın iki dönüşüm yolu (tel + yol tarifi), eski rota yönlendirmeleri, JSON-LD ve
-// temel a11y — bir motion refaktörü bunlardan birini bozarsa burada kırmızı yanar.
+// Preserve contact destinations, legacy routes, business schema and accessibility
+// while the three-page website replaces the previous single-page shop layout.
 
 test("ana sayfa: h1 ve ana CTA'lar görünür", async ({ page }) => {
   await page.goto("/")
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Temiz ayakkabı, başka yürüyüş.")
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Yıkat temizlik ve bakım hizmetleri")
   await expect(page.locator(`a[href='${siteConfig.phoneHref}']`).first()).toBeAttached()
 })
 
 test("tüm tel: linkleri siteConfig telefonuna gider", async ({ page }) => {
   await page.goto("/")
   const telHrefs = await page.$$eval("a[href^='tel:']", (as) => as.map((a) => a.getAttribute("href")))
-  expect(telHrefs.length).toBeGreaterThanOrEqual(3)
+  expect(telHrefs.length).toBeGreaterThanOrEqual(1)
   for (const href of telHrefs) expect(href).toBe(siteConfig.phoneHref)
 })
 
@@ -29,7 +29,7 @@ test("yol tarifi CTA'ları Google Maps directions hedefine gider (masaüstü Chr
 
 test("eski aggregator rotaları ana sayfaya 308 döner", async ({ request }) => {
   // /iletisim listede DEĞİL (2026-08-27): iyzico incelemesi için yeniden gerçek sayfa.
-  for (const path of ["/hizmetler", "/nasil-calisir", "/partnerlik", "/sss"]) {
+  for (const path of ["/hizmetler", "/nasil-calisir", "/sss"]) {
     const res = await request.get(path, { maxRedirects: 0 })
     expect(res.status(), path).toBe(308)
     expect(res.headers()["location"], path).toBe("/")
@@ -67,7 +67,7 @@ test("iyzico ile Öde + Visa + Mastercard markaları footer'da", async ({ page }
   }
 })
 
-test("JSON-LD blokları geçerli: LocalBusiness + tüm SSS'li FAQPage", async ({ page }) => {
+test("JSON-LD: business data is preserved without invisible FAQ content", async ({ page }) => {
   await page.goto("/")
   const blocks = await page.$$eval("script[type='application/ld+json']", (s) => s.map((x) => x.textContent ?? ""))
   const parsed = blocks.map((b) => JSON.parse(b))
@@ -81,7 +81,7 @@ test("JSON-LD blokları geçerli: LocalBusiness + tüm SSS'li FAQPage", async ({
   expect(JSON.stringify(lb)).not.toContain('"price"')
   expect(JSON.stringify(lb)).not.toContain("aggregateRating")
   expect(JSON.stringify(lb)).not.toContain('"review"')
-  expect(faq?.mainEntity?.length).toBe(faqs.length)
+  expect(faq).toBeUndefined()
 })
 
 test("hizmet sayfaları canlı: 200 + doğru h1 + tel CTA", async ({ page }) => {
@@ -110,7 +110,7 @@ async function expectNoSeriousAxe(page: import("@playwright/test").Page, label: 
     const results = await new AxeBuilder({ page }).analyze()
     bad = results.violations
       .filter((v) => v.impact === "critical" || v.impact === "serious")
-      .map((v) => `${label} → ${v.id}: ${v.nodes.length} node — ${v.help}`)
+      .map((v) => `${label} → ${v.id}: ${v.nodes.length} node — ${v.help}; ${v.nodes.map(node => node.target.join(" ")).join(", ")}`)
     if (bad.length === 0) break
   }
   expect(bad).toEqual([])

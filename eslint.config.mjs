@@ -7,6 +7,9 @@ const config = [
   {
     ignores: [
       ".next/**",
+      ".next-test/**",
+      "output/**",
+      ".playwright-cli/**",
       "node_modules/**",
       "components/ui/**",
       "public/**",

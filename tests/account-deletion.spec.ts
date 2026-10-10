@@ -29,7 +29,7 @@ test("deletion request is public and explains the actual email action", async ({
 
 test("deletion help is discoverable from the footer and sitemap", async ({ page, request }) => {
   await page.goto("/")
-  const link = page.locator("footer").getByRole("link", { name: "Hesap Silme", exact: true })
+  const link = page.locator("footer").getByRole("link", { name: /Hesap silme/i })
   await expect(link).toHaveAttribute("href", "/hesap-silme")
   await link.click()
   await expect(page).toHaveURL(/\/hesap-silme$/)
@@ -51,16 +51,13 @@ test("deletion help and section headings remain usable without JavaScript", asyn
     await page.goto("/hesap-silme")
     await expect(page.getByRole("link", { name: "Silme talebi için e-posta yaz" })).toBeVisible()
     await page.goto("/")
-    const heading = page.locator("#nasil-calisir h2")
-    await heading.scrollIntoViewIfNeeded()
+    const heading = page.getByRole("heading", { level: 1, name: "Yıkat temizlik ve bakım hizmetleri" })
     await expect(heading).toBeVisible()
-    const words = heading.locator("span[aria-hidden] > span")
-    expect(await words.count()).toBeGreaterThan(0)
-    for (const word of await words.all()) {
-      await expect(word).toBeVisible()
-      await expect(word).toHaveCSS("opacity", "1")
-      await expect(word).toHaveCSS("filter", "none")
-    }
+    await expect(heading).toHaveCSS("opacity", "1")
+    await expect(heading).toHaveCSS("filter", "none")
+    await expect(page.getByRole("group", { name: "Neyi yıkatalım?" }).getByRole("button")).toHaveCount(5)
+    await expect(page.getByRole("link", { name: "WhatsApp’tan yaz", exact: true }).first()).toHaveAttribute("href", "https://wa.me/908503033193")
+    await expect(page.getByRole("heading", { name: "Bakırköy’deyiz" })).toBeAttached()
   } finally {
     await context.close()
   }
