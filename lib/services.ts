@@ -34,7 +34,7 @@ export const services: Service[] = [
       { q: "Beyaz spor ayakkabıdaki sararma çıkar mı?", a: "Kir, leke ve malzemenin renk değişimi ayrı değerlendirilir. Ayakkabıyı görmeden kesin beyazlatma veya yenileme sözü vermiyoruz." },
       { q: "Spor ayakkabı yıkama fiyatı ne kadar?", a: price },
     ],
-    priceCategory: "Spor Ayakkabı", guideSlug: "ayakkabi-makinede-yikanir-mi", sourceIds: ["nikeMachine", "adidas4d"],
+    priceCategory: "Spor Ayakkabı", guideSlug: "spor-ayakkabi-nasil-temizlenir", sourceIds: ["nikeMachine", "adidas4d"],
   },
   {
     slug: "suet-nubuk-temizleme", nav: "Süet ve nubuk ayakkabı temizleme",
@@ -88,7 +88,7 @@ export const services: Service[] = [
       { q: "Deri bakım ne kadar sürer?", a: timing },
       { q: "Deri ayakkabı bakım fiyatı ne kadar?", a: price },
     ],
-    priceCategory: "Deri Ayakkabı", guideSlug: "beyaz-ayakkabi-nasil-temizlenir", sourceIds: ["adidasLeather"],
+    priceCategory: "Deri Ayakkabı", guideSlug: "deri-ayakkabi-nasil-temizlenir", sourceIds: ["adidasLeather"],
   },
 ]
 export const serviceBySlug = (slug: string) => services.find(s => s.slug === slug)

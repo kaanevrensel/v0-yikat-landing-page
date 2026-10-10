@@ -19,7 +19,7 @@ export const careGuides: CareGuide[] = [
       { q: "Deri ve süeti aynı fileye koyabilir miyim?", a: "File, farklı malzemeleri aynı bakıma uygun hale getirmez. Deri, süet ve karışık yüzeyleri kendi bakım talimatlarıyla değerlendir." },
       { q: "Bakırköy’de ayakkabımı gösterebileceğim bir yer var mı?", a: "Sakızağacı Mahallesi İskele Caddesi No:15-B’deki dükkânımıza her gün 10:00–22:00 arasında getirebilirsin. Uygun yöntemi, ücreti ve teslim zamanını birlikte netleştirelim." },
     ],
-    related: ["suet-nubuk-ayakkabi-nasil-temizlenir", "ayakkabi-nasil-kurutulur"],
+    related: ["spor-ayakkabi-nasil-temizlenir", "suet-nubuk-ayakkabi-nasil-temizlenir", "ayakkabi-nasil-kurutulur"],
     service: { href: "/sneaker-yikama", label: "Sneaker ve spor ayakkabı temizleme" },
     sourceIds: ["nikeMachine", "adidas4d", "nikeClean"],
   },
@@ -121,7 +121,7 @@ export const careGuides: CareGuide[] = [
       { q: "Etikette 30 yazıyorsa 40 derecede yıkanır mı?", a: "Etiketteki sayı maksimum sıcaklığı gösterir. Daha yüksek sıcaklığı kendiliğinden güvenli kabul etme." },
       { q: "Kuru temizleme işareti makinede yıkama izni midir?", a: "Hayır. Profesyonel bakım ile evde yıkama ayrı işlem gruplarıdır; etiketteki bütün talimatları birlikte oku." },
     ],
-    related: ["kuru-temizleme-nedir", "yorgan-nasil-yikanir"],
+    related: ["gomlek-nasil-utulenir", "kuru-temizleme-nedir", "yorgan-nasil-yikanir"],
     sourceIds: ["ginetex"],
   },
   {
@@ -161,6 +161,313 @@ export const careGuides: CareGuide[] = [
     ],
     related: ["yikama-sembolleri", "kuru-temizleme-nedir"],
     sourceIds: ["ikeaDuvet", "woolmark"],
+  },
+  {
+    "slug": "spor-ayakkabi-nasil-temizlenir",
+    "title": "Spor ayakkabı nasıl temizlenir?",
+    "description": "Spor ayakkabının üst yüzeyi, tabanı, bağcığı ve tabanlığı için ayrı bakım kararları. Evde temizlik sırası ve durup değerlendirme istemen gereken durumlar.",
+    "category": "Ayakkabı",
+    "answer": "Spor ayakkabını temizlemeden önce modelini ve malzemesini kontrol et. Gevşek kiri yumuşak, kuru bir fırçayla al; üreticinin uygun gördüğü temizleyiciyle küçük bir alanı dene. Üst yüzeyi, dış tabanı ve çıkarılabilen parçaları ayrı ele al. Temizliğin ardından içi ve dışı tamamen kurumadan giyme.",
+    "sections": [
+      {
+        "id": "parcalar",
+        "title": "Bir çift ayakkabıda dört farklı bakım alanı",
+        "paragraphs": [
+          "Spor ayakkabı bir kullanım adı; tek bir malzeme adı değil. Koşu ayakkabısındaki file, günlük sneaker’daki deri panel ve süet detay aynı ürüne farklı tepki verebilir. Önce hangi parçaya dokunacağını belirlemek, bütün ayakkabıya tek işlem uygulamaktan daha açıklayıcı bir başlangıçtır."
+        ],
+        "table": {
+          "caption": "İşleme başlamadan parçaları ayır",
+          "headings": [
+            "Bölge",
+            "İlk kontrol",
+            "Yöntem seçerken"
+          ],
+          "rows": [
+            [
+              "Üst yüzey",
+              "Kumaş, mesh, deri, süet veya karışım mı?",
+              "En hassas detayı da hesaba kat."
+            ],
+            [
+              "Dış taban",
+              "Oluklarda yüzey kiri mi, malzemede aşınma mı var?",
+              "Tabandaki kirli fırçayı üst yüzeye taşıma."
+            ],
+            [
+              "Bağcık",
+              "Çıkarılabiliyor mu, renkli mi?",
+              "Renk ve malzemesine uygun ayrı bakım seç."
+            ],
+            [
+              "Tabanlık ve iç yüzey",
+              "Tabanlık çıkarılabiliyor mu?",
+              "Yapışık parçayı zorlamadan kendi talimatını izle."
+            ]
+          ]
+        }
+      },
+      {
+        "id": "elle-temizlik",
+        "title": "Elle temizlik için uygulanabilir sıra",
+        "steps": [
+          "Bakım talimatını bul; bağcıkları ve yalnız çıkarılmaya uygun tabanlığı ayır.",
+          "Gevşek kiri kuru ve yumuşak bir fırçayla al.",
+          "Modelin izin verdiği temizleyiciyi görünmeyen küçük bir noktada dene; renk veya doku değişirse dur.",
+          "Dış tabanı ve üst yüzeyi ayrı araçlarla, malzemeye uygun biçimde temizle. Ayakkabıyı gereksiz yere suya doyurma.",
+          "Ürün talimatına göre kalıntıyı al; parçaları havalanan bir yerde tamamen kurut."
+        ],
+        "paragraphs": [
+          "Nike’ın genel rehberi parçaları ayrı temizlemeyi anlatır. adidas’ın örneği ise deri üst yüzeyli Superstar modelidir. Kaynakta gösterilen fırçayı, ürünü veya baskıyı farklı malzemeye sahip bir modele otomatik olarak uygulama."
+        ],
+        "sourceIds": [
+          "nikeClean",
+          "adidasLeather"
+        ]
+      },
+      {
+        "id": "durma-noktasi",
+        "title": "Ne zaman daha fazla ovalamamalısın?",
+        "paragraphs": [
+          "Bezde ayakkabının kendi rengini görüyorsan, yüzey kabarıyorsa veya taban bağlantısı açılıyorsa işlemi artırma. Önce ne kullandığını ve nerede değişiklik gördüğünü kaydet. Aynı iz üzerinde art arda farklı ürün denemek, sonradan yapılacak değerlendirmeyi zorlaştırır.",
+          "Temizlikten sonra kalan her iz kir değildir. Çizik, baskı kaybı, taban aşınması ve eski bir tamir ayrı konulardır. Daha sert temizlikle düzeleceğini varsayma."
+        ]
+      },
+      {
+        "id": "degerlendirme",
+        "title": "Profesyonel değerlendirme için ne paylaşmalısın?",
+        "paragraphs": [
+          "Ayakkabının genel fotoğrafı, sorunlu bölgenin yakını ve varsa model etiketi iyi bir başlangıç. Son uyguladığın ürünü, ayakkabının ıslanıp ıslanmadığını ve belirli bir teslim tarihine ihtiyacın olup olmadığını ekle.",
+          "Bakırköy dükkânında bu bilgilerle işlem kapsamını, güncel ücreti ve teslim uygunluğunu birlikte netleştirelim. Temizlik talebini onarım veya renk yenileme talebiyle karıştırmamak, beklentinin baştan anlaşılmasını sağlar."
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Spor ayakkabı makinede yıkanır mı?",
+        "a": "Yalnız kendi modelinin üretici talimatı izin veriyorsa o talimata göre değerlendir. Spor ayakkabı olması veya makinede özel program bulunması tek başına izin değildir."
+      },
+      {
+        "q": "Her kullanımdan sonra yıkamak gerekir mi?",
+        "a": "Takvime göre bütün ayakkabıyı yıkamak yerine kir, nem ve üreticinin bakım talimatına göre karar ver. Küçük bir yüzey kiri ile içi tamamen ıslanmış ayakkabı aynı ihtiyaç değildir."
+      }
+    ],
+    "related": [
+      "ayakkabi-makinede-yikanir-mi",
+      "beyaz-ayakkabi-nasil-temizlenir",
+      "ayakkabi-nasil-kurutulur"
+    ],
+    "service": {
+      "href": "/sneaker-yikama",
+      "label": "Bakırköy’de sneaker ve spor ayakkabı temizleme"
+    },
+    "sourceIds": [
+      "nikeClean",
+      "adidasLeather"
+    ]
+  },
+  {
+    "slug": "deri-ayakkabi-nasil-temizlenir",
+    "title": "Deri ayakkabı nasıl temizlenir?",
+    "description": "Düz deri, rugan ve süeti ayırarak bakım seç. Kuru kirin alınması, uygun ürün seçimi, kurutma ve temizlikle onarım arasındaki fark.",
+    "category": "Ayakkabı",
+    "answer": "Deri ayakkabıda önce yüzey türünü belirle. Düz deride gevşek kiri yumuşak bir fırça veya bezle al; yalnız o yüzey için uygun temizleyici ve bakım ürününü talimatına göre kullan. Küçük bir alanda deneme yap, ayakkabıyı suya doyurma ve doğrudan ısıyla kurutma. Süet ve nubuk için ayrı yönteme geç.",
+    "sections": [
+      {
+        "id": "yuzey",
+        "title": "Deri kelimesi tek bir bakım yöntemi seçtirmez",
+        "table": {
+          "caption": "Ürünü seçmeden yüzeyi tanımla",
+          "headings": [
+            "Yüzey",
+            "Bakım kararı",
+            "Karıştırma"
+          ],
+          "rows": [
+            [
+              "Düz deri",
+              "Modelin önerdiği deri temizleyici ve bakım ürününü araştır.",
+              "Temizleyici, bakım kremi ve renkli cila aynı ürün değildir."
+            ],
+            [
+              "Rugan / özel kaplama",
+              "Ürünün bu yüzey için açıkça uygun olduğunu doğrula.",
+              "Düz deri kremi her kaplamaya uygun olmayabilir."
+            ],
+            [
+              "Süet / nubuk",
+              "Bu dokuya ayrılmış fırça ve ürünleri değerlendir.",
+              "Parlak deri cilasını havlı yüzeye uygulama."
+            ],
+            [
+              "Belirsiz / karışık malzeme",
+              "Model bilgisi veya üreticinin desteğiyle netleştir.",
+              "Görünüşünden gerçek deri veya aynı kaplama olduğunu varsayma."
+            ]
+          ]
+        },
+        "sourceIds": [
+          "clarks"
+        ]
+      },
+      {
+        "id": "sira",
+        "title": "Temizlik, bakım ve parlatmayı ayır",
+        "steps": [
+          "Ayakkabının kuru, gevşek kirini yumuşak araçla al.",
+          "Yüzeye uygun temizleyicinin uygulama ve kalıntı alma talimatını oku; küçük alanda dene.",
+          "Temizliği kontrollü biçimde uygula. Kirin çıkmadığı yerde basıncı artırmadan önce lekenin ne olduğunu değerlendir.",
+          "Doğal kuruma için zaman bırak; kalorifer veya saç kurutma makinesiyle hızlandırma.",
+          "Yüzey ve üretici uygun görüyorsa bakım veya parlatma aşamasını ayrıca seç. Renkli ürünün rengine ve kapsamına dikkat et."
+        ],
+        "paragraphs": [
+          "Clarks’ın deri rehberi temizlik, bakım ve parlatmayı ayrı aşamalar olarak ele alır. Bu sırayı, her ayakkabıya aynı kremi sürme talimatı olarak okumamak gerekir. Özel yüzeyler için ürünün kendi kapsamını kontrol et."
+        ],
+        "sourceIds": [
+          "clarksCare"
+        ]
+      },
+      {
+        "id": "izler",
+        "title": "Kir, renk kaybı ve çatlak farklı sorunlardır",
+        "paragraphs": [
+          "Bir ayakkabıda yüzey kiriyle birlikte boya kaybı veya çatlak bulunabilir. Kirin alınması, eksilen rengin ya da hasarlı yüzeyin kendiliğinden onarılacağı anlamına gelmez. İşlem öncesi ve sonrası beklentiyi bu ayrımla değerlendir.",
+          "Krem veya cila sürdükten sonra belirginleşen bir izi daha fazla ürünle kapatmaya çalışmadan önce kullanılan ürünün adını not et. Değerlendirme isterken temizliği mi, görünüm yenilemeyi mi beklediğini açıkça anlat."
+        ]
+      },
+      {
+        "id": "dukkan",
+        "title": "Dükkâna getirirken bakım geçmişini paylaş",
+        "paragraphs": [
+          "Daha önce sürülen boya, krem veya temizleyici; ayakkabının ıslanması; mevcut tamirler ve bekleyen lekeler değerlendirmeye yardımcı olur. Genel fotoğrafın yanında yakın plan ve model bilgisi de paylaşabilirsin.",
+          "Bakırköy’deki deri ayakkabı hizmetimiz temizlik ve bakım içindir. Boyama, taban değişimi veya restorasyon yapılacağını bu rehberden çıkarma; ihtiyacın olan işlemi kabulden önce netleştirelim."
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Deri ayakkabıyı ıslak mendille silebilir miyim?",
+        "a": "Islak mendilin içeriği ve derinin yüzeyi değişir; bütün ürünler için uygun kabul etme. Ayakkabının üreticisinin önerdiği yöntemi ve o yüzey için hazırlanmış ürün talimatını izle."
+      },
+      {
+        "q": "Çatlamış deri bakım kremiyle tamamen düzelir mi?",
+        "a": "Bakım, hasarlı yüzeyin tamamen onarılması anlamına gelmez. Çatlak veya soyulmayı görmeden yenileme sözü verilmemeli."
+      }
+    ],
+    "related": [
+      "suet-nubuk-ayakkabi-nasil-temizlenir",
+      "ayakkabi-nasil-kurutulur"
+    ],
+    "service": {
+      "href": "/deri-ayakkabi-bakimi",
+      "label": "Bakırköy’de deri ayakkabı temizliği ve bakımı"
+    },
+    "sourceIds": [
+      "clarksCare",
+      "clarks"
+    ]
+  },
+  {
+    "slug": "gomlek-nasil-utulenir",
+    "title": "Gömlek nasıl ütülenir?",
+    "description": "Bakım etiketinden yaka, manşet ve gövde sırasına: gömlek ütülerken sıcaklığı seç, yeni kırışıklık oluşturmadan ilerle ve kumaşın sınırlarını koru.",
+    "category": "Tekstil",
+    "answer": "Önce gömleğin bakım etiketindeki ütü ve buhar koşullarını kontrol et. Düğmeleri açıp kumaşı düz yerleştir; yaka, manşet, kol ve omuz gibi küçük bölümlerden sonra ön ve arka gövdeye geç. Ütülediğin yüzeyi yeniden buruşturmadan ilerle; bitince gömleği askıda soğumaya bırak.",
+    "sections": [
+      {
+        "id": "etiket",
+        "title": "Sıcaklığı yalnız kumaş adına göre seçme",
+        "paragraphs": [
+          "Pamuklu görünüm, etiket yerine geçmez. Karışım oranı, kaplama, baskı ve süsler bakım kararını değiştirebilir. Ütünün ayar adını gömleğin talimatıyla birlikte kontrol et; başka bir gömleğin ayarını otomatik olarak kullanma."
+        ],
+        "table": {
+          "caption": "Ütüye başlamadan etiket kontrolü",
+          "headings": [
+            "Etikette gördüğün",
+            "Ne yapmalısın?"
+          ],
+          "rows": [
+            [
+              "Üzeri çizili ütü",
+              "Ütüleme uygulama."
+            ],
+            [
+              "Noktalı ütü",
+              "Gösterilen ısı sınırını ütünün kılavuzuyla eşleştir."
+            ],
+            [
+              "Buhar kısıtlaması",
+              "Buharı ayrıca değerlendir; ütü izniyle aynı şey değildir."
+            ],
+            [
+              "Okunmayan etiket",
+              "Üreticinin model bilgisini bulmadan rastgele yüksek ısı seçme."
+            ]
+          ]
+        },
+        "sourceIds": [
+          "ginetexCurrent"
+        ]
+      },
+      {
+        "id": "hazirlik",
+        "title": "Masayı ve gömleği hazırlarken",
+        "paragraphs": [
+          "Ütü tabanının ve masa örtüsünün temiz olduğundan emin ol. Suyu ve cihazın bakımını kendi kullanım kılavuzuna göre seç; internetteki bir su tarifini bütün ütülere uygulama. Gömleğin düğmelerini, manşetler dahil, aç ve çalışacağın kısmı masaya düz yerleştir.",
+          "Ütülediğin kısmın masadan sarkarken yeniden sıkışmaması için gömleğin kalanını düzenle. Katlanmış iki yüzeyi fark etmeden birlikte bastırmak yerine dikişlerin nerede olduğunu görerek ilerle."
+        ],
+        "sourceIds": [
+          "tefalShirt"
+        ]
+      },
+      {
+        "id": "utuleme-sirasi",
+        "title": "Yaka ve kollardan gövdeye ilerle",
+        "steps": [
+          "Yakayı açıp düzleştir; ütülenmesine izin verilen yüzeyi kumaşın talimatına göre ele al.",
+          "Manşetleri aç. Düğme ve süslerin üzerinden doğrudan basmak yerine çevresinde kontrollü çalış.",
+          "Kolun dikişlerini hizala; istenmeyen bir katı sabitlemeden önce kumaşı düzelt.",
+          "Omuz bölümünü masanın ucuna uygun biçimde yerleştir. Küçük alanları tamamla.",
+          "Ön parçaları ve sırtı bölümler halinde ütüle; biten yüzeyi yeniden buruşturmamaya dikkat et.",
+          "Gömleği askıya alıp soğumasını bekle. Cihazı kapatma ve kaldırma adımlarında kendi kılavuzunu izle."
+        ],
+        "paragraphs": [
+          "Tefal’ın gömlek rehberindeki küçük bölgelerden büyük yüzeylere ilerleme fikrini kullanıyoruz. Aynı yazıdaki genel pamuk sıcaklığını bütün gömlekler için bir derece önerisi olarak aktarmıyoruz; ürünün etiketi önceliklidir."
+        ],
+        "sourceIds": [
+          "tefalShirt"
+        ]
+      },
+      {
+        "id": "sorun",
+        "title": "İz veya parlama görürsen ısıyı artırma",
+        "paragraphs": [
+          "Yeni bir iz, renk değişimi veya parlama fark ettiğinde dur. Bunu daha fazla basınç ve ısıyla düzeltmeye çalışmadan önce kumaşın talimatını, tabanın temizliğini ve uyguladığın ayarı kontrol et. Aynı gömleğin gizli bir bölgesindeki uygunluk denemesi bile etiket yasağını geçersiz kılmaz.",
+          "Bu sayfa bir bakım rehberidir. Bakırköy dükkânında veya uygulamada ütü hizmetinin açık olduğunu göstermez. Gömlek teslim etmeyi planlıyorsan kabul ve güncel hizmet uygunluğunu önceden sor."
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Gömlek kaç derecede ütülenir?",
+        "a": "Bütün gömlekler için tek bir sıcaklık yok. Bakım etiketindeki sınırı ve varsa buhar kısıtlamasını, kullandığın ütünün kılavuzuyla birlikte uygula."
+      },
+      {
+        "q": "Gömleği ütüledikten hemen sonra katlayabilir miyim?",
+        "a": "Askıda soğumasına zaman bırakmak, yeniden kırışmasını azaltmaya yardımcı olur. Saklamadan önce kumaşın durumunu kontrol et."
+      },
+      {
+        "q": "Bu rehber ütü hizmeti için sipariş sayfası mı?",
+        "a": "Hayır, evde bakım hakkında bilgi verir. Tekstil kabulünü, ücretini ve teslim koşullarını hizmet planlamadan önce doğrula."
+      }
+    ],
+    "related": [
+      "yikama-sembolleri",
+      "kuru-temizleme-nedir"
+    ],
+    "sourceIds": [
+      "tefalShirt",
+      "ginetexCurrent"
+    ]
   },
 ]
 
