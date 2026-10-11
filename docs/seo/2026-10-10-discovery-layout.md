@@ -19,10 +19,18 @@ styles and service/article templates.
   identifiers. The price section gets a direct photo enquiry link; shoe guides
   show their relevant service link near the answer. Track the textile enquiry
   and map-image actions with the existing contact event.
+- Keep map attribution outside its labelled action so its visible text does not
+  conflict with the accessible name. Enable the experimental label-in-name check
+  in every discovery-page accessibility run.
+- Add a 384px image candidate and accurate shop/map display sizes so small phones
+  avoid an unnecessary 640px minimum download. High-DPR screens still select the
+  appropriate larger image; approved Home/Product artwork remains unoptimized.
 
 ## Validation
 
-All 48 local Playwright tests pass against the production build. Each of the 17
+The full 48-test local Playwright suite passed against the production build. The
+final map-label and image-size correction passed all eight discovery tests with
+the stricter accessibility rule enabled. Each of the 17
 search pages is checked at 320, 390, 768 and 1280px for overflow, hero clearance,
 section alignment and serious/critical accessibility findings. No-JS answers,
 source links, accurate business facts, unique canonicals, crawl access and sitemap

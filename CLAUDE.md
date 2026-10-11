@@ -25,8 +25,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   artwork and app screens retain explicit `unoptimized` props to preserve the
   approved source delivery. This supersedes the historical global image setting.
   See `docs/seo/2026-10-10-mobile-media.md`.
-- Quality: lint/typecheck/build pass; full CI now has 47 passing tests. CI retains
+- Quality: lint/typecheck/build pass; full CI now has 48 passing tests. CI retains
   the two-worker gate; local multiworker teardown can hang for five minutes.
+
+## Discovery layout refinement — October 10, 2026
+
+- Owner requested no visible breadcrumb trails or repeated labels on search pages.
+  Keep the hero near the navigation and prose/FAQ/related sections on one left edge.
+- Photo enquiries carry only the public page URL in the editable WhatsApp message.
+  Preserve accurate shop details, source citations and search metadata.
+- All 17 discovery routes have phone/tablet/desktop alignment and accessibility
+  checks, including label-in-name. See `docs/seo/2026-10-10-discovery-layout.md`.
 
 ## Active website redesign — October 10, 2026
 

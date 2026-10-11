@@ -7,7 +7,11 @@ const nextConfig = {
   turbopack: { root: fileURLToPath(new URL(".", import.meta.url)) },
   // Discovery pages use responsive delivery. Existing artwork and app screens
   // opt out per image to retain the owner's previously approved source quality.
-  images: { unoptimized: false },
+  images: {
+    unoptimized: false,
+    // Keep a genuinely phone-sized candidate; Next's default starts at 640px.
+    deviceSizes: [384, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+  },
   async redirects() {
     // Pivot: agregatör dönemi rotaları ana sayfaya (kalıcı — Next 308 döner, SEO'da 301 ile eşdeğer).
     // /iletisim listeden ÇIKTI (2026-08-27): iyzico üye işyeri incelemesi sitede iletişim
