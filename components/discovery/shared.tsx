@@ -19,7 +19,6 @@ export function ScrollableTable({ label, children }: { label: string; children: 
 export function DiscoveryShell({ children, crumbs }: { children: ReactNode; crumbs: { name: string; path: string }[] }) {
   return <SiteShell><main id="main" className="discovery">
     <JsonLd data={breadcrumbJson(crumbs)}/>
-    <nav className="discovery-crumbs" aria-label="İçerik yolu"><Link href="/">Ana sayfa</Link>{crumbs.map((c, i) => <span key={c.path}><span aria-hidden="true">/</span>{i === crumbs.length - 1 ? <span aria-current="page">{c.name}</span> : <Link href={c.path}>{c.name}</Link>}</span>)}</nav>
     {children}
   </main></SiteShell>
 }
@@ -33,7 +32,7 @@ export function SourceList({ ids }: { ids: string[] }) {
 }
 
 export function ShopInvitation() {
-  return <section className="discovery-invitation"><div><p className="discovery-eyebrow">Bakırköy · Sakızağacı</p><h2>Ayakkabını birlikte değerlendirelim.</h2><p>{siteConfig.hours.label}. Fotoğrafını WhatsApp’tan paylaşabilir veya İskele Caddesi No:15-B’deki dükkâna getirebilirsin.</p><Link className="discovery-inline-link" href="/bakirkoy-ayakkabi-temizleme">Dükkân ve ulaşım bilgileri <ArrowUpRight size={17} aria-hidden="true"/></Link></div><ShopActions/></section>
+  return <section className="discovery-invitation"><div><h2>Ayakkabını birlikte değerlendirelim.</h2><p>{siteConfig.hours.label}. Fotoğrafını WhatsApp’tan paylaşabilir veya İskele Caddesi No:15-B’deki dükkâna getirebilirsin.</p><Link className="discovery-inline-link" href="/bakirkoy-ayakkabi-temizleme">Dükkân ve ulaşım bilgileri <ArrowUpRight size={17} aria-hidden="true"/></Link></div><ShopActions/></section>
 }
 
 export function RelatedLinks({ links, title = "Buradan devam et" }: { links: { href: string; title: string; text?: string }[]; title?: string }) {

@@ -15,6 +15,9 @@ test("discovery photos have working responsive delivery while approved home artw
   expect(scaled.status()).toBe(200)
   expect(scaled.headers()["content-type"]).toContain("image/")
   expect((await scaled.body()).byteLength).toBeLessThan((await original.body()).byteLength)
+  const phone = await request.get("/_next/image?url=%2Fimages%2Fshop%2Fbakirkoy-owner-202608.webp&w=384&q=75", { headers: { Accept: "image/webp" } })
+  expect(phone.status()).toBe(200)
+  expect((await phone.body()).byteLength).toBeLessThan((await scaled.body()).byteLength)
   const home = await (await request.get("/")).text()
   expect(home).toContain('src="/images/services/hero-v2/')
   expect(home).not.toContain("/_next/image?url=%2Fimages%2Fservices%2Fhero-v2")
@@ -75,21 +78,36 @@ test("answers, citations, local facts and contact actions work without JavaScrip
   await page.goto("/bakirkoy-ayakkabi-temizleme")
   await expect(page.locator("main")).toContainText("Her gün 10:00 – 22:00")
   await expect(page.locator("main")).toContainText("No:15-B")
-  await expect(page.locator(`main a[href='${siteConfig.whatsappHref}']`).first()).toBeVisible()
+  const photoLink = page.locator(`main a[href^='${siteConfig.whatsappHref}?']`).first()
+  await expect(photoLink).toBeVisible()
+  expect(new URL((await photoLink.getAttribute("href"))!).searchParams.get("text")).toContain(`${siteConfig.url}/bakirkoy-ayakkabi-temizleme`)
   await expect(page.locator("main video")).toHaveAttribute("preload", "none")
   await context.close()
 })
 
-for (const width of [320, 390, 1280]) {
+for (const width of [320, 390, 768, 1280]) {
   test(`discovery layouts and keyboard controls are usable at ${width}px`, async ({ page }) => {
+    test.setTimeout(120_000)
     await page.setViewportSize({ width, height: 900 })
     await page.emulateMedia({ reducedMotion: "reduce" })
-    for (const path of ["/bakirkoy-ayakkabi-temizleme", "/ayakkabi-temizleme", "/sneaker-yikama", "/rehber/ayakkabi-makinede-yikanir-mi", "/rehber/spor-ayakkabi-nasil-temizlenir", "/rehber/deri-ayakkabi-nasil-temizlenir", "/rehber/gomlek-nasil-utulenir", "/rehber"]) {
+    for (const path of routes) {
       await page.goto(path)
       await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
       const widths = await page.evaluate(() => ({ doc: document.documentElement.scrollWidth, viewport: innerWidth }))
       expect(widths.doc, path).toBeLessThanOrEqual(widths.viewport + 1)
-      const violations = (await new AxeBuilder({ page }).include("main").analyze()).violations.filter(v => ["serious", "critical"].includes(v.impact ?? ""))
+      const geometry = await page.evaluate(() => {
+        const title = document.querySelector("main h1")!.getBoundingClientRect()
+        const nav = document.querySelector("body header")!.getBoundingClientRect()
+        const sections = [...document.querySelectorAll("main > .discovery-narrow, main > .discovery-related, main > .guide-collection, .discovery-local-end, .discovery-reading-layout > .discovery-prose")]
+        return { titleTop: title.top, navBottom: nav.bottom, offsets: sections.map(s => Math.abs(s.getBoundingClientRect().left - title.left)) }
+      })
+      // Regressions: opening labels pushed the hero far below the nav, and
+      // centered narrow sections jumped sideways between full-width sections.
+      expect(geometry.titleTop, path).toBeGreaterThanOrEqual(geometry.navBottom + 16)
+      expect(geometry.titleTop, path).toBeLessThanOrEqual(116)
+      expect(geometry.offsets.every(offset => offset <= 1), `${path}: ${geometry.offsets}`).toBe(true)
+      await expect(page.getByRole("navigation", { name: "İçerik yolu" })).toHaveCount(0)
+      const violations = (await new AxeBuilder({ page }).include("main").options({ rules: { "label-content-name-mismatch": { enabled: true } } }).analyze()).violations.filter(v => ["serious", "critical"].includes(v.impact ?? ""))
       expect(violations.map(v => `${v.id}: ${v.nodes.map(n => n.target)}`), path).toEqual([])
     }
     const footer = page.locator("footer")
