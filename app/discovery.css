@@ -16,6 +16,7 @@
 .discovery-actions .button.secondary { color: #123c5a; background: #eef5fc; border-color: #cedfec; }
 .discovery-call { display: inline-flex; align-items: center; gap: 9px; min-height: 48px; padding: 8px 5px; font-size: 16px; text-decoration: underline; }
 .discovery-hours { color: #1f5eb8; font-weight: 600; }
+.discovery-hours span { display: block; }
 .discovery .discovery-byline { color: #526779; font-size: 14px; margin-top: 28px; display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
 .discovery-byline a { display: inline-flex; min-height: 44px; align-items: center; text-decoration: underline; }
 .discovery-local-hero { display: grid; grid-template-columns: 1.1fr .9fr; align-items: start; gap: 48px; margin-bottom: var(--discovery-section-gap); }
