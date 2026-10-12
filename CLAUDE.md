@@ -2,6 +2,33 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Owner corrections — October 12, 2026 (Kaan; supersede conflicting notes below)
+
+- **Hours:** Monday–Saturday 08:30–20:30, Sunday 10:00–20:30. `siteConfig.hours`
+  carries `label` plus a weekly `schedule` that feeds JSON-LD. The "daily
+  10:00–22:00" lines below are historical.
+- **No app.yikat.tech destinations anywhere on the website** (links, buttons,
+  redirects). `tests/smoke.spec.ts` checks every sitemap URL.
+- **Shoes never go in the washing machine.** Guides and FAQs say so plainly; do
+  not reintroduce "if the manufacturer allows it" wording or the adidas 4DFWD
+  machine method. Guides edited after `CONTENT_DATE` carry `updated`.
+- **Legal texts:** `node scripts/generate-legal-content.mjs <yikat-app checkout>`
+  regenerates `lib/legal-content.json` (`--check` reports drift); it replaces the
+  manual deno extraction described below. `/kvkk` renders the app's canonical
+  KVKK notice plus a short website-only section authored in `app/kvkk/page.tsx`
+  (counsel review pending). Documents the texts cite by name are published at
+  `/kullanim-kosullari`, `/odeme-ve-guvenli-alisveris`, `/kvkk-basvuru-formu`,
+  `/acik-riza-metni`, `/kart-saklama-metni`; `lib/legal-routes.ts` links the
+  names in place without changing wording. The website KVKK copy omits the
+  tax-number row. The company tax number still shown on `/iletisim` and in the
+  contract is the owner's personal ID number: he wants it replaced by his
+  10-digit tax number once he has it (change `COMPANY.taxNo` in yikat-app
+  `docs.ts`, then regenerate).
+- **Home care process:** `components/website/washing-process.tsx` has a tab per
+  service. Step copy for the four non-shoe services is a draft awaiting owner
+  approval. The shoe film (IMG_2445) does not show the drying cabinet; the owner
+  will supply the right clip. Ship it under a new file name.
+
 ## Search discovery expansion — October 10, 2026
 
 - Owner requested local/general SEO and AI discovery. Implementation and research:
