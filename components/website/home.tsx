@@ -149,7 +149,6 @@ export function HomePage() {
             <a className="ticket-action" href={whatsapp.toString()} target="_blank" rel="noopener noreferrer"><CareGlyph kind="message" /><span>WhatsApp’tan sor</span><ChevronRight aria-hidden="true" size={20} /></a>
           </div>
           <div className="service-app-actions">
-            <a href="https://app.yikat.tech" target="_blank" rel="noopener noreferrer">Uygulamayı aç</a>
             <button type="button" onClick={openDownload}>Uygulamayı indir</button>
           </div>
         </div>

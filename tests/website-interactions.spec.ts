@@ -51,7 +51,9 @@ test("reduced motion preserves hydration and keyboard service exploration", asyn
     const url = new URL((await sheet.getByRole("link", { name: "WhatsApp’tan sor" }).getAttribute("href"))!)
     expect(url.pathname).toBe("/908503033193")
     expect(url.searchParams.get("text")).toBe(`Merhaba, ${name.toLocaleLowerCase("tr-TR")} için bilgi almak istiyorum.`)
-    await expect(sheet.getByRole("link", { name: "Uygulamayı aç" })).toHaveAttribute("href", "https://app.yikat.tech")
+    // Owner rule (2026-10-12): the website never sends visitors to app.yikat.tech.
+    await expect(sheet.getByRole("link", { name: "Uygulamayı aç" })).toHaveCount(0)
+    await expect(sheet.locator("a[href*='app.yikat.tech']")).toHaveCount(0)
     await page.keyboard.press("Escape")
     await expect(sheet).not.toBeVisible()
     await expect(choice).toBeFocused()

@@ -53,10 +53,10 @@ export default function KvkkPage() {
             <p className="mt-1">
               {"Mobil uygulamada işlenen verilere ilişkin gizlilik politikası ve aydınlatma metni ayrıca yayınlanır: "}
               <Link
-                href="https://app.yikat.tech/legal/gizlilik"
+                href="/gizlilik-politikasi"
                 className="font-medium text-foreground underline underline-offset-4"
               >
-                {"app.yikat.tech/legal/gizlilik"}
+                {"Gizlilik Politikası"}
               </Link>
             </p>
           </div>

@@ -58,6 +58,19 @@ test("legal + iletişim sayfaları canlı (iyzico eksik-belge listesi)", async (
   }
 })
 
+// Owner rule (2026-10-12): no page of the website links or redirects to app.yikat.tech.
+test("hiçbir sayfa app.yikat.tech'e yönlendirmez", async ({ request }) => {
+  const sitemap = await (await request.get("/sitemap.xml")).text()
+  const paths = [...sitemap.matchAll(/<loc>https:\/\/www\.yikat\.tech([^<]*)<\/loc>/g)].map((m) => m[1] || "/")
+  expect(paths.length).toBeGreaterThan(20)
+  for (const path of paths) {
+    const res = await request.get(path)
+    expect(res.status(), path).toBe(200)
+    const html = await res.text()
+    expect(html, path).not.toMatch(/href="https?:\/\/app\.yikat\.tech/)
+  }
+})
+
 test("iyzico ile Öde + Visa + Mastercard markaları footer'da", async ({ page }) => {
   await page.goto("/")
   const footer = page.locator("footer")
