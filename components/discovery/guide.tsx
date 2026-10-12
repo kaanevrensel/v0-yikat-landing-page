@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { DiscoveryShell, FaqList, JsonLd, RelatedLinks, ShopInvitation, SourceList, ScrollableTable } from "./shared"
-import { BUSINESS_ID, CONTENT_DATE, WEBSITE_ID, careSources, type CareGuide } from "@/lib/discovery"
+import { BUSINESS_ID, CONTENT_DATE, WEBSITE_ID, careSources, formatContentDate, type CareGuide } from "@/lib/discovery"
 import { guideBySlug } from "@/lib/care-guides"
 import { siteConfig } from "@/lib/site"
 import { DiscoveryLink } from "./actions"
@@ -9,9 +9,9 @@ export function GuideView({ guide }: { guide: CareGuide }) {
   const path = `/rehber/${guide.slug}`
   const related = guide.related.map(slug => guideBySlug(slug)!).map(g => ({ href: `/rehber/${g.slug}`, title: g.title }))
   return <DiscoveryShell crumbs={[{ name: "Bakım rehberi", path: "/rehber" }, { name: guide.title, path }]}>
-    <JsonLd data={{ "@context": "https://schema.org", "@type": "Article", "@id": `${siteConfig.url}${path}#article`, headline: guide.title, description: guide.description, mainEntityOfPage: `${siteConfig.url}${path}`, url: `${siteConfig.url}${path}`, inLanguage: "tr-TR", articleSection: guide.category, datePublished: CONTENT_DATE, dateModified: CONTENT_DATE, author: { "@id": BUSINESS_ID, name: "Yıkat", url: `${siteConfig.url}/iletisim` }, publisher: { "@id": BUSINESS_ID }, isPartOf: { "@id": WEBSITE_ID }, citation: guide.sourceIds.map(id => careSources[id].url) }}/>
+    <JsonLd data={{ "@context": "https://schema.org", "@type": "Article", "@id": `${siteConfig.url}${path}#article`, headline: guide.title, description: guide.description, mainEntityOfPage: `${siteConfig.url}${path}`, url: `${siteConfig.url}${path}`, inLanguage: "tr-TR", articleSection: guide.category, datePublished: CONTENT_DATE, dateModified: guide.updated ?? CONTENT_DATE, author: { "@id": BUSINESS_ID, name: "Yıkat", url: `${siteConfig.url}/iletisim` }, publisher: { "@id": BUSINESS_ID }, isPartOf: { "@id": WEBSITE_ID }, citation: guide.sourceIds.map(id => careSources[id].url) }}/>
     <article>
-      <header className="discovery-heading guide-heading"><h1>{guide.title}</h1><p className="discovery-answer">{guide.answer}</p><p className="discovery-byline"><Link href="/iletisim">Yıkat</Link> · <time dateTime={CONTENT_DATE}>10 Ekim 2026</time> · <a href="#kaynaklar">Kaynaklar</a></p>{guide.service && <DiscoveryLink action="service" className="discovery-service-link" href={guide.service.href}>{guide.service.label} →</DiscoveryLink>}</header>
+      <header className="discovery-heading guide-heading"><h1>{guide.title}</h1><p className="discovery-answer">{guide.answer}</p><p className="discovery-byline"><Link href="/iletisim">Yıkat</Link> · <time dateTime={CONTENT_DATE}>{formatContentDate(CONTENT_DATE)}</time>{guide.updated && <> · Güncellendi: <time dateTime={guide.updated}>{formatContentDate(guide.updated)}</time></>} · <a href="#kaynaklar">Kaynaklar</a></p>{guide.service && <DiscoveryLink action="service" className="discovery-service-link" href={guide.service.href}>{guide.service.label} →</DiscoveryLink>}</header>
       <div className="discovery-reading-layout">
         <aside className="discovery-toc"><nav aria-label="Bu rehberde"><p>Bu rehberde</p><ol>{guide.sections.map(s => <li key={s.id}><a href={`#${s.id}`}>{s.title}</a></li>)}</ol></nav></aside>
         <div className="discovery-prose">
@@ -23,7 +23,7 @@ export function GuideView({ guide }: { guide: CareGuide }) {
             {section.sourceIds && <p className="discovery-section-sources">Kaynak: {section.sourceIds.map((id, i) => <span key={id}>{i > 0 && " · "}<a href={`#kaynak-${id}`}>{careSources[id].title.split(" — ")[0]}</a></span>)}</p>}
           </section>)}
           <FaqList faqs={guide.faqs}/>
-          <SourceList ids={guide.sourceIds}/>
+          <SourceList ids={guide.sourceIds} updated={guide.updated}/>
         </div>
       </div>
     </article>

@@ -73,7 +73,7 @@ test("answers, citations, local facts and contact actions work without JavaScrip
   const page = await context.newPage()
   await page.goto("/rehber/ayakkabi-makinede-yikanir-mi")
   await expect(page.locator(".discovery-answer")).toBeVisible()
-  await expect(page.getByRole("heading", { name: "Üreticiler neden farklı şeyler söylüyor?" })).toBeVisible()
+  await expect(page.getByRole("heading", { name: "Makine ayakkabıya ne yapar?" })).toBeVisible()
   await expect(page.locator(".discovery-sources a[href^='https://www.nike.com']").first()).toBeAttached()
   const question = page.locator("details").first()
   await question.locator("summary").click()
