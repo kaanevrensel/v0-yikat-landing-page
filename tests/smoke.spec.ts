@@ -75,8 +75,11 @@ test("JSON-LD: business data is preserved without invisible FAQ content", async 
   const faq = parsed.find((p) => p["@type"] === "FAQPage")
   expect(lb?.telephone).toBe(siteConfig.phoneE164)
   expect(lb?.priceRange).toBeUndefined()
-  expect(lb?.openingHoursSpecification?.opens).toBe("10:00")
-  expect(lb?.openingHoursSpecification?.closes).toBe("22:00")
+  expect(lb?.openingHoursSpecification).toEqual(
+    siteConfig.hours.schedule.map((slot) => expect.objectContaining({ dayOfWeek: [...slot.days], opens: slot.opens, closes: slot.closes })),
+  )
+  expect(lb?.openingHoursSpecification?.[0]).toMatchObject({ opens: "08:30", closes: "20:30" })
+  expect(lb?.openingHoursSpecification?.[1]).toMatchObject({ dayOfWeek: ["Sunday"], opens: "10:00", closes: "20:30" })
   expect(lb?.hasOfferCatalog?.itemListElement?.length).toBeGreaterThan(0)
   // Kesin menü gelene dek Offer'larda fiyat alanı sızmamalı; kendi siteye yıldız şeması ASLA
   // (Google: kendi yorumunu kontrol eden varlığa review/aggregateRating uygunsuz).

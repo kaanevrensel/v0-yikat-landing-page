@@ -17,7 +17,7 @@ export const careGuides: CareGuide[] = [
     faqs: [
       { q: "Ayakkabı kaç derecede yıkanır?", a: "Bütün ayakkabılar için güvenli tek bir derece yok. Yalnız üreticinin makinede yıkamaya izin verdiği modelde belirtilen sıcaklık ve programı uygula." },
       { q: "Deri ve süeti aynı fileye koyabilir miyim?", a: "File, farklı malzemeleri aynı bakıma uygun hale getirmez. Deri, süet ve karışık yüzeyleri kendi bakım talimatlarıyla değerlendir." },
-      { q: "Bakırköy’de ayakkabımı gösterebileceğim bir yer var mı?", a: "Sakızağacı Mahallesi İskele Caddesi No:15-B’deki dükkânımıza her gün 10:00–22:00 arasında getirebilirsin. Uygun yöntemi, ücreti ve teslim zamanını birlikte netleştirelim." },
+      { q: "Bakırköy’de ayakkabımı gösterebileceğim bir yer var mı?", a: "Sakızağacı Mahallesi İskele Caddesi No:15-B’deki dükkânımıza Pazartesi–Cumartesi 08:30–20:30, Pazar 10:00–20:30 arasında getirebilirsin. Uygun yöntemi, ücreti ve teslim zamanını birlikte netleştirelim." },
     ],
     related: ["spor-ayakkabi-nasil-temizlenir", "suet-nubuk-ayakkabi-nasil-temizlenir", "ayakkabi-nasil-kurutulur"],
     service: { href: "/sneaker-yikama", label: "Sneaker ve spor ayakkabı temizleme" },

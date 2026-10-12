@@ -40,7 +40,10 @@ test("every discovery URL serves unique canonical HTML, correct shop facts and p
     const business = blocks.find(b => b["@type"] === "DryCleaningOrLaundry")
     expect(business["@id"]).toBe(BUSINESS_ID)
     expect(business.address.streetAddress).toContain("15-B")
-    expect(business.openingHoursSpecification).toMatchObject({ opens: "10:00", closes: "22:00" })
+    expect(business.openingHoursSpecification).toMatchObject([
+      { dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "08:30", closes: "20:30" },
+      { dayOfWeek: ["Sunday"], opens: "10:00", closes: "20:30" },
+    ])
     expect(business.sameAs).toContain("https://www.google.com/maps?cid=11452704591158275657")
     expect(business).not.toHaveProperty("aggregateRating")
     expect(business).not.toHaveProperty("priceRange")
@@ -76,7 +79,7 @@ test("answers, citations, local facts and contact actions work without JavaScrip
   await question.locator("summary").click()
   await expect(question.locator("p")).toBeVisible()
   await page.goto("/bakirkoy-ayakkabi-temizleme")
-  await expect(page.locator("main")).toContainText("Her gün 10:00 – 22:00")
+  await expect(page.locator("main")).toContainText("Pazartesi–Cumartesi 08:30 – 20:30, Pazar 10:00 – 20:30")
   await expect(page.locator("main")).toContainText("No:15-B")
   const photoLink = page.locator(`main a[href^='${siteConfig.whatsappHref}?']`).first()
   await expect(photoLink).toBeVisible()

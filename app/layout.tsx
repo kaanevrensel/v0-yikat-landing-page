@@ -100,12 +100,12 @@ const localBusinessJsonLd = {
     postalCode: siteConfig.address.postalCode,
     addressCountry: "TR",
   },
-  openingHoursSpecification: {
+  openingHoursSpecification: siteConfig.hours.schedule.map((slot) => ({
     "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-    opens: siteConfig.hours.opens,
-    closes: siteConfig.hours.closes,
-  },
+    dayOfWeek: slot.days,
+    opens: slot.opens,
+    closes: slot.closes,
+  })),
   geo: {
     "@type": "GeoCoordinates",
     latitude: siteConfig.geo.latitude,

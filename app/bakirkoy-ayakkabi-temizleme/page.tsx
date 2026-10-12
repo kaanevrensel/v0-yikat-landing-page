@@ -6,7 +6,7 @@ import { discoveryMetadata, shopFacts, BUSINESS_ID } from "@/lib/discovery"
 import { DiscoveryShell, FaqList, JsonLd, RelatedLinks } from "@/components/discovery/shared"
 import { DiscoveryLink, ShopActions } from "@/components/discovery/actions"
 
-export const metadata = discoveryMetadata("Bakırköy Ayakkabı Temizleme ve Yıkama", "Bakırköy Sakızağacı’nda sneaker, deri, süet ve nubuk ayakkabı temizliği. İskele Caddesi No:15-B, her gün 10:00–22:00. Adres, fotoğraf ve yol tarifi.", "/bakirkoy-ayakkabi-temizleme")
+export const metadata = discoveryMetadata("Bakırköy Ayakkabı Temizleme ve Yıkama", "Bakırköy Sakızağacı’nda sneaker, deri, süet ve nubuk ayakkabı temizliği. İskele Caddesi No:15-B. Pazartesi–Cumartesi 08:30–20:30, Pazar 10:00–20:30.", "/bakirkoy-ayakkabi-temizleme")
 
 export default function Page() {
   return <DiscoveryShell crumbs={[{ name: "Bakırköy dükkânı", path: "/bakirkoy-ayakkabi-temizleme" }]}>
@@ -18,7 +18,7 @@ export default function Page() {
     <section className="discovery-prose discovery-narrow"><h2>İşlem öncesi neyi netleştiriyoruz?</h2><p>Önce malzemeyi, lekeleri ve mevcut yıpranmayı konuşuyoruz. Eski bir leke, açılmış taban veya daha önce uygulanmış ürün varsa belirt. Temizlik, boyama ve onarım aynı işlem değildir; kapsamı baştan ayıralım.</p><p>Ücret ve teslim zamanını ayakkabının durumunu görerek netleştiriyoruz. Belirli bir gün veya saate yetişmesi gerekiyorsa gelmeden önce WhatsApp’tan yaz. Her lekenin tamamen çıkacağı veya her çiftin aynı gün hazır olacağı sözünü vermiyoruz.</p><Link href="/ayakkabi-temizleme#fiyat">Ücret ve değerlendirme bilgileri →</Link></section>
     <div className="discovery-narrow"><FaqList faqs={[
       { q: "Bakırköy’de ayakkabı temizleme dükkânı nerede?", a: siteConfig.address.full + ". Google Maps ve yol tarifi bağlantıları bu dükkâna yönlendirir." },
-      { q: "Pazar günü açık mı?", a: "Evet. Çalışma saatimiz her gün 10:00–22:00. Özel bir günde yola çıkmadan önce telefonla veya WhatsApp’tan ulaşabilirsin." },
+      { q: "Pazar günü açık mı?", a: "Evet. Pazar günleri 10:00–20:30, Pazartesi–Cumartesi 08:30–20:30 arası açığız. Özel bir günde yola çıkmadan önce telefonla veya WhatsApp’tan ulaşabilirsin." },
       { q: "Randevu almadan gelebilir miyim?", a: "Ayakkabını doğrudan dükkâna getirebilirsin. İşlemi, güncel ücreti ve teslim zamanını kabul sırasında netleştirelim." },
       { q: "Kapıdan alım veya kargo ile gönderebilir miyim?", a: "Bu sayfa fiziksel dükkân ziyaretini anlatır. Kapıdan alım ve kargo kabulünü varsaymadan önce güncel uygunluğu WhatsApp’tan sor." },
       { q: "Çocuk ayakkabısını getirebilir miyim?", a: "Çocuk ayakkabıları da malzeme ve durumuna göre değerlendirilir. Işıklı, elektronik parçalı veya hassas detaylı modelleri getirirken bu özellikleri belirt." },
