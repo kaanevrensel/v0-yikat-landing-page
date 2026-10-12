@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test"
 import AxeBuilder from "@axe-core/playwright"
 import { siteConfig } from "../lib/site"
 import { services } from "../lib/services"
+import { legalRoutes } from "../lib/legal-routes"
 
 // Preserve contact destinations, legacy routes, business schema and accessibility
 // while the three-page website replaces the previous single-page shop layout.
@@ -51,10 +52,36 @@ test("legal + iletişim sayfaları canlı (iyzico eksik-belge listesi)", async (
     "/gizlilik-politikasi",
     "/teslimat-ve-iade",
     "/iletisim",
+    ...legalRoutes.map((route) => route.href),
   ]) {
     const res = await page.goto(path)
     expect(res?.status(), path).toBe(200)
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
+  }
+})
+
+// Every legal text another one cites by name must be reachable on this site.
+test("yasal metinlerdeki atıflar sitedeki sayfalara bağlanır", async ({ page }) => {
+  await page.goto("/teslimat-ve-iade")
+  await expect(page.locator("main a[href='/kullanim-kosullari']").first()).toContainText("Kullanım Koşulları")
+  await page.goto("/mesafeli-satis-sozlesmesi")
+  await expect(page.locator("main a[href='/odeme-ve-guvenli-alisveris']").first()).toContainText("Ödeme ve Güvenli Alışveriş")
+  await page.goto("/gizlilik-politikasi")
+  await expect(page.locator("main a[href='/kvkk']").first()).toContainText("KVKK Aydınlatma Metni")
+  await expect(page.locator("main a[href='/kvkk-basvuru-formu']").first()).toBeVisible()
+  // The KVKK notice is the canonical app text plus the website section, not the pre-pivot copy.
+  await page.goto("/kvkk")
+  const main = page.locator("main")
+  await expect(main).toContainText("6. Kişisel Verilerin Aktarılması")
+  await expect(main).toContainText("Web Sitesi (www.yikat.tech)")
+  await expect(main).not.toContainText("çamaşırhanesinde")
+  await expect(main).not.toContainText("İkas")
+  await expect(main).not.toContainText("T.C. Kimlik No")
+  for (const route of legalRoutes) {
+    const res = await page.goto(route.href)
+    expect(res?.status(), route.href).toBe(200)
+    const hrefs = await page.$$eval("main a[href^='/']", (links) => links.map((link) => link.getAttribute("href")!.split("#")[0]))
+    for (const href of new Set(hrefs)) expect((await page.request.get(href)).status(), `${route.href} → ${href}`).toBe(200)
   }
 })
 
@@ -170,6 +197,8 @@ test("axe: 404 ve legal sayfalar", async ({ page }) => {
     "/gizlilik-politikasi",
     "/teslimat-ve-iade",
     "/iletisim",
+    "/kullanim-kosullari",
+    "/kvkk-basvuru-formu",
     ...services.map((s) => `/${s.slug}`),
   ]) {
     await page.goto(path)
