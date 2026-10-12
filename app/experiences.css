@@ -2,7 +2,22 @@
 /* Workshop: real footage in a blue sleeve, with a quiet thread of movement. */
 .washing-process { padding: 100px 32px; background: #fff; overflow: clip; }
 .washing-layout { max-width: 1160px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.washing-copy h2 { font-size: clamp(36px,4.5vw,62px); letter-spacing: -.04em; line-height: 1.05; color: #112f44; margin: 0 0 44px; }
+.washing-copy h2 { font-size: clamp(36px,4.5vw,62px); letter-spacing: -.04em; line-height: 1.05; color: #112f44; margin: 0 0 28px; }
+/* Service pills: one highlight slides to the selected service, like the site navigation. */
+.washing-copy { min-width: 0; }
+.washing-tabs { position: relative; display: flex; gap: 2px; width: fit-content; max-width: 100%; padding: 4px; margin: 0 0 18px; border: 1px solid #cce5f5; border-radius: 99px; background: #edf7fe; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; }
+.washing-tabs::-webkit-scrollbar { display: none; }
+.washing-tabs [role="tab"] { position: relative; z-index: 1; flex: none; min-height: 44px; padding: 0 15px; border: 0; border-radius: 99px; background: transparent; color: #236897; font: inherit; font-size: 14px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: color .2s ease, transform .16s cubic-bezier(.23,1,.32,1); }
+.washing-tabs [role="tab"][aria-selected="true"] { color: #fff; }
+.washing-tabs [role="tab"]:active { transform: scale(.97); }
+.washing-tabs [role="tab"]:focus-visible { outline: 3px solid #0e3a5c; outline-offset: -3px; }
+.washing-tabs [role="tab"][aria-selected="true"]:focus-visible { outline-color: #fff; outline-offset: -5px; }
+/* Before the highlight is measured (and without JavaScript) the selected pill paints itself. */
+.washing-tabs[data-ready="false"] [role="tab"][aria-selected="true"] { background: #1a68c1; }
+.washing-tab-highlight { position: absolute; top: 4px; bottom: 4px; left: 0; border-radius: 99px; background: #1a68c1; box-shadow: inset 0 -2px 0 #114982; transition: transform .26s cubic-bezier(.23,1,.32,1), width .26s cubic-bezier(.23,1,.32,1); }
+.washing-steps[data-instant="false"], .washing-media[data-instant="false"] { animation: washing-swap .22s cubic-bezier(.23,1,.32,1); }
+@keyframes washing-swap { from { opacity: 0; transform: translateY(6px); } }
+@media (hover: hover) and (pointer: fine) { .washing-tabs [role="tab"]:not([aria-selected="true"]):hover { color: #0e3a5c; } }
 .washing-steps { padding: 0; margin: 0; list-style: none; }
 .washing-steps li { display: flex; align-items: flex-start; gap: 20px; padding: 22px 0; border-top: 1px solid #dbe9f1; }
 .washing-number { flex: none; font-size: 13px; font-weight: 600; color: #236897; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: #edf7fe; border: 1px solid #cce5f5; }
@@ -11,6 +26,7 @@
 .washing-film { position: relative; width: min(400px,100%); margin: 0 auto; }
 .washing-film-frame { position: relative; border: 9px solid #d7eeff; border-radius: 150px 150px 32px 32px; overflow: hidden; background: #e2f3ff; box-shadow: 14px 18px 0 #edf7fe; transform: rotate(3deg); }
 .washing-film video { display: block; width: 100%; aspect-ratio: 9/13; object-fit: cover; object-position: center; }
+.washing-still { display: block; width: 100%; height: auto; aspect-ratio: 9/13; object-fit: contain; padding: 34px 22px 22px; background: linear-gradient(#eef8ff, #d5ecfd); }
 .washing-play { position: absolute; right: 18px; bottom: 18px; display: grid; place-items: center; width: 54px; height: 54px; border: 1px solid #c4def0; border-radius: 50%; background: #fff; color: #175f9c; box-shadow: 0 4px 0 #a1c5e0; cursor: pointer; }
 .washing-play:active { transform: translateY(3px); box-shadow: 0 1px 0 #a1c5e0; }
 .washing-play:focus-visible { outline: 3px solid #1a68c1; outline-offset: -6px; }
@@ -24,7 +40,8 @@
 @media (max-width: 800px) {
   .washing-process { padding: 68px 24px 78px; }
   .washing-layout { gap: 48px; grid-template-columns: 1fr; max-width: 480px; }
-  .washing-copy h2 { text-align: center; font-size: 39px; margin-bottom: 32px; }
+  .washing-copy h2 { text-align: center; font-size: 39px; margin-bottom: 24px; }
+  .washing-tabs { margin-inline: auto; margin-bottom: 10px; }
   .washing-copy h2 br { display: none; }
   .washing-steps li { padding: 19px 0; gap: 15px; }
   .washing-steps h3 { font-size: 20px; }
@@ -32,7 +49,10 @@
   .washing-film { width: min(330px, calc(100% - 24px)); }
   .washing-seal { width: 70px; height: 70px; right: -20px; }
 }
-@media (prefers-reduced-motion: reduce) { .washing-thread-glint, .washing-loading { animation: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .washing-thread-glint, .washing-loading, .washing-steps[data-instant="false"], .washing-media[data-instant="false"] { animation: none; }
+  .washing-tab-highlight, .washing-tabs [role="tab"] { transition: none; }
+}
 @media (min-width: 901px) {
   .object-hero { min-height: clamp(730px, 96svh, 920px); padding: 150px 44px 66px; }
   .object-choices { width: min(1480px, 100%); gap: clamp(22px, 3.4vw, 64px); margin: 0 auto; }

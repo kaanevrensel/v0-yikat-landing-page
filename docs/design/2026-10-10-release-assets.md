@@ -22,7 +22,11 @@ or generated shop footage. Original downloads and review frames stay ignored.
 
 Material-specific treatment, brushing and detail cleaning are supported by
 the owner's `Hazir_Icerikler / Carousel 3`, slides `3.png` and `4.png`.
-The drying step is directly visible in the footage. No unverified chemicals,
+The drying step is directly visible in the footage. (Corrected 2026-10-12: the
+owner says IMG_2445 does not show the drying cabinet. Until he supplies the right
+clip, the film and its still are described neutrally as shop care footage; the
+replacement must ship under a new file name because `/videos/*` is cached for a
+year.) No unverified chemicals,
 temperature, disinfection, turnaround guarantee or pricing was added.
 
 The film loads only after an explicit play action and pauses offscreen or in

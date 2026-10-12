@@ -211,6 +211,41 @@ test("four-step care starts with the order and yields to manual navigation", asy
   await expect(scene.locator(".care-stage")).toHaveAttribute("aria-label", "Sipariş alındı")
 })
 
+// Owner request (2026-10-12): every service explains its care steps in this section.
+test("care process: one tab per service, keyboard operable, shoes keep the shop film", async ({ page }) => {
+  await page.goto("/")
+  const tablist = page.getByRole("tablist", { name: "Hizmet seç" })
+  await tablist.scrollIntoViewIfNeeded()
+  const names = ["Ayakkabı", "Kuru temizleme", "Çamaşır", "Ütü", "Yorgan & battaniye"]
+  await expect(tablist.getByRole("tab")).toHaveText(names)
+  const panel = page.getByRole("tabpanel")
+  await expect(tablist.getByRole("tab", { name: "Ayakkabı", exact: true })).toHaveAttribute("aria-selected", "true")
+  await expect(panel.getByRole("heading", { level: 3 })).toHaveText(["Malzemesine göre", "Fırça ve detay", "Özenle kurutma"])
+  await expect(page.locator(".washing-film video")).toBeAttached()
+  for (const name of names.slice(1)) {
+    await tablist.getByRole("tab", { name, exact: true }).click()
+    await expect(tablist.getByRole("tab", { name, exact: true })).toHaveAttribute("aria-selected", "true")
+    await expect(tablist.getByRole("tab", { selected: true })).toHaveCount(1)
+    await expect(panel.getByRole("listitem")).toHaveCount(3)
+    await expect(page.locator(".washing-film video")).toHaveCount(0)
+    await expect(page.locator(".washing-film img")).toBeVisible()
+  }
+  // Arrow keys move and select; Home returns to shoes and the film.
+  await tablist.getByRole("tab", { name: "Yorgan & battaniye", exact: true }).focus()
+  await page.keyboard.press("ArrowRight")
+  await expect(tablist.getByRole("tab", { name: "Ayakkabı", exact: true })).toBeFocused()
+  await expect(panel).toContainText("kurutma dolabına")
+  await page.keyboard.press("ArrowLeft")
+  await expect(tablist.getByRole("tab", { name: "Yorgan & battaniye", exact: true })).toHaveAttribute("aria-selected", "true")
+  await page.keyboard.press("Home")
+  await expect(page.locator(".washing-film video")).toBeAttached()
+  // The pill row scrolls inside itself on a phone; the page never scrolls sideways.
+  await page.setViewportSize({ width: 320, height: 700 })
+  await tablist.getByRole("tab", { name: "Yorgan & battaniye", exact: true }).click()
+  await expect(tablist.getByRole("tab", { name: "Yorgan & battaniye", exact: true })).toBeInViewport()
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320)
+})
+
 test("washing film preserves play intent across scrolling and respects a manual pause", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 844 })
   await page.emulateMedia({ reducedMotion: "reduce" })
