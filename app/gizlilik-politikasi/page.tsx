@@ -20,12 +20,12 @@ export const metadata: Metadata = {
 export default function GizlilikPolitikasiPage() {
   const doc = legal.docs.gizlilik
   return (
-    <LegalPageShell title={doc.heading}>
-      <LegalBlocks blocks={doc.blocks as LegalBlock[]} />
+    <LegalPageShell title={doc.heading} currentHref="/gizlilik-politikasi">
+      <LegalBlocks blocks={doc.blocks as LegalBlock[]} currentHref="/gizlilik-politikasi" />
       <div className="mt-10 rounded-xl border border-border bg-card p-4">
         <p>
           {"Web sitesine (www.yikat.tech) ilişkin ayrıntılı aydınlatma metni için: "}
-          <Link href="/kvkk" className="font-medium text-foreground underline underline-offset-4">
+          <Link href="/kvkk#web-sitesi" className="font-medium text-foreground underline underline-offset-4">
             {"KVKK Aydınlatma Metni"}
           </Link>
         </p>

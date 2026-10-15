@@ -8,7 +8,7 @@ export function generateStaticParams() { return careGuides.map(({ slug }) => ({ 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const guide = guideBySlug((await params).slug)
   if (!guide) notFound()
-  return discoveryMetadata(guide.title, guide.description, `/rehber/${guide.slug}`, true)
+  return discoveryMetadata(guide.title, guide.description, `/rehber/${guide.slug}`, true, guide.updated ?? guide.published, guide.published)
 }
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const guide = guideBySlug((await params).slug)

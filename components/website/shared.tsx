@@ -372,6 +372,8 @@ export function WebsiteFooter() {
           <a href={siteConfig.phoneHref}>{siteConfig.phone}</a>
           <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
           <span>Bakırköy, İstanbul</span>
+          <a href={siteConfig.socialLinks.instagram} target="_blank" rel="noopener noreferrer">Instagram · @yikat.app</a>
+          <a href={siteConfig.mapsPlaceUrl} target="_blank" rel="noopener noreferrer">Google’da yorumları oku</a>
         </div>
       </div>
       <div className="wide footer-bottom">

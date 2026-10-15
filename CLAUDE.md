@@ -1,5 +1,18 @@
 # CLAUDE.md
 
+## Current release context, October 15, 2026
+
+The isolated `feat/visibility-20261015` branch implements Kaan’s October 12 corrections and Emre’s October 15 visibility brief. Read [docs/seo/2026-10-15-visibility-plan.md](docs/seo/2026-10-15-visibility-plan.md) for scope and evidence. Historical sections below describe older designs; current code and PRODUCT.md govern active surfaces.
+
+- Public brand is Yıkat. Hours: Monday–Saturday 08:30–20:30; Sunday 10:00–20:30. Tax number: 3830369314, sourced from the canonical app legal document.
+- Only Bakırköy shoe cleaning is operating. Four textile services and courier collection are upcoming. Home has a concise local heading, address and hours, preserving the five service illustrations.
+- Legal pages are generated with `node scripts/generate-legal-content.mjs /absolute/path/to/yikat-app/mobile/src/features/legal/docs.ts`. This includes KVKK and all named legal references; the website-specific KVKK section describes actual site processing. Cancellation and wallet rules remain unchanged.
+- Google Maps and Instagram identities are verified in the managed business profile. Do not fabricate reviews, ratings or customer photo permission.
+- `IMG_2785.MOV` is the verified drying cabinet footage. Its immutable derivative is documented in `docs/design/2026-10-15-care-assets.md`.
+- The discovery hub has 19 sourced guides. New guides use their actual publication dates. Do not create location permutations for services we do not provide.
+- Tests use a freshly built production server, with `YIKAT_TEST_PORT=3216 pnpm test --workers=2` for this isolated checkout. They deliberately refuse to reuse an unknown server.
+
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Search discovery expansion — October 10, 2026
@@ -7,10 +20,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Owner requested local/general SEO and AI discovery. Implementation and research:
   `docs/seo/2026-10-10-search-program.md` and the adjacent priority keyword CSV.
 - New public destinations: `/bakirkoy-ayakkabi-temizleme`, `/ayakkabi-temizleme`,
-  `/rehber` and eleven statically generated `/rehber/[slug]` guides. Three existing
+  `/rehber` and nineteen statically generated `/rehber/[slug]` guides (eight added October 15). Three existing
   material-service URLs use the same current shell. Preserve the three primary nav links.
-- Owner confirmed Kaan's later hours: **every day 10:00–22:00**, superseding all
-  historical 09:00–20:00 notes below. Google Maps identity and exact pin were checked
+- Kaan corrected the earlier hours on October 12, reconfirmed October 15: **Monday–Saturday 08:30–20:30, Sunday 10:00–20:30**. Older daily 10:00–22:00 notes are superseded. Google Maps identity and exact pin were checked
   live. Collection zones remain paused; no blanket same-day or citywide promises.
 - Discovery content lives in `lib/care-guides.ts`, `lib/discovery.ts`,
   `components/discovery/`, `lib/services.ts` and scoped `app/discovery.css`.

@@ -52,7 +52,7 @@ export const SCENES = [
     img: "/images/hero/keyframe-temiz.webp",
     imgMobile: "/images/hero/keyframe-temiz-mobile.webp",
     title: "Aynı gün hazır.",
-    sub: "Sabah bırak, akşam 22:00'ye kadar al.",
+    sub: "Sabah bırak, akşam 20:30'a kadar al.",
     dark: false,
   },
 ] as const

@@ -21,9 +21,9 @@ No coupon noise, corporate coldness, generic AI dashboard aesthetic, empty steri
 - Give customers their day back; explain care through things they recognize.
 - Show a clear route from choosing a service to receiving a clean item.
 - Three primary actions; three navigation destinations.
-- Service availability depends on address. iOS is live; Android is coming soon.
+- Current launch scope: shoe cleaning at the Bakırköy shop. The four textile services and courier collection are upcoming. iOS is live; Android is coming soon.
 - A website interpretation of the app, with a wider composition and expressive opening.
-- No visible slogan on the homepage. The five image controls are the hero. Center marketing copy and use natural Turkish. No forced slogans, eyebrow labels, reassurance checklists or repeated platform badges.
+- Owner correction, October 15, 2026: one visible local heading, address and hours make the first screen useful to new visitors. The five image controls remain the hero, with honest availability labels. Center marketing copy and use natural Turkish. No forced slogans, eyebrow labels, reassurance checklists or repeated platform badges.
 - Lead with the new hero service sculptures as working buttons. Keep all five choices in the first screen; show next actions only after a choice. Keep home copy sparse; the workshop section briefly explains the three care stages. Raised labels and next-step chevrons make the image controls recognizable. The blue water backdrop flows continuously, without pointer input, on desktop and touch; reduced motion stays still and offscreen rendering pauses.
 - Build variety from the brand's physical objects: original blue care marks, a perforated service ticket, a genuine owner-uploaded shop photograph with a folded map, an enamel time dial and care-stage rail. Partners has a distinct map, workboard and calendar composition. Preserve the shared palette and curved four-point mark without repeating one card or button treatment everywhere.
 - Use the bespoke outlined service family on the Product strip, service ticket, order demo and partner panel; never reuse hero sculptures in those slots. WhatsApp and directions retain their care glyphs inside raised button faces.

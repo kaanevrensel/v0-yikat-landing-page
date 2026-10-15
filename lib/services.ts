@@ -29,12 +29,12 @@ export const services: Service[] = [
     ],
     notes: ["Temizlik ve bakım, taban değişimi, boyama veya restorasyonla aynı hizmet değildir.", "Eski lekeler, boya kaybı veya malzemedeki renk değişimi tamamen düzelmeyebilir. İşleme başlamadan beklentiyi konuşalım."],
     faqs: [
-      { q: "Sneaker çamaşır makinesinde yıkanır mı?", a: "Her model için aynı yanıt yok. Tam modelin üretici talimatını kontrol et. Nike’ın genel önerisi ile adidas’ın 4DFWD için yayımladığı yöntem farklı; bakım rehberimizde kapsamlarını karşılaştırıyoruz." },
+      { q: "Sneaker çamaşır makinesinde yıkanır mı?", a: "Hayır, sneaker’ını çamaşır makinesine atma. Tambur, uzun süre su ve sıkma; yapıştırıcıyı, tabanı ve formu yıpratabilir. File veya düşük derece bunu değiştirmez; nedenlerini bakım rehberimizde anlattık." },
       { q: "Sneaker yıkama aynı gün teslim edilir mi?", a: timing },
       { q: "Beyaz spor ayakkabıdaki sararma çıkar mı?", a: "Kir, leke ve malzemenin renk değişimi ayrı değerlendirilir. Ayakkabıyı görmeden kesin beyazlatma veya yenileme sözü vermiyoruz." },
       { q: "Spor ayakkabı yıkama fiyatı ne kadar?", a: price },
     ],
-    priceCategory: "Spor Ayakkabı", guideSlug: "spor-ayakkabi-nasil-temizlenir", sourceIds: ["nikeMachine", "adidas4d"],
+    priceCategory: "Spor Ayakkabı", guideSlug: "spor-ayakkabi-nasil-temizlenir", sourceIds: ["nikeMachine", "nikeClean"],
   },
   {
     slug: "suet-nubuk-temizleme", nav: "Süet ve nubuk ayakkabı temizleme",

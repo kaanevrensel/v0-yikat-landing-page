@@ -5,7 +5,7 @@ test("deletion request is public and explains the actual email action", async ({
   const response = await page.goto("/hesap-silme")
   expect(response?.status()).toBe(200)
   await expect(page.getByRole("heading", { level: 1, name: "Hesap silme" })).toBeVisible()
-  await expect(page.getByText("Yıkat Gitsin (Yıkat) müşteri hesabınız ve kişisel verileriniz")).toBeVisible()
+  await expect(page.getByText("Yıkat müşteri hesabınız ve kişisel verileriniz")).toBeVisible()
   await expect(page.locator("link[rel='canonical']")).toHaveAttribute("href", "https://www.yikat.tech/hesap-silme")
 
   const request = page.getByRole("link", { name: "Silme talebi için e-posta yaz" })
@@ -51,7 +51,7 @@ test("deletion help and section headings remain usable without JavaScript", asyn
     await page.goto("/hesap-silme")
     await expect(page.getByRole("link", { name: "Silme talebi için e-posta yaz" })).toBeVisible()
     await page.goto("/")
-    const heading = page.getByRole("heading", { level: 1, name: "Yıkat temizlik ve bakım hizmetleri" })
+    const heading = page.getByRole("heading", { level: 1, name: "Bakırköy’de ayakkabını yıkat." })
     await expect(heading).toBeVisible()
     await expect(heading).toHaveCSS("opacity", "1")
     await expect(heading).toHaveCSS("filter", "none")

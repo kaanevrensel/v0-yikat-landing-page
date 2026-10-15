@@ -3,7 +3,7 @@ import type { ReactNode } from "react"
 import { ArrowUpRight } from "lucide-react"
 import { SiteShell } from "@/components/website/shared"
 import { ShopActions } from "./actions"
-import { breadcrumbJson, CONTENT_DATE, careSources } from "@/lib/discovery"
+import { breadcrumbJson, CONTENT_DATE, careSources, formatContentDate } from "@/lib/discovery"
 import { siteConfig } from "@/lib/site"
 
 export function JsonLd({ data }: { data: unknown }) {
@@ -27,8 +27,8 @@ export function FaqList({ faqs }: { faqs: { q: string; a: string }[] }) {
   return <section className="discovery-faq" aria-labelledby="faq-title"><h2 id="faq-title">Merak ettiklerin</h2>{faqs.map(f => <details key={f.q}><summary>{f.q}</summary><p>{f.a}</p></details>)}</section>
 }
 
-export function SourceList({ ids }: { ids: string[] }) {
-  return <section className="discovery-sources" id="kaynaklar" aria-labelledby="sources-title"><h2 id="sources-title">Kaynaklar ve içerik notu</h2><p>Bu rehber, aşağıdaki üretici ve bakım kuruluşlarının yayımladığı bilgilerden yararlanır. Kendi ürününün güncel bakım talimatı önceliklidir.</p><ul>{ids.map(id => <li key={id} id={`kaynak-${id}`}><a href={careSources[id].url} target="_blank" rel="noopener noreferrer">{careSources[id].title}<ArrowUpRight size={15} aria-hidden="true"/></a></li>)}</ul><p>Yayınlayan: <Link href="/iletisim">Yıkat</Link> · <time dateTime={CONTENT_DATE}>10 Ekim 2026</time>. Bir düzeltme için <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.</p></section>
+export function SourceList({ ids, updated, published = CONTENT_DATE }: { ids: string[]; updated?: string; published?: string }) {
+  return <section className="discovery-sources" id="kaynaklar" aria-labelledby="sources-title"><h2 id="sources-title">Kaynaklar ve içerik notu</h2><p>Bu rehber, aşağıdaki üretici ve bakım kuruluşlarının yayımladığı bilgilerden yararlanır. Kendi ürününün güncel bakım talimatı önceliklidir.</p><ul>{ids.map(id => <li key={id} id={`kaynak-${id}`}><a href={careSources[id].url} target="_blank" rel="noopener noreferrer">{careSources[id].title}<ArrowUpRight size={15} aria-hidden="true"/></a></li>)}</ul><p>Yayınlayan: <Link href="/iletisim">Yıkat</Link> · <time dateTime={published}>{formatContentDate(published)}</time>{updated && <>, güncelleme <time dateTime={updated}>{formatContentDate(updated)}</time></>}. Bir düzeltme için <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.</p></section>
 }
 
 export function ShopInvitation() {

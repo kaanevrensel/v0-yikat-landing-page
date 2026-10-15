@@ -22,9 +22,9 @@ const bricolage = Bricolage_Grotesque({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: "Yıkat Gitsin | Temizlik ve bakım",
+  title: "Yıkat | Bakırköy Ayakkabı Temizleme",
   description:
-    "Bakırköy’de ayakkabını malzemesine uygun yıkat. Sneaker, deri, süet ve nubuk bakımı; dükkân bilgileri, bakım rehberleri ve Yıkat Gitsin uygulaması.",
+    "Bakırköy’de ayakkabını malzemesine uygun yıkat. Sneaker, deri, süet ve nubuk bakımı; dükkân bilgileri, bakım rehberleri ve Yıkat uygulaması.",
   keywords: [
     "ayakkabı yıkama bakırköy",
     "ayakkabı temizleme",
@@ -58,14 +58,14 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     siteName: "Yıkat",
     locale: "tr_TR",
-    title: "Yıkat Gitsin | Temizlik ve bakım",
-    description: "Temizliğe ayırdığın zaman sana kalsın. Yıkat Gitsin iPhone’da yayında.",
+    title: "Yıkat | Bakırköy Ayakkabı Temizleme",
+    description: "Bakırköy Sakızağacı’nda ayakkabı temizleme ve bakım. Dükkân, çalışma saatleri ve malzemeye göre bakım rehberleri.",
     images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "Yıkat, Ayakkabı Yıkama Bakırköy" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yıkat Gitsin | Temizlik ve bakım",
-    description: "Temizliğe ayırdığın zaman sana kalsın. Yıkat Gitsin iPhone’da yayında.",
+    title: "Yıkat | Bakırköy Ayakkabı Temizleme",
+    description: "Bakırköy Sakızağacı’nda ayakkabı temizleme ve bakım. Dükkân, çalışma saatleri ve malzemeye göre bakım rehberleri.",
     images: ["/images/og.jpg"],
   },
 }
@@ -100,12 +100,12 @@ const localBusinessJsonLd = {
     postalCode: siteConfig.address.postalCode,
     addressCountry: "TR",
   },
-  openingHoursSpecification: {
+  openingHoursSpecification: siteConfig.hours.schedule.map((slot) => ({
     "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-    opens: siteConfig.hours.opens,
-    closes: siteConfig.hours.closes,
-  },
+    dayOfWeek: slot.days,
+    opens: slot.opens,
+    closes: slot.closes,
+  })),
   geo: {
     "@type": "GeoCoordinates",
     latitude: siteConfig.geo.latitude,
@@ -146,7 +146,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org", "@type": "WebSite", "@id": `${siteConfig.url}/#website`,
-          name: "Yıkat", alternateName: "Yıkat Gitsin", url: siteConfig.url, inLanguage: "tr-TR",
+          name: "Yıkat", url: siteConfig.url, inLanguage: "tr-TR",
           publisher: { "@id": `${siteConfig.url}/#business` },
         }).replace(/</g, "\\u003c") }} />
         {children}

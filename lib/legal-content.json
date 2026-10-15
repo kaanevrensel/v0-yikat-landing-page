@@ -1,11 +1,11 @@
 {
- "_generated": "GENERATED FILE — do not edit. Source of truth: yikat-app mobile/src/features/legal/docs.ts (the texts shown in-app and on app.yikat.tech/legal/*). Regenerate: extract COMPANY/LEGAL_DOCS via deno (see landing CLAUDE.md), pick the docs below, and re-run the picker. Regenerated 2026-08-27 for live online card payment via iyzico (pre-authorization model) and Google/Apple sign-in. KÜNYE 2026-08-29 (owner, new tax certificate): company.address and every address row/line carry \"Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul\" (same string as lib/site.ts address.full — NAP rule), company.taxOffice \"Bakırköy V.D.\". These same values were written into yikat-app docs.ts COMPANY on 2026-08-29, so this is NO LONGER A MANUAL OVERRIDE: the next regeneration reproduces them and nothing needs re-applying by hand. taxNo (T.C. Kimlik No) unchanged. Privacy policy and shared Meta campaign-measurement blocks regenerated 2026-10-02 from mobile/src/features/legal/docs.ts; the other generated documents are unchanged. Shoe photograph disclosure regenerated 2026-10-08 from the same canonical source. Disclosed shoe category correction and return terms regenerated 2026-10-10 from canonical app documents.",
+ "_generated": "GENERATED FILE — do not edit. Source of truth: yikat-app mobile/src/features/legal/docs.ts. Regenerate with `node scripts/generate-legal-content.mjs <yikat-app checkout>`; CI-style drift check: add --check.",
  "company": {
   "legalName": "Ahmet Kaan Evrensel (şahıs işletmesi)",
   "brand": "Yıkat",
   "address": "Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul",
   "taxOffice": "Bakırköy V.D.",
-  "taxNo": "10514514528 (T.C. Kimlik No)",
+  "taxNo": "3830369314",
   "phoneDisplay": "0850 303 31 93",
   "phoneDial": "+908503033193",
   "email": "destek@yikat.tech",
@@ -247,7 +247,7 @@
       },
       {
        "label": "Vergi Dairesi / No",
-       "value": "Bakırköy V.D. / 10514514528 (T.C. Kimlik No)"
+       "value": "Bakırköy V.D. / 3830369314"
       },
       {
        "label": "MERSIS",
@@ -581,46 +581,722 @@
      ]
     }
    ]
+  },
+  "kvkk": {
+   "navTitle": "KVKK Aydınlatma",
+   "heading": "KVKK Aydınlatma Metni",
+   "subtitle": "6698 sayılı Kişisel Verilerin Korunması Kanunu (\"KVKK\") kapsamında",
+   "blocks": [
+    {
+     "type": "section",
+     "text": "1. Veri Sorumlusu"
+    },
+    {
+     "type": "paragraph",
+     "text": "Kişisel verileriniz, veri sorumlusu sıfatıyla aşağıdaki kuruluş tarafından işlenmektedir:"
+    },
+    {
+     "type": "rows",
+     "rows": [
+      {
+       "label": "Ünvan",
+       "value": "Ahmet Kaan Evrensel (şahıs işletmesi) (\"Yıkat\")"
+      },
+      {
+       "label": "Adres",
+       "value": "Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul"
+      },
+      {
+       "label": "MERSIS No",
+       "value": "Yok (şahıs işletmesi)"
+      },
+      {
+       "label": "Telefon",
+       "value": "0850 303 31 93"
+      },
+      {
+       "label": "E-posta",
+       "value": "destek@yikat.tech"
+      },
+      {
+       "label": "Uygulama/Web",
+       "value": "Yıkat mobil uygulaması / www.yikat.tech"
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "text": "Ayakkabı Fotoğrafları"
+    },
+    {
+     "type": "paragraph",
+     "text": "Her ayakkabı çifti için siparişte çektiğiniz fotoğraf ile dükkânda kabul ve bitişte çekilen fotoğraflar, gelen çifti eşleştirmek ve hizmet aşamalarını size göstermek için sipariş kaydına bağlanır. Fotoğrafları yalnızca siz ve siparişinizi hazırlamaya yetkili ekip görebilir; özel depolamada tutulur."
+    },
+    {
+     "type": "paragraph",
+     "text": "Sizin çektiğiniz fotoğraf teslimden 30 gün sonra silinir. Dükkânın kabul ve bitiş fotoğrafları sipariş kaydında kalır. Hesap silme ve anonimleştirme işlemi bu fotoğrafların dosyalarını da kapsar."
+    },
+    {
+     "type": "paragraph",
+     "text": "Önce/sonra paylaşımı isteğe bağlıdır ve siparişte ayrı, önceden işaretlenmemiş bir kutuyla onaylanır. Yalnızca dükkânda çekilen kabul ve bitiş fotoğrafları paylaşım için seçilebilir; sizin çektiğiniz fotoğraf paylaşılmaz. Paylaşım iznini geri çekmek için destek@yikat.tech adresine yazabilirsiniz."
+    },
+    {
+     "type": "section",
+     "text": "2. İşlenen Kişisel Veriler"
+    },
+    {
+     "type": "paragraph",
+     "text": "Yıkat hizmetlerini sunmak için aşağıdaki kişisel verileriniz işlenir:"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Kimlik: ad, soyad (e-posta ile giriş yaparsanız kendiniz iletirsiniz; Google veya Apple ile giriş yapmayı seçerseniz ilgili sağlayıcıdan tarafımıza aktarılır).",
+      "İletişim: e-posta adresi, telefon numarası; teslimat için belirttiğiniz alıcı adı ve telefonu.",
+      "Müşteri/işlem: sipariş geçmişi ve içeriği, sipariş notları, seçilen ödeme yöntemi (kapıda nakit, kapıda kart veya online kart), online kart ödemelerinde ödeme sonucu ve maskelenmiş kart bilgisi (son 4 hane / kart markası — tam kart numarası ve CVV ASLA tutulmaz), sipariş tutarı, davet (referans) kodu ve davet ilişkisi, sipariş puanı ve değerlendirmeniz.",
+      "Konum/adres: teslimat adresiniz (açık adres, kat, kapı/zil kodu, adres tarifi ve bağlı olduğu hizmet bölgesi) ile bu adresten üretilen yaklaşık konum koordinatı (enlem/boylam). Koordinat, adresi doğru hizmet bölgesine ve size en yakın iş ortağına yönlendirmek için adres metninizden hesaplanır ve adres kaydınızla birlikte saklanır (bkz. §6 — çeviriyi OpenStreetMap / Nominatim yapar). İzin verirseniz, adres formunu hızlı doldurmak için cihazınızın anlık konumu yalnızca o an kullanılır (yalnızca uygulama açıkken / \"kullanırken\"); cihazın anlık konum koordinatı bize gönderilmez ve saklanmaz, yalnızca işletim sisteminizin ürettiği adres metni forma yazılır. Konum izni isteğe bağlıdır; izin vermeseniz de adresi elle girebilirsiniz.",
+      "İşlem güvenliği / cihaz: giriş için üretilen tek kullanımlık kod kayıtları, Google veya Apple ile giriş yapmayı seçerseniz ilgili sağlayıcının o hesap için ürettiği kullanıcı kimliği, anlık bildirim (push) için cihaz bildirim anahtarı, online kart ödemesi başlatıldığında ödeme isteğinin geldiği IP adresi, uygulama kullanımına ilişkin teknik log kayıtları.",
+      "Kullanım ve hata kayıtları: sipariş akışındaki adımlara ilişkin sınırlı sayıda kullanım olayı (takma adlı kullanıcı kimliğiyle; olayla birlikte sipariş numarası da gönderilir) ile uygulamada hata oluştuğunda üretilen teknik hata izi ve cihaz/uygulama sürümü bilgisi. Ayrıntı: Gizlilik Politikası §4."
+     ]
+    },
+    {
+     "type": "note",
+     "text": "Özel nitelikli kişisel veri (sağlık, din, biyometrik vb.) toplanmaz."
+    },
+    {
+     "type": "section",
+     "text": "3. Kişisel Verilerin İşlenme Amaçları"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Üyelik oluşturma, kimlik doğrulama (e-posta ile tek kullanımlık kod, e-posta ve şifre ya da tercih ederseniz Google veya Apple ile giriş) ve hesabınızın yönetimi,",
+      "Siparişin alınması, kapıdan teslim alma–teslim etme süreçlerinin planlanması ve yürütülmesi, ilgili kuru temizleme iş ortağına yönlendirilmesi,",
+      "Ödeme ve faturalandırma işlemleri,",
+      "Sipariş durumu, teslimat ve hizmete ilişkin bilgilendirme/bildirimlerin gönderilmesi,",
+      "Müşteri destek taleplerinin karşılanması, şikâyet ve uyuşmazlıkların çözümü,",
+      "Davet (referans) kampanyasının ve kampanya/indirimlerin yürütülmesi,",
+      "Hizmet kalitesinin ölçülmesi ve iyileştirilmesi (değerlendirme/puanlama; uygulama içi kullanım analitiği ve hata/çökme kayıtları),",
+      "Yasal yükümlülüklerin (vergi, tüketici mevzuatı, saklama) yerine getirilmesi ve hukuki taleplere karşı savunma."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "4. İşlemenin Hukuki Sebepleri (KVKK md. 5)"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Sözleşmenin kurulması/ifası (md. 5/2-c): sipariş, teslimat ve ödeme süreçleri.",
+      "Hukuki yükümlülük (md. 5/2-ç): vergi/fatura ve mevzuattan doğan saklama.",
+      "Meşru menfaat (md. 5/2-f): hizmet güvenliği, dolandırıcılığın önlenmesi, hizmetin iyileştirilmesi — uygulama içi kullanım analitiği ve hata/çökme kayıtları dâhil (ölçülü olarak).",
+      "Bir hakkın tesisi/korunması (md. 5/2-e): uyuşmazlık ve taleplere karşı savunma.",
+      "Açık rıza (md. 5/1): yalnızca rızaya bağlı işlemler için. Mobil uygulamada ticari elektronik ileti/pazarlama bildirimi göndermiyoruz ve kart saklama özelliği kullanıma açılmamıştır. Bu işlemeler başladığında rızanız uygulama içinde ayrıca ve açıkça istenir, kayda alınır ve dilediğiniz zaman geri alabilirsiniz. Ayrıntı: Açık Rıza Metni. Mağaza kampanyalarına ilişkin reklam ölçümü §10'da ayrıca açıklanır."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "5. Toplama Yöntemi"
+    },
+    {
+     "type": "paragraph",
+     "text": "Kişisel verileriniz; Yıkat mobil uygulaması üzerinden (kayıt, adres ekleme, sipariş oluşturma, destek) tamamen veya kısmen otomatik yollarla, doğrudan sizden toplanır. Google veya Apple ile giriş yapmayı seçerseniz, ad-soyad ve e-posta bilgileriniz bu yöndeki seçiminiz üzerine ilgili sağlayıcıdan otomatik yolla tarafımıza aktarılır."
+    },
+    {
+     "type": "section",
+     "text": "6. Kişisel Verilerin Aktarılması"
+    },
+    {
+     "type": "paragraph",
+     "text": "Yurt içi aktarım: Hizmetin ifası amacıyla sınırlı olarak;"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Kuru temizleme iş ortakları: kuru temizleme siparişlerinde ilgili bölgenin iş ortağına yalnızca bölge, sipariş kalemleri ve zaman aralıkları iletilir. Adınız, telefonunuz ve açık adresiniz iş ortağıyla paylaşılmaz.",
+      "Ayakkabı hizmetini hazırlamakla görevlendirilen dükkân: çiftleri eşleştirmek ve hizmeti doğrulamak için sipariş kalemleri, kategorileri ve çift fotoğrafları; paketleme ve dönüş poşeti etiketi için alıcı adı, sipariş kodu ve çift sayısı paylaşılır.",
+      "Ödeme hizmeti sağlayıcısı (online kart): Online kart ile ödemeyi seçtiğinizde ad-soyadınız, e-posta adresiniz, telefon numaranız, sipariş adresiniz, IP adresiniz ile sipariş numaranız ve tutarı; ödemenin gerçekleştirilmesi, ödemenin doğrulanması ve dolandırıcılığın önlenmesi amacıyla iyzico (iyzi Ödeme ve Elektronik Para Hizmetleri A.Ş.) ile paylaşılır. Kart numaranız ve CVV Yıkat'a hiçbir aşamada ulaşmaz; bu bilgiler iyzico'nun PCI DSS sertifikalı altyapısında işlenir. Kart saklama özelliği kullanıma açılmamıştır.",
+      "Yetkili kamu kurum ve kuruluşlarına, mevzuat gereği talep hâlinde."
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Yurt dışına aktarım (KVKK md. 9): Yıkat'ın veritabanı ve uygulama altyapısı Supabase (sunucular Almanya / Frankfurt) üzerinde barındırılır; e-posta gönderimi Resend, anlık bildirim altyapısı Expo hizmetleri ile sağlanır. Bunlara ek olarak uygulama içi kullanım analitiği PostHog (sunucular AB — Frankfurt, Almanya) ve hata/çökme kayıtları Sentry (sunucular Almanya) tarafından işlenir. Google veya Apple ile giriş yapmayı seçerseniz, giriş adımı Google (İrlanda/ABD) veya Apple (İrlanda/ABD) üzerinden yürütülür ve bu sağlayıcılardan ad-soyadınız, e-posta adresiniz ile kullanıcı kimliğiniz tarafımıza aktarılır. Bu nedenle bazı verileriniz yurt dışındaki bu hizmet sağlayıcıların sunucularında işlenebilir. Ödeme kuruluşumuz iyzico Türkiye'de yerleşiktir; bu kuruluşa yapılan ödeme aktarımı yurt içindedir. Mağaza kampanyalarındaki Meta reklam ölçümü, sipariş tutarı dâhil paylaşılan veriler ve yurt dışı aktarımı için bkz. §10."
+    },
+    {
+     "type": "paragraph",
+     "text": "Ayrıca, kaydettiğiniz bir adresi hizmet bölgesine ve en yakın iş ortağına yönlendirebilmek için adres metniniz (açık adres ve il) yaklaşık koordinata çevrilmek üzere OpenStreetMap / Nominatim servisine (OpenStreetMap Foundation — Birleşik Krallık) sorgu olarak iletilir. Bu sorguda adınız, telefonunuz, kapı/zil kodunuz, sipariş bilgileriniz ve hesap bilgileriniz yer almaz."
+    },
+    {
+     "type": "paragraph",
+     "text": "Bu aktarımlar, KVKK md. 9'da öngörülen şartlara (yeterli koruma bulunan ülke veya uygun güvenceler) uygun olarak gerçekleştirilir; açık rızaya dayandırılmaz."
+    },
+    {
+     "type": "section",
+     "text": "7. Saklama Süreleri"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Kişisel verileriniz, işleme amacının gerektirdiği süre boyunca ve ilgili mevzuattaki zamanaşımı/saklama süreleri kadar saklanır.",
+      "Hesabınızı sildiğinizde: talebiniz alınır, yaklaşık 30 günlük bekleme/iptal penceresinin ardından kişisel verileriniz anonimleştirilir. Vergi ve ticaret mevzuatı gereği faturaya/işleme esas kayıtlar, ilgili yasal saklama süresi (10 yıla kadar) boyunca saklanır; bu süre sonunda silinir/yok edilir."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "8. İlgili Kişi Olarak Haklarınız (KVKK md. 11)"
+    },
+    {
+     "type": "paragraph",
+     "text": "Veri sorumlusuna başvurarak; kişisel verinizin işlenip işlenmediğini öğrenme, işlenmişse buna ilişkin bilgi talep etme, işlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme, yurt içi/yurt dışı aktarıldığı üçüncü kişileri bilme, eksik/yanlış işlenmişse düzeltilmesini, şartları oluştuğunda silinmesini/yok edilmesini ve bunların aktarıldığı üçüncü kişilere bildirilmesini isteme, işlenen verilerin münhasıran otomatik sistemlerle analizi sonucu aleyhinize bir sonucun ortaya çıkmasına itiraz etme ve kanuna aykırı işleme nedeniyle zararınızın giderilmesini talep etme haklarına sahipsiniz."
+    },
+    {
+     "type": "section",
+     "text": "9. Başvuru"
+    },
+    {
+     "type": "paragraph",
+     "text": "Haklarınızı kullanmak için \"KVKK İlgili Kişi Başvuru Formu\"nu doldurarak; Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul adresine yazılı olarak veya destek@yikat.tech e-posta adresine iletebilirsiniz. Başvurunuz, talebin niteliğine göre en geç 30 gün içinde sonuçlandırılır. Uygulama içinden hesap silme talebinizi doğrudan iletebilirsiniz."
+    },
+    {
+     "type": "section",
+     "text": "10. Mağaza Kampanyalarının Reklam Ölçümü"
+    },
+    {
+     "type": "paragraph",
+     "text": "Meta reklamlarının mağaza satışlarına katkısını ölçmek için satın alma olayları Meta ile paylaşılır. Bu aktarım yalnızca, sipariş kaynağı Meta reklamı olarak kaydedilmiş, ilgili Meta kampanyasıyla açıkça eşleştirilmiş ve ödemesi tamamlanmış mağaza siparişleri için yapılır. Veriler gönderilmeden önce siparişin durumu tekrar kontrol edilir; iptal edilmiş, tamamen veya kısmen iade edilmiş, ödemesi tamamlanmamış ya da tutarı sıfır olan siparişler gönderilmez. İndirim veya kampanya kodu kullanılması tek başına bu aktarımı başlatmaz."
+    },
+    {
+     "type": "paragraph",
+     "text": "Paylaşılan sınırlı veriler; ülke koduyla standartlaştırılmış telefon numaranızın SHA-256 özet değeri, sipariş ve olay numarası, ödemenin zamanı, indirim sonrası tahsil edilen tutar, para birimi (TRY) ve eşleştirilen Meta kampanyasının kimliğidir. Telefon numaranız bu ölçüm aktarımında açık olarak gönderilmez; adınız, adresiniz, mesaj içeriğiniz ve kart bilgileriniz bu satın alma olayına eklenmez."
+    },
+    {
+     "type": "paragraph",
+     "text": "SHA-256 özetleme, telefon numarasını anonim hâle getirmez. Meta bu değeri kendi kayıtlarıyla eşleştirerek reklam ile sipariş arasındaki ilişkiyi belirleyebilir. Ölçüm; reklamın siparişe katkısını ve satın alma başına maliyeti değerlendirmek amacıyla yapılır."
+    },
+    {
+     "type": "paragraph",
+     "text": "WhatsApp mesajlaşma entegrasyonu kullanıma alındığında, reklamdan gelen ilk mesajla iletilen telefon numarası (wa_id), reklam tıklama kimliği (ctwa_clid), reklam kimliği ve zaman bilgisi siparişle eşleştirme için kaydedilir. Uygun mesajlaşma olaylarının ölçümünde, örneğin mağazayı ziyaret etme niyetinizi belirttiğinizde, olay türü ve zamanı ile reklam tıklama kimliği ve işletmemizin WhatsApp hesap kimliği Meta ile paylaşılır. Bu bağlantı kurulmadan mesajlaşma olayları gönderilmez; mağazada gerçekleşen satın alma, mağaza olayı olarak ölçülür."
+    },
+    {
+     "type": "paragraph",
+     "text": "Bu ölçüm verilerinin alıcısı Meta olup veriler Meta hizmetlerinin yurt dışındaki sistemlerinde işlenir. Reklam ölçümü, uygulama içi kullanım analitiği ve hizmet bildirimlerinden ayrı bir veri işleme amacıdır. Bu bilgilendirme açık rıza beyanı değildir."
+    },
+    {
+     "type": "paragraph",
+     "text": "KVKK md. 11 kapsamındaki haklarınız ve reklam ölçümüne ilişkin bilgi, düzeltme, silme veya itiraz talepleriniz için destek@yikat.tech adresine ya da Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul adresine başvurabilirsiniz. Talebiniz en geç 30 gün içinde yanıtlanır."
+    }
+   ]
+  },
+  "kullanim": {
+   "navTitle": "Kullanım Koşulları",
+   "heading": "Üyelik ve Kullanım Koşulları",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Yıkat mobil uygulamasını (\"Uygulama\") kullanarak bu koşulları kabul etmiş olursunuz. Hizmet sağlayıcı: Ahmet Kaan Evrensel (şahıs işletmesi) (\"Yıkat\") · Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul · destek@yikat.tech · 0850 303 31 93."
+    },
+    {
+     "type": "section",
+     "text": "1. Üyelik ve Hesap"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Hizmeti kullanmak için 18 yaşını doldurmuş olmanız gerekir.",
+      "Kayıt ve girişte verdiğiniz bilgilerin doğru ve güncel olmasından siz sorumlusunuz.",
+      "Girişi e-posta adresinize gönderilen tek kullanımlık kodla, belirlediğiniz şifreyle veya dilerseniz Google ya da Apple hesabınızla yapabilirsiniz. Hangi yöntemi seçerseniz seçin, hesabınızın ve o hesaba erişiminizin güvenliği sizin sorumluluğunuzdadır."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "2. Hizmet"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Yıkat, kapıdan alıp teslim ederek kuru temizleme, çamaşır yıkama, ütü, ayakkabı temizliği ve hacimli ürün yıkama hizmetleri sunar. Hizmet, belirtilen hizmet bölgeleriyle sınırlıdır.",
+      "Kuru temizleme siparişleri, ilgili bölgedeki iş ortağı kuru temizlemeciler tarafından ifa edilebilir; Yıkat bu süreçte koordinasyon ve özen yükümlülüğünü üstlenir.",
+      "Hizmet, makul özen ve beceriyle, iyi sektör uygulamalarına uygun olarak sunulur."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "3. Ürünlerin Uygunluğu, Bakım Etiketi ve Uygun Olmayan Ürünler"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Yıkamaya/temizliğe verdiğiniz ürünlerin hizmete uygun olduğunu ve üretici bakım etiketinin üzerinde bulunduğunu kabul edersiniz. İşlem, bakım etiketindeki talimatlara göre yapılır.",
+      "Etiketsiz, yanlış etiketli veya özel işlem gerektiren (deri, süet, ipek, kaşmir, kürk, tül vb.) ürünler ile hasarlı/aşınmış/lekeli ürünlerde sonuç garanti edilemez; bu tür ürünler, onayınızla ve sorumluluğu size ait olmak üzere işleme alınabilir.",
+      "Ürünlerin cebinde/üzerinde yabancı cisim (iğne, bozuk para, kalem, takı, kart vb.) bırakmayın. Bu tür cisimlerden doğan zararlardan (ürüne veya içindeki eşyaya) Yıkat sorumlu değildir; kaybolan değerli eşyalar iade edilmeyebilir.",
+      "Hizmet kapsamı dışı / tehlikeli ürünleri vermeyin. Yıkat, uygun olmadığını değerlendirdiği bir ürünü işleme almayı reddedip iade edebilir."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "4. Ürünlerin Teslim Alınması, Teslimi ve Kapıda Bırakma"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Ürünler, uygulamada belirttiğiniz adresten alınır ve seçtiğiniz zaman aralıklarında teslim edilir. Yıkat bu aralıklara uymak için makul çabayı gösterir ancak gecikmelerden doğan dolaylı zararlardan sorumlu değildir.",
+      "Alım/teslim sırasında adreste sizin veya belirttiğiniz alıcının bulunması sizin sorumluluğunuzdadır.",
+      "Kapıda / anlaşılan bir noktada bırakma: Talebiniz/onayınızla ürünün, teslim alınmadan (imza/teslim teyidi olmadan) belirli bir yere bırakılmasını isterseniz, bu tamamen sizin sorumluluğunuzdadır; bu durumda doğacak kayıp/hasardan Yıkat sorumlu tutulamaz. Müşteri, uygulama üzerinden \"kapıya/güvenli bir noktaya bırakılsın\" izni vererek aşağıdaki tekrar teslimat bedelinden kaçınabilir; bu şekilde bırakılan ürünlerin sorumluluğu teslim anından itibaren müşteriye aittir.",
+      "Teslimat anında müşteriye veya belirlediği kişiye ulaşılamazsa, sonraki her teslimat denemesi için uygulamada gösterilen makul bir tekrar teslimat bedeli uygulanabilir; ek ücret sipariş özetinde/bilgilendirmede belirtilir."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "5. Teslim Alınamayan / Sahipsiz Ürünler"
+    },
+    {
+     "type": "paragraph",
+     "text": "Teslim edilemeyen bir ürünü, teslim tarihinden itibaren 30 gün boyunca makul biçimde saklarız ve sizinle iletişime geçeriz. Bu süre içinde teslim alınmayan/yeniden teslim ayarlanmayan ürünleri, bilgilendirme sonrasında bağışlayabilir veya tasfiye edebiliriz."
+    },
+    {
+     "type": "section",
+     "text": "6. Siparişler ve Fiyatlar"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Fiyatlar uygulamada gösterilir; tartı/inceleme ile netleşen hizmetlerde (örn. kiloyla çamaşır) tutar tahminîdir, kesin tutar ürün teslim alınınca belirlenir (bkz. Mesafeli Satış Sözleşmesi).",
+      "Ödeme kapıda nakit, kapıda kart veya sabit fiyatlı hizmetlerde uygulamadan online kart ile yapılır. Kart bilgileri Yıkat'ta saklanmaz (bkz. Ödeme ve Güvenli Alışveriş). İptal/iade için: İptal ve İade Koşulları.",
+      "Sipariş, Yıkat'ın teyidi/ifaya başlamasıyla bağlayıcı olur. Sipariş numarası sunucu tarafından üretilir."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "7. Hizmet Standardı, Sorumluluk ve Hasar/Kayıp Tazminatı"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Yıkat hizmeti makul özenle sunar ve kusuru hâlinde aşağıdaki çerçevede sorumludur.",
+      "Hasar/kayıp bildirimi: Teslim aldığınız ürünleri kontrol edin; kayıp veya hasar olduğunu düşünüyorsanız teslimden itibaren 48 saat içinde bize bildirin. Bu süreden sonra yapılan bildirimler takdiren değerlendirilir. Yıkat, iddia edilen hasarı inceleme ve fotoğraflama hakkını saklı tutar; gerektiğinde alış/değer belgesi isteyebilir.",
+      "Tazminat üst sınırı: Yıkat'ın kusurundan doğan kanıtlı hasar/kayıpta tazminat, ilgili ürün için alınan hizmet bedelinin 10 katı ile ve her hâlükârda ürün başına en fazla ₺2.500 ile sınırlıdır. (Tüketici mevzuatından doğan haklarınız saklıdır.)",
+      "Satın alma kanıtı şartı: Tazminat talebinde ürünün değerini gösteren satın alma kanıtı (fatura, fiş, banka/kart ekstresi veya eşdeğer belge) sunulması zorunludur. Kanıt sunulamayan taleplerde tazminat, Yıkat'ın takdirinde ve sınırlı tutarda değerlendirilir.",
+      "Yıpranma indirimi: Tazminat tutarı, ürünün yaşı ve kullanım durumuna göre makul yıpranma payı düşülerek hesaplanır.",
+      "Onarım önceliği: Hasarlı ürünlerde öncelikle onarım denenir; onarım mümkün değilse tazminat sürecine geçilir.",
+      "Alıkoyma hakkı: Bedeli tazmin edilen ürünü Yıkat teslim alma hakkını saklı tutar.",
+      "Ödeme süresi: Kanıtlanan tazminat, mutabakatı takiben 15 iş günü içinde ödenir.",
+      "Kayıp sayılma süresi: Teslim alınan bir ürün 20 iş günü içinde bulunamazsa kayıp sayılır.",
+      "Envanter kaydı: Yıkat, kalite kontrol ve kayıp önleme amacıyla teslim alınan ürünleri fotoğraflayarak envanter kaydı tutabilir.",
+      "Yüksek değerli ürünler: Değeri ₺3.000 üzerindeki ürünleri, işleme alınmadan önce bize bildirmeniz gerekir; aksi hâlde bu ürünler için de yukarıdaki üst sınır uygulanır.",
+      "Sorumluluk dışı hâller: Yıkat aşağıdakilerden sorumlu değildir: renk akması/solması, renk geçişi, çekme (özellikle yıkama-kurutma hizmetinde); normal yıpranma; düğme, fermuar, boncuk, aksesuar ve benzeri parçalardaki hasar; önceden var olan hasar/leke; etiketsiz, yanlış etiketli veya talimatı tarafınızca yanlış verilen ürünler; içindeki yabancı cisimden doğan zararlar; mücbir sebep (bkz. §10).",
+      "Yıkama-kurutma (load usulü) notu: Bu hizmette çamaşırlar topluca yıkanır ve her parçanın bakım etiketi ayrı ayrı incelenmez; bu nedenle özel işlem gerektiren parçaların bu hizmete verilmemesi gerekir.",
+      "Mevzuatın izin verdiği ölçüde Yıkat, dolaylı/sonuçsal zararlardan sorumlu tutulamaz."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "8. Kalite Garantisi — Yeniden Yıkama"
+    },
+    {
+     "type": "paragraph",
+     "text": "Sonuçtan memnun kalmazsanız, teslimden itibaren 24 saat içinde bize bildirin; ilgili ürünü ücretsiz yeniden işleme alırız. 24 saatten sonraki talepler takdiren değerlendirilir."
+    },
+    {
+     "type": "section",
+     "text": "9. Kullanıcının Yükümlülükleri"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Uygulamayı hukuka uygun kullanmak; başkasının hesabını/bilgilerini izinsiz kullanmamak; sisteme zarar verecek, yanıltıcı veya kötüye kullanım niteliğindeki davranışlardan kaçınmak.",
+      "§3'teki ürün uygunluk kurallarına uymak."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "10. Mücbir Sebep"
+    },
+    {
+     "type": "paragraph",
+     "text": "Doğal afet, olumsuz hava koşulları, yangın, salgın, grev, altyapı/iletişim kesintisi, resmî kısıtlamalar gibi makul kontrolü dışındaki olaylarda Yıkat'ın yükümlülükleri, olay süresince askıya alınır; Yıkat sizi bilgilendirir ve makul alternatif sunmaya çalışır."
+    },
+    {
+     "type": "section",
+     "text": "11. Fikri Mülkiyet"
+    },
+    {
+     "type": "paragraph",
+     "text": "Uygulama, Yıkat markası, tasarımı, içerikleri ve yazılımı üzerindeki tüm haklar Yıkat'a (veya lisans verenlerine) aittir; izinsiz kullanılamaz, kopyalanamaz."
+    },
+    {
+     "type": "section",
+     "text": "12. Askıya Alma / Fesih"
+    },
+    {
+     "type": "paragraph",
+     "text": "Kötüye kullanım, hukuka aykırılık veya bu koşulların ihlali hâlinde Yıkat hesabı askıya alabilir veya sonlandırabilir. Siz de dilediğiniz zaman uygulamadan hesabınızı silebilirsiniz (bkz. KVKK Aydınlatma Metni §7)."
+    },
+    {
+     "type": "section",
+     "text": "13. Değişiklikler"
+    },
+    {
+     "type": "paragraph",
+     "text": "Yıkat bu koşulları güncelleyebilir; önemli değişiklikler uygulamadan duyurulur. Güncel sürüm uygulamada yer alır."
+    },
+    {
+     "type": "section",
+     "text": "14. Uygulanacak Hukuk ve Yetki"
+    },
+    {
+     "type": "paragraph",
+     "text": "Bu koşullara Türk hukuku uygulanır. Uyuşmazlıklarda Tüketici Hakem Heyetleri ve Tüketici Mahkemeleri yetkilidir."
+    },
+    {
+     "type": "section",
+     "text": "15. İletişim"
+    },
+    {
+     "type": "paragraph",
+     "text": "0850 303 31 93 · destek@yikat.tech · Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul"
+    }
+   ]
+  },
+  "odeme": {
+   "navTitle": "Ödeme Güvenliği",
+   "heading": "Ödeme ve Güvenli Alışveriş",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Bu metin, Yıkat'ta ödeme yöntemlerini, online kart ödemelerinin güvenliğini ve ön provizyonun (bloke) nasıl çalıştığını açıklar."
+    },
+    {
+     "type": "section",
+     "text": "1. Ödeme Yöntemleri"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Kapıda nakit: teslimde nakit.",
+      "Kapıda kart: teslimde POS cihazıyla kart.",
+      "Online kart: sipariş sırasında uygulamadan, iyzico güvenli ödeme sayfasında kartla ödeme. Tutarı sipariş anında kesinleşen hizmetlerde seçilebilir."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "2. Online Kart Ödemesi Nasıl Çalışır"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Online kart ödemeniz; iyzico (iyzi Ödeme ve Elektronik Para Hizmetleri A.Ş. — TCMB lisanslı ödeme ve elektronik para kuruluşu) güvenli ödeme altyapısı aracılığıyla işlenir.",
+      "Kart bilgileriniz Yıkat tarafından görülmez, işlenmez ve saklanmaz. Kart numaranızı doğrudan iyzico'nun güvenli ödeme sayfasında girersiniz; Yıkat yalnızca ödemenin başarılı/başarısız sonucunu ve maskelenmiş kart bilgisini (örn. son 4 hane, kart markası) öğrenir.",
+      "3D Secure: ödemeler, kartınızı veren bankanın 3D Secure doğrulamasıyla (SMS/onay) güvence altına alınır.",
+      "Kart saklama: Kartınızı sonraki ödemelerde kullanmak üzere saklama özelliği kullanıma açılmamıştır; hiçbir kartınız saklanmaz ve her ödemede kart bilgilerinizi yeniden girersiniz. Bu özellik açılırsa saklama iyzico'nun PCI DSS sertifikalı altyapısında ve yalnızca açık rızanızla yapılacaktır (bkz. Kart Saklama Metni)."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "3. Ön Provizyon (Bloke) Nasıl Çalışır"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Siparişi onayladığınızda tutar kartınızdan çekilmez, kartınızda bloke edilir. Bankanız bunu genellikle \"provizyon\", \"bloke\" veya \"bekleyen işlem\" olarak gösterir.",
+      "Bloke edilen tutar kartınızın kullanılabilir limitinden düşer, hesabınızdan çıkmaz.",
+      "İlk sipariş için hizmet tamamlandığında kesin tutar, bloke edilen tutarı aşmayacak şekilde tahsil edilir; kalan kısım serbest bırakılır. Ayrı ayakkabı kategori farkı ödemesi, aşağıda açıklandığı gibi temizlikten önce tahsil edilir.",
+      "İlk sipariş hizmete başlanmadan iptal edilirse ilk siparişin blokesinin tamamı serbest bırakılır ve bu tutar tahsil edilmez. Ayrı kategori farkı için alınmış bir ödeme varsa iade koşulları uygulanır.",
+      "Serbest bırakılan tutarın kart ekstrenizde görünmesi bankanızın süreçlerine bağlıdır ve birkaç iş günü sürebilir. Bu süre Yıkat'ın kontrolünde değildir."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "4. Tutar ve Para Birimi"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Tüm tutarlar Türk Lirası (₺) cinsindendir ve tüm vergiler dâhildir.",
+      "Ayakkabı kategori farkı: Fotoğraf kaydı sırasında yeni koşulları gösterilmiş çiftlerde, dükkânda kategori veya çocuk ayakkabısı seçimi farklı teyit edilirse ek tutar sipariş detayında gösterilir ve ayrıca onayınıza sunulur. Fark, o çiftin fotoğraf kaydında korunan malzeme fiyatları ve çocuk indirimi üzerinden hesaplanır; ilk siparişin fiyat ve kampanya kayıtları değiştirilmez. Bu ayrı ödeme, uygulamada onayınızla temizlikten önce tahsil edilir; ön provizyon tek başına tahsilat sayılmaz. Ana sipariş kapıda ödemeli olsa da fark uygulamadan ödenir. Onaylanmayan veya ödenmeyen çift yıkanmadan geri gönderilir. Yeni koşullar gösterilmeden oluşturulan çift kayıtlarının önceki koşulları korunur; bu çiftlerde kategori farkı Yıkat tarafından karşılanır.",
+      "Online kart ödemesi, tutarı sipariş anında kesinleşen (sabit fiyatlı) hizmetlerde seçilebilir. Tartı/inceleme ile netleşen hizmetlerde (örn. kiloyla çamaşır) uygulamada gösterilen tutar tahminîdir; kesin tutar ürün teslim alınıp tartıldığında belirlenir ve ödeme teslimde kapıda alınır (bkz. Mesafeli Satış Sözleşmesi). Ön provizyon uygulanan hâllerde bloke edilen tutarı aşmayacak şekilde kesin tutar tahsil edilir; ayrıntı: İptal ve İade Koşulları §3."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "5. Güvenlik"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Tüm ödeme iletişimi şifreli (TLS) kanallarla yapılır.",
+      "Kart verisi Yıkat sunucularında tutulmaz/loglanmaz; ödeme sırlarına yalnızca güvenli sunucu tarafı erişir, uygulamaya gömülü değildir.",
+      "Ödeme altyapısı sağlayıcılarımız PCI DSS (Payment Card Industry Data Security Standard) sertifikalıdır; kart verileriniz bu standartlara uygun işlenir.",
+      "Şüpheli/dolandırıcılık amaçlı işlemlere karşı bankanın ve ödeme altyapısının güvenlik kontrolleri uygulanır."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "6. Sorun / İtiraz"
+    },
+    {
+     "type": "paragraph",
+     "text": "Ödemeyle ilgili bir sorun (çift çekim, başarısız ama tutar bloke vb.) yaşarsanız 0850 303 31 93 / destek@yikat.tech üzerinden bize ulaşın; ödeme altyapısı (iyzico) ile inceleyip çözüme kavuştururuz. İade koşulları için: İptal ve İade Koşulları."
+    }
+   ]
+  },
+  "kartSaklama": {
+   "navTitle": "Kart Saklama",
+   "heading": "Kart Saklama ve Saklı Kartla Ödeme Aydınlatma ve Rıza Metni",
+   "subtitle": "6698 sayılı KVKK md. 10 uyarınca — kayıtlı kartla ödeme özelliğine özel aydınlatma",
+   "blocks": [
+    {
+     "type": "section",
+     "text": "1. Veri Sorumlusu"
+    },
+    {
+     "type": "rows",
+     "rows": [
+      {
+       "label": "Ünvan",
+       "value": "Ahmet Kaan Evrensel (şahıs işletmesi)"
+      },
+      {
+       "label": "Adres",
+       "value": "Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul"
+      },
+      {
+       "label": "E-posta",
+       "value": "destek@yikat.tech"
+      },
+      {
+       "label": "Telefon",
+       "value": "0850 303 31 93"
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "text": "2. Hangi Veriler, Nerede Saklanır"
+    },
+    {
+     "type": "paragraph",
+     "text": "Kayıtlı kartla ödeme özelliğini kullanmayı tercih ederseniz kart bilgileriniz aşağıdaki şekilde saklanır:"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Kart bilgisi (kart numarası, son kullanma tarihi) iyzico'nun (iyzi Ödeme ve Elektronik Para Hizmetleri A.Ş.) PCI DSS sertifikalı altyapısında saklanır.",
+      "Yıkat sistemlerine yalnızca maskelenmiş kart bilgisi (son 4 hane, kart markası) ve ödeme referansı (token) ulaşır.",
+      "Kart numaranızın tamamı ve CVV/CVC, Yıkat sistemlerine hiçbir aşamada ulaşmaz ve Yıkat tarafından saklanmaz."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "3. Amaçlar"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Sonraki siparişlerde kartı yeniden girmeden hızlı ödeme yapabilmeniz,",
+      "Ödeme güvenliğinin sağlanması ve dolandırıcılığın önlenmesi,",
+      "Ödeme işlemlerinin kaydı ve mevzuattan doğan yükümlülüklerin yerine getirilmesi."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "4. Hukuki Sebepler"
+    },
+    {
+     "type": "paragraph",
+     "text": "Kartınızın SAKLANMASI yalnızca açık rızanıza dayanır (KVKK md. 5/1; Kişisel Verileri Koruma Kurulu'nun 2023/567 sayılı kararı uyarınca gelecekteki alışverişler için kart saklama açık rıza gerektirir). Tekil ödeme işlemleri ise sözleşmenin ifası kapsamındadır (md. 5/2-c). Rıza vermemeniz hâlinde her ödemede kart bilgilerinizi yeniden girersiniz; bu durum hizmetten yararlanmanızı engellemez."
+    },
+    {
+     "type": "section",
+     "text": "5. Aktarım"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "iyzico (iyzi Ödeme ve Elektronik Para Hizmetleri A.Ş. — TCMB lisanslı ödeme ve elektronik para kuruluşu)."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "6. Saklı Kartı Silme"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Uygulamadan dilediğiniz an silebilirsiniz.",
+      "Hesap silme talebinizde kayıtlı kartlarınız otomatik olarak silinir.",
+      "İşlem kayıtları, vergi mevzuatının öngördüğü süre boyunca saklanır (kart bilgisi değil, işlem kaydı)."
+     ]
+    },
+    {
+     "type": "section",
+     "text": "7. Haklarınız"
+    },
+    {
+     "type": "paragraph",
+     "text": "KVKK md. 11 kapsamındaki haklarınızı \"KVKK İlgili Kişi Başvuru Formu\" üzerinden kullanabilirsiniz."
+    },
+    {
+     "type": "section",
+     "text": "8. Rıza Nasıl Alınacak"
+    },
+    {
+     "type": "paragraph",
+     "text": "Kart saklama özelliği kullanıma açıldığında, ödeme ekranında şu rıza ayrıca ve açıkça istenecektir: \"Kart bilgimin sonraki ödemelerimde kullanılmak üzere iyzico altyapısında saklanmasına açık rıza veriyorum.\" Rıza vermek isteğe bağlıdır; vermezseniz her ödemede kart bilginizi yeniden girersiniz ve hizmetten yararlanmanız etkilenmez."
+    },
+    {
+     "type": "note",
+     "text": "Bugün uygulamada kart saklama özelliği kullanıma açık değildir; hiçbir kartınız saklanmamaktadır. Özellik açıldığında kart saklama seçeneği hiçbir zaman varsayılan olarak işaretli gelmez ve verdiğiniz rıza tarihiyle birlikte kayda alınır."
+    }
+   ]
+  },
+  "acikRiza": {
+   "navTitle": "Açık Rıza",
+   "heading": "Açık Rıza Metni",
+   "subtitle": "KVKK md. 5/1 kapsamında rıza gerektiren işlemeler ve bugünkü durum · 10 Ekim 2026",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Bu metin, Yıkat'ın hangi kişisel veri işleme faaliyetlerini açık rızaya bağlı saydığını ve bu rızaların nasıl alınacağını açıklar. KVKK Aydınlatma Metni ile birlikte okunmalıdır."
+    },
+    {
+     "type": "note",
+     "text": "Aşağıdaki başlıklardan ikisi açık rızanıza dayanır: ticari elektronik ileti (§1) ve kart saklama (§4). Bu ikisi için rızayı Profil > Gizlilik Tercihleri ekranından dilediğiniz zaman verebilir, aynı kolaylıkla geri alabilirsiniz; her karar, konusu, metin sürümü ve tarihiyle kayda alınır. §2 (yurt dışına aktarım) ve §3 (hizmet iyileştirme) rızaya dayanmaz — bu ikisinin hukuki dayanağı ilgili başlıkta ayrıca belirtilmiştir — bu nedenle onlar için açılıp kapanan bir seçenek bulunmaz."
+    },
+    {
+     "type": "section",
+     "text": "1. Ticari Elektronik İleti / Pazarlama Bildirimleri"
+    },
+    {
+     "type": "paragraph",
+     "text": "Durum: Yıkat şu anda toplu kampanya, indirim veya duyuru amaçlı ticari elektronik ileti göndermemektedir; size SMS gönderilmemektedir. Aldığınız bildirimler yalnızca kendi siparişinize ve kendi davet ödülünüze ilişkindir. Toplu kampanya iletilerine başlamadan önce, 6563 sayılı Kanun ve KVKK md. 5/1 uyarınca onayınız uygulama içinde ayrıca istenecek, İleti Yönetim Sistemi'ne (İYS) kaydedilecek ve her iletide çıkış (ret) imkânı sunulacaktır."
+    },
+    {
+     "type": "note",
+     "text": "Not: Sipariş durumu, teslimat ve hesabınıza ilişkin işlevsel/zorunlu bildirimler ticari elektronik ileti değildir; rızadan bağımsız olarak, hizmetin parçası olarak gönderilir. Bu bildirimleri cihazınızın bildirim ayarlarından kapatabilirsiniz."
+    },
+    {
+     "type": "section",
+     "text": "2. Yurt Dışına Aktarım"
+    },
+    {
+     "type": "paragraph",
+     "text": "Durum: Barındırma, e-posta, anlık bildirim, kullanım analitiği, hata kaydı ve adres–koordinat çevirisi hizmetlerimizin sunucuları yurt dışındadır (ayrıntı: KVKK Aydınlatma Metni §6). Bu aktarımlar açık rızaya değil, KVKK md. 9'da öngörülen güvence mekanizmalarına dayandırılmaktadır. Bu nedenle sizden yurt dışına aktarım için ayrıca rıza istenmez."
+    },
+    {
+     "type": "section",
+     "text": "3. Değerlendirme ve Hizmet İyileştirme"
+    },
+    {
+     "type": "paragraph",
+     "text": "Durum: Sipariş ve değerlendirme verilerinin hizmet kalitesini ölçmek için analiz edilmesi ile uygulama içi kullanım analitiği ve hata kayıtları, açık rızaya değil KVKK md. 5/2-f'deki meşru menfaate dayanır (ayrıntı: Gizlilik Politikası §4). Bu işlemeye itiraz etme ve durdurulmasını isteme hakkınız vardır; talebinizi §5'teki iletişim yollarından iletebilirsiniz."
+    },
+    {
+     "type": "section",
+     "text": "4. Kart Saklama"
+    },
+    {
+     "type": "paragraph",
+     "text": "Durum: Online kart ödemesi kullanıma açılmıştır; ancak kart saklama özelliği açılmamıştır ve hiçbir kartınız saklanmamaktadır. Bu özellik açıldığında rıza, ödeme ekranında ayrı bir adım olarak ve hiçbir zaman önceden işaretli gelmeyecek şekilde istenecektir (ayrıntı: Kart Saklama Metni)."
+    },
+    {
+     "type": "section",
+     "text": "5. Rıza Verme ve Geri Alma"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Rıza istenen her işleme için rıza ayrı ayrı verilir; birini vermemeniz diğerlerini etkilemez ve Yıkat'ın temel hizmetlerinden (sipariş verme, teslimat, ödeme) yararlanmanıza engel olmaz.",
+      "Verdiğiniz her rıza; hangi konuya ilişkin olduğu, metin sürümü ve tarihiyle birlikte kayda alınır.",
+      "Rızanızı dilediğiniz zaman geri alabilirsiniz ve geri almak, vermek kadar kolaydır. Uygulamada Profil > Gizlilik Tercihleri ekranından ilgili rızayı kapatmanız yeterlidir; kapatma anında geçerli olur. Dilerseniz destek@yikat.tech adresine yazarak veya 0850 303 31 93 numarasını arayarak da geri alabilirsiniz; bu yolla ulaşan talepler en geç 30 gün içinde sonuçlandırılır.",
+      "Rızanızı geri aldığınızda, geri alma anından itibaren ilgili işleme durdurulur; geçmişte hukuka uygun olarak yapılmış işlemeler bundan etkilenmez."
+     ]
+    }
+   ]
+  },
+  "kvkkBasvuru": {
+   "navTitle": "KVKK Başvuru",
+   "heading": "KVKK İlgili Kişi Başvuru Formu",
+   "subtitle": "6698 sayılı KVKK md. 11 ve 13 ile \"Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ\" uyarınca",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Bu form, kişisel verilerinize ilişkin haklarınızı kullanmak için doldurulur. Doldurduktan sonra; Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul adresine ıslak imzalı yazılı olarak veya sistemde kayıtlı e-posta adresinizden destek@yikat.tech adresine iletebilirsiniz. Başvurunuz en geç 30 gün içinde sonuçlandırılır. (Uygulama içinden hesap silme talebinizi doğrudan iletebilirsiniz.)"
+    },
+    {
+     "type": "section",
+     "text": "A. Başvuran Bilgileri"
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "Ad-soyad:",
+      "T.C. Kimlik No (yabancılar için pasaport/uyruk + no):",
+      "Tebligata esas adres:",
+      "Telefon / E-posta:",
+      "Yıkat ile ilişkiniz: Müşteri / Eski müşteri / Diğer",
+      "(Varsa) sistemde kayıtlı e-posta / sipariş bilgisi:"
+     ]
+    },
+    {
+     "type": "section",
+     "text": "B. Talep Konusu (KVKK md. 11)"
+    },
+    {
+     "type": "paragraph",
+     "text": "İşaretleyiniz:"
+    },
+    {
+     "type": "checklist",
+     "items": [
+      "Kişisel verimin işlenip işlenmediğini öğrenmek",
+      "İşlenmişse buna ilişkin bilgi talep etmek",
+      "İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenmek",
+      "Yurt içinde/yurt dışında aktarıldığı üçüncü kişileri bilmek",
+      "Eksik/yanlış işlenmişse düzeltilmesini istemek",
+      "Silinmesini / yok edilmesini istemek",
+      "Düzeltme/silme işlemlerinin aktarıldığı üçüncü kişilere bildirilmesini istemek",
+      "Münhasıran otomatik analiz sonucu aleyhime çıkan sonuca itiraz etmek",
+      "Kanuna aykırı işleme nedeniyle zararımın giderilmesini talep etmek"
+     ]
+    },
+    {
+     "type": "section",
+     "text": "C. Talebin Açıklaması"
+    },
+    {
+     "type": "paragraph",
+     "text": "Talebinizi mümkün olduğunca somut biçimde yazınız."
+    },
+    {
+     "type": "section",
+     "text": "D. Yanıt Yöntemi"
+    },
+    {
+     "type": "checklist",
+     "items": [
+      "E-posta ile",
+      "Posta ile",
+      "Elden ile"
+     ]
+    },
+    {
+     "type": "section",
+     "text": "E. Beyan"
+    },
+    {
+     "type": "paragraph",
+     "text": "Bu formdaki bilgilerin doğru ve güncel olduğunu, başkasına ait veri talep etmem hâlinde yetki/temsil belgesi sunmam gerektiğini bildiğimi beyan ederim."
+    },
+    {
+     "type": "paragraph",
+     "text": "Ad-soyad / Tarih / İmza:"
+    },
+    {
+     "type": "note",
+     "text": "Not: Başvurunuzun sizin tarafınızdan yapıldığının doğrulanması için kimlik teyidi istenebilir. Üçüncü kişi adına başvurularda noter onaylı vekâletname/yetki belgesi gerekir."
+    }
+   ]
   }
- },
- "metaCampaignMeasurement": [
-  {
-   "type": "paragraph",
-   "text": "Meta reklamlarının mağaza satışlarına katkısını ölçmek için satın alma olayları Meta ile paylaşılır. Bu aktarım yalnızca, sipariş kaynağı Meta reklamı olarak kaydedilmiş, ilgili Meta kampanyasıyla açıkça eşleştirilmiş ve ödemesi tamamlanmış mağaza siparişleri için yapılır. Veriler gönderilmeden önce siparişin durumu tekrar kontrol edilir; iptal edilmiş, tamamen veya kısmen iade edilmiş, ödemesi tamamlanmamış ya da tutarı sıfır olan siparişler gönderilmez. İndirim veya kampanya kodu kullanılması tek başına bu aktarımı başlatmaz."
-  },
-  {
-   "type": "paragraph",
-   "text": "Paylaşılan sınırlı veriler; ülke koduyla standartlaştırılmış telefon numaranızın SHA-256 özet değeri, sipariş ve olay numarası, ödemenin zamanı, indirim sonrası tahsil edilen tutar, para birimi (TRY) ve eşleştirilen Meta kampanyasının kimliğidir. Telefon numaranız bu ölçüm aktarımında açık olarak gönderilmez; adınız, adresiniz, mesaj içeriğiniz ve kart bilgileriniz bu satın alma olayına eklenmez."
-  },
-  {
-   "type": "paragraph",
-   "text": "SHA-256 özetleme, telefon numarasını anonim hâle getirmez. Meta bu değeri kendi kayıtlarıyla eşleştirerek reklam ile sipariş arasındaki ilişkiyi belirleyebilir. Ölçüm; reklamın siparişe katkısını ve satın alma başına maliyeti değerlendirmek amacıyla yapılır."
-  },
-  {
-   "type": "paragraph",
-   "text": "WhatsApp mesajlaşma entegrasyonu kullanıma alındığında, reklamdan gelen ilk mesajla iletilen telefon numarası (wa_id), reklam tıklama kimliği (ctwa_clid), reklam kimliği ve zaman bilgisi siparişle eşleştirme için kaydedilir. Uygun mesajlaşma olaylarının ölçümünde, örneğin mağazayı ziyaret etme niyetinizi belirttiğinizde, olay türü ve zamanı ile reklam tıklama kimliği ve işletmemizin WhatsApp hesap kimliği Meta ile paylaşılır. Bu bağlantı kurulmadan mesajlaşma olayları gönderilmez; mağazada gerçekleşen satın alma, mağaza olayı olarak ölçülür."
-  },
-  {
-   "type": "paragraph",
-   "text": "Bu ölçüm verilerinin alıcısı Meta olup veriler Meta hizmetlerinin yurt dışındaki sistemlerinde işlenir. Reklam ölçümü, uygulama içi kullanım analitiği ve hizmet bildirimlerinden ayrı bir veri işleme amacıdır. Bu bilgilendirme açık rıza beyanı değildir."
-  },
-  {
-   "type": "paragraph",
-   "text": "KVKK md. 11 kapsamındaki haklarınız ve reklam ölçümüne ilişkin bilgi, düzeltme, silme veya itiraz talepleriniz için destek@yikat.tech adresine ya da Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul adresine başvurabilirsiniz. Talebiniz en geç 30 gün içinde yanıtlanır."
-  }
- ],
- "shoePhotos": [
-  {
-   "type": "paragraph",
-   "text": "Her ayakkabı çifti için siparişte çektiğiniz fotoğraf ile dükkânda kabul ve bitişte çekilen fotoğraflar, gelen çifti eşleştirmek ve hizmet aşamalarını size göstermek için sipariş kaydına bağlanır. Fotoğrafları yalnızca siz ve siparişinizi hazırlamaya yetkili ekip görebilir; özel depolamada tutulur."
-  },
-  {
-   "type": "paragraph",
-   "text": "Sizin çektiğiniz fotoğraf teslimden 30 gün sonra silinir. Dükkânın kabul ve bitiş fotoğrafları sipariş kaydında kalır. Hesap silme ve anonimleştirme işlemi bu fotoğrafların dosyalarını da kapsar."
-  },
-  {
-   "type": "paragraph",
-   "text": "Önce/sonra paylaşımı isteğe bağlıdır ve siparişte ayrı, önceden işaretlenmemiş bir kutuyla onaylanır. Yalnızca dükkânda çekilen kabul ve bitiş fotoğrafları paylaşım için seçilebilir; sizin çektiğiniz fotoğraf paylaşılmaz. Paylaşım iznini geri çekmek için destek@yikat.tech adresine yazabilirsiniz."
-  }
- ]
+ }
 }

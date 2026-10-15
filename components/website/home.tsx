@@ -66,7 +66,11 @@ export function HomePage() {
     <main id="main" className="marketing-main object-home">
       <section className="object-hero" aria-labelledby="home-title">
         <WashBackdrop />
-        <h1 id="home-title" className="sr-only">Yıkat temizlik ve bakım hizmetleri</h1>
+        <div className="home-shop-intro">
+          <h1 id="home-title">Bakırköy’de ayakkabını yıkat.</h1>
+          <Link href="/bakirkoy-ayakkabi-temizleme">Sakızağacı · İskele Caddesi No:15-B</Link>
+          <p>{siteConfig.hours.schedule.map(slot => <span key={slot.label}>{slot.label} {slot.opens}–{slot.closes}</span>)}</p>
+        </div>
         <div id="hizmetler" className="object-choices" role="group" aria-label="Neyi yıkatalım?">
           {choices.map((choice, index) => (
             <div
@@ -74,11 +78,12 @@ export function HomePage() {
               key={choice.key}
               style={{ "--tilt": `${choice.tilt}deg`, "--rise": `${choice.rise}px`, "--arrival": `${index * 45}ms` } as CSSProperties}
             >
-              <button type="button" className="object-choice" onClick={(event) => choose(choice, event)} aria-haspopup="dialog">
+              <button type="button" className="object-choice" aria-label={choice.name} onClick={(event) => choose(choice, event)} aria-haspopup="dialog">
                 <span className="object-art">
                   <Image unoptimized src={`/images/services/hero-v2/${choice.image}.webp`} alt="" width={512} height={512} priority loading="eager" sizes="(max-width: 600px) 34vw, (max-width: 900px) 22vw, 270px" draggable={false} />
                 </span>
                 <span className="object-label"><span>{choice.name}</span><ChevronRight aria-hidden="true" size={17} /></span>
+                <span className="object-availability">{choice.key === "ayakkabi" ? "Dükkânda" : "Yakında"}</span>
               </button>
             </div>
           ))}
@@ -105,6 +110,7 @@ export function HomePage() {
           </div>
           <a className="destination-link" href={directions} target="_blank" rel="noopener noreferrer">Yol tarifi al <ChevronRight size={19} aria-hidden="true" /></a>
           <Link className="shop-detail-link" href="/bakirkoy-ayakkabi-temizleme">Dükkân, saatler ve hizmetler</Link>
+          <a className="shop-detail-link" href={siteConfig.mapsPlaceUrl} target="_blank" rel="noopener noreferrer">Google’da yorumları oku ↗</a>
         </div>
         <div className="shop-map-wrap">
           <a className="shop-folded-map" href={directions} target="_blank" rel="noopener noreferrer" aria-label="Bakırköy dükkânına yol tarifi al">
@@ -143,13 +149,13 @@ export function HomePage() {
             <ServiceArt kind={selected.key} className="service-sheet-image" />
             <h2 id="service-action-title">{selected.name}</h2>
           </div>
+          <p className="service-availability-note">{selected.key === "ayakkabi" ? "Ayakkabını Bakırköy dükkânına getirebilirsin. Kapıdan alım henüz başlamadı." : "Bu hizmet için hazırlıklarımız sürüyor. Şu an Bakırköy dükkânında ayakkabı temizliği yapıyoruz."}</p>
           <div className="ticket-perforation" aria-hidden="true" />
           <div className="service-ticket-actions">
             {selected.key === "ayakkabi" && <a className="ticket-action" href={directions} target="_blank" rel="noopener noreferrer"><CareGlyph kind="place" /><span>Dükkâna getir</span><ChevronRight aria-hidden="true" size={20} /></a>}
             <a className="ticket-action" href={whatsapp.toString()} target="_blank" rel="noopener noreferrer"><CareGlyph kind="message" /><span>WhatsApp’tan sor</span><ChevronRight aria-hidden="true" size={20} /></a>
           </div>
           <div className="service-app-actions">
-            <a href="https://app.yikat.tech" target="_blank" rel="noopener noreferrer">Uygulamayı aç</a>
             <button type="button" onClick={openDownload}>Uygulamayı indir</button>
           </div>
         </div>

@@ -6,22 +6,22 @@ import { LegalPageShell } from "@/components/legal/legal-page-shell"
 import { siteConfig } from "@/lib/site"
 
 export const metadata: Metadata = {
-  title: "Hesap Silme - Yıkat Gitsin",
+  title: "Hesap Silme - Yıkat",
   description:
-    "Yıkat Gitsin (Yıkat) müşteri hesabınızı ve kişisel verilerinizi silmek için uygulamayı yüklemeden talep gönderin. Silinen veriler ve saklama süreleri.",
+    "Yıkat müşteri hesabınızı ve kişisel verilerinizi silmek için uygulamayı yüklemeden talep gönderin. Silinen veriler ve saklama süreleri.",
   alternates: { canonical: `${siteConfig.url}/hesap-silme` },
 }
 
 const supportEmail = "destek@yikat.tech"
-const deletionSubject = "Yıkat Gitsin — hesap silme talebi"
+const deletionSubject = "Yıkat hesap silme talebi"
 const deletionBody =
-  "Merhaba,\n\nYıkat Gitsin (Yıkat) müşteri hesabımın silinmesini talep ediyorum. Bu e-postayı hesabıma kayıtlı e-posta adresinden gönderiyorum.\n\nSilme talebimin alındığını ve işlem takvimini bildirmenizi rica ederim."
+  "Merhaba,\n\nYıkat müşteri hesabımın silinmesini talep ediyorum. Bu e-postayı hesabıma kayıtlı e-posta adresinden gönderiyorum.\n\nSilme talebimin alındığını ve işlem takvimini bildirmenizi rica ederim."
 const deletionHref = `mailto:${supportEmail}?subject=${encodeURIComponent(deletionSubject)}&body=${encodeURIComponent(deletionBody)}`
 
 /** Public support-request route. It does not schedule a deletion or collect credentials. */
 export default function HesapSilmePage() {
   return (
-    <LegalPageShell title="Hesap silme" subtitle="Yıkat Gitsin (Yıkat) müşteri hesabınız ve kişisel verileriniz">
+    <LegalPageShell title="Hesap silme" subtitle="Yıkat müşteri hesabınız ve kişisel verileriniz">
       <p className="max-w-prose">
         Uygulamayı yüklemeden de hesabınızın silinmesini isteyebilirsiniz. Aşağıdaki adımlarla
         destek ekibimize ulaşın veya uygulamadaki hesap silme seçeneğini kullanın.

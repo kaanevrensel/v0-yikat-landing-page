@@ -40,7 +40,10 @@ test("every discovery URL serves unique canonical HTML, correct shop facts and p
     const business = blocks.find(b => b["@type"] === "DryCleaningOrLaundry")
     expect(business["@id"]).toBe(BUSINESS_ID)
     expect(business.address.streetAddress).toContain("15-B")
-    expect(business.openingHoursSpecification).toMatchObject({ opens: "10:00", closes: "22:00" })
+    expect(business.openingHoursSpecification).toMatchObject([
+      { dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "08:30", closes: "20:30" },
+      { dayOfWeek: ["Sunday"], opens: "10:00", closes: "20:30" },
+    ])
     expect(business.sameAs).toContain("https://www.google.com/maps?cid=11452704591158275657")
     expect(business).not.toHaveProperty("aggregateRating")
     expect(business).not.toHaveProperty("priceRange")
@@ -52,6 +55,7 @@ test("every discovery URL serves unique canonical HTML, correct shop facts and p
       const guide = careGuides.find(g => path.endsWith(`/${g.slug}`))!
       const article = blocks.find(b => b["@type"] === "Article")
       expect(article.mainEntityOfPage).toBe(`${siteConfig.url}${path}`)
+      expect(article.datePublished).toBe(guide.published ?? "2026-10-10")
       expect(article.citation).toEqual(guide.sourceIds.map(id => careSources[id].url))
       expect(html).toContain(guide.answer)
     }
@@ -70,13 +74,13 @@ test("answers, citations, local facts and contact actions work without JavaScrip
   const page = await context.newPage()
   await page.goto("/rehber/ayakkabi-makinede-yikanir-mi")
   await expect(page.locator(".discovery-answer")).toBeVisible()
-  await expect(page.getByRole("heading", { name: "Üreticiler neden farklı şeyler söylüyor?" })).toBeVisible()
+  await expect(page.getByRole("heading", { name: "Makine ayakkabıya ne yapar?" })).toBeVisible()
   await expect(page.locator(".discovery-sources a[href^='https://www.nike.com']").first()).toBeAttached()
   const question = page.locator("details").first()
   await question.locator("summary").click()
   await expect(question.locator("p")).toBeVisible()
   await page.goto("/bakirkoy-ayakkabi-temizleme")
-  await expect(page.locator("main")).toContainText("Her gün 10:00 – 22:00")
+  await expect(page.locator("main")).toContainText("Pazartesi–Cumartesi 08:30 – 20:30, Pazar 10:00 – 20:30")
   await expect(page.locator("main")).toContainText("No:15-B")
   const photoLink = page.locator(`main a[href^='${siteConfig.whatsappHref}?']`).first()
   await expect(photoLink).toBeVisible()
@@ -95,6 +99,10 @@ for (const width of [320, 390, 768, 1280]) {
       await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
       const widths = await page.evaluate(() => ({ doc: document.documentElement.scrollWidth, viewport: innerWidth }))
       expect(widths.doc, path).toBeLessThanOrEqual(widths.viewport + 1)
+      if (width <= 390) {
+        const tables = await page.locator('table[data-columns="2"]').evaluateAll(nodes => nodes.map(table => ({ table: table.scrollWidth, region: table.parentElement!.clientWidth })))
+        for (const table of tables) expect(table.table, `${path}: two-column table`).toBeLessThanOrEqual(table.region + 1)
+      }
       const geometry = await page.evaluate(() => {
         const title = document.querySelector("main h1")!.getBoundingClientRect()
         const nav = document.querySelector("body header")!.getBoundingClientRect()
