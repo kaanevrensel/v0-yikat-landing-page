@@ -15,3 +15,11 @@ Local verification: lint, typecheck, legal-source consistency, production build 
 ## Google reviews foundation
 
 The read-only Google reviews connection is disabled by default. When enabled after API and publication clearance, it verifies this shop's Place ID, reads every provider page, preserves review attribution and offers an accessible panel beside the shop information. With the connection off, the existing Google profile link stays visible. No reviews are stored persistently or fabricated, and no own-business review-rating schema is added. [Activation requirements, limits and verification](docs/seo/2026-10-15-google-reviews-plan.md).
+
+## Search growth, October 15 2026
+
+The main cleaning hub now includes a material-and-condition guide with 24 routes, a server-rendered no-JavaScript alternative and no customer data storage. The Bakırköy and three material pages explain intake, service limits and aftercare more precisely. The guide hub offers a printable one-page care card with actual shop details and linked manufacturer sources.
+
+The bounded public crawler and native Search Console CSV scorecard separate technical findings, incomplete query coverage and measured search outcomes. Their 20 edge tests run separately in CI. No new location or synonym pages were created.
+
+Implementation and validation: [commercial pages](docs/seo/2026-10-15-commercial-pages.md), [care card](docs/seo/2026-10-15-care-card.md), [measurement](docs/seo/2026-10-15-search-measurement.md). External actions and deployed-state evidence live in the canonical YIKAT workstream `workstreams/search-growth-20261015`. Code and crawl-request acceptance do not establish ranking gains.

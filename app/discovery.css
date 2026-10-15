@@ -3,6 +3,7 @@
 .discovery { --discovery-section-gap: clamp(48px, 6vw, 80px); max-width: 1240px; margin: 0 auto; padding: 112px 40px 96px; color: #133b58; }
 .discovery a { text-underline-offset: .22em; }
 .discovery a:focus-visible, .discovery summary:focus-visible, .discovery [tabindex]:focus-visible { outline: 3px solid #1f5eb8; outline-offset: 5px; border-radius: 4px; }
+.discovery select:focus-visible { outline: 3px solid #1f5eb8; outline-offset: 4px; }
 .discovery-heading { max-width: 900px; margin-bottom: var(--discovery-section-gap); }
 .discovery h1 { color: #073352; font-size: clamp(38px, 5.5vw, 76px); line-height: 1.04; font-weight: 600; letter-spacing: -.04em; text-wrap: balance; margin: 0 0 26px; }
 .discovery h2 { font-size: clamp(26px, 3vw, 38px); line-height: 1.16; letter-spacing: -.025em; font-weight: 600; margin: 0 0 22px; text-wrap: balance; }
@@ -112,6 +113,22 @@
 .discovery-editorial-note, .discovery-textile-note { border-top: 1px solid #d4e1ea; margin-top: 70px; padding-top: 32px; max-width: 800px; }
 .discovery-editorial-note h2, .discovery-textile-note h2 { font-size: 25px; }
 .shop-detail-link { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; color: #1f5eb8; text-decoration: underline; text-underline-offset: 4px; margin: 10px auto 0; }
+.care-assessment { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; align-items: start; padding: 36px 0; margin: var(--discovery-section-gap) 0; border-top: 2px solid #2b628c; border-bottom: 1px solid #d4e1ea; scroll-margin-top: 112px; }
+.care-assessment-intro, .care-assessment-workspace { min-width: 0; }
+.care-assessment-intro > p { max-width: 38ch; }
+.care-assessment-workspace { padding: 26px; border-radius: 22px; background: #edf5fb; }
+.care-assessment-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px; }
+.care-assessment-controls > div { min-width: 0; }
+.care-assessment-controls label { display: block; font-size: 15px; line-height: 1.5; font-weight: 600; }
+.care-assessment-controls select { display: block; width: 100%; min-height: 48px; min-width: 0; margin-top: 8px; padding: 10px 8px; border: 1px solid #8099ae; border-radius: 10px; color: #133b58; background: white; font: inherit; font-size: 16px; font-weight: 400; }
+.care-assessment .care-assessment-note { font-size: 14px; line-height: 1.6; color: #466174; }
+.care-assessment-note a { color: #1f5eb8; text-decoration: underline; }
+.care-assessment-result { border-top: 1px solid #bccfdf; margin-top: 24px; padding-top: 24px; }
+.care-assessment-result h4 { font-size: 16px; font-weight: 600; margin: 20px 0 5px; }
+.care-assessment-start { padding-top: 12px; }
+.care-assessment-links { display: flex; flex-direction: column; align-items: flex-start; margin: 12px 0; }
+.care-assessment-links a { display: inline-flex; align-items: center; min-height: 44px; color: #1f5eb8; font-size: 16px; text-decoration: underline; padding: 7px 0; }
+.care-assessment-workspace > .discovery-inline-link { color: #1f5eb8; }
 @media (max-width: 900px) {
   .discovery { padding: 104px 26px 72px; }
   .discovery-local-hero { gap: 28px; }
@@ -122,6 +139,8 @@
   .discovery-facts > div { grid-template-columns: 1fr; gap: 4px; }
   .discovery-invitation { padding: 30px; grid-template-columns: 1fr; gap: 18px; }
   .discovery-route-film, .discovery-process { gap: 32px; }
+  .care-assessment { grid-template-columns: 1fr; gap: 16px; }
+  .care-assessment-intro > p { max-width: 65ch; }
 }
 @media (max-width: 680px) {
   .discovery { padding: 96px 20px 60px; }
@@ -154,5 +173,7 @@
   .discovery-invitation { padding: 26px 22px; margin-top: 50px; border-radius: 22px; }
   .guide-collection h3 { font-size: 23px; }
   .guide-collection a { gap: 18px; }
+  .care-assessment-workspace { padding: 20px 16px; }
+  .care-assessment-controls { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { .discovery *, .discovery *::before, .discovery *::after { scroll-behavior: auto !important; } }

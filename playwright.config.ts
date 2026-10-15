@@ -7,7 +7,7 @@ const baseURL = `http://127.0.0.1:${port}`
 // Port 3211: yerelde 3000/3001/3210 sık dolu (sahip dev sunucuları).
 export default defineConfig({
   testDir: "./tests",
-  testIgnore: ["**/reviews-ui/**"],
+  testIgnore: ["**/reviews-ui/**", "**/*.test.mjs"],
   timeout: 60_000,
   fullyParallel: true,
   use: {

@@ -1,5 +1,11 @@
 # CLAUDE.md
 
+## Search growth, October 15 2026
+
+The main cleaning hub includes an accessible, local-only material/condition guide. The printable care card is generated from checked-in licensed fonts, the actual logo and `lib/site.ts`; see `docs/seo/2026-10-15-care-card.md`. Preserve its source boundaries and regenerate it when shop facts change.
+
+Search audit/scorecard commands and interpretation limits are in `docs/seo/2026-10-15-search-measurement.md`. Run `node --test tests/search-tools.test.mjs` for their independent Node tests. Keep raw Search Console exports and provider receipts outside git. Published source, provider acceptance, indexing and ranking remain separate states.
+
 ## Google reviews foundation, October 15, 2026
 
 Read [docs/seo/2026-10-15-google-reviews-plan.md](docs/seo/2026-10-15-google-reviews-plan.md) before activating the review panel. It is disabled by default. API approval, authorized offline OAuth, exact API location/Place ID verification and public-display rights are all required. The current Google link remains unchanged while off. Credentials stay server-only; no review data is stored persistently, no review responses are posted and no own-business AggregateRating schema is generated. API access approval alone is not public-display clearance.
