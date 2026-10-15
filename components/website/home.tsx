@@ -13,6 +13,7 @@ import { ServiceArt } from "./service-art";
 import { AppInvitation } from "./app-invitation";
 import { PartnerInvitation } from "./partner-invitation";
 import { WashingProcess } from "./washing-process";
+import { GoogleReviews } from "./google-reviews";
 
 const choices = [
   { name: "Kuru temizleme", image: "dry-cleaning", key: "dry-cleaning", tilt: -9, rise: 35 },
@@ -23,7 +24,7 @@ const choices = [
 ] as const;
 type Choice = (typeof choices)[number];
 
-export function HomePage() {
+export function HomePage({ googleReviewsEnabled = false }: { googleReviewsEnabled?: boolean }) {
   const [selected, setSelected] = useState<Choice>(choices[2]);
   const [instant, setInstant] = useState(false);
   const [night, setNight] = useState(false);
@@ -110,7 +111,7 @@ export function HomePage() {
           </div>
           <a className="destination-link" href={directions} target="_blank" rel="noopener noreferrer">Yol tarifi al <ChevronRight size={19} aria-hidden="true" /></a>
           <Link className="shop-detail-link" href="/bakirkoy-ayakkabi-temizleme">Dükkân, saatler ve hizmetler</Link>
-          <a className="shop-detail-link" href={siteConfig.mapsPlaceUrl} target="_blank" rel="noopener noreferrer">Google’da yorumları oku ↗</a>
+          <GoogleReviews enabled={googleReviewsEnabled} />
         </div>
         <div className="shop-map-wrap">
           <a className="shop-folded-map" href={directions} target="_blank" rel="noopener noreferrer" aria-label="Bakırköy dükkânına yol tarifi al">

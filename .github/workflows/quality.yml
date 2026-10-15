@@ -23,3 +23,5 @@ jobs:
       # playwright.config.ts channel:"chrome" — CI'da markalı Chrome kurulur
       - run: npx playwright install --with-deps chrome
       - run: pnpm test
+      # Enabled UI uses synthetic intercepted responses; no Google credentials.
+      - run: pnpm test --config=playwright.reviews.config.ts --workers=2
