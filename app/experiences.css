@@ -332,6 +332,30 @@
 }
 
 /* October 15: shop facts and real availability within the original image-led hero. */
+.google-reviews { margin: 18px 0 0; text-align: left; border-top: 1px solid #b9d6e9; }
+.google-reviews summary { min-height: 48px; display: flex; align-items: center; justify-content: center; gap: 8px; color: #164c78; cursor: pointer; list-style: none; font-size: 15px; }
+.google-reviews summary::-webkit-details-marker { display: none; }
+.google-reviews[open] summary svg { transform: rotate(180deg); }
+.google-reviews-body { padding: 12px 0 0; color: #244e6c; font-size: 14px; line-height: 1.55; }
+.google-reviews-body h3 { margin: 0; font-size: 20px; font-weight: 600; color: #163d59; }
+.google-reviews-source { margin: 4px 0 16px; }
+.google-reviews-source a, .google-review-origin { text-decoration: underline; text-underline-offset: 3px; }
+.google-reviews-synced { font-size: 12px; margin: 0 0 12px; }
+.google-review-list { margin: 0; padding: 0; list-style: none; }
+.google-review-list > li { padding: 18px 0; border-top: 1px solid #c8deeb; }
+.google-review-list article { min-width: 0; }
+.google-review-list header { display: flex; gap: 9px; align-items: center; }
+.google-review-list header img { border-radius: 50%; flex: 0 0 auto; }
+.google-review-list header div { min-width: 0; }
+.google-review-author { font-weight: 600; color: #163d59; margin: 0; overflow-wrap: anywhere; }
+.google-review-rating { font-size: 12px; margin: 2px 0 0; }
+.google-review-comment { white-space: pre-wrap; overflow-wrap: anywhere; margin: 12px 0 8px; }
+.google-review-textless { margin: 12px 0 8px; font-size: 13px; }
+.google-review-origin { font-size: 12px; }
+.google-review-pages { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 0; border-top: 1px solid #c8deeb; }
+.google-review-pages button { border: 1px solid #aacde4; border-radius: 12px; min-height: 44px; padding: 8px 12px; background: #fff; color: #164c78; font: inherit; cursor: pointer; }
+.google-review-pages button:disabled { opacity: .5; cursor: default; }
+.google-reviews :is(summary, a, button, h3):focus-visible { outline: 2px solid #164c78; outline-offset: 4px; }
 .home-shop-intro { text-align: center; position: relative; z-index: 1; margin: 0 auto 20px; }
 .object-hero .home-shop-intro h1 { font-size: clamp(24px, 2.6vw, 36px); line-height: 1.2; letter-spacing: -.025em; font-weight: 600; margin-bottom: 9px; }
 .home-shop-intro > a { color: #164c78; font-size: 15px; text-underline-offset: 4px; }

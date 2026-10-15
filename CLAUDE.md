@@ -1,5 +1,9 @@
 # CLAUDE.md
 
+## Google reviews foundation, October 15, 2026
+
+Read [docs/seo/2026-10-15-google-reviews-plan.md](docs/seo/2026-10-15-google-reviews-plan.md) before activating the review panel. It is disabled by default. API approval, authorized offline OAuth, exact API location/Place ID verification and public-display rights are all required. The current Google link remains unchanged while off. Credentials stay server-only; no review data is stored persistently, no review responses are posted and no own-business AggregateRating schema is generated. API access approval alone is not public-display clearance.
+
 ## Current release context, October 15, 2026
 
 The isolated `feat/visibility-20261015` branch implements Kaan’s October 12 corrections and Emre’s October 15 visibility brief. Read [docs/seo/2026-10-15-visibility-plan.md](docs/seo/2026-10-15-visibility-plan.md) for scope and evidence. Historical sections below describe older designs; current code and PRODUCT.md govern active surfaces.
