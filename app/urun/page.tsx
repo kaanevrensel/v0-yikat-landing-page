@@ -3,9 +3,9 @@ import { SiteShell } from "@/components/website/shared";
 import { ProductPage } from "@/components/website/product";
 
 export const metadata: Metadata = {
-  title: "Yıkat Gitsin Uygulaması | Yıkat",
+  title: "Yıkat Uygulaması | Yıkat",
   description:
-    "Hizmetini seç, alım ve teslim zamanını planla, siparişini takip et. Yıkat Gitsin iPhone’da yayında, Android çok yakında.",
+    "Yıkat uygulamasını keşfet. iPhone’da yayında; Android ve kapıdan alım hazırlanıyor. Ayakkabı temizliği için Bakırköy dükkânına ulaş.",
   alternates: { canonical: "/urun" },
 };
 export default function Product() {

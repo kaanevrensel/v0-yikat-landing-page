@@ -21,12 +21,12 @@ export default function TeslimatVeIadePage() {
   const teslimat = legal.docs.teslimat
   const iade = legal.docs.iptalIade
   return (
-    <LegalPageShell title="Teslimat ve İade">
+    <LegalPageShell title="Teslimat ve İade" currentHref="/teslimat-ve-iade">
       <h2 className="mt-6 text-xl font-semibold text-foreground sm:text-2xl">{"Teslimat"}</h2>
-      <LegalBlocks blocks={teslimat.blocks as LegalBlock[]} />
+      <LegalBlocks blocks={teslimat.blocks as LegalBlock[]} currentHref="/teslimat-ve-iade" />
 
       <h2 className="mt-12 text-xl font-semibold text-foreground sm:text-2xl">{iade.heading}</h2>
-      <LegalBlocks blocks={iade.blocks as LegalBlock[]} />
+      <LegalBlocks blocks={iade.blocks as LegalBlock[]} currentHref="/teslimat-ve-iade" />
 
       <div className="mt-10 rounded-xl border border-border bg-card p-4">
         <p>

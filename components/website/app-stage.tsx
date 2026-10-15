@@ -19,6 +19,7 @@ export function AppStage() {
   const [instant, setInstant] = useState(false);
   return <section className="app-object-section app-object-product" aria-labelledby="product-title">
     <h1 id="product-title" className="sr-only">Birkaç dokunuşla yıkat</h1>
+    <p className="product-availability">Uygulamayı keşfet. Kapıdan alım henüz başlamadı; ayakkabını Bakırköy dükkânına getirebilirsin.</p>
     <MotionScene className="app-object-scene">
       <div className="app-orbit" aria-hidden="true"><span/><span/><span/></div>
       <div className="app-preview-holder" data-instant={instant}>

@@ -19,7 +19,21 @@ export const siteConfig = {
     postalCode: "34142",
     full: "Sakızağacı Mahallesi İskele Caddesi No:15-B, 34142 Bakırköy/İstanbul",
   },
-  hours: { label: "Her gün 10:00 – 22:00", opens: "10:00", closes: "22:00" },
+  // Owner correction (Kaan, 2026-10-07; reconfirmed 2026-10-12): Monday–Saturday
+  // 08:30–20:30, Sunday 10:00–20:30. Supersedes the "daily 10:00–22:00" brief.
+  // `schedule` feeds JSON-LD openingHoursSpecification; `label` is the one visible string.
+  hours: {
+    label: "Pazartesi–Cumartesi 08:30 – 20:30, Pazar 10:00 – 20:30",
+    schedule: [
+      {
+        label: "Pazartesi–Cumartesi",
+        days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        opens: "08:30",
+        closes: "20:30",
+      },
+      { label: "Pazar", days: ["Sunday"], opens: "10:00", closes: "20:30" },
+    ],
+  },
   // Sahip beyanı (2026-07-11): kategoriye göre sabit fiyat, bu aralıkta. Kesin menü gelince
   // priceMenu doldurulur; bu etiket UI + JSON-LD priceRange'in tek kaynağıdır.
   priceRangeLabel: "400–1000 ₺",
@@ -37,9 +51,8 @@ export const siteConfig = {
   geo: { latitude: 40.9778141, longitude: 28.8777991 },
   // WhatsApp: 0850 hattı üzerinden (sahip GBP'ye de aynı linki koydu, 2026-07-11).
   whatsappHref: "https://wa.me/908503033193",
-  // Google Maps identity verified 2026-10-10 against name, address and phone.
-  // Hours confirmed by Emre: use Kaan's later brief, daily 10:00–22:00.
-  socialLinks: { googleBusinessProfile: "https://www.google.com/maps?cid=11452704591158275657", instagram: "" },
+  // Both identities verified in the owner's Google Business Profile, 2026-10-15.
+  socialLinks: { googleBusinessProfile: "https://www.google.com/maps?cid=11452704591158275657", instagram: "https://www.instagram.com/yikat.app/" },
 } as const
 
 // Güven şeridi — rakamsız değer önerileri (spec §2.2)
@@ -102,7 +115,7 @@ export const faqs = [
   },
   {
     q: "Çalışma saatleriniz ne?",
-    a: "Her gün 10:00 – 22:00. Pazar günleri de açığız.",
+    a: "Pazartesi–Cumartesi 08:30 – 20:30, Pazar 10:00 – 20:30.",
   },
   {
     q: "Ödeme nasıl yapılıyor?",

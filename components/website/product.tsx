@@ -40,7 +40,7 @@ export function ProductPage() {
           {[
             [
               "Adresime hizmet geliyor mu?",
-              "Uygulamada adresini seçtiğinde o adreste açık olan hizmetleri ve uygun saatleri görürsün. Hizmet bölgeleri zamanla genişler.",
+              "Kapıdan alım ve teslim henüz başlamadı. Şu an ayakkabı temizliği için Bakırköy dükkânına gelebilirsin. Kuru temizleme, ütü, çamaşır ve yorgan hizmetleri hazırlanıyor.",
             ],
             [
               "Üye olmadan inceleyebilir miyim?",
@@ -48,11 +48,11 @@ export function ProductPage() {
             ],
             [
               "Alım ve teslim zamanı nasıl belirleniyor?",
-              "Adresine ve seçtiğin hizmete uygun seçenekler uygulamada gösterilir. Alım ve teslim gününü siparişini tamamlamadan önce kontrol edebilirsin.",
+              "Kapıdan alım açıldığında uygun gün ve saatler uygulamada gösterilecek. Sayfadaki akış, uygulamanın işleyişini anlatan bir örnektir.",
             ],
             [
               "Nasıl ödeme yapabilirim?",
-              "Siparişindeki seçeneklere göre kapıda nakit, kapıda kart veya uygulamadan online kartla ödeme yapabilirsin. Online kart ödemeleri iyzico altyapısında işlenir.",
+              "Bakırköy dükkânında nakit ve kart geçerli. Uygulamanın online kart ödemelerinde iyzico altyapısı kullanılır. Siparişe açık hizmetler ve ödeme seçenekleri uygulamada gösterilir.",
             ],
             [
               "Android uygulaması ne zaman geliyor?",
@@ -86,7 +86,7 @@ function OrderDemo() {
   return (
     <section id="urun-deneyimi" className="order-demo-section section-space">
       <div className="wide">
-        <h2 className="experience-heading">Nasıl Çalışır?</h2>
+        <h2 className="experience-heading">Nasıl Çalışır?</h2><p className="product-demo-note">Örnek sipariş akışı. Kapıdan alım başladığında kullanılabilecek.</p>
         <div className="order-demo">
           <div
             className="demo-step-tabs"
@@ -179,7 +179,7 @@ function OrderDemo() {
                 {step === 0 ? "Adres seçimine geç" : "Zamanını seç"}
               </button>
             ) : (
-              <DownloadButton>Uygulamada başlayalım</DownloadButton>
+              <DownloadButton>Uygulamayı keşfet</DownloadButton>
             )}
           </div>
         </div>
@@ -216,7 +216,7 @@ function TrackingDemo() {
   return (
     <section className="tracking-section care-tracking section-space" aria-labelledby="care-steps-title">
       <div className="wide motion-scene" data-playing={playing} data-instant={instant}>
-        <h2 id="care-steps-title" className="experience-heading">4 Adımda Yıkat</h2>
+        <h2 id="care-steps-title" className="experience-heading">4 Adımda Yıkat</h2><p className="product-demo-note">Kapıdan alım ve teslim için hazırladığımız akış.</p>
         <div className="care-stage" ref={ref} aria-label={statuses[active].label}>
           <span className="care-stage-halo" aria-hidden="true" />
           {statuses.map(({ label, art }, i) => <div key={art} className="care-stage-layer" data-active={active === i} aria-hidden={active !== i}>

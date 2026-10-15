@@ -24,18 +24,18 @@ export default function MesafeliSatisSozlesmesiPage() {
   const onBilgi = legal.docs.onBilgilendirme
   const mesafeli = legal.docs.mesafeli
   return (
-    <LegalPageShell title="Mesafeli Satış Sözleşmesi ve Ön Bilgilendirme Formu">
+    <LegalPageShell title="Mesafeli Satış Sözleşmesi ve Ön Bilgilendirme Formu" currentHref="/mesafeli-satis-sozlesmesi">
       <h2 className="mt-6 text-2xl font-bold text-foreground sm:text-3xl">
         {"Bölüm 1 – " + onBilgi.heading}
       </h2>
       {onBilgi.subtitle ? <p className="mt-2 text-sm">{onBilgi.subtitle}</p> : null}
-      <LegalBlocks blocks={onBilgi.blocks as LegalBlock[]} />
+      <LegalBlocks blocks={onBilgi.blocks as LegalBlock[]} currentHref="/mesafeli-satis-sozlesmesi" />
 
       <h2 className="mt-14 text-2xl font-bold text-foreground sm:text-3xl">
         {"Bölüm 2 – " + mesafeli.heading}
       </h2>
       {mesafeli.subtitle ? <p className="mt-2 text-sm">{mesafeli.subtitle}</p> : null}
-      <LegalBlocks blocks={mesafeli.blocks as LegalBlock[]} />
+      <LegalBlocks blocks={mesafeli.blocks as LegalBlock[]} currentHref="/mesafeli-satis-sozlesmesi" />
     </LegalPageShell>
   )
 }

@@ -16,6 +16,7 @@
 .discovery-actions .button.secondary { color: #123c5a; background: #eef5fc; border-color: #cedfec; }
 .discovery-call { display: inline-flex; align-items: center; gap: 9px; min-height: 48px; padding: 8px 5px; font-size: 16px; text-decoration: underline; }
 .discovery-hours { color: #1f5eb8; font-weight: 600; }
+.discovery-hours span { display: block; }
 .discovery .discovery-byline { color: #526779; font-size: 14px; margin-top: 28px; display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
 .discovery-byline a { display: inline-flex; min-height: 44px; align-items: center; text-decoration: underline; }
 .discovery-local-hero { display: grid; grid-template-columns: 1.1fr .9fr; align-items: start; gap: 48px; margin-bottom: var(--discovery-section-gap); }
@@ -37,7 +38,7 @@
 .discovery-route-film, .discovery-process { display: grid; grid-template-columns: 1fr .8fr; gap: 70px; align-items: center; margin: 80px 0; }
 .discovery-route-film video { width: 100%; height: 450px; object-fit: contain; background: #082e4c; border-radius: 24px; }
 .discovery-process figure { margin: 0; }
-.discovery-process img { width: 100%; height: 430px; object-fit: cover; border-radius: 24px; }
+.discovery-process img, .discovery-process video { width: 100%; height: 430px; object-fit: cover; border-radius: 24px; }
 .discovery-reading-layout { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 64px; align-items: start; }
 .discovery-reading-layout > .discovery-prose { grid-column: 1; grid-row: 1; }
 .discovery-toc { grid-column: 2; grid-row: 1; position: sticky; top: 112px; border-top: 1px solid #cadce9; padding-top: 16px; }
@@ -141,12 +142,14 @@
   .discovery-actions .button { padding: 12px 17px; font-size: 15px; }
   .discovery-actions .discovery-call { width: 100%; }
   .discovery table { min-width: 420px; font-size: 14px; }
+  .discovery table[data-columns="2"] { min-width: 0; table-layout: fixed; overflow-wrap: anywhere; }
+  .discovery table[data-columns="2"] thead th:first-child { width: 38%; }
   .discovery th, .discovery td { padding: 13px 12px; }
   .discovery-related { margin: 48px 0; }
   .discovery-related strong { font-size: 21px; }
   .discovery-materials dl > div { grid-template-columns: 1fr; gap: 8px; }
   .discovery-route-film video { height: 430px; }
-  .discovery-process img { height: 360px; }
+  .discovery-process img, .discovery-process video { height: 360px; }
   .discovery-shop-note { margin-top: 8px; }
   .discovery-invitation { padding: 26px 22px; margin-top: 50px; border-radius: 22px; }
   .guide-collection h3 { font-size: 23px; }

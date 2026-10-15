@@ -15,15 +15,23 @@ import { useDirectionsUrl } from "@/hooks/use-directions-url"
 function OpenStatus() {
   const prefersReduced = useReducedMotion()
   const [status, setStatus] = useState<"unknown" | "open" | "closed">("unknown")
-  const [opensToday, setOpensToday] = useState(false)
+  const [closesAt, setClosesAt] = useState("")
+  const [nextOpening, setNextOpening] = useState("")
 
   useEffect(() => {
     const compute = () => {
-      const hour = Number(
-        new Intl.DateTimeFormat("tr-TR", { hour: "numeric", hour12: false, timeZone: "Europe/Istanbul" }).format(new Date()),
-      )
-      setStatus(hour >= Number(siteConfig.hours.opens.slice(0, 2)) && hour < Number(siteConfig.hours.closes.slice(0, 2)) ? "open" : "closed")
-      setOpensToday(hour < Number(siteConfig.hours.opens.slice(0, 2)))
+      // Read the wall clock in Istanbul, then look the day up in the weekly schedule.
+      const parts = new Intl.DateTimeFormat("en-GB", { weekday: "long", hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Europe/Istanbul" }).formatToParts(new Date())
+      const read = (type: string) => parts.find((part) => part.type === type)?.value ?? ""
+      const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+      const slotFor = (day: string) => siteConfig.hours.schedule.find((slot) => (slot.days as readonly string[]).includes(day))
+      const today = slotFor(read("weekday"))
+      const tomorrow = slotFor(days[(days.indexOf(read("weekday")) + 1) % 7])
+      const now = `${read("hour")}:${read("minute")}`
+      const open = !!today && now >= today.opens && now < today.closes
+      setStatus(open ? "open" : "closed")
+      setClosesAt(today?.closes ?? "")
+      setNextOpening(today && now < today.opens ? `bugün ${today.opens}` : `yarın ${tomorrow?.opens ?? ""}`)
     }
     compute()
     const id = setInterval(compute, 60_000)
@@ -36,7 +44,7 @@ function OpenStatus() {
         <span>{siteConfig.hours.label}</span>
         <span aria-hidden className="invisible flex items-center gap-2 text-sm">
           <span className="size-2.5" />
-          Şu an açık, 22:00'ye kadar bırakabilirsin
+          Şu an açık, 20:30'a kadar bırakabilirsin
         </span>
       </span>
     )
@@ -53,9 +61,9 @@ function OpenStatus() {
         </span>
         {/* Saks (#2563eb) üzerinde emerald-300 3.39:1 kalıyor; emerald-50 ≈4.9:1 (AA) — yeşil sinyal nokta + tonda sürüyor */}
         {status === "open" ? (
-          <span className="text-emerald-50">Şu an açık — 22:00'ye kadar bırakabilirsin</span>
+          <span className="text-emerald-50">{`Şu an açık — ${closesAt} kapanışına kadar bırakabilirsin`}</span>
         ) : (
-          <span className="text-white">{`Şu an kapalı — ${opensToday ? "bugün" : "yarın"} 10:00'da açılıyor`}</span>
+          <span className="text-white">{`Şu an kapalı — ${nextOpening} itibarıyla açığız`}</span>
         )}
       </span>
     </span>

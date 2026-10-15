@@ -8,7 +8,7 @@ import { CardSpotlight } from "@/components/spotlight-card"
 const STEPS = [
   { no: "01", icon: Footprints, title: "Getir", text: "Ayakkabını dükkana bırak. İki dakikanı alır." },
   { no: "02", icon: Sparkles, title: "Yıkayalım", text: "Malzemesine uygun yöntemle derin temizlik yapalım." },
-  { no: "03", icon: Clock, title: "Aynı gün teslim al", text: "Akşam 22:00'ye kadar tertemiz hazır. Beklerken Bakırköy çarşıda işini gör." },
+  { no: "03", icon: Clock, title: "Aynı gün teslim al", text: "Akşam 20:30'a kadar tertemiz hazır. Beklerken Bakırköy çarşıda işini gör." },
 ] as const
 
 export function HowItWorks() {

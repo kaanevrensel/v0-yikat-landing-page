@@ -2,6 +2,10 @@ import type { Metadata } from "next"
 import { siteConfig } from "@/lib/site"
 
 export const CONTENT_DATE = "2026-10-10"
+// Latest edit that touched every discovery page (shop identity and verified social links). Sitemap lastmod only.
+export const CONTENT_UPDATED = "2026-10-15"
+/** "10 Ekim 2026" for an ISO date; fixed to UTC so server and browser agree. */
+export const formatContentDate = (iso: string) => new Intl.DateTimeFormat("tr-TR", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(iso))
 export const BUSINESS_ID = `${siteConfig.url}/#business`
 export const WEBSITE_ID = `${siteConfig.url}/#website`
 
@@ -25,11 +29,18 @@ export type CareGuide = {
   related: string[]
   service?: { href: string; label: string }
   sourceIds: string[]
+  /** ISO date of the last substantive edit, when later than CONTENT_DATE. */
+  updated?: string
+  published?: string
 }
 
 export const careSources: Record<string, CareSource> = {
+  nikeMesh: { title: "Nike: How to Clean Mesh Shoes", url: "https://www.nike.com/a/how-to-clean-flyknit-mesh" },
+  nikeLaces: { title: "Nike: How to Clean Shoelaces", url: "https://www.nike.com/a/how-to-clean-shoelaces" },
+  nikeRunning: { title: "Nike: How to Clean Running Shoes", url: "https://www.nike.com/a/how-to-clean-nike-running-shoes" },
+  nikeMud: { title: "Nike: How to Clean Muddy Shoes", url: "https://www.nike.com/a/how-to-clean-muddy-shoes" },
+  nikeStorage: { title: "Nike: How to Store Shoes", url: "https://www.nike.com/a/how-to-store-shoes" },
   nikeMachine: { title: "Nike — Can You Put Sneakers in the Washer?", url: "https://www.nike.com/a/can-you-put-shoes-in-the-washer" },
-  adidas4d: { title: "adidas — How to Clean adidas 4DFWD Running Shoes", url: "https://www.adidas.com/us/blog/737916-how-to-clean-adidas-4dfwd-running-shoes" },
   nikeClean: { title: "Nike — How to Clean Your Shoes in 6 Easy Steps", url: "https://www.nike.com/a/how-to-clean-shoes" },
   adidasLeather: { title: "adidas — How to Clean Shoes (Superstar örneği)", url: "https://www.adidas.com/us/blog/how-to-clean-shoes" },
   nikeSuede: { title: "Nike — How to Clean Suede Shoes", url: "https://www.nike.com/a/how-to-clean-suede-shoes" },
@@ -44,11 +55,11 @@ export const careSources: Record<string, CareSource> = {
   ikeaDuvet: { title: "IKEA — Guide: Washing Duvets and Bed Covers", url: "https://www.ikea.com/ch/en/product-guides/washing-duvets-pubc3fe6c90/" },
 }
 
-export function discoveryMetadata(title: string, description: string, path: string, article = false): Metadata {
+export function discoveryMetadata(title: string, description: string, path: string, article = false, updated = CONTENT_DATE, published = CONTENT_DATE): Metadata {
   const url = `${siteConfig.url}${path}`
   return {
     title: `${title} | Yıkat`, description, alternates: { canonical: url },
-    openGraph: { title: `${title} | Yıkat`, description, url, type: article ? "article" : "website", locale: "tr_TR", siteName: "Yıkat", images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "Yıkat — Bakırköy ayakkabı temizliği ve bakım rehberi" }], ...(article ? { publishedTime: CONTENT_DATE, modifiedTime: CONTENT_DATE } : {}) },
+    openGraph: { title: `${title} | Yıkat`, description, url, type: article ? "article" : "website", locale: "tr_TR", siteName: "Yıkat", images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "Yıkat — Bakırköy ayakkabı temizliği ve bakım rehberi" }], ...(article ? { publishedTime: published, modifiedTime: updated } : {}) },
     twitter: { card: "summary_large_image", title: `${title} | Yıkat`, description, images: ["/images/og.jpg"] },
   }
 }
