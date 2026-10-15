@@ -4,6 +4,7 @@ export type Service = {
   slug: string; nav: string; metaTitle: string; metaDescription: string; h1: string; intro: string;
   heroImg: string; risks: { title: string; text: string }[]; steps: { title: string; text: string }[];
   notes: string[]; faqs: ServiceFaq[]; priceCategory: string; guideSlug: string; sourceIds: string[];
+  beforeVisit: string; afterCare: string; afterCareSourceId: string; relatedGuides: string[];
 }
 const timing = "Teslim zamanını ayakkabının durumuna, işlem ve kuruma ihtiyacına göre netleştirelim. Belirli bir saate ihtiyacın varsa gelmeden önce WhatsApp’tan yaz."
 const price = "Güncel ücret için ayakkabının tamamını, sorunlu bölgesini ve varsa bakım etiketini paylaş. İşlem kapsamını ve fiyatı kabulden önce netleştirelim."
@@ -28,6 +29,9 @@ export const services: Service[] = [
       { title: "Kurutma ve son kontrol", text: "Temizliğin ardından kurutma ve son kontrol geliyor. Hazır olma durumunu yalnız geçen saatle değerlendirmiyoruz." },
     ],
     notes: ["Temizlik ve bakım, taban değişimi, boyama veya restorasyonla aynı hizmet değildir.", "Eski lekeler, boya kaybı veya malzemedeki renk değişimi tamamen düzelmeyebilir. İşleme başlamadan beklentiyi konuşalım."],
+    beforeVisit: "Filede iplik çekilmesi, baskıda kalkma veya tabanda açılma varsa yakın planını göster. Süet detaylı bir sneaker’ı yalnız kumaş ayakkabı diye tarif etme. Özel tabanlık veya orijinal bağcık kullanıyorsan bunu da belirt.",
+    afterCare: "File ve örgüyü sert fırçayla ovalama; gevşek kiri nazikçe al. İplik çekilmesi veya tüylenme görürsen dur. Islanan ayakkabıyı doğrudan ısıya vermeden kurut; yeniden giymeden önce içini de kontrol et.",
+    afterCareSourceId: "nikeMesh", relatedGuides: ["file-orgu-ayakkabi-temizligi", "ayakkabi-tabanligi-nasil-temizlenir"],
     faqs: [
       { q: "Sneaker çamaşır makinesinde yıkanır mı?", a: "Hayır, sneaker’ını çamaşır makinesine atma. Tambur, uzun süre su ve sıkma; yapıştırıcıyı, tabanı ve formu yıpratabilir. File veya düşük derece bunu değiştirmez; nedenlerini bakım rehberimizde anlattık." },
       { q: "Sneaker yıkama aynı gün teslim edilir mi?", a: timing },
@@ -55,6 +59,9 @@ export const services: Service[] = [
       { title: "Kurutma ve doku kontrolü", text: "Temizlik sonrasında kuruma ve yüzeyin durumunu kontrol ediyoruz." },
     ],
     notes: ["Solmuş rengi boyayarak yenileme veya aşınmış dokuyu onarma, burada anlatılan temizliğin kapsamı değildir.", "Yağ, eski ürün kalıntısı veya yerleşmiş lekelerin tamamen çıkacağı garanti edilemez."],
+    beforeVisit: "Yağmur halkası, yağ izi ve havın yatması aynı sorun değil. İzi ne zaman fark ettiğini ve ayakkabı o sırada ıslak mı kuru mu olduğunu söyle. Krem, su geçirmezlik spreyi veya leke çıkarıcı kullandıysan ürün adını paylaş.",
+    afterCare: "Kuru yüzeyde bu dokuya uygun bir fırçayla nazikçe çalış. Suya batırma; düz deri bakımını süete uygulama. Yeni bir ürün kullanmadan ayakkabının ve ürünün kendi talimatlarını birlikte kontrol et.",
+    afterCareSourceId: "nikeSuede", relatedGuides: ["yagmurda-islanan-ayakkabi-bakimi", "ayakkabi-bakimi-mi-onarim-mi"],
     faqs: [
       { q: "Süet ve nubuk ayakkabı yıkanır mı?", a: "Klasik kumaş yıkamasıyla aynı şekilde ele alınmaz. Malzemeye uygun fırça, ürün ve kontrollü yöntem gerekir; üreticinin talimatı önceliklidir." },
       { q: "Yağmur ve eski lekeler çıkar mı?", a: "Sonuç lekeye, dokunun durumuna ve önceki işlemlere göre değişir. Görmeden tüm izlerin çıkacağını söylemek doğru olmaz." },
@@ -82,6 +89,9 @@ export const services: Service[] = [
       { title: "Son kontrol", text: "İşlem ve kurutma sonrasında ayakkabıyı kontrol ediyoruz." },
     ],
     notes: ["Mevcut derin çatlak veya soyulmayı temizliğin gidereceği varsayılmamalı.", "Boyama, renk yenileme, taban değişimi ve onarım bu sayfadaki hizmetle aynı kapsamda değildir."],
+    beforeVisit: "Rugan, kaplamalı yüzey ve düz deriyi ayırabilmek için bütün ayakkabıyı göster. Çizik veya soyulmanın yakınıyla birlikte daha önce kullanılan boya, cila ve kremi belirt. Yalnız parlaklık mı, leke temizliği mi beklediğini baştan konuşalım.",
+    afterCare: "Temizleme, bakım ve parlatmayı ayrı ihtiyaçlar olarak düşün. Krem veya cilayı yalnız uygun yüzeyde kullan; rengi ve ürün kapsamını kontrol et. Saklamadan önce kurumasını bekle ve doğrudan ısıyla hızlandırma.",
+    afterCareSourceId: "clarksCare", relatedGuides: ["ayakkabi-bakimi-mi-onarim-mi", "ayakkabi-nasil-saklanir"],
     faqs: [
       { q: "Deri ayakkabı suyla yıkanır mı?", a: "Düz deriye, kumaş ayakkabıdakiyle aynı ıslak işlemi uygulama. Üreticinin talimatına ve deri yüzeye uygun temizleyiciye göre ilerlemek gerekir." },
       { q: "Derideki çatlaklar temizlikle geçer mi?", a: "Temizlik ve bakım, hasarlı yüzeyin onarılması anlamına gelmez. Mevcut çatlak ve soyulmayı önceden göstererek beklentiyi netleştirelim." },
