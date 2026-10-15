@@ -24,9 +24,11 @@ Counts are sitemap/listing observations, not indexed-page counts. Competitor loc
 
 ## Verified Search Console baseline
 
-The root agent read the managed URL-prefix property on October 15: the three-month view showed 103 clicks, 677 impressions, 15.2% CTR and average position 4.3. Brand queries dominated (39 clicks for `yıkat`, six for `yikat`), with repair-related intent also appearing. The indexing report showed seven indexed URLs out of 25 known URLs and 18 not indexed. No field Core Web Vitals data was available. These dashboard figures are a dated baseline; they do not establish the effect of this branch or that all 26 sitemap URLs had been indexed. The October 10 additions were recent. Root retains the native export and indexing-reason evidence in the YIKAT workstream.
+The root agent read the managed URL-prefix property on October 15: the three-month view showed 103 clicks, 677 impressions, 15.2% CTR and average position 4.3. Brand queries dominated (39 clicks for `yıkat`, six for `yikat`), with repair-related intent also appearing. The indexing report, last updated October 11, showed seven indexed URLs out of 25 known URLs and 18 not indexed. No field Core Web Vitals data was available. These dashboard figures are a dated baseline; they do not establish the effect of this branch or that all 26 sitemap URLs had been indexed. The October 10 additions were recent. Root retains the native export and indexing-reason evidence in the YIKAT workstream.
 
 The 28-day performance view for September 16–October 13 showed 33 clicks, 313 impressions, 10.5% CTR and average position 3. Leading visible queries included `yıkat` (15 clicks / 37 impressions), `yıkat bakırköy` (2 / 14) and `yikat` (1 / 10). A brand-heavy average position is not a benchmark for unbranded shoe-cleaning queries. These unequal windows should not be presented as a growth comparison.
+
+The indexing breakdown was 16 `Discovered, currently not indexed` and two `Crawled, currently not indexed`. The discovered list included `/ayakkabi-temizleme`, `/iletisim`, `/rehber` and several existing guides, with no last-crawl date. The report did not classify these as robots exclusions. The two crawled examples were not yet verified. This makes crawl/index coverage an immediate measured gap to investigate; it does not establish why the competitor ranks in a particular search. The dated native receipt is `workstreams/operations-visibility-20261015/search-console-baseline.json` in the private YIKAT workspace.
 
 ## Implemented response
 
