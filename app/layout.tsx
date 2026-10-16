@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next"
 import { Bricolage_Grotesque } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { WebVitalsReporter } from "@/components/web-vitals-reporter"
+import { ContactMeasurement } from "@/components/contact-measurement"
+import { contactPagePaths } from "@/lib/contact-measurement"
+import { careGuides } from "@/lib/care-guides"
 import { priceMenu, siteConfig } from "@/lib/site"
 import "./globals.css"
 import "./marketing.css"
@@ -151,6 +154,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         }).replace(/</g, "\\u003c") }} />
         {children}
         <Analytics />
+        <ContactMeasurement publicPaths={contactPagePaths(careGuides.map(guide => guide.slug))} />
         <WebVitalsReporter />
       </body>
     </html>
