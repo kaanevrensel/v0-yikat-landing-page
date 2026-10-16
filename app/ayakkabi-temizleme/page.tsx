@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { services } from "@/lib/services"
-import { siteConfig } from "@/lib/site"
-import { discoveryMetadata, BUSINESS_ID } from "@/lib/discovery"
+import { priceMenu, priceMenuVerifiedAt, siteConfig } from "@/lib/site"
+import { discoveryMetadata, formatContentDate, BUSINESS_ID } from "@/lib/discovery"
 import { DiscoveryShell, JsonLd, RelatedLinks, FaqList, ShopInvitation, ScrollableTable } from "@/components/discovery/shared"
 import { PhotoEnquiryLink, ShopActions } from "@/components/discovery/actions"
 import { CareAssessment } from "@/components/discovery/care-assessment"
@@ -15,8 +15,36 @@ export default function Page() {
     <CareAssessment/>
     <RelatedLinks title="Malzemene göre devam et" links={services.map(s => ({ href: `/${s.slug}`, title: s.nav, text: s.intro }))}/>
     <section className="discovery-prose discovery-narrow" id="kapsam"><h2>Bir çiftte neleri birlikte değerlendiriyoruz?</h2><p>Üst yüzey, dış taban ve iç yüzey aynı ihtiyaçta olmayabilir. Genel kirin yanında özellikle çıkmasını istediğin bir lekeyi belirt; bağcık, çıkarılabilir tabanlık ve özel aksesuarların işlem kapsamını kabulde konuşalım.</p><ScrollableTable label="Ayakkabı temizliğinde değerlendirme kapsamı"><table data-columns="2"><caption>Temizliği planlamadan önce ayırdığımız konular</caption><thead><tr><th scope="col">Gördüğün durum</th><th scope="col">Birlikte netleştirelim</th></tr></thead><tbody><tr><th scope="row">Üst yüzeyde kir veya leke</th><td>Hangi malzemede? Tek bir bölge mi, tüm çift mi? Önceden ürün sürüldü mü?</td></tr><tr><th scope="row">Tabanda koyuluk veya sararma</th><td>Yüzey kiri ile aşınma ve malzemedeki renk farkını ayıralım. Her renk farkı temizlenebilir bir leke değildir.</td></tr><tr><th scope="row">İç kısımda koku veya nem</th><td>Tabanlık çıkıyor mu, ayakkabı en son nasıl kurutuldu? İç yüzeyin durumunu ayrıca değerlendirelim.</td></tr><tr><th scope="row">Çatlak, soyulma veya açılma</th><td>Mevcut hasarı işlemden önce göster. Temizlik hizmeti boyama, taban değişimi veya onarım içermez.</td></tr></tbody></table></ScrollableTable><Link href="/rehber/ayakkabi-bakimi-mi-onarim-mi" className="discovery-inline-link">Temizlik, bakım ve onarımın farkı</Link></section>
-    <section className="discovery-process" id="kurutma"><div><h2>Temizliğin ardından<br/>kurutma ve kontrol.</h2><p>Yıkama tek başına bütün süreç değil. Ayakkabının durumunun değerlendirilmesi, uygun temizliğin seçilmesi, kurutma ve son kontrol birlikte düşünülür.</p><p>Bu görüntü Bakırköy dükkânındaki ayakkabı kurutma dolabını gösteriyor. Temizlenen ayakkabılar burada kurutulur; teslimden önce son kontrol yapılır. Ayakkabını evde çamaşır veya kurutma makinesine atma; nedenlerini <Link href="/rehber/ayakkabi-makinede-yikanir-mi">bakım rehberinde</Link> anlattık.</p><Link href="/bakirkoy-ayakkabi-temizleme" className="discovery-inline-link">Dükkânı ve ulaşımı incele →</Link></div><figure><video controls playsInline muted preload="none" poster="/images/care/drying-cabinet-20261015.webp" width={720} height={1280} aria-label="Bakırköy dükkânındaki ayakkabı kurutma dolabı"><source src="/videos/care/drying-cabinet-20261015.mp4" type="video/mp4"/><track kind="captions" src="/videos/care/drying-cabinet-20261015-tr.vtt" srcLang="tr" label="Türkçe" default/></video><figcaption>Ayakkabı kurutma dolabı · Bakırköy</figcaption></figure></section>
-    <section id="fiyat" className="discovery-prose discovery-narrow"><h2>Ayakkabı yıkama fiyatı nasıl netleşir?</h2><p>Güncel ücret için ayakkabının türünü ve yapılacak işlemi birlikte değerlendirelim. Kategori, malzeme ve mevcut durum bilinmeden bir fiyatı bütün modellere uygulamak doğru olmaz. İşlemin kapsamını ve ücretini kabulden önce sorabilirsin.</p><ScrollableTable label="Fiyat değerlendirmesi bilgileri"><table><caption>Fiyat ve işlem değerlendirmesi için paylaşabileceklerin</caption><thead><tr><th scope="col">Bilgi</th><th scope="col">Neden gerekli?</th></tr></thead><tbody><tr><th scope="row">Ayakkabının tamamı</th><td>Modeli ve birden fazla malzeme olup olmadığını görmek.</td></tr><tr><th scope="row">Sorunlu bölgenin yakın planı</th><td>Kir, leke ve mevcut yüzey yıpranmasını ayırmak.</td></tr><tr><th scope="row">Önceki işlemler</th><td>Evde kullanılan ürün veya daha önce yapılan temizliği bilmek.</td></tr><tr><th scope="row">İhtiyaç duyduğun tarih</th><td>Teslim uygunluğunu işlemden önce netleştirmek.</td></tr></tbody></table></ScrollableTable><p>Fotoğraf ön değerlendirmeye yardımcı olur; fiziksel inceleme gerektiğinde bunu belirtiriz. Temizlik fiyatını boyama, taban değişimi veya onarım fiyatıyla eş tutma.</p><PhotoEnquiryLink className="discovery-inline-link">Fotoğrafla ücret sor</PhotoEnquiryLink></section>
+    <section className="discovery-process" id="kurutma">
+      <div>
+        <h2>Dükkânımızdan<br/>kurutma aşaması.</h2>
+        <p>Bu kısa görüntü Bakırköy dükkânımızdaki ayakkabı kurutma dolabına ait. Temizliğin ardından kurutma ve teslim öncesi kontrol gelir; hazır olma zamanını malzeme, mevcut durum ve kuruma ihtiyacıyla birlikte değerlendirelim.</p>
+        <p>Kabulde konuştuğumuz bölgelere teslimde yeniden bakalım. Kalan iz veya sonraki bakım hakkında sorunu paylaş; aşınma ve renk kaybı, temizlenebilir kirle aynı şey değildir.</p>
+        <p>Ayakkabını evde çamaşır veya kurutma makinesine atma; nedenlerini <Link href="/rehber/ayakkabi-makinede-yikanir-mi">bakım rehberinde</Link> anlattık.</p>
+        <Link href="/bakirkoy-ayakkabi-temizleme" className="discovery-inline-link">Dükkânı ve ulaşımı incele →</Link>
+      </div>
+      <figure>
+        <video controls playsInline muted preload="none" poster="/images/care/drying-cabinet-20261015.webp" width={720} height={1280} aria-label="Bakırköy dükkânındaki ayakkabı kurutma dolabı">
+          <source src="/videos/care/drying-cabinet-20261015.mp4" type="video/mp4"/>
+          <track kind="captions" src="/videos/care/drying-cabinet-20261015-tr.vtt" srcLang="tr" label="Türkçe" default/>
+        </video>
+        <figcaption>Bakırköy’deki kurutma dolabımız. Kendi dükkân çekimimiz.</figcaption>
+      </figure>
+    </section>
+    <section id="fiyat" className="discovery-prose discovery-narrow">
+      <h2>Ayakkabı temizleme fiyatları</h2>
+      <p><time dateTime={priceMenuVerifiedAt}>{formatContentDate(priceMenuVerifiedAt)}</time> tarihinde doğrulanan baz fiyatlar. Tutarlar <strong>bir çift</strong> içindir.</p>
+      <ScrollableTable label="Ayakkabı temizleme baz fiyatları">
+        <table data-columns="2">
+          <caption>Bir çift için kategoriye göre baz ücret</caption>
+          <thead><tr><th scope="col">Kategori</th><th scope="col">Baz fiyat</th></tr></thead>
+          <tbody>{priceMenu.map(item => <tr key={item.category}><th scope="row">{item.category}</th><td>{item.price}</td></tr>)}</tbody>
+        </table>
+      </ScrollableTable>
+      <p>Ayakkabının kategorisini, işlem kapsamını ve ödeyeceğin son tutarı kabulden önce birlikte netleştirelim. Varsa indirim veya kampanya da bu aşamada değerlendirilir.</p>
+      <p>Fotoğrafla sorarken çiftin tamamını, sorunlu bölgeyi ve varsa bakım etiketini göster. Daha önce uygulanan ürünü ve ihtiyaç duyduğun tarihi de belirt; fiziksel inceleme gerektiğinde bunu söyleriz.</p>
+      <PhotoEnquiryLink className="discovery-inline-link">Fotoğrafla ücret sor</PhotoEnquiryLink>
+    </section>
     <section className="discovery-prose discovery-narrow"><h2>Evde bakım mı, profesyonel değerlendirme mi?</h2><p>Üretici talimatı açık olan hafif yüzey kiri için bakım rehberlerinden başlayabilirsin. Karışık malzeme, süet detay, önceki ürün izi veya mevcut hasarda önce değerlendirme istemek daha yerinde olur.</p><p>“Ayakkabı kuru temizleme” ifadesi de tek bir yöntem tarif etmez. Tekstilde kullanılan profesyonel işlemin her ayakkabı için uygun olduğu varsayılamaz. Ayakkabının malzemesi ve yapısı önceliklidir.</p><p>Hafif yüzey bakımı için <Link href="/rehber/spor-ayakkabi-nasil-temizlenir">spor ayakkabı rehberini</Link>, iç yüzey için <Link href="/rehber/ayakkabi-tabanligi-nasil-temizlenir">tabanlık rehberini</Link> kullan. Ücret sorusunu hazırlamak için <Link href="/rehber/ayakkabi-temizleme-fiyati-neye-gore-belirlenir">kabul öncesi soruları</Link> incele.</p></section>
     <div className="discovery-narrow"><FaqList faqs={[
       { q: "Ayakkabı temizleme ile yıkama aynı şey mi?", a: "Günlük kullanımda benzer hizmeti anlatabilir; fakat uygulanacak işlem malzemeye göre değişir. Süet, deri ve kumaşa aynı yıkama yöntemi uygulanmaz." },
