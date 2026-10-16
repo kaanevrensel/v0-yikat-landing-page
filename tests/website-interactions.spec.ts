@@ -77,7 +77,7 @@ test("mobile product choices update the example and download restores focus", as
   await page.setViewportSize({ width: 390, height: 844 })
   await page.emulateMedia({ reducedMotion: "reduce" })
   await page.goto("/urun")
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Birkaç dokunuşla yıkat")
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Yıkat uygulaması")
   await page.getByRole("button", { name: "Çamaşır", exact: true }).click()
   await page.getByRole("button", { name: "Nereden alalım?" }).click()
   await page.getByRole("button", { name: "İş adresim", exact: true }).click()

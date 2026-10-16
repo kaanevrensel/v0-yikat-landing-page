@@ -18,8 +18,8 @@ export function AppStage() {
   const [mode, setMode] = useState<PhoneMode>("home");
   const [instant, setInstant] = useState(false);
   return <section className="app-object-section app-object-product" aria-labelledby="product-title">
-    <h1 id="product-title" className="sr-only">Birkaç dokunuşla yıkat</h1>
-    <p className="product-availability">Uygulamayı keşfet. Kapıdan alım henüz başlamadı; ayakkabını Bakırköy dükkânına getirebilirsin.</p>
+    <h1 id="product-title" className="sr-only">Yıkat uygulaması</h1>
+    <p className="product-availability">Yıkat iPhone’da yayında. Uygulamadan yeni sipariş alımı ve kapıdan alım henüz açık değil; ayakkabını Bakırköy dükkânına getirebilirsin.</p>
     <MotionScene className="app-object-scene">
       <div className="app-orbit" aria-hidden="true"><span/><span/><span/></div>
       <div className="app-preview-holder" data-instant={instant}>

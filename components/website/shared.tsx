@@ -25,7 +25,7 @@ import { PaymentBand } from "@/components/payment-band";
 import { siteConfig } from "@/lib/site";
 import { useDirectionsUrl } from "@/hooks/use-directions-url";
 
-export const APP_STORE_URL = "https://apps.apple.com/tr/app/id6806875753";
+export const APP_STORE_URL = siteConfig.iosApp.storeUrl;
 const DownloadContext = createContext<() => void>(() => {
   window.location.assign("/urun");
 });

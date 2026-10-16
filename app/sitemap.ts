@@ -14,9 +14,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       // Keep the shared shop-facts revision, but never predate a newer guide edit.
       lastModified: new Date(Math.max(Date.parse(CONTENT_UPDATED), Date.parse(guide.updated ?? guide.published ?? CONTENT_UPDATED))),
     })),
-    { url: `${siteConfig.url}/urun`, lastModified: new Date("2026-10-15") },
+    { url: `${siteConfig.url}/urun`, lastModified: new Date("2026-10-16") },
     { url: `${siteConfig.url}/partnerler`, lastModified: new Date("2026-10-10") },
-    { url: siteConfig.url, lastModified: new Date("2026-10-15") },
+    { url: siteConfig.url, lastModified: new Date("2026-10-16") },
     { url: `${siteConfig.url}/sneaker-yikama`, lastModified: new Date(CONTENT_UPDATED) },
     { url: `${siteConfig.url}/suet-nubuk-temizleme`, lastModified: new Date(CONTENT_UPDATED) },
     { url: `${siteConfig.url}/deri-ayakkabi-bakimi`, lastModified: new Date(CONTENT_UPDATED) },
@@ -27,6 +27,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteConfig.url}/gizlilik-politikasi`, lastModified: new Date("2026-10-15") },
     { url: `${siteConfig.url}/hesap-silme`, lastModified: new Date("2026-10-15") },
     { url: `${siteConfig.url}/teslimat-ve-iade`, lastModified: new Date("2026-10-15") },
-    { url: `${siteConfig.url}/iletisim`, lastModified: new Date(CONTENT_UPDATED) },
+    { url: `${siteConfig.url}/iletisim`, lastModified: new Date("2026-10-16") },
   ]
 }
