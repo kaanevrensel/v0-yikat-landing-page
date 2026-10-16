@@ -3,6 +3,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { COUNTER_ACTIONS, COUNTER_PAGES, COUNTER_REFERRERS } from '../lib/contact-counter.mjs';
+import { counterRowsFromEnvelope } from './lib/contact-counter-report.mjs';
 
 const options = {}, args = process.argv.slice(2);
 for (let i = 0; i < args.length; i += 2) {
@@ -19,10 +20,10 @@ if (options.start < activatedDay || options.start < oldestRetainedDay || options
 const token = process.env.SUPABASE_ACCESS_TOKEN;
 if (!token) throw new Error('Authorized read credential is missing');
 if (process.env.SUPABASE_PROJECT_REF_DEV && process.env.SUPABASE_PROJECT_REF_DEV !== 'dbannpdbhdvrxxxdbccj') throw new Error('Production project identity mismatch');
-const query = `SELECT "day"::text AS "day", "action", "page", "referrer", "events" FROM public."WebsiteContactDaily" WHERE "day" BETWEEN DATE '${options.start}' AND DATE '${options.end}' ORDER BY "day", "action", "page", "referrer"`;
+const query = `SELECT jsonb_build_object('rowCount',count(*),'eventCount',coalesce(sum("events"),0),'rows',coalesce(jsonb_agg(jsonb_build_object('day',"day"::text,'action',"action",'page',"page",'referrer',"referrer",'events',"events") ORDER BY "day","action","page","referrer"),'[]'::jsonb)) AS report FROM public."WebsiteContactDaily" WHERE "day" BETWEEN DATE '${options.start}' AND DATE '${options.end}'`;
 const response = await fetch('https://api.supabase.com/v1/projects/dbannpdbhdvrxxxdbccj/database/query', { method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ query }), signal: AbortSignal.timeout(15000) }).catch(() => null);
 if (!response?.ok) throw new Error('Native aggregate read unavailable; no zero report written');
-const rows = await response.json();
+const rows = counterRowsFromEnvelope(await response.json());
 const keys = new Set();
 if (!Array.isArray(rows) || rows.some(row => {
   const key = JSON.stringify([row.day, row.action, row.page, row.referrer]);
