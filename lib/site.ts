@@ -9,6 +9,12 @@ export const siteConfig = {
   phoneE164: "+908503033193",
   phoneHref: "tel:+908503033193",
   email: "destek@yikat.tech",
+  // Public Apple lookup verified 2026-10-16: id, bundle and seller website all
+  // identify this app. Keep store identity separate from the shop's sameAs links.
+  iosApp: {
+    storeUrl: "https://apps.apple.com/tr/app/id6806875753",
+    developerName: "AHMET KAAN EVRENSEL",
+  },
   address: {
     // Adres düzeltmesi (sahip, 2026-08-26): resmi adres Sakızağacı Mah. İskele Caddesi
     // No:15-B. Posta kodu 34142 değişmedi (Sakızağacı Mah. aynı posta bölgesinde).

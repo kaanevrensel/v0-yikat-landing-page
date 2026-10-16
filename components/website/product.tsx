@@ -14,6 +14,7 @@ import { serviceItems } from "./services";
 import { ServiceArt } from "./service-art";
 import { useSceneSequence } from "./motion";
 import { CareGlyph, TimeDial, type CareGlyphKind } from "./brand-art";
+import { siteConfig } from "@/lib/site";
 
 export function ProductPage() {
   return (
@@ -37,6 +38,14 @@ export function ProductPage() {
           <h2>Soruların varsa</h2>
         </div>
         <div className="faq-list">
+          <details>
+            <summary>Yıkat uygulamasını nereden indirebilirim?<span>+</span></summary>
+            <p>
+              iPhone için <a href={siteConfig.iosApp.storeUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">Yıkat’ı App Store’dan indir</a>.
+              {" Mağazadaki geliştirici adı "}{siteConfig.iosApp.developerName}{". Uygulama desteği ve işletme bilgileri için "}
+              <Link href="/iletisim" className="underline underline-offset-4">iletişim sayfamıza</Link> göz atabilirsin.
+            </p>
+          </details>
           {[
             [
               "Adresime hizmet geliyor mu?",
@@ -44,7 +53,7 @@ export function ProductPage() {
             ],
             [
               "Üye olmadan inceleyebilir miyim?",
-              "Evet. Hizmetlere ve fiyatlara üye olmadan göz atabilirsin. Sipariş vermek istediğinde giriş yapman gerekir.",
+              "Evet. Hizmetlere ve fiyatlara üye olmadan göz atabilirsin. Uygulamadan yeni sipariş alımı şu an duraklatılmış durumda; mevcut siparişlerini giriş yaparak takip edebilirsin.",
             ],
             [
               "Alım ve teslim zamanı nasıl belirleniyor?",

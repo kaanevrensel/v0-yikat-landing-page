@@ -6,6 +6,7 @@ import { ContactMeasurement } from "@/components/contact-measurement"
 import { contactPagePaths } from "@/lib/contact-measurement"
 import { careGuides } from "@/lib/care-guides"
 import { priceMenu, siteConfig } from "@/lib/site"
+import legal from "@/lib/legal-content.json"
 import "./globals.css"
 import "./marketing.css"
 import "./centered.css"
@@ -84,7 +85,8 @@ const localBusinessJsonLd = {
   // En spesifik mevcut alt-tip (Google şartı; ShoeCleaning tipi yok, additionalType desteklenmiyor).
   "@type": "DryCleaningOrLaundry",
   name: "Yıkat",
-  alternateName: "Yıkat Ayakkabı Yıkama",
+  alternateName: ["Yikat", "Yıkat Ayakkabı Yıkama"],
+  legalName: legal.company.legalName,
   description:
     "Bakırköy Sakızağacı’nda ayakkabı temizleme ve bakım dükkânı. Sneaker, deri, süet, nubuk ve çocuk ayakkabıları için malzemeye göre değerlendirme.",
   "@id": `${siteConfig.url}/#business`,
@@ -149,7 +151,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org", "@type": "WebSite", "@id": `${siteConfig.url}/#website`,
-          name: "Yıkat", url: siteConfig.url, inLanguage: "tr-TR",
+          name: "Yıkat", alternateName: ["Yikat", "yikat.tech"], url: siteConfig.url, inLanguage: "tr-TR",
           publisher: { "@id": `${siteConfig.url}/#business` },
         }).replace(/</g, "\\u003c") }} />
         {children}
