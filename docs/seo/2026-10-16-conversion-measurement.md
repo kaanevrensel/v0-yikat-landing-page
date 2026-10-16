@@ -10,13 +10,15 @@ The listener handles normal pointer and Enter-key anchor activations, including 
 
 The legacy event stops at rollout. Do not splice its totals into the new series or call the apparent coverage increase conversion growth. Record the deployment timestamp and first genuine provider-observed event separately. Automated/local SDK-call tests do not prove provider ingestion. Do not create production test contacts, messages, orders or purchase events to populate this report.
 
-Vercel's current documentation lists custom events on Pro and Enterprise plans. Verify the actual production project's plan and Events access before claiming that the dashboard can report these counts. Historical HTTP 200 ingestion alone does not establish that entitlement. This change adds no paid plan, billing configuration or additional analytics provider. Until native availability and genuine events are observed, contact totals remain unknown. [Vercel event availability](https://vercel.com/docs/analytics/custom-events).
+Vercel's current documentation lists custom events on Pro and Enterprise plans. On October 16, the live `www.yikat.tech` alias and ready deployment were resolved to `v0-yikat-landing-page-zrks` on an active Hobby team. The actual production custom-event count endpoint then returned HTTP 402 `payment_required` at 00:59 UTC, explicitly requiring Pro or Enterprise. The plan gate is therefore confirmed: this instrumentation can ship, but native custom-event totals are unavailable under the current plan. Historical HTTP 200 ingestion alone does not establish dashboard entitlement. This change adds no paid plan, billing configuration or additional analytics provider. Contact totals remain unknown until a supported reporting path and genuine events are observed. Search Console, Business Profile interactions and recorded shop sources remain separate qualified-demand proxies, not joined customer attribution. [Vercel event availability](https://vercel.com/docs/analytics/custom-events).
 
 ## Shop evidence already available
 
 The product source at the inspected operations checkout records `Order.acquisitionSource` independently of discounts: `UNKNOWN`, `META_CAMPAIGN`, `STREET`, `INSTAGRAM`, `GOOGLE`, `CHATGPT`, `REFERRAL`, and `OTHER`. The counter form asks for the source of the current visit and allows unknown explicitly. `Order.sourceChannel` identifies the order-entry channel, not the marketing source. The existing `GOOGLE` value does not distinguish Maps, organic website search or other Google discovery. There is no observed individual link from the anonymous website click to an order; matching customers or attributing revenue from these aggregates would be unsupported.
 
 `paidAt` and `deliveredAt` are separate recorded facts. Weekly created, paid and delivered counts use different date windows over different populations; they are not consecutive stages of one cohort. Payments can be refunded later, and current delivery fields can change. These counts must not be presented as net revenue or an immutable historical event ledger.
+
+The native Business Profile performance read on October 16 also showed 218 profile viewers and 57 interactions for September 2026. The UI did not expose its timezone or a verified action breakdown. Those interactions are not completed calls, visits or orders, and that calendar-month window differs from the Search Console and shop baseline. Keep this receipt as a separate observation; do not calculate a cross-system conversion rate. Evidence: `workstreams/search-growth-20261015/next-execution-native.json`. The actual production analytics plan and HTTP 402 receipt are in `workstreams/search-growth-20261015/competitor-next/vercel-analytics-access.json`.
 
 ## Weekly operating command
 
@@ -39,7 +41,7 @@ Search Console daily dates use Pacific time. Preserve provider timezones and com
 
 ## Checkpoints and ownership
 
-- At rollout: Emre records the actual deployment/event-contract start, production host and native analytics availability. First genuine contact receipt remains pending until observed. No synthetic production event is required.
+- At rollout: Emre records the actual deployment/event-contract start and production host. The current Hobby plan cannot report custom-event totals; retain that gate until supported reporting exists. First genuine contact receipt remains pending until observed. No synthetic production event is required.
 - October 22: Emre reviews indexing for the two requested hubs, exports the latest fully reported search window and inspects contact coverage. Kaan supplies the same period's genuine source/paid/delivered aggregate or leaves it unknown.
 - October 29: Repeat with the same definitions, filters and provider timezone. Inspect missing source coverage before interpreting source shares; investigate actual failed contacts or crawl issues.
 - November 12: Review demand relevance and contact outcomes. For an entirely postrelease 28-day Search Console comparison, use October 17–November 13 once all days are final, rather than treating the November 12 checkpoint as a complete postrelease window.

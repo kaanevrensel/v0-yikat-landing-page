@@ -8,7 +8,7 @@ import { CONTENT_UPDATED } from "@/lib/discovery"
 // bu yüzden gerçek içerik-değişim tarihleri elle tutulur (içerik değişince güncelle).
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    ...["/ayakkabi-temizleme", "/bakirkoy-ayakkabi-temizleme", "/rehber"].map(path => ({ url: `${siteConfig.url}${path}`, lastModified: new Date(CONTENT_UPDATED) })),
+    ...["/ayakkabi-temizleme", "/bakirkoy-ayakkabi-temizleme", "/rehber"].map(path => ({ url: `${siteConfig.url}${path}`, lastModified: new Date("2026-10-16") })),
     ...careGuides.map(guide => ({
       url: `${siteConfig.url}/rehber/${guide.slug}`,
       // Keep the shared shop-facts revision, but never predate a newer guide edit.

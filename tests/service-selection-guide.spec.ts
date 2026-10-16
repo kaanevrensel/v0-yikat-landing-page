@@ -38,6 +38,10 @@ test("service selection guide is discoverable from the guide hub, price guide an
   expect(sitemap.match(new RegExp(`<loc>${siteConfig.url}${path}</loc>`, "g"))).toHaveLength(1)
   const entry = sitemap.match(/<url>[\s\S]*?<\/url>/g)?.find(block => block.includes(`<loc>${siteConfig.url}${path}</loc>`))
   expect(entry).toContain("<lastmod>2026-10-16T00:00:00.000Z</lastmod>")
+  for (const changedPath of ["/ayakkabi-temizleme", "/bakirkoy-ayakkabi-temizleme", "/rehber", "/rehber/ayakkabi-temizleme-fiyati-neye-gore-belirlenir"]) {
+    const changedEntry = sitemap.match(/<url>[\s\S]*?<\/url>/g)?.find(block => block.includes(`<loc>${siteConfig.url}${changedPath}</loc>`))
+    expect(changedEntry, changedPath).toContain("<lastmod>2026-10-16T00:00:00.000Z</lastmod>")
+  }
   await page.goto(path)
   const targets = await page.locator("main a[href^='/']").evaluateAll(links => [...new Set(links.map(link => link.getAttribute("href")!))])
   for (const target of targets) expect((await request.get(target)).status(), target).toBe(200)
