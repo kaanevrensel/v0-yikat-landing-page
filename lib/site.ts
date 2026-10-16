@@ -34,9 +34,9 @@ export const siteConfig = {
       { label: "Pazar", days: ["Sunday"], opens: "10:00", closes: "20:30" },
     ],
   },
-  // Sahip beyanı (2026-07-11): kategoriye göre sabit fiyat, bu aralıkta. Kesin menü gelince
-  // priceMenu doldurulur; bu etiket UI + JSON-LD priceRange'in tek kaynağıdır.
-  priceRangeLabel: "400–1000 ₺",
+  // Base tariffs for one pair, verified against the live catalog and shop records.
+  // Excludes child reductions and campaigns; see docs/seo/2026-10-15-workshop-proof.md.
+  priceRangeLabel: "400–900 TL",
   // Google/Apple Maps derin linkleri (Yol Tarifi CTA'ları)
   directionsUrl:
     "https://www.google.com/maps/dir/?api=1&destination=Sak%C4%B1za%C4%9Fac%C4%B1+Mahallesi+%C4%B0skele+Caddesi+15-B+Bak%C4%B1rk%C3%B6y+%C4%B0stanbul",
@@ -74,13 +74,15 @@ export const valueProps = [
   },
 ] as const
 
-// Fiyat menüsü — price null iken "Menü yakında" gösterilir; menü gelince "499 ₺" gibi doldurulur.
+// Exact production PriceList categories, corroborated by current quote logic and
+// recent Bakırköy counter records. Do not map sneaker/nubuk to a tariff category.
+export const priceMenuVerifiedAt = "2026-10-16" // Europe/Istanbul observation date
 export type PriceItem = { category: string; note: string; price: string | null }
 export const priceMenu: PriceItem[] = [
-  { category: "Spor Ayakkabı", note: "Sneaker, kumaş, mesh ve karışık malzeme", price: null },
-  { category: "Deri Ayakkabı", note: "Klasik ve günlük deri modeller", price: null },
-  { category: "Süet & Nubuk", note: "Hassas yüzeylere özel bakım", price: null },
-  { category: "Çocuk Ayakkabısı", note: "Tüm çocuk modelleri", price: null },
+  { category: "Bez", note: "Bir çift için baz ücret", price: "400 TL" },
+  { category: "Deri", note: "Bir çift için baz ücret", price: "650 TL" },
+  { category: "Süet", note: "Bir çift için baz ücret", price: "750 TL" },
+  { category: "Bot", note: "Bir çift için baz ücret", price: "900 TL" },
 ]
 
 // SSS — hem sayfadaki accordion hem app/page.tsx'teki FAQPage JSON-LD buradan beslenir (tamamı).

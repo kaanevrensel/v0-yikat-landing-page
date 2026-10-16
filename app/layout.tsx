@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next"
 import { Bricolage_Grotesque } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { WebVitalsReporter } from "@/components/web-vitals-reporter"
+import { ContactMeasurement } from "@/components/contact-measurement"
+import { contactPagePaths } from "@/lib/contact-measurement"
+import { careGuides } from "@/lib/care-guides"
 import { priceMenu, siteConfig } from "@/lib/site"
 import "./globals.css"
 import "./marketing.css"
@@ -90,7 +93,7 @@ const localBusinessJsonLd = {
   email: siteConfig.email,
   image: `${siteConfig.url}/images/shop/bakirkoy-owner-202608.webp`,
   logo: `${siteConfig.url}/images/yikat-logo-blue.png`,
-  // No current itemized menu: do not publish an old price range as a live quote.
+  // The visible menu lists dated base tariffs; no universal final quote is implied.
   hasMap: siteConfig.mapsPlaceUrl,
   address: {
     "@type": "PostalAddress",
@@ -116,8 +119,8 @@ const localBusinessJsonLd = {
   // Kaynağı SSS'teki gerçek beyan ("Nakit ve kart geçerli") — uydurma veri değil.
   paymentAccepted: "Cash, Credit Card",
   currenciesAccepted: "TRY",
-  // Hizmet kataloğu priceMenu'den türetilir; price:null kuralı gereği Offer'larda fiyat alanı YOK
-  // ("Menü yakında" string'i şemaya sızmaz). Sahip menüyü verince fiyatlar tek noktadan akabilir.
+  // Categories come from the verified base menu. Numeric Offers remain omitted;
+  // the final scope and charged amount are confirmed at acceptance.
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Ayakkabı Yıkama Hizmetleri",
@@ -151,6 +154,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         }).replace(/</g, "\\u003c") }} />
         {children}
         <Analytics />
+        <ContactMeasurement publicPaths={contactPagePaths(careGuides.map(guide => guide.slug))} />
         <WebVitalsReporter />
       </body>
     </html>

@@ -4,28 +4,12 @@ import type { ComponentProps } from "react"
 import { usePathname } from "next/navigation"
 import { ArrowUpRight, MapPin, MessageCircle, Phone } from "lucide-react"
 import { siteConfig } from "@/lib/site"
-import { track } from "@/lib/analytics"
 import { useDirectionsUrl } from "@/hooks/use-directions-url"
 
-// Only a fixed referrer class is sent, never the referring URL, query or message.
-export function referrerChannel(referrer: string) {
-  try {
-    const host = new URL(referrer).hostname
-    if (/(^|\.)(chatgpt\.com|chat\.openai\.com)$/.test(host)) return "chatgpt"
-    if (/(^|\.)(perplexity\.ai|claude\.ai|copilot\.microsoft\.com|gemini\.google\.com)$/.test(host)) return "other_ai"
-    if (/(^|\.)google\.(com(\.[a-z]{2})?|[a-z]{2}|co\.[a-z]{2}|cat)$/.test(host)) return "google"
-    if (/(^|\.)bing\.com$/.test(host)) return "bing"
-    if (/(^|\.)yikat\.tech$/.test(host)) return "internal"
-    return "other"
-  } catch { return "direct_or_unknown" }
-}
-
-export function DiscoveryLink({ action, children, onClick, href, ...props }: ComponentProps<"a"> & { href: string; action: "call" | "whatsapp" | "directions" | "maps" | "service"; children: React.ReactNode }) {
-  const pathname = usePathname()
-  return <a {...props} href={href} onClick={(event) => {
-    onClick?.(event)
-    if (!event.defaultPrevented) track("discovery_contact_click", { action, page: pathname, referrer: referrerChannel(document.referrer) })
-  }}>{children}</a>
+export function DiscoveryLink({ action, children, href, ...props }: ComponentProps<"a"> & { href: string; action: "call" | "whatsapp" | "directions" | "maps" | "service"; children: React.ReactNode }) {
+  // ContactMeasurement owns event emission across all pages. Keep this marker
+  // descriptive only, so service/maps navigation never becomes contact intent.
+  return <a {...props} href={href} data-discovery-action={action}>{children}</a>
 }
 
 export function PhotoEnquiryLink({ children = "Fotoğrafını gönder", className }: { children?: React.ReactNode; className?: string }) {
