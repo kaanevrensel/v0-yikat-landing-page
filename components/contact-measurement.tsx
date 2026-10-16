@@ -18,7 +18,7 @@ export function ContactMeasurement({ publicPaths }: { publicPaths: string[] }) {
       const properties = contactProperties(anchor.href, window.location.pathname, document.referrer, publicPaths)
       if (!properties) return
       observed.add(event)
-      // Use the existing SDK and its host, automation and beforeSend controls.
+      // Use the existing SDK without changing the Analytics configuration.
       // Never block navigation or call the analytics ingestion endpoint directly.
       track(CONTACT_EVENT, properties)
     }
