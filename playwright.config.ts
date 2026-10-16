@@ -15,7 +15,7 @@ export default defineConfig({
     baseURL,
   },
   webServer: {
-    env: { YIKAT_GOOGLE_REVIEWS_ENABLED: "false", YIKAT_GOOGLE_REVIEWS_PUBLIC_DISPLAY_APPROVED: "false" },
+    env: { YIKAT_GOOGLE_REVIEWS_ENABLED: "false", YIKAT_GOOGLE_REVIEWS_PUBLIC_DISPLAY_APPROVED: "false", YIKAT_CONTACT_COUNTER_ENABLED: "false" },
     // Production build'e karşı koşulur: dev sunucusunun rota-bazlı soğuk derlemeleri paralel
     // worker'larda ERR_ABORTED/timeout flakiness'i üretiyordu; prod deterministik ve hızlı.
     command: `YIKAT_BUILD_DIR=.next-test pnpm build --webpack && YIKAT_BUILD_DIR=.next-test pnpm start --hostname 127.0.0.1 --port ${port}`,

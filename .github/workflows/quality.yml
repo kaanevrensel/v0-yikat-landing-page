@@ -20,7 +20,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm typecheck
-      - run: node --test tests/search-tools.test.mjs
+      - run: node --test tests/search-tools.test.mjs tests/search-priorities.test.mjs tests/contact-counter.test.mjs
       # playwright.config.ts channel:"chrome" — CI'da markalı Chrome kurulur
       - run: npx playwright install --with-deps chrome
       - run: pnpm test
