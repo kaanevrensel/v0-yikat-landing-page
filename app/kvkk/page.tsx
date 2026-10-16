@@ -16,7 +16,7 @@ import legal from "@/lib/legal-content.json"
 // Analytics) and have counsel review any change.
 
 const path = "/kvkk"
-const WEBSITE_NOTICE_DATE = "15 Ekim 2026"
+const WEBSITE_NOTICE_DATE = "16 Ekim 2026"
 
 const websiteNotice: LegalBlock[] = [
   {
@@ -29,6 +29,7 @@ const websiteNotice: LegalBlock[] = [
       "İş ortaklığı başvuru formu: formda paylaştığınız işletme adı, ad-soyad, telefon, e-posta ve verdiğiniz hizmetlere ilişkin bilgiler; başvurunuzu değerlendirmek ve sizinle iletişime geçmek amacıyla işlenir (KVKK md. 5/2-c). Başvuru kaydı, §6’da açıklanan veritabanı altyapısında saklanır.",
       "Telefon, WhatsApp ve e-posta: bize bu kanallardan ulaştığınızda iletişim bilgileriniz ve mesajınızın içeriği, talebinizi yanıtlamak ve destek kaydını tutmak amacıyla işlenir (KVKK md. 5/2-c ve 5/2-f).",
       "Site kullanım ölçümü: hangi sayfaların görüntülendiği ve hangi bağlantılara (örneğin WhatsApp veya yol tarifi) dokunulduğu, Vercel Web Analytics ile toplu istatistik olarak ölçülür. Bu ölçümde çerez kullanılmaz ve ölçüm sizi kimliklendirmek için kullanılmaz; siteyi iyileştirmeye yönelik meşru menfaatimize dayanır (KVKK md. 5/2-f).",
+      "İletişim bağlantısı sayımı: telefon, WhatsApp ve yol tarifi bağlantılarının kullanımı ayrıca İstanbul takvim günü, bağlantı türü, herkese açık sayfa grubu ve yönlendiren kaynak sınıfına göre toplu olarak sayılır. Bu sayım tablosunda IP adresi, kişi veya cihaz kimliği, çerez, mesaj içeriği, tam yönlendiren adres veya arama sorgusu tutulmaz; sipariş ve müşteri kayıtlarıyla eşleştirilmez. Toplu sayımlar §6’da açıklanan Supabase altyapısında saklanır; yeni bir sayım işlendiğinde son 90 takvim gününün dışındaki satırlar temizlenir. Amaç, iletişim yollarının kullanımını ve siteyi iyileştirmektir (KVKK md. 5/2-f).",
       "Barındırma: web sitesi Vercel altyapısında barındırılır; bu sağlayıcının sunucuları yurt dışındadır. Erişim sırasında oluşan teknik kayıtlar (IP adresi, tarayıcı ve cihaz bilgisi) sitenin güvenliği ve işleyişi için işlenir (KVKK md. 5/2-f).",
     ],
   },

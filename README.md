@@ -2,6 +2,14 @@
 
 Turkish marketing website at https://www.yikat.tech/. Development and verification instructions are in [CLAUDE.md](CLAUDE.md).
 
+## Local growth tools, October 16 2026
+
+The existing cleaning hub now explains the acceptance scope, repair exclusions, collection timing and result checks beside the verified prices. The local shop page links to `/yorum`, a noindex utility with a neutral Google review request and printable A5 counter card. The customer-case renderer stays absent until an operator verifies the latest exact-media consent receipt, factual treatment notes and sanitized public derivatives. No customer case or invented turnaround is published. [Source and publication workflow](docs/seo/2026-10-16-local-proof.md).
+
+A weekly GitHub workflow audits the public website and prepares a review queue for twelve relevant Turkish queries. Native Search Console exports remain a separate private input; missing ranks and demand remain unknown. The schema2 first-party contact counter stores only fixed aggregate buckets, separate from the unavailable Vercel custom-event report. It is disabled by default and requires SQL182 verification and an explicit production activation record. Neither the scheduled workflow definition nor endpoint code establishes a successful run or genuine customer event. [Operation and measurement boundaries](docs/seo/2026-10-16-weekly-search-cycle.md).
+
+Local integration checks and later deployment/activation evidence are recorded in the canonical YIKAT workstream `workstreams/local-growth-20261016/website/integration`. Actual review requests, permission collection, counter-card placement, partnerships and business outcomes remain distinct from website release.
+
 ## Attribution state
 
 September 27, 2026: the homepage has a visible, server-rendered BENIAN technology-support link. It is enabled only on the homepage, rather than repeated across service pages. [PR 8](https://github.com/kaanevrensel/v0-yikat-landing-page/pull/8) merged and the link was independently verified on the production homepage. The credit makes no AI-product or delivered-outcome claim. Current release status, verification evidence and remaining access work are maintained in [BEN-3094](https://linear.app/benian/issue/BEN-3094).

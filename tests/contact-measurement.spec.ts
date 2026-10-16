@@ -114,3 +114,34 @@ test("phone and both platform directions use the same event schema", async ({ pa
   await directions.click()
   expect((await events(page)).map(event => event.data.action)).toEqual(["call", "directions", "directions"])
 })
+
+test("first-party counter excludes known browser automation and disabled local storage", async ({ page, request }) => {
+  await captureLocally(page)
+  const calls: unknown[] = []
+  await page.route("**/api/contact-counts", route => { calls.push(route.request().postDataJSON()); return route.fulfill({ status: 204 }) })
+  await ready(page, "/")
+  await page.locator(`a[href='${siteConfig.whatsappHref}']`).first().click()
+  expect(await page.evaluate(() => navigator.webdriver)).toBe(true)
+  expect(calls).toEqual([])
+  const disabled = await request.post("/api/contact-counts", { data: { schema: 2, action: "call", page: "/", referrer: "google" } })
+  expect(disabled.status()).toBe(503)
+})
+
+test("first-party local transport test groups guides and suppresses duplicate and synthetic activations", async ({ page }) => {
+  await captureLocally(page)
+  // Only this isolated test removes the automation flag. The route is intercepted,
+  // so no native database/provider receives a synthetic event.
+  await page.addInitScript(() => Object.defineProperty(navigator, "webdriver", { get: () => false }))
+  const calls: unknown[] = []
+  await page.route("**/api/contact-counts", route => { calls.push(route.request().postDataJSON()); return route.fulfill({ status: 204 }) })
+  await ready(page, "/rehber/ayakkabi-nasil-kurutulur?private=synthetic")
+  const contact = page.locator(".discovery-actions a[href*='wa.me']").first()
+  const original = await contact.getAttribute("href")
+  await contact.click()
+  await contact.click()
+  await expect.poll(() => calls.length).toBe(1)
+  expect(calls[0]).toEqual({ schema: 2, action: "whatsapp", page: "/rehber/*", referrer: "direct_or_unknown" })
+  await contact.evaluate(anchor => anchor.dispatchEvent(new MouseEvent("click", { bubbles: true })))
+  expect(calls).toHaveLength(1)
+  expect(await contact.getAttribute("href")).toBe(original)
+})

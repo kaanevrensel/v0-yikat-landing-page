@@ -5,6 +5,9 @@ import { discoveryMetadata, formatContentDate, BUSINESS_ID } from "@/lib/discove
 import { DiscoveryShell, JsonLd, RelatedLinks, FaqList, ShopInvitation, ScrollableTable } from "@/components/discovery/shared"
 import { PhotoEnquiryLink, ShopActions } from "@/components/discovery/actions"
 import { CareAssessment } from "@/components/discovery/care-assessment"
+import { ServiceExpectations } from "@/components/discovery/service-expectations"
+import { CustomerCases } from "@/components/discovery/customer-cases"
+import "@/app/local-growth.css"
 
 export const metadata = discoveryMetadata("Ayakkabı Temizleme ve Yıkama Hizmetleri", "Sneaker, deri, süet ve nubuk için ayakkabı temizleme seçenekleri. Malzemeye göre yöntem, işlem kapsamı, ücret ve Bakırköy dükkân bilgileri.", "/ayakkabi-temizleme")
 
@@ -45,6 +48,8 @@ export default function Page() {
       <p>Fotoğrafla sorarken çiftin tamamını, sorunlu bölgeyi ve varsa bakım etiketini göster. Daha önce uygulanan ürünü ve ihtiyaç duyduğun tarihi de belirt; fiziksel inceleme gerektiğinde bunu söyleriz.</p>
       <PhotoEnquiryLink className="discovery-inline-link">Fotoğrafla ücret sor</PhotoEnquiryLink>
     </section>
+    <ServiceExpectations/>
+    <CustomerCases/>
     <section className="discovery-prose discovery-narrow"><h2>Evde bakım mı, profesyonel değerlendirme mi?</h2><p>Üretici talimatı açık olan hafif yüzey kiri için bakım rehberlerinden başlayabilirsin. Karışık malzeme, süet detay, önceki ürün izi veya mevcut hasarda önce değerlendirme istemek daha yerinde olur.</p><p>“Ayakkabı kuru temizleme” ifadesi de tek bir yöntem tarif etmez. Tekstilde kullanılan profesyonel işlemin her ayakkabı için uygun olduğu varsayılamaz. Ayakkabının malzemesi ve yapısı önceliklidir.</p><p>Hafif yüzey bakımı için <Link href="/rehber/spor-ayakkabi-nasil-temizlenir">spor ayakkabı rehberini</Link>, iç yüzey için <Link href="/rehber/ayakkabi-tabanligi-nasil-temizlenir">tabanlık rehberini</Link> kullan. Ücret sorusunu hazırlamak için <Link href="/rehber/ayakkabi-temizleme-fiyati-neye-gore-belirlenir">kabul öncesi soruları</Link> incele.</p></section>
     <div className="discovery-narrow"><FaqList faqs={[
       { q: "Ayakkabı temizleme ile yıkama aynı şey mi?", a: "Günlük kullanımda benzer hizmeti anlatabilir; fakat uygulanacak işlem malzemeye göre değişir. Süet, deri ve kumaşa aynı yıkama yöntemi uygulanmaz." },

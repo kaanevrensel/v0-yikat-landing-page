@@ -1,0 +1,25 @@
+.service-expectations, .customer-cases { margin: var(--discovery-section-gap) 0; scroll-margin-top: 112px; }
+.service-expectations h2 { max-width: 25ch; }
+.service-expectations dl, .customer-cases dl { margin: 28px 0 0; }
+.service-expectations dl > div, .customer-cases dl > div { display: grid; grid-template-columns: minmax(160px, .7fr) minmax(0, 1.7fr); gap: 36px; border-top: 1px solid #d4e1ea; padding: 24px 0; }
+.service-expectations dt, .customer-cases dt { font-size: 19px; font-weight: 600; }
+.service-expectations dd, .customer-cases dd { margin: 0; max-width: 67ch; }
+.customer-cases > p { max-width: 67ch; }
+.customer-cases article { margin-top: 48px; }
+.customer-cases article > p { color: #4b6476; }
+.customer-case-images { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.customer-case-images figure { margin: 0; }
+.customer-case-images img { display: block; width: 100%; height: auto; border-radius: 18px; }
+.customer-case-images figcaption { margin-top: 10px; font-size: 15px; }
+.review-request-heading { max-width: 760px; }
+.review-request { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 48px; max-width: 850px; align-items: center; margin: 40px 0 60px; }
+.review-request > a { border: 1px solid #d4e1ea; border-radius: 20px; padding: 12px; }
+.review-request img { width: 100%; height: auto; }
+.review-request p { max-width: 48ch; font-size: 16px; }
+.review-request .button { color: #fff; background: #1f5eb8; }
+@media (max-width: 680px) {
+  .service-expectations dl > div, .customer-cases dl > div { grid-template-columns: 1fr; gap: 9px; padding: 20px 0; }
+  .customer-case-images { grid-template-columns: 1fr; }
+  .review-request { grid-template-columns: 1fr; gap: 24px; }
+  .review-request > a { max-width: 240px; }
+}
