@@ -20,7 +20,7 @@ export const services: Service[] = [
     risks: [
       { title: "Karışık malzeme", text: "Kumaş üst yüzey, süet detay, deri parça ve baskı aynı ayakkabıda bulunabilir. Yöntemi seçerken ayakkabının tamamına bakmak gerekir." },
       { title: "Beyaz yüzey ve taban", text: "Kir ile aşınma veya renk değişimi aynı sorun değildir. Sararmayı görmeden tamamen giderileceği söylenemez." },
-      { title: "Mevcut hasar", text: "Açılmış taban, soyulma veya eski bir tamir varsa işlemden önce göster. Temizleme, onarım hizmeti anlamına gelmez." },
+      { title: "Mevcut hasar", text: "Açılmış taban, soyulma veya daha önce yapıştırılmış bir bölge varsa temizlikten önce göster. Temizleme, onarım hizmeti anlamına gelmez." },
     ],
     steps: [
       { title: "Ayakkabıyı inceleyelim", text: "Malzeme, leke ve mevcut yıpranmayı değerlendirelim. Daha önce evde uyguladığın ürünleri de paylaş." },

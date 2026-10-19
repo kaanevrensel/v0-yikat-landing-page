@@ -77,7 +77,7 @@ const conditions: Record<CareCondition, { title: string; next: string; bring: st
   damage: {
     title: "Temizlikten önce mevcut hasarı göster.",
     next: "Açılan, soyulan veya çatlayan bölgeyi ovalama ya da sökmeye çalışma. Temizlik tabanı yapıştırmaz, eksilen yüzeyi onarmaz. Temizliğin uygunluğu ve sınırları fiziksel incelemede netleşir.",
-    bring: "Hasarın yakını, ayakkabının tamamı ve daha önce yapılan tamir veya yapıştırma bilgisi.",
+    bring: "Hasarın yakını, ayakkabının tamamı ve daha önce yapılan yapıştırma veya başka bir işlem bilgisi.",
     guide: { href: "/rehber/ayakkabi-bakimi-mi-onarim-mi", label: "Temizlik ve onarımın farkı" },
   },
 }
