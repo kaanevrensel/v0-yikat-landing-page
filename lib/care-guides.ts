@@ -59,7 +59,7 @@ export const careGuides: CareGuide[] = [
       { id: "baslangic", title: "Önce kuru kir mi, ıslak leke mi?", table: { caption: "İşleme başlamadan durumu ayır", headings: ["Gördüğün durum", "İlk adım", "Ne zaman durmalı?"], rows: [["Kuru toz ve gevşek kir", "Uygun süet/nubuk fırçasıyla hafifçe temizle.", "Yüzeyde belirgin tüy kaybı veya renk değişimi olursa."], ["Yağmurdan ıslanmış yüzey", "Doğrudan ısı uygulamadan kurumasını bekle.", "Kurutmayı hızlandırmak için sıcak hava verme."], ["Yağ, eski leke veya önceki ürün izi", "Lekenin ve kullanılan ürünün bilgisini not et.", "Malzemeye uygun yöntemden emin değilsen değerlendirme iste."]] }, sourceIds: ["nikeSuede", "clarks"] },
       { id: "firca", title: "Fırçalama bir güç testi değil", paragraphs: ["Nike’ın süet bakım rehberi ve Clarks’ın bakım önerileri, gevşek kuru kiri nazikçe almaya odaklanır. Önce hafif basınçla küçük bir bölümde çalış. Sertçe bastırarak bütün yüzeyi aynı anda ovalamak yerine değişimi gözleyerek ilerle.", "Fırçanın temiz olması da önemli: tabanda kullandığın kirli aleti hassas üst yüzeye taşımamaya dikkat et. Ürünün süet veya nubuk için açıkça uygun olduğunu kontrol et; “deri temizleyici” yazması tek başına yeterli açıklama olmayabilir."], sourceIds: ["nikeSuede", "clarks"] },
       { id: "leke", title: "Leke kalırsa yöntemi üst üste ekleme", paragraphs: ["Kuru bakım sonrasında iz kaldığında sırayla deterjan, sirke ve başka karışımlar denemek değerlendirmeyi zorlaştırır. Ne sürdüğünü, ne kadar beklettiğini ve ayakkabının o sırada ıslak olup olmadığını kaydet. Bu bilgi, dükkânda sorunu anlamamıza yardımcı olur.", "Özellikle açık renkli ve karışık yüzeyli modellerde ayakkabının tamamının fotoğrafını da paylaş. Yakın plandaki bir leke, doku ve rengin genel durumunu tek başına göstermez."] },
-      { id: "dukkanda", title: "Temizlik, renk yenileme ve onarım ayrı işler", paragraphs: ["Süet ve nubuk temizliği, mevcut kir ve lekelerin malzemeye uygun biçimde ele alınmasıdır. Solan rengi yeniden boyamak, yıpranmış havı onarmak veya kopmuş parçayı tamir etmekle aynı işlem değildir.", "Bakırköy’de ayakkabıyı görerek yapılabilecek temizliği ve sınırlarını konuşabiliriz. Eski lekeye veya yıpranmış yüzeye bakmadan kusursuz sonuç ve sabit teslim süresi vermiyoruz. İşlem öncesi beklentiyi birlikte netleştirmek en faydalı başlangıçtır."] },
+      { id: "dukkanda", title: "Temizlik, renk yenileme ve onarım ayrı işler", paragraphs: ["Süet ve nubuk temizliği, mevcut kir ve lekelerin malzemeye uygun biçimde ele alınmasıdır. Solan rengi yeniden boyamak, yıpranmış havı onarmak veya kopmuş parçayı yeniden takmakla aynı işlem değildir.", "Bakırköy’de ayakkabıyı görerek yapılabilecek temizliği ve sınırlarını konuşabiliriz. Eski lekeye veya yıpranmış yüzeye bakmadan kusursuz sonuç ve sabit teslim süresi vermiyoruz. İşlem öncesi beklentiyi birlikte netleştirmek en faydalı başlangıçtır."] },
     ],
     faqs: [
       { q: "Süet ayakkabı ıslak bezle silinir mi?", a: "Bütün süetlere ortak bir ıslak silme tarifi vermek doğru olmaz. Önce üretici talimatını izle; hassas dokuyu suya boğmadan, uygun ürün ve küçük alan testiyle değerlendir." },
@@ -237,7 +237,7 @@ export const careGuides: CareGuide[] = [
         "title": "Ne zaman daha fazla ovalamamalısın?",
         "paragraphs": [
           "Bezde ayakkabının kendi rengini görüyorsan, yüzey kabarıyorsa veya taban bağlantısı açılıyorsa işlemi artırma. Önce ne kullandığını ve nerede değişiklik gördüğünü kaydet. Aynı iz üzerinde art arda farklı ürün denemek, sonradan yapılacak değerlendirmeyi zorlaştırır.",
-          "Temizlikten sonra kalan her iz kir değildir. Çizik, baskı kaybı, taban aşınması ve eski bir tamir ayrı konulardır. Daha sert temizlikle düzeleceğini varsayma."
+          "Temizlikten sonra kalan her iz kir değildir. Çizik, baskı kaybı, taban aşınması ve daha önce yapılmış bir işlem ayrı konulardır. Daha sert temizlikle düzeleceğini varsayma."
         ]
       },
       {
@@ -346,7 +346,7 @@ export const careGuides: CareGuide[] = [
         "id": "dukkan",
         "title": "Dükkâna getirirken bakım geçmişini paylaş",
         "paragraphs": [
-          "Daha önce sürülen boya, krem veya temizleyici; ayakkabının ıslanması; mevcut tamirler ve bekleyen lekeler değerlendirmeye yardımcı olur. Genel fotoğrafın yanında yakın plan ve model bilgisi de paylaşabilirsin.",
+          "Daha önce sürülen boya, krem veya temizleyici; ayakkabının ıslanması; daha önce yapılan işlemler ve bekleyen lekeler değerlendirmeye yardımcı olur. Genel fotoğrafın yanında yakın plan ve model bilgisi de paylaşabilirsin.",
           "Bakırköy’deki deri ayakkabı hizmetimiz temizlik ve bakım içindir. Boyama, taban değişimi veya restorasyon yapılacağını bu rehberden çıkarma; ihtiyacın olan işlemi kabulden önce netleştirelim."
         ]
       }
