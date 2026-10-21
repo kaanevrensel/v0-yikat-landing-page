@@ -43,7 +43,7 @@ export const careGuides: CareGuide[] = [
     faqs: [
       { q: "Beyaz tabandaki sararma kesin çıkar mı?", a: "Kesin sonuç söylenemez. Kir, leke, aşınma ve malzemenin renk değişimi farklı sorunlardır; ayakkabıyı görerek değerlendirmek gerekir." },
       { q: "Beyaz ayakkabıyı makineye atabilir miyim?", a: "Hayır. Beyaz olsun olmasın, ayakkabıyı çamaşır makinesine atma; yapıştırıcı, taban ve form zarar görebilir. Nedenlerini makine rehberimizde anlattık." },
-      { q: "Boya veya taban yenileme de yapılıyor mu?", a: "Burada anlatılan hizmet temizlik ve bakımdır. Boyama, taban yenileme veya onarımı temizlik hizmetinin parçası olarak varsayma." },
+      { q: "Boya veya taban yenileme de yapılıyor mu?", a: "Hayır. Lostra, boyama, taban yenileme veya onarım yapmıyoruz; yalnızca ayakkabı temizliği ve bakımı yapıyoruz." },
     ],
     related: ["ayakkabi-makinede-yikanir-mi", "ayakkabi-nasil-kurutulur"],
     service: { href: "/sneaker-yikama", label: "Spor ayakkabını dükkânda yıkat" },
@@ -59,7 +59,7 @@ export const careGuides: CareGuide[] = [
       { id: "baslangic", title: "Önce kuru kir mi, ıslak leke mi?", table: { caption: "İşleme başlamadan durumu ayır", headings: ["Gördüğün durum", "İlk adım", "Ne zaman durmalı?"], rows: [["Kuru toz ve gevşek kir", "Uygun süet/nubuk fırçasıyla hafifçe temizle.", "Yüzeyde belirgin tüy kaybı veya renk değişimi olursa."], ["Yağmurdan ıslanmış yüzey", "Doğrudan ısı uygulamadan kurumasını bekle.", "Kurutmayı hızlandırmak için sıcak hava verme."], ["Yağ, eski leke veya önceki ürün izi", "Lekenin ve kullanılan ürünün bilgisini not et.", "Malzemeye uygun yöntemden emin değilsen değerlendirme iste."]] }, sourceIds: ["nikeSuede", "clarks"] },
       { id: "firca", title: "Fırçalama bir güç testi değil", paragraphs: ["Nike’ın süet bakım rehberi ve Clarks’ın bakım önerileri, gevşek kuru kiri nazikçe almaya odaklanır. Önce hafif basınçla küçük bir bölümde çalış. Sertçe bastırarak bütün yüzeyi aynı anda ovalamak yerine değişimi gözleyerek ilerle.", "Fırçanın temiz olması da önemli: tabanda kullandığın kirli aleti hassas üst yüzeye taşımamaya dikkat et. Ürünün süet veya nubuk için açıkça uygun olduğunu kontrol et; “deri temizleyici” yazması tek başına yeterli açıklama olmayabilir."], sourceIds: ["nikeSuede", "clarks"] },
       { id: "leke", title: "Leke kalırsa yöntemi üst üste ekleme", paragraphs: ["Kuru bakım sonrasında iz kaldığında sırayla deterjan, sirke ve başka karışımlar denemek değerlendirmeyi zorlaştırır. Ne sürdüğünü, ne kadar beklettiğini ve ayakkabının o sırada ıslak olup olmadığını kaydet. Bu bilgi, dükkânda sorunu anlamamıza yardımcı olur.", "Özellikle açık renkli ve karışık yüzeyli modellerde ayakkabının tamamının fotoğrafını da paylaş. Yakın plandaki bir leke, doku ve rengin genel durumunu tek başına göstermez."] },
-      { id: "dukkanda", title: "Temizlik, renk yenileme ve onarım ayrı işler", paragraphs: ["Süet ve nubuk temizliği, mevcut kir ve lekelerin malzemeye uygun biçimde ele alınmasıdır. Solan rengi yeniden boyamak, yıpranmış havı onarmak veya kopmuş parçayı yeniden takmakla aynı işlem değildir.", "Bakırköy’de ayakkabıyı görerek yapılabilecek temizliği ve sınırlarını konuşabiliriz. Eski lekeye veya yıpranmış yüzeye bakmadan kusursuz sonuç ve sabit teslim süresi vermiyoruz. İşlem öncesi beklentiyi birlikte netleştirmek en faydalı başlangıçtır."] },
+      { id: "dukkanda", title: "Temizlik rengi yenilemez, hasarı onarmaz", paragraphs: ["Süet ve nubuk temizliği, mevcut kir ve lekelerin malzemeye uygun biçimde ele alınmasıdır. Solan rengi yeniden boyamak, yıpranmış havı onarmak veya kopmuş parçayı yeniden takmak başka işlerdir; biz bunları yapmıyoruz, yalnızca temizlik ve bakım yapıyoruz.", "Bakırköy’de ayakkabıyı görerek yapılabilecek temizliği ve sınırlarını konuşabiliriz. Eski lekeye veya yıpranmış yüzeye bakmadan kusursuz sonuç ve sabit teslim süresi vermiyoruz. İşlem öncesi beklentiyi birlikte netleştirmek en faydalı başlangıçtır."] },
     ],
     faqs: [
       { q: "Süet ayakkabı ıslak bezle silinir mi?", a: "Bütün süetlere ortak bir ıslak silme tarifi vermek doğru olmaz. Önce üretici talimatını izle; hassas dokuyu suya boğmadan, uygun ürün ve küçük alan testiyle değerlendir." },
@@ -245,7 +245,7 @@ export const careGuides: CareGuide[] = [
         "title": "Profesyonel değerlendirme için ne paylaşmalısın?",
         "paragraphs": [
           "Ayakkabının genel fotoğrafı, sorunlu bölgenin yakını ve varsa model etiketi iyi bir başlangıç. Son uyguladığın ürünü, ayakkabının ıslanıp ıslanmadığını ve belirli bir teslim tarihine ihtiyacın olup olmadığını ekle.",
-          "Bakırköy dükkânında bu bilgilerle işlem kapsamını, güncel ücreti ve teslim uygunluğunu birlikte netleştirelim. Temizlik talebini onarım veya renk yenileme talebiyle karıştırmamak, beklentinin baştan anlaşılmasını sağlar."
+          "Bakırköy dükkânında bu bilgilerle işlem kapsamını, güncel ücreti ve teslim uygunluğunu birlikte netleştirelim. Onarım, boyama veya renk yenileme yapmıyoruz; yalnızca temizlik ve bakım yapıyoruz."
         ]
       }
     ],
@@ -339,7 +339,7 @@ export const careGuides: CareGuide[] = [
         "title": "Kir, renk kaybı ve çatlak farklı sorunlardır",
         "paragraphs": [
           "Bir ayakkabıda yüzey kiriyle birlikte boya kaybı veya çatlak bulunabilir. Kirin alınması, eksilen rengin ya da hasarlı yüzeyin kendiliğinden onarılacağı anlamına gelmez. İşlem öncesi ve sonrası beklentiyi bu ayrımla değerlendir.",
-          "Krem veya cila sürdükten sonra belirginleşen bir izi daha fazla ürünle kapatmaya çalışmadan önce kullanılan ürünün adını not et. Değerlendirme isterken temizliği mi, görünüm yenilemeyi mi beklediğini açıkça anlat."
+          "Krem veya cila sürdükten sonra belirginleşen bir izi daha fazla ürünle kapatmaya çalışmadan önce kullanılan ürünün adını not et. Değerlendirme isterken temizlikten ne beklediğini açıkça anlat."
         ]
       },
       {
@@ -347,7 +347,7 @@ export const careGuides: CareGuide[] = [
         "title": "Dükkâna getirirken bakım geçmişini paylaş",
         "paragraphs": [
           "Daha önce sürülen boya, krem veya temizleyici; ayakkabının ıslanması; daha önce yapılan işlemler ve bekleyen lekeler değerlendirmeye yardımcı olur. Genel fotoğrafın yanında yakın plan ve model bilgisi de paylaşabilirsin.",
-          "Bakırköy’deki deri ayakkabı hizmetimiz temizlik ve bakım içindir. Boyama, taban değişimi veya restorasyon yapılacağını bu rehberden çıkarma; ihtiyacın olan işlemi kabulden önce netleştirelim."
+          "Bakırköy’deki deri ayakkabı hizmetimiz yalnızca temizlik ve bakımdır. Lostra, boyama, taban değişimi veya restorasyon yapmıyoruz; temizlikten ne beklediğini kabulden önce birlikte netleştirelim."
         ]
       }
     ],

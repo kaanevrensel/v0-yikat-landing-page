@@ -6,8 +6,8 @@ export const serviceExpectations = [
     text: "Üst yüzey, dış taban, iç yüzey, bağcık ve çıkarılabilir tabanlığı birlikte değerlendiriyoruz. Hangi parçaya ne işlem yapılacağını ayakkabının yapısına göre kabulde netleştiriyoruz.",
   },
   {
-    title: "Ayrı değerlendirilmesi gerekenler",
-    text: "Boyama, renk yenileme, taban değişimi ve onarım bu temizlik ücretinin içinde değildir. Çatlak, soyulma, aşınma veya renk kaybı kirle aynı şey değildir; her iz tamamen giderilemeyebilir.",
+    title: "Yapmadığımız işler",
+    text: "Lostra, boyama, renk yenileme, taban değişimi veya onarım hizmeti vermiyoruz; yalnızca ayakkabı temizliği ve bakımı yapıyoruz. Çatlak, soyulma, aşınma veya renk kaybı kirle aynı şey değildir; her iz tamamen giderilemeyebilir.",
   },
   {
     title: "Hazır olma ve teslim",
