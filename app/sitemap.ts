@@ -8,7 +8,9 @@ import { CONTENT_UPDATED } from "@/lib/discovery"
 // bu yüzden gerçek içerik-değişim tarihleri elle tutulur (içerik değişince güncelle).
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    ...["/ayakkabi-temizleme", "/bakirkoy-ayakkabi-temizleme", "/rehber"].map(path => ({ url: `${siteConfig.url}${path}`, lastModified: new Date("2026-10-16") })),
+    { url: `${siteConfig.url}/ayakkabi-temizleme`, lastModified: new Date("2026-10-21") },
+    { url: `${siteConfig.url}/bakirkoy-ayakkabi-temizleme`, lastModified: new Date("2026-10-25") },
+    { url: `${siteConfig.url}/rehber`, lastModified: new Date("2026-10-16") },
     ...careGuides.map(guide => ({
       url: `${siteConfig.url}/rehber/${guide.slug}`,
       // Keep the shared shop-facts revision, but never predate a newer guide edit.
@@ -16,10 +18,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     { url: `${siteConfig.url}/urun`, lastModified: new Date("2026-10-16") },
     { url: `${siteConfig.url}/partnerler`, lastModified: new Date("2026-10-10") },
-    { url: siteConfig.url, lastModified: new Date("2026-10-16") },
-    { url: `${siteConfig.url}/sneaker-yikama`, lastModified: new Date(CONTENT_UPDATED) },
-    { url: `${siteConfig.url}/suet-nubuk-temizleme`, lastModified: new Date(CONTENT_UPDATED) },
-    { url: `${siteConfig.url}/deri-ayakkabi-bakimi`, lastModified: new Date(CONTENT_UPDATED) },
+    { url: siteConfig.url, lastModified: new Date("2026-10-25") },
+    // Actual service-scope edits in ac6b2d4 (2026-10-21), not this build's date.
+    { url: `${siteConfig.url}/sneaker-yikama`, lastModified: new Date("2026-10-21") },
+    { url: `${siteConfig.url}/suet-nubuk-temizleme`, lastModified: new Date("2026-10-21") },
+    { url: `${siteConfig.url}/deri-ayakkabi-bakimi`, lastModified: new Date("2026-10-21") },
     { url: `${siteConfig.url}/kvkk`, lastModified: new Date("2026-10-15") },
     // Legal texts the contract and privacy pages cite by name (published 2026-10-15).
     ...["/kullanim-kosullari", "/odeme-ve-guvenli-alisveris", "/kvkk-basvuru-formu", "/acik-riza-metni", "/kart-saklama-metni"].map(path => ({ url: `${siteConfig.url}${path}`, lastModified: new Date("2026-10-15") })),

@@ -3,7 +3,7 @@ import { DiscoveryShell, FaqList, JsonLd, RelatedLinks, ShopInvitation, SourceLi
 import { BUSINESS_ID, CONTENT_DATE, WEBSITE_ID, careSources, formatContentDate, type CareGuide } from "@/lib/discovery"
 import { guideBySlug } from "@/lib/care-guides"
 import { siteConfig } from "@/lib/site"
-import { DiscoveryLink } from "./actions"
+import { DiscoveryLink, PhotoEnquiryLink } from "./actions"
 
 export function GuideView({ guide }: { guide: CareGuide }) {
   const path = `/rehber/${guide.slug}`
@@ -19,6 +19,10 @@ export function GuideView({ guide }: { guide: CareGuide }) {
           {guide.sections.map(section => <section id={section.id} key={section.id}>
             <h2>{section.title}</h2>
             {section.paragraphs?.map(p => <p key={p}>{p}</p>)}
+            {section.links && <div className="discovery-section-links">{section.links.map(link => link.type === "photo"
+              ? <PhotoEnquiryLink key={link.label} className="discovery-inline-link">{link.label}</PhotoEnquiryLink>
+              : <DiscoveryLink key={link.href} action="service" href={link.href} className="discovery-inline-link">{link.label}</DiscoveryLink>
+            )}</div>}
             {section.steps && <ol className="discovery-steps">{section.steps.map(step => <li key={step}>{step}</li>)}</ol>}
             {section.table && <ScrollableTable label={section.table.caption}><table data-columns={section.table.headings.length}><caption>{section.table.caption}</caption><thead><tr>{section.table.headings.map(h => <th key={h} scope="col">{h}</th>)}</tr></thead><tbody>{section.table.rows.map(row => <tr key={row[0]}>{row.map((cell, i) => i === 0 ? <th key={i} scope="row">{cell}</th> : <td key={i}>{cell}</td>)}</tr>)}</tbody></table></ScrollableTable>}
             {section.sourceIds && <p className="discovery-section-sources">Kaynak: {section.sourceIds.map((id, i) => <span key={id}>{i > 0 && " · "}<a href={`#kaynak-${id}`}>{careSources[id].title.split(" — ")[0]}</a></span>)}</p>}
