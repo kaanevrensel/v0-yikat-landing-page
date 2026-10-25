@@ -14,6 +14,7 @@ export type CareSection = {
   id: string
   title: string
   paragraphs?: string[]
+  links?: ({ type: "photo"; label: string } | { type: "service"; href: string; label: string })[]
   steps?: string[]
   table?: { headings: string[]; rows: string[][]; caption: string }
   sourceIds?: string[]

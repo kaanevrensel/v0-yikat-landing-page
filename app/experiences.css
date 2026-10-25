@@ -23,6 +23,8 @@
 .washing-number { flex: none; font-size: 13px; font-weight: 600; color: #236897; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: #edf7fe; border: 1px solid #cce5f5; }
 .washing-steps h3 { font-size: 22px; margin: 0 0 7px; color: #173d56; }
 .washing-steps p { max-width: 330px; color: #516c7d; font-size: 16px; line-height: 1.55; margin: 0; }
+.washing-guide-links { display: flex; flex-wrap: wrap; gap: 0 20px; margin-top: 8px; }
+.washing-guide-links a { display: inline-flex; align-items: center; min-height: 44px; color: #1f5eb8; font-size: 15px; text-decoration: underline; }
 .washing-film { position: relative; width: min(400px,100%); margin: 0 auto; }
 .washing-film-frame { position: relative; border: 9px solid #d7eeff; border-radius: 150px 150px 32px 32px; overflow: hidden; background: #e2f3ff; box-shadow: 14px 18px 0 #edf7fe; transform: rotate(3deg); }
 .washing-film video { display: block; width: 100%; aspect-ratio: 9/13; object-fit: cover; object-position: center; }

@@ -36,6 +36,7 @@
 .discovery-map img { width: 100%; height: 330px; object-fit: cover; }
 .discovery-map span { position: absolute; bottom: 8px; right: 8px; padding: 3px 7px; background: white; color: #163b56; border-radius: 4px; font-size: 11px; }
 .discovery-inline-link { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; text-decoration: underline; font-weight: 600; }
+.discovery-section-links { display: flex; flex-wrap: wrap; gap: 4px 24px; color: #1f5eb8; margin: 16px 0; }
 .discovery-route-film, .discovery-process { display: grid; grid-template-columns: 1fr .8fr; gap: 70px; align-items: center; margin: 80px 0; }
 .discovery-route-film video { width: 100%; height: 450px; object-fit: contain; background: #082e4c; border-radius: 24px; }
 .discovery-process figure { margin: 0; }

@@ -6,6 +6,7 @@ import { siteConfig } from "./site"
 export const expandedCareGuides: CareGuide[] = [
   {
     slug: "file-orgu-ayakkabi-temizligi",
+    updated: "2026-10-21",
     title: "File ve örgü ayakkabı nasıl temizlenir?",
     description: "Mesh ve örgü yüzeylerde iplik, baskı ve yapıştırılmış parçaları ayır. Fırça seçimi, elde temizlik ve işlemi durdurman gereken belirtiler.",
     category: "Ayakkabı", published: "2026-10-15",
@@ -102,6 +103,7 @@ export const expandedCareGuides: CareGuide[] = [
   },
   {
     slug: "ayakkabi-bakimi-mi-onarim-mi",
+    updated: "2026-10-21",
     title: "Ayakkabı temizliği, bakım ve onarım arasındaki fark",
     description: "Leke, sararma, boya kaybı, çatlak ve taban açılması aynı işlem değildir. Fotoğrafla doğru soru sormak ve işlem kapsamını netleştirmek için rehber.",
     category: "Ayakkabı", published: "2026-10-15",
@@ -120,7 +122,7 @@ export const expandedCareGuides: CareGuide[] = [
     slug: "ayakkabi-temizleme-fiyati-neye-gore-belirlenir",
     title: "Ayakkabı temizleme fiyatı neye göre belirlenir?",
     description: "Fiyat sorarken malzeme, mevcut durum, çift sayısı ve işlem kapsamını paylaş. Güncel ücret ve teslim zamanını netleştirmek için kısa kontrol listesi.",
-    category: "Ayakkabı", published: "2026-10-15", updated: "2026-10-16",
+    category: "Ayakkabı", published: "2026-10-15", updated: "2026-10-21",
     answer: "Ayakkabı temizleme sayfasında kategoriye göre bir çift için baz fiyatları görebilirsin. Ayakkabının türünü, durumunu ve istediğin işlemi de paylaş; tek fotoğraf veya marka adı kapsamı bütünüyle anlatmayabilir. Bakırköy dükkânında kategoriyi, işlem kapsamını, son ücreti ve teslim zamanını kabul sırasında netleştiriyoruz.",
     sections: [
       { id: "kapsam", title: "Önce hangi işin fiyatını sorduğunu netleştir", paragraphs: ["Genel temizlik, belirli bir lekenin değerlendirilmesi ve bakım ihtiyacı aynı soruya indirgenmemeli. Örneğin deri ve süet parçaları bir arada olan bir sneaker yalnız beyaz spor ayakkabı diye anlatıldığında önemli ayrıntılar kaybolabilir.", "Üreticilerin bakım rehberleri de yöntem seçerken malzemeyi ayırır. Burada fiyat hesabı açıklamıyoruz; teklif sorusunu doğru bilgilerle hazırlıyoruz. İşlem kapsamı, güncel ücret ve teslim zamanı doğrudan dükkânla netleşir."], sourceIds: ["nikeClean", "clarks"] },
@@ -134,6 +136,7 @@ export const expandedCareGuides: CareGuide[] = [
   },
   {
     slug: "ayakkabi-kuru-temizlemeye-verilir-mi",
+    updated: "2026-10-25",
     title: "Ayakkabı kuru temizlemeye verilir mi?",
     description: "Kuru temizleme, kuru fırçalama ve ayakkabı bakımını ayır. Malzeme kontrolü, işlem kapsamı, ücret ve teslim için kabulden önce sorulacak sorular.",
     category: "Ayakkabı", published: "2026-10-16",
@@ -163,6 +166,7 @@ export const expandedCareGuides: CareGuide[] = [
       {
         id: "bakirkoy", title: "Bakırköy’de hangi hizmeti alabilirsin?",
         paragraphs: ["Şu an Bakırköy dükkânında ayakkabı temizliği ve bakımı yapıyoruz; giysi kuru temizleme hizmetimiz henüz başlamadı. Ayakkabını dükkâna bırakıp buradan teslim alabilirsin. Kapıdan alım henüz başlamadı.", "Fotoğraf, ön değerlendirmeye yardımcı olur; yöntem, son kapsam, ücret ve teslim zamanı fiziksel kabulde netleşir. Lostra, boyama, taban değişimi veya onarım hizmeti vermiyoruz. Ayakkabını çamaşır ya da kurutma makinesine atma; malzemesine göre bakım rehberinden devam et."],
+        links: [{ type: "photo", label: "Ön değerlendirme için fotoğraf gönder" }, { type: "service", href: "/ayakkabi-temizleme#fiyat", label: "Ayakkabı temizleme fiyatları ve kapsamı" }],
       },
     ],
     faqs: [

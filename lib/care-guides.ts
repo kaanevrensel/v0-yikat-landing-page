@@ -6,7 +6,7 @@ export const careGuides: CareGuide[] = [
   ...expandedCareGuides,
   {
     slug: "ayakkabi-makinede-yikanir-mi",
-    updated: "2026-10-15",
+    updated: "2026-10-25",
     title: "Ayakkabı çamaşır makinesinde yıkanır mı?",
     description: "Hayır, ayakkabıyı çamaşır makinesine atma. Makinenin yapıştırıcıya, tabana ve forma etkisi; file ve düşük derecenin neden yetmediği ve makine yerine yapabileceklerin.",
     category: "Ayakkabı",
@@ -15,7 +15,7 @@ export const careGuides: CareGuide[] = [
       { id: "neden", title: "Makine ayakkabıya ne yapar?", paragraphs: ["Çamaşır makinesi kumaş için tasarlanır. Ayakkabı ise birbirine yapıştırılmış ve dikilmiş farklı parçalardan oluşur: üst yüzey, astar, ara taban, dış taban. Üst yüzeyi kumaş olan bir sneaker’da bile bu parçaların hepsi aynı anda suya, sürtünmeye ve sıkmaya girer.", "Nike da genel bakım rehberinde ayakkabıyı makinede yıkamayı önermiyor; elde, nazik temizliği anlatıyor."], table: { caption: "Makinede yıkamanın riskleri", headings: ["Parça", "Ne olabilir?"], rows: [["Yapıştırıcı ve taban", "Uzun süre su ve sıcaklık yapıştırıcıyı zayıflatabilir; taban açılabilir."], ["Form", "Tambur ve sıkma burun, topuk ve yan destekleri ezebilir; ayakkabı şeklini kaybedebilir."], ["Deri, süet, nubuk ve baskılar", "Su ve sürtünme yüzeyi sertleştirebilir, rengi soldurabilir veya baskıyı dökebilir."], ["İç dolgu ve tabanlık", "Suyu emer ve geç kurur; nemli kalan iç yüzey kokuya yol açabilir."]] }, sourceIds: ["nikeMachine"] },
       { id: "derece", title: "30 derece, file veya “spor ayakkabı programı” olursa?", paragraphs: ["Yine atma. Düşük sıcaklık yalnız ısıyı azaltır; tamburun çarpması, suda kalma süresi ve sıkma aynı kalır. Yıkama filesi veya yastık kılıfı ayakkabıyı sudan da darbeden de korumaz.", "“Spor ayakkabı programı” makinenin bir özelliğidir; ayakkabının makineye dayanacağını göstermez. Ayakkabının beyaz, bez veya fileli olması da bunu değiştirmez.", "Kurutma makinesi için de aynısı geçerli: ısı ve dönme hareketi yapıştırıcıya ve forma zarar verebilir."] },
       { id: "alternatif", title: "Makine yerine ne yapabilirsin?", steps: ["Bağcıkları ve çıkarılabilen tabanlığı ayır.", "Kuru tozu ve çamuru yumuşak bir fırçayla al.", "Malzemeye uygun temizleyiciyi önce küçük, görünmeyen bir yerde dene; sonra az suyla, elde temizle. Ayakkabıyı suya batırma.", "Doğrudan ısı vermeden, hava alan bir yerde tamamen kurut."], paragraphs: ["Bu sıra kumaş ve düz yüzeyler içindir. Süet ve nubuk için ayrı rehbere geç; kumaş temizliğini bu yüzeylere uygulama."], sourceIds: ["nikeClean"] },
-      { id: "dukkan", title: "Elde temizlik yetmediğinde", paragraphs: ["Elde temizlik yüzey kirini alır. İçine işlemiş kir, koku, karışık malzeme veya emin olamadığın bir leke varsa ayakkabıyı makineye atmak yerine bize getir.", "Bakırköy’deki dükkânımızda ayakkabıya özel ekipmanla çalışıyoruz; yöntemi malzemeye göre seçiyor, temizlikten sonra ayakkabıyı kontrollü biçimde kurutuyoruz. WhatsApp’tan fotoğraf gönderirsen ne yapılabileceğini önceden konuşabiliriz."] },
+      { id: "dukkan", title: "Elde temizlik yetmediğinde", paragraphs: ["Elde temizlik yüzey kirini alır. İçine işlemiş kir, koku, karışık malzeme veya emin olamadığın bir leke varsa ayakkabıyı makineye atmak yerine bize getir.", "Bakırköy’deki dükkânımızda ayakkabıya özel ekipmanla çalışıyoruz; yöntemi malzemeye göre seçiyor, temizlikten sonra ayakkabıyı kontrollü biçimde kurutuyoruz. Fotoğrafla ön değerlendirme yapabiliriz; uygun yöntemi, ücreti ve teslim zamanını ayakkabıyı dükkânda gördükten sonra netleştiriyoruz."], links: [{ type: "photo", label: "Ön değerlendirme için fotoğraf gönder" }, { type: "service", href: "/ayakkabi-temizleme", label: "Malzemeye göre temizleme seçenekleri" }] },
     ],
     faqs: [
       { q: "Ayakkabı kaç derecede yıkanır?", a: "Hiçbir derecede: ayakkabıyı çamaşır makinesine atmanı önermiyoruz. Sorun yalnız sıcaklık değil; tamburun çarpması, uzun süre su ve sıkma da ayakkabıyı yıpratır." },
@@ -29,7 +29,7 @@ export const careGuides: CareGuide[] = [
   },
   {
     slug: "beyaz-ayakkabi-nasil-temizlenir",
-    updated: "2026-10-15",
+    updated: "2026-10-21",
     title: "Beyaz ayakkabı nasıl temizlenir?",
     description: "Beyaz kumaş, deri ve süet ayakkabıya aynı yöntemi uygulama. Yüzey kiri, leke ve sararmayı ayıran pratik bir bakım rehberi.",
     category: "Ayakkabı",
@@ -51,6 +51,7 @@ export const careGuides: CareGuide[] = [
   },
   {
     slug: "suet-nubuk-ayakkabi-nasil-temizlenir",
+    updated: "2026-10-21",
     title: "Süet ve nubuk ayakkabı nasıl temizlenir?",
     description: "Süet ve nubukta kuru kir, ıslak yüzey ve yerleşmiş leke için karar rehberi. Fırça seçimi, ürün testi ve profesyonel değerlendirme sınırları.",
     category: "Ayakkabı",
@@ -171,7 +172,7 @@ export const careGuides: CareGuide[] = [
   },
   {
     "slug": "spor-ayakkabi-nasil-temizlenir",
-    "updated": "2026-10-15",
+    updated: "2026-10-21",
     "title": "Spor ayakkabı nasıl temizlenir?",
     "description": "Spor ayakkabının üst yüzeyi, tabanı, bağcığı ve tabanlığı için ayrı bakım kararları. Evde temizlik sırası ve durup değerlendirme istemen gereken durumlar.",
     "category": "Ayakkabı",
@@ -275,6 +276,7 @@ export const careGuides: CareGuide[] = [
   },
   {
     "slug": "deri-ayakkabi-nasil-temizlenir",
+    updated: "2026-10-21",
     "title": "Deri ayakkabı nasıl temizlenir?",
     "description": "Düz deri, rugan ve süeti ayırarak bakım seç. Kuru kirin alınması, uygun ürün seçimi, kurutma ve temizlikle onarım arasındaki fark.",
     "category": "Ayakkabı",
