@@ -4,8 +4,13 @@ import { careGuides } from "../lib/care-guides"
 import { services } from "../lib/services"
 import { siteConfig } from "../lib/site"
 import { BUSINESS_ID, careSources } from "../lib/discovery"
+import { guideTopics } from "../lib/guide-topics"
 
 const routes = ["/bakirkoy-ayakkabi-temizleme", "/ayakkabi-temizleme", "/rehber", ...services.map(s => `/${s.slug}`), ...careGuides.map(g => `/rehber/${g.slug}`)]
+// Route loops run in fixed chunks so each test stays well inside its timeout as the guide
+// count grows (about 150 routes at the end of the content programme), and chunks spread
+// across workers. Chunk boundaries depend only on the route order above.
+const chunks = (size: number) => Array.from({ length: Math.ceil(routes.length / size) }, (_, i) => ({ label: `routes ${i * size + 1}–${Math.min(routes.length, (i + 1) * size)} of ${routes.length}`, paths: routes.slice(i * size, (i + 1) * size) }))
 
 test("discovery photos have working responsive delivery while approved home artwork keeps its source", async ({ request }) => {
   const shop = await (await request.get("/bakirkoy-ayakkabi-temizleme")).text()
@@ -23,9 +28,14 @@ test("discovery photos have working responsive delivery while approved home artw
   expect(home).not.toContain("/_next/image?url=%2Fimages%2Fservices%2Fhero-v2")
 })
 
-test("every discovery URL serves unique canonical HTML, correct shop facts and public crawl access", async ({ request }) => {
+// Titles must be unique across all routes, so every chunk compares against the full set of
+// expected <title> values (built from the same metadata the pages use) as well as its own.
+const expectedTitles = new Map<string, string>()
+for (const guide of careGuides) expectedTitles.set(`${guide.title} | Yıkat`, `/rehber/${guide.slug}`)
+
+for (const { label, paths } of chunks(25)) test(`every discovery URL serves unique canonical HTML, correct shop facts and public crawl access (${label})`, async ({ request }) => {
   const titles = new Set<string>()
-  for (const path of routes) {
+  for (const path of paths) {
     const res = await request.get(path)
     expect(res.status(), path).toBe(200)
     expect(res.headers()["x-robots-tag"] ?? "").not.toContain("noindex")
@@ -35,6 +45,8 @@ test("every discovery URL serves unique canonical HTML, correct shop facts and p
     expect(title, path).toBeTruthy()
     expect(titles.has(title!), path).toBe(false)
     titles.add(title!)
+    const owner = expectedTitles.get(title!.replace(/&amp;/g, "&"))
+    if (owner) expect(owner, `${path}: same <title> as ${owner}`).toBe(path)
     expect(html.match(/<h1(?:\s|>)/g)?.length, path).toBe(1)
     const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m => JSON.parse(m[1]))
     const business = blocks.find(b => b["@type"] === "DryCleaningOrLaundry")
@@ -60,6 +72,10 @@ test("every discovery URL serves unique canonical HTML, correct shop facts and p
       expect(html).toContain(guide.answer)
     }
   }
+})
+
+test("sitemap lists every discovery URL; robots allows crawling; unknown guides are 404", async ({ request }) => {
+  expect(expectedTitles.size).toBe(careGuides.length)
   const sitemap = await (await request.get("/sitemap.xml")).text()
   for (const path of routes) expect(sitemap).toContain(`<loc>${siteConfig.url}${path}</loc>`)
   const robots = await (await request.get("/robots.txt")).text()
@@ -89,12 +105,12 @@ test("answers, citations, local facts and contact actions work without JavaScrip
   await context.close()
 })
 
-for (const width of [320, 390, 768, 1280]) {
-  test(`discovery layouts and keyboard controls are usable at ${width}px`, async ({ page }) => {
+for (const width of [320, 390, 768, 1280]) for (const { label, paths } of chunks(10)) {
+  test(`discovery layouts and keyboard controls are usable at ${width}px (${label})`, async ({ page }) => {
     test.setTimeout(120_000)
     await page.setViewportSize({ width, height: 900 })
     await page.emulateMedia({ reducedMotion: "reduce" })
-    for (const path of routes) {
+    for (const path of paths) {
       await page.goto(path)
       await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
       const widths = await page.evaluate(() => ({ doc: document.documentElement.scrollWidth, viewport: innerWidth }))
@@ -106,7 +122,7 @@ for (const width of [320, 390, 768, 1280]) {
       const geometry = await page.evaluate(() => {
         const title = document.querySelector("main h1")!.getBoundingClientRect()
         const nav = document.querySelector("body header")!.getBoundingClientRect()
-        const sections = [...document.querySelectorAll("main > .discovery-narrow, main > .discovery-related, main > .guide-collection, .discovery-local-end, .discovery-reading-layout > .discovery-prose")]
+        const sections = [...document.querySelectorAll("main > .discovery-narrow, main > .discovery-related, main > .guide-collection, main > .guide-topic-index, main > .guide-category, .guide-category > .guide-collection, .discovery-local-end, .discovery-reading-layout > .discovery-prose")]
         return { titleTop: title.top, navBottom: nav.bottom, offsets: sections.map(s => Math.abs(s.getBoundingClientRect().left - title.left)) }
       })
       // Regressions: opening labels pushed the hero far below the nav, and
@@ -126,7 +142,11 @@ for (const width of [320, 390, 768, 1280]) {
 test("guides are linked from their hub and cite resolvable source definitions", async ({ page }) => {
   await page.goto("/rehber")
   for (const guide of careGuides) {
-    await expect(page.locator(`main a[href='/rehber/${guide.slug}']`)).toBeAttached()
+    // Each guide sits in the section of its topic, whose anchor the in-page index links.
+    const anchor = guideTopics[guide.topic].anchor
+    await expect(page.locator(`main section#${anchor} a[href='/rehber/${guide.slug}']`), guide.slug).toBeAttached()
+    await expect(page.locator(`main section#${anchor} > h2`)).toHaveText(guide.topic)
+    await expect(page.getByRole("navigation", { name: "Rehber konuları" }).locator(`a[href='#${anchor}']`)).toHaveText(guide.topic)
     for (const id of guide.sourceIds) expect(careSources[id]?.url, `${guide.slug}: ${id}`).toMatch(/^https:\/\//)
     for (const slug of guide.related) expect(careGuides.some(g => g.slug === slug)).toBe(true)
   }

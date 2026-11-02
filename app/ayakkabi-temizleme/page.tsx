@@ -2,7 +2,8 @@ import Link from "next/link"
 import { services } from "@/lib/services"
 import { priceMenu, priceMenuVerifiedAt, siteConfig } from "@/lib/site"
 import { discoveryMetadata, formatContentDate, BUSINESS_ID } from "@/lib/discovery"
-import { DiscoveryShell, JsonLd, RelatedLinks, FaqList, ShopInvitation, ScrollableTable } from "@/components/discovery/shared"
+import { DiscoveryShell, JsonLd, RelatedLinks, FaqList, ServiceGuideLinks, ShopInvitation, ScrollableTable } from "@/components/discovery/shared"
+import { guideBySlug } from "@/lib/care-guides"
 import { PhotoEnquiryLink, ShopActions } from "@/components/discovery/actions"
 import { CareAssessment } from "@/components/discovery/care-assessment"
 import { ServiceExpectations } from "@/components/discovery/service-expectations"
@@ -10,6 +11,9 @@ import { CustomerCases } from "@/components/discovery/customer-cases"
 import "@/app/local-growth.css"
 
 export const metadata = discoveryMetadata("Ayakkabı Temizleme ve Yıkama Hizmetleri", "Sneaker, deri, süet ve nubuk için ayakkabı temizleme seçenekleri. Malzemeye göre yöntem, işlem kapsamı, ücret ve Bakırköy dükkân bilgileri.", "/ayakkabi-temizleme")
+
+// Live since the first discovery release; the anchor is the guide's current title.
+const machineGuide = guideBySlug("ayakkabi-makinede-yikanir-mi")!
 
 export default function Page() {
   return <DiscoveryShell crumbs={[{ name: "Ayakkabı temizleme", path: "/ayakkabi-temizleme" }]}>
@@ -23,7 +27,7 @@ export default function Page() {
         <h2>Dükkânımızdan<br/>kurutma aşaması.</h2>
         <p>Bu kısa görüntü Bakırköy dükkânımızdaki ayakkabı kurutma dolabına ait. Temizliğin ardından kurutma ve teslim öncesi kontrol gelir; hazır olma zamanını malzeme, mevcut durum ve kuruma ihtiyacıyla birlikte değerlendirelim.</p>
         <p>Kabulde konuştuğumuz bölgelere teslimde yeniden bakalım. Kalan iz veya sonraki bakım hakkında sorunu paylaş; aşınma ve renk kaybı, temizlenebilir kirle aynı şey değildir.</p>
-        <p>Ayakkabını evde çamaşır veya kurutma makinesine atma; nedenlerini <Link href="/rehber/ayakkabi-makinede-yikanir-mi">bakım rehberinde</Link> anlattık.</p>
+        <p>Ayakkabını evde çamaşır veya kurutma makinesine atma; nedenlerini “<Link href="/rehber/ayakkabi-makinede-yikanir-mi">{machineGuide.title}</Link>” rehberinde anlattık.</p>
         <Link href="/bakirkoy-ayakkabi-temizleme" className="discovery-inline-link">Dükkânı ve ulaşımı incele →</Link>
       </div>
       <figure>
@@ -50,7 +54,7 @@ export default function Page() {
     </section>
     <ServiceExpectations/>
     <CustomerCases/>
-    <section className="discovery-prose discovery-narrow"><h2>Evde bakım mı, profesyonel değerlendirme mi?</h2><p>Üretici talimatı açık olan hafif yüzey kiri için bakım rehberlerinden başlayabilirsin. Karışık malzeme, süet detay, önceki ürün izi veya mevcut hasarda önce değerlendirme istemek daha yerinde olur.</p><p>“Ayakkabı kuru temizleme” ifadesi de tek bir yöntem tarif etmez. Tekstilde kullanılan profesyonel işlemin her ayakkabı için uygun olduğu varsayılamaz. Ayakkabının malzemesi ve yapısı önceliklidir.</p><p>Hafif yüzey bakımı için <Link href="/rehber/spor-ayakkabi-nasil-temizlenir">spor ayakkabı rehberini</Link>, iç yüzey için <Link href="/rehber/ayakkabi-tabanligi-nasil-temizlenir">tabanlık rehberini</Link> kullan. Ücret sorusunu hazırlamak için <Link href="/rehber/ayakkabi-temizleme-fiyati-neye-gore-belirlenir">kabul öncesi soruları</Link> incele.</p></section>
+    <section className="discovery-prose discovery-narrow"><h2>Evde bakım mı, profesyonel değerlendirme mi?</h2><p>Üretici talimatı açık olan hafif yüzey kiri için bakım rehberlerinden başlayabilirsin. Karışık malzeme, süet detay, önceki ürün izi veya mevcut hasarda önce değerlendirme istemek daha yerinde olur.</p><p>“Ayakkabı kuru temizleme” ifadesi de tek bir yöntem tarif etmez. Tekstilde kullanılan profesyonel işlemin her ayakkabı için uygun olduğu varsayılamaz. Ayakkabının malzemesi ve yapısı önceliklidir.</p><p>Hafif yüzey bakımı için <Link href="/rehber/spor-ayakkabi-nasil-temizlenir">spor ayakkabı rehberini</Link>, iç yüzey için <Link href="/rehber/ayakkabi-tabanligi-nasil-temizlenir">tabanlık rehberini</Link> kullan. Ücret sorusunu hazırlamak için <Link href="/rehber/ayakkabi-temizleme-fiyati-neye-gore-belirlenir">kabul öncesi soruları</Link> incele.</p><ServiceGuideLinks path="/ayakkabi-temizleme" lead="Evde ilk adım için:"/></section>
     <div className="discovery-narrow"><FaqList faqs={[
       { q: "Ayakkabı temizleme ile yıkama aynı şey mi?", a: "Günlük kullanımda benzer hizmeti anlatabilir; fakat uygulanacak işlem malzemeye göre değişir. Süet, deri ve kumaşa aynı yıkama yöntemi uygulanmaz." },
       { q: "Aynı gün teslim alabilir miyim?", a: "Uygunluğu ayakkabının durumuna, işlem ve kuruma ihtiyacına göre netleştirelim. Belirli bir saate ihtiyacın varsa önceden paylaş." },
