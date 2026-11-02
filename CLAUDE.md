@@ -1,5 +1,9 @@
 # CLAUDE.md
 
+## Guide content batch, November 2 2026
+
+Read [docs/seo/2026-11-02-rehber-content-batch.md](docs/seo/2026-11-02-rehber-content-batch.md). Guides live one per file in `lib/guides/`, generated with `lib/guides/index.ts` and `lib/care-sources.ts` by the content converter from reviewed JSON; never edit their text by hand. Every guide has a topic; /rehber is one URL with topic sections and anchors, no topic/tag/category URLs, nothing above the H1. Guide lastmod is `updated ?? published`, with no sitewide floor; link-only edits move no dates. `node --test tests/*.test.mjs` checks the guide data without a browser.
+
 ## Search growth, October 15 2026
 
 The main cleaning hub includes an accessible, local-only material/condition guide. The printable care card is generated from checked-in licensed fonts, the actual logo and `lib/site.ts`; see `docs/seo/2026-10-15-care-card.md`. Preserve its source boundaries and regenerate it when shop facts change.

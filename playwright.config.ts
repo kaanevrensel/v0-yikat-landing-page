@@ -10,6 +10,11 @@ export default defineConfig({
   testIgnore: ["**/reviews-ui/**", "**/*.test.mjs"],
   timeout: 60_000,
   fullyParallel: true,
+  // CI (GitHub ubuntu, 4 vCPU) keeps two workers next to the production server. Measured on
+  // 2 November 2026 with 150 discovery routes (synthetic guide copies): 160 tests, 367 s of test
+  // time in total, longest test 13 s; the route loops run in chunks (tests/discovery.spec.ts),
+  // so the quality job stays well inside its 20-minute limit. Locally Playwright's default applies.
+  workers: process.env.CI ? 2 : undefined,
   use: {
     channel: "chrome",
     baseURL,
