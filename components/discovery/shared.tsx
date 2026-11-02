@@ -1,9 +1,11 @@
 import Link from "next/link"
-import type { ReactNode } from "react"
+import { Fragment, type ReactNode } from "react"
 import { ArrowUpRight } from "lucide-react"
 import { SiteShell } from "@/components/website/shared"
 import { ShopActions } from "./actions"
 import { breadcrumbJson, CONTENT_DATE, careSources, formatContentDate } from "@/lib/discovery"
+import { guideBySlug } from "@/lib/care-guides"
+import { serviceGuideLinks } from "@/lib/service-guide-links"
 import { siteConfig } from "@/lib/site"
 
 export function JsonLd({ data }: { data: unknown }) {
@@ -37,4 +39,16 @@ export function ShopInvitation() {
 
 export function RelatedLinks({ links, title = "Buradan devam et" }: { links: { href: string; title: string; text?: string }[]; title?: string }) {
   return <section className="discovery-related"><h2>{title}</h2><ul>{links.map(link => <li key={link.href}><Link href={link.href}><span><strong>{link.title}</strong>{link.text && <span>{link.text}</span>}</span><ArrowUpRight size={22} aria-hidden="true"/></Link></li>)}</ul></section>
+}
+
+/** Plain, crawlable reading links to other guides (not calls to action), styled like the source line. */
+export function GuideLinks({ links, lead }: { links: { href: string; label: string }[]; lead?: string }) {
+  if (!links.length) return null
+  return <p className="discovery-guide-links">{lead ?? (links.length === 1 ? "İlgili rehber:" : "İlgili rehberler:")} {links.map((link, i) => <Fragment key={link.href}>{i > 0 && " · "}<Link href={link.href} prefetch={false}>{link.label}</Link></Fragment>)}</p>
+}
+
+/** A service page's guide row (lib/service-guide-links.ts): guide titles as anchors, released guides only. */
+export function ServiceGuideLinks({ path, lead, exclude = [] }: { path: string; lead: string; exclude?: string[] }) {
+  const links = (serviceGuideLinks[path] ?? []).filter(slug => !exclude.includes(slug)).flatMap(slug => guideBySlug(slug) ?? []).map(guide => ({ href: `/rehber/${guide.slug}`, label: guide.title }))
+  return <GuideLinks links={links} lead={lead}/>
 }

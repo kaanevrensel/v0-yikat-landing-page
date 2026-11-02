@@ -1,10 +1,14 @@
 import { test, expect } from "@playwright/test"
 import AxeBuilder from "@axe-core/playwright"
 import { siteConfig } from "../lib/site"
+import { guideRelease } from "../lib/care-guides"
 
+// Publication dates never move. dateModified is the live edit date until a release rewrites the
+// guide (content plan siteChanges.tests): then it is that release's date.
+const modifiedAfter = (slug: string, liveDate: string) => guideRelease.rewritten.includes(slug) ? guideRelease.date : liveDate
 const guides = [
-  { slug: "ayakkabi-makinede-yikanir-mi", section: "dukkan", destination: "/ayakkabi-temizleme", published: "2026-10-10" },
-  { slug: "ayakkabi-kuru-temizlemeye-verilir-mi", section: "bakirkoy", destination: "/ayakkabi-temizleme#fiyat", published: "2026-10-16" },
+  { slug: "ayakkabi-makinede-yikanir-mi", section: "dukkan", destination: "/ayakkabi-temizleme", published: "2026-10-10", modified: modifiedAfter("ayakkabi-makinede-yikanir-mi", "2026-10-25") },
+  { slug: "ayakkabi-kuru-temizlemeye-verilir-mi", section: "bakirkoy", destination: "/ayakkabi-temizleme#fiyat", published: "2026-10-16", modified: modifiedAfter("ayakkabi-kuru-temizlemeye-verilir-mi", "2026-10-25") },
 ]
 
 test("home and local preparation lead to useful guides without JavaScript", async ({ browser, baseURL }) => {
@@ -52,8 +56,8 @@ test("guide revision dates agree across visible byline, Article, Open Graph and 
     await page.goto(`/rehber/${guide.slug}`)
     const article = await page.locator('script[type="application/ld+json"]').evaluateAll(nodes => nodes.map(node => JSON.parse(node.textContent!)).find(node => node["@type"] === "Article"))
     expect(article.datePublished).toBe(guide.published)
-    expect(article.dateModified).toBe("2026-10-25")
-    await expect(page.locator('.discovery-byline time[datetime="2026-10-25"]')).toBeVisible()
+    expect(article.dateModified).toBe(guide.modified)
+    await expect(page.locator(`.discovery-byline time[datetime="${guide.modified}"]`)).toBeVisible()
     await expect(page.locator('meta[property="article:modified_time"]')).toHaveAttribute("content", article.dateModified)
     const entry = sitemap.match(/<url>[\s\S]*?<\/url>/g)?.find(block => block.includes(`<loc>${siteConfig.url}/rehber/${guide.slug}</loc>`))
     expect(entry).toContain(`<lastmod>${article.dateModified}T00:00:00.000Z</lastmod>`)
@@ -62,7 +66,7 @@ test("guide revision dates agree across visible byline, Article, Open Graph and 
   await page.goto("/rehber/yorgan-nasil-yikanir")
   const article = await page.locator('script[type="application/ld+json"]').evaluateAll(nodes => nodes.map(node => JSON.parse(node.textContent!)).find(node => node["@type"] === "Article"))
   expect(article.datePublished).toBe("2026-10-10")
-  expect(article.dateModified).toBe("2026-10-10")
+  expect(article.dateModified).toBe(modifiedAfter("yorgan-nasil-yikanir", "2026-10-10"))
 })
 
 for (const width of [320, 1280]) {

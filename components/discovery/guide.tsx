@@ -1,16 +1,23 @@
 import Link from "next/link"
-import { DiscoveryShell, FaqList, JsonLd, RelatedLinks, ShopInvitation, SourceList, ScrollableTable } from "./shared"
-import { BUSINESS_ID, CONTENT_DATE, WEBSITE_ID, careSources, formatContentDate, type CareGuide } from "@/lib/discovery"
+import { DiscoveryShell, FaqList, GuideLinks, JsonLd, RelatedLinks, ShopInvitation, SourceList, ScrollableTable } from "./shared"
+import { BUSINESS_ID, WEBSITE_ID, careSources, formatContentDate, guideModified, guidePublished, type CareGuide, type CareSectionLink } from "@/lib/discovery"
 import { guideBySlug } from "@/lib/care-guides"
 import { siteConfig } from "@/lib/site"
 import { DiscoveryLink, PhotoEnquiryLink } from "./actions"
 
+// Photo and service links are calls to action and sit under the section's paragraphs.
+// Guide links are reading links: one quiet line at the end of the section, where the
+// text refers to them ("tablonun altında", "adımların altındaki rehberler").
+const actionLinks = (links: CareSectionLink[] = []) => links.filter(link => link.type !== "guide")
+const readingLinks = (links: CareSectionLink[] = []) => links.flatMap(link => link.type === "guide" && guideBySlug(link.slug) ? [{ href: `/rehber/${link.slug}`, label: link.label }] : [])
+
 export function GuideView({ guide }: { guide: CareGuide }) {
   const path = `/rehber/${guide.slug}`
-  const published = guide.published ?? CONTENT_DATE
-  const related = guide.related.map(slug => guideBySlug(slug)!).map(g => ({ href: `/rehber/${g.slug}`, title: g.title }))
+  const published = guidePublished(guide)
+  const modified = guideModified(guide)
+  const related = guide.related.flatMap(slug => guideBySlug(slug) ?? []).map(g => ({ href: `/rehber/${g.slug}`, title: g.title }))
   return <DiscoveryShell crumbs={[{ name: "Bakım rehberi", path: "/rehber" }, { name: guide.title, path }]}>
-    <JsonLd data={{ "@context": "https://schema.org", "@type": "Article", "@id": `${siteConfig.url}${path}#article`, headline: guide.title, description: guide.description, mainEntityOfPage: `${siteConfig.url}${path}`, url: `${siteConfig.url}${path}`, inLanguage: "tr-TR", articleSection: guide.category, datePublished: published, dateModified: guide.updated ?? published, author: { "@id": BUSINESS_ID, name: "Yıkat", url: `${siteConfig.url}/iletisim` }, publisher: { "@id": BUSINESS_ID }, isPartOf: { "@id": WEBSITE_ID }, citation: guide.sourceIds.map(id => careSources[id].url) }}/>
+    <JsonLd data={{ "@context": "https://schema.org", "@type": "Article", "@id": `${siteConfig.url}${path}#article`, headline: guide.title, description: guide.description, mainEntityOfPage: `${siteConfig.url}${path}`, url: `${siteConfig.url}${path}`, inLanguage: "tr-TR", articleSection: guide.category, datePublished: published, dateModified: modified, author: { "@id": BUSINESS_ID, name: "Yıkat", url: `${siteConfig.url}/iletisim` }, publisher: { "@id": BUSINESS_ID }, isPartOf: { "@id": WEBSITE_ID }, citation: guide.sourceIds.map(id => careSources[id].url) }}/>
     <article>
       <header className="discovery-heading guide-heading"><h1>{guide.title}</h1><p className="discovery-answer">{guide.answer}</p><p className="discovery-byline"><Link href="/iletisim">Yıkat</Link> · <time dateTime={published}>{formatContentDate(published)}</time>{guide.updated && <> · Güncellendi: <time dateTime={guide.updated}>{formatContentDate(guide.updated)}</time></>} · <a href="#kaynaklar">Kaynaklar</a></p>{guide.service && <DiscoveryLink action="service" className="discovery-service-link" href={guide.service.href}>{guide.service.label} →</DiscoveryLink>}</header>
       <div className="discovery-reading-layout">
@@ -19,12 +26,13 @@ export function GuideView({ guide }: { guide: CareGuide }) {
           {guide.sections.map(section => <section id={section.id} key={section.id}>
             <h2>{section.title}</h2>
             {section.paragraphs?.map(p => <p key={p}>{p}</p>)}
-            {section.links && <div className="discovery-section-links">{section.links.map(link => link.type === "photo"
+            {actionLinks(section.links).length > 0 && <div className="discovery-section-links">{actionLinks(section.links).map(link => link.type === "photo"
               ? <PhotoEnquiryLink key={link.label} className="discovery-inline-link">{link.label}</PhotoEnquiryLink>
               : <DiscoveryLink key={link.href} action="service" href={link.href} className="discovery-inline-link">{link.label}</DiscoveryLink>
             )}</div>}
             {section.steps && <ol className="discovery-steps">{section.steps.map(step => <li key={step}>{step}</li>)}</ol>}
             {section.table && <ScrollableTable label={section.table.caption}><table data-columns={section.table.headings.length}><caption>{section.table.caption}</caption><thead><tr>{section.table.headings.map(h => <th key={h} scope="col">{h}</th>)}</tr></thead><tbody>{section.table.rows.map(row => <tr key={row[0]}>{row.map((cell, i) => i === 0 ? <th key={i} scope="row">{cell}</th> : <td key={i}>{cell}</td>)}</tr>)}</tbody></table></ScrollableTable>}
+            <GuideLinks links={readingLinks(section.links)}/>
             {section.sourceIds && <p className="discovery-section-sources">Kaynak: {section.sourceIds.map((id, i) => <span key={id}>{i > 0 && " · "}<a href={`#kaynak-${id}`}>{careSources[id].title.split(" — ")[0]}</a></span>)}</p>}
           </section>)}
           <FaqList faqs={guide.faqs}/>
