@@ -11,6 +11,16 @@ import { DiscoveryLink, PhotoEnquiryLink } from "./actions"
 const actionLinks = (links: CareSectionLink[] = []) => links.filter(link => link.type !== "guide")
 const readingLinks = (links: CareSectionLink[] = []) => links.flatMap(link => link.type === "guide" && guideBySlug(link.slug) ? [{ href: `/rehber/${link.slug}`, label: link.label }] : [])
 
+// A section's source line names each publisher once ("Kaynak: Persil (3 sayfa) · Tide"), linking to its first
+// page in the source list, where every page is listed in full. Titles have the form "Publisher — Page title".
+const sourceGroups = (ids: string[]) => ids.reduce<{ publisher: string; ids: string[] }[]>((groups, id) => {
+  const publisher = careSources[id].title.split(" — ")[0]
+  const group = groups.find(g => g.publisher === publisher)
+  if (group) group.ids.push(id)
+  else groups.push({ publisher, ids: [id] })
+  return groups
+}, [])
+
 export function GuideView({ guide }: { guide: CareGuide }) {
   const path = `/rehber/${guide.slug}`
   const published = guidePublished(guide)
@@ -33,7 +43,7 @@ export function GuideView({ guide }: { guide: CareGuide }) {
             {section.steps && <ol className="discovery-steps">{section.steps.map(step => <li key={step}>{step}</li>)}</ol>}
             {section.table && <ScrollableTable label={section.table.caption}><table data-columns={section.table.headings.length}><caption>{section.table.caption}</caption><thead><tr>{section.table.headings.map(h => <th key={h} scope="col">{h}</th>)}</tr></thead><tbody>{section.table.rows.map(row => <tr key={row[0]}>{row.map((cell, i) => i === 0 ? <th key={i} scope="row">{cell}</th> : <td key={i}>{cell}</td>)}</tr>)}</tbody></table></ScrollableTable>}
             <GuideLinks links={readingLinks(section.links)}/>
-            {section.sourceIds && <p className="discovery-section-sources">Kaynak: {section.sourceIds.map((id, i) => <span key={id}>{i > 0 && " · "}<a href={`#kaynak-${id}`}>{careSources[id].title.split(" — ")[0]}</a></span>)}</p>}
+            {section.sourceIds && <p className="discovery-section-sources">Kaynak: {sourceGroups(section.sourceIds).map((group, i) => <span key={group.ids[0]}>{i > 0 && " · "}<a href={`#kaynak-${group.ids[0]}`}>{group.publisher}</a>{group.ids.length > 1 && ` (${group.ids.length} sayfa)`}</span>)}</p>}
           </section>)}
           <FaqList faqs={guide.faqs}/>
           <SourceList ids={guide.sourceIds} updated={guide.updated} published={published}/>
