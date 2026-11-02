@@ -26,4 +26,465 @@ export const careSources: Record<string, CareSource> = {
     title: "IKEA — Guide: Washing Duvets and Bed Covers",
     url: "https://www.ikea.com/ch/en/product-guides/washing-duvets-pubc3fe6c90/",
   },
+  aciCareSymbols: {
+    title: "American Cleaning Institute — Fabric Care Language Made Easy",
+    url: "https://www.cleaninginstitute.org/sites/default/files/assets/1/Page/FabricCareSymbols.pdf",
+  },
+  aciLaundryBasics: {
+    title: "American Cleaning Institute — Laundry Basics",
+    url: "https://www.cleaninginstitute.org/cleaning-tips/clothes/laundry-basics",
+  },
+  aciSneakers: {
+    title: "American Cleaning Institute — Ask ACI: Sneaker Cleaning in the Washing Machine or By Hand",
+    url: "https://www.cleaninginstitute.org/cleaning-tips/clean-home/ask-aci/ask-aci-sneaker-cleaning-washing-machine-or-hand",
+  },
+  aciStainGuide: {
+    title: "American Cleaning Institute — Stain Removal Guide",
+    url: "https://www.cleaninginstitute.org/cleaning-tips/clothes/stain-removal-guide",
+  },
+  allbirdsShoeCare: { title: "Allbirds — How to Care for Your Shoes", url: "https://www.allbirds.com/pages/shoe-care" },
+  alphaLeatherJacket: {
+    title: "Alpha Industries — How do I clean and maintain my leather jacket?",
+    url: "https://help.alphaindustries.com/en-US/how-do-i-clean-and-maintain-my-alpha-industries-leather-jacket-231463",
+  },
+  arcelikDetergentBleachUse: {
+    title: "Arçelik — Deterjan ve Yumuşatıcı Kullanımı",
+    url: "https://documents.arcelik.com.tr/WM/7131820900/tr-TR/8744039591756939.html",
+  },
+  arcelikDuvetProgram: {
+    title: "Arçelik — Çamaşır makinesi programları (Yorgan / Kaz Tüyü Mont)",
+    url: "https://documents.arcelik.com.tr/WM/7115420900/tr-TR/87496843430266891.html",
+  },
+  arcelikWashPrograms: {
+    title: "Arçelik — Çamaşır Makinesindeki Yıkama Programları Ne İşe Yarar",
+    url: "https://www.arcelik.com.tr/blog/camasir-makinesindeki-yikama-programlari-ne-ise-yarar",
+  },
+  arielBloodStain: {
+    title: "Ariel — How to Get Blood Out of Clothes",
+    url: "https://www.ariel.co.uk/en-gb/how-to-wash/stain-removal/how-to-remove-blood-stains-from-clothing",
+  },
+  arielDarks: {
+    title: "Ariel — How to Wash Black & Dark Coloured Clothes",
+    url: "https://www.ariel.co.uk/en-gb/how-to-wash/laundry-tips/how-to-wash-dark-clothes",
+  },
+  arielDown: {
+    title: "Ariel — How to Wash Down Coats, Jackets and Bedding",
+    url: "https://www.ariel.co.uk/en-gb/how-to-wash/washing-different-fabrics/how-to-wash-down-coats-and-bedding",
+  },
+  arielGreaseStain: {
+    title: "Ariel — How to Remove Grease and Oil Stains from Clothes",
+    url: "https://www.ariel.co.uk/en-gb/how-to-wash/stain-removal/grease-stains",
+  },
+  arielShirt: {
+    title: "Ariel — How to Iron a Shirt",
+    url: "https://www.ariel.co.uk/en-gb/how-to-wash/washing-different-fabrics/how-to-iron-a-shirt",
+  },
+  arielWhites: {
+    title: "Ariel — How to Wash White Clothes",
+    url: "https://www.ariel.co.uk/en-gb/how-to-wash/laundry-tips/washing-whites",
+  },
+  asicsRunningShoes: {
+    title: "ASICS — How to Clean Running Shoes",
+    url: "https://www.asics.com/gb/en-gb/asics-advice/how-to-clean-running-shoes-3-tips-for-keeping-your-shoes-tidy/",
+  },
+  asicsShoeCareTips: {
+    title: "ASICS — 7 shoe care tips to make your shoes last longer",
+    url: "https://www.asics.com/gb/en-gb/running-advice/7-shoe-care-tips-to-make-your-shoes-last-longer/",
+  },
+  birkenstockCareTips: { title: "Birkenstock — Care Tips", url: "https://www.birkenstock.com/us/us-service-caretips.html" },
+  birkenstockCleanSandals: {
+    title: "Birkenstock — How to clean sandals",
+    url: "https://www.birkenstock.com/gb/things-to-know/shoe-care/clean-sandals/",
+  },
+  birkenstockShoeCare: {
+    title: "Birkenstock — How to clean shoes",
+    url: "https://www.birkenstock.com/se-en/things-to-know/shoe-care/clean-shoes/",
+  },
+  birkenstockUpperCare: {
+    title: "Birkenstock — How do I care for the upper material of my BIRKENSTOCK shoes?",
+    url: "https://www.birkenstock.com/gb/faq-how-do-i-care-for-the-upper-material-of-my-birkenstock-shoes.html",
+  },
+  boschWashingSymbols: {
+    title: "Bosch — Washing symbols and signs for clothes",
+    url: "https://bosch-home.ie/experience-bosch/using-your-appliance/washing-symbols-and-signs",
+  },
+  cciLeather: {
+    title: "Canadian Conservation Institute — Caring for leather, skin and fur",
+    url: "https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/caring-leather-skin-fur.html",
+  },
+  clarksBoots: {
+    title: "Clarks — How to Clean and Protect Leather & Suede Boots",
+    url: "https://www.clarks.com/en-us/editorial/how-to-clean-leather-and-suede-boots",
+  },
+  cloroxBleachResidue: {
+    title: "Clorox — How to Prevent Bleach Residue in Your Washing Machine",
+    url: "https://www.clorox.com/learn/washing-machine-leftover-bleach-after-washing/",
+  },
+  cloroxBleachSkinSafety: {
+    title: "Clorox — Bleach Fumes or Skin Contact: Safety Tips & What to Do",
+    url: "https://www.clorox.com/learn/bleach-fumes-or-skin-contact-safety-tips-and-what-to-do/",
+  },
+  cloroxBleachSpots: {
+    title: "Clorox — How to Get Bleach Stains Out of Clothes",
+    url: "https://www.clorox.com/learn/random-mysterious-bleach-spots-on-clothes-after-washing/",
+  },
+  cloroxColoredBleach: {
+    title: "Clorox — Can You Wash Colored Clothes With Bleach?",
+    url: "https://www.clorox.com/learn/can-you-wash-colored-clothes-with-bleach/",
+  },
+  cloroxSpotTreat: {
+    title: "Clorox — How to Spot Treat Stains and Hand Wash Clothes",
+    url: "https://www.clorox.com/learn/how-to-spot-treat-stains-hand-wash-clothes-with-bleach/",
+  },
+  cloroxTooMuchBleach: {
+    title: "Clorox — How Much Bleach Is Too Much Bleach in the Laundry?",
+    url: "https://www.clorox.com/learn/how-much-bleach-is-too-much-bleach-clothes-laundry/",
+  },
+  collonilCarbonPro: {
+    title: "Collonil — Carbon Pro waterproofing spray",
+    url: "https://www.collonil.com/en/shoe-care/by-product-type/waterproofing/carbon-pro",
+  },
+  collonilEspadrilles: {
+    title: "Collonil — How to Clean and Waterproof Your Espadrilles",
+    url: "https://www.collonil.com/en/magazine/tips-for-shoecare/how-to-clean-and-waterproof-your-espadrilles",
+  },
+  collonilLeatherStains: {
+    title: "Collonil — Oil, Red Wine & Co.: Remove Stains from Leather Shoes",
+    url: "https://www.collonil.com/en/magazine/tips-for-shoecare/oil-red-wine-co.-remove-stains-from-leather-shoes",
+  },
+  collonilNubuk: {
+    title: "Collonil — The difference between nubuk and velours",
+    url: "https://www.collonil.com/en/magazine/leather-material/the-difference-between-nubuk-and-velours",
+  },
+  collonilNubukVelourSpray: {
+    title: "Collonil — Nubuck + Velour Colour Care Spray",
+    url: "https://www.collonil.com/en/shoe-care/by-product-type/care/nubuck-velour-colour-care-spray",
+  },
+  collonilSneakers: {
+    title: "Collonil — How to Clean Sneakers and Runners",
+    url: "https://www.collonil.com/en/magazine/tips-for-shoecare/how-to-clean-sneakers-and-runners-2018-update",
+  },
+  collonilWaterproofing: {
+    title: "Collonil — How to Waterproof Your Shoes and Clothes",
+    url: "https://www.collonil.com/en/magazine/cleaning-knowledge/how-to-waterproof-your-shoes-and-clothes",
+  },
+  collonilWetShoes: {
+    title: "Collonil — How to Dry Shoes: First Aid for Wet Shoes",
+    url: "https://www.collonil.com/en/magazine/tips-for-shoecare/how-to-dry-shoes-first-aid-for-wet-shoes",
+  },
+  collonilWinterStorage: {
+    title: "Collonil — The Best Way to Store Winter Shoes",
+    url: "https://www.collonil.com/en/magazine/tips-for-shoecare/the-best-way-to-store-winter-shoes",
+  },
+  converseClean: {
+    title: "Converse — How to Clean Your Converse Shoes",
+    url: "https://www.converse.com/c/how-to-clean-converse-shoes",
+  },
+  crockettJonesRepairs: { title: "Crockett & Jones — Repairs", url: "https://us.crockettandjones.com/pages/repairs" },
+  crocsCleanUk: { title: "Crocs UK — How to Clean Your Crocs", url: "https://www.crocs.co.uk/pg/care-cleaning/care_cleaning.html" },
+  crocsFaq: { title: "Crocs — FAQs", url: "https://www.crocs.com/customer-service/faqs" },
+  crocsFaqUk: { title: "Crocs UK — Customer Service FAQs", url: "https://www.crocs.co.uk/customer-service/faqs" },
+  drMartensLeatherSuede: {
+    title: "Dr. Martens — How to Care for Leather & Suede",
+    url: "https://www.drmartens.com/us/en/dms-world/care/leather-and-suede-care",
+  },
+  drMartensPatent: {
+    title: "Dr. Martens — How to Care for Patent Footwear",
+    url: "https://www.drmartens.com/us/en/dms-world/care/patent-care",
+  },
+  drMartensPolish: { title: "Dr. Martens — How to Polish Boots & Shoes", url: "https://www.drmartens.com/us/en/dms-world/care/polish" },
+  drMartensProtect: {
+    title: "Dr. Martens — How to Protect Your Dr Martens",
+    url: "https://www.drmartens.com/us/en/dms-world/care/protect",
+  },
+  drMartensWonderBalsam: {
+    title: "Dr. Martens — How to Use Wonder Balsam",
+    url: "https://www.drmartens.com/us/en/dms-world/care/wonder-balsam-wax",
+  },
+  epaDrycleaningFaq: {
+    title: "EPA — Frequently Asked Questions About Drycleaning",
+    url: "https://www.clu-in.org/download/dryclean/drclnfaq.pdf",
+  },
+  ftcCareLabeling: {
+    title: "FTC — Clothes Captioning: Complying with the Care Labeling Rule",
+    url: "https://www.ftc.gov/business-guidance/resources/clothes-captioning-complying-care-labeling-rule",
+  },
+  geoxCare: { title: "Geox — Product guide: shoe care", url: "https://www.geox.com/en-US/faq/help_center/product_guide/g2.html" },
+  goreTexFootwearCare: { title: "GORE-TEX — Footwear Care Instructions", url: "https://www.gore-tex.com/support/care/footwear" },
+  haierDryer: {
+    title: "Haier — Kurutma Makinesine Neler Atılmaz?",
+    url: "https://www.haier-europe.com/tr_TR/blog/kurutma-makinesine-neler-atilmaz/",
+  },
+  ikeaSaPillows: {
+    title: "IKEA — How to Wash and Store Duvets and Pillows",
+    url: "https://www.ikea.com/sa/en/rooms/bedroom/how-to/wash-and-store-duvets-and-pillows-pubeea61500/",
+  },
+  ikeaTrDuvetCover: {
+    title: "IKEA — Nevresim Takımını Kaç Derecede Yıkamalıyız?",
+    url: "https://www.ikea.com.tr/iyi-fikirler/nevresim-takimi-kac-derecede-yikanmali",
+  },
+  lgClothingCare: {
+    title: "LG — How to Maintain & Wash Clothes: Laundry & Clothing Care Tips",
+    url: "https://www.lg.com/uk/lg-experience/helpful-hints/wash-maintain-clothes-care-tips-lg-styler/",
+  },
+  mediCleaning: {
+    title: "medi — Care instructions for supports and orthoses",
+    url: "https://www.medi.de/en/faq/supports-and-braces/cleaning/",
+  },
+  merrellCare: {
+    title: "Merrell — FAQ’s: cleaning, drying and reproofing",
+    url: "https://www.merrell.com/NO/en_NO/content?caid=_cs-faqs",
+  },
+  missouriMildew: {
+    title: "University of Missouri Extension — How to Prevent and Remove Mildew: Home Methods",
+    url: "https://extension.missouri.edu/publications/gh5928",
+  },
+  mizunoDry: {
+    title: "Mizuno — Safely and Simply Drying Your Shoes",
+    url: "https://usa.mizuno.com/blog/theinsider/2015/12/08/safely-and-simply-drying-your-shoes/",
+  },
+  newBalanceTrCare: { title: "New Balance Türkiye — Ürün Bakımı", url: "https://www.newbalance.com.tr/urun-bakimi" },
+  nhsSmellyFeet: { title: "NHS — Smelly feet", url: "https://www.nhs.uk/symptoms/smelly-feet/" },
+  nikeAirForce1: { title: "Nike — How to Clean Nike Air Force 1 Shoes", url: "https://www.nike.com/a/how-to-clean-air-force-1" },
+  nikeRain: { title: "Nike — How to Find the Best Shoes for Rain", url: "https://www.nike.com/a/best-shoes-for-rain" },
+  nikeTrClean: {
+    title: "Nike — 6 Kolay Adımda Ayakkabılarını Temizleme Yöntemi",
+    url: "https://www.nike.com/tr/a/ayakkabilar-nasil-temizlenir",
+  },
+  nikeWhiteShoes: { title: "Nike — How to Clean White Shoes", url: "https://www.nike.com/a/how-to-clean-white-shoes" },
+  patagoniaDownCareEu: {
+    title: "Patagonia — Caring for Your Down Clothing",
+    url: "https://eu.patagonia.com/gb/en/stories/culture/worn-wear/from-the-trenches-caring-for-your-down-clothing/story-18839.html",
+  },
+  persilBloodStain: {
+    title: "Persil — Kan Lekelerini Çıkarma",
+    url: "https://www.persil.com.tr/camasirlar-hakkinda-yardim/leke-danismani/zorlu-lekeler/kan-lekelerini-cikarma.html",
+  },
+  persilCareSymbols: {
+    title: "Persil — Bakım Sembolleri",
+    url: "https://www.persil.com.tr/camasirlar-hakkinda-yardim/bakim-sembolleri.html",
+  },
+  persilColoursWash: {
+    title: "Persil — Renkli Çamaşır",
+    url: "https://www.persil.com.tr/camasirlar-hakkinda-yardim/yikama-onerileri/zorlu-lekeler/renkli-camasir.html",
+  },
+  persilDenimWash: {
+    title: "Persil — Kot",
+    url: "https://www.persil.com.tr/camasirlar-hakkinda-yardim/yikama-onerileri/zorlu-lekeler/kot.html",
+  },
+  persilFruit: {
+    title: "Persil — Meyve ve Sebze Lekelerini Çıkarma",
+    url: "https://www.persil.com.tr/camasirlar-hakkinda-yardim/leke-danismani/zorlu-lekeler/meyve-ve-sebze-lekelerini-cikarma.html",
+  },
+  persilGeneralStainTips: {
+    title: "Persil — Lekeleri Çıkarmak için Genel İpuçları",
+    url: "https://www.persil.com.tr/camasirlar-hakkinda-yardim/leke-danismani/zorlu-lekeler/lekeleri-cikarmak-icin-genel-ipuclari.html",
+  },
+  persilInkStain: {
+    title: "Persil — Mürekkep ve Tükenmez Kalem Lekelerini Çıkarma",
+    url: "https://www.persil.com.tr/camasirlar-hakkinda-yardim/leke-danismani/zorlu-lekeler/murekkep-ve-tukenmez-kalem-lekerini-cikarma.html",
+  },
+  persilMouldRustStain: {
+    title: "Persil — Küf ve Pas Lekeleri Nasıl Çıkarılır",
+    url: "https://www.persil.com.tr/camasirlar-hakkinda-yardim/leke-danismani/zorlu-lekeler/kuf-ve-pas-lekeleri-nasil-cikarilir.html",
+  },
+  persilOilGreaseStain: {
+    title: "Persil — Yağ ve Katı Yağ Lekelerini Çıkarma",
+    url: "https://www.persil.com.tr/camasirlar-hakkinda-yardim/leke-danismani/zorlu-lekeler/yag-ve-kati-yag-lekelerini-cikarma.html",
+  },
+  persilOldDriedStain: {
+    title: "Persil — Eski ve kurumuş lekelerin çıkarılması",
+    url: "https://www.persil.com.tr/camasirlar-hakkinda-yardim/leke-danismani/zorlu-lekeler/eski-ve-kurumus-lekelerin-cikarilmasi.html",
+  },
+  persilSilkStain: {
+    title: "Persil — İpekteki Lekeleri Çıkarma",
+    url: "https://www.persil.com.tr/camasirlar-hakkinda-yardim/leke-danismani/zorlu-lekeler/opekteki-lekeleri-cikarma.html",
+  },
+  persilSortingPretreat: {
+    title: "Persil — Çamaşırlarınızı Ayırma ve Ön İşlem Uygulama",
+    url: "https://www.persil.com.tr/camasirlar-hakkinda-yardim/yikama-onerileri/zorlu-lekeler/camasirlarinizi-ayirma-ve-on-islem-uygulama.html",
+  },
+  persilSportsOutdoorWash: {
+    title: "Persil — Egzersiz Kumaşları, Spor ve Dış Mekân Kıyafetleri",
+    url: "https://www.persil.com.tr/camasirlar-hakkinda-yardim/yikama-onerileri/zorlu-lekeler/egzersiz-kumaslari-spor-ve-dis-mekan-kiyafetleri.html",
+  },
+  persilTrainers: {
+    title: "Persil — Dirty Secrets: How to Wash Trainers",
+    url: "https://www.persil.com/uk/laundry/laundry-tips/fabrics/dirty-secrets-wash-trainers.html",
+  },
+  persilWashCycle: {
+    title: "Persil — Yıkama Döngüsü Seçme",
+    url: "https://www.persil.com.tr/camasirlar-hakkinda-yardim/yikama-onerileri/zorlu-lekeler/yikama-dongusu-secme.html",
+  },
+  persilWashedInStain: {
+    title: "Persil — Yıkayıp Kuruttuğunuz Giysilerdeki Lekeleri Çıkarma",
+    url: "https://www.persil.com.tr/camasirlar-hakkinda-yardim/leke-danismani/zorlu-lekeler/yikayip-kuruttugunuz-giysilerdeki-lekeleri-cikarma.html",
+  },
+  persilWhitesWash: {
+    title: "Persil — Beyaz Çamaşır",
+    url: "https://www.persil.com.tr/camasirlar-hakkinda-yardim/yikama-onerileri/zorlu-lekeler/beyaz-camasir.html",
+  },
+  pumaTrCare: { title: "PUMA Türkiye — Bakım", url: "https://tr.puma.com/puma-bakim.html" },
+  redWingCare: {
+    title: "Red Wing — How to Properly Care for Your Red Wing Boots",
+    url: "https://www.redwingshoes.com/articles/proper-care.html",
+  },
+  redWingRepairs: { title: "Red Wing — Repairs", url: "https://www.redwingshoes.com/contact-us/repairs.html" },
+  samsungSneakerWash: {
+    title: "Samsung — How to wash sneakers and tennis shoes in your Samsung washing machine",
+    url: "https://www.samsung.com/us/support/answer/ANS10001032/",
+  },
+  samsungWashCycles: {
+    title: "Samsung — Washing machine cycles & program settings explained",
+    url: "https://www.samsung.com/uk/support/home-appliances/what-wash-cycle-should-i-use-for-my-samsung-washing-machine/",
+  },
+  saphirLeatherGuide: { title: "Saphir — Leather Shoes & Boots Guide", url: "https://uk.saphir.com/pages/leather-shoes-boots-guide-detail" },
+  saphirSuedeGuide: { title: "Saphir — Suede how to guides", url: "https://uk.saphir.com/pages/suede-how-to-guides" },
+  saphirTrainersGuide: { title: "Saphir — Trainers Guide", url: "https://uk.saphir.com/pages/trainers-guide-detail" },
+  siemensSportswear: {
+    title: "Siemens — Spor kıyafetleri nasıl yıkanır",
+    url: "https://www.siemens-home.bsh-group.com/tr/musteri-hizmetleri/temizlik-bakim/camasir-makinesi-bakimi/camasir-makinesi/ters-yuz/spor-kiyafet-yikama",
+  },
+  skechersCareHelp: { title: "Skechers — Help: Shoe Sizing & Care", url: "https://www.skechers.com/direct/shoe-sizing-and-care" },
+  skechersCleanGuide: {
+    title: "Skechers — How to Clean Skechers Shoes: Official Guide",
+    url: "https://www.skechers.com/stories/lifestyle/how-clean-your-skechers.html",
+  },
+  skechersKidsShoes: {
+    title: "Skechers — How to Clean Kids’ Shoes",
+    url: "https://www.skechers.com/stories/lifestyle/how-clean-skechers-kids-shoes.html",
+  },
+  skechersTrWash: { title: "Skechers Türkiye — Yıkama Talimatı", url: "https://www.skechers.com.tr/sayfa/yikama-talimati-2" },
+  skechersUkClean: {
+    title: "Skechers UK — How To Clean Your Skechers",
+    url: "https://www.skechers.co.uk/how-to-clean-your-skechers.html",
+  },
+  superfeetFaq: { title: "Superfeet — FAQs", url: "https://www.superfeet.com/pages/faqs" },
+  tarragoEspadrilles: {
+    title: "Tarrago — How to care for the espadrilles?",
+    url: "https://www.tarrago.com/how-to-care-for-the-espadrilles/",
+  },
+  tarragoSuedeNubuck: { title: "Tarrago — How to clean Suede and Nubuck", url: "https://www.tarrago.com/how-to-clean-suede/" },
+  tarragoSuedeRefresh: {
+    title: "Tarrago — How to care for and refresh suede bags and shoes",
+    url: "https://www.tarrago.com/how-to-care-for-and-refresh-suede-bags-and-shoes/",
+  },
+  tarragoWinterCare: {
+    title: "Tarrago — Winter Shoe Care: Shielding Your Footwear from Rain and Snow",
+    url: "https://www.tarrago.com/winter-shoe-care-shielding-your-footwear-from-rain-and-snow/",
+  },
+  tideBloodStain: {
+    title: "Tide — How to Remove Blood Stains",
+    url: "https://tide.com/en-us/how-to-wash-clothes/how-to-remove-stains/blood-stains",
+  },
+  tideCollar: {
+    title: "Tide — How to Clean a Shirt Collar",
+    url: "https://tide.com/en-us/how-to-wash-clothes/how-to-remove-stains/collar-or-cuff-soil-stains",
+  },
+  tideDownBedding: {
+    title: "Tide — How to Wash Down Jackets and Bedding",
+    url: "https://tide.com/en-us/how-to-wash-clothes/washing-different-fabrics-and-colors/how-to-wash-down-jackets-and-bedding",
+  },
+  tideDyeTransfer: {
+    title: "Tide — How to Remove Dye Transfer Stains",
+    url: "https://tide.com/en-us/how-to-wash-clothes/how-to-remove-stains/dye-transfer-stains",
+  },
+  tideGreaseStain: {
+    title: "Tide — How to Remove Grease Stains",
+    url: "https://tide.com/en-us/how-to-wash-clothes/how-to-remove-stains/grease-stains",
+  },
+  tideInkStain: {
+    title: "Tide — How to Get Ink Out of Clothes",
+    url: "https://tide.com/en-us/how-to-wash-clothes/how-to-remove-stains/ink-stains",
+  },
+  tideNailPolish: {
+    title: "Tide — How to Get Nail Polish Out of Clothes",
+    url: "https://tide.com/en-us/how-to-wash-clothes/how-to-remove-stains/nail-polish-stains",
+  },
+  tideWhites: {
+    title: "Tide — How to Wash White Clothes",
+    url: "https://tide.com/en-us/how-to-wash-clothes/washing-different-fabrics-and-colors/how-to-wash-whites",
+  },
+  timberlandCare: {
+    title: "Timberland — Cleaning & Protecting Timberland Boots",
+    url: "https://www.timberland.com/en-gb/blog/faq/cleaning-timberland-boots",
+  },
+  timberlandClean: {
+    title: "Timberland — How to Clean Timberland Boots",
+    url: "https://www.timberland.com/en-us/customer-care/product-faqs/how-to-clean-timberland-boots",
+  },
+  timberlandStains: {
+    title: "Timberland — How to Remove Stains from Leather or Suede Boots",
+    url: "https://www.timberland.com/en-gb/blog/faq/how-to-remove-stains-from-leather-or-suede-boots",
+  },
+  timberlandWeather: {
+    title: "Timberland — How to keep your shoes in perfect condition in any weather",
+    url: "https://www.timberland.com/en-gb/blog/faq/how-to-keep-your-shoes-in-perfect-condition-in-any-weather",
+  },
+  tomsDryShoes: {
+    title: "TOMS — How to Dry Shoes Fast: 5 Safe Options",
+    url: "https://www.toms.com/blogs/news/how-to-dry-shoes-fast",
+  },
+  tomsShoeCare: { title: "TOMS — FAQ: How do I care for my TOMS shoes?", url: "https://www.toms.com/pages/faq" },
+  ugaInkStain: {
+    title: "UGA Cooperative Extension — Remove Stains From Ink (Ballpoint, Felt Tip, India, Mimeo, Stamp Pad)",
+    url: "https://site.extension.uga.edu/textiles/care/stain-removal/remove-stains-from-ink-ballpoint-felt-tip-india-mimeo-stamp-pad/",
+  },
+  ugaStainProducts: {
+    title: "University of Georgia Extension — Stain removal products",
+    url: "https://site.extension.uga.edu/textiles/care/products/",
+  },
+  uggCleaning: { title: "UGG — Sheepskin Cleaning and Care Instructions", url: "https://www.ugg.com/care-cleaning.html" },
+  uggSheepskin: { title: "UGG — How to clean UGG® Sheepskin", url: "https://www.ugg.com/care-sheepskin.html" },
+  vagabondLeather: {
+    title: "Vagabond — Leather Care: Clean, care & protect",
+    url: "https://www.vagabond.com/ca/about-us/the-care/leather/",
+  },
+  vagabondNubuck: { title: "Vagabond — The care: Nubuck", url: "https://www.vagabond.com/ca/about-us/the-care/nubuck/" },
+  vagabondSuede: { title: "Vagabond — The care: Suede", url: "https://www.vagabond.com/ca/about-us/the-care/suede/" },
+  vanishBeddingWhites: {
+    title: "Vanish — Yatak ve çarşaflar nasıl beyazlatılır?",
+    url: "https://www.vanish.com.tr/beyazlatma/yatak-beyazlatma/",
+  },
+  vanishBloodStain: {
+    title: "Vanish — Kan lekesi nasıl çıkar?",
+    url: "https://www.vanish.com.tr/leke-cikarma/vucut-lekeleri/kan-lekesi-halidan-carsaftan-ve-diger-kumaslardan-nasil-cikar/",
+  },
+  vanishCareSymbols: {
+    title: "Vanish — Kıyafet yıkama sembolleri ne anlama gelir?",
+    url: "https://www.vanish.com.tr/uzun-omurlu-moda/kiyafet-yikama-sembolleri/",
+  },
+  vanishDarksGuide: {
+    title: "Vanish — Siyah Çamaşırları Yıkama Rehberi",
+    url: "https://www.vanish.com.tr/ev-bakimi/siyah-%D1%81amasirlari-yikama-rehberi/",
+  },
+  vanishFading: {
+    title: "Vanish — Kıyafetlerin solması nasıl önlenir?",
+    url: "https://www.vanish.com.tr/uzun-omurlu-moda/kiyafetlerin-solmasi-nasil-onlenir/",
+  },
+  vanishGreyWhites: {
+    title: "Vanish — Grileşmiş Beyazlar Nasıl Beyazlatılır?",
+    url: "https://www.vanish.com.tr/beyazlatma/beyaz-camasirlar-nasil-beyazlatilir/",
+  },
+  vanishTempGuide: {
+    title: "Vanish — Çamaşır Makineniz İçin Sıcaklık Rehberi",
+    url: "https://www.vanish.com.tr/ev-bakimi/camasir-makineniz-icin-sicaklik-rehberi/",
+  },
+  vanishUnderwear: {
+    title: "Vanish — İç Çamaşırları Nasıl Yıkanır?",
+    url: "https://www.vanish.com.tr/leke-cikarma/kumaslardaki-lekeler/ic-camasirlari-nasil-yikanir/",
+  },
+  vanishWhitesGuide: {
+    title: "Vanish — Beyaz Çamaşırlar Nasıl Yıkanır: Kapsamlı Rehber",
+    url: "https://www.vanish.com.tr/ev-bakimi/beyaz-camasirlar-nasil-yikanir-kapsamli-rehberi/",
+  },
+  waDohBleach: {
+    title: "Washington State Department of Health — Dangers of Mixing Bleach with Cleaners",
+    url: "https://doh.wa.gov/community-and-environment/contaminants/bleach-mixing-dangers",
+  },
+  woolmarkSymbols: {
+    title: "Woolmark — Washing instruction symbols explained",
+    url: "https://www.woolmark.com/care/washing-instruction-symbols-explained/",
+  },
+  woolmarkWoolStains: { title: "Woolmark — Removing stains from wool", url: "https://www.woolmark.com/care/removing-stains-from-wool/" },
 }

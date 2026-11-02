@@ -3,9 +3,15 @@ import type { CareGuide, GuideRelease } from "@/lib/discovery"
 import { sporAyakkabiNasilTemizlenir } from "./spor-ayakkabi-nasil-temizlenir"
 import { suetNubukAyakkabiNasilTemizlenir } from "./suet-nubuk-ayakkabi-nasil-temizlenir"
 import { deriAyakkabiNasilTemizlenir } from "./deri-ayakkabi-nasil-temizlenir"
+import { bezAyakkabiNasilTemizlenir } from "./bez-ayakkabi-nasil-temizlenir"
 import { fileOrguAyakkabiTemizligi } from "./file-orgu-ayakkabi-temizligi"
+import { botNasilTemizlenir } from "./bot-nasil-temizlenir"
 import { beyazAyakkabiNasilTemizlenir } from "./beyaz-ayakkabi-nasil-temizlenir"
+import { sararanAyakkabiTabaniNasilBeyazlatilir } from "./sararan-ayakkabi-tabani-nasil-beyazlatilir"
+import { ayakkabidakiYagLekesiNasilCikar } from "./ayakkabidaki-yag-lekesi-nasil-cikar"
 import { camurluAyakkabiNasilTemizlenir } from "./camurlu-ayakkabi-nasil-temizlenir"
+import { ayakkabidaTuzLekesiNasilCikar } from "./ayakkabida-tuz-lekesi-nasil-cikar"
+import { ayakkabiNasilYikanir } from "./ayakkabi-nasil-yikanir"
 import { ayakkabiMakinedeYikanirMi } from "./ayakkabi-makinede-yikanir-mi"
 import { ayakkabiNasilKurutulur } from "./ayakkabi-nasil-kurutulur"
 import { ayakkabiKuruTemizlemeyeVerilirMi } from "./ayakkabi-kuru-temizlemeye-verilir-mi"
@@ -13,10 +19,25 @@ import { yagmurdaIslananAyakkabiBakimi } from "./yagmurda-islanan-ayakkabi-bakim
 import { ayakkabiKokusuNasilGiderilir } from "./ayakkabi-kokusu-nasil-giderilir"
 import { ayakkabiTabanligiNasilTemizlenir } from "./ayakkabi-tabanligi-nasil-temizlenir"
 import { ayakkabiBagcigiNasilTemizlenir } from "./ayakkabi-bagcigi-nasil-temizlenir"
+import { skechersAyakkabiNasilYikanir } from "./skechers-ayakkabi-nasil-yikanir"
+import { newBalanceNasilTemizlenir } from "./new-balance-nasil-temizlenir"
+import { crocsNasilTemizlenir } from "./crocs-nasil-temizlenir"
+import { uggNasilTemizlenir } from "./ugg-nasil-temizlenir"
+import { timberlandBotNasilTemizlenir } from "./timberland-bot-nasil-temizlenir"
+import { converseNasilTemizlenir } from "./converse-nasil-temizlenir"
 import { ayakkabiBakimiMiOnarimMi } from "./ayakkabi-bakimi-mi-onarim-mi"
+import { ayakkabiSuGecirmezSpreyNasilKullanilir } from "./ayakkabi-su-gecirmez-sprey-nasil-kullanilir"
 import { ayakkabiTemizlemeFiyatiNeyeGoreBelirlenir } from "./ayakkabi-temizleme-fiyati-neye-gore-belirlenir"
 import { ayakkabiNasilSaklanir } from "./ayakkabi-nasil-saklanir"
+import { yagLekesiNasilCikar } from "./yag-lekesi-nasil-cikar"
+import { kanLekesiNasilCikar } from "./kan-lekesi-nasil-cikar"
+import { murekkepLekesiNasilCikar } from "./murekkep-lekesi-nasil-cikar"
+import { camasirSuyuLekesiNasilCikar } from "./camasir-suyu-lekesi-nasil-cikar"
+import { beyazlarKacDerecedeYikanir } from "./beyazlar-kac-derecede-yikanir"
+import { renklilerHangiProgramdaYikanir } from "./renkliler-hangi-programda-yikanir"
+import { siyahlarHangiProgramdaYikanir } from "./siyahlar-hangi-programda-yikanir"
 import { yorganNasilYikanir } from "./yorgan-nasil-yikanir"
+import { sismeMontNasilYikanir } from "./sisme-mont-nasil-yikanir"
 import { yikamaSembolleri } from "./yikama-sembolleri"
 import { kuruTemizlemeNedir } from "./kuru-temizleme-nedir"
 import { gomlekNasilUtulenir } from "./gomlek-nasil-utulenir"
@@ -26,9 +47,15 @@ export const careGuides: CareGuide[] = [
   sporAyakkabiNasilTemizlenir,
   suetNubukAyakkabiNasilTemizlenir,
   deriAyakkabiNasilTemizlenir,
+  bezAyakkabiNasilTemizlenir,
   fileOrguAyakkabiTemizligi,
+  botNasilTemizlenir,
   beyazAyakkabiNasilTemizlenir,
+  sararanAyakkabiTabaniNasilBeyazlatilir,
+  ayakkabidakiYagLekesiNasilCikar,
   camurluAyakkabiNasilTemizlenir,
+  ayakkabidaTuzLekesiNasilCikar,
+  ayakkabiNasilYikanir,
   ayakkabiMakinedeYikanirMi,
   ayakkabiNasilKurutulur,
   ayakkabiKuruTemizlemeyeVerilirMi,
@@ -36,10 +63,25 @@ export const careGuides: CareGuide[] = [
   ayakkabiKokusuNasilGiderilir,
   ayakkabiTabanligiNasilTemizlenir,
   ayakkabiBagcigiNasilTemizlenir,
+  skechersAyakkabiNasilYikanir,
+  newBalanceNasilTemizlenir,
+  crocsNasilTemizlenir,
+  uggNasilTemizlenir,
+  timberlandBotNasilTemizlenir,
+  converseNasilTemizlenir,
   ayakkabiBakimiMiOnarimMi,
+  ayakkabiSuGecirmezSpreyNasilKullanilir,
   ayakkabiTemizlemeFiyatiNeyeGoreBelirlenir,
   ayakkabiNasilSaklanir,
+  yagLekesiNasilCikar,
+  kanLekesiNasilCikar,
+  murekkepLekesiNasilCikar,
+  camasirSuyuLekesiNasilCikar,
+  beyazlarKacDerecedeYikanir,
+  renklilerHangiProgramdaYikanir,
+  siyahlarHangiProgramdaYikanir,
   yorganNasilYikanir,
+  sismeMontNasilYikanir,
   yikamaSembolleri,
   kuruTemizlemeNedir,
   gomlekNasilUtulenir,
@@ -48,28 +90,51 @@ export const careGuides: CareGuide[] = [
 /** What this release changed. /rehber lastmod is the release date; tests tell rewrites from guides kept as they were. */
 export const guideRelease: GuideRelease = {
   date: "2026-11-02",
-  added: [],
-  rewritten: [],
-  keptLive: [
+  added: [
+    "bez-ayakkabi-nasil-temizlenir",
+    "bot-nasil-temizlenir",
+    "sararan-ayakkabi-tabani-nasil-beyazlatilir",
+    "ayakkabidaki-yag-lekesi-nasil-cikar",
+    "ayakkabida-tuz-lekesi-nasil-cikar",
+    "ayakkabi-nasil-yikanir",
+    "skechers-ayakkabi-nasil-yikanir",
+    "new-balance-nasil-temizlenir",
+    "crocs-nasil-temizlenir",
+    "ugg-nasil-temizlenir",
+    "timberland-bot-nasil-temizlenir",
+    "converse-nasil-temizlenir",
+    "ayakkabi-su-gecirmez-sprey-nasil-kullanilir",
+    "yag-lekesi-nasil-cikar",
+    "kan-lekesi-nasil-cikar",
+    "murekkep-lekesi-nasil-cikar",
+    "camasir-suyu-lekesi-nasil-cikar",
+    "beyazlar-kac-derecede-yikanir",
+    "renkliler-hangi-programda-yikanir",
+    "siyahlar-hangi-programda-yikanir",
+    "sisme-mont-nasil-yikanir",
+  ],
+  rewritten: [
     "spor-ayakkabi-nasil-temizlenir",
     "suet-nubuk-ayakkabi-nasil-temizlenir",
     "deri-ayakkabi-nasil-temizlenir",
     "file-orgu-ayakkabi-temizligi",
     "beyaz-ayakkabi-nasil-temizlenir",
-    "camurlu-ayakkabi-nasil-temizlenir",
     "ayakkabi-makinede-yikanir-mi",
     "ayakkabi-nasil-kurutulur",
     "ayakkabi-kuru-temizlemeye-verilir-mi",
-    "yagmurda-islanan-ayakkabi-bakimi",
     "ayakkabi-kokusu-nasil-giderilir",
     "ayakkabi-tabanligi-nasil-temizlenir",
-    "ayakkabi-bagcigi-nasil-temizlenir",
     "ayakkabi-bakimi-mi-onarim-mi",
-    "ayakkabi-temizleme-fiyati-neye-gore-belirlenir",
-    "ayakkabi-nasil-saklanir",
     "yorgan-nasil-yikanir",
     "yikama-sembolleri",
     "kuru-temizleme-nedir",
     "gomlek-nasil-utulenir",
+  ],
+  keptLive: [
+    "camurlu-ayakkabi-nasil-temizlenir",
+    "yagmurda-islanan-ayakkabi-bakimi",
+    "ayakkabi-bagcigi-nasil-temizlenir",
+    "ayakkabi-temizleme-fiyati-neye-gore-belirlenir",
+    "ayakkabi-nasil-saklanir",
   ],
 }
