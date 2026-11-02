@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Fragment, type ReactNode } from "react"
+import type { ReactNode } from "react"
 import { ArrowUpRight } from "lucide-react"
 import { SiteShell } from "@/components/website/shared"
 import { ShopActions } from "./actions"
@@ -41,10 +41,13 @@ export function RelatedLinks({ links, title = "Buradan devam et" }: { links: { h
   return <section className="discovery-related"><h2>{title}</h2><ul>{links.map(link => <li key={link.href}><Link href={link.href}><span><strong>{link.title}</strong>{link.text && <span>{link.text}</span>}</span><ArrowUpRight size={22} aria-hidden="true"/></Link></li>)}</ul></section>
 }
 
-/** Plain, crawlable reading links to other guides (not calls to action), styled like the source line. */
+/**
+ * Plain, crawlable reading links to other guides (not calls to action), as quiet as the source line.
+ * A list rather than a sentence with separators, so long titles wrap whole on narrow screens.
+ */
 export function GuideLinks({ links, lead }: { links: { href: string; label: string }[]; lead?: string }) {
   if (!links.length) return null
-  return <p className="discovery-guide-links">{lead ?? (links.length === 1 ? "İlgili rehber:" : "İlgili rehberler:")} {links.map((link, i) => <Fragment key={link.href}>{i > 0 && " · "}<Link href={link.href} prefetch={false}>{link.label}</Link></Fragment>)}</p>
+  return <div className="discovery-guide-links"><p>{lead ?? (links.length === 1 ? "İlgili rehber:" : "İlgili rehberler:")}</p><ul>{links.map(link => <li key={link.href}><Link href={link.href} prefetch={false}>{link.label}</Link></li>)}</ul></div>
 }
 
 /** A service page's guide row (lib/service-guide-links.ts): guide titles as anchors, released guides only. */

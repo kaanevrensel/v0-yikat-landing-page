@@ -28,25 +28,32 @@ test("discovery photos have working responsive delivery while approved home artw
   expect(home).not.toContain("/_next/image?url=%2Fimages%2Fservices%2Fhero-v2")
 })
 
-// Titles must be unique across all routes, so every chunk compares against the full set of
-// expected <title> values (built from the same metadata the pages use) as well as its own.
+// Titles must be unique across all routes, not only within a chunk: one cheap request per route.
 const expectedTitles = new Map<string, string>()
 for (const guide of careGuides) expectedTitles.set(`${guide.title} | Yıkat`, `/rehber/${guide.slug}`)
+const decodeHtml = (text: string) => text.replace(/&(?:#(\d+)|#x([0-9a-f]+)|(amp|lt|gt|quot|apos|nbsp));/gi, (_, dec, hex, name) =>
+  dec ? String.fromCodePoint(Number(dec)) : hex ? String.fromCodePoint(parseInt(hex, 16)) : ({ amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: "\u00a0" } as Record<string, string>)[name.toLowerCase()])
+
+test("every discovery URL has its own <title>", async ({ request }) => {
+  const owners = new Map<string, string>()
+  for (const path of routes) {
+    const title = decodeHtml((await (await request.get(path)).text()).match(/<title>(.*?)<\/title>/)?.[1] ?? "")
+    expect(title, path).toBeTruthy()
+    expect(owners.get(title), `${path}: same <title> as ${owners.get(title)}`).toBeUndefined()
+    owners.set(title, path)
+    const expected = expectedTitles.get(title)
+    if (expected) expect(expected, `${path}: the title of ${expected}`).toBe(path)
+  }
+})
 
 for (const { label, paths } of chunks(25)) test(`every discovery URL serves unique canonical HTML, correct shop facts and public crawl access (${label})`, async ({ request }) => {
-  const titles = new Set<string>()
   for (const path of paths) {
     const res = await request.get(path)
     expect(res.status(), path).toBe(200)
     expect(res.headers()["x-robots-tag"] ?? "").not.toContain("noindex")
     const html = await res.text()
     expect(html, path).toContain(`rel="canonical" href="${siteConfig.url}${path}"`)
-    const title = html.match(/<title>(.*?)<\/title>/)?.[1]
-    expect(title, path).toBeTruthy()
-    expect(titles.has(title!), path).toBe(false)
-    titles.add(title!)
-    const owner = expectedTitles.get(title!.replace(/&amp;/g, "&"))
-    if (owner) expect(owner, `${path}: same <title> as ${owner}`).toBe(path)
+    expect(html.match(/<title>(.*?)<\/title>/)?.[1], path).toBeTruthy()
     expect(html.match(/<h1(?:\s|>)/g)?.length, path).toBe(1)
     const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m => JSON.parse(m[1]))
     const business = blocks.find(b => b["@type"] === "DryCleaningOrLaundry")

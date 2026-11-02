@@ -14,6 +14,12 @@ export const metadata = discoveryMetadata("Ayakkabı Temizleme ve Yıkama Hizmet
 
 // Live since the first discovery release; the anchor is the guide's current title.
 const machineGuide = guideBySlug("ayakkabi-makinede-yikanir-mi")!
+// "Yıkamadan önce oku" cards; the guide row above leaves these out so a guide is not linked twice in a row.
+const readFirst = [
+  { slug: "ayakkabi-makinede-yikanir-mi", title: "Ayakkabı makinede yıkanır mı?" },
+  { slug: "beyaz-ayakkabi-nasil-temizlenir", title: "Beyaz ayakkabıda kir ve sararma" },
+  { slug: "ayakkabi-kokusu-nasil-giderilir", title: "Ayakkabı kokusunda nem ve kurutma" },
+]
 
 export default function Page() {
   return <DiscoveryShell crumbs={[{ name: "Ayakkabı temizleme", path: "/ayakkabi-temizleme" }]}>
@@ -54,14 +60,14 @@ export default function Page() {
     </section>
     <ServiceExpectations/>
     <CustomerCases/>
-    <section className="discovery-prose discovery-narrow"><h2>Evde bakım mı, profesyonel değerlendirme mi?</h2><p>Üretici talimatı açık olan hafif yüzey kiri için bakım rehberlerinden başlayabilirsin. Karışık malzeme, süet detay, önceki ürün izi veya mevcut hasarda önce değerlendirme istemek daha yerinde olur.</p><p>“Ayakkabı kuru temizleme” ifadesi de tek bir yöntem tarif etmez. Tekstilde kullanılan profesyonel işlemin her ayakkabı için uygun olduğu varsayılamaz. Ayakkabının malzemesi ve yapısı önceliklidir.</p><p>Hafif yüzey bakımı için <Link href="/rehber/spor-ayakkabi-nasil-temizlenir">spor ayakkabı rehberini</Link>, iç yüzey için <Link href="/rehber/ayakkabi-tabanligi-nasil-temizlenir">tabanlık rehberini</Link> kullan. Ücret sorusunu hazırlamak için <Link href="/rehber/ayakkabi-temizleme-fiyati-neye-gore-belirlenir">kabul öncesi soruları</Link> incele.</p><ServiceGuideLinks path="/ayakkabi-temizleme" lead="Evde ilk adım için:"/></section>
+    <section className="discovery-prose discovery-narrow"><h2>Evde bakım mı, profesyonel değerlendirme mi?</h2><p>Üretici talimatı açık olan hafif yüzey kiri için bakım rehberlerinden başlayabilirsin. Karışık malzeme, süet detay, önceki ürün izi veya mevcut hasarda önce değerlendirme istemek daha yerinde olur.</p><p>“Ayakkabı kuru temizleme” ifadesi de tek bir yöntem tarif etmez. Tekstilde kullanılan profesyonel işlemin her ayakkabı için uygun olduğu varsayılamaz. Ayakkabının malzemesi ve yapısı önceliklidir.</p><p>Hafif yüzey bakımı için <Link href="/rehber/spor-ayakkabi-nasil-temizlenir">spor ayakkabı rehberini</Link>, iç yüzey için <Link href="/rehber/ayakkabi-tabanligi-nasil-temizlenir">tabanlık rehberini</Link> kullan. Ücret sorusunu hazırlamak için <Link href="/rehber/ayakkabi-temizleme-fiyati-neye-gore-belirlenir">kabul öncesi soruları</Link> incele.</p><ServiceGuideLinks path="/ayakkabi-temizleme" lead="Evde ilk adım için:" exclude={readFirst.map(link => link.slug)}/></section>
     <div className="discovery-narrow"><FaqList faqs={[
       { q: "Ayakkabı temizleme ile yıkama aynı şey mi?", a: "Günlük kullanımda benzer hizmeti anlatabilir; fakat uygulanacak işlem malzemeye göre değişir. Süet, deri ve kumaşa aynı yıkama yöntemi uygulanmaz." },
       { q: "Aynı gün teslim alabilir miyim?", a: "Uygunluğu ayakkabının durumuna, işlem ve kuruma ihtiyacına göre netleştirelim. Belirli bir saate ihtiyacın varsa önceden paylaş." },
       { q: "Her leke ve sararma çıkar mı?", a: "Hayır; her iz kir değildir. Boya kaybı, aşınma, çatlak ve malzemenin renk değişimi temizlikten farklı değerlendirilir." },
       { q: "İstanbul’un her yerinden teslim alıyor musunuz?", a: "Kapıdan alım henüz başlamadı. Şu an ayakkabını Bakırköy Sakızağacı’ndaki dükkâna bırakıp buradan teslim alabilirsin. Kargo göndermeden önce kabul koşullarını doğrudan dükkânla netleştir." },
     ]}/></div>
-    <RelatedLinks title="Yıkamadan önce oku" links={[{ href: "/rehber/ayakkabi-makinede-yikanir-mi", title: "Ayakkabı makinede yıkanır mı?" }, { href: "/rehber/beyaz-ayakkabi-nasil-temizlenir", title: "Beyaz ayakkabıda kir ve sararma" }, { href: "/rehber/ayakkabi-kokusu-nasil-giderilir", title: "Ayakkabı kokusunda nem ve kurutma" }]}/>
+    <RelatedLinks title="Yıkamadan önce oku" links={readFirst.map(link => ({ href: `/rehber/${link.slug}`, title: link.title }))}/>
     <ShopInvitation/>
   </DiscoveryShell>
 }
