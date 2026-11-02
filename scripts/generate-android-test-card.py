@@ -38,7 +38,7 @@ care = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(care)
 WIDTH, HEIGHT = A5
 MARGIN = 30
-QR_SIZE = 172
+QR_SIZE = 160
 
 
 def paragraph(c, text, top, size, leading, font="Bricolage", max_height=100):
@@ -61,6 +61,8 @@ def build():
     if url != EXPECTED_URL:
         raise ValueError("The card must point to www.yikat.tech/android; check lib/android-test.ts")
     group = constant("groupUrl")
+    if not group.startswith("https://groups.google.com/"):
+        raise ValueError("groupUrl not found in lib/android-test.ts")
     care.fonts()
     qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_M, border=4)
     qr.add_data(url)
@@ -76,28 +78,32 @@ def build():
                           f'<path d="{modules}" fill="#042C53"/></svg>\n')
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     c = canvas.Canvas(str(OUTPUT), pagesize=A5, invariant=1, pageCompression=1)
-    c.setTitle("Android’de ilk sen dene | Yıkat")
+    c.setTitle("Android’in varsa bir ricamız var | Yıkat")
     c.setAuthor("Yıkat")
     c.setSubject("Yıkat Gitsin Android kapalı testine isteğe bağlı katılım")
     c.setCreator("Yıkat android-test-card generator")
     c.setFillColor(white)
     c.rect(0, 0, WIDTH, HEIGHT, fill=1, stroke=0)
     with Image.open(care.LOGO) as im:
-        logo_height = 99 * im.height / im.width
-    c.drawImage(str(care.LOGO), (WIDTH - 99) / 2, 512, width=99, height=logo_height, mask="auto")
-    paragraph(c, "Android’de ilk sen dene.", 477, 28, 34, "BricolageBold", 34)
-    paragraph(c, "Yıkat Gitsin Google Play’de kapalı testte.<br/>14 gün deneyerek herkese açılmasına yardım edebilirsin.",
-              431, 13.5, 19, max_height=38)
-    qr_y = 196
+        logo_height = 90 * im.height / im.width
+    c.drawImage(str(care.LOGO), (WIDTH - 90) / 2, 525, width=90, height=logo_height, mask="auto")
+    # Top to bottom; each block starts under the previous one, and paragraph()
+    # refuses anything that wraps further than planned or leaves the margin.
+    # The favour framing matches the page and Instagram; the card quotes no
+    # button label, because Play's Turkish opt-in label is not verified yet.
+    bottom = paragraph(c, "Android’in varsa<br/>bir ricamız var.", 506, 27, 31, "BricolageBold", 62)
+    bottom = paragraph(c, "Yıkat Gitsin Google Play’de kapalı testte.<br/>Deneyerek herkese açılmasına yardım edebilirsin.",
+                       bottom - 10, 13.5, 19, max_height=38)
+    qr_y = bottom - 8 - QR_SIZE
     care.draw_qr(c, url, (WIDTH - QR_SIZE) / 2, qr_y, QR_SIZE)
-    bottom = paragraph(c, f'<link href="{url}">www.yikat.tech/android</link>', qr_y - 6, 17, 22,
+    bottom = paragraph(c, f'<link href="{url}">www.yikat.tech/android</link>', qr_y - 4, 17, 22,
                        "BricolageMedium", 22)
-    bottom = paragraph(c, "1. Test grubuna katıl.<br/>2. Aynı hesapla “Testçi ol” düğmesine dokun.<br/>"
-                          "3. Google Play’den yükle, 14 gün testte kal.",
-                       bottom - 12, 12, 17, max_height=51)
-    paragraph(c, "Takılırsan tezgâhta bize sor. Katılmak tamamen isteğe bağlı.<br/>"
-                 "iPhone’da gerek yok, uygulama App Store’da.",
-              bottom - 14, 11, 15, max_height=30)
+    bottom = paragraph(c, "1. Test grubuna katıl.<br/>2. Aynı hesapla test sayfasında katılma düğmesine dokun.<br/>"
+                          "3. Google Play’den yükle.<br/>4. Uygulama herkese açılana kadar testte kal.",
+                       bottom - 10, 12, 17, max_height=68)
+    paragraph(c, "Takılırsan tezgâhta bize sor.<br/>Katılıp katılmamak tamamen sana kalmış.<br/>"
+                 "iPhone’un varsa gerek yok, uygulama App Store’da.",
+              bottom - 10, 11, 15, max_height=45)
     c.showPage()
     c.save()
 
@@ -108,14 +114,18 @@ def build():
     if [round(float(v)) for v in page.mediabox[2:]] != [round(WIDTH), round(HEIGHT)]:
         raise ValueError("Android card must be A5")
     text = page.extract_text()
-    for value in ["Android’de ilk sen dene.", "kapalı testte", "www.yikat.tech/android",
-                  "Test grubuna katıl.", "Testçi ol", "14 gün testte kal.", "isteğe bağlı", "App Store"]:
+    for value in ["bir ricamız var.", "kapalı testte", "www.yikat.tech/android",
+                  "Test grubuna katıl.", "katılma düğmesine dokun.", "Google Play’den yükle.",
+                  "herkese açılana kadar testte kal.", "sana kalmış", "App Store"]:
         if value not in text:
             raise ValueError(f"Missing Turkish copy: {value}")
+    for value in ["Testçi ol", "ilk sen", "14 gün testte kal", "isteğe bağlı"]:
+        if value in text:
+            raise ValueError(f"Retired copy is still printed: {value}")
     links = [str(item.get_object().get("/A", {}).get("/URI", "")) for item in page.get("/Annots", [])]
     if not links or set(links) != {url}:
         raise ValueError(f"Card links must all point to {url}: {links}")
-    if group and group in text:
+    if group in text or "groups.google.com" in text:
         raise ValueError("The card must not print the Google Group address")
     print(json.dumps({"output": str(OUTPUT), "qr_svg": str(SVG_OUTPUT), "qr_target": url,
                       "pages": 1, "format": "A5", "minimum_text_pt": 11, "links": links,

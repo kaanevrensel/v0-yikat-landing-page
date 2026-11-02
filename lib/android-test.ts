@@ -14,6 +14,10 @@ export const androidTest = {
   playUrl: "https://play.google.com/store/apps/details?id=com.yikat.tech",
   appStoreUrl: "https://apps.apple.com/tr/app/y%C4%B1kat-gitsin/id6806875753",
   pageUrl: "https://www.yikat.tech/android",
+  // Main feedback channel on /android. Keep it identical to the "Feedback URL or
+  // email address" set on the Alpha track (it is shown on the opt-in page too).
+  // A person reads it; the shop WhatsApp line is answered by the AI assistant first.
+  feedbackEmail: "emre@yikat.tech",
   pdf: "/downloads/yikat-android-test-karti.pdf",
   qr: "/images/android-test-qr.svg",
 } as const

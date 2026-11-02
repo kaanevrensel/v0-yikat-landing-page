@@ -13,7 +13,7 @@ test("android test page renders without JavaScript with the exact join links", a
   const res = await page.goto("/android")
   expect(res?.status()).toBe(200)
   const main = page.locator("main")
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Android’de ilk sen dene.")
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Android’in varsa bir ricamız var.")
   const links: [string, string][] = [
     ["Test grubuna katıl", androidTest.groupUrl],
     ["Test sayfasını aç", androidTest.optInUrl],
@@ -26,21 +26,35 @@ test("android test page renders without JavaScript with the exact join links", a
     const link = main.getByRole("link", { name, exact: true })
     await expect(link, name).toHaveAttribute("href", href)
     await expect(link, name).toHaveAttribute("rel", "noopener noreferrer")
+    // New-tab links carry the shared screen-reader note.
+    await expect(link, name).toHaveAttribute("target", "_blank")
+    await expect(link, name).toHaveAccessibleDescription("Bağlantı yeni sekmede açılır.")
   }
   await expect(main.getByRole("link", { name: "Gizlilik Politikası", exact: true })).toHaveAttribute("href", "/gizlilik-politikasi")
+  await expect(main.getByRole("link", { name: "KVKK Aydınlatma Metni", exact: true })).toHaveAttribute("href", "/kvkk")
+  expect(await main.getByRole("link", { name: "E-postayla yaz", exact: true }).getAttribute("href")).toBe(`mailto:${androidTest.feedbackEmail}?subject=${encodeURIComponent("Android testi")}`)
   const whatsapp = main.getByRole("link", { name: "WhatsApp’tan yaz", exact: true })
   expect(await whatsapp.getAttribute("href")).toBe(`${siteConfig.whatsappHref}?text=${encodeURIComponent("Merhaba, Android testinden yazıyorum.")}`)
   await expect(main.getByRole("link", { name: "Tezgâh için test kartını indir (PDF)" })).toHaveAttribute("download", "")
   await expect(main.getByRole("link", { name: "Tezgâh için test kartını indir (PDF)" })).toHaveAttribute("href", androidTest.pdf)
   await expect(main.locator(`img[src="${androidTest.qr}"]`)).toBeVisible()
 
-  // Three numbered steps, honest scope, 14 days, privacy and leaving.
+  // Three numbered steps, honest scope, staying until the app is public, the
+  // right to leave at any time, and privacy.
   await expect(main.locator("ol.discovery-steps > li")).toHaveCount(3)
   await expect(main).toContainText("Kapıdan alım ve teslim henüz başlamadı")
   await expect(main).toContainText("uygulamadan sipariş veremezsin")
   await expect(main).toContainText("en az 14 gün")
-  await expect(main).toContainText("adı ve e-posta adresi")
+  await expect(main).toContainText("herkese açılana kadar testte kalman")
+  await expect(main).toContainText("İstediğin zaman")
+  await expect(main).toContainText("Gruptan çıkmak da testten ayrılmak sayılır")
+  await expect(main).toContainText("adın ve e-posta adresin")
   await expect(main).toContainText("yalnızca testi yürütmek için")
+  await expect(main).toContainText("Gruptan istediğin zaman çıkabilirsin")
+  // No claim that the policy pages describe the test, and no unverified button label quoted as exact.
+  await expect(main).not.toContainText("Ayrıntılar")
+  await expect(main).not.toContainText("Testçi ol")
+  await expect(main).not.toContainText(/ilk sen|herkesten önce|Test bittikten sonra/)
   await expect(main).not.toContainText(/indirim|kupon|hediye|ödül|bedava|ücretsiz|aynı gün/i)
   // Every link to the group, opt-in or store is a real link in server HTML.
   const html = await (await page.request.get("/android")).text()
@@ -63,7 +77,10 @@ test("android counter card PDF and QR SVG are served", async ({ request }) => {
   expect(pdf.headers()["content-type"]).toContain("application/pdf")
   const bytes = await pdf.body()
   expect(bytes.subarray(0, 5).toString()).toBe("%PDF-")
-  // The card's clickable link and QR target our page, never the group directly.
+  // The card's link annotation targets our page and no link or annotation points
+  // to the group. This only sees uncompressed objects (annotations, metadata):
+  // the printed text sits in Flate-compressed streams with subset-font glyph
+  // codes, so the generator's own extract_text self-check covers printed text.
   expect(bytes.toString("latin1")).toContain(`(${androidTest.pageUrl})`)
   expect(bytes.toString("latin1")).not.toContain("groups.google.com")
   const svg = await request.get(androidTest.qr)
