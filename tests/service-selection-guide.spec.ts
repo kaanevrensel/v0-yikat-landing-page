@@ -1,11 +1,12 @@
 import { test, expect } from "@playwright/test"
 import AxeBuilder from "@axe-core/playwright"
 import { siteConfig } from "../lib/site"
-import { guideRelease } from "../lib/care-guides"
+import { guideBySlug, guideRelease } from "../lib/care-guides"
 
-// Guide lastmod moves only when a release rewrites the guide; /rehber moves with every release.
+// Guide lastmod moves only when a release rewrites the guide (a later release that keeps it keeps the
+// date recorded then); /rehber moves when the release changes its list of guides.
 // Service pages keep their dates: a row of guide links is not a substantive change.
-const guideLastmod = (slug: string, liveDate: string) => guideRelease.rewritten.includes(slug) ? guideRelease.date : liveDate
+const guideLastmod = (slug: string, liveDate: string) => guideRelease.rewritten.includes(slug) ? guideRelease.date : guideBySlug(slug)?.updated ?? liveDate
 
 const path = "/rehber/ayakkabi-kuru-temizlemeye-verilir-mi"
 
@@ -46,7 +47,7 @@ test("service selection guide is discoverable from the guide hub, price guide an
   for (const [changedPath, date] of [
     ["/ayakkabi-temizleme", "2026-10-21"],
     ["/bakirkoy-ayakkabi-temizleme", "2026-10-25"],
-    ["/rehber", guideRelease.date],
+    ["/rehber", guideRelease.hubUpdated],
     ["/rehber/ayakkabi-temizleme-fiyati-neye-gore-belirlenir", guideLastmod("ayakkabi-temizleme-fiyati-neye-gore-belirlenir", "2026-10-21")],
   ]) {
     const changedEntry = sitemap.match(/<url>[\s\S]*?<\/url>/g)?.find(block => block.includes(`<loc>${siteConfig.url}${changedPath}</loc>`))

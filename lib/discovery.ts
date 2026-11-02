@@ -49,7 +49,13 @@ export type CareGuide = CareGuideContent & (
 )
 
 /** Which guides a converted release contains; written by the content converter next to the guide index. */
-export type GuideRelease = { date: string; added: string[]; rewritten: string[]; keptLive: string[] }
+/**
+ * What the current release changed against the previously live site (written by the converter).
+ * date: the release date (new guides are published on it, rewrites updated on it).
+ * hubUpdated: /rehber lastmod, which moves only when the hub's list of guides changes.
+ * keptLive: guides whose text (and dates) are as they were live; only links may differ.
+ */
+export type GuideRelease = { date: string; hubUpdated: string; added: string[]; rewritten: string[]; keptLive: string[] }
 
 /** Published date as rendered and in Article JSON-LD. */
 export const guidePublished = (guide: Pick<CareGuide, "published">) => guide.published ?? CONTENT_DATE

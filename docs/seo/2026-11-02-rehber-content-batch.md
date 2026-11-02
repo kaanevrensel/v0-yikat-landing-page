@@ -21,25 +21,31 @@ test suite. The content plan and the writers' rules live outside this repository
 
 ## Pages
 
-- Guide links render at the end of their section as one quiet line ("İlgili rehber: …"), like the source
-  line: plain server-rendered `<a href="/rehber/<slug>">` with the visible label as the accessible name.
-  Writers refer to them as being below the table or steps. Photo and service links stay the calls to action.
+- Guide links render at the end of their section as a quiet, wrapping list after a short lead ("İlgili
+  rehber:"), like the source line: plain server-rendered `<a href="/rehber/<slug>">` with the visible label
+  as the accessible name, no text separators (long titles wrap whole on phones). Writers refer to them as
+  being below the table or steps. Photo and service links stay the calls to action.
 - /rehber stays one URL. An in-page index links the topic anchors; Ayakkabı and Tekstil blocks follow, one
   section per topic (H2, intro, anchor from the plan), pillars first. Topics with no released guide are
   omitted. Nothing sits above the H1; no tag, category, brand or district URLs; no new structured data.
 - Service pages show the plan's guide rows inside existing sections with guide titles as anchors
-  (`lib/service-guide-links.ts`); only released guides render. /bakirkoy-ayakkabi-temizleme keeps its two
-  tested links. /ayakkabi-temizleme names the machine-washing guide by its title instead of "bakım rehberinde".
+  (`lib/service-guide-links.ts`); only released guides render, and a row leaves out guides that the same
+  page already links in its cards. /bakirkoy-ayakkabi-temizleme keeps its two tested links in "Gelmeden
+  önce"; its row sits with the daily-care card, not in that step (which asks not to wash before bringing
+  the shoe). /ayakkabi-temizleme names the machine-washing guide by its title instead of "bakım rehberinde".
 
 ## Dates
 
 - A guide's lastmod, Article `dateModified` and visible byline use `updated ?? published ?? CONTENT_DATE`.
   The former sitewide `CONTENT_UPDATED` floor is gone: link-only edits (related guides, guide links,
   service rows) never move a date.
-- New guides are published on the release date. Rewrites keep their publication date and are updated on
-  the release date. /rehber lastmod is the release date. Service pages keep their dates.
+- The converter compares each guide with the live release (`origin/main`): new guides are published on
+  the release date; guides whose text changed keep their publication date and are updated on it; guides
+  whose text did not change keep their dates, so a later run never re-dates a shipped page. /rehber
+  lastmod (`guideRelease.hubUpdated`) moves only when the hub's list of guides changes. Service pages keep
+  their dates.
 - Tests read `guideRelease`: a rewritten guide expects the release date as `dateModified`; an unchanged
-  guide keeps its live date. Publication dates are asserted unchanged.
+  guide keeps its recorded date. Publication dates are asserted unchanged.
 
 ## Tests and CI
 
@@ -55,4 +61,6 @@ test suite. The content plan and the writers' rules live outside this repository
 `2026-10-10-priority-keywords.csv`: "yün yorgan nasıl yıkanır" now targets
 `/rehber/yun-yorgan-nasil-yikanir` and "beyaz ayakkabı sararması" targets
 `/rehber/sararan-ayakkabi-tabani-nasil-beyazlatilir` (plan keyword map). Other rows of the plan's map are
-not in this file; they belong to the team's larger keyword sheet outside the repository.
+not in this file; they belong to the team's larger keyword sheet outside the repository. A row moves to a
+new guide only in the release that publishes it: `tests/guides.test.mjs` fails when a row targets a
+guide that is not in `careGuides`.

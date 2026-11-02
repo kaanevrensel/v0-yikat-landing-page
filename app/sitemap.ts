@@ -10,8 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: `${siteConfig.url}/ayakkabi-temizleme`, lastModified: new Date("2026-10-21") },
     { url: `${siteConfig.url}/bakirkoy-ayakkabi-temizleme`, lastModified: new Date("2026-10-25") },
-    // The hub lists every guide of the release: its list and topic sections change with each release.
-    { url: `${siteConfig.url}/rehber`, lastModified: new Date(guideRelease.date) },
+    // The hub lists every guide of the release: lastmod moves when that list changes (converter).
+    { url: `${siteConfig.url}/rehber`, lastModified: new Date(guideRelease.hubUpdated) },
     ...careGuides.map(guide => ({
       url: `${siteConfig.url}/rehber/${guide.slug}`,
       // The guide's own last substantive edit (updated ?? published ?? first release). No sitewide

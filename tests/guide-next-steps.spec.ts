@@ -1,11 +1,12 @@
 import { test, expect } from "@playwright/test"
 import AxeBuilder from "@axe-core/playwright"
 import { siteConfig } from "../lib/site"
-import { guideRelease } from "../lib/care-guides"
+import { guideBySlug, guideRelease } from "../lib/care-guides"
 
 // Publication dates never move. dateModified is the live edit date until a release rewrites the
-// guide (content plan siteChanges.tests): then it is that release's date.
-const modifiedAfter = (slug: string, liveDate: string) => guideRelease.rewritten.includes(slug) ? guideRelease.date : liveDate
+// guide (content plan siteChanges.tests): then it is that release's date. A later release that keeps
+// the guide unchanged keeps the date recorded by the release that rewrote it.
+const modifiedAfter = (slug: string, liveDate: string) => guideRelease.rewritten.includes(slug) ? guideRelease.date : guideBySlug(slug)?.updated ?? liveDate
 const guides = [
   { slug: "ayakkabi-makinede-yikanir-mi", section: "dukkan", destination: "/ayakkabi-temizleme", published: "2026-10-10", modified: modifiedAfter("ayakkabi-makinede-yikanir-mi", "2026-10-25") },
   { slug: "ayakkabi-kuru-temizlemeye-verilir-mi", section: "bakirkoy", destination: "/ayakkabi-temizleme#fiyat", published: "2026-10-16", modified: modifiedAfter("ayakkabi-kuru-temizlemeye-verilir-mi", "2026-10-25") },

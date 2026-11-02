@@ -3,6 +3,8 @@
 // `node --test tests/*.test.mjs`; the Playwright suite checks the rendered pages.
 import test from "node:test"
 import assert from "node:assert/strict"
+import fs from "node:fs"
+import path from "node:path"
 import { importTs } from "./helpers/import-ts.mjs"
 
 const { careGuides, guideBySlug, guideRelease } = await importTs("lib/care-guides.ts")
@@ -75,8 +77,14 @@ test("every cited source resolves to an https URL and section citations appear i
   for (const service of services) for (const id of [...service.sourceIds, service.afterCareSourceId]) assert.match(careSources[id]?.url ?? "", /^https:\/\//, `/${service.slug}: source ${id}`)
 })
 
-test("no guide uses the word tamir", () => {
-  for (const guide of careGuides) for (const text of strings(guide)) assert.ok(!text.toLocaleLowerCase("tr").includes("tamir"), `${guide.slug}: "${text.slice(0, 80)}"`)
+test("no guide, cited source title or hub intro uses the word tamir", () => {
+  const has = text => text.toLocaleLowerCase("tr").includes("tamir")
+  for (const guide of careGuides) {
+    for (const text of strings(guide)) assert.ok(!has(text), `${guide.slug}: "${text.slice(0, 80)}"`)
+    // Source titles render in full in the source list and by publisher in the "Kaynak:" lines.
+    for (const id of guide.sourceIds) assert.ok(!has(careSources[id]?.title ?? ""), `${guide.slug}: source ${id} "${careSources[id]?.title}"`)
+  }
+  for (const [label, topic] of Object.entries(guideTopics)) assert.ok(!has(`${label} ${topic.intro}`), `lib/guide-topics.ts: ${label}`)
 })
 
 test("textile guides carry no shop or service links; shoe guides link only to shoe service pages", () => {
@@ -115,6 +123,9 @@ test("everything the renderer keys on is unique within its list", () => {
 
 test("release dates are consistent: new guides published on the release date, rewrites updated on it, publication dates kept", () => {
   assert.match(guideRelease.date, ISO)
+  assert.match(guideRelease.hubUpdated, ISO)
+  assert.ok(guideRelease.hubUpdated <= guideRelease.date, "/rehber lastmod after the release date")
+  if (guideRelease.added.length) assert.equal(guideRelease.hubUpdated, guideRelease.date, "a release that adds guides changes the /rehber list")
   const listed = [...guideRelease.added, ...guideRelease.rewritten, ...guideRelease.keptLive]
   assert.deepEqual(dupes(listed), [])
   assert.deepEqual([...listed].sort(), [...slugs].sort(), "every guide is either added, rewritten or kept as live")
@@ -125,6 +136,14 @@ test("release dates are consistent: new guides published on the release date, re
   }
   for (const slug of guideRelease.added) { assert.equal(guideBySlug(slug).published, guideRelease.date, slug); assert.equal(guideBySlug(slug).updated, undefined, slug) }
   for (const slug of guideRelease.rewritten) assert.equal(guideBySlug(slug).updated, guideRelease.date, slug)
+})
+
+test("keyword map rows target only guides in this release", () => {
+  // docs/seo/*.csv: a row retargeted to a planned guide waits until the release that ships it.
+  const dir = path.join(import.meta.dirname, "../docs/seo")
+  for (const file of fs.readdirSync(dir).filter(f => f.endsWith(".csv")))
+    for (const [i, line] of fs.readFileSync(path.join(dir, file), "utf8").split("\n").entries())
+      for (const [, slug] of line.matchAll(/\/rehber\/([a-z0-9-]+)/g)) assert.ok(slugs.has(slug), `docs/seo/${file} line ${i + 1}: /rehber/${slug} is not in this release`)
 })
 
 test("hand-written links into the guides resolve", () => {
