@@ -1,6 +1,12 @@
 import { test, expect } from "@playwright/test"
 import AxeBuilder from "@axe-core/playwright"
 import { siteConfig } from "../lib/site"
+import { guideBySlug, guideRelease } from "../lib/care-guides"
+
+// Guide lastmod moves only when a release rewrites the guide (a later release that keeps it keeps the
+// date recorded then); /rehber moves when the release changes its list of guides.
+// Service pages keep their dates: a row of guide links is not a substantive change.
+const guideLastmod = (slug: string, liveDate: string) => guideRelease.rewritten.includes(slug) ? guideRelease.date : guideBySlug(slug)?.updated ?? liveDate
 
 const path = "/rehber/ayakkabi-kuru-temizlemeye-verilir-mi"
 
@@ -30,19 +36,20 @@ test("service selection guide stays useful without JavaScript and explains the a
 test("service selection guide is discoverable from the guide hub, price guide and sitemap", async ({ page, request }) => {
   for (const entry of ["/rehber", "/rehber/ayakkabi-temizleme-fiyati-neye-gore-belirlenir"]) {
     await page.goto(entry)
-    await expect(page.locator(`main a[href='${path}']`)).toBeVisible()
+    // The price guide links it from its #kuru section and again from its related list; one visible link is enough.
+    await expect(page.locator(`main a[href='${path}']`).first()).toBeVisible()
   }
   await expect(page.getByRole("link", { name: "Bir çift için baz fiyatları incele" })).toHaveAttribute("href", "/ayakkabi-temizleme#fiyat")
   await expect(page.locator("main")).not.toContainText("Güncel ve doğrulanmış bir menü olmadan")
   const sitemap = await (await request.get("/sitemap.xml")).text()
   expect(sitemap.match(new RegExp(`<loc>${siteConfig.url}${path}</loc>`, "g"))).toHaveLength(1)
   const entry = sitemap.match(/<url>[\s\S]*?<\/url>/g)?.find(block => block.includes(`<loc>${siteConfig.url}${path}</loc>`))
-  expect(entry).toContain("<lastmod>2026-10-25T00:00:00.000Z</lastmod>")
+  expect(entry).toContain(`<lastmod>${guideLastmod("ayakkabi-kuru-temizlemeye-verilir-mi", "2026-10-25")}T00:00:00.000Z</lastmod>`)
   for (const [changedPath, date] of [
     ["/ayakkabi-temizleme", "2026-10-21"],
     ["/bakirkoy-ayakkabi-temizleme", "2026-10-25"],
-    ["/rehber", "2026-10-16"],
-    ["/rehber/ayakkabi-temizleme-fiyati-neye-gore-belirlenir", "2026-10-21"],
+    ["/rehber", guideRelease.hubUpdated],
+    ["/rehber/ayakkabi-temizleme-fiyati-neye-gore-belirlenir", guideLastmod("ayakkabi-temizleme-fiyati-neye-gore-belirlenir", "2026-10-21")],
   ]) {
     const changedEntry = sitemap.match(/<url>[\s\S]*?<\/url>/g)?.find(block => block.includes(`<loc>${siteConfig.url}${changedPath}</loc>`))
     expect(changedEntry, changedPath).toContain(`<lastmod>${date}T00:00:00.000Z</lastmod>`)

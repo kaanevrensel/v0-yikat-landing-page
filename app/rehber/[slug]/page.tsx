@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import { careGuides, guideBySlug } from "@/lib/care-guides"
-import { discoveryMetadata } from "@/lib/discovery"
+import { discoveryMetadata, guideModified, guidePublished } from "@/lib/discovery"
 import { GuideView } from "@/components/discovery/guide"
 
 export const dynamicParams = false
@@ -8,7 +8,7 @@ export function generateStaticParams() { return careGuides.map(({ slug }) => ({ 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const guide = guideBySlug((await params).slug)
   if (!guide) notFound()
-  return discoveryMetadata(guide.title, guide.description, `/rehber/${guide.slug}`, true, guide.updated ?? guide.published, guide.published)
+  return discoveryMetadata(guide.title, guide.description, `/rehber/${guide.slug}`, true, guideModified(guide), guidePublished(guide))
 }
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const guide = guideBySlug((await params).slug)

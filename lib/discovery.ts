@@ -1,60 +1,68 @@
 import type { Metadata } from "next"
 import { siteConfig } from "@/lib/site"
 
+/** Publication date of the guides that carry no `published` date (the first discovery release). */
 export const CONTENT_DATE = "2026-10-10"
-// Latest edit that touched every discovery page (shop identity and verified social links). Sitemap lastmod only.
-export const CONTENT_UPDATED = "2026-10-15"
 /** "10 Ekim 2026" for an ISO date; fixed to UTC so server and browser agree. */
 export const formatContentDate = (iso: string) => new Intl.DateTimeFormat("tr-TR", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(iso))
 export const BUSINESS_ID = `${siteConfig.url}/#business`
 export const WEBSITE_ID = `${siteConfig.url}/#website`
 
 export type CareSource = { title: string; url: string }
+/** Contextual links inside a guide section. Photo and service links are calls to action; guide links are plain reading links. */
+export type CareSectionLink =
+  | { type: "photo"; label: string }
+  | { type: "service"; href: string; label: string }
+  | { type: "guide"; slug: string; label: string }
 export type CareSection = {
   id: string
   title: string
   paragraphs?: string[]
-  links?: ({ type: "photo"; label: string } | { type: "service"; href: string; label: string })[]
+  links?: CareSectionLink[]
   steps?: string[]
   table?: { headings: string[]; rows: string[][]; caption: string }
   sourceIds?: string[]
 }
-export type CareGuide = {
+
+/** /rehber topic sections (content plan, 2 November 2026). Each label is one H2 on the hub. */
+export type ShoeGuideTopic = "Malzemeye göre temizlik" | "Leke ve sararma" | "Yıkama ve kurutma" | "Koku, tabanlık ve bağcık" | "Marka bakımı" | "Bakım, saklama ve fiyat"
+export type TextileGuideTopic = "Leke çıkarma" | "Yiyecek ve içecek lekeleri" | "Çamaşır yıkama" | "Ev tekstili" | "Giysi bakımı" | "Etiket, ütü ve kuru temizleme"
+export type GuideTopic = ShoeGuideTopic | TextileGuideTopic
+
+type CareGuideContent = {
   slug: string
   title: string
   description: string
-  category: "Ayakkabı" | "Tekstil"
   answer: string
   sections: CareSection[]
   faqs: { q: string; a: string }[]
   related: string[]
-  service?: { href: string; label: string }
   sourceIds: string[]
-  /** ISO date of the last substantive edit, when later than CONTENT_DATE. */
+  /** ISO date of the last substantive edit, when later than the publication date. */
   updated?: string
   published?: string
 }
+/** A shoe guide may point to a shoe service page; textile guides are informational only (no textile service is offered). */
+export type CareGuide = CareGuideContent & (
+  | { category: "Ayakkabı"; topic: ShoeGuideTopic; service?: { href: string; label: string } }
+  | { category: "Tekstil"; topic: TextileGuideTopic; service?: never }
+)
 
-export const careSources: Record<string, CareSource> = {
-  nikeMesh: { title: "Nike: How to Clean Mesh Shoes", url: "https://www.nike.com/a/how-to-clean-flyknit-mesh" },
-  nikeLaces: { title: "Nike: How to Clean Shoelaces", url: "https://www.nike.com/a/how-to-clean-shoelaces" },
-  nikeRunning: { title: "Nike: How to Clean Running Shoes", url: "https://www.nike.com/a/how-to-clean-nike-running-shoes" },
-  nikeMud: { title: "Nike: How to Clean Muddy Shoes", url: "https://www.nike.com/a/how-to-clean-muddy-shoes" },
-  nikeStorage: { title: "Nike: How to Store Shoes", url: "https://www.nike.com/a/how-to-store-shoes" },
-  nikeMachine: { title: "Nike — Can You Put Sneakers in the Washer?", url: "https://www.nike.com/a/can-you-put-shoes-in-the-washer" },
-  nikeClean: { title: "Nike — How to Clean Your Shoes in 6 Easy Steps", url: "https://www.nike.com/a/how-to-clean-shoes" },
-  adidasLeather: { title: "adidas — How to Clean Shoes (Superstar örneği)", url: "https://www.adidas.com/us/blog/how-to-clean-shoes" },
-  nikeSuede: { title: "Nike — How to Clean Suede Shoes", url: "https://www.nike.com/a/how-to-clean-suede-shoes" },
-  clarks: { title: "Clarks — Shoe Care Products", url: "https://www.clarks.com/en-gb/shoe-care-products" },
-  clarksCare: { title: "Clarks — Shoe Care Guide", url: "https://clarks.com.au/pages/shoe-care-guide" },
-  tefalShirt: { title: "Tefal — How to Iron Shirts", url: "https://blog.tefal.co.uk/2015/09/16/ironing-tip-how-to-iron-shirts/" },
-  ginetexCurrent: { title: "GINETEX — Current Care Symbols", url: "https://www.ginetex.net/gb/labelling/care-symbols.asp" },
-  nikeOdor: { title: "Nike — How to Remove Odor from Shoes", url: "https://www.nike.com/a/how-to-remove-shoe-smell" },
-  nikeDry: { title: "Nike — The 2 Best Ways to Dry Your Shoes", url: "https://www.nike.com/gb/a/best-way-dry-shoes" },
-  ginetex: { title: "GINETEX — Care Labelling Symbols", url: "https://www.ginetex.net/userfiles/files/gin_bro_gb_rz_brochure_web.pdf" },
-  woolmark: { title: "Woolmark — Wool Washing & Wool Care", url: "https://www.woolmark.com/care/" },
-  ikeaDuvet: { title: "IKEA — Guide: Washing Duvets and Bed Covers", url: "https://www.ikea.com/ch/en/product-guides/washing-duvets-pubc3fe6c90/" },
-}
+/** Which guides a converted release contains; written by the content converter next to the guide index. */
+/**
+ * What the current release changed against the previously live site (written by the converter).
+ * date: the release date (new guides are published on it, rewrites updated on it).
+ * hubUpdated: /rehber lastmod, which moves only when the hub's list of guides changes.
+ * keptLive: guides whose text (and dates) are as they were live; only links may differ.
+ */
+export type GuideRelease = { date: string; hubUpdated: string; added: string[]; rewritten: string[]; keptLive: string[] }
+
+/** Published date as rendered and in Article JSON-LD. */
+export const guidePublished = (guide: Pick<CareGuide, "published">) => guide.published ?? CONTENT_DATE
+/** Last substantive edit: byline, Article dateModified, Open Graph modified time and sitemap lastmod. */
+export const guideModified = (guide: Pick<CareGuide, "published" | "updated">) => guide.updated ?? guidePublished(guide)
+
+export { careSources } from "./care-sources"
 
 export function discoveryMetadata(title: string, description: string, path: string, article = false, updated = CONTENT_DATE, published = CONTENT_DATE): Metadata {
   const url = `${siteConfig.url}${path}`

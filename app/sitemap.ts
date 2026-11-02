@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next"
 import { siteConfig } from "@/lib/site"
-import { careGuides } from "@/lib/care-guides"
-import { CONTENT_UPDATED } from "@/lib/discovery"
+import { careGuides, guideRelease } from "@/lib/care-guides"
+import { guideModified } from "@/lib/discovery"
 
 // changeFrequency/priority bilinçle YOK (Google ikisini de yok sayıyor). lastModified her build'de
 // yenilenen new Date() İDİ — Google lastmod'u yalnız "tutarlı ve doğrulanabilir" ise kullanır;
@@ -10,11 +10,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: `${siteConfig.url}/ayakkabi-temizleme`, lastModified: new Date("2026-10-21") },
     { url: `${siteConfig.url}/bakirkoy-ayakkabi-temizleme`, lastModified: new Date("2026-10-25") },
-    { url: `${siteConfig.url}/rehber`, lastModified: new Date("2026-10-16") },
+    // The hub lists every guide of the release: lastmod moves when that list changes (converter).
+    { url: `${siteConfig.url}/rehber`, lastModified: new Date(guideRelease.hubUpdated) },
     ...careGuides.map(guide => ({
       url: `${siteConfig.url}/rehber/${guide.slug}`,
-      // Keep the shared shop-facts revision, but never predate a newer guide edit.
-      lastModified: new Date(Math.max(Date.parse(CONTENT_UPDATED), Date.parse(guide.updated ?? guide.published ?? CONTENT_UPDATED))),
+      // The guide's own last substantive edit (updated ?? published ?? first release). No sitewide
+      // floor: link-only changes (related guides, guide links, service rows) do not move it.
+      lastModified: new Date(guideModified(guide)),
     })),
     { url: `${siteConfig.url}/urun`, lastModified: new Date("2026-10-16") },
     { url: `${siteConfig.url}/partnerler`, lastModified: new Date("2026-10-10") },
