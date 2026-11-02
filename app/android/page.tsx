@@ -1,11 +1,9 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowUpRight, Mail, MessageCircle } from "lucide-react"
+import { ArrowUpRight, Mail } from "lucide-react"
 import { DiscoveryShell } from "@/components/discovery/shared"
-import { DiscoveryLink } from "@/components/discovery/actions"
 import { androidTest } from "@/lib/android-test"
-import { siteConfig } from "@/lib/site"
 import "@/app/local-growth.css"
 
 // Utility page for the Google Play closed test. Like /yorum it is noindex and
@@ -17,7 +15,6 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 }
 
-const feedbackMessage = "Merhaba, Android testinden yazıyorum."
 // Every external link opens a new tab; one shared visually hidden note tells
 // screen-reader users so without changing the links' accessible names.
 const newTabNote = "android-yeni-sekme"
@@ -65,10 +62,9 @@ export default function AndroidTestPage() {
 
     <section className="discovery-narrow android-test-section" aria-labelledby="gorus">
       <h2 id="gorus">Aklına bir şey gelirse yaz</h2>
-      <p>Bir yerde takıldıysan ya da bir şey gözüne çarptıysa duymak isteriz. Google Play’deki uygulama sayfasında testçilere özel bir geri bildirim alanı var. Oradan ya da e-postayla yazabilirsin, WhatsApp’tan da olur.</p>
+      <p>Bir yerde takıldıysan ya da bir şey gözüne çarptıysa duymak isteriz. Google Play’deki uygulama sayfasında testçilere özel bir geri bildirim alanı var. Oradan ya da e-postayla yazabilirsin.</p>
       <div className="discovery-actions">
         <a className="button secondary" href={`mailto:${androidTest.feedbackEmail}?subject=${encodeURIComponent("Android testi")}`}><Mail size={18} aria-hidden="true"/> E-postayla yaz</a>
-        <DiscoveryLink action="whatsapp" className="button secondary" href={`${siteConfig.whatsappHref}?text=${encodeURIComponent(feedbackMessage)}`} {...external}><MessageCircle size={18} aria-hidden="true"/> WhatsApp’tan yaz</DiscoveryLink>
       </div>
     </section>
 

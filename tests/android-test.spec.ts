@@ -33,8 +33,8 @@ test("android test page renders without JavaScript with the exact join links", a
   await expect(main.getByRole("link", { name: "Gizlilik Politikası", exact: true })).toHaveAttribute("href", "/gizlilik-politikasi")
   await expect(main.getByRole("link", { name: "KVKK Aydınlatma Metni", exact: true })).toHaveAttribute("href", "/kvkk")
   expect(await main.getByRole("link", { name: "E-postayla yaz", exact: true }).getAttribute("href")).toBe(`mailto:${androidTest.feedbackEmail}?subject=${encodeURIComponent("Android testi")}`)
-  const whatsapp = main.getByRole("link", { name: "WhatsApp’tan yaz", exact: true })
-  expect(await whatsapp.getAttribute("href")).toBe(`${siteConfig.whatsappHref}?text=${encodeURIComponent("Merhaba, Android testinden yazıyorum.")}`)
+  // The shop WhatsApp line is answered by the AI assistant, which knows nothing about the test: feedback goes by e-mail or Play.
+  await expect(main.locator(`a[href^="${siteConfig.whatsappHref}"]`)).toHaveCount(0)
   await expect(main.getByRole("link", { name: "Tezgâh için test kartını indir (PDF)" })).toHaveAttribute("download", "")
   await expect(main.getByRole("link", { name: "Tezgâh için test kartını indir (PDF)" })).toHaveAttribute("href", androidTest.pdf)
   await expect(main.locator(`img[src="${androidTest.qr}"]`)).toBeVisible()
