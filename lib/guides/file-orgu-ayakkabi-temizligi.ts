@@ -21,6 +21,7 @@ export const fileOrguAyakkabiTemizligi: CareGuide = {
         "Ayakkabının içinde bakım etiketi varsa önce ona bak; etiketin koyduğu sınır, bu sayfadaki genel önerilerin önüne geçer.",
       ],
       links: [
+        { type: "guide", slug: "bez-ayakkabi-nasil-temizlenir", label: "Bez ve kanvas ayakkabı nasıl temizlenir" },
         { type: "guide", slug: "new-balance-nasil-temizlenir", label: "File ve süet karışık New Balance modelleri" },
         { type: "guide", slug: "spor-ayakkabi-nasil-temizlenir", label: "Spor ayakkabının tam temizlik sırası" },
       ],
@@ -31,7 +32,7 @@ export const fileOrguAyakkabiTemizligi: CareGuide = {
       title: "File ve örgü ayakkabı elde nasıl temizlenir?",
       paragraphs: ["Fileli ayakkabıyı elde, serin ya da ılık sabunlu su ve yumuşak bir fırçayla temizle."],
       steps: [
-        "Bağcıkları ve çıkıyorsa tabanlığı çıkar. İçine buruşturulmuş beyaz kâğıt havlu doldur ki formu bozulmasın; gazete kullanma, ACI’ye göre mürekkebi kumaşa geçebilir.",
+        "Bağcıkları ve çıkıyorsa tabanlığı çıkar. İçine buruşturulmuş beyaz kâğıt havlu doldur ki formu bozulmasın; gazete kullanma, ACI’ya göre mürekkebi kumaşa geçebilir.",
         "Üst yüzeydeki kuru kiri yumuşak bir fırçayla al. Ayakkabıları lavabonun üstünde birbirine vurup tabandaki topakları düşür, köşelerdeki kiri kürdan ya da kulak çubuğuyla çıkar.",
         "Bir kâseye serin ya da ılık su koy, içine az miktarda sıvı çamaşır deterjanı ya da yumuşak sabun karıştır. Sıcak su olmaz; Nike’a göre boyayı etkileyebilir.",
         "Karışımı önce dilin iç kenarı gibi görünmeyen bir yerde dene. Beze renk geçerse ya da doku değişirse devam etme.",
@@ -87,6 +88,7 @@ export const fileOrguAyakkabiTemizligi: CareGuide = {
         "Örgünün yönünde hafifçe fırçala, sonra temiz suya batırdığın temiz bir bezle deterjanın hepsini al.",
         "Leke açıldıysa bir kez daha dene; kıpırdamıyorsa başka ürün ekleme, dur.",
       ],
+      links: [{ type: "guide", slug: "ayakkabidaki-leke-nasil-cikar", label: "Ayakkabıdaki leke nasıl çıkar" }],
       sourceIds: ["persilTrainers", "aciSneakers", "nikeMesh"],
     },
     {
@@ -115,13 +117,13 @@ export const fileOrguAyakkabiTemizligi: CareGuide = {
             "Şart değil; yalnız lekeye, denedikten sonra",
             "Nike bunu genel spor ayakkabı lekeleri için ön işlem olarak veriyor: çeyrek bardak su, çeyrek bardak beyaz sirke, 1 yemek kaşığı karbonat, lekede 10–15 dakika. Çamaşır suyuyla asla bir araya getirme.",
           ],
-          ["Hidrojen peroksit", "Önermiyoruz", "Nike’ın peroksitli tarifi kanvas için, file için değil."],
+          ["Oksijenli su", "Önermiyoruz", "Nike’ın oksijenli su tarifi yalnız kanvas için."],
           [
             "Çamaşır suyu",
             "Hayır",
             "Nike file ve örgüde, ACI spor ayakkabıda kullanılmamasını öneriyor; malzemeye zarar verebilir.",
           ],
-          ["Aseton, tiner, benzin", "Hayır", "ACI’ye göre spor ayakkabıya solvent sürülmez."],
+          ["Aseton, tiner, benzin", "Hayır", "ACI’ya göre spor ayakkabıya solvent sürülmez."],
           [
             "Sert fırça, tel fırça, ovma süngeri",
             "Hayır",
@@ -193,6 +195,7 @@ export const fileOrguAyakkabiTemizligi: CareGuide = {
   related: [
     "beyaz-ayakkabi-nasil-temizlenir",
     "spor-ayakkabi-nasil-temizlenir",
+    "bez-ayakkabi-nasil-temizlenir",
     "ayakkabi-bagcigi-nasil-temizlenir",
     "ayakkabi-nasil-kurutulur",
   ],

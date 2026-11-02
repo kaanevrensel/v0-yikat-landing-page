@@ -54,7 +54,7 @@ export const sararanAyakkabiTabaniNasilBeyazlatilir: CareGuide = {
       title: "Ayakkabı tabanı evde adım adım nasıl beyazlatılır?",
       paragraphs: [
         "Sararan ayakkabı tabanını beyazlatırken en hafif yöntemle başla: önce kuru fırça, sonra deterjanlı su, en son karbonat macunu. Her yeni ürünü önce tabanın iç tarafında, görünmeyen küçük bir yerde dene; renk ya da doku değişirse dur.",
-        "Karbonat macununda Nike’ın tabana özel ölçüsünü kullan: 3 ölçü karbonata 1 ölçü su, koyu bir macun. Nike’a göre birçok ayakkabının tamamen kuruması en az 8 saat sürüyor.",
+        "Karbonat macununda Nike’ın çamurlu ayakkabı rehberindeki taban ölçüsünü kullan: 3 ölçü karbonata 1 ölçü su, koyu bir macun. Nike’a göre birçok ayakkabının tamamen kuruması en az 8 saat sürüyor.",
       ],
       steps: [
         "Bağcıkları ve çıkıyorsa tabanlığı çıkar; ayakkabı çamurluysa önce tamamen kurumasını bekle.",
@@ -74,7 +74,7 @@ export const sararanAyakkabiTabaniNasilBeyazlatilir: CareGuide = {
       title: "Karbonat, diş macunu, oksijenli su: tabanda hangisi işe yarar?",
       paragraphs: [
         "Tabanda ilk deneyeceğin karışım karbonat ve su olsun. Oksijenli su ve diş macunu da Nike’ın kanvas ayakkabı tariflerinde var; çamaşır suyunda Nike ile ACI ayrı düşüyor, aseton ve tiner gibi solventleri ise hiç kullanma. Hangisini seçersen seç, önce tabanın görünmeyen küçük bir yerinde dene.",
-        "Çamaşır suyunu oksijenli su, sirke, amonyak ya da başka bir temizleyiciyle aynı anda veya peş peşe kullanma. Washington Eyaleti Sağlık Bakanlığı’na göre çamaşır suyu asitle karışınca klor gazı çıkıyor, sirke de asitli ürünlerden biri; çamaşır suyu hidrojen peroksitle de tepkimeye giriyor.",
+        "Çamaşır suyunu oksijenli su, sirke, amonyak ya da başka bir temizleyiciyle aynı anda veya peş peşe kullanma. Washington Eyaleti Sağlık Bakanlığı’na göre çamaşır suyu asitle karışınca klor gazı çıkıyor, sirke de asitli ürünlerden biri; çamaşır suyu oksijenli suyla da tepkimeye giriyor.",
         "Güneş konusunda da üreticiler ayrı düşüyor. Nike’ın beyaz ayakkabı rehberi limonlu karışımdan sonra ayakkabıyı birkaç saat doğrudan güneşte bırakmayı anlatıyor; biz önermiyoruz.",
       ],
       table: {
@@ -88,8 +88,8 @@ export const sararanAyakkabiTabaniNasilBeyazlatilir: CareGuide = {
           ],
           [
             "Karbonat ve oksijenli su",
-            "Karbonat tek başına yetmezse, kanvas ayakkabının kauçuk tabanında. Nike bu tarifi kanvas ayakkabılar için veriyor: 2 ölçü karbonata 1 ölçü %3’lük hidrojen peroksit, 30 dakika bekletip durula.",
-            "Deri ya da köpük ara tabanlı spor ayakkabılar için Nike bu tarifi vermiyor; onlarda karbonat ve suyla yetin. Yalnızca beyaz tabana sür; üst yüzeye ve renkli parçalara değdirme. Şişede %3 yazdığını kontrol et. Çamaşır suyuyla birlikte ya da peş peşe kullanma.",
+            "Karbonat tek başına yetmezse, kanvas ayakkabının kauçuk tabanında. Nike bu tarifi kanvas ayakkabılar için veriyor: 2 ölçü karbonata 1 ölçü %3’lük oksijenli su (hidrojen peroksit), 30 dakika bekletip durula.",
+            "Deri ya da köpük ara tabanlı spor ayakkabılar için Nike bu tarifi vermiyor; onlarda karbonat ve suyla yetin. Yalnızca beyaz tabana sür; üst yüzeye taşırma, renkli parçalara değdirme. Şişede %3 yazdığını kontrol et. Çamaşır suyuyla birlikte ya da peş peşe kullanma.",
           ],
           [
             "Beyaz diş macunu",
@@ -103,7 +103,7 @@ export const sararanAyakkabiTabaniNasilBeyazlatilir: CareGuide = {
           ],
           [
             "Çamaşır suyu",
-            "Tabanda önermiyoruz. Nike yalnızca kanvas ayakkabı için 1 yemek kaşığını yaklaşık 1 litre suya katan bir tarif veriyor; deri ve süette kullanma diyor.",
+            "Tabanda önermiyoruz. Nike yalnızca kanvas ayakkabı için seyreltik bir tarif veriyor; deri ve süette kullanma diyor.",
             "Başka hiçbir temizleyiciyle karıştırma. ACI ve New Balance önermiyor.",
           ],
           [
@@ -175,7 +175,7 @@ export const sararanAyakkabiTabaniNasilBeyazlatilir: CareGuide = {
     },
     {
       q: "Melamin sünger tabana zarar verir mi?",
-      a: "Nike beyaz deri ayakkabıda tabandaki lekeler için ıslatılmış melamin süngeri öneriyor, ACI ise spor ayakkabıda aşındırıcı kullanmamayı söylüyor. Hafif bastır; yüzey matlaşırsa bırak.",
+      a: "Nike beyaz deri ayakkabıda tabandaki lekeler için ıslatılmış melamin süngeri öneriyor, ACI ise kanvas ve naylon ayakkabıda aşındırıcı kullanmamayı söylüyor. Hafif bastır; yüzey matlaşırsa bırak.",
     },
     {
       q: "Sararma kalıcı mı?",
@@ -188,8 +188,8 @@ export const sararanAyakkabiTabaniNasilBeyazlatilir: CareGuide = {
   ],
   related: [
     "beyaz-ayakkabi-nasil-temizlenir",
-    "file-orgu-ayakkabi-temizligi",
     "spor-ayakkabi-nasil-temizlenir",
+    "file-orgu-ayakkabi-temizligi",
     "ayakkabi-nasil-kurutulur",
     "ayakkabi-nasil-saklanir",
   ],

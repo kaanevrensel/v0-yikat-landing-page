@@ -5,7 +5,7 @@ import type { CareGuide } from "@/lib/discovery"
 export const ayakkabidaTuzLekesiNasilCikar: CareGuide = {
   slug: "ayakkabida-tuz-lekesi-nasil-cikar",
   title: "Ayakkabıda tuz ve kar lekesi nasıl çıkar?",
-  description: "Ayakkabıdaki beyaz tuz ve kar izini önce kurutup fırçala, sonra ılık suyla sil. Deri, süet ve kumaşta markaların yöntemi, sirke uyarısı ve kışa hazırlık.",
+  description: "Ayakkabıda beyaz tuz ve kar izi için önce kurut, tuzu fırçayla ya da bezle al, sonra malzemeye göre sil. Deri, süet, kumaş, sirke uyarısı ve kışa hazırlık.",
   category: "Ayakkabı",
   topic: "Leke ve sararma",
   published: "2026-11-02",
@@ -66,11 +66,10 @@ export const ayakkabidaTuzLekesiNasilCikar: CareGuide = {
       id: "deri",
       title: "Deri ayakkabı ve botta kar lekesi nasıl çıkar?",
       paragraphs: [
-        "Düz deride önce ılık suyla nemli bez dene, sirkeli suya ancak iz geçmezse geç. Birkenstock da tuz ve su lekelerinde düz derinin önce oda sıcaklığında kurumasını, sonra nemli bezle silinmesini öneriyor.",
-        "Clarks deri bot lekelerinde sirkeli su kullanıyor; Collonil ise sirke gibi ev çözümlerinin deriye fazla zarar verdiğini söylüyor.",
+        "Düz deride önce ılık suyla nemli bez dene, sirkeli suya ancak iz geçmezse geç. Birkenstock da tuz ve su lekelerinde düz derinin önce oda sıcaklığında kurumasını, sonra nemli bezle silinmesini öneriyor. Clarks deri bot lekelerinde sirkeli su kullanıyor; Collonil ise sirke gibi ev çözümlerinin deriye fazla zarar verdiğini söylüyor.",
       ],
       steps: [
-        "İz tazeyken tüy bırakmayan bir bezi ılık suyla nemlendirip sık, beyaz izi nazikçe sil.",
+        "Ayakkabı kurur kurumaz tüy bırakmayan bir bezi ılık suyla nemlendirip sık, beyaz izi nazikçe sil.",
         "İz kaldıysa Clarks’ın oranıyla bir bardakta 2 ölçü su ile 1 ölçü sirkeyi karıştır.",
         "Karışımı önce görünmeyen bir yerde dene; renk ya da doku değişirse dur.",
         "Temiz bir bezi karışımla nemlendir ve izi nazikçe sil; Clarks gerekirse ayakkabı fırçasıyla biraz daha sıkı ovuyor.",
@@ -85,7 +84,7 @@ export const ayakkabidaTuzLekesiNasilCikar: CareGuide = {
       id: "nubuk-suet",
       title: "Süet ve nubuk ayakkabıda tuz lekesi nasıl çıkar?",
       paragraphs: [
-        "Süet ayakkabıda kar lekesi ya da nubukta tuz izi varsa suyu en az kullan: önce fırça, sonra silgi, en son az nemli bez. Sirkeli adım Timberland’ın kendi nubuk ve süet botları için. Collonil’in sirke uyarısı ise genel olarak deri için, o yüzden sirkeyi en sona bırak.",
+        "Süet ayakkabıda kar lekesi ya da nubukta tuz izi varsa suyu olabildiğince az kullan: önce fırça, sonra silgi, en son az nemli bez. Sirkeli adım Timberland’ın kendi nubuk ve süet botları için. Collonil’in sirke uyarısı genel olarak deri için; süet de deri olduğundan sirkeyi en sona bırak.",
       ],
       steps: [
         "Fırçadan sonra kalan beyazlığı süet silgisiyle, çok bastırmadan ov; silgin yoksa Nike temiz bir kurşun kalem silgisi öneriyor.",
@@ -109,8 +108,8 @@ export const ayakkabidaTuzLekesiNasilCikar: CareGuide = {
       id: "kumas",
       title: "Kumaş ve spor ayakkabıda tuz izi nasıl çıkar?",
       paragraphs: [
-        "Kumaş, file ya da örgü ayakkabıda tuzu kuruyken yumuşak bir fırçayla al. Kalan iz için Nike ılık suya az miktarda hafif çamaşır ya da bulaşık deterjanı karıştırıyor; bulaşık deterjanını bol suyla seyrelt. Karışımı ize sürmeden önce görünmeyen bir yerde dene.",
-        "Sonra kuru bir mikrofiber bezle bastırarak nemi al, ovma. Nike örgü ve filede çamaşır suyunun ve sert temizleyicilerin zarar verebileceğini, oda sıcaklığında kurumanın en az 8 saat sürebileceğini yazıyor.",
+        "Kumaş, file ya da örgü ayakkabıda tuzu kuruyken yumuşak bir fırçayla al. Kalan izde Nike’ın genel temizlik karışımını kullan: ılık suya biraz hafif çamaşır ya da bulaşık deterjanı kat; bulaşık deterjanını bol suyla seyrelt. Karışımı önce görünmeyen bir yerde dene.",
+        "Sonra kuru bir mikrofiber bezle bastırarak nemi al, ovma. Nike örgü ve filede çamaşır suyunun ve sert temizleyicilerin zarar verebileceğini yazıyor. Oda sıcaklığında kurumanın birçok ayakkabıda en az 8 saat sürebileceğini ekliyor.",
       ],
       links: [{ type: "guide", slug: "spor-ayakkabi-nasil-temizlenir", label: "Spor ayakkabı nasıl temizlenir?" }],
       sourceIds: ["nikeClean"],
@@ -120,8 +119,7 @@ export const ayakkabidaTuzLekesiNasilCikar: CareGuide = {
       title: "Kışa girmeden tuz lekesini nasıl önlersin?",
       paragraphs: [
         "Tuz izini önlemek için kış gelmeden ayakkabının malzemesine uygun bir su ve leke koruyucu sprey sık, tuzlu yürüyüşten sonra da ayakkabıyı bekletmeden temizle. Collonil ilk gerçek kış gününden önce birkaç kat koruyucu öneriyor.",
-        "Spreyi açık havada ya da havadar bir odada, temiz ve kuru ayakkabıya sık, katlar arasında kurumasını bekle. Collonil, nemin en hızlı girdiği üst yüz ile taban arasındaki dikişlere dikkat etmeni istiyor.",
-        "Yenileme sıklığında markalar ayrışıyor: Clarks sık giyilen deri botlarda yaklaşık haftada bir, Collonil kışın her 7–10 giyişte bir ve her yoğun ıslak temizlikten sonra diyor.",
+        "Spreyi açık havada ya da havadar bir odada, temiz ve kuru ayakkabıya sık, katlar arasında kurumasını bekle. Collonil, nemin en hızlı girdiği üst yüz ile taban arasındaki dikişlere dikkat etmeni istiyor. Yenileme sıklığında markalar ayrışıyor: Clarks sık giyilen deri botlarda yaklaşık haftada bir, Collonil kışın her 7–10 giyişte bir ve her yoğun ıslak temizlikten sonra diyor.",
       ],
       links: [
         {
@@ -136,8 +134,7 @@ export const ayakkabidaTuzLekesiNasilCikar: CareGuide = {
       id: "dukkan",
       title: "Kuruduktan sonra beyaz iz kalırsa ne yapmalısın?",
       paragraphs: [
-        "Bir iki nazik denemeden sonra iz duruyorsa ya da renk veya doku değişmeye başladıysa dur; aynı yere üst üste farklı karışım sürme.",
-        "Bakırköy’deki dükkânımızda ayakkabıyı görerek değerlendiriyor, yöntemi malzemeye göre seçiyoruz; temizlikten sonra ayakkabıyı kontrollü biçimde kurutuyoruz. Fotoğrafla ön değerlendirme yapabiliriz; uygun yöntemi, ücreti ve teslim zamanını ayakkabıyı dükkânda gördükten sonra netleştiriyoruz.",
+        "Bir iki nazik denemeden sonra iz duruyorsa ya da renk veya doku değişmeye başladıysa dur; aynı yere üst üste farklı karışım sürme. Bakırköy’deki dükkânımızda ayakkabıyı görerek değerlendiriyor, yöntemi malzemeye göre seçiyoruz; temizlikten sonra ayakkabıyı kontrollü biçimde kurutuyoruz. Fotoğrafla ön değerlendirme yapabiliriz; uygun yöntemi, ücreti ve teslim zamanını ayakkabıyı dükkânda gördükten sonra netleştiriyoruz.",
         "Eski lekeler veya renk değişimi tamamen düzelmeyebilir, beklentiyi baştan konuşuyoruz. Boyama, onarım veya taban işi yapmıyoruz; yalnızca temizlik ve bakım yapıyoruz.",
       ],
       links: [
@@ -157,7 +154,7 @@ export const ayakkabidaTuzLekesiNasilCikar: CareGuide = {
     },
     {
       q: "Tuz lekesi ayakkabıya zarar verir mi?",
-      a: "Bekletirsen verebilir. Collonil yol tuzunun kış boyunca koruyucu tabakayı aşındırdığını yazıyor; izi ayakkabı kurur kurumaz al.",
+      a: "Bekletirsen verebilir. Collonil yol tuzunun kışın su geçirmezlik katmanını aşındırdığını yazıyor; izi ayakkabı kurur kurumaz al.",
     },
     {
       q: "Islak ayakkabıyı kaloriferde kurutabilir miyim?",
@@ -169,11 +166,11 @@ export const ayakkabidaTuzLekesiNasilCikar: CareGuide = {
     },
   ],
   related: [
-    "yagmurda-islanan-ayakkabi-bakimi",
     "suet-nubuk-ayakkabi-nasil-temizlenir",
     "deri-ayakkabi-nasil-temizlenir",
     "bot-nasil-temizlenir",
-    "ayakkabi-su-gecirmez-sprey-nasil-kullanilir",
+    "yagmurda-islanan-ayakkabi-bakimi",
+    "ayakkabidaki-leke-nasil-cikar",
   ],
   service: { href: "/suet-nubuk-temizleme", label: "Bakırköy’de süet ve nubuk temizleme" },
   sourceIds: [

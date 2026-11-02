@@ -5,71 +5,155 @@ import { siteConfig } from "@/lib/site"
 
 export const ayakkabiTemizlemeFiyatiNeyeGoreBelirlenir: CareGuide = {
   slug: "ayakkabi-temizleme-fiyati-neye-gore-belirlenir",
-  title: "Ayakkabı temizleme fiyatı neye göre belirlenir?",
-  description: "Fiyat sorarken malzeme, mevcut durum, çift sayısı ve işlem kapsamını paylaş. Güncel ücret ve teslim zamanını netleştirmek için kısa kontrol listesi.",
+  title: "Ayakkabı temizleme fiyatları neye göre belirlenir?",
+  description: "Ayakkabı temizleme fiyatını malzeme, kirin ve lekenin türü, işin kapsamı ve çift sayısı belirler. Fiyata neyin dahil olduğunu, bırakırken ne soracağını gör.",
   category: "Ayakkabı",
   topic: "Bakım, saklama ve fiyat",
   published: "2026-10-15",
-  updated: "2026-10-21",
-  answer: "Ayakkabı temizleme sayfasında kategoriye göre bir çift için baz fiyatları görebilirsin. Ayakkabının türünü, durumunu ve istediğin işlemi de paylaş; tek fotoğraf veya marka adı kapsamı bütünüyle anlatmayabilir. Bakırköy dükkânında kategoriyi, işlem kapsamını, son ücreti ve teslim zamanını kabul sırasında netleştiriyoruz.",
+  updated: "2026-11-02",
+  answer: "Ayakkabı temizleme fiyatlarını en çok dört şey belirler: ayakkabının malzemesi ve kategorisi (bez, deri, süet, bot), kirin ve lekenin türü, işin kapsamı ve kaç çift getirdiğin. Hizmet sayfamızdaki menüde her kategori için bir çiftin baz ücreti yazıyor. Son ücreti ve teslim zamanını, ayakkabını Bakırköy’deki dükkânda gördükten sonra netleştiriyoruz; istersen önce fotoğrafla ön değerlendirme de yapabiliriz.",
   sections: [
     {
-      id: "kapsam",
-      title: "Önce hangi işin fiyatını sorduğunu netleştir",
+      id: "etkenler",
+      title: "Ayakkabı temizleme fiyatını neler belirler?",
       paragraphs: [
-        "Genel temizlik, belirli bir lekenin değerlendirilmesi ve bakım ihtiyacı aynı soruya indirgenmemeli. Örneğin deri ve süet parçaları bir arada olan bir sneaker yalnız beyaz spor ayakkabı diye anlatıldığında önemli ayrıntılar kaybolabilir.",
-        "Üreticilerin bakım rehberleri de yöntem seçerken malzemeyi ayırır. Burada fiyat hesabı açıklamıyoruz; teklif sorusunu doğru bilgilerle hazırlıyoruz. İşlem kapsamı, güncel ücret ve teslim zamanı doğrudan dükkânla netleşir.",
+        "Dört etken var: malzeme, kir ve leke, işin kapsamı ve çift sayısı. Hizmet sayfasındaki ayakkabı temizleme fiyatları bez, deri, süet ve bot için ayrı ayrı, bir çift üzerinden baz ücret olarak yazıyor. Malzemeye göre ayrılmasının nedeni basit: yöntem malzemeye göre değişiyor. Clarks da bakım rehberinde düz deri, spor ayakkabı ve süet-nubuk için ayrı adımlar veriyor.",
+        "Nike’a göre süet nemi emer ve kolay lekelenir; bu yüzden süette sabundan ve sudan uzak durmanı, işe kuru fırçayla başlamanı öneriyor. Spor ayakkabının genel temizliği içinse ılık suya az miktarda hafif çamaşır deterjanı ya da bulaşık deterjanı katıp üst yüzeyi yumuşak fırçayla nazikçe temizlemeni anlatıyor. Aynı “temizlik” kelimesi iki ayakkabıda başka bir iş demek.",
       ],
-      sourceIds: ["nikeClean", "clarks"],
+      table: {
+        caption: "Fiyatı değiştiren dört etken",
+        headings: ["Etken", "Neden fiyatı değiştirir?"],
+        rows: [
+          [
+            "Malzeme ve kategori",
+            "Bez, deri, süet ve bot için baz ücret ayrı. Süet burunlu bir sneaker gibi karışık modellerde yöntemi her parçanın malzemesine göre seçiyoruz.",
+          ],
+          [
+            "Kirin ve lekenin türü",
+            "Kuru toz, kurumuş çamur ve yerleşmiş leke aynı iş değil. Eski lekeler ya da renk değişimi tamamen düzelmeyebilir; bunu baştan konuşuyoruz.",
+          ],
+          [
+            "İşin kapsamı",
+            "Nike bağcık, taban ve üst yüzey için ayrı adımlar veriyor, tabanlık için de ayrı bir not düşüyor. Hangi bölümlerin işe dahil olduğunu sor.",
+          ],
+          [
+            "Çift sayısı",
+            "Baz ücret bir çift için. Birden fazla çift getireceksen kaç çift olduğunu ve her birinin malzemesini ayrıca yaz.",
+          ],
+        ],
+      },
+      links: [
+        {
+          type: "guide",
+          slug: "suet-nubuk-ayakkabi-nasil-temizlenir",
+          label: "Süet ve nubuk ayakkabıyı temizleme rehberi",
+        },
+      ],
+      sourceIds: ["clarksCare", "nikeSuede", "nikeClean"],
+    },
+    {
+      id: "kapsam",
+      title: "Fiyata neler dahil, neler değil?",
+      paragraphs: [
+        "Ücret temizlik ve bakımı kapsar. Bakırköy’deki dükkânımızda boyama, onarım veya taban işi yapmıyoruz; yalnızca temizlik ve bakım yapıyoruz.",
+        "“Lostra ayakkabı temizleme fiyatları” diye bakıyorsan şunu bil: lostra, yani boyalı cila sürüp parlatma bizde yok. Clarks da deri bakımında cilalayıp parlatmayı temizlikten sonra gelen ayrı bir adım olarak anlatıyor.",
+        "“Ayakkabı yıkama fiyatları” diye sorulan iş de çamaşır makinesinde yıkama değil. Nike ayakkabıyı makinede yıkamayı önermiyor: narin malzemeler makinede zarar görebilir, kurutma makinesinin ısısı da ayakkabının şeklini bozabilir.",
+      ],
+      table: {
+        caption: "Bakırköy dükkânında hangi işler var, hangileri yok?",
+        headings: ["İş", "Durum"],
+        rows: [
+          ["Temizlik ve bakım", "Var: spor, bez, file, örgü, düz deri, süet, nubuk, bot ve benzerleri."],
+          ["Lostra, boyalı cila ve parlatma", "Yok."],
+          ["Boyama veya renk yenileme", "Yok."],
+          ["Onarım, taban yenileme", "Yok."],
+          ["Kapıdan alım ve teslim", "Yok."],
+        ],
+      },
+      links: [
+        {
+          type: "guide",
+          slug: "ayakkabi-bakimi-mi-onarim-mi",
+          label: "Ayakkabı temizlikle mi düzelir, onarım mı gerekir?",
+        },
+      ],
+      sourceIds: ["clarksCare", "nikeClean"],
     },
     {
       id: "bilgi",
-      title: "WhatsApp’tan sorarken bu bilgileri ekle",
+      title: "Fotoğrafla fiyat sorarken ne göndermelisin?",
       paragraphs: [
-        "Yalnız lekeli bölgeyi çekmek, kalan ayakkabının malzemesini gizler. Bir bütün görünüm ve bir yakın plan genellikle daha açıklayıcıdır. Fotoğrafta filtre kullanma; renk ve yüzey farkı değerlendirme için önemlidir.",
+        "Ayakkabının tamamını gösteren bir fotoğraf ve sorunlu yerin yakın planını gönder. Yalnız lekeyi çekersen kalan yüzeyin malzemesi görünmez. Filtre kullanma; rengi ve dokuyu olduğu gibi görmemiz gerekiyor.",
+        "Dükkâna getirmeden önce evde yeni bir ürün denemek zorunda değilsin. Deneyeceksen ürünü önce ayakkabının görünmeyen küçük bir yerinde dene; renk ya da doku değişirse orada bırak.",
+        "Getirene kadar ayakkabı ıslandıysa onu kaloriferde, saç kurutma makinesiyle ya da güneşte kurutma. Clarks yapay bir ısı kaynağının deriye ve üst yüzeye zarar verebileceğini yazıyor. Nike oda sıcaklığında, havayla kurutmayı öneriyor ve doğrudan güneşin ayakkabıyı fazla yıprattığını söylüyor.",
       ],
       table: {
-        caption: "Eksik bilgi yüzünden tekrar yazışmayı azalt",
-        headings: ["Bilgi", "Nasıl paylaşılır?"],
+        caption: "Mesajına bunları da ekle",
+        headings: ["Bilgi", "Nasıl paylaşırsın?"],
         rows: [
           ["Çift sayısı", "Tek çift mi, birden fazla çift mi?"],
-          ["Malzeme ve model", "Tüm ayakkabı ile varsa model etiketinin fotoğrafı."],
-          ["Sorun", "Genel kir, belirli leke, koku veya başka bir beklenti."],
-          ["Önceki işlem", "Evde kullanılan ürün ve uygulanan yöntem."],
-          ["Zaman", "Belirli bir etkinlik veya yolculuk tarihi varsa açıkça yaz."],
+          ["Malzeme ve model", "Ayakkabının tamamının ve varsa model etiketinin fotoğrafı."],
+          ["Sorun", "Genel kir, belirli bir leke, koku ya da başka bir beklenti."],
+          ["Önceki işlem", "Evde hangi ürünü kullandığını ve nasıl uyguladığını yaz."],
+          ["Zaman", "Yetişmesi gereken bir etkinlik ya da yolculuk varsa tarihini yaz."],
         ],
       },
+      sourceIds: ["clarksCare", "nikeClean", "nikeDry"],
     },
     {
       id: "sorular",
-      title: "Kabulden önce sorulacak dört soru",
+      title: "Ayakkabıyı bırakmadan önce ne sormalısın?",
       paragraphs: [
-        "Açılış saati ile teslim sözü aynı bilgi değildir. Bir günde teslim ihtiyacını önceden belirt; her ayakkabı için aynı gün hazır olacağını varsayma. Kapıdan alım henüz başlamadığından dükkâna bırakma ve alma planını ayrıca yap.",
+        "Ücretin neyi kapsadığını, çıkmayabilecek izleri ve teslim zamanını kabulde netleştir. Belirli bir güne yetişmesi gerekiyorsa bunu baştan söyle; aynı gün hazır olacağını varsayma. Kapıdan alım ve teslim yok; ayakkabını dükkâna bırakıp yine dükkândan alıyorsun.",
       ],
       steps: [
-        "Belirtilen ücret hangi temizlik ve bakım işlemini kapsıyor?",
-        "Mevcut hasar veya bütünüyle çıkmayabilecek bir iz var mı?",
-        "Teslim zamanı ayakkabının durumu ve iş yoğunluğuyla birlikte netleşti mi?",
-        "Bağcık, tabanlık veya özel aksesuar için ayrıca belirtilmesi gereken bir durum var mı?",
+        "Ücretin bir çift için olup olmadığını ve ayakkabının hangi kategoriye girdiğini sor.",
+        "Ücrete hangi bölümlerin girdiğini sor: üst yüzey, taban, bağcık, tabanlık.",
+        "Tamamen çıkmayabilecek bir leke ya da renk değişimi olup olmadığını konuş.",
+        "Soyulma, açılmış taban ya da kopuk dikiş varsa bunu kabulde göster.",
+        "Teslim zamanını, ayakkabının durumu ve kuruma ihtiyacı görüldükten sonra netleştir.",
       ],
     },
     {
-      id: "yer",
-      title: "Bakırköy’de yüz yüze değerlendirme",
+      id: "kuru",
+      title: "Kuru temizlemeci ile ayakkabı temizliği aynı fiyat mı?",
       paragraphs: [
-        `Sakızağacı Mahallesi İskele Caddesi No:15-B’deki dükkâna ayakkabını getirebilirsin. Çalışma saatlerimiz ${siteConfig.hours.label}. Güncel fiyat için WhatsApp veya telefon bağlantısını kullan.`,
-        "Dükkânımızda yalnızca ayakkabı temizliği ve bakımı yapıyoruz; lostra, boyama, taban yenileme veya onarım hizmeti vermiyoruz. Kabulde üzerinde anlaşılan iş ve ücret, eski bir arama sonucu veya başka işletmenin fiyatından daha anlamlıdır.",
+        "Doğrudan karşılaştırılamaz, çünkü ikisi aynı iş değil: giysilerdeki kuru temizleme bir tekstil işlemi, ayakkabıda ise yöntem malzemeye göre seçilir.",
+        "Nike’a göre her kuru temizlemeci ayakkabı kabul etmiyor; kabul edenler de ayakkabıyı evde yapacağın temizliğe benzer bir şekilde temizliyor, ama ellerinde leke çıkarıcı gibi özel ürünler de bulunuyor. O yüzden ayakkabı kuru temizleme fiyatlarını karşılaştırırken önce ayakkabına ne yapılacağını sor.",
+      ],
+      links: [{ type: "guide", slug: "ayakkabi-kuru-temizlemeye-verilir-mi", label: "Ayakkabı kuru temizlemeye verilir mi?" }],
+      sourceIds: ["nikeDry"],
+    },
+    {
+      id: "yer",
+      title: "Bakırköy’de ayakkabını nereye getirebilirsin?",
+      paragraphs: [
+        `Bakırköy’de, Sakızağacı Mahallesi İskele Caddesi No:15-B’deki dükkânımıza getirebilirsin. Çalışma saatlerimiz ${siteConfig.hours.label}.`,
+        "Ayakkabını görerek değerlendiriyor, yöntemi malzemeye göre seçiyoruz. Temizlikten sonra ayakkabıyı kontrollü biçimde kurutuyoruz.",
+        "Yola çıkmadan önce fikir almak istersen fotoğraf gönder. Fotoğrafla ön değerlendirme yapabiliriz; uygun yöntemi, ücreti ve teslim zamanını ayakkabıyı dükkânda gördükten sonra netleştiriyoruz.",
+      ],
+      links: [
+        { type: "photo", label: "Ön değerlendirme için fotoğraf gönder" },
+        { type: "service", href: "/ayakkabi-temizleme#fiyat", label: "Ayakkabı temizleme hizmeti ve fiyat menüsü" },
       ],
     },
   ],
   faqs: [
     {
       q: "Baz fiyat ile ödeyeceğim tutar aynı mı?",
-      a: "Hizmet sayfasındaki tabloda bir çift için kategoriye göre baz ücret yer alır. Ayakkabının kategorisini, yapılacak işi ve varsa indirim veya kampanyayı kabulden önce netleştir; son tutarı bu bilgilerle birlikte sor.",
+      a: "Baz ücret, hizmet sayfasında her kategori için bir çift üzerinden yazıyor. Ödeyeceğin tutarı ayakkabıyı dükkânda gördükten sonra netleştiriyoruz; kapsamı ve tutarı kabulden önce sor.",
     },
     {
-      q: "Fotoğrafla söylenen bilgi kesin mi?",
-      a: "Fotoğraf ön değerlendirmeye yardımcı olur. Son kapsam, ücret ve teslim zamanı kabulde netleşir.",
+      q: "Fotoğrafla söylenen fiyat kesin mi?",
+      a: "Hayır, fotoğraf ön değerlendirme için. Yöntem, ücret ve teslim zamanı ayakkabı dükkânda görülünce kesinleşir.",
+    },
+    {
+      q: "Süet ayakkabı neden farklı fiyatlanır?",
+      a: "Çünkü süetin yöntemi farklı: Nike süeti sabunlu suyla yıkamayı önermiyor, kuru fırça ve silgiyle başlamayı anlatıyor. İnatçı lekede bezin ucunu az miktarda süet temizleyici ya da beyaz sirkeyle hafifçe nemlendirmeyi öneriyor; bunu önce görünmeyen küçük bir yerde dene. Baz fiyat menüsünde de süet ayrı bir kategori.",
+    },
+    {
+      q: "Ayakkabı aynı gün teslim edilir mi?",
+      a: "Aynı gün teslim sözü vermiyoruz. Teslim zamanını ayakkabının durumuna ve kuruma ihtiyacına bakarak, dükkânda gördükten sonra netleştiriyoruz.",
     },
   ],
   related: [
@@ -79,5 +163,5 @@ export const ayakkabiTemizlemeFiyatiNeyeGoreBelirlenir: CareGuide = {
     "deri-ayakkabi-nasil-temizlenir",
   ],
   service: { href: "/ayakkabi-temizleme#fiyat", label: "Bir çift için baz fiyatları incele" },
-  sourceIds: ["nikeClean", "clarks"],
+  sourceIds: ["clarksCare", "nikeSuede", "nikeClean", "nikeDry"],
 }

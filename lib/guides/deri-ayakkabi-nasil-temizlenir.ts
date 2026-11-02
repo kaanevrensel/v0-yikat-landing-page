@@ -88,18 +88,18 @@ export const deriAyakkabiNasilTemizlenir: CareGuide = {
       title: "Deri ayakkabı adım adım nasıl temizlenir?",
       paragraphs: [
         "Temizlik, kurutma, besleme ve parlatma ayrı adımlar; sırayı karıştırma.",
-        "Sabun konusunda markalar ayrışıyor. Red Wing ve Nike kir için yumuşak sabun öneriyor; PUMA Türkiye ve Geox ise deri ayakkabıyı yalnızca hafif nemli bezle silmeyi söylüyor, PUMA deterjanla temas ettirmemeyi de ekliyor. Önce sadece suyla başla, kir çıkmazsa çok seyreltilmiş sabuna geç.",
+        "Sabun konusunda markalar ayrışıyor. Red Wing ve Nike kir için yumuşak sabun öneriyor; PUMA Türkiye ve Geox ise yalnızca hafif nemli bezle silmeyi söylüyor, PUMA deterjanla temas ettirmemeyi de ekliyor. Önce sadece suyla başla, kir çıkmazsa çok seyreltilmiş sabuna geç.",
         "Deri spor ayakkabıda da sıra aynı. Nike deri sneaker için kuru fırça ve yumuşak bulaşık deterjanı çözeltisi, lekeler için temizlik süngeri ya da deri temizleyici öneriyor ve çok sert ovalamamanı söylüyor. Nike’a göre yoğun bulaşık deterjanı bazı malzemelerde rengi bozabilir; deterjanı bol suyla seyrelt.",
       ],
       steps: [
-        "Bağcıkları çıkar, ayrı temizle. Ayakkabının içine kalıp ya da buruşturulmuş gazete kâğıdı koy; Nike, ıslanan derinin biçimini kaybedebileceğini söylüyor.",
+        "Bağcıkları çıkar, ayrı temizle. Ayakkabının içine kalıp ya da buruşturulmuş kâğıt koy; Nike, ıslanan derinin biçimini kaybedebileceğini söylüyor.",
         "Kuru kiri yumuşak bir fırça ya da kuru bezle al; dikiş yerlerini ve girintileri de atlama.",
-        "Bir bezi suyla nemlendir ve damlamayacak kadar iyice sık. Üst yüzü baştan sona sil.",
+        "Bir bezi suyla nemlendir, damlamayacak kadar iyice sık. Üst yüzü baştan sona sil.",
         "Kir kalırsa bir kâse suya birkaç damla yumuşak sabun karıştır ya da deri temizleyici kullan. Önce görünmeyen küçük bir yerde dene; renk ya da doku değişirse dur.",
         "Temizleyiciyi bezle küçük dairelerle sür; deriyi çok sert ovalama. Sonra sabunu yalnızca suyla nemlendirilmiş temiz bir bezle al.",
-        "Ayakkabıyı ayrı, kuru bir bezle kurula. Ardından oda sıcaklığında, havadar bir yerde kendi kendine kurumaya bırak; kalorifer, saç kurutma makinesi ve güneş yok.",
+        "Ayakkabıyı ayrı, kuru bir bezle kurula. Oda sıcaklığında, havadar bir yerde kurumaya bırak; kalorifer, saç kurutma makinesi ve güneş yok.",
         "Tamamen kuruyunca yumuşak bir bezle az miktarda bakım kremi sür. Red Wing kremin bir gece emilmesini bekleyip fazlasını silmeyi öneriyor.",
-        "İstersen rengine uygun cilayla parlat, en son koruyucu sprey sık. Islak ayakkabıya krem ya da cila sürme, önce kurumasını bekle.",
+        "İstersen rengine uygun cilayla parlat. Koruyucu spreyi Vagabond en son, Collonil ciladan önce sıkıyor; etikete uy. Islak ayakkabıya krem ya da cila sürme, önce kurumasını bekle.",
       ],
       links: [
         { type: "guide", slug: "spor-ayakkabi-nasil-temizlenir", label: "Spor ayakkabı nasıl temizlenir?" },
@@ -118,6 +118,7 @@ export const deriAyakkabiNasilTemizlenir: CareGuide = {
         "saphirLeatherGuide",
         "clarksBoots",
         "vagabondLeather",
+        "collonilWaterproofing",
       ],
     },
     {
@@ -173,6 +174,7 @@ export const deriAyakkabiNasilTemizlenir: CareGuide = {
           slug: "ayakkabi-su-gecirmez-sprey-nasil-kullanilir",
           label: "Su geçirmez sprey nasıl kullanılır?",
         },
+        { type: "guide", slug: "birkenstock-nasil-temizlenir", label: "Birkenstock terlik nasıl temizlenir?" },
       ],
       sourceIds: [
         "redWingCare",
@@ -189,7 +191,7 @@ export const deriAyakkabiNasilTemizlenir: CareGuide = {
       id: "izler",
       title: "Deri ayakkabıdaki leke ve çizik nasıl çıkar?",
       paragraphs: [
-        "Deri ayakkabıdaki lekeyi çıkarmak için önce lekenin cinsine bak: Clarks genel lekede seyreltilmiş sirke, Timberland yağda talk pudrası, Birkenstock ve Skechers sıyrıkta cila öneriyor. Her yöntemi önce görünmeyen küçük bir yerde dene, renk açılırsa dur.",
+        "Deri ayakkabıdaki lekeyi çıkarmak için önce lekenin cinsine bak: Clarks genel lekede seyreltilmiş sirke, Collonil yağda deri temizleyici, Birkenstock ve Skechers sıyrıkta cila öneriyor. Her yöntemi önce görünmeyen küçük bir yerde dene, renk açılırsa dur.",
         "Kıştan kalan beyaz tuz izlerinin yöntemi farklı, onu burada anlatmıyoruz.",
         "Çatlak, soyulma ya da renk kaybı temizlikle çözülen sorunlar değil; temizlik kiri alır, eksilen rengi geri getirmez. Bakımla onarımın farkını ayrı rehberde anlattık.",
       ],
@@ -209,8 +211,8 @@ export const deriAyakkabiNasilTemizlenir: CareGuide = {
           ],
           [
             "Taze yağ lekesi",
-            "Kâğıt havluyla bastırarak emdir, üstüne talk pudrası serp, bir gece beklet; sabah pudrayı silerek al.",
-            "Pudrayı ovalayıp içeri itme; Timberland de ovalamamanı söylüyor.",
+            "Kâğıt havluyla bastırarak emdir. Düz deride Collonil temizleyiciyi beze sıkıp silmeyi, Timberland nubukta talk serpip bir gece bekletmeyi öneriyor.",
+            "Timberland talkı ovalamamanı, sabah silmeni söylüyor.",
           ],
           [
             "Şarap, meyve suyu, kan",
@@ -236,7 +238,12 @@ export const deriAyakkabiNasilTemizlenir: CareGuide = {
       },
       links: [
         { type: "guide", slug: "ayakkabida-tuz-lekesi-nasil-cikar", label: "Ayakkabıdaki tuz lekesi nasıl çıkar?" },
-        { type: "guide", slug: "ayakkabi-bakimi-mi-onarim-mi", label: "Ayakkabıya bakım mı, onarım mı gerekiyor?" },
+        { type: "guide", slug: "ayakkabidaki-yag-lekesi-nasil-cikar", label: "Ayakkabıdaki yağ lekesi nasıl çıkar?" },
+        {
+          type: "guide",
+          slug: "ayakkabi-bakimi-mi-onarim-mi",
+          label: "Ayakkabı temizlikle mi düzelir, onarım mı gerekir?",
+        },
       ],
       sourceIds: ["clarksBoots", "timberlandStains", "collonilLeatherStains", "skechersCareHelp", "birkenstockUpperCare"],
     },
@@ -244,7 +251,7 @@ export const deriAyakkabiNasilTemizlenir: CareGuide = {
       id: "ev",
       title: "Islak mendil, vazelin, badem yağı: evdeki yöntemler işe yarar mı?",
       paragraphs: [
-        "Bir kısmı işe yarar: sıkılmış nemli bez, seyreltilmiş sirke ve talk pudrası üreticilerin önerileriyle örtüşüyor. Vazelin, badem yağı ve bebek mendili için incelediğimiz üretici sayfalarında bir öneri yok.",
+        "Bir kısmı işe yarar: sıkılmış nemli bez ve talk pudrası üreticilerin önerileriyle örtüşüyor, seyreltilmiş sirkede markalar ayrışıyor. Vazelin, badem yağı ve bebek mendili için incelediğimiz üretici sayfalarında bir öneri yok.",
       ],
       table: {
         caption: "Ev yöntemleri: öneriyor muyuz?",
@@ -258,10 +265,10 @@ export const deriAyakkabiNasilTemizlenir: CareGuide = {
           ],
           [
             "Sirke ve su",
-            "Leke için evet",
-            "Clarks’ın leke tarifi bir ölçü sirkeye iki ölçü su; sonra suyla nemli bezle sil.",
+            "Lekede, gerekirse",
+            "Clarks’ın leke tarifi bir ölçü sirkeye iki ölçü su; Collonil ise sirkeyi deri için fazla zararlı buluyor.",
           ],
-          ["Talk pudrası", "Yağ lekesi için evet", "Timberland’in yağ lekesi yöntemi."],
+          ["Talk pudrası", "Nubukta yağ lekesinde evet", "Timberland’in yöntemi."],
           [
             "Bebek veya makyaj mendili",
             "Hayır",
@@ -271,7 +278,7 @@ export const deriAyakkabiNasilTemizlenir: CareGuide = {
           [
             "Badem yağı, zeytinyağı",
             "Hayır",
-            "Üreticiler deri için yapılmış yağ, krem ya da balsam öneriyor. Kanada Konservasyon Enstitüsü müzedeki deri eşyalar için yağların zamanla oksitlenip deriyi sertleştirip koyulaştırabileceğini yazıyor.",
+            "Üreticiler deri için yapılmış yağ, krem ya da balsam öneriyor. Kanada Koruma Enstitüsü müzedeki deri eşyalar için yağların zamanla oksitlenip deriyi sertleştirip koyulaştırabileceğini yazıyor.",
           ],
           ["Çamaşır suyu", "Hayır", "Nike deri ve süette çamaşır suyu kullanmamanı söylüyor."],
         ],
@@ -286,6 +293,7 @@ export const deriAyakkabiNasilTemizlenir: CareGuide = {
         "timberlandStains",
         "cciLeather",
         "nikeWhiteShoes",
+        "collonilSnowMarks",
       ],
     },
     {
@@ -295,6 +303,7 @@ export const deriAyakkabiNasilTemizlenir: CareGuide = {
         "Rugan ayakkabıyı nemli bezle silip ayrı bir bezle kurula, sonra parlatma beziyle parlat; Vagabond başka ürünlerin bu parlak kaplamada leke bırakabileceğini ya da rengi bozabileceğini söylüyor. Dr. Martens rugan için ayrı bir temizleyici kullanıyor.",
         "Suni deri ayakkabıyı hafif nemli, yumuşak bir bezle sil ve oda sıcaklığında kurut. PUMA Türkiye suni deride de deterjan istemiyor, Geox sentetik malzemede hafif nemli, yumuşak beyaz bez öneriyor. Dr. Martens vegan modellerinde mum ya da balsama gerek olmadığını söylüyor; suni deriye deri kremi sürmenin faydasını anlatan bir üretici bilgisine rastlamadık.",
       ],
+      links: [{ type: "guide", slug: "rugan-ayakkabi-nasil-temizlenir", label: "Rugan ayakkabı nasıl temizlenir?" }],
       sourceIds: ["drMartensPatent", "vagabondLeather", "pumaTrCare", "geoxCare", "drMartensWonderBalsam"],
     },
     {
@@ -308,6 +317,11 @@ export const deriAyakkabiNasilTemizlenir: CareGuide = {
       links: [
         { type: "photo", label: "Ön değerlendirme için fotoğraf gönder" },
         { type: "service", href: "/deri-ayakkabi-bakimi", label: "Bakırköy’de deri ayakkabı temizliği ve bakımı" },
+        {
+          type: "guide",
+          slug: "ayakkabi-temizleme-fiyati-neye-gore-belirlenir",
+          label: "Ayakkabı temizleme fiyatları neye göre belirlenir?",
+        },
       ],
     },
   ],
@@ -326,7 +340,7 @@ export const deriAyakkabiNasilTemizlenir: CareGuide = {
     },
     {
       q: "Islanan deri ayakkabı nasıl kurutulur?",
-      a: "Fazla suyu kuru bir bezle al, içine gazete kâğıdı koy ve oda sıcaklığında kendi kendine kurumaya bırak. Clarks deriyi bozabileceği için yapay ısı kaynağı kullanmamayı söylüyor.",
+      a: "Fazla suyu kuru bir bezle al, içine kâğıt koy ve oda sıcaklığında kendi kendine kurumaya bırak. Clarks deriyi bozabileceği için yapay ısı kaynağı kullanmamayı söylüyor.",
     },
     {
       q: "Çatlamış deri bakım kremiyle tamamen düzelir mi?",
@@ -342,6 +356,7 @@ export const deriAyakkabiNasilTemizlenir: CareGuide = {
     "bot-nasil-temizlenir",
     "yagmurda-islanan-ayakkabi-bakimi",
     "ayakkabi-nasil-saklanir",
+    "rugan-ayakkabi-nasil-temizlenir",
   ],
   service: { href: "/deri-ayakkabi-bakimi", label: "Bakırköy’de deri ayakkabı temizliği ve bakımı" },
   sourceIds: [
@@ -362,5 +377,7 @@ export const deriAyakkabiNasilTemizlenir: CareGuide = {
     "timberlandStains",
     "collonilLeatherStains",
     "cciLeather",
+    "collonilSnowMarks",
+    "collonilWaterproofing",
   ],
 }

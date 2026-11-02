@@ -78,7 +78,7 @@ export const newBalanceNasilTemizlenir: CareGuide = {
           slug: "suet-nubuk-ayakkabi-nasil-temizlenir",
           label: "Süet ve nubuk ayakkabı nasıl temizlenir",
         },
-        { type: "guide", slug: "file-orgu-ayakkabi-temizligi", label: "File ve örgü ayakkabı nasıl temizlenir" },
+        { type: "guide", slug: "file-orgu-ayakkabi-temizligi", label: "File ayakkabı nasıl temizlenir" },
       ],
       sourceIds: ["nikeSuede", "newBalanceTrCare", "nikeClean", "nikeMesh"],
     },

@@ -39,7 +39,11 @@ export const ayakkabiKokusuNasilGiderilir: CareGuide = {
       ],
       links: [
         { type: "guide", slug: "ayakkabi-nasil-kurutulur", label: "Ayakkabıyı ısı kullanmadan kurutma" },
-        { type: "guide", slug: "ayakkabi-tabanligi-nasil-temizlenir", label: "Ayakkabı tabanlığı nasıl temizlenir" },
+        {
+          type: "guide",
+          slug: "ayakkabi-tabanligi-nasil-temizlenir",
+          label: "Ayakkabı tabanlığı ve içi nasıl temizlenir",
+        },
         { type: "guide", slug: "ayakkabi-bagcigi-nasil-temizlenir", label: "Ayakkabı bağcığı nasıl temizlenir" },
       ],
       sourceIds: ["skechersCleanGuide", "nikeRunning", "nikeDry", "skechersKidsShoes", "skechersCareHelp", "nikeOdor"],

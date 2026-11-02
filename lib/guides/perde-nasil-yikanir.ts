@@ -9,23 +9,23 @@ export const perdeNasilYikanir: CareGuide = {
   category: "Tekstil",
   topic: "Ev tekstili",
   published: "2026-11-02",
-  answer: "Perde, bakım etiketi izin veriyorsa makinede Perde ya da Hassas programda, soğuk veya düşük sıcaklıkta, düşük devirde ve az deterjanla yıkanır. Tülü file torbaya koy; iki Beko modelinin kılavuzu perde için en fazla 40 °C ve 800 devir veriyor, etiketteki sayı daha düşükse o geçerli. Kalın fon perdeler çok su tuttuğu için Persil onları çoğu zaman buharla temizlemeyi daha uygun buluyor. Yıkadıktan sonra perdeyi burmadan as.",
+  answer: "Perde, bakım etiketi izin veriyorsa makinede Perde ya da Hassas programda, soğuk veya düşük sıcaklıkta ve düşük devirde yıkanır. Tülü file torbaya koy, deterjanı az tut; iki Beko modelinin kılavuzu perde için en fazla 40 °C ve 800 devir veriyor, etiketteki sayı daha düşükse o geçerli. Kalın fon perdeler çok su tuttuğu için Persil onları çoğu zaman buharla temizlemeyi daha uygun buluyor. Yıkadıktan sonra perdeyi burmadan as.",
   sections: [
     {
       id: "etiket",
       title: "Perde yıkanır mı, yıkamadan önce neye bakmalı?",
       paragraphs: [
-        "Perdenin yıkanıp yıkanmayacağını bakım etiketi söyler; perde nasıl yıkanır sorusunun ilk cevabı orada. Persil de önce etiketi bulup üreticinin talimatını okumanı söylüyor. Leğen simgesindeki sayı bir üst sınırdır; GINETEX’e göre bu sıcaklık aşılmamalı.",
-        "Tide’a göre astarsız perdeler ve pamuk, naylon ya da polyester tüller genelde yıkanabiliyor. Leğenin üstü çarpıysa perdeyi yıkama. GINETEX’e göre bu simge, kumaş suya dayanıksızsa ya da parça ev makinesine büyük geliyorsa konabilir.",
+        "Perdeyi yıkamadan önce ilk bakacağın yer bakım etiketi; perdenin yıkanıp yıkanmayacağını o söyler. Persil de önce etiketi bulup üreticinin talimatını okumanı söylüyor. Leğen simgesindeki sayı bir üst sınırdır; GINETEX’e göre bu sıcaklık aşılmamalı.",
+        "Tide’a göre astarsız perdeler ve pamuk, naylon ya da polyester tüller genelde yıkanabiliyor. Leğen simgesinin üstünde çarpı varsa perdeyi yıkama. GINETEX’e göre bu simge, kumaş suya dayanıksızsa ya da parça ev makinesine büyük geliyorsa konabilir.",
       ],
       steps: [
         "Etiketi bul ve fotoğrafını çek.",
-        "Kancaları ve sökülebilen halkaları çıkar; IKEA Türkiye metal ve plastik aksesuarların suya girip giremeyeceğine bakmanı söylüyor.",
-        "Sökülmeyen metal halkalar varsa perdeyi file torbaya koy; Tide’a göre bu parçalar tambura zarar verebilir.",
+        "Kancaları ve sökülebilen halkaları çıkar; sökülmeyen metal ya da plastik parçaların suya girip giremeyeceğine bak.",
+        "Sökülmeyen metal halkalar tambura zarar verebilir; böyle bir perdeyi file torbada yıka.",
         "Perdenin tozunu yumuşak hareketlerle al.",
-        "Kirli, rengi dönmüş yerleri bul; Persil buralara yıkamadan önce leke çıkarıcı sürmeni öneriyor.",
+        "Kirlenmiş ya da rengi dönmüş yerleri bul; yıkamadan önce buralara leke çıkarıcı sür.",
         "Leke çıkarıcıyı önce görünmeyen bir köşede dene; renk ya da doku değişirse dur.",
-        "Makineyi fazla doldurma; Tide perde sığmıyorsa elde yıkamanı söylüyor.",
+        "Makineyi fazla doldurma; perde sığmıyorsa elde yıka.",
       ],
       links: [{ type: "guide", slug: "yikama-sembolleri", label: "Bakım etiketindeki simgelerin anlamı" }],
       sourceIds: ["persilUkCurtains", "ginetexCurrent", "tideInCurtains", "ikeaTrTulWhiten"],
@@ -39,12 +39,12 @@ export const perdeNasilYikanir: CareGuide = {
         "Arçelik ve Beko’ya göre tülün delikli dokusu fazla köpürtür; bu yüzden ana yıkama gözüne az deterjan koymanı söylüyorlar. Persil hafif perdeler için normal çamaşır deterjanının genelde yeterli olduğunu yazıyor.",
       ],
       steps: [
-        "Tülü gevşekçe katlayıp file torbaya ya da bir yastık kılıfına koy. Siemens’e göre file torba, kumaşla tambur arasında koruyucu bir bariyer kurar.",
+        "Tülü gevşekçe katlayıp file torbaya ya da bir yastık kılıfına koy. File torba, kumaşla tambur arasında koruyucu bir bariyer olur.",
         "Perde programını seç; yoksa Hassas programa al.",
         "Sıcaklığı soğuk ya da düşük bir değere ayarla; etiketteki sayıyı geçme.",
         "Sıkma devrini düşür; leğenin altında tek çizgi olan 30 ve 40 °C simgelerinde GINETEX sıkmayı kısa tutmanı ya da hiç sıkmamanı söylüyor.",
         "Ana yıkama gözüne az deterjan koy.",
-        "Program biter bitmez tülü çıkarıp kurumaya as; Tide da bunu öneriyor.",
+        "Program biter bitmez tülü çıkarıp kurumaya as.",
       ],
       table: {
         caption: "Tül perde makine ayarları (etiketteki sınır önce gelir)",
@@ -86,11 +86,11 @@ export const perdeNasilYikanir: CareGuide = {
         "Hassas, dekoratif ya da makineye sığmayan perdeyi küvette, soğuk ya da ılık suda, ovmadan yıka. Persil’e göre zarar görmesinden ya da kırışmasından çekindiğin perdede elde yıkamak daha güvenli; IKEA Türkiye de dekoratif kumaşlar için aynısını söylüyor.",
       ],
       steps: [
-        "Küveti ya da büyük bir lavaboyu kullan; Persil’e göre perdeyi bölüm bölüm yıkarsan bir yeri atlayabilirsin.",
-        "Küveti soğuk ya da ılık suyla doldur; Tide da böyle diyor. GINETEX’e göre içinde sayı olmayan elde yıkama simgesi yaklaşık 20–30 °C su demek.",
-        "Deterjanı perdeyi koymadan önce suda erit; GINETEX hassas bir deterjanı bol suda eritmeni söylüyor.",
+        "Küveti ya da büyük bir lavaboyu kullan; perdeyi bölüm bölüm yıkarsan bir yeri atlayabilirsin.",
+        "Küveti soğuk ya da ılık suyla doldur; içinde sayı olmayan elde yıkama simgesi, GINETEX’e göre yaklaşık 20–30 °C su demek.",
+        "Hassas bir deterjanı, perdeyi koymadan önce bol suda erit.",
         "Perdeyi suya bırak ve yüzdürerek nazikçe çalkala; ovma, çekiştirme, burma.",
-        "Perdeyi suda bekletme; GINETEX hassas parçaları ıslak bırakmamanı, Persil kumaşın suyla ağırlaşmamasını söylüyor.",
+        "Perdeyi suda bekletme; kumaş suyla ağırlaşmasın.",
         "Temiz suyla iyice durula, sonra suyunu burmadan, kumaşı bastırarak al.",
       ],
       sourceIds: ["persilUkCurtains", "ikeaTrCurtains", "tideInCurtains", "ginetexCurrent"],
@@ -100,15 +100,15 @@ export const perdeNasilYikanir: CareGuide = {
       title: "Kalın fon perde nasıl temizlenir?",
       paragraphs: [
         "Kalın fon perdeyi etiket izin veriyorsa düşük sıcaklıkta ve hassas programda yıkayabilirsin, ama çoğu zaman buhar daha uygun. Persil’e göre ağır kumaş çok su tutar, geç kuruduğu için de rutubet kokabilir; bu yüzden genelde buharla temizlenmesi daha iyi. Pamuk ve keten fonlarda sıcaklığa dikkat et; Vanish doğal liflerin ısıyla çekebildiğini, pamukta buharın da çekmeye yol açabileceğini yazıyor.",
-        "Etikette leğen çarpılıysa ve yalnızca daire simgesi varsa, bu profesyonel temizlik demek; o perdeyi evde suya sokma. Stor ve zebra perdeler ayrı konu; IKEA Türkiye ikisinin de genelde silinerek temizlendiğini söylüyor.",
+        "Etikette leğen simgesinin üstünde çarpı varsa ve temizlik için yalnızca daire simgesi kalıyorsa, perde profesyonel temizlik ister; onu evde suya sokma. Stor ve zebra perdeler ayrı konu; IKEA Türkiye ikisinin de genelde silinerek temizlendiğini söylüyor.",
       ],
       steps: [
-        "Buharlı temizleyicinin kılavuzunu oku; Tide sıcak buhardan yanmamak için bunu hatırlatıyor.",
+        "Sıcak buhardan yanmamak için önce buharlı temizleyicinin kılavuzunu oku.",
         "Perdenin tozunu önce süpürgenin fırça ucuyla al.",
         "Makineye döşeme başlığını tak ve önce perdenin görünmeyen bir köşesinde dene.",
         "Perdenin en üstünden başla, şerit şerit aşağı in.",
-        "Kumaşta ıslak lekeler oluşursa başlığı uzaklaştır; Tide’a göre bu, başlığı fazla yaklaştırdığını gösterir.",
-        "Pencereyi aç, perdeyi tamamen kuruyana kadar toplama; Persil’e göre iyi kurutmak küf ve rutubet kokusunu önler.",
+        "Kumaşta ıslak lekeler oluşursa başlığı fazla yaklaştırmışsın demektir; biraz uzaklaştır.",
+        "Pencereyi aç, perdeyi tamamen kuruyana kadar toplama; iyi kurutmak küfü ve rutubet kokusunu önler.",
       ],
       links: [
         { type: "guide", slug: "kuru-temizleme-nedir", label: "Kuru temizleme nedir, ne zaman gerekir" },
@@ -121,7 +121,7 @@ export const perdeNasilYikanir: CareGuide = {
       title: "Perde nasıl kurutulur, ütülenir ve asılır?",
       paragraphs: [
         "Perdeyi fazla sıkmadan, asarak kurut; IKEA Türkiye bazı perdelerin kendi ağırlığıyla kururken kırışıklığının azalabildiğini söylüyor. Bosch’a göre perde programı sonunda suyu hızla attığı için perde nemliyken asılabiliyor.",
-        "Dışarıda kurutacaksan perdeyi doğrudan güneşe asma; Persil ve Tide güneşin bazı renkleri etkileyebileceğini söylüyor. Kurutma makinesini yalnızca etiket izin veriyorsa kullan; Persil düşük ısıyı ve perdeyi yüzde 95 kuruyunca çıkarmayı öneriyor. Lekesi tam çıkmamış perdeyi kurutucuya atma; Persil’e göre leke kurutucuda kalıcı hâle gelebilir.",
+        "Dışarıda kurutacaksan perdeyi doğrudan güneşe asma; Persil ve Tide güneşin bazı renkleri etkileyebileceğini söylüyor. Kurutma makinesini yalnızca etiket izin veriyorsa kullan; Persil düşük ısıyı ve perdeyi yüzde 95 kuruyunca çıkarmayı öneriyor. Lekesi tam çıkmamış perdeyi kurutucuya atma; leke orada kalıcı hâle gelebilir.",
         "Ütü gerekiyorsa düşük ısıdan başla; IKEA Türkiye düşük sıcaklığın kumaşın zarar görmesini önleyebileceğini söylüyor. Üst sınırı etiketteki ütü noktaları belirler; GINETEX ütü sıcaklığının liften değil etiketten seçilmesini istiyor. Polyesteri ütülerken buhar kullanma; Vanish su lekesi ya da hasar yapabileceğini söylüyor.",
       ],
       steps: [
@@ -158,7 +158,7 @@ export const perdeNasilYikanir: CareGuide = {
     },
     {
       q: "Tül perde kaç dakika yıkanır?",
-      a: "Belli bir dakika yok; üreticiler süre değil program öneriyor. Tül, seçtiğin programın süresi kadar yıkanır.",
+      a: "Belli bir dakika yok; üreticiler süre değil program öneriyor. Bir Beko kılavuzuna göre programı seçtiğinde makine yıkama süresini ekranında gösteriyor; süre, yıkama başlayınca yüke göre güncelleniyor.",
     },
     {
       q: "Perde kurutma makinesine atılır mı?",
@@ -170,14 +170,20 @@ export const perdeNasilYikanir: CareGuide = {
     },
     {
       q: "Kadife perde makinede yıkanır mı?",
-      a: "Etiketi izin vermiyorsa makineye atma. Ağır kadifede Persil’in ağır kumaşlar için önerdiği buharı önce görünmeyen bir köşede dene.",
+      a: "Kararı etiket verir: leğen simgesinin üstünde çarpı, leğende el işareti ya da temizlik için yalnızca daire simgesi varsa makineye atma. Ağır kadifede Persil’in ağır kumaşlar için önerdiği buharı önce görünmeyen bir köşede dene.",
     },
     {
       q: "İp perde nasıl yıkanır?",
-      a: "Önce etiketine ya da satıcısının talimatına bak. Etiket makineye izin veriyorsa Persil’in hafif kumaşlar için önerdiği gibi file torbada, hassas programda, düşük sıcaklık ve devirde yıka.",
+      a: "İp perdeye özel bir üretici talimatı bulamadık; bu yüzden önce etiketine ya da satıcısının talimatına bak. Etiket makineye izin veriyorsa Persil’in tül ve hafif kumaşlar için önerdiği gibi file torbada, hassas programda, düşük sıcaklık ve devirde yıka.",
     },
   ],
-  related: ["tul-perde-nasil-beyazlatilir", "stor-perde-nasil-yikanir", "yikama-sembolleri"],
+  related: [
+    "tul-perde-nasil-beyazlatilir",
+    "stor-perde-nasil-yikanir",
+    "yikama-sembolleri",
+    "kuru-temizleme-nedir",
+    "nevresim-kac-derecede-yikanir",
+  ],
   sourceIds: [
     "persilUkCurtains",
     "ginetexCurrent",

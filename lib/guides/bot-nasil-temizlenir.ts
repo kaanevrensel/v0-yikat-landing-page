@@ -9,7 +9,7 @@ export const botNasilTemizlenir: CareGuide = {
   category: "Ayakkabı",
   topic: "Malzemeye göre temizlik",
   published: "2026-11-02",
-  answer: "Bot, önce yumuşak bir fırçayla kuru kiri alıp sonra iyice sıkılmış nemli bir bezle silerek temizlenir. Kir kalırsa beze biraz deri temizleyici ya da yumuşak sabun al, ama önce görünmeyen bir yerde dene. İçini ve konçunu kâğıtla doldurup kalorifer, saç kurutma makinesi ve güneşten uzakta, oda sıcaklığında kurut; botun deriyse tamamen kuruyunca az krem sür. Süet, nubuk ve koyun derisi botlarda yöntem farklı; hiçbir botu çamaşır makinesine atma.",
+  answer: "Bot, önce yumuşak bir fırçayla kuru kiri alıp sonra iyice sıkılmış nemli bir bezle silerek temizlenir. Kir kalırsa deri botta beze biraz deri temizleyici ya da yumuşak sabun al, ama önce görünmeyen bir yerde dene. İçini ve konçunu kâğıtla doldurup kalorifer, saç kurutma makinesi ve güneşten uzakta, oda sıcaklığında kurut; botun deriyse tamamen kuruyunca az krem sür. Süet, nubuk ve koyun derisi botlarda yöntem farklı; hiçbir botu çamaşır makinesine atma.",
   sections: [
     {
       id: "malzeme",
@@ -30,7 +30,7 @@ export const botNasilTemizlenir: CareGuide = {
           ],
           [
             "Yağlı deri",
-            "Birkenstock tozu yalnızca tüy bırakmayan bir bezle almanı söylüyor",
+            "Tozu yalnızca tüy bırakmayan bir bezle al",
             "Birkenstock deri mumu ile deri yağını sırayla ve çok az sürmeyi öneriyor",
             "Bol ürün sürmek",
           ],
@@ -41,7 +41,7 @@ export const botNasilTemizlenir: CareGuide = {
             "Deterjan, ısıyla kurutmak",
           ],
           [
-            "Membranlı kar botu",
+            "GORE-TEX’li kar botu",
             "GORE-TEX fırçadan sonra ılık suya az sıvı deterjan öneriyor; deri kısımlar için botun üreticisine bak",
             "Su artık yüzeyden akıp gitmiyorsa su bazlı su itici sprey",
             "Mum ve gres, çamaşır suyu, leke çıkarıcı",
@@ -69,14 +69,14 @@ export const botNasilTemizlenir: CareGuide = {
         "Deri bot yıkanmaz, nemli bezle silinir. PUMA Türkiye’ye göre deri ve suni deri ayakkabı ne elde ne makinede yıkanır.",
       ],
       steps: [
-        "Yere gazete ser, botu üstüne koy ve bağcıklarını çıkar. Bağcıkları ayrı temizle; Clarks’a göre böylece cila bağcığa bulaşmaz.",
+        "Yere gazete ser, botu üstüne koy ve bağcıklarını çıkar. Bağcıkları ayrı temizle; böylece cila da bağcığa bulaşmaz.",
         "Kuru kiri yumuşak bir fırçayla al; Saphir dikişleri ve girintileri de temizlemeni istiyor. Taban kenarındaki dikişte kalan çamuru eski bir diş fırçasıyla çıkar.",
         "Bezi suyla ıslat, damlamayacak kadar sık. Botu konçuyla birlikte yukarıdan aşağı sil.",
-        "Kir kalırsa beze biraz deri temizleyici ya da yumuşak sabun al; Red Wing ikisini de öneriyor. PUMA Türkiye ise deri ayakkabıda deterjan istemiyor, botunun etiketine bak. Önce konçun iç tarafı gibi görünmeyen bir yerde dene; renk ya da doku değişirse orada bırak.",
-        "Leke için Clarks’ın ev tarifi var: iki ölçü suya bir ölçü sirke. Karışımı da önce görünmeyen bir yerde dene. Bezi karışımla nemlendirip lekenin üstünden hafifçe geç, sonra bütün bölgeyi sade suyla nemlendirdiğin bir bezle sil.",
+        "Kir kalırsa beze biraz deri temizleyici ya da yumuşak sabun al; Red Wing ikisini de öneriyor. PUMA Türkiye ise deri ayakkabıda deterjan istemiyor. Botunun kendi talimatı yoksa sabunu yalnızca suyla çıkmayan kirde ve az kullan. Önce konçun iç tarafı gibi görünmeyen bir yerde dene; renk ya da doku değişirse orada bırak.",
+        "Leke için Clarks iki ölçü suya bir ölçü sirke karıştırıyor; Collonil ise sirkeyi deriye zararlı buluyor. Karışımı önce görünmeyen bir yerde dene. Bezi karışımla nemlendirip lekenin üstünden hafifçe geç, sonra bütün bölgeyi sade suyla nemlendirdiğin bir bezle sil.",
         "Botu ayrı, kuru bir bezle kurula ve oda sıcaklığında, havadar bir yerde kurumaya bırak. Kalorifer ve saç kurutma makinesi kullanma; Red Wing bunların deriyi kurutabileceğini söylüyor.",
         "Bot tamamen kuruyunca yumuşak bir bezle az krem ya da bot yağı sür. Red Wing’in önerisi: deri ürünü bir gece emsin, fazlasını sonra sil.",
-        "Parlatmak istersen cilayı ince sür; Dr. Martens’a göre bezelye tanesi kadarı yeter. Saphir taban kenarına ve dikişlere dikkat etmeni istiyor.",
+        "Parlatmak istersen cilayı ince sür; Dr. Martens’a göre bezelye tanesi kadarı yeter. Saphir cilayı taban kenarına ve dikiş aralarına da işlemeni öneriyor.",
       ],
       links: [
         { type: "guide", slug: "deri-ayakkabi-nasil-temizlenir", label: "Deri ayakkabı temizliği ve bakımı" },
@@ -90,17 +90,18 @@ export const botNasilTemizlenir: CareGuide = {
         "birkenstockShoeCare",
         "redWingCare",
         "drMartensPolish",
+        "collonilSnowMarks",
       ],
     },
     {
       id: "sentetik",
       title: "Suni deri ve kar botu nasıl temizlenir?",
       paragraphs: [
-        "Suni deri botta hafif nemli, yumuşak bir bez yeter; sildikten sonra oda sıcaklığında kurut. Deterjan kullanma; PUMA Türkiye suni derinin deterjana değmemesini istiyor. Geox da sentetikte hafif nemli, yumuşak, beyaz bez öneriyor.",
+        "Suni deri botta hafif nemli, yumuşak bir bez yeter; sildikten sonra oda sıcaklığında kurut. Deterjan kullanma; PUMA Türkiye suni derinin deterjana değmemesini istiyor.",
         "Kumaş ya da naylon yüzlü GORE-TEX’li kar botunda GORE-TEX şu sırayı öneriyor: bağcıkları çıkar, içindeki kumu silkele, gevşek kiri fırçala, sonra ılık suya az sıvı deterjan katıp temizle. Burada markalar ayrılıyor; PUMA Türkiye deterjan istemiyor. Botunun kendi talimatı varsa ona uy, yoksa önce yalnızca suyla başla.",
-        "Naylon ve file yüzeyli botu suya batırma; Skechers da bunu söylüyor. Çamaşır suyu ve leke çıkarıcı kullanma, GORE-TEX bunları önermiyor; aseton, tiner gibi çözücüler de olmaz. Kar botunu kaloriferde de kurutma: Collonil sentetik malzemenin de doğrudan ısıda kırılganlaşıp çatlayabileceğini söylüyor.",
+        "Naylon ve file yüzeyli botu suya batırma. Çamaşır suyu ve leke çıkarıcı kullanma, GORE-TEX bunları önermiyor; aseton, tiner gibi çözücüler de olmaz. Kar botunu kaloriferde de kurutma: Collonil sentetik malzemenin de doğrudan ısıda kırılganlaşıp çatlayabileceğini söylüyor.",
       ],
-      sourceIds: ["pumaTrCare", "geoxCare", "goreTexFootwearCare", "skechersCareHelp", "collonilWetShoes"],
+      sourceIds: ["pumaTrCare", "goreTexFootwearCare", "skechersCareHelp", "collonilWetShoes"],
     },
     {
       id: "cizme",
@@ -109,14 +110,15 @@ export const botNasilTemizlenir: CareGuide = {
         "Çizmenin konçunu da gövdeyle aynı sırayla, yukarıdan aşağı nemli bezle sil. Beyaz ve açık renk çizmede sıra değişmiyor; Clarks beyaz deri botlar için aynı adımları veriyor, cila kullanacaksan siyah değil beyaz cila almanı hatırlatıyor.",
       ],
       steps: [
-        "Sildikten sonra içini ve konçunu buruşturulmuş gazete ya da kâğıt havluyla doldur. Collonil doldururken çizmenin biçimine dikkat etmeni istiyor.",
+        "Sildikten sonra içini ve konçunu buruşturulmuş gazete ya da kâğıt havluyla doldur. Doldururken çizmenin biçimini koru.",
         "Kâğıdı sıkıştırma. Kanada Koruma Enstitüsü deri eşyayı aşırı doldurmanın deriyi gerebileceğini, dikişleri gevşetebileceğini yazıyor.",
         "Altına birkaç kat gazete serip çizmeyi dik bırak. Ilık, havadar bir oda yeter; kalorifer, soba, saç kurutma makinesi ve güneş olmasın.",
         "İçteki kâğıt nemlendikçe yenisini koy. Collonil’e göre tam kuruması bir iki gün sürebilir; kurumadan giyme, dolaba da kaldırma.",
         "İstersen kalıp kullan; Birkenstock’a göre kalıp kırışmayı önler ve düzgün kurumaya yardım eder, tercihen ahşap olanı öneriyor. Uzun botlar için Collonil konçu dik tutan ayrı bir kalıp öneriyor.",
         "Kuruyan çizmeyi dolapta asarak saklayabilirsin; Clarks biçimi bozulmasın, kırışmasın diye bot ya da pantolon askısı öneriyor.",
       ],
-      sourceIds: ["collonilWetShoes", "cciLeather", "birkenstockShoeCare", "collonilWinterStorage", "clarksBoots"],
+      links: [{ type: "guide", slug: "ayakkabi-nasil-kurutulur", label: "Ayakkabı nasıl kurutulur?" }],
+      sourceIds: ["collonilWetShoes", "cciLeather", "birkenstockShoeCare", "collonilWinterStorage", "clarksBoots", "geoxCare"],
     },
     {
       id: "kis",
@@ -163,7 +165,7 @@ export const botNasilTemizlenir: CareGuide = {
     },
     {
       q: "Botun içi nasıl temizlenir?",
-      a: "Tabanlık çıkıyorsa çıkar ve ayrı temizle; Geox ve Merrell bunu öneriyor. İç astarı hafif nemli bir bezle sil, sonra içini kâğıtla doldurup havadar bir yerde kurut.",
+      a: "Tabanlık çıkıyorsa çıkar ve ayrı temizle; Geox ve Merrell bunu öneriyor. İç astar düz deri, kumaş ya da sentetikse hafif nemli bir bezle sil, sonra içini kâğıtla doldurup havadar bir yerde kurut.",
     },
     {
       q: "Deri bota ne sıklıkla krem sürülür?",
@@ -192,11 +194,12 @@ export const botNasilTemizlenir: CareGuide = {
     "saphirLeatherGuide",
     "birkenstockShoeCare",
     "drMartensPolish",
-    "geoxCare",
+    "collonilSnowMarks",
     "skechersCareHelp",
     "collonilWetShoes",
     "cciLeather",
     "collonilWinterStorage",
+    "geoxCare",
     "tarragoWinterCare",
     "merrellCare",
   ],

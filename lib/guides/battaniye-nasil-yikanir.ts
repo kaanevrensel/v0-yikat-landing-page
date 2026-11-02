@@ -4,7 +4,7 @@ import type { CareGuide } from "@/lib/discovery"
 
 export const battaniyeNasilYikanir: CareGuide = {
   slug: "battaniye-nasil-yikanir",
-  title: "Battaniye nasıl yıkanır, kaç derecede? Yün, polar, puffy",
+  title: "Yün, polar, puffy battaniye nasıl yıkanır, kaç derecede?",
   description: "Battaniye etiketteki sıcaklığı aşmadan, malzemesine göre yıkanır: yünde soğuk su ve düşük devir, polarda hassas program ve ek durulama. Düz serip gölgede kurut.",
   category: "Tekstil",
   topic: "Ev tekstili",
@@ -15,8 +15,8 @@ export const battaniyeNasilYikanir: CareGuide = {
       id: "etiket",
       title: "Battaniye makinede yıkanır mı, makineye sığar mı?",
       paragraphs: [
-        "Battaniye makinede yıkanabilir, ama kararı bakım etiketi verir; IKEA da işe etiketten başlamanı söylüyor. Leğen simgesinin içindeki sayı, GINETEX’e göre suyun aşmaması gereken en yüksek sıcaklık. Leğenin üstünde çarpı varsa battaniyeyi evde yıkama. Etikette “dry clean only” ya da yalnızca daire simgesi varsa battaniyeyi profesyonel temizliğe ver; Tide’a göre “dry clean only” yazan battaniye mutlaka kuru temizlemeye gider.",
-        "Tambur battaniyeyi rahatça döndürecek kadar geniş olmalı; IKEA aşırı dolu makinede battaniyenin tam temizlenmeyebileceğini söylüyor. Tide’a göre aşırı yük makinenin dengesini bozabilir; makinende hacimli çamaşır programı varsa onu öneriyor. Samsung’un çarşaf ve yatak örtüsü için yazdığı programda en iyi sonuç için yükün tek tür üründen oluşması ve 2 kg’dan hafif olması öneriliyor; battaniye için makinenin kılavuzuna bak.",
+        "Battaniye makinede yıkanabilir, ama kararı bakım etiketi verir; IKEA da işe etiketten başlamanı söylüyor. Leğen simgesinin içindeki sayı, GINETEX’e göre suyun aşmaması gereken en yüksek sıcaklık. Leğenin üstünde çarpı varsa battaniyeyi evde yıkama. Etikette “yalnızca kuru temizleme” (dry clean only) yazıyorsa ya da yalnızca daire simgesi varsa battaniyeyi profesyonel temizliğe ver; Tide’a göre “dry clean only” yazan battaniye mutlaka kuru temizlemeye gider.",
+        "Tambur battaniyeyi rahatça döndürecek kadar geniş olmalı; IKEA aşırı dolu makinede battaniyenin tam temizlenmeyebileceğini söylüyor. Tide’a göre aşırı yük makinenin dengesini bozabilir; makinende hacimli çamaşır programı varsa onu öneriyor. Samsung gibi bazı makinelerde yatak tekstili için ayrı bir program var; makinende böyle bir program varsa kapasitesini kılavuzdan kontrol et.",
         "Battaniye tambura ancak bastırarak giriyorsa zorlama. IKEA küçük makinede elde yıkamayı ya da profesyonel temizliği, Tide çok büyük battaniyede profesyonel temizliği öneriyor.",
       ],
       links: [
@@ -29,7 +29,7 @@ export const battaniyeNasilYikanir: CareGuide = {
       id: "program",
       title: "Battaniye hangi programda, kaç derecede yıkanır?",
       paragraphs: [
-        "Battaniye nasıl yıkanır sorusunun cevabı malzemede: programı ve sıcaklığı malzeme belirler, etiketteki sayı ise her zaman üst sınırdır. Tide ise her malzemede soğuk su öneriyor; ona göre soğuk su çekme ve lif hasarı riskini azaltır.",
+        "Programı ve sıcaklığı battaniyenin malzemesi belirler; etiketteki sayı her zaman üst sınırdır. Tide ise malzeme ayırmadan battaniyelerde soğuk su öneriyor; ona göre soğuk su çekme ve lif hasarı riskini azaltır.",
       ],
       table: {
         caption: "Malzemeye göre battaniye yıkama ayarları (etiket her zaman önce gelir)",
@@ -51,10 +51,13 @@ export const battaniyeNasilYikanir: CareGuide = {
       title: "Yün battaniye nasıl yıkanır?",
       paragraphs: [
         "Etiket makineye izin veriyorsa yün battaniyeyi yünlü programda, soğuk suda ve yalnızca yünlü deterjanıyla yıka; Woolmark’ın önerisi bu. IKEA da genellikle 20–30 °C’yi ve düşük devirde sıkmayı söylüyor. Sıcaklığı yükseltme: Vanish’e göre yün ılık suda çekmeye yatkın.",
-        "Yine de yün battaniyeyi sık yıkama; Woolmark seyrek yıkamayı öneriyor ve bazı kılavuzların üç ayda bir yıkamayı önerdiğini aktarıyor. Arada tazelemek için battaniyeyi dışarıda silkeleyip hava akımı olan bir yere asman çoğu zaman yeter. Tozunu almak için yere ser, yumuşak bir giysi fırçasıyla lif yönünde fırçala.",
+        "Yün battaniyeyi sık yıkama; Woolmark seyrek yıkamayı öneriyor ve bazı kılavuzların üç ayda bir yıkamayı önerdiğini aktarıyor. Arada tazelemek için battaniyeyi dışarıda silkeleyip hava akımı olan bir yere asman çoğu zaman yeter. Tozunu almak için yere ser, yumuşak bir giysi fırçasıyla lif yönünde fırçala.",
         "Üstüne sıvı döküldüyse bekletme; Woolmark lekeli yeri ılık su ve hafif deterjanla ıslatıp yumuşak bir bezle bastırarak almanı, ovmamanı öneriyor. Önce görünmeyen bir köşede dene; rengi ya da dokusu değişirse devam etme.",
       ],
-      links: [{ type: "guide", slug: "yun-yorgan-nasil-yikanir", label: "Yün yorgan nasıl yıkanır?" }],
+      links: [
+        { type: "guide", slug: "yun-yorgan-nasil-yikanir", label: "Yün yorgan nasıl yıkanır?" },
+        { type: "guide", slug: "yun-kazak-nasil-yikanir", label: "Yün kazak nasıl yıkanır?" },
+      ],
       sourceIds: ["woolmarkWoolBlankets", "ikeaTrBlanket", "vanishShrinking"],
     },
     {
@@ -69,17 +72,22 @@ export const battaniyeNasilYikanir: CareGuide = {
       id: "pelus-bebek",
       title: "Puffy, peluş ve bebek battaniyesi nasıl yıkanır?",
       paragraphs: [
-        "Puffy battaniyede etiketteki malzemeye bak, yüzeyi tüylüyse peluş gibi yıka; “puffy” diye satılan kabarık ve akrilik battaniyeler için ayrı üretici talimatı bulamadık. Peluş ve tüylü battaniyeyi hassas programda, düşük sıcaklıkta ve düşük devirde yıka; IKEA düşük devrin tüylerin formunu korumaya yardım ettiğini söylüyor. Vanish yüksek ısıda yıkamanın ve kurutmanın çekmeye yol açabileceğini, çamaşırı uzun süre ıslak bırakmamanı söylüyor.",
+        "“Puffy battaniye” çoğu zaman kalın, kadife dokulu bir iplikle elde örülmüş battaniyedir; bazen dolgulu, kapitone battaniyeye de bu ad verilir. Bu adı taşıyan el örgü ipliklerinden Alize Puffy, üreticisinin sayfasına göre %100 mikropolyester. Örülmüş battaniyede ipliğin banderolündeki yıkama simgelerine uy, banderolü de sakla; bu tür için ayrı bir genel kural yok, etiket karar verir. Dolgulu, kapitone olanı yorgan gibi ele al: önce etiketine bak, yıkama ayrıntıları yorgan rehberinde.",
+        "Peluş ve tüylü battaniyeyi hassas programda, düşük sıcaklıkta ve düşük devirde yıka; IKEA düşük devrin tüylerin formunu korumaya yardım ettiğini söylüyor. Vanish yüksek ısıda yıkamanın ve kurutmanın çekmeye yol açabileceğini, çamaşırı uzun süre ıslak bırakmamanı söylüyor.",
         "Bebek battaniyesi için kaynaklar tek bir derece vermiyor; etiketteki sayıyı aşma. IKEA hassas program, düşük sıcaklık ve yumuşak deterjan öneriyor; etiketi de her yıkamadan önce kontrol etmeni söylüyor. Persil, deterjan iyi durulansın diye kazanı tam doldurmamanı, emin değilsen durulamayı uzatmanı ya da tekrarlamanı öneriyor.",
       ],
-      sourceIds: ["ikeaTrBlanket", "vanishShrinking", "persilSensitive"],
+      links: [
+        { type: "guide", slug: "yorgan-nasil-yikanir", label: "Yorgan nasıl yıkanır, kaç derecede, hangi programda?" },
+        { type: "guide", slug: "pelus-oyuncak-nasil-yikanir", label: "Peluş oyuncak nasıl yıkanır?" },
+      ],
+      sourceIds: ["alizePuffy", "ikeaTrBlanket", "vanishShrinking", "persilSensitive"],
     },
     {
       id: "adim-adim",
       title: "Battaniye makinede adım adım nasıl yıkanır?",
       paragraphs: ["Etiketi makineye izin veriyorsa battaniyeyi bu sırayla yıka."],
       steps: [
-        "Etiketteki sıcaklık sınırını, leğenin altındaki çizgileri ve kurutma simgesini kontrol et.",
+        "Etiketteki sıcaklık sınırını ve kurutma simgesini kontrol et. Leğenin altındaki çizgiye de bak: GINETEX’e göre tek çizgi hafif, çift çizgi çok hafif bir program istiyor.",
         "Leke varsa hafif deterjanlı suyu önce görünmeyen bir köşede dene; renk ya da doku değişmezse lekeye bastırarak uygula. IKEA sert çitilemenin liflere zarar verebileceğini söylüyor.",
         "Yeni battaniyeyi ilk yıkamada diğer çamaşırlardan ayrı yıka; IKEA ilk yıkamada hafif renk akabileceğini söylüyor.",
         "Battaniyeyi tambura gevşekçe yerleştir; bastırman gerekiyorsa makine küçük gelmiştir.",
@@ -88,14 +96,14 @@ export const battaniyeNasilYikanir: CareGuide = {
         "Program bitince battaniyeyi bekletmeden çıkar.",
         "Leke hâlâ duruyorsa kurutma makinesine atma; Persil’e göre kurutucunun yüksek ısısı lekeyi kalıcı yapabilir.",
       ],
-      sourceIds: ["ikeaTrBlanket", "persilWashedInStain", "persilSensitive", "vanishShrinking"],
+      sourceIds: ["ikeaTrBlanket", "persilWashedInStain", "persilSensitive", "vanishShrinking", "ginetexCurrent"],
     },
     {
       id: "kurutma",
       title: "Battaniye nasıl kurutulur, kurutma makinesine atılır mı?",
       paragraphs: [
         "Battaniyeyi düz bir zemine serip doğal yolla kurut, doğrudan yoğun güneşe koyma; IKEA aşırı ısının rengi soldurup kumaşı yıpratabileceğini söylüyor. Woolmark yün battaniyeyi ıslak ağırlığı taşınsın diye ipin üstüne düz asmanı ve güneşten uzak tutmanı öneriyor; çok hızlı kuruyan yün sertleşebilir.",
-        "Kurutma makinesini yalnızca etiket izin veriyorsa kullan; IKEA ve Tide düşük ısıyı öneriyor. IKEA ayrıca kısa program ve birkaç temiz tenis topu öneriyor; toplar battaniyeyi kabarık tutuyor. Yün battaniyeyi ise kurutma makinesine atma; Woolmark makinenin yünün yumuşaklığını ve şeklini bozabileceğini söylüyor. Tamamen kuruyunca battaniyeyi hafifçe silkele ve serin, kuru bir yerde sakla; IKEA’nın önerisi de bu.",
+        "Kurutma makinesini yalnızca etiket izin veriyorsa kullan; IKEA ve Tide düşük ısıyı öneriyor. IKEA ayrıca kısa program ve birkaç temiz tenis topu öneriyor; toplar battaniyenin kabarık kalmasına yardım edebilir. Woolmark ise yün battaniyeyi kurutma makinesine atmamanı öneriyor; ona göre makine yünün yumuşaklığını ve şeklini bozabilir. Tamamen kuruyunca battaniyeyi hafifçe silkele ve serin, kuru bir yerde sakla; IKEA’nın önerisi de bu.",
       ],
       sourceIds: ["ikeaTrBlanket", "woolmarkWoolBlankets", "tideBlankets"],
     },
@@ -111,14 +119,24 @@ export const battaniyeNasilYikanir: CareGuide = {
     },
     {
       q: "Battaniye elde nasıl yıkanır?",
-      a: "IKEA küvete ya da büyük bir leğene ılık su ve hassas deterjan koyup battaniyeyi suya batırarak nazikçe ovmanı, çok sıcak su kullanmamanı söylüyor. Yün battaniyede ise IKEA soğuk su öneriyor. Sonra birkaç kez temiz suyla durula ve fazla suyu nazikçe sıkarak al.",
+      a: "IKEA küvete ya da büyük bir leğene ılık su ve hassas deterjan koymanı, çok sıcak su kullanmamanı, yünde soğuk su seçmeni söylüyor. IKEA nazikçe ovup sıkmaktan söz etse de etiketinde elde yıkama simgesi varsa GINETEX’e uy: ovma, burma, iyice durulayıp suyu bastırarak al.",
+    },
+    {
+      q: "Puffy battaniye makinede yıkanır mı?",
+      a: "Etiketine ya da örgü ipliğinin banderolüne bak; makine yıkama simgesi varsa içindeki sayıyı aşmadan yıka. Malzemesini bilmiyorsan Vanish’in çekmeye karşı önerdiği gibi soğuk suda, elde ya da makinenin en hassas programında yıka.",
     },
     {
       q: "Yeni battaniyenin tüy dökmesi nasıl geçer?",
       a: "IKEA yeni battaniyedeki tüylenmenin birkaç hafif yıkama ve yumuşak fırçalamayla geçebileceğini söylüyor.",
     },
   ],
-  related: ["yorgan-nasil-yikanir", "yun-yorgan-nasil-yikanir"],
+  related: [
+    "yorgan-nasil-yikanir",
+    "yun-yorgan-nasil-yikanir",
+    "yastik-nasil-yikanir",
+    "nevresim-kac-derecede-yikanir",
+    "pelus-oyuncak-nasil-yikanir",
+  ],
   sourceIds: [
     "ikeaTrBlanket",
     "ginetexCurrent",
@@ -127,6 +145,7 @@ export const battaniyeNasilYikanir: CareGuide = {
     "siemensSportswear",
     "vanishShrinking",
     "woolmarkWoolBlankets",
+    "alizePuffy",
     "persilSensitive",
     "persilWashedInStain",
   ],

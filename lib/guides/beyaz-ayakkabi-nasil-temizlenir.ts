@@ -4,7 +4,7 @@ import type { CareGuide } from "@/lib/discovery"
 
 export const beyazAyakkabiNasilTemizlenir: CareGuide = {
   slug: "beyaz-ayakkabi-nasil-temizlenir",
-  title: "Beyaz ayakkabı nasıl temizlenir? Deri, file ve bez için",
+  title: "Beyaz ayakkabı nasıl temizlenir? Spor ayakkabıda adım adım",
   description: "Beyaz spor ayakkabıyı ılık su, az deterjan ve yumuşak fırçayla elde temizle. Deri, file ve bez için ayrı adımlar; çamaşır suyu ve aseton riski, gölgede kurutma.",
   category: "Ayakkabı",
   topic: "Leke ve sararma",
@@ -47,6 +47,7 @@ export const beyazAyakkabiNasilTemizlenir: CareGuide = {
       },
       links: [
         { type: "guide", slug: "file-orgu-ayakkabi-temizligi", label: "File ve örgü ayakkabı nasıl temizlenir" },
+        { type: "guide", slug: "bez-ayakkabi-nasil-temizlenir", label: "Bez ve kanvas ayakkabı nasıl temizlenir" },
         {
           type: "guide",
           slug: "suet-nubuk-ayakkabi-nasil-temizlenir",
@@ -116,7 +117,7 @@ export const beyazAyakkabiNasilTemizlenir: CareGuide = {
         {
           type: "guide",
           slug: "sararan-ayakkabi-tabani-nasil-beyazlatilir",
-          label: "Sararan ayakkabı tabanı nasıl beyazlatılır",
+          label: "Sararan ayakkabı tabanı ve kenarı nasıl beyazlatılır",
         },
       ],
       sourceIds: ["crocsFaq", "nikeWhiteShoes", "aciSneakers", "skechersCleanGuide"],
@@ -126,7 +127,8 @@ export const beyazAyakkabiNasilTemizlenir: CareGuide = {
       title: "Beyaz ayakkabı nasıl beyazlatılır, karbonat ve çamaşır suyu güvenli mi?",
       paragraphs: [
         "Karbonat macunu ve beyaz, jel olmayan diş macunu, üreticilerin de anlattığı ev yöntemleri; çamaşır suyu ve aseton gibi sert kimyasallar ise beyaz ayakkabıda riskli. Hangisini seçersen seç, önce görünmeyen bir yerde dene ve kalıntıyı nemli bezle tamamen al.",
-        "Çamaşır suyunu sirke, amonyak, hidrojen peroksit ya da başka bir temizleyiciyle asla karıştırma. Washington Eyaleti Sağlık Bakanlığı’na göre çamaşır suyu sirke gibi asitlerle klor gazı, amonyakla kloramin gazı çıkarır.",
+        "Çamaşır suyunu sirke, amonyak, oksijenli su (hidrojen peroksit) ya da başka bir temizleyiciyle asla karıştırma. Washington Eyaleti Sağlık Bakanlığı’na göre çamaşır suyu sirke gibi asitlerle klor gazı, amonyakla kloramin gazı çıkarır.",
+        "Taban için Nike’ın çamurlu ayakkabı rehberi daha koyu bir karbonat macunu öneriyor: 3 ölçü karbonata 1 ölçü su. Tabandaki sarılık için bütün karışımları sararan taban rehberinde anlattık; çimen, kahve ya da mürekkep gibi tek bir lekenin yolu ise ayakkabıdaki leke rehberinde.",
       ],
       table: {
         caption: "Evdeki beyazlatıcılar beyaz ayakkabıda kullanılır mı?",
@@ -134,8 +136,8 @@ export const beyazAyakkabiNasilTemizlenir: CareGuide = {
         rows: [
           [
             "Karbonat ve su macunu",
-            "Evet; kanvas, file ve tabanda. Süet ve nubukta hayır",
-            "Nike genel temizlikte eşit ölçü karbonat ve su, beyaz filede 2 ölçü karbonata 1 ölçü su kullanıp 30 dakika bekletmeyi öneriyor. Skechers eşit ölçü macunu yaklaşık 15 dakika bekletiyor. Converse süete su değdirmemeyi söylüyor.",
+            "Evet; kanvas ve filede. Süet ve nubukta hayır",
+            "Nike’ın genel temizlik rehberi beyaz ve açık renk ayakkabıya eşit ölçü karbonat ve su, file ayakkabı rehberi beyaz fileye 2 ölçü karbonata 1 ölçü su ve 30 dakika bekletme öneriyor. Skechers eşit ölçü macunu yaklaşık 15 dakika bekletiyor. Converse süete su değdirmemeyi söylüyor.",
           ],
           [
             "Karbonat ve beyaz sirke",
@@ -144,28 +146,28 @@ export const beyazAyakkabiNasilTemizlenir: CareGuide = {
           ],
           [
             "Diş macunu",
-            "Evet; beyaz ve jel olmayanı, deride ve tabanda",
+            "Evet; beyaz ve jel olmayanı, deride",
             "Nike beyaz, jel olmayan macunun kir, leke ve sürtme izlerinde işe yaradığını söylüyor. Sürdükten sonra bütün yüzeyi nemli bezle sil.",
           ],
           [
-            "Karbonat ve %3’lük hidrojen peroksit",
-            "Yalnız beyaz kanvas ayakkabıda, üst yüzeyde ve tabanda; renkli parçalara değdirme",
-            "Nike kanvas için 2 ölçü karbonata 1 ölçü %3’lük hidrojen peroksit karıştırıp üst yüzeye ve tabana sürmeyi, 30 dakika bekletmeyi anlatıyor. Çamaşır suyuyla asla karıştırma.",
+            "Karbonat ve %3’lük oksijenli su",
+            "Yalnız beyaz kanvas ayakkabıda; renkli parçalara değdirme",
+            "Nike kanvas için 2 ölçü karbonata 1 ölçü %3’lük oksijenli su karıştırıp üst yüzeye ve tabana sürmeyi, 30 dakika bekletmeyi anlatıyor. Çamaşır suyuyla asla karıştırma.",
           ],
           [
             "Çamaşır suyu",
             "Önermiyoruz",
-            "Nike yalnız kanvas için suyla seyreltilmiş bir tarif veriyor, deri ve süette ise kullanılmamasını söylüyor. ACI ve Skechers spor ayakkabıda hiç kullanmamayı öneriyor; Skechers kumaşın rengini ciddi biçimde bozabileceğini belirtiyor.",
+            "Nike yalnız kanvas için suyla seyreltilmiş bir tarif veriyor, deri ve süette ise kullanılmamasını söylüyor. ACI kanvas ve naylon spor ayakkabıda, Skechers kendi ayakkabılarında hiç kullanmamayı öneriyor; Skechers kumaşın rengini ciddi biçimde bozabileceğini belirtiyor.",
           ],
           [
             "Aseton, tiner, benzin",
             "Hayır",
-            "ACI spor ayakkabıda solvent kullanmamayı söylüyor. Skechers sert solventlerin kumaşın rengini bozup sentetik malzemeyi yıpratabileceğini belirtiyor.",
+            "ACI kanvas ve naylon spor ayakkabıda solvent kullanmamayı söylüyor. Skechers sert solventlerin kumaşın rengini bozup sentetik malzemeyi yıpratabileceğini belirtiyor.",
           ],
           [
             "Limon suyu ve güneş",
-            "Önermiyoruz",
-            "Nike bu yöntemi anlatıyor, ama ACI spor ayakkabıyı doğrudan güneşte kurutmamayı söylüyor. Skechers ve Persil de güneşin renkleri soldurabileceği uyarısını yapıyor.",
+            "Hayır",
+            "Nike bu yöntemi anlatıyor, ama ACI kanvas ve naylon spor ayakkabıyı doğrudan güneşte kurutmamayı söylüyor. Skechers ve Persil de güneşin renkleri soldurabileceği uyarısını yapıyor.",
           ],
           [
             "Melamin sünger (temizlik silgisi)",
@@ -180,6 +182,7 @@ export const beyazAyakkabiNasilTemizlenir: CareGuide = {
           slug: "sararan-ayakkabi-tabani-nasil-beyazlatilir",
           label: "Sararan taban için güvenli yöntemler",
         },
+        { type: "guide", slug: "ayakkabidaki-leke-nasil-cikar", label: "Ayakkabıdaki leke nasıl çıkar" },
       ],
       sourceIds: [
         "waDohBleach",
@@ -191,6 +194,7 @@ export const beyazAyakkabiNasilTemizlenir: CareGuide = {
         "nikeWhiteShoes",
         "aciSneakers",
         "persilTrainers",
+        "nikeMud",
       ],
     },
     {
@@ -215,7 +219,7 @@ export const beyazAyakkabiNasilTemizlenir: CareGuide = {
     },
     {
       q: "Beyaz ayakkabıya çamaşır suyu sürülür mü?",
-      a: "Sürme. ACI ve Skechers spor ayakkabıda kullanılmamasını söylüyor, Nike de deri ve süette kullanılmamasını belirtiyor. Çamaşır suyunu sirke ya da başka bir temizleyiciyle de asla karıştırma.",
+      a: "Sürme. ACI kanvas ve naylon spor ayakkabıda, Skechers kendi ayakkabılarında kullanılmamasını söylüyor, Nike de deri ve süette kullanılmamasını belirtiyor. Çamaşır suyunu sirke ya da başka bir temizleyiciyle de asla karıştırma.",
     },
     {
       q: "Beyaz ayakkabıya hangi diş macunu sürülür?",
@@ -238,6 +242,7 @@ export const beyazAyakkabiNasilTemizlenir: CareGuide = {
     "spor-ayakkabi-nasil-temizlenir",
     "sararan-ayakkabi-tabani-nasil-beyazlatilir",
     "file-orgu-ayakkabi-temizligi",
+    "bez-ayakkabi-nasil-temizlenir",
     "ayakkabi-bagcigi-nasil-temizlenir",
   ],
   service: { href: "/sneaker-yikama", label: "Bakırköy’de sneaker ve spor ayakkabı temizleme" },
@@ -252,5 +257,6 @@ export const beyazAyakkabiNasilTemizlenir: CareGuide = {
     "nikeAirForce1",
     "crocsFaq",
     "waDohBleach",
+    "nikeMud",
   ],
 }

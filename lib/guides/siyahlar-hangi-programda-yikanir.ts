@@ -32,7 +32,10 @@ export const siyahlarHangiProgramdaYikanir: CareGuide = {
           ["60 °C", "Vanish’e göre sıcak yıkama; solmanın başlıca sebebi de sıcak su."],
         ],
       },
-      links: [{ type: "guide", slug: "yikama-sembolleri", label: "Etiketteki yıkama işaretleri ne anlama gelir?" }],
+      links: [
+        { type: "guide", slug: "yikama-sembolleri", label: "Çamaşır yıkama sembolleri ve anlamları" },
+        { type: "guide", slug: "camasir-kac-derecede-yikanir", label: "Çamaşır kaç derecede yıkanır?" },
+      ],
       sourceIds: ["vanishTempGuide", "ginetexCurrent", "arielDarks", "vanishFading"],
     },
     {
@@ -72,7 +75,7 @@ export const siyahlarHangiProgramdaYikanir: CareGuide = {
       ],
       steps: [
         "Bakım etiketini oku: leğendeki sayı en yüksek sıcaklığı, altındaki çizgi daha nazik bir programı gösterir.",
-        "Siyahları beyazlardan ve açık renklerden ayır. Persil siyahın solabildiğini ve benzer renklerle yıkanmasını söylüyor; ACI’ye göre beyaz ve açık renkli sentetikler koyu boyayı kapabiliyor.",
+        "Siyahları beyazlardan ve açık renklerden ayır. Persil siyahın solabildiğini, benzer renklerle yıkanmasını söylüyor; American Cleaning Institute’a (ACI) göre beyaz ve açık renkli sentetikler koyu boyayı kapabiliyor.",
         "Tüylü sweatshirt, flanel ve yeni havluyu siyahlardan ayrı yıka. ACI bunların tüyünü diğer çamaşıra verdiğini söylüyor; Ariel’e göre tüy koyularda daha sık sorun olur.",
         "Her parçanın içini dışına çevir. Vanish’e göre böylece dıştaki lifler korunur.",
         "Leke varsa bekletme; Persil’e göre taze leke, kurumuş lekeden çok daha kolay çıkar. Leke ürününü önce dikiş payı gibi görünmeyen bir yerde dene; renk ya da doku değişirse dur.",
@@ -124,7 +127,7 @@ export const siyahlarHangiProgramdaYikanir: CareGuide = {
       title: "Siyahların solması nasıl azaltılır?",
       paragraphs: [
         "Siyahları soğuk suda yıka. Vanish’e göre solmanın başlıca nedeni sıcak su; sürtünme de sebepler arasında. Yeni alınmış siyah bir kotun birkaç yıkamada canlılığını yitirebileceğini de kabul ediyor.",
-        "Kurutma makinesi de solmaya katkıda bulunur. Vanish siyahları mümkünse içeride asarak kurutmanı, dışarıda asacaksan güneş soldurmasın diye içlerini dışa çevirmeni öneriyor. Kurutma makinesini gerekmedikçe kullanma; etiket izin verdiği hâlde yine de kullanacaksan düşük ısı seç.",
+        "Kurutma makinesi de solmaya katkıda bulunur. Vanish siyahları mümkünse içeride asarak kurutmanı, dışarıda asacaksan güneş soldurmasın diye içlerini dışa çevirmeni öneriyor. Kurutma makinesini gerekmedikçe kullanma; etiket izin veriyorsa ve kullanacaksan düşük ısı seç.",
         "Ütü gerekiyorsa düşük ya da orta ısıda, giysiyi ters çevirerek ütüle; Vanish bunu ütüyle kumaşın doğrudan temasını önlemek için öneriyor. Siyahın üstündeki tüyü bantla ya da tüy toplama rulosuyla al; Ariel ikisini de öneriyor.",
         "Bu önlemler solmayı azaltır ama tamamen durdurmayabilir. Etiket bu sayfadaki genel önerilerden daha kısıtlıysa etikete uy.",
       ],
@@ -142,7 +145,7 @@ export const siyahlarHangiProgramdaYikanir: CareGuide = {
     },
     {
       q: "Siyah ve lacivert birlikte yıkanır mı?",
-      a: "Evet, koyu tonları aynı makinede yıkayabilirsin. Persil siyah gibi solabilen renkleri benzer renklerle, ACI de koyuları kendi yüklerinde yıkamanı öneriyor. Yeni aldığın koyu bir parçayı ise ACI’ye göre ilk birkaç yıkamada ayrı yıka.",
+      a: "Evet, koyu tonları aynı makinede yıkayabilirsin. Persil siyah gibi solabilen renkleri benzer renklerle, ACI da koyuları kendi yüklerinde yıkamanı öneriyor. Yeni aldığın koyu bir parçayı ise ACI’ya göre ilk birkaç yıkamada ayrı yıka.",
     },
     {
       q: "Yeni siyah tişört ilk yıkamada boya verir mi?",
@@ -157,7 +160,13 @@ export const siyahlarHangiProgramdaYikanir: CareGuide = {
       a: "Çıkmaz; Clorox’a göre çamaşır suyunun yaptığı renk kaybı kalıcı. Küçük açık noktaları ise Clorox’un önerdiği gibi siyah, silinmez bir keçeli kalemle kapatabilirsin.",
     },
   ],
-  related: ["renkliler-hangi-programda-yikanir", "yikama-sembolleri", "camasir-suyu-lekesi-nasil-cikar"],
+  related: [
+    "renkliler-hangi-programda-yikanir",
+    "beyazlar-kac-derecede-yikanir",
+    "yikama-sembolleri",
+    "camasir-suyu-lekesi-nasil-cikar",
+    "camasir-kac-derecede-yikanir",
+  ],
   sourceIds: [
     "vanishDarksGuide",
     "arcelikWashPrograms",

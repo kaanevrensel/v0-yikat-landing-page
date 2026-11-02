@@ -9,15 +9,15 @@ export const yunYorganNasilYikanir: CareGuide = {
   category: "Tekstil",
   topic: "Ev tekstili",
   published: "2026-11-02",
-  answer: "Yün yorgan, bakım etiketi izin veriyorsa makinede yünlü programda ve yalnızca yünlü deterjanıyla yıkanır; IKEA en fazla 30 °C diyor, Woolmark yün battaniyede soğuk su öneriyor. Etikette elde yıkama varsa yorganı ovmadan, çekiştirmeden ve burmadan yıka. Etiket kurutma makinesine izin vermiyorsa yorganı makineye atma, doğrudan güneş almayan bir yerde düz serip kurut. Etiketsiz, el yapımı yün yorgan için kaynaklarda yıkama yöntemi yok; havalandır, lekesini yerinde temizle.",
+  answer: "Yün yorgan, bakım etiketi izin veriyorsa makinede yünlü programda ve yalnızca yünlü deterjanıyla yıkanır; IKEA en fazla 30 °C diyor, Woolmark yün battaniyede soğuk su öneriyor. Etikette elde yıkama varsa yorganı ovmadan, çekiştirmeden ve burmadan yıka. Etiket kurutma makinesine izin vermiyorsa yorganı makineye atma, doğrudan güneş almayan bir yerde düz serip kurut. Etiketsiz, el yapımı yün yorgan için üreticilerin ya da kuruluşların verdiği bir yıkama yöntemi yok; havalandır, lekesini yerinde temizle.",
   sections: [
     {
       id: "makinede",
       title: "Yün yorgan makinede yıkanır mı?",
       paragraphs: [
-        "Yün yorgan makinede yıkanır, ama yalnızca kendi bakım etiketi izin veriyorsa; Woolmark da yün battaniyede önce ürünün bakım talimatına uymanı söylüyor. Etikette leğene bak: GINETEX’e göre içindeki sayı aşılmaması gereken en yüksek sıcaklık, altındaki iki çizgi de yünlüler için çok hafif bir program. Leğenin üstü çarpılıysa yorganı evde yıkama; GINETEX bu simgenin, büyüklüğü yüzünden ev makinesine uymayan ürünlere de konduğunu söylüyor.",
-        "Makineye de bak: IKEA çoğu yorgan için en az 7 kg kapasiteli makine gerektiğini, makinen bundan küçükse çamaşırhaneyi ya da profesyonel temizliği öneriyor. GINETEX çift çizgili çok hafif yıkamada çamaşırı belirgin biçimde azaltmanı, bunun 40 °C’lik türünde tamburu en fazla üçte bir doldurmanı istiyor.",
-        "Makinende “Yorgan” programı da olabilir; Arçelik’in bir kılavuzunda bu program “makinede yıkanabilir” etiketli elyaf yorganlar için. Aynı kılavuz yünlüler için “Yünlü / Elde Yıkama” programını ve etikete uygun sıcaklığı gösteriyor.",
+        "Yün yorgan makinede yıkanır, ama yalnızca bakım etiketi izin veriyorsa; Woolmark da yün battaniyede önce ürünün bakım talimatına uymanı söylüyor. Etikette leğene bak: GINETEX’e göre içindeki sayı aşılmaması gereken en yüksek sıcaklık, altındaki iki çizgi de yünlüler için çok hafif bir program. Leğenin üstü çarpılıysa yorganı evde yıkama; GINETEX bu simgenin, büyüklüğü yüzünden ev makinesine uymayan ürünlere de konduğunu söylüyor.",
+        "Makineye de bak: IKEA çoğu yorgan için en az 7 kg kapasiteli makine gerektiğini söylüyor; makinen daha küçükse çamaşırhaneyi ya da profesyonel temizliği öneriyor. GINETEX çift çizgili çok hafif yıkamada çamaşırı belirgin biçimde azaltmanı, bunun 40 °C’lik türünde tamburu en fazla üçte bir doldurmanı istiyor.",
+        "Makinende “Yorgan” programı da olabilir; Arçelik’in bir kılavuzunda bu program “makinede yıkanabilir” etiketli elyaf yorganlar için. Yün yorganda ise kılavuzun yünlülere ayırdığı “Yünlü / Elde Yıkama” programını etikete uygun sıcaklıkta seç.",
       ],
       steps: [
         "Yorganın bakım etiketini bul; leğendeki sayıya, altındaki çizgilere ve kurutma simgesine bak.",
@@ -46,7 +46,7 @@ export const yunYorganNasilYikanir: CareGuide = {
         ],
       },
       links: [
-        { type: "guide", slug: "yikama-sembolleri", label: "Yıkama sembolleri ne anlama gelir?" },
+        { type: "guide", slug: "yikama-sembolleri", label: "Çamaşır yıkama sembolleri ve anlamları" },
         { type: "guide", slug: "yorgan-nasil-yikanir", label: "Elyaf, kaz tüyü ve pamuk yorgan nasıl yıkanır?" },
       ],
       sourceIds: ["woolmarkWoolBlankets", "ginetexCurrent", "ikeaDuvet", "arcelikDuvetProgram", "ikeaSaPillows"],
@@ -55,14 +55,14 @@ export const yunYorganNasilYikanir: CareGuide = {
       id: "tazeleme",
       title: "Yün yorgan yıkamadan nasıl tazelenir, lekesi nasıl çıkar?",
       paragraphs: [
-        "Yün yorganı çoğu zaman yıkaman gerekmez, havalandırmak yeter; IKEA yün ve deve tüyünün çok az bakım istediğini, yıkamak yerine iyice havalandırmanın çoğu zaman yettiğini söylüyor. Woolmark da yün battaniyeyi seyrek yıkamayı öneriyor. Aşağıdaki adımlar Woolmark’ın yün battaniye önerilerine dayanıyor.",
+        "Yün yorganı çoğu zaman yıkaman gerekmez; IKEA yün ve deve tüyünün çok az bakım istediğini, yıkamak yerine iyice havalandırmanın çoğu zaman yettiğini söylüyor. Woolmark da yün battaniyeyi seyrek yıkamayı öneriyor. Aşağıdaki adımlar Woolmark’ın yün battaniye önerilerine dayanıyor.",
         "Yün dökülen sıvıyı önce iter, ama Woolmark’a göre birkaç dakika sonra içine çekmeye başlar; o yüzden lekeyi bekletme. IKEA’ya göre karbonat, safra sabunu ya da sirkeli su gibi ev yöntemleri yün yorgana genelde uymaz; lifi bozabilir, içeride nem bırakabilir.",
       ],
       steps: [
         "Yorganı dışarı çıkar ve iyice silkele.",
         "Havanın iyi dolaştığı bir yere as.",
-        "Yere düz ser, yumuşak kıllı bir giysi fırçasıyla tüylerin yattığı yönde fırçala; Woolmark yün battaniyede bunun yüzey kirini aldığını söylüyor.",
-        "Leke için ılık suya biraz hafif deterjan karıştır, önce görünmeyen bir köşede dene; renk ya da doku değişirse dur.",
+        "Yere düz ser, yumuşak kıllı bir giysi fırçasıyla tüylerin yattığı yönde fırçala; Woolmark’a göre bu, yüzey kirini alır.",
+        "Leke için ılık suya az miktarda hafif deterjan karıştır, önce görünmeyen bir köşede dene; renk ya da doku değişirse dur.",
         "Lekeyi bu suyla ıslat, yumuşak bir bezle bastırarak al; Woolmark ovmamanı söylüyor.",
       ],
       sourceIds: ["ikeaDuvet", "woolmarkWoolBlankets"],
@@ -71,7 +71,7 @@ export const yunYorganNasilYikanir: CareGuide = {
       id: "elde",
       title: "Yün yorgan evde elde nasıl yıkanır?",
       paragraphs: [
-        "Etikette leğenin içinde bir el varsa yün yorganı evde, küvette elde yıkayabilirsin; GINETEX’e göre bu simgenin 40 °C’lik türünde su en fazla 40 °C, ortam sıcaklığı türünde yaklaşık 20–30 °C olmalı. Woolmark yünlü giysileri elde yaklaşık 30 °C ılık suda yıkamayı, 10 dakika bekletmeyi, önce ılık sonra soğuk suyla durulamayı öneriyor. Woolmark’ın sayıları giysi için; yorganının etiketindeki sayı daha düşükse ona uy.",
+        "Etikette leğenin içinde bir el varsa yün yorganı evde, küvette elde yıkayabilirsin; GINETEX’e göre bu simgenin 40 °C’lik türünde su en fazla 40 °C, ortam sıcaklığı türünde yaklaşık 20–30 °C olmalı. Woolmark elde yıkamada yaklaşık 30 °C ılık su öneriyor. Woolmark’ın sayıları giysi için; yorganının etiketindeki sayı daha düşükse ona uy.",
       ],
       steps: [
         "Küveti temizle, ılık suyla doldur ve yünlü deterjanını yorganı koymadan önce bu bol suda erit.",
@@ -89,9 +89,9 @@ export const yunYorganNasilYikanir: CareGuide = {
       title: "Etiketsiz, el yapımı yün yorgan nasıl yıkanır?",
       paragraphs: [
         "Etiketsiz, el yapımı yün yorganı sökmeden ya da söküp yorgan yününü ayrı yıkamak için bulabildiğimiz hiçbir üretici, standart kuruluşu ya da üniversite bir yöntem vermiyor. O yüzden burada tahmine dayalı bir yöntem yazmıyoruz.",
-        "Evde yapabileceğin şey yorganı havalandırmak, fırçalamak ve lekesini yerinde temizlemek. İçi kirlendiyse, kötü kokuyorsa ya da güve gördüyse bu işi bilen bir profesyonel temizlikçiye danış. Etiket yoksa yöntemi yorganı gören temizlikçi seçer; GINETEX de profesyonel temizlikçinin kumaşın türüne ve kirin derecesine bakmasını istiyor.",
+        "Evde yapabileceğin şey yorganı havalandırmak, fırçalamak ve lekesini yerinde temizlemek. İçi kirlendiyse, kötü kokuyorsa ya da güvelendiyse bu işi bilen bir profesyonel temizlikçiye danış. Etiket yoksa yöntemi yorganı gören temizlikçi seçer; GINETEX de profesyonel temizlikçinin kumaşın türüne ve kirin derecesine bakmasını istiyor.",
       ],
-      links: [{ type: "guide", slug: "kuru-temizleme-nedir", label: "Kuru temizleme nedir, yıkamadan farkı ne?" }],
+      links: [{ type: "guide", slug: "kuru-temizleme-nedir", label: "Kuru temizleme nedir, nasıl yapılır?" }],
       sourceIds: ["ginetexCurrent"],
     },
     {
@@ -117,15 +117,16 @@ export const yunYorganNasilYikanir: CareGuide = {
       paragraphs: [
         "Yün yorganı temiz ve tamamen kuru kaldır; Woolmark’a göre kaldırmadan önce temizlemek kokuyu, lekeyi ve kir birikimini önler. Penn State Üniversitesi’ne göre elbise güvesinin larvaları yünle beslenir.",
         "Kutu ya da torba seçiminde Woolmark’ın iki sayfası ayrılıyor. Yün battaniye sayfası karanlık, serin bir yerde hava almayan bir kutu ya da torba öneriyor. Yünlü giysi sayfası ise vakumlu torbaların giysinin nefes almasına izin vermediğini ve nem hapsedebildiğini, narin giyside pamuk ya da yün torbanın daha güvenli olduğunu yazıyor.",
-        "Güveye karşı Woolmark güve topu yerine sedir blok ya da sedir yongası öneriyor. Yorgana böcek ilacı sıkma; Penn State giysiye ve yatak takımına asla böcek ilacı uygulanmamasını söylüyor.",
+        "Güveye karşı Woolmark güve topu yerine sedir bloğu ya da yongası öneriyor. Yorgana böcek ilacı sıkma; Penn State giysiye ve yatak takımına asla böcek ilacı uygulanmamasını söylüyor.",
       ],
       steps: [
         "Yorganın yüzeyinde oluk gibi izler, delikler ya da kumaşla aynı renkte küçük tüpler ara; Penn State larvaların gizli yerlerde beslendiğini söylüyor.",
-        "Yorganda güve varsa onu etiketin izin verdiği yolla yıka ya da kuru temizlemeye ver; Penn State güve görmüş battaniyeler için bunu öneriyor.",
-        "Yorganın durduğu dolabı ve odayı iyice süpür, iş bitince süpürgenin torbasını at; Penn State birçok durumda güvenin süpürgeyle önlenebildiğini söylüyor.",
-        "Güve görmüş yorganı temizledikten sonra kupkuru hâlde, Penn State’in önerdiği gibi hava almayan bir kutuya ya da torbaya koy.",
+        "Yorganda güve varsa onu etiketin izin verdiği yolla yıka ya da kuru temizlemeye ver; Penn State güvelenmiş battaniyeler için bunu öneriyor.",
+        "Yorganın durduğu dolabı ve odayı elektrik süpürgesiyle iyice süpür, iş bitince torbasını at; Penn State birçok durumda güvenin süpürgeyle önlenebildiğini söylüyor.",
+        "Güvelenmiş yorganı temizledikten sonra kupkuru hâlde, Penn State’in önerdiği gibi hava almayan bir kutuya ya da torbaya koy.",
         "Yanına birkaç sedir blok ya da yonga koy, kutuyu karanlık ve serin bir yerde tut.",
       ],
+      links: [{ type: "guide", slug: "yun-kazak-nasil-yikanir", label: "Yün kazak nasıl yıkanır?" }],
       sourceIds: ["woolmarkStoreWool", "psuClothesMoth", "woolmarkWoolBlankets"],
     },
   ],
@@ -140,7 +141,7 @@ export const yunYorganNasilYikanir: CareGuide = {
     },
     {
       q: "Yün yorgan ne sıklıkla yıkanır?",
-      a: "IKEA genel bir ölçü olarak yorganı yılda bir ya da iki kez yıkamanı öneriyor. Arada düzenli havalandırıp silkelemek, IKEA’ya göre iki yıkama arasındaki süreyi uzatır.",
+      a: "Seyrek yıkanır; IKEA’nın yorgan rehberi yün yorganda çoğu zaman havalandırmanın yettiğini, yorganlarda genel ölçünün yılda bir ya da iki yıkama olduğunu söylüyor.",
     },
     {
       q: "Yün yorgan kuru temizlemeye verilir mi?",
@@ -148,10 +149,16 @@ export const yunYorganNasilYikanir: CareGuide = {
     },
     {
       q: "Hazır yün yorgan makinede yıkanır mı?",
-      a: "Etiketinde makinede yıkama simgesi varsa yıkanır; leğende el varsa yalnızca elde, leğen çarpılıysa hiç yıkanmaz. Etiket kesilmişse sıcaklığı tahmin etme.",
+      a: "Etiketinde makinede yıkama simgesi varsa yıkanır; leğende el varsa yalnızca elde, leğen çarpılıysa hiç yıkanmaz. Etiket kesilmişse sıcaklığı tahmin etme; üreticinin bakım bilgisini bulamazsan profesyonel temizlikçiye danış.",
     },
   ],
-  related: ["yorgan-nasil-yikanir", "battaniye-nasil-yikanir", "kuru-temizleme-nedir"],
+  related: [
+    "yorgan-nasil-yikanir",
+    "battaniye-nasil-yikanir",
+    "yastik-nasil-yikanir",
+    "yun-kazak-nasil-yikanir",
+    "kuru-temizleme-nedir",
+  ],
   sourceIds: [
     "ikeaDuvet",
     "woolmarkWoolBlankets",

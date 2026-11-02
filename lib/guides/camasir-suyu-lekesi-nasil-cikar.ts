@@ -16,7 +16,7 @@ export const camasirSuyuLekesiNasilCikar: CareGuide = {
       title: "Çamaşır suyu lekesi neden çıkmaz?",
       paragraphs: [
         "Çünkü ortada çıkarılacak bir şey yok: çamaşır suyu kumaşın rengini değiştirir, geride açık renkli bir iz kalır. Clorox, normal çamaşır suyuyla kazara temastan oluşan renk kaybının kalıcı olduğunu yazıyor. Persil de aynı şeyi söylüyor: çamaşır suyu tek bir noktaya gelirse, çıkarması daha da zor yepyeni bir leke olur. Yani asıl soru “çamaşır suyu lekesi nasıl çıkarılır” değil, “nasıl gizlenir”.",
-        "İnternetteki limonlu, sirkeli, oksijenli sulu tariflere güvenme. Persil, limon suyunun ve hidrojen peroksitin renkli giysileri ağartabildiğini söylüyor; yani izin çevresini de soldurabilirler. Kumaşta çamaşır suyu kaldıysa sirke ve oksijenli su onunla tepkimeye de girer; Washington Eyalet Sağlık Bakanlığı ikisini de çamaşır suyuyla karıştırılmayacaklar arasında sayıyor.",
+        "İnternetteki limonlu, sirkeli, oksijenli sulu tariflere güvenme. Persil, limon suyunun ve hidrojen peroksitin renkli giysileri ağartabildiğini söylüyor; yani izin çevresini de soldurabilirler. Kumaşta çamaşır suyu kaldıysa sirke ve oksijenli su onunla tepkimeye de girer; Washington Eyaleti Sağlık Bakanlığı ikisini de çamaşır suyuyla karıştırılmayacaklar arasında sayıyor.",
       ],
       sourceIds: ["cloroxBleachSpots", "persilGeneralStainTips", "waDohBleach"],
     },
@@ -30,8 +30,8 @@ export const camasirSuyuLekesiNasilCikar: CareGuide = {
         "Cildine de geldiyse önce cildini serin, akan suyla durula; Clorox böyle öneriyor.",
         "Giysiyi üstünden çıkar, öbür çamaşırlardan, özellikle koyulardan uzak tut.",
         "Sıçrayan yeri musluğun altında, kumaşın tersinden bol soğuk suyla durula.",
-        "Ovma, fırçalama; temiz bir bezle bastırarak suyunu al. ACI’ye göre ovmak lekeyi yayar, kumaşa da zarar verebilir.",
-        "Sirke, amonyak, leke çıkarıcı ya da bulaşık deterjanı koyma. Washington Eyalet Sağlık Bakanlığı’na göre çamaşır suyu amonyakla zehirli kloramin gazları, sirke gibi asitlerle klor gazı oluşturur; Clorox bulaşık deterjanını da karıştırılmayacaklar arasında sayıyor.",
+        "Ovma, fırçalama; temiz bir bezle bastırarak suyunu al. ACI’ya göre ovmak lekeyi yayar, kumaşa da zarar verebilir.",
+        "Sirke, amonyak, leke çıkarıcı ya da bulaşık deterjanı koyma. Washington Eyaleti Sağlık Bakanlığı’na göre çamaşır suyu amonyakla zehirli kloramin gazları, sirke gibi asitlerle klor gazı oluşturur; Clorox bulaşık deterjanını da karıştırılmayacaklar arasında sayıyor.",
         "Sonra kalıntı kalmasın diye giysinin tamamını, bakım etiketindeki sıcaklığı aşmadan yıka.",
         "Kuruyunca gün ışığında bak. Açık bir iz kaldıysa bu leke değil, renk kaybıdır; ovmayı bırak, aşağıdaki kapatma yollarına geç.",
       ],
@@ -88,11 +88,19 @@ export const camasirSuyuLekesiNasilCikar: CareGuide = {
           ],
           [
             "Pas izi koyulaştı",
-            "ACI’ye göre klorlu çamaşır suyu pas lekesindeki renk değişimini artırabilir",
+            "ACI’ya göre klorlu çamaşır suyu pas lekesindeki renk değişimini artırabilir",
             "Bu lekede çamaşır suyuna devam etme.",
           ],
         ],
       },
+      links: [
+        {
+          type: "guide",
+          slug: "beyazlar-kac-derecede-yikanir",
+          label: "Beyazlar kaç derecede, hangi programda yıkanır?",
+        },
+        { type: "guide", slug: "kiyafetten-pas-lekesi-nasil-cikar", label: "Kıyafetten pas lekesi nasıl çıkar?" },
+      ],
       sourceIds: ["cloroxSpotTreat", "cloroxTooMuchBleach", "persilGeneralStainTips", "aciStainGuide", "vanishBeddingWhites"],
     },
     {
@@ -110,10 +118,10 @@ export const camasirSuyuLekesiNasilCikar: CareGuide = {
         "Clorox’a göre çamaşır suyu gözü olmayan ve kapağı yıkama boyunca kilitli kalan makinede normal çamaşır suyu kullanılamaz. Göz yoksa ama kapak yıkama sırasında açılabiliyorsa Clorox ve ACI, seyreltilmiş çamaşır suyunu yıkama başladıktan 5 dakika sonra eklemeyi öneriyor.",
         "Çamaşır suyu gözünü yalnızca “max” çizgisine kadar doldur, makineyi aşırı doldurma ve düz durduğundan emin ol; Clorox’a göre fazla doldurulan göz de düz durmayan makine de çamaşır suyunu erken ya da yanlış zamanda verip renk hasarı yapabilir. Hâlâ içine sinmiyorsa ek durulama seç.",
         "Döktükten sonra makinenin dışını ve çevresini sil; Clorox, koyu giysilerin bu damlalara sürtünüp sonradan iz yaptığını söylüyor.",
-        "Çamaşır suyunu başka bir temizlik ürünüyle aynı kapta karıştırma; Washington Eyalet Sağlık Bakanlığı amonyak ve sirkenin yanında hidrojen peroksit ve bazı fırın temizleyicilerini de sayıyor.",
+        "Çamaşır suyunu başka bir temizlik ürünüyle aynı kapta karıştırma; Washington Eyaleti Sağlık Bakanlığı amonyak ve sirkenin yanında hidrojen peroksit ve bazı fırın temizleyicilerini de sayıyor.",
       ],
       links: [
-        { type: "guide", slug: "yikama-sembolleri", label: "Yıkama sembolleri ne anlama gelir?" },
+        { type: "guide", slug: "yikama-sembolleri", label: "Çamaşır yıkama sembolleri ve anlamları" },
         {
           type: "guide",
           slug: "renkliler-hangi-programda-yikanir",
@@ -143,7 +151,7 @@ export const camasirSuyuLekesiNasilCikar: CareGuide = {
     },
     {
       q: "Sirke çamaşır suyunu nötralize eder mi?",
-      a: "Bunu deneme. Sirke bir asit ve Washington Eyalet Sağlık Bakanlığı’na göre çamaşır suyu asitle karışınca klor gazı çıkar; kumaştaki çamaşır suyunu yalnızca suyla durula.",
+      a: "Bunu deneme. Sirke bir asit ve Washington Eyaleti Sağlık Bakanlığı’na göre çamaşır suyu asitle karışınca klor gazı çıkar; kumaştaki çamaşır suyunu yalnızca suyla durula.",
     },
     {
       q: "Çamaşır suyu küf ve pas lekesini çıkarır mı?",
@@ -151,11 +159,11 @@ export const camasirSuyuLekesiNasilCikar: CareGuide = {
     },
   ],
   related: [
-    "kiyafetten-pas-lekesi-nasil-cikar",
-    "kumastan-kuf-lekesi-nasil-cikar",
     "siyahlar-hangi-programda-yikanir",
     "yikama-sembolleri",
-    "renkliler-hangi-programda-yikanir",
+    "beyaz-camasir-nasil-beyazlatilir",
+    "kiyafetten-pas-lekesi-nasil-cikar",
+    "kumastan-kuf-lekesi-nasil-cikar",
   ],
   sourceIds: [
     "cloroxBleachSpots",

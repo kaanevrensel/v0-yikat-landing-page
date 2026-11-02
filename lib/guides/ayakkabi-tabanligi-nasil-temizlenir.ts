@@ -16,7 +16,7 @@ export const ayakkabiTabanligiNasilTemizlenir: CareGuide = {
       id: "turu",
       title: "Tabanlığın çıkıyor mu, hangi malzemeden?",
       paragraphs: [
-        "Ayakkabı tabanlığını nasıl temizleyeceğin önce çıkıp çıkmadığına, sonra malzemesine bağlı. Anlamak için tabanlığı topuk tarafından hafifçe kaldırmayı dene. Rahat geliyorsa çıkarılabilir; direnç varsa yapışık olabilir. Zorlama: Skechers, çıkması için yapılmamış yapışık tabanlıkların yerinde kalmasını söylüyor.",
+        "Ayakkabı tabanlığını nasıl temizleyeceğin önce çıkıp çıkmadığına, sonra malzemesine bağlı. Anlamak için tabanlığı topuk tarafından hafifçe kaldırmayı dene. Kolayca kalkıyorsa çıkarılabilir; direnç varsa yapışık olabilir. Zorlama: Skechers, çıkması için yapılmamış yapışık tabanlıkların yerinde kalmasını söylüyor.",
       ],
       table: {
         caption: "Tabanlık türüne göre temizlik",
@@ -34,16 +34,17 @@ export const ayakkabiTabanligiNasilTemizlenir: CareGuide = {
           ],
           [
             "Deri kaplı",
-            "Birkenstock deri temizleyiciyi fırçayla yedirip köpüğü ılık, nemli bir bezle tamamen almayı anlatıyor.",
+            "Birkenstock deri şampuanını fırçayla yedirip köpüğü ılık, nemli bir bezle tamamen almayı anlatıyor.",
             "Akan suyun altına tutma; Birkenstock deri taban yatağı için en az 24 saat kurutma diyor.",
           ],
           [
             "Destek veya ortopedik",
             "Kendi kullanım talimatına göre, elde ve hafif sabunla.",
-            "Makinede yıkama da kurutma da yok; Superfeet izin vermiyor.",
+            "Makinede yıkama da kurutma da yok; Superfeet kendi tabanlıklarında yasaklıyor.",
           ],
         ],
       },
+      links: [{ type: "guide", slug: "birkenstock-nasil-temizlenir", label: "Birkenstock nasıl temizlenir" }],
       sourceIds: [
         "skechersKidsShoes",
         "asicsRunningShoes",
@@ -58,15 +59,14 @@ export const ayakkabiTabanligiNasilTemizlenir: CareGuide = {
       title: "Çıkarılabilir tabanlık nasıl yıkanır?",
       paragraphs: [
         "Çıkarılabilir tabanlığı elde, ılık su ve hafif sabunla yıka. Nike tabanlığı çıkarıp sabunlu karışımı yumuşak bir fırçayla sürmeyi, durulayıp iyice kurutmayı anlatıyor. Superfeet’in yöntemi de aynı: elde yıka, gerekirse yumuşak diş fırçası kullan, iyice durula.",
-        "Nike, beyaz olmayan ayakkabılarda ılık suya biraz hafif çamaşır ya da bulaşık deterjanı katıyor. ASICS ise ayakkabı temizliği için bir kase ılık suya 15–30 ml hafif deterjan öneriyor.",
+        "Nike, beyaz olmayan ayakkabılarda ılık suya biraz hafif çamaşır deterjanı ya da bulaşık sabunu katmayı öneriyor. ASICS ise ayakkabı temizliği için bir kâse ılık suya 15–30 ml hafif deterjan diyor.",
         "Vaktin yoksa Persil’e göre bağcıkları ve tabanlığı yıkayıp dış tabanı silmek bile hemen fark yaratır. Tabanlığı ayrı yıkayıp ayrı kurutmak, yine Persil’e göre, ayakkabının kurumasını da hızlandırır.",
       ],
       steps: [
         "Tabanlıkları çıkar, ayakkabının içindeki kumu silkele.",
-        "Bir kaseye ılık su doldur, az miktarda hafif sabun ya da deterjan karıştır.",
+        "Bir kâseye ılık su doldur, az miktarda hafif sabun ya da deterjan karıştır.",
         "Önce tabanlığın kenarında küçük bir yerde dene; kaplama kalkarsa ya da renk verirse dur.",
-        "Yumuşak bir fırçayı ya da eski bir diş fırçasını sabunlu suya batırıp tabanlığı nazikçe ov.",
-        "Tabanlığı suyun içinde bekletme.",
+        "Yumuşak bir fırçayı ya da eski bir diş fırçasını sabunlu suya batırıp tabanlığı nazikçe ov; suda bekletme.",
         "Sabunu temiz suyla durula ya da ıslak bir süngerle silerek iyice al.",
         "Fazla suyu yumuşak bir havluyla bastırarak al, tabanlığı bükerek sıkma.",
       ],
@@ -78,8 +78,8 @@ export const ayakkabiTabanligiNasilTemizlenir: CareGuide = {
       title: "Tabanlık ne kadar sürede kurur, nasıl kurutulur?",
       paragraphs: [
         "Süre tabanlığa göre değişiyor: Skechers, elde yıkanabilen çıkarılabilir tabanlık modeli için geri takmadan önce 10–12 saat tam kuruma istiyor. Birkenstock deri taban yatağı için en az 24 saat veriyor. Tabanlığı oda sıcaklığında, gölgede ve hava alan bir yerde kurut.",
-        "Tabanlığı kaloriferin ya da sobanın üstüne koyma, saç kurutma makinesiyle kurutma, güneşe de bırakma. Superfeet ısı kaynaklarından uzak durmayı söylüyor; medi destek ve ortez ürünleri için doğrudan güneşi, ısıtıcıyı, saç kurutma makinesini ve kurutma makinesini açıkça yasaklıyor. Acelen varsa Nike’ın önerdiği gibi tabanlığı vantilatörün yanına koy.",
-        "Tabanlığı iki yüzü de tamamen kuruyunca geri tak. ACI de iç tabanlıkları ayakkabı tamamen kurumadan yerine koymamanı söylüyor.",
+        "Tabanlığı kaloriferin ya da sobanın üstüne koyma, saç kurutma makinesiyle kurutma, güneşe de bırakma. Superfeet ısı kaynaklarından uzak durmayı söylüyor; medi destek ve ortez ürünleri için doğrudan güneşi, ısıtıcıyı, saç kurutma makinesini ve kurutma makinesini yasaklıyor. Acelen varsa Nike’ın önerdiği gibi tabanlığı fanın yanına koy.",
+        "Tabanlığı iki yüzü de tamamen kuruyunca geri tak. American Cleaning Institute (ACI) da tabanlıkları ayakkabı tamamen kurumadan yerine koymamanı söylüyor.",
       ],
       links: [{ type: "guide", slug: "ayakkabi-nasil-kurutulur", label: "Ayakkabıyı ısı kullanmadan kurutma" }],
       sourceIds: [
@@ -97,7 +97,7 @@ export const ayakkabiTabanligiNasilTemizlenir: CareGuide = {
       title: "Ayakkabının içi nasıl temizlenir, tabanlık çıkmıyorsa ne yapılır?",
       paragraphs: [
         "Ayakkabının içini sırılsıklam etmeden, nemli bir bezle silerek temizle; tabanlık yapışıksa sökme. Skechers da kumaş ve file ayakkabılarda malzemeyi suya doyurmamanı söylüyor.",
-        "Deri ayakkabı ya da deri bot içinde sabunlu su kullanma. ASICS, üst yüzü deri, süet ya da nubuk olan ayakkabılarda sabunla suyun bu malzemelere zarar verip renk değiştirebileceğini yazıyor. Geox düz deri kısımlar için hafif nemli, yumuşak beyaz bir bez öneriyor; kir çıkmazsa deriye özel bir temizleyiciye geç.",
+        "Deri ayakkabı ya da deri botun içi deriyse sabunlu sudan kaçın. ASICS, üst yüzü deri, süet ya da nubuk olan ayakkabılarda sabunla suyun bu malzemelere zarar verip renk değiştirebileceğini yazıyor. Geox düz deri kısımlar için hafif nemli, yumuşak beyaz bir bez öneriyor; kir çıkmazsa deriye özel bir temizleyiciye geç.",
         "Beyaz ya da açık renk bir ayakkabının içine, ıslakken gazete koyma. ACI gazetenin çoğu kumaşa geçtiğini, Skechers de ıslakken mürekkebinin ayakkabının içine bulaşabildiğini söylüyor.",
       ],
       steps: [
@@ -124,8 +124,8 @@ export const ayakkabiTabanligiNasilTemizlenir: CareGuide = {
       id: "makine",
       title: "Tabanlık makinede yıkanır mı?",
       paragraphs: [
-        "Tabanlığı elde yıka; çamaşır makinesine de kurutma makinesine de koyma. Superfeet makinede yıkamayı da kurutmayı da açıkça yasaklıyor; tabanlığın zarar göreceğini ve etkisinin azalacağını söylüyor. Nike’ın Türkçe rehberi de iç tabanları çıkarıp karışımla temizlemeni söylüyor, ayakkabıyı makinede yıkamayı önermiyor.",
-        "ACI ise bez ve naylon spor ayakkabılarda tabanlığın çamaşır filesine konup normal çamaşırla ya da elde deterjanla yıkanabileceğini yazıyor. Ama önce ayakkabının içindeki bakım talimatına bakmanı söylüyor. Yine de en güvenlisi elde yıkamak; destek ya da ortopedik tabanlıkta kendi talimatının dışına çıkma.",
+        "Tabanlığı elde yıka; çamaşır makinesine de kurutma makinesine de koyma. Superfeet makinede yıkamayı da kurutmayı da açıkça yasaklıyor; tabanlığın zarar göreceğini ve etkisinin azalacağını söylüyor. Nike’ın Türkçe rehberi de tabanlıkları çıkarıp karışımla temizlemeni söylüyor, ayakkabıyı makinede yıkamayı önermiyor.",
+        "ACI ise bez ve naylon spor ayakkabılarda tabanlığın file torbaya konup normal çamaşırla ya da elde deterjanla yıkanabileceğini yazıyor. Ama önce ayakkabının içindeki bakım talimatına bakmanı söylüyor. Yine de en güvenlisi elde yıkamak; destek ya da ortopedik tabanlıkta kendi talimatının dışına çıkma.",
       ],
       links: [{ type: "guide", slug: "ayakkabi-makinede-yikanir-mi", label: "Ayakkabı makinede yıkanır mı" }],
       sourceIds: ["superfeetFaq", "nikeTrClean", "aciSneakers"],
@@ -140,7 +140,11 @@ export const ayakkabiTabanligiNasilTemizlenir: CareGuide = {
       ],
       links: [
         { type: "guide", slug: "ayakkabi-kokusu-nasil-giderilir", label: "Ayakkabı kokusu nasıl giderilir" },
-        { type: "guide", slug: "ayakkabi-bakimi-mi-onarim-mi", label: "Bakım mı, onarım mı gerekiyor" },
+        {
+          type: "guide",
+          slug: "ayakkabi-bakimi-mi-onarim-mi",
+          label: "Ayakkabı temizlikle mi düzelir, onarım mı gerekir",
+        },
       ],
       sourceIds: ["superfeetFaq", "nikeTrClean", "nikeOdor"],
     },

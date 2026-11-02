@@ -15,9 +15,9 @@ export const timberlandBotNasilTemizlenir: CareGuide = {
       id: "malzeme",
       title: "Timberland botun nubuk mu, düz deri mi?",
       paragraphs: [
-        "Bunu ürün sayfasına, kutuya ya da etikete bakarak öğrenirsin. Elini yüzeyde gezdir: ele kadife gibi geliyorsa nubuk, pürüzsüzse düz deridir. Timberland’a göre temizlik botun malzemesine bağlı, modellerin bir kısmı düz deri, bir kısmı süet ya da nubuk. Su geçirmez kaplamalı ya da membranlı modeller de ayrı bakım isteyebilir.",
-        "Collonil’e göre nubukta derinin dış yüzü zımparalanır; yüzey ele kadife gibi gelir ama derinin damar deseni yine seçilir. Bu yüzey kire, yağa ve ışığa duyarlıdır.",
-        "Botun düz deriyse Timberland’ın yolu farklı: yumuşak bir bezi ya da süngeri ılık sabunlu suya batır, botu eşit sil, temiz bir havluyla kurula ve bir gece havadar bir yerde kurumaya bırak.",
+        "Bunu ürün sayfasına, kutuya ya da etikete bakarak öğrenirsin. Elini yüzeyde gezdir: ele kadife gibi geliyorsa nubuk, pürüzsüzse düz deridir. Timberland’a göre temizlik botun malzemesine bağlı: modellerin bir kısmı düz deri, bir kısmı süet ya da nubuk. Su geçirmez kaplamalı ya da membranlı modeller de ayrı bakım isteyebilir.",
+        "Collonil’e göre bu kadife his, derinin dış yüzünün zımparalanmasından gelir; damar deseni yine seçilir. Bu yüzey kire, yağa ve ışığa duyarlıdır.",
+        "Botun düz deriyse Timberland fırçadan sonra farklı ilerliyor: yumuşak bir bezi ya da süngeri ılık sabunlu suya batır, botu eşit sil, temiz bir havluyla kurula ve bir gece havadar bir yerde kurumaya bırak.",
       ],
       table: {
         caption: "Timberland’ın ürün tablosuna göre malzeme ve ürün uyumu",
@@ -32,7 +32,7 @@ export const timberlandBotNasilTemizlenir: CareGuide = {
           ["Mumlu ve yağlı deri", "Mumlu deri koruyucusu", "Köpük temizleyici, süet fırçası"],
         ],
       },
-      links: [{ type: "guide", slug: "deri-ayakkabi-nasil-temizlenir", label: "Düz deri ayakkabı ve bot nasıl temizlenir?" }],
+      links: [{ type: "guide", slug: "deri-ayakkabi-nasil-temizlenir", label: "Deri ayakkabı nasıl temizlenir?" }],
       sourceIds: ["timberlandClean", "collonilNubuk", "timberlandStains", "timberlandCare"],
     },
     {
@@ -68,7 +68,7 @@ export const timberlandBotNasilTemizlenir: CareGuide = {
       title: "Sarı (buğday rengi) Timberland bot nasıl temizlenir?",
       paragraphs: [
         "Sarı Timberland bot da aynı sırayla temizlenir; Timberland açık renk botlar için ayrı bir yöntem vermiyor. Collonil nubukun rengini güneş ışığının soldurabileceğini yazıyor; sarı botu güneşte kurutma.",
-        "Açık renkte temizlediğin yerde yeni bir iz bırakmamaya çalış. Köpük temizleyiciyi önce görünmeyen bir yerde dene, sonra yalnız lekenin üstünü değil, o parçanın tamamını eşit şekilde temizle. Timberland su lekelerinde de amacın bölgenin eşit kuruması olduğunu söylüyor. Çamaşır suyunu ya da başka bir beyazlatıcıyı nubukta deneme.",
+        "Açık renkte temizlediğin yerde yeni bir iz bırakmamaya çalış. Köpük temizleyiciyi önce görünmeyen bir yerde dene, sonra yalnız lekeye değil, Timberland’ın dediği gibi bota eşit uygula. Timberland su lekelerinde de amacın bölgenin eşit kuruması olduğunu söylüyor. Çamaşır suyunu ya da başka bir beyazlatıcıyı nubukta deneme.",
       ],
       sourceIds: ["timberlandClean", "collonilNubuk", "timberlandStains"],
     },
@@ -100,7 +100,10 @@ export const timberlandBotNasilTemizlenir: CareGuide = {
           ],
         ],
       },
-      links: [{ type: "guide", slug: "ayakkabida-tuz-lekesi-nasil-cikar", label: "Ayakkabıda tuz lekesi nasıl çıkar?" }],
+      links: [
+        { type: "guide", slug: "ayakkabidaki-yag-lekesi-nasil-cikar", label: "Ayakkabıdaki yağ lekesi nasıl çıkar?" },
+        { type: "guide", slug: "ayakkabida-tuz-lekesi-nasil-cikar", label: "Ayakkabıda tuz lekesi nasıl çıkar?" },
+      ],
       sourceIds: ["timberlandStains", "tarragoSuedeNubuck"],
     },
     {
@@ -143,7 +146,7 @@ export const timberlandBotNasilTemizlenir: CareGuide = {
     },
     {
       q: "Timberland bot suyla yıkanır mı?",
-      a: "Hayır, nubuk botu suya batırıp yıkama. Timberland nubukta suyu ölçülü kullanıyor: ılık, nemli bir bezle silmek, su lekesinin çevresini nemlendirmek ve tuz izinde sulandırılmış sirke için. Ilık su altında yumuşak fırçayla ovmayı ise yürüyüş botları için anlatıyor.",
+      a: "Hayır, nubuk botu suya batırıp yıkama. Timberland nubukta suyu ölçülü kullanıyor: ılık, nemli bir bezle silmek, su lekesinin çevresini nemlendirmek ve tuz izinde sulandırılmış sirke için. Ilık su altında yumuşak fırçayla ovmayı ise yürüyüş botları için anlatıyor; nubuk botta bunu yapma.",
     },
     {
       q: "Sarı Timberland’daki koyu lekeler çıkar mı?",
@@ -165,8 +168,8 @@ export const timberlandBotNasilTemizlenir: CareGuide = {
   related: [
     "suet-nubuk-ayakkabi-nasil-temizlenir",
     "bot-nasil-temizlenir",
+    "ugg-nasil-temizlenir",
     "ayakkabida-tuz-lekesi-nasil-cikar",
-    "camurlu-ayakkabi-nasil-temizlenir",
     "ayakkabi-su-gecirmez-sprey-nasil-kullanilir",
   ],
   service: { href: "/suet-nubuk-temizleme", label: "Bakırköy’de süet ve nubuk temizleme" },

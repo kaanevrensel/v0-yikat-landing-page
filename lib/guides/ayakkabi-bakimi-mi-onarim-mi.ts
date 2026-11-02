@@ -164,7 +164,7 @@ export const ayakkabiBakimiMiOnarimMi: CareGuide = {
         {
           type: "guide",
           slug: "ayakkabi-temizleme-fiyati-neye-gore-belirlenir",
-          label: "Ayakkabı temizleme fiyatı neye göre belirlenir",
+          label: "Ayakkabı temizleme fiyatları neye göre belirlenir",
         },
       ],
     },
@@ -196,6 +196,7 @@ export const ayakkabiBakimiMiOnarimMi: CareGuide = {
     "deri-ayakkabi-nasil-temizlenir",
     "beyaz-ayakkabi-nasil-temizlenir",
     "ayakkabi-nasil-saklanir",
+    "rugan-ayakkabi-nasil-temizlenir",
   ],
   service: { href: "/ayakkabi-temizleme", label: "Temizlik ve bakım kapsamını incele" },
   sourceIds: [

@@ -9,14 +9,14 @@ export const tulPerdeNasilBeyazlatilir: CareGuide = {
   category: "Tekstil",
   topic: "Ev tekstili",
   published: "2026-11-02",
-  answer: "Sararan tül perde, bakım etiketi izin veriyorsa klorsuz, oksijen bazlı bir beyazlatıcıyla ön işlemden geçirilip file torbada, hassas programda serin suyla yıkanarak beyazlatılır. Önce tozunu al, beyazlatıcıyı ambalajındaki talimata göre kullan. Çamaşır suyunu ancak etiketteki üçgen izin veriyorsa düşün; IKEA Türkiye, ince ve dantelli perdelerde renk farkı ve liflerde bozulma yapabileceğini yazıyor. Çamaşır suyunu hiçbir zaman sirke, limon tuzu ya da oksijenli suyla karıştırma.",
+  answer: "Sararan tül perde, bakım etiketi izin veriyorsa klorsuz, oksijenli bir beyazlatıcıyla ön işlemden geçirilip hassas programda serin suyla yıkanarak beyazlatılır. Önce tozunu al, beyazlatıcıyı ambalajındaki talimata göre kullan. Çamaşır suyunu ancak etiketteki üçgen izin veriyorsa düşün; IKEA Türkiye, ince ve dantelli perdelerde renk farkı ve liflerde bozulma yapabileceğini yazıyor. Çamaşır suyunu hiçbir zaman sirke, limon tuzu ya da oksijenli suyla karıştırma.",
   sections: [
     {
       id: "neden",
       title: "Tül perde neden sararır ya da grileşir?",
       paragraphs: [
         "Tül ışıktan, havadaki yağ ve tozdan, bir de yıkamadan sararıp grileşebilir. IKEA Türkiye, güneşi daha çok alan tül gibi ince dokuların zamanla ton değiştirebildiğini yazıyor. IKEA’ya göre mutfaktaki yağ buharı, az havalanan odada biriken partiküller ve ısıtıcıların perdeye taşıdığı toz da sararmayı artırabiliyor.",
-        "Grileşmenin bir kısmı yıkamadan geliyor. American Cleaning Institute (ACI), az kirli çamaşırların çok kirlilerin suya bıraktığı kiri aldığını, beyazların da böyle yavaş yavaş grileşip sarardığını söylüyor. Vanish fazla deterjanı ve fazla klorlu çamaşır suyunu beyazları soldurabilen etkenler arasında sayıyor; Clorox da sert sudaki demir ve manganez gibi metallerin kumaşı tek başına sarartabildiğini yazıyor.",
+        "Grileşmenin bir kısmı yıkamadan geliyor. American Cleaning Institute (ACI), az kirli çamaşırların çok kirlilerin suya bıraktığı kiri aldığını, beyazların da böyle yavaş yavaş grileşip sarardığını söylüyor. Vanish fazla deterjanı ve fazla klorlu çamaşır suyunu beyazları soldurabilen etkenler arasında sayıyor; Clorox da sert sudaki demir ve mangan gibi metallerin kumaşı tek başına sarartabildiğini yazıyor.",
       ],
       sourceIds: ["ikeaTrTulWhiten", "aciLaundryBasics", "vanishGreyWhites", "cloroxTooMuchBleach"],
     },
@@ -25,7 +25,7 @@ export const tulPerdeNasilBeyazlatilir: CareGuide = {
       title: "Sararan tül perde nasıl beyazlatılır?",
       paragraphs: [
         "Önce etiket ve toz, sonra ön işlem, en son hassas programda serin yıkama. Tozla başlamanın sebebi var: IKEA Türkiye’ye göre tozu alınmadan yıkanan perdede yüzeydeki partiküller kumaşa daha çok tutunabiliyor.",
-        "Vanish kendi beyazlatıcısı için beyaz çamaşırda suyun en fazla 40 °C olmasını, bekletmenin en fazla 6 saat sürmesini söylüyor. IKEA Türkiye ise karbonatlı ev yönteminde perdenin suda uzun süre beklememesini öneriyor. Bu yüzden ince bir tülde ambalajdaki üst sınırı zorlamamak bize daha temkinli geliyor.",
+        "Vanish kendi beyazlatıcısı için beyaz çamaşırda suyun en fazla 40 °C olmasını, bekletmenin en fazla 6 saat sürmesini söylüyor. IKEA Türkiye ise karbonatlı ev yönteminde perdenin suda uzun süre beklememesini öneriyor. Bu yüzden ince bir tülde ambalajdaki üst sınırı zorlamamak daha temkinli olur.",
       ],
       steps: [
         "Bakım etiketine bak. GINETEX’e göre leğendeki sayı aşılmaması gereken en yüksek derece, üçgen de ağartıcıya izin olup olmadığını gösteriyor.",
@@ -33,10 +33,9 @@ export const tulPerdeNasilBeyazlatilir: CareGuide = {
         "Metal ya da plastik aparatları çıkar; Tide, çıkmayan halkalar tambura zarar vermesin diye file torba öneriyor.",
         "Kullanacağın leke çıkarıcıyı ve beyazlatıcıyı önce tülün görünmeyen bir köşesinde dene; rengi ya da dokusu değişirse kullanma.",
         "Camdan ya da elle tutulmaktan rengi dönmüş yerlere yıkamadan önce leke çıkarıcı sür; Persil bunu öneriyor.",
-        "Tülün tamamı sararmışsa ve etiketteki üçgen çarpılı değilse tülü klorsuz, oksijen bazlı bir beyazlatıcıyla bekletebilirsin; Tide oksijen bazlı ağartıcıların kumaşa genelde daha nazik olduğunu söylüyor. Dozu, suyun derecesini ve süreyi ambalajdan al; suyu etiketteki dereceden sıcak yapma.",
-        "Tülü file torbaya ya da bir yastık kılıfına koy, makineyi fazla doldurma.",
-        "Hassas programı ya da yavaş sıkmalı serin bir yıkamayı seç; Persil ve Tide bu ayarı öneriyor. Tülü çok kirli çamaşırlarla yıkama, deterjanı ambalajdaki dozdan fazla koyma.",
-        "Program biter bitmez tülü makineden çıkar ve fazla sıkmadan as. Sararma ilk seferde açılmazsa Vanish’e göre bazı adımları tekrarlamak gerekebilir.",
+        "Tülün tamamı sararmışsa ve etiketteki üçgen çarpılı değilse tülü klorsuz, oksijenli bir beyazlatıcıyla bekletebilirsin; Tide oksijenli ağartıcıların kumaşa genelde daha nazik olduğunu söylüyor. Dozu, suyun derecesini ve süreyi ambalajdan al; suyu etiketteki dereceden sıcak yapma.",
+        "Tülü file torbaya ya da bir yastık kılıfına koyup hassas programda ya da yavaş sıkmalı serin bir yıkamada yıka; Persil ve Tide bu ayarı öneriyor. Tülü çok kirli çamaşırlarla yıkama, deterjanı ambalajdaki dozdan fazla koyma.",
+        "Program biter bitmez tülü makineden çıkar. Sararma ilk seferde açılmazsa Vanish’e göre bazı adımları tekrarlamak gerekebilir.",
       ],
       links: [{ type: "guide", slug: "perde-nasil-yikanir", label: "Tül ve fon perde nasıl yıkanır?" }],
       sourceIds: [
@@ -66,16 +65,19 @@ export const tulPerdeNasilBeyazlatilir: CareGuide = {
       paragraphs: [
         "Tüle çamaşır suyu ancak etiketteki üçgen izin veriyorsa konur, o zaman da temkinli ol. GINETEX’e göre boş üçgen klorlu çamaşır suyuna izin verir; iki çizgili üçgen yalnızca oksijenli ağartıcıya, çarpılı üçgen hiçbir ağartıcıya izin vermez. IKEA Türkiye, çamaşır suyunun hassas yüzeylerde renk farkına, liflerde bozulmaya ve istenmeyen ton açılmalarına yol açabileceğini, özellikle dantelli, işlemeli ya da ince dokulu perdelerde beklenmedik sonuç verebileceğini yazıyor.",
         "Tülü gece boyu çamaşır suyunda bekletme. Clorox kendi çamaşır suyu için 5 dakika bekletmeyi öneriyor; gece boyu bekletmenin sararmaya büyük olasılıkla katkıda bulunduğunu yazıyor.",
-        "Çamaşır suyunu hiçbir şeyle karıştırma. Washington Eyalet Sağlık Bakanlığı, çamaşır suyunun amonyakla karışınca zehirli kloramin gazları, sirke gibi asitlerle karışınca klor gazı çıkardığını, hidrojen peroksitle de tepkimeye girdiğini yazıyor. Tülü sirkeyle, limon tuzuyla ya da oksijenli suyla işlemden geçirdiysen aynı suya çamaşır suyu ekleme.",
+        "Çamaşır suyunu hiçbir şeyle karıştırma. Washington Eyaleti Sağlık Bakanlığı, çamaşır suyunun amonyakla karışınca zehirli kloramin gazları, sirke gibi asitlerle karışınca klor gazı çıkardığını, hidrojen peroksitle de tepkimeye girdiğini yazıyor. Tülü sirkeyle, limon tuzuyla ya da oksijenli suyla işlemden geçirdiysen aynı suya çamaşır suyu ekleme.",
       ],
-      links: [{ type: "guide", slug: "camasir-suyu-lekesi-nasil-cikar", label: "Çamaşır suyu lekesi nasıl çıkar?" }],
+      links: [
+        { type: "guide", slug: "camasir-suyu-lekesi-nasil-cikar", label: "Çamaşır suyu lekesi nasıl çıkar?" },
+        { type: "guide", slug: "beyaz-camasir-nasil-beyazlatilir", label: "Beyaz çamaşır nasıl beyazlatılır?" },
+      ],
       sourceIds: ["ginetexCurrent", "ikeaTrTulWhiten", "cloroxTooMuchBleach", "waDohBleach"],
     },
     {
       id: "ev-yontemleri",
       title: "Karbonat, limon tuzu ya da çivit tülü beyazlatır mı?",
       paragraphs: [
-        "Güvenilir bir tarif yok: bu sayfadaki kaynakların hiçbiri bunlar için ölçü vermiyor. Ölçüsüz bir karışım yerine etiketin izin verdiği, ambalajında doz yazan klorsuz bir beyazlatıcıyı seç.",
+        "Güvenilir bir ölçü yok; karbonatı ve limon tuzunu anan IKEA Türkiye de oran ya da süre vermiyor. Ölçüsüz bir karışım yerine etiketin izin verdiği, ambalajında doz yazan klorsuz bir beyazlatıcıyı seç.",
       ],
       table: {
         caption: "Ev usulü yöntemler: kaynak ne diyor, sen ne yap",
@@ -89,7 +91,7 @@ export const tulPerdeNasilBeyazlatilir: CareGuide = {
           [
             "Limon tuzu",
             "IKEA Türkiye ılık suya eklenebileceğini yazıyor, miktar vermiyor.",
-            "Limon tuzu bir asit; Washington Eyalet Sağlık Bakanlığı asitleri çamaşır suyuyla karıştırmamayı söylüyor.",
+            "Limon tuzu bir asit; Washington Eyaleti Sağlık Bakanlığı asitleri çamaşır suyuyla karıştırmamayı söylüyor.",
           ],
           [
             "Oksijenli su (hidrojen peroksit)",
@@ -119,17 +121,17 @@ export const tulPerdeNasilBeyazlatilir: CareGuide = {
       id: "kurutma",
       title: "Beyazlattığın tül nasıl kurutulur, nasıl beyaz kalır?",
       paragraphs: [
-        "Tülü fazla sıkmadan asarak kurut; IKEA Türkiye perdeler için bunu, ütü gerekirse de düşük sıcaklığı öneriyor. Persil’e göre kurutma makinesi ancak etiket izin veriyorsa ve düşük ayarda kullanılabilir.",
-        "Arada tozunu al; Persil haftada bir süpürgenin fırça başlığıyla tülün üstünden geçmeyi öneriyor. IKEA Türkiye perdelerin yönünü ara ara değiştirmenin güneşin yüzeyde bıraktığı yükü azaltabileceğini, düzenli havalandırmanın da yardımcı olduğunu yazıyor.",
+        "Tülü fazla sıkmadan asarak kurut; IKEA Türkiye bunu öneriyor. Kurutma makinesini yalnızca etiket izin veriyorsa ve düşük ayarda kullan; leke çıkarıcı sürdüğün yerler tam açılmadıysa hiç kullanma: Persil, leke tamamen çıkmadan kurutucuya koymamanı söylüyor.",
+        "Arada tozunu al; Persil haftada bir süpürgenin fırça ucuyla tülün üstünden geçmeyi öneriyor. IKEA Türkiye perdelerin yönünü ara ara değiştirmenin güneşin yüzeyde bıraktığı yükü azaltabileceğini, düzenli havalandırmanın da yardımcı olduğunu yazıyor.",
       ],
       links: [{ type: "guide", slug: "stor-perde-nasil-yikanir", label: "Stor perde nasıl yıkanır?" }],
-      sourceIds: ["ikeaTrCurtains", "persilUkCurtains", "ikeaTrTulWhiten"],
+      sourceIds: ["ikeaTrCurtains", "persilUkCurtains", "persilGeneralStainTips", "ikeaTrTulWhiten"],
     },
   ],
   faqs: [
     {
       q: "Tülü yıkarken beyazlatmak için ne koymalı?",
-      a: "Etiketteki üçgen çarpılı değilse klorsuz, oksijen bazlı bir beyazlatıcı; dozu, suyun derecesini ve süreyi ambalajından al. Deterjanı fazla koyma; Vanish fazla deterjanı beyazları soldurabilen etkenler arasında sayıyor.",
+      a: "Etiketteki üçgen çarpılı değilse klorsuz, oksijenli bir beyazlatıcı; dozu, suyun derecesini ve süreyi ambalajından al. Deterjanı fazla koyma; Vanish fazla deterjanı beyazları soldurabilen etkenler arasında sayıyor.",
     },
     {
       q: "Sararan tül eski rengine döner mi?",
@@ -144,7 +146,13 @@ export const tulPerdeNasilBeyazlatilir: CareGuide = {
       a: "“Kar gibi” bir sonuç garanti edilemez; Vanish de grileşmiş kumaşlarda sonucun değişebileceğini yazıyor. Yapabileceğin, etiketin izin verdiği klorsuz bir beyazlatıcıyla ön işlem yapmak.",
     },
   ],
-  related: ["perde-nasil-yikanir", "stor-perde-nasil-yikanir", "camasir-suyu-lekesi-nasil-cikar"],
+  related: [
+    "perde-nasil-yikanir",
+    "beyaz-camasir-nasil-beyazlatilir",
+    "stor-perde-nasil-yikanir",
+    "camasir-suyu-lekesi-nasil-cikar",
+    "yikama-sembolleri",
+  ],
   sourceIds: [
     "ikeaTrTulWhiten",
     "aciLaundryBasics",
@@ -156,6 +164,7 @@ export const tulPerdeNasilBeyazlatilir: CareGuide = {
     "tideInCurtains",
     "tideWhites",
     "waDohBleach",
+    "persilGeneralStainTips",
     "vanishBeddingWhites",
   ],
 }

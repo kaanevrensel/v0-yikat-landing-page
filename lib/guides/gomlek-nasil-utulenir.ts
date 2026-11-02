@@ -5,7 +5,7 @@ import type { CareGuide } from "@/lib/discovery"
 export const gomlekNasilUtulenir: CareGuide = {
   slug: "gomlek-nasil-utulenir",
   title: "Gömlek nasıl ütülenir? Kaç derece, hangi sırayla?",
-  description: "Ütüyü etiketteki noktaya göre ayarla: 120, 160 ya da 210 °C. Yakadan başla, düğme aralarından geç, askıda soğut. Pamuk, keten ve sentetikteki farklar.",
+  description: "Ütüyü etiketteki noktaya göre ayarla: en fazla 120, 160 ya da 210 °C. Yakadan başla, düğme aralarından geç, askıda soğut. Pamuk, keten ve sentetikteki farklar.",
   category: "Tekstil",
   topic: "Etiket, ütü ve kuru temizleme",
   updated: "2026-11-02",
@@ -16,14 +16,14 @@ export const gomlekNasilUtulenir: CareGuide = {
       title: "Gömlek kaç derecede ütülenir?",
       paragraphs: [
         "Gömleğin kaç derecede ütüleneceğini kumaşın adı değil, etiketteki ütü işaretinin içindeki noktalar söyler; GINETEX’e göre bir nokta en fazla 120 °C, iki nokta 160 °C, üç nokta 210 °C. GINETEX en yüksek ısıyı kumaşın içeriğine göre değil, yalnızca etikete bakarak seçmeni istiyor. Bunlar üst sınırdır, üstüne çıkma.",
-        "Persil’in Türkçe sembol tablosunda aynı üç işaretin karşısında 110, 150 ve 200 °C yazıyor. İkisi de üst sınır olduğundan üç noktalı pamuk gömlekte tabanı 200 °C’nin üstüne çıkarmazsan iki tabloya da uyarsın.",
+        "Persil’in Türkçe sembol tablosunda aynı üç işaretin karşısında 110, 150 ve 200 °C yazıyor. İkisi de üst sınır; düşük olan değerde kalırsan iki tabloya da uyarsın.",
       ],
       table: {
         caption: "Gömlek etiketindeki ütü işaretleri",
         headings: ["Etikette gördüğün", "Ne demek", "Buhar"],
         rows: [
-          ["Üzeri çarpılı ütü", "Ütülenmez; ütülenirse kumaşta geri dönmeyen değişiklik beklenir.", "Yok"],
-          ["İki nokta", "Taban en fazla 160 °C; yün, ipek, polyester, viskoz ayarı.", "Kullanılabilir, sert bastırma"],
+          ["Üstü çarpılı ütü", "Ütülenmez; ütülenirse kumaşta geri dönmeyen değişiklik beklenir.", "Yok"],
+          ["İki nokta", "Taban en fazla 160 °C; yün, ipek, polyester, viskon ayarı.", "Kullanılabilir, sert bastırma"],
           ["Üç nokta", "Taban en fazla 210 °C; pamuk, keten ayarı.", "Kullanılabilir, nemliyken ütüle"],
           ["Altında çarpılı çizgiler olan ütü", "Vanish’e göre buharlı ütü kullanılmaz demek.", "Kullanma"],
         ],
@@ -37,7 +37,7 @@ export const gomlekNasilUtulenir: CareGuide = {
       paragraphs: [
         "Pamuk ve keten gömlek yüksek ısıya dayanır ve hafif nemliyken ütülenir; polyester ve diğer sentetikler daha serin bir ayar ister. Tefal pamuklu gömlek için 200 °C veriyor; Ariel de polyester karışımlarında daha düşük ayar öneriyor.",
         "GINETEX pamuk-keten ayarındaki kumaşları nemliyken ütülemeni, kurumuşsa nemlendirmeni söylüyor. Keten gömleği bu yüzden tam kurumadan ütüle; kurumuşsa su serperek ya da buharla nemlendir.",
-        "Sentetikte kaynaklar ayrışıyor: Tefal sentetik gömleğe serin ütü diyor, GINETEX ise polyester ve viskozu iki noktalı, 160 °C’lik ayara koyuyor. Sentetik ve karışım gömlekte karar etiketteki noktanın. Parlak ya da basınca hassas kumaşı GINETEX ters yüzünden veya araya bir bez koyarak ütülemeni öneriyor; kabartma desenli ya da aplikeli kumaşta da ayrıca dikkat istiyor.",
+        "Sentetikte kaynaklar ayrışıyor: Tefal sentetik gömleğe serin ütü diyor, GINETEX ise polyester ve viskonu iki noktalı, 160 °C’lik ayara koyuyor. Sentetik ve karışım gömlekte karar etiketteki noktanın. Parlak ya da basınca hassas kumaşı GINETEX ters yüzünden veya araya bir bez koyarak ütülemeni öneriyor; kabartma desenli ya da aplikeli kumaşta da ayrıca dikkat istiyor.",
       ],
       table: {
         caption: "Kumaşa göre gömlek ütüleme",
@@ -46,14 +46,15 @@ export const gomlekNasilUtulenir: CareGuide = {
           ["Pamuk", "Pamuk-keten ayarı, üç nokta", "Hafif nemliyken; buhar kullanılabilir. Tefal 200 °C diyor."],
           ["Keten", "Pamuk-keten ayarı, üç nokta", "Nemliyken; kurumuşsa nemlendir. Parlak kısımları ters yüzünden."],
           [
-            "Polyester, viskoz ve karışımları",
-            "Polyester-viskoz ayarı, iki nokta",
+            "Polyester, viskon ve karışımları",
+            "Polyester-viskon ayarı, iki nokta",
             "Araya hafif nemli bir bez koy, sert bastırma.",
           ],
           ["Naylon, akrilik, asetat", "Naylon-akrilik ayarı, bir nokta", "Buharsız; gerekirse ters yüzünden."],
           ["Parlak ya da basınca hassas kumaş", "Etiketteki nokta ne diyorsa", "Ters yüzünden ya da araya bez koyarak."],
         ],
       },
+      links: [{ type: "guide", slug: "utu-nasil-yapilir", label: "Gömlek dışındaki giysiler için: ütü nasıl yapılır?" }],
       sourceIds: ["arielShirt", "ginetexCurrent", "tefalShirt"],
     },
     {
@@ -63,6 +64,11 @@ export const gomlekNasilUtulenir: CareGuide = {
         "Yalnızca temiz ve lekesiz gömleği ütüle. Ariel’e göre lekenin üstünden ütü geçersen leke kalıcı hale gelebilir; yakada, koltuk altında ya da önde bir iz görürsen önce onu çıkar.",
         "Leke için kullanacağın yöntemi önce gömleğin görünmeyen bir yerinde, örneğin iç dikiş payında dene; renk akarsa ya da kumaşın dokusu değişirse dur.",
         "Tefal, ütüye başlamadan manşetlerdekiler de dâhil bütün düğmeleri açmanı söylüyor. Ütünün tabanı ve ütü masasının örtüsü temiz olsun.",
+      ],
+      links: [
+        { type: "guide", slug: "gomlek-yakasi-nasil-temizlenir", label: "Gömlek yakası nasıl temizlenir?" },
+        { type: "guide", slug: "ter-lekesi-nasil-cikar", label: "Koltuk altındaki ter lekesi nasıl çıkar?" },
+        { type: "guide", slug: "yag-lekesi-nasil-cikar", label: "Yağ lekesi nasıl çıkar?" },
       ],
       sourceIds: ["arielShirt", "tefalShirt"],
     },
@@ -108,7 +114,7 @@ export const gomlekNasilUtulenir: CareGuide = {
   faqs: [
     {
       q: "Gömlek ıslakken mi ütülenir?",
-      a: "Islakken değil, hafif nemliyken; GINETEX pamuk-keten ayarındaki kumaşları nemliyken ütülemeyi öneriyor. Polyester ya da viskoz gibi iki noktalı kumaşlarda ise araya hafif nemli bir bez koy.",
+      a: "Islakken değil, hafif nemliyken; GINETEX pamuk-keten ayarındaki kumaşları nemliyken ütülemeyi öneriyor. Polyester ya da viskon gibi iki noktalı kumaşlarda ise araya hafif nemli bir bez koy.",
     },
     {
       q: "Düğmelerin üzerinden ütü geçer mi?",
@@ -128,9 +134,15 @@ export const gomlekNasilUtulenir: CareGuide = {
     },
     {
       q: "Buharlı ütü her gömlekte kullanılır mı?",
-      a: "Hayır. Etiketteki ütünün altında çarpılı çizgiler varsa buhar kullanma; GINETEX bir noktalı kumaşlarda da buharın kalıcı hasar yapabileceğini söylüyor. Bu işaret yoksa iki ve üç noktada buhar kullanılabilir.",
+      a: "Hayır. Etiketteki ütünün altında çarpılı çizgiler varsa buhar kullanma; GINETEX bir noktalı kumaşlarda da buharın kalıcı hasar yapabileceğini söylüyor. Bu işaret yoksa iki ve üç noktada buhar kullanılabilir; Vanish ise polyesterde buhardan kaçınmanı öneriyor.",
     },
   ],
-  related: ["yikama-sembolleri", "kuru-temizleme-nedir", "renkliler-hangi-programda-yikanir"],
-  sourceIds: ["ginetexCurrent", "vanishCareSymbols", "persilCareSymbols", "arielShirt", "tefalShirt"],
+  related: [
+    "yikama-sembolleri",
+    "utu-nasil-yapilir",
+    "kuru-temizleme-nedir",
+    "gomlek-yakasi-nasil-temizlenir",
+    "ter-lekesi-nasil-cikar",
+  ],
+  sourceIds: ["ginetexCurrent", "vanishCareSymbols", "persilCareSymbols", "arielShirt", "tefalShirt", "vanishPolyester"],
 }

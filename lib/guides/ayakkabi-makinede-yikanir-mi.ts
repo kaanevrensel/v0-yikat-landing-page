@@ -4,64 +4,193 @@ import type { CareGuide } from "@/lib/discovery"
 
 export const ayakkabiMakinedeYikanirMi: CareGuide = {
   slug: "ayakkabi-makinede-yikanir-mi",
-  title: "Ayakkabı çamaşır makinesinde yıkanır mı?",
-  description: "Hayır, ayakkabıyı çamaşır makinesine atma. Makinenin yapıştırıcıya, tabana ve forma etkisi; file ve düşük derecenin neden yetmediği ve makine yerine yapabileceklerin.",
+  title: "Ayakkabı makinede yıkanır mı? Kaç derecede, hangi programda?",
+  description: "Hayır. 30 derece, soğuk su, yıkama filesi ya da spor ayakkabı programı da riski kaldırmaz. Hangi markalar izin veriyor, makine yerine elde nasıl temizlersin?",
   category: "Ayakkabı",
   topic: "Yıkama ve kurutma",
-  updated: "2026-10-25",
-  answer: "Hayır. Ayakkabını çamaşır makinesine atma. Tamburun çarpması, uzun süre suda kalma ve sıkma; yapıştırıcıyı, tabanı ve ayakkabının formunu yıpratabilir. Düşük derece, yıkama filesi veya makinedeki “spor ayakkabı programı” bunu değiştirmez. Yüzey kirini elde, malzemeye uygun yöntemle temizle.",
+  updated: "2026-11-02",
+  answer: "Hayır, ayakkabı makinede yıkanmaz; ayakkabını çamaşır makinesine atma, Nike de bunu önermiyor. Sorun yalnız derece değil: tamburun çarpması, uzun süre suda kalma ve sıkma yapıştırıcıyı, tabanı ve formu yıpratabilir. İstisna yalnızca üreticinin açıkça “makinede yıkanabilir” dediği modeller; markalar onlar için de soğuk su ve hassas program öneriyor. Geri kalan her ayakkabıyı elde, malzemesine göre temizle.",
   sections: [
     {
       id: "neden",
       title: "Makine ayakkabıya ne yapar?",
       paragraphs: [
-        "Çamaşır makinesi kumaş için tasarlanır. Ayakkabı ise birbirine yapıştırılmış ve dikilmiş farklı parçalardan oluşur: üst yüzey, astar, ara taban, dış taban. Üst yüzeyi kumaş olan bir sneaker’da bile bu parçaların hepsi aynı anda suya, sürtünmeye ve sıkmaya girer.",
-        "Nike da genel bakım rehberinde ayakkabıyı makinede yıkamayı önermiyor; elde, nazik temizliği anlatıyor.",
+        "Makinede ayakkabının bütün parçaları aynı anda suya, sürtünmeye ve sıkmaya girer; yapıştırıcı, taban ve form bundan zarar görebilir. Çamaşır makinesi kumaş için yapılmış; ayakkabı ise birbirine yapıştırılmış ve dikilmiş parçalardan oluşur: üst yüzey, astar, ara taban, dış taban. Üst yüzeyi kumaş olan bir sneaker da bundan kurtulmaz. Ayakkabı makinede yıkanır mı sorusuna “hayır” dememizin sebebi bu.",
+        "Nike ayakkabıyı makinede yıkamayı önermiyor; dikkatli bir elde yıkamayı ayakkabıya zarar vermemenin en doğru yolu sayıyor. American Cleaning Institute (ACI) da çoğu ayakkabı üreticisinin makinede yıkamaya karşı olduğunu söylüyor. ACI’ya göre bazı deterjanlar ve makinenin çalkalama hareketi birçok deriye ve yapıştırıcıya zarar verebilir.",
       ],
       table: {
         caption: "Makinede yıkamanın riskleri",
         headings: ["Parça", "Ne olabilir?"],
         rows: [
-          ["Yapıştırıcı ve taban", "Uzun süre su ve sıcaklık yapıştırıcıyı zayıflatabilir; taban açılabilir."],
-          ["Form", "Tambur ve sıkma burun, topuk ve yan destekleri ezebilir; ayakkabı şeklini kaybedebilir."],
           [
-            "Deri, süet, nubuk ve baskılar",
-            "Su ve sürtünme yüzeyi sertleştirebilir, rengi soldurabilir veya baskıyı dökebilir.",
+            "Yapıştırıcı ve taban",
+            "Isı, bazı deterjanlar ve makinenin çalkalaması yapıştırıcıya zarar verebilir. Skechers Türkiye, yüksek ısıda yıkamanın saya ile tabanı birleştiren yapışkana zarar verip açılmalara yol açabildiğini yazıyor.",
           ],
-          ["İç dolgu ve tabanlık", "Suyu emer ve geç kurur; nemli kalan iç yüzey kokuya yol açabilir."],
+          [
+            "Ara taban ve yastıklama",
+            "New Balance Türkiye’ye göre özellikle koşu ve yürüyüş ayakkabısında taban malzemesi suyu emip yastıklama ve darbe emme özelliğini yitirebilir.",
+          ],
+          [
+            "Form",
+            "Çalkalama ve sıkma ayakkabının formunu bozabilir; Skechers Türkiye yanlış yıkamanın ayakkabıda deformasyon yarattığını yazıyor.",
+          ],
+          [
+            "Kumaş ve renk",
+            "New Balance, ayakkabı kumaşının makinede hasar görebileceğini veya renk değiştirebileceğini söylüyor.",
+          ],
+          [
+            "Deri ve süet",
+            "Çalkalama birçok deriye zarar verebilir. Nike’a göre süet nemi kolay emer ve çabuk lekelenir.",
+          ],
+          [
+            "İç dolgu ve tabanlık",
+            "Islanınca geç kurur; Skechers Türkiye tam kurumayan ayakkabının kötü kokabileceğini hatırlatıyor.",
+          ],
+          [
+            "Makinenin kendisi",
+            "Nike, ayakkabı gibi hacimli bir yükün çamaşır makinesine de zarar verebileceğini söylüyor.",
+          ],
         ],
       },
-      sourceIds: ["nikeMachine"],
+      sourceIds: ["nikeMachine", "aciSneakers", "skechersTrWash", "newBalanceTrCare"],
     },
     {
       id: "derece",
-      title: "30 derece, file veya “spor ayakkabı programı” olursa?",
+      title: "Ayakkabı hangi programda, kaç derecede yıkanır?",
       paragraphs: [
-        "Yine atma. Düşük sıcaklık yalnız ısıyı azaltır; tamburun çarpması, suda kalma süresi ve sıkma aynı kalır. Yıkama filesi veya yastık kılıfı ayakkabıyı sudan da darbeden de korumaz.",
-        "“Spor ayakkabı programı” makinenin bir özelliğidir; ayakkabının makineye dayanacağını göstermez. Ayakkabının beyaz, bez veya fileli olması da bunu değiştirmez.",
-        "Kurutma makinesi için de aynısı geçerli: ısı ve dönme hareketi yapıştırıcıya ve forma zarar verebilir.",
+        "Sıradan bir ayakkabı için güvenli bir derece de program da yok. 30 °C ya da soğuk su yalnızca ısıyı azaltır; tamburun çarpması, ayakkabının uzun süre suda kalması ve sıkma aynı kalır.",
+        "Makinede yıkamaya izin veren Skechers ve Allbirds bile 30–40 °C demiyor; makineye girebilen modelleri için soğuk su ve hassas program söylüyor. Yani sık duyulan “30 derecede kısa program yeter” önerisi, bu markaların talimatıyla da örtüşmüyor.",
+        "“Spor ayakkabı programı” makinenin bir özelliği; ayakkabının makineye dayanacağını göstermez. Samsung bile önce bakım etiketine bakmanı istiyor; etiketi izin veren ayakkabılar için de Hassas veya Elde Yıkama gibi nazik bir program ve soğuk su ayarı gösteriyor. Ayakkabının beyaz, bez veya fileli olması cevabı değiştirmez.",
+        "Işıklı ayakkabıyı ise makineye hiç yaklaştırma: Skechers, pili ve ışıkları korumak için ışıklı ayakkabıların makinede yıkanmamasını ve suya batırılmamasını söylüyor.",
+      ],
+      links: [{ type: "guide", slug: "isikli-ayakkabi-nasil-yikanir", label: "Işıklı ayakkabı nasıl temizlenir" }],
+      sourceIds: ["skechersCleanGuide", "allbirdsShoeCare", "samsungSneakerWash"],
+    },
+    {
+      id: "etiket",
+      title: "Hangi markalar makinede yıkamaya izin veriyor?",
+      paragraphs: [
+        "Birkaç marka izin veriyor, ama yalnız kendi ayakkabıları için ve koşullu: Skechers “Machine Washable” simgeli modellerine, Allbirds birkaç istisna dışında ayakkabılarına, Crocs da Croslite köpükten yapılan modellerine; Crocs’un SSS sayfası ise yalnız elde yıkamayı öneriyor. Nike, New Balance ve PUMA önermiyor; Converse de kanvas ve deri modellerinde istemiyor. Bu izin o markaya ve o modele ait; aynı markanın başka bir ayakkabısına ya da başka bir markaya taşınmaz.",
+        "Bakacağın yer ayakkabının içindeki bakım etiketi, kutusu ve ürün sayfası. Üretici bir şey söylemiyorsa güvenli taraf elde temizlik; Skechers’ın deyişiyle emin değilsen elde yıka.",
+        "Deterjan markası Persil de makineye atmadan önce üreticinin talimatına bakmanı söylüyor. Birçok modern spor ayakkabının makineye dayanabildiğini yazsa da, makinede yıkanacaksa file torba ve soğuk yıkama öneriyor. Tablo yalnız kimin hangi koşulla izin verdiğini gösteriyor; etiketli bir modeli makineye atacaksan o markanın kendi sayfasındaki sırayı izle.",
+      ],
+      table: {
+        caption: "Markalar makinede yıkama için ne diyor?",
+        headings: ["Marka", "Ne diyor?", "Koşul ya da öneri"],
+        rows: [
+          ["Nike", "Makinede yıkamayı önermiyor.", "Yumuşak deterjanlı bir karışımla fırçala, havada kurut."],
+          [
+            "New Balance Türkiye",
+            "Önermiyor; makinede yıkanan ürün garantiden çıkıyor.",
+            "Isıtıcıyla değil, oda sıcaklığında kurut.",
+          ],
+          [
+            "PUMA Türkiye",
+            "Ayakkabıların çamaşır makinesinde yıkanmamasını söylüyor.",
+            "Kumaş ve kanvasta bile elde yıkama yok; bez kısımları ılık su ve süngerle sil.",
+          ],
+          [
+            "Converse",
+            "Kanvas ve deri modellerin makinede yıkanmamasını ve kurutulmamasını istiyor.",
+            "Sabunlu karışımla nemli bez ya da yumuşak fırça kullan.",
+          ],
+          [
+            "ACI",
+            "Çoğu üretici makinede yıkamaya karşı; bazı ayakkabılar makineye girebilir.",
+            "Ayakkabının içindeki talimata uy; talimat yoksa kanvas ve naylonu elde yıka.",
+          ],
+          [
+            "Skechers",
+            "Yalnız “Machine Washable” simgesi olan modeller makineye girebilir.",
+            "File torba veya yastık kılıfı, soğuk su, hassas program; kurutma makinesi yok.",
+          ],
+          [
+            "Allbirds",
+            "Birkaç istisna dışında ayakkabılarının makinede yıkanabildiğini söylüyor.",
+            "Tabanlık ve bağcık çıkar; soğuk su, hassas program, az miktarda yumuşak deterjan; yumuşatıcı, çamaşır suyu ve makinede kurutma yok.",
+          ],
+          [
+            "Crocs",
+            "Croslite köpükten yapılan sabo, terlik ve benzeri modellerin hassas programda yıkanabildiğini söylüyor.",
+            "Yumuşak bir çamaşır deterjanı kullan. Crocs İngiltere’nin SSS sayfası ise yalnız elde yıkamayı öneriyor.",
+          ],
+        ],
+      },
+      links: [
+        { type: "guide", slug: "skechers-ayakkabi-nasil-yikanir", label: "Skechers ayakkabı nasıl yıkanır" },
+        { type: "guide", slug: "crocs-nasil-temizlenir", label: "Crocs nasıl temizlenir" },
+        { type: "guide", slug: "new-balance-nasil-temizlenir", label: "New Balance ayakkabı nasıl temizlenir" },
+      ],
+      sourceIds: [
+        "nikeMachine",
+        "newBalanceTrCare",
+        "pumaTrCare",
+        "converseClean",
+        "aciSneakers",
+        "skechersCleanGuide",
+        "allbirdsShoeCare",
+        "crocsCleanUk",
+        "crocsFaqUk",
+        "persilTrainers",
       ],
     },
     {
-      id: "alternatif",
-      title: "Makine yerine ne yapabilirsin?",
+      id: "aparat",
+      title: "Ayakkabı yıkama filesi veya aparatı işe yarar mı?",
       paragraphs: [
-        "Bu sıra kumaş ve düz yüzeyler içindir. Süet ve nubuk için ayrı rehbere geç; kumaş temizliğini bu yüzeylere uygulama.",
+        "Filenin asıl işi makineyi korumak; ayakkabıyı makineye dayanıklı yapmaz. Samsung da ayakkabıyı file torbaya ya da yastık kılıfına koymanın amacını, ayakkabının makinenin kazanına zarar vermesini önlemek diye açıklıyor.",
+        "Torbanın ya da aparatın içinde de ayakkabı aynı suda kalır, aynı ısıyı görür ve sıkmaya girer; yapıştırıcıyı ve tabanı yıpratan da bunlar. Skechers torbanın ayakkabıyı da koruduğunu yazıyor, ama bunu yalnız makinede yıkanabilir modelleri için söylüyor.",
+        "Markaların “yanına birkaç havlu ekle” önerisi de makine için: Samsung’a göre gürültüyü ve titreşimi azaltır, Skechers’a göre makineyi dengeler. Ayakkabıyı korumakla ilgisi yok.",
+      ],
+      sourceIds: ["samsungSneakerWash", "skechersCleanGuide"],
+    },
+    {
+      id: "alternatif",
+      title: "Makine yerine ayakkabıyı elde nasıl temizlersin?",
+      paragraphs: [
+        "Kumaş, file ve sentetik ayakkabıyı ılık suya az deterjan katıp, suya batırmadan fırçayla temizlersin. Nike, pamuk, naylon, kanvas ve polyester sneaker’ların yumuşak deterjanlı bir karışımla elde yıkanabildiğini söylüyor. PUMA Türkiye gibi bazı markalar ise kumaş ve kanvasta bile deterjan istemiyor; ayakkabının kendi talimatı varsa ona uy.",
+        "Süet, nubuk ve deride bu sırayı kullanma; aşağıdaki malzeme bölümüne bak. Tam sırayı, bağcığı, tabanlığı ve malzemeye göre farkları ayrı rehberde anlattık. Ayakkabıyı “kuru temizlemeye vermek” ise giysilerdeki kuru temizleme işlemiyle aynı şey değil; onu da ayrıca ele aldık.",
       ],
       steps: [
-        "Bağcıkları ve çıkarılabilen tabanlığı ayır.",
-        "Kuru tozu ve çamuru yumuşak bir fırçayla al.",
-        "Malzemeye uygun temizleyiciyi önce küçük, görünmeyen bir yerde dene; sonra az suyla, elde temizle. Ayakkabıyı suya batırma.",
-        "Doğrudan ısı vermeden, hava alan bir yerde tamamen kurut.",
+        "Bağcıkları ve çıkıyorsa tabanlığı çıkar; kuru kiri yumuşak bir fırçayla al.",
+        "Ilık suya biraz yumuşak deterjan kat. Bulaşık deterjanını bol suyla incelt; Nike’a göre koyusu bazı malzemelerde renk değişimine yol açabilir.",
+        "Önce görünmeyen küçük bir yeri bu karışımla sil; renk ya da doku değişirse devam etme.",
+        "Önce tabanı, sonra üst yüzeyi nazikçe fırçala ve ayakkabıyı suya batırma. Köpüğü kuru bir bezle bastırarak al; Nike’a göre ovmak kumaşı yıpratabilir ve kalan kiri yayabilir.",
+        "İçine beyaz kâğıt havlu doldur; ACI ve Skechers gazete mürekkebinin ıslak ayakkabıya geçebileceğini yazıyor. Oda sıcaklığında, hava alan gölge bir yerde kurut; kalorifer, saç kurutma makinesi, soba, güneş ve kurutma makinesi kullanma. İçi tamamen kurumadan tabanlığı takma ve giyme.",
       ],
-      sourceIds: ["nikeClean"],
+      links: [
+        { type: "guide", slug: "ayakkabi-nasil-yikanir", label: "Ayakkabı elde adım adım nasıl yıkanır" },
+        { type: "guide", slug: "ayakkabi-nasil-kurutulur", label: "Ayakkabı nasıl kurutulur" },
+        { type: "guide", slug: "ayakkabi-kuru-temizlemeye-verilir-mi", label: "Ayakkabı kuru temizlemeye verilir mi" },
+      ],
+      sourceIds: ["nikeMachine", "pumaTrCare", "nikeClean", "skechersCareHelp", "aciSneakers", "skechersCleanGuide"],
+    },
+    {
+      id: "malzeme",
+      title: "Deri, süet, bez ve beyaz ayakkabı makinede yıkanır mı?",
+      paragraphs: [
+        "Hayır. Deri ayakkabı makineye girmez: Skechers deri ayakkabılar için makinede yıkamayı ve kurutmayı açıkça yasaklıyor; PUMA Türkiye deri ve suni deriyi elde bile yıkamamanı, hafif nemli bir bezle silip oda sıcaklığında kurutmanı söylüyor.",
+        "Süet ve nubuk suya en hassas yüzeyler. Skechers bunları makineye atmamanı ve suya batırmamanı, kuruyken yumuşak bir fırçayla ya da kuru bir kauçuk süngerle temizlemeni öneriyor.",
+        "Bez (kanvas) ayakkabı kumaş olduğu için makineye uygun sanılıyor, ama tabanı ve yapıştırıcısı ötekilerle aynı. Beyaz spor ayakkabıda da cevap değişmez; rengin beyaz olması ayakkabıyı makineye dayanıklı yapmaz. Sararmayı ve lekeyi elde, malzemesine göre ele al.",
+      ],
+      links: [
+        { type: "guide", slug: "deri-ayakkabi-nasil-temizlenir", label: "Deri ayakkabı nasıl temizlenir" },
+        {
+          type: "guide",
+          slug: "suet-nubuk-ayakkabi-nasil-temizlenir",
+          label: "Süet ve nubuk ayakkabı nasıl temizlenir",
+        },
+        { type: "guide", slug: "bez-ayakkabi-nasil-temizlenir", label: "Bez ayakkabı nasıl temizlenir" },
+      ],
+      sourceIds: ["skechersCareHelp", "pumaTrCare", "converseClean"],
     },
     {
       id: "dukkan",
       title: "Elde temizlik yetmediğinde",
       paragraphs: [
-        "Elde temizlik yüzey kirini alır. İçine işlemiş kir, koku, karışık malzeme veya emin olamadığın bir leke varsa ayakkabıyı makineye atmak yerine bize getir.",
-        "Bakırköy’deki dükkânımızda ayakkabıya özel ekipmanla çalışıyoruz; yöntemi malzemeye göre seçiyor, temizlikten sonra ayakkabıyı kontrollü biçimde kurutuyoruz. Fotoğrafla ön değerlendirme yapabiliriz; uygun yöntemi, ücreti ve teslim zamanını ayakkabıyı dükkânda gördükten sonra netleştiriyoruz.",
+        "Elde temizlik yüzey kirini alır. İçine işlemiş kir, koku, karışık malzeme ya da emin olamadığın bir leke varsa ayakkabıyı makineye atma, bize getir.",
+        "Bakırköy’deki dükkânımızda ayakkabıyı görerek değerlendiriyoruz; yöntemi malzemeye göre seçiyor, temizlikten sonra ayakkabıyı kontrollü biçimde kurutuyoruz. Fotoğrafla ön değerlendirme yapabiliriz; uygun yöntemi, ücreti ve teslim zamanını ayakkabıyı dükkânda gördükten sonra netleştiriyoruz.",
+        "Eski lekeler veya renk değişimi tamamen düzelmeyebilir; beklentiyi baştan konuşuyoruz. Boyama, onarım veya taban işi yapmıyoruz; yalnızca temizlik ve bakım yapıyoruz.",
       ],
       links: [
         { type: "photo", label: "Ön değerlendirme için fotoğraf gönder" },
@@ -72,15 +201,23 @@ export const ayakkabiMakinedeYikanirMi: CareGuide = {
   faqs: [
     {
       q: "Ayakkabı kaç derecede yıkanır?",
-      a: "Hiçbir derecede: ayakkabıyı çamaşır makinesine atmanı önermiyoruz. Sorun yalnız sıcaklık değil; tamburun çarpması, uzun süre su ve sıkma da ayakkabıyı yıpratır.",
+      a: "Sıradan bir ayakkabı için yok; ne 30 °C ne de soğuk su çarpma ve sıkma riskini kaldırır. Makineye izin veren Skechers ve Allbirds de yalnız makineye uygun dedikleri kendi modelleri için soğuk suyu söylüyor.",
     },
     {
       q: "Yıkama filesi veya yastık kılıfıyla atsam olur mu?",
-      a: "Olmaz. File, ayakkabıyı sudan da tambura çarpmaktan da korumaz; yapıştırıcı ve form aynı riski taşır.",
+      a: "Olmaz. File ya da yastık kılıfı ayakkabının kazana çarpıp makineye zarar vermesini azaltır; su, ısı ve sıkma yine yapıştırıcıya ve tabana ulaşır.",
     },
     {
       q: "Bez (kanvas) ayakkabı da mı atılmaz?",
-      a: "Onu da atma. Üst yüzeyi kumaş olsa da taban, yapıştırıcı ve iç yapı makinede aynı şekilde yıpranır. Elde temizle veya dükkâna getir.",
+      a: "Onu da atma. Converse kendi kanvas modellerinin makinede yıkanmamasını ve kurutulmamasını istiyor; ACI da bakım talimatı yoksa kanvası elde temizlemeyi öneriyor.",
+    },
+    {
+      q: "Kurutma makinesine atılır mı?",
+      a: "Hayır, atma. Nike, Skechers, Allbirds ve ACI makinede kurutmayı önermiyor; Samsung’un ABD destek sayfası ve Nike’ın kurutma yazısı yine de düşük ısılı bir programdan söz ediyor. Nike’a göre yüksek ısı yapıştırıcıya zarar verip ayakkabıyı çekebilir; sen gölgede, havada kurut.",
+    },
+    {
+      q: "Spor ayakkabı kaç devirde yıkanır?",
+      a: "Üreticilerin verdiği bir devir sayısı yok. Skechers Türkiye yalnız makinede yıkanabilir modelleri için düşük devir ve sıkmasız yıkama diyor; öteki ayakkabıları makineye hiç atma, elde temizle.",
     },
     {
       q: "Bakırköy’de ayakkabımı gösterebileceğim bir yer var mı?",
@@ -89,10 +226,27 @@ export const ayakkabiMakinedeYikanirMi: CareGuide = {
   ],
   related: [
     "spor-ayakkabi-nasil-temizlenir",
+    "ayakkabi-nasil-yikanir",
     "beyaz-ayakkabi-nasil-temizlenir",
     "ayakkabi-nasil-kurutulur",
     "skechers-ayakkabi-nasil-yikanir",
   ],
   service: { href: "/sneaker-yikama", label: "Sneaker ve spor ayakkabı temizleme" },
-  sourceIds: ["nikeMachine", "nikeClean"],
+  sourceIds: [
+    "nikeMachine",
+    "aciSneakers",
+    "skechersTrWash",
+    "newBalanceTrCare",
+    "skechersCleanGuide",
+    "allbirdsShoeCare",
+    "samsungSneakerWash",
+    "pumaTrCare",
+    "converseClean",
+    "crocsCleanUk",
+    "crocsFaqUk",
+    "persilTrainers",
+    "nikeClean",
+    "skechersCareHelp",
+    "nikeDry",
+  ],
 }

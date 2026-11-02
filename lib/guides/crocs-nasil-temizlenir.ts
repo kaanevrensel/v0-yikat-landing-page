@@ -99,6 +99,7 @@ export const crocsNasilTemizlenir: CareGuide = {
           ],
         ],
       },
+      links: [{ type: "guide", slug: "bez-ayakkabi-nasil-temizlenir", label: "Bez ve kanvas ayakkabı nasıl temizlenir" }],
       sourceIds: ["crocsFaq", "crocsCleanUk"],
     },
     {
@@ -133,7 +134,13 @@ export const crocsNasilTemizlenir: CareGuide = {
       a: "Hayır. Crocs’a göre yüksek ısı terliği küçültebilir ya da biçimini bozabilir; doğrudan güneşe koyma, gölgede ve havada kurut.",
     },
   ],
-  related: ["ayakkabi-nasil-kurutulur", "ayakkabi-makinede-yikanir-mi", "ayakkabi-kokusu-nasil-giderilir"],
+  related: [
+    "ev-terligi-nasil-yikanir",
+    "birkenstock-nasil-temizlenir",
+    "ayakkabi-nasil-yikanir",
+    "ayakkabi-nasil-kurutulur",
+    "ayakkabi-makinede-yikanir-mi",
+  ],
   service: { href: "/ayakkabi-temizleme", label: "Ayakkabı temizliği seçenekleri" },
   sourceIds: ["crocsCleanUk", "crocsFaq", "crocsFaqUk"],
 }

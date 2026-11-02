@@ -87,6 +87,7 @@ export const suetNubukAyakkabiNasilTemizlenir: CareGuide = {
         "Fırçalama yönünde markalar ayrışıyor: Clarks’ın Avustralya sayfası kiri liflerin içine itmemek için farklı yönlerde düz vuruşlar, İngiltere sayfası, Dr. Martens, Timberland ve Tarrago ise tek yön öneriyor. Yukarıdaki sıra ikisini birleştiriyor: önce gevşet, tek yönde bitir.",
         "Silgiyi yalnızca izin üstünde kullan; Nike silginin kendisinin de lekesiz olmasını istiyor. Saphir’e göre süet silgisi kullanırken biraz ufalanır, bu normal; kırıntıları fırçayla al. Timberland de inatçı sürtünme izleri için hem nubukta hem süette silgi bloğu kullanıyor.",
       ],
+      links: [{ type: "guide", slug: "suet-ceket-nasil-temizlenir", label: "Süet ceket nasıl temizlenir?" }],
       sourceIds: [
         "birkenstockUpperCare",
         "saphirSuedeGuide",
@@ -146,15 +147,19 @@ export const suetNubukAyakkabiNasilTemizlenir: CareGuide = {
           ],
         ],
       },
-      links: [{ type: "guide", slug: "ayakkabida-tuz-lekesi-nasil-cikar", label: "Ayakkabıda tuz lekesi nasıl çıkar?" }],
+      links: [
+        { type: "guide", slug: "ayakkabidaki-yag-lekesi-nasil-cikar", label: "Ayakkabıdaki yağ lekesi nasıl çıkar?" },
+        { type: "guide", slug: "ayakkabida-tuz-lekesi-nasil-cikar", label: "Ayakkabıda tuz lekesi nasıl çıkar?" },
+        { type: "guide", slug: "ayakkabidaki-leke-nasil-cikar", label: "Ayakkabıdaki leke nasıl çıkar?" },
+      ],
       sourceIds: ["nikeSuede", "timberlandStains"],
     },
     {
       id: "sirke",
       title: "Süet ayakkabı sirkeyle temizlenir mi? Evdeki yöntemler",
       paragraphs: [
-        "Evet, beyaz sirke süette kullanılabilir, ama bezle ve az miktarda. Nike inatçı lekede bezin ucunu biraz beyaz sirkeyle ıslatıp yüzeyi yalnızca nemlendirmeyi, kuruyunca gerekirse tekrarlamayı öneriyor. Clarks’ın bot rehberi iki ölçü suya bir ölçü sirke karıştırıyor, bezi bu karışımla nemlendirip tüylerin yönünde siliyor ve ayakkabıyı doğal kurumaya bırakıyor. Clarks’ın İngiltere sayfası ise beyaz sirkeyi son çare sayıyor, çünkü rengi etkileyebilir.",
-        "Hareket yönünde iki marka ayrışıyor: Nike hızlı yana hareketle ovuyor, Clarks tüy yönünde siliyor; ikisi de bezle ve az miktarla çalışıyor. Hangisini seçersen seç, sirkeyi doğrudan ayakkabıya dökme ya da püskürtme; önce görünmeyen bir yerde dene, renk ya da doku değişirse bırak. Sirkeyi çamaşır suyuyla ya da başka bir temizleyiciyle asla karıştırma.",
+        "Evet, beyaz sirke süette kullanılabilir, ama bezle ve az miktarda. Nike inatçı lekede bezin ucunu biraz beyaz sirkeyle ıslatıp yüzeyi yalnızca nemlendirmeyi, kuruyunca gerekirse tekrarlamayı öneriyor. Clarks’ın bot rehberi iki ölçü suya bir ölçü sirke karıştırıyor, bezi bu karışımla nemlendirip tüylerin yönünde siliyor ve ayakkabıyı doğal kurumaya bırakıyor. Clarks’ın İngiltere sayfası ise beyaz sirkeyi son çare sayıyor, çünkü rengi etkileyebilir. Collonil sirkeyi deri için fazla zararlı buluyor.",
+        "Hareket yönünde iki marka ayrışıyor: Nike hızlı yana hareketle ovuyor, Clarks tüy yönünde siliyor. Hangisini seçersen seç, sirkeyi doğrudan ayakkabıya dökme ya da püskürtme; önce görünmeyen bir yerde dene, renk ya da doku değişirse bırak. Sirkeyi çamaşır suyuyla ya da başka bir temizleyiciyle asla karıştırma.",
       ],
       table: {
         caption: "Evdeki yöntemler: süette hangisi olur, hangisi olmaz",
@@ -203,6 +208,7 @@ export const suetNubukAyakkabiNasilTemizlenir: CareGuide = {
         "pumaTrCare",
         "birkenstockUpperCare",
         "saphirSuedeGuide",
+        "collonilSnowMarks",
       ],
     },
     {
@@ -212,7 +218,7 @@ export const suetNubukAyakkabiNasilTemizlenir: CareGuide = {
         "Hayır, süet ve nubuk ayakkabı makinede de elde de yıkanmaz. Nike süetin suyu emdiğini ve yıkamanın lekeyi kalıcı hâle getirebileceğini söylüyor; PUMA Türkiye de süet ve nubuğun elde de makinede de yıkanmayacağını yazıyor.",
         "Islak temizlik istiyorsan en yakın yol süet için yapılmış bir temizleyici. Dr. Martens temizleyiciyi püskürtüp nemli süngerle hafifçe ovuyor, fazlasını temiz suyla silip süeti fazla ıslatmadan doğal kurumaya bırakıyor. Saphir’in temizleyicisi suyla bire bir karıştırılıyor ve 6 saat kurutuluyor; bu oran yalnızca o ürün için geçerli.",
         "Nike ise su ve sabundan uzak durmayı söylüyor; markalar burada ayrışıyor. Temizleyici kullanacaksan etiketindeki tarifi izle ve önce görünmeyen bir yerde dene.",
-        "Yağmurda ıslandıysa içini kâğıtla doldur ve oda sıcaklığında, havadar bir yerde kurut. Nike gazete kâğıdı ya da vantilatör öneriyor; Timberland ise süeti gazeteyle doldurmamayı, mürekkebin bulaşabileceğini söylüyor. Bu yüzden düz beyaz kâğıt ya da kâğıt havlu kullan; Collonil kâğıt nemlendikçe değiştirmeyi ve tam kurumanın bir iki gün sürebileceğini anlatıyor. Kuruyunca havı fırçayla kaldır.",
+        "Yağmurda ıslandıysa içini kâğıtla doldur ve oda sıcaklığında, havadar bir yerde kurut. Nike gazete kâğıdı ya da fan öneriyor; Timberland ise süeti gazeteyle doldurmamayı, mürekkebin bulaşabileceğini söylüyor. Bu yüzden düz beyaz kâğıt ya da kâğıt havlu kullan; Collonil kâğıt nemlendikçe değiştirmeyi ve tam kurumanın bir iki gün sürebileceğini anlatıyor. Kuruyunca havı fırçayla kaldır.",
         "Kurutmak için kalorifer, saç kurutma makinesi, fırın ya da güneş kullanma. Collonil doğrudan ısının deriyi kırılgan yapıp çatlatabileceğini ve bu hasarın çoğu zaman geri dönmediğini söylüyor; PUMA Türkiye de ısıtıcı yanında ya da güneş altında kurutmamayı yazıyor. Nike de kurutma makinesinin ayakkabıya zarar verebileceğini belirtiyor.",
         "Nike’a göre süet koruyucusu su lekesinin oluşmasını önlemeye yardım eder. Nasıl ve ne sıklıkla sıkılacağı aşağıdaki sık sorulanlarda.",
       ],
@@ -291,6 +297,7 @@ export const suetNubukAyakkabiNasilTemizlenir: CareGuide = {
     "tarragoSuedeNubuck",
     "clarksBoots",
     "clarks",
+    "collonilSnowMarks",
     "collonilWetShoes",
     "drMartensWonderBalsam",
     "collonilNubukVelourSpray",

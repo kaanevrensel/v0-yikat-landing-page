@@ -23,7 +23,8 @@ export const ayakkabiKuruTemizlemeyeVerilirMi: CareGuide = {
       ],
       links: [
         { type: "guide", slug: "kuru-temizleme-nedir", label: "Giysilerde kuru temizleme nedir?" },
-        { type: "guide", slug: "ayakkabi-makinede-yikanir-mi", label: "Ayakkabı çamaşır makinesinde yıkanır mı?" },
+        { type: "guide", slug: "ayakkabi-makinede-yikanir-mi", label: "Ayakkabı makinede yıkanır mı?" },
+        { type: "guide", slug: "ayakkabi-nasil-yikanir", label: "Ayakkabı nasıl yıkanır?" },
       ],
       sourceIds: ["nikeDry", "nikeClean", "clarksCare", "nikeSuede"],
     },
@@ -105,7 +106,7 @@ export const ayakkabiKuruTemizlemeyeVerilirMi: CareGuide = {
         {
           type: "guide",
           slug: "ayakkabi-temizleme-fiyati-neye-gore-belirlenir",
-          label: "Ayakkabı temizleme fiyatı neye göre belirlenir?",
+          label: "Ayakkabı temizleme fiyatları neye göre belirlenir?",
         },
       ],
     },
@@ -116,7 +117,13 @@ export const ayakkabiKuruTemizlemeyeVerilirMi: CareGuide = {
         "Taban açılması, kopmuş dikiş, soyulma ya da boya kaybı kir değildir; bunları kir gibi anlatma. Temizlik, boyama ve onarım ayrı işler; biz yalnızca temizlik ve bakım yapıyoruz. Derdin tek bir lekeyse bunu açıkça söyle; genel temizliğin o iz için kesin sonuç anlamına gelmediğini baştan konuş.",
         "Bırakmadan önce evde yeni bir leke çıkarıcı denemene gerek yok. Yine de bir şey deneyeceksen önce görünmeyen küçük bir yerde dene; renk ya da doku değişirse hemen bırak. Daha önce ne kullandığını, ne zaman sürdüğünü ve sonra ne değiştiğini anlat; renk geçtiyse ya da yüzey bozulduysa fotoğrafını göster.",
       ],
-      links: [{ type: "guide", slug: "ayakkabi-bakimi-mi-onarim-mi", label: "Temizlik, bakım ve onarım arasındaki fark" }],
+      links: [
+        {
+          type: "guide",
+          slug: "ayakkabi-bakimi-mi-onarim-mi",
+          label: "Ayakkabı temizlikle mi düzelir, onarım mı gerekir?",
+        },
+      ],
     },
     {
       id: "bakirkoy",

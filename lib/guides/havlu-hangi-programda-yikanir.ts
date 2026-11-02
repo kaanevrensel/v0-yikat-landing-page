@@ -17,7 +17,7 @@ export const havluHangiProgramdaYikanir: CareGuide = {
       paragraphs: [
         "Havluyu pamuklu programda yıka. Arçelik ve Samsung, pamuklu programa uygun çamaşırları sayarken havluyu da adıyla anıyor. Siemens’in WM14UP91TR kılavuzu da Pamuklular programını pamuk, keten ve karışık dokulu dayanıklı tekstiller için tarif ediyor.",
         "Programın adı ve ayarları modele göre değişir. Samsung, makinende hangi programların olduğunu en iyi kullanım kılavuzundan öğreneceğini söylüyor. Siemens kılavuzu ise çamaşırdaki bakım etiketinin program seçimi için ek bilgi verdiğini yazıyor.",
-        "Persil havlu gibi dayanıklı çamaşırlar için uzun ve yüksek devirli bir program öneriyor. Çamaşır çok kirliyse deterjanı artırabilirsin; Persil o zaman kalıntı kalmasın diye uzun durulama seçmeni istiyor. Yün ve ipek gibi hassas kumaşları ise havluyla aynı makineye koyma, Persil bunu açıkça söylüyor.",
+        "Havlu dayanıklı bir çamaşır; Persil bunun için uzun ve yüksek devirli bir program öneriyor. Çamaşır çok kirliyse deterjanı artırabilirsin, ama o zaman kalıntı kalmasın diye uzun durulama seç. Yün ve ipek gibi hassas kumaşları ise havluyla aynı makineye koyma.",
       ],
       table: {
         caption: "Üreticilerin havlu için gösterdiği program",
@@ -26,7 +26,7 @@ export const havluHangiProgramdaYikanir: CareGuide = {
           [
             "Arçelik",
             "Pamuklu",
-            "Kılavuz çarşaf, nevresim, havlu ve bornoz gibi dayanıklı pamukluları bu programa koyuyor.",
+            "Arçelik kılavuzu çarşaf, nevresim, havlu ve bornoz gibi dayanıklı pamukluları bu programa koyuyor.",
           ],
           [
             "Samsung",
@@ -58,11 +58,14 @@ export const havluHangiProgramdaYikanir: CareGuide = {
       id: "derece",
       title: "Havlu kaç derecede yıkanır?",
       paragraphs: [
-        "Havlu, bakım etiketindeki leğende yazan derecede ya da ona yakın bir derecede yıkanır; o sayının üstüne çıkma. Tide havluyu etiketin izin verdiği en sıcak suda yıkamayı öneriyor. Vanish de havlu ve nevresim gibi çamaşırların ılık ya da sıcak bir yıkama programı istediğini yazıyor. GINETEX’e göre leğendeki sayı, aşılmaması gereken en yüksek derecedir.",
+        "Havlu, bakım etiketindeki leğende yazan derecede ya da ona yakın bir derecede yıkanır; o sayının üstüne çıkma. Tide havluyu etiketin izin verdiği en sıcak suda yıkamayı öneriyor. Vanish de havlu ve nevresim gibi çamaşırların ılık ya da sıcak bir yıkama programı istediğini yazıyor ve 40 °C’yi ılık, 60 °C ile üstünü sıcak sayıyor. GINETEX’e göre leğendeki sayı, aşılmaması gereken en yüksek derecedir.",
         "Beyaz havlu da etiketteki dereceyle yıkanır. GINETEX 95 °C’lik simgeyi kaynatmaya dayanıklı pamuk ve keten eşyalar için tarif ediyor; etikette 95 yazmıyorsa havluyu bu dereceye koyma. Etikette 60 yazan havluyu da 90 °C’ye çıkarma.",
         "Renkli havluda da etiketteki sayı geçerli. GINETEX 60 °C’lik simgeyi kaynatılmaması gereken renkli pamuklar, 40 °C’lik simgeyi koyu renkli pamuklar için tarif ediyor. Vanish düzenli yıkamanın zamanla havlunun rengini soldurabileceğini söylüyor; Persil de kırmızı ve siyah gibi solabilecek renkleri benzer renklerle yıkamanı öneriyor.",
       ],
-      links: [{ type: "guide", slug: "yikama-sembolleri", label: "Yıkama sembolleri ne anlama gelir?" }],
+      links: [
+        { type: "guide", slug: "yikama-sembolleri", label: "Çamaşır yıkama sembolleri ve anlamları" },
+        { type: "guide", slug: "beyazlar-kac-derecede-yikanir", label: "Beyazlar kaç derecede yıkanır?" },
+      ],
       sourceIds: ["tideTowelOdour", "vanishTempGuide", "ginetexCurrent", "vanishTowels", "persilSortingPretreat"],
     },
     {
@@ -76,7 +79,7 @@ export const havluHangiProgramdaYikanir: CareGuide = {
         "Havluları ayır; ACI beyazları ayrı yıkamayı öneriyor. Yeni havluları kendi aralarında yıka.",
         "Leke varsa yıkamadan önce leke çıkarıcıyla işle. Ürünü önce kenar dikişi gibi görünmeyen bir yerde dene; Vanish de renk dayanıklılığını böyle kontrol etmeni istiyor. Renk ya da doku değişirse dur.",
         "Kan, şarap ya da kahve lekesinde soğuk su kullan. Ariel bu lekelerin ılık ya da sıcak suda yerleşebileceğini söylüyor.",
-        "Makineyi doldur ama havluları bastırma. ACI çamaşırın tamburda hareket edecek yeri olmasını istiyor.",
+        "Makineyi doldur ama havluları bastırma; çamaşırın tamburda hareket edecek yeri olmalı.",
         "Deterjanı ambalajdaki ölçüye ve kirliliğe göre koy, yumuşatıcı gözünü boş bırak.",
         "Pamuklu programı ve etiketteki dereceyi seç, sıkmayı yüksek tut. Leğenin altında tek çizgi varsa GINETEX sıkmadan kaçınmanı ya da sıkmayı kısa tutmanı öneriyor.",
         "Program bitince havluyu makinede bekletme. Ariel çamaşırı hemen ya da en geç 2 saat içinde çıkarmayı öneriyor.",
@@ -106,7 +109,7 @@ export const havluHangiProgramdaYikanir: CareGuide = {
       title: "Yeni havlu yıkanmadan kullanılır mı?",
       paragraphs: [
         "Yeni havluyu ilk kullanımdan önce bir kez yıka. LG’ye göre yeni havluların üzerinde büyük ihtimalle silikonlu, yumuşatıcılı bir kaplama oluyor ve bu kaplama havlunun suyu emmesini azaltıyor.",
-        "İlk yıkamalarda yeni havluyu tek başına ya da başka havlularla yıka. ACI yeni havluların yıkamada tüyünü diğer giysilere bıraktığını söylüyor.",
+        "Yeni havluyu tek başına ya da başka yeni havlularla yıka. ACI yeni havluların yıkamada tüyünü diğer giysilere bıraktığını söylüyor.",
       ],
       sourceIds: ["lgTowels", "aciLaundryBasics"],
     },
@@ -114,13 +117,13 @@ export const havluHangiProgramdaYikanir: CareGuide = {
       id: "kurutma",
       title: "Havlu nasıl kurutulur, neden kokar?",
       paragraphs: [
-        "Havluyu yıkamadan hemen sonra çıkar ve tamamen kurut; asacaksan havanın dolaştığı bir yere as. Tide’a göre küf kokusu sıcak ve nemli ortamda artıyor; tamburda ya da kirli sepetinin dibinde topak hâlinde bekleyen ıslak havlu bu kokuyu alıyor. Tide bunun için birkaç saatin bile yetebileceğini söylüyor.",
+        "Havluyu yıkamadan hemen sonra çıkar ve tamamen kurut; asacaksan havanın dolaştığı bir yere as. Tide’a göre küf kokusu sıcak ve nemli ortamda artıyor; tamburda ya da kirli sepetinin dibinde topak hâlinde bekleyen ıslak havlu bu kokuyu birkaç saatte bile alabiliyor.",
         "Kokunun bir kaynağı da havluda kalan vücut kiri. Tide bu kirin zamanla bozulup ekşi, küf gibi bir koku bıraktığını söylüyor. Kullandıktan sonra havluyu her seferinde asıp kurut, ıslak hâlde kirli sepetine atma.",
         "Kurutma makinesi konusunda markalar aynı şeyi söylemiyor. Vanish havluyu kurutma makinesinde kurutmamanı söylüyor, çünkü bu havluya zarar veriyor ve suyu daha zor emmesine yol açıyor. Tide ve Ariel ise havluyu makinede kurutmayı normal sayıyor; Tide bunu etiketteki talimata göre yapmanı istiyor.",
-        "Bu yüzden etikete bak. Kare içindeki dairenin üzeri çarpılıysa havluyu makinede kurutma. Dairedeki noktalar ısıyı gösterir; GINETEX normal kurutmayı 80 °C, hafif kurutmayı 60 °C ile tarif ediyor. Makinede kurutacaksan Persil yıkamada en yüksek sıkma devrini seçmeni öneriyor; havlu böylece daha az nemle çıkıyor.",
-        "Havluyu dolaba tamamen kuruyken koy; LG havluları kitap gibi dik dizmenin aralarından hava geçirdiğini söylüyor. Havluda küf lekesi belirdiyse onu çıkarmak ayrı bir iş.",
+        "Bu yüzden etikete bak. Kare içindeki dairenin üstü çarpılıysa havluyu makinede kurutma. Dairedeki noktalar ısıyı gösterir; GINETEX normal kurutmayı 80 °C, hafif kurutmayı 60 °C ile tarif ediyor. Makinede kurutacaksan Persil yıkamada en yüksek sıkma devrini seçmeni öneriyor; havlu böylece daha az nemle çıkıyor.",
+        "Havluyu dolaba tamamen kuruyken koy. LG’ye göre havluları kitap gibi dik dizersen aralarında hava dolaşır. Havluda küf lekesi belirdiyse onu çıkarmak ayrı bir iş.",
       ],
-      links: [{ type: "guide", slug: "kumastan-kuf-lekesi-nasil-cikar", label: "Kumaştan küf lekesi nasıl çıkar?" }],
+      links: [{ type: "guide", slug: "kumastan-kuf-lekesi-nasil-cikar", label: "Küf lekesi nasıl çıkar?" }],
       sourceIds: ["tideTowelOdour", "vanishTowels", "arielWhites", "ginetexCurrent", "persilWhitesWash", "lgTowels"],
     },
   ],
@@ -131,11 +134,11 @@ export const havluHangiProgramdaYikanir: CareGuide = {
     },
     {
       q: "Havlular kaç devirde yıkanır?",
-      a: "Herkese uyan bir devir sayısı yok. Makinende pamuklu programın izin verdiği yüksek devri seç; kurutma makinesine girecekse en yüksek devri kullan. Leğenin altında çizgi olan havluda sıkmayı kısa tut ya da hiç sıkma.",
+      a: "Herkese uyan bir devir sayısı yok. Makinende pamuklu programın izin verdiği yüksek devri seç; kurutma makinesine girecekse en yüksek devri kullan. Leğenin altında tek çizgi olan havluda sıkmayı kısa tut ya da hiç sıkma.",
     },
     {
       q: "Havlu kurutma makinesine atılır mı?",
-      a: "Etikette kare içinde daire varsa ve üzeri çarpılı değilse atılabilir. Vanish yine de havluyu asarak kurutmayı öneriyor.",
+      a: "Etikette kare içinde daire varsa ve üstü çarpılı değilse atılabilir. Vanish yine de havluyu asarak kurutmayı öneriyor.",
     },
     {
       q: "Havlu yıkandıktan sonra neden hâlâ kokar?",
@@ -146,7 +149,13 @@ export const havluHangiProgramdaYikanir: CareGuide = {
       a: "ACI havluyu kullanımlar arasında kurumaya asmayı ve 3–5 normal kullanımdan sonra yıkamayı öneriyor.",
     },
   ],
-  related: ["kumastan-kuf-lekesi-nasil-cikar", "renkliler-hangi-programda-yikanir", "yikama-sembolleri"],
+  related: [
+    "beyazlar-kac-derecede-yikanir",
+    "renkliler-hangi-programda-yikanir",
+    "camasir-kac-derecede-yikanir",
+    "nevresim-kac-derecede-yikanir",
+    "kumastan-kuf-lekesi-nasil-cikar",
+  ],
   sourceIds: [
     "arcelikDuvetProgram",
     "samsungWashCycles",

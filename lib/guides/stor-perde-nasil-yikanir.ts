@@ -9,7 +9,7 @@ export const storPerdeNasilYikanir: CareGuide = {
   category: "Tekstil",
   topic: "Ev tekstili",
   published: "2026-11-02",
-  answer: "Stor perde, bakım etiketi izin veriyorsa kumaşı rulodan ayrılarak yıkanır; rulo ve zincir suya girmez. IKEA elde ılık su ve hafif sabun, makinede hassas program, 30 °C gibi düşük sıcaklık, sıkmasız ayar ve file torba öneriyor. Etiketinde “Yıkanmaz” yazan perdeyi suya sokma; tozunu süpürgeyle al, lekesini hafif deterjanlı nemli bezle sil. Yıkadığın kumaşı düz serip gölgede kurut, tamamen kuruyunca tak.",
+  answer: "Stor perdede yalnızca kumaş yıkanır: bakım etiketi izin veriyorsa rulodan ayırıp yıkarsın; rulo ve zincir suya girmez. IKEA elde ılık su ve hafif sabun, makinede hassas program, 30 °C gibi düşük sıcaklık, sıkmasız ayar ve file torba öneriyor. Etiketinde “Yıkanmaz” yazan perdeyi suya sokma; tozunu süpürgeyle al, lekesini hafif deterjanlı nemli bezle sil. Yıkadığın kumaşı düz serip gölgede kurut, tamamen kuruyunca tak.",
   sections: [
     {
       id: "etiket",
@@ -41,12 +41,12 @@ export const storPerdeNasilYikanir: CareGuide = {
       title: "Stor perde nasıl sökülür?",
       paragraphs: [
         "Stor perdeyi sökmek için ruloyu braketlerinden çıkarıp kumaşı rulodan ayırırsın. Sistem markaya göre değiştiği için önce montaj kılavuzuna bak.",
-        "Stor perde nasıl yıkanır sorusunda ilk kural: yalnızca kumaş yıkanır. Perdeyi rulosuyla küvete batırma.",
+        "Stor perdeyi yıkarken ilk kural şu: yalnızca kumaşı yıkarsın. Perdeyi rulosuyla küvete batırma.",
       ],
       steps: [
         "Kumaşın rulodan hangi yönde çıktığının ve braketlerin fotoğrafını çek.",
         "Ruloyu kılavuzdaki gibi braketlerden çıkar.",
-        "Kumaşı rulodan yavaşça ayır; IKEA bu sırada mekanizmayı bozmamaya özen göstermeni söylüyor.",
+        "Kumaşı rulodan yavaşça ayır; IKEA’nın uyardığı gibi bu sırada mekanizmayı bozma.",
         "Kumaş yapıştırılmış ya da sabitse zorlama; o perdeyi sökmeden, silerek temizle.",
         "Alt çubuğu, zinciri ve diğer parçaları kumaştan çıkar; IKEA bunları ayrı bir yerde temizleyebileceğini söylüyor.",
         "Ruloyu, zinciri ve yaylı mekanizmayı suya sokma; IKEA tozlanan mekanizmayı gerekirse hafif nemli bir bezle silmeni söylüyor.",
@@ -55,14 +55,14 @@ export const storPerdeNasilYikanir: CareGuide = {
     },
     {
       id: "yikama",
-      title: "Stor perde elde veya makinede nasıl yıkanır?",
+      title: "Stor perde nasıl yıkanır: elde mi, makinede mi?",
       paragraphs: [
         "Etiket izin veriyorsa stor perdeyi elde ılık su ve hafif sabunla, makinede hassas programda yıkarsın. Kumaş hassassa ve zarar vermekten, kırıştırmaktan çekiniyorsan Persil elde yıkamayı daha güvenli buluyor. Çamaşır suyu ve ağartıcı kullanma; IKEA bunların stor perde yüzeyine zarar verebileceğini söylüyor.",
         "Makinede IKEA 30 °C gibi düşük bir sıcaklık, sıkmasız ayar, file torba ve az deterjan öneriyor. Siemens’e göre file, çamaşırla tambur arasında koruyucu bir bariyer kurar. Persil ve Tide genel perdede düşük devirde sıkmayı öneriyor; stor perde için yazan IKEA ise hiç sıkmamanı söylüyor.",
       ],
       steps: [
         "Elde yıkayacaksan kumaşın açık sığacağı küveti ya da büyük bir leğeni hazırla.",
-        "Ilık su doldur ve az miktarda hafif sabun erit; IKEA sıcak suyun stor perdeye zarar verebileceğini söylüyor.",
+        "Ilık su doldur ve biraz hafif sabun erit; IKEA’ya göre sıcak su stor perdeye zarar verebilir.",
         "Kumaşı sabunlu suda birkaç dakika beklet.",
         "Yüzeyi yumuşak bir sünger ya da bezle ovalamadan sil; kumaşı bükme, burma.",
         "Temiz suyla dikkatlice durula, sabun kalmasın.",
@@ -91,8 +91,8 @@ export const storPerdeNasilYikanir: CareGuide = {
       id: "takma",
       title: "Yıkanan stor perde nasıl kurutulur ve takılır?",
       paragraphs: [
-        "Kumaşı düz bir zemine serip gölgede kurut, tamamen kuruduktan sonra tak. IKEA ıslak perdeyi dikey asmamanı söylüyor, çünkü suyun ağırlığı şeklini bozabilir. Düz kurutmanın polyester perdelerde kırışmayı da azalttığını ekliyor.",
-        "Kurutma makinesine atma; IKEA yüksek ısının kumaşa zarar verip şeklini bozabileceğini söylüyor. Doğrudan güneşe de koyma; Tide ve Persil güneşin rengi etkileyebileceğini yazıyor.",
+        "Kumaşı düz bir zemine serip gölgede kurut, tamamen kuruduktan sonra tak. Islak perdeyi dikey asma: IKEA’ya göre suyun ağırlığı şeklini bozabilir, düz kurutma da polyester perdelerde kırışmayı azaltır.",
+        "Kurutma makinesine atma; IKEA yüksek ısının kumaşa zarar verip şeklini bozabileceğini yazıyor. Doğrudan güneşe de koyma; Tide ve Persil güneşin rengi etkileyebileceğini yazıyor.",
       ],
       steps: [
         "Kumaşın her yerinin tamamen kuruduğunu elinle kontrol et.",
@@ -107,21 +107,18 @@ export const storPerdeNasilYikanir: CareGuide = {
       id: "zebra",
       title: "Zebra, dikey ve güneşlik perde nasıl yıkanır?",
       paragraphs: [
-        "Zebra perdede de karar etiketin. Bulduğumuz tek üretici talimatı Hunter Douglas’ın bantlı perdelerine ait; yıkamayı değil, düzenli toz almayı ve fırça uçlu süpürgeyle nazikçe süpürmeyi anlatıyor. Işığı azaltan kumaşlarda manyetik toz eldiveni kullanma; Hunter Douglas’a göre arkadaki kaplamaya zarar verir.",
+        "Zebra perdede de karar etiketin. IKEA Türkiye’ye göre zebra perde genelde silinir; Hunter Douglas bantlı perdelerinde fırça uçlu süpürgeyle nazikçe toz almayı öneriyor. İkisi de yıkama yöntemi vermiyor. Işığı azaltan kumaşlarda manyetik toz eldiveni kullanma; Hunter Douglas’a göre arkadaki kaplamaya zarar verir.",
         "Kumaş dikey perdede Dyson düşük emişte süpürmeyi ve lekeyi bütün perdeyi ıslatmadan bastırarak silmeyi öneriyor; fazla nem su lekesi, çekme ya da şekil bozulması yapabilir. PVC dikey perdeyi Dyson’a göre sabunlu suda iyice sıkılmış mikrofiber bezle yukarıdan aşağı sil, hemen kuru bezle kurula.",
         "Güneşlik perden stor tipiyse bu sayfadaki stor yöntemi geçerli. Sararmış güneşliği çamaşır suyuyla beyazlatmaya çalışma; Dyson çamaşır suyu ve optik beyazlatıcıların liflere zarar verebileceğini söylüyor.",
       ],
-      links: [
-        { type: "guide", slug: "perde-nasil-yikanir", label: "Tül ve fon perde nasıl yıkanır" },
-        { type: "guide", slug: "tul-perde-nasil-beyazlatilir", label: "Sararan tül perde nasıl beyazlatılır" },
-      ],
-      sourceIds: ["hunterDouglasBandedShades", "dysonCleanBlinds"],
+      links: [{ type: "guide", slug: "perde-nasil-yikanir", label: "Tül ve fon perde nasıl yıkanır" }],
+      sourceIds: ["ikeaTrCurtains", "hunterDouglasBandedShades", "dysonCleanBlinds"],
     },
   ],
   faqs: [
     {
       q: "Stor perde çamaşır makinesine atılır mı?",
-      a: "Ancak etiketi makinede yıkamaya izin veriyorsa ve kumaşı rulodan ayırdıysan atılır. Rulo, zincir ve alt çubuk makineye girmez; Tide, perde halkaları gibi metal parçaların tambura zarar verebileceğini söylüyor.",
+      a: "Ancak etiketi makinede yıkamaya izin veriyorsa ve kumaşı rulodan ayırdıysan atılır. Rulo, zincir ve alt çubuk makineye girmez; Tide’a göre perde halkaları gibi metal parçalar tambura zarar verebilir.",
     },
     {
       q: "Stor perde kaç derecede yıkanır?",
@@ -146,6 +143,7 @@ export const storPerdeNasilYikanir: CareGuide = {
     "persilUkCurtains",
     "siemensMeshBag",
     "tideInCurtains",
+    "ikeaTrCurtains",
     "hunterDouglasBandedShades",
   ],
 }

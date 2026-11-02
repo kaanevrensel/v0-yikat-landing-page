@@ -4,65 +4,211 @@ import type { CareGuide } from "@/lib/discovery"
 
 export const camurluAyakkabiNasilTemizlenir: CareGuide = {
   slug: "camurlu-ayakkabi-nasil-temizlenir",
-  title: "Çamurlu ayakkabı nasıl temizlenir?",
-  description: "Taban dişlerindeki çamur ile hassas üst yüzeyi ayrı ele al. Kuru kirin alınması, leke değerlendirmesi ve kontrollü temizlik sırası.",
+  title: "Çamurlu ayakkabı nasıl temizlenir? Malzemeye göre adımlar",
+  description: "Çamurun kurumasını bekle, sonra fırçala: taban dişlerine karbonat macunu, file, deri ve süete ayrı yöntem, deri bota sirkeli su; makine ve kalorifer olmaz.",
   category: "Ayakkabı",
   topic: "Leke ve sararma",
   published: "2026-10-15",
-  answer: "Çamurlu ayakkabıyı çamaşır makinesine atma. Üst yüzeyin malzemesini belirle; kuruyan gevşek çamuru nazikçe uzaklaştır, tabandaki kiri üst yüzeye taşımadan temizle. Süet, deri ve file bölümler için aynı fırçayı veya ıslak işlemi kullanma. Yüzeyde hasar varsa leke gibi kazımaya çalışma.",
+  updated: "2026-11-02",
+  answer: "Çamurlu ayakkabıyı temizlemek için önce çamurun kurumasını bekle, sonra gevşek kiri yumuşak bir fırçayla al. Taban dişlerini Nike’ın önerdiği 3 ölçü karbonat ve 1 ölçü sudan yapılan macunla, üstünü malzemesine göre temizle: file ve kumaşta ılık su ile az yumuşak sabun, deride nemli bez, deri botta lekeye sirkeli su, süette önce yalnızca kuru fırça. Ayakkabıyı makineye atma, kaloriferde kurutma; Nike’a göre çoğu ayakkabının tam kuruması en az 8 saat sürüyor.",
   sections: [
     {
       id: "ilk",
-      title: "Çamuru yaymadan başla",
+      title: "Çamur ıslakken mi, kuruyunca mı temizlenir?",
       paragraphs: [
-        "Nike’ın çamurlu koşu ayakkabısı rehberi, gevşek kiri uzaklaştırmadan önce ayakkabının kurumasını beklemeyi önerir. Üst yüzeyde nazik, tabandaki girintilerde daha hedefli çalışır. Ancak bir koşu ayakkabısı için anlatılan yöntem hassas süet detaya aynen taşınmaz.",
-        "Çamur dışında neye basıldığını bilmiyorsan bunu not et. Yağ, boya veya başka bir madde karışmış olabilir. Kaynağını bilmediğin iz için peş peşe ev kimyasalları denemek değerlendirmeyi zorlaştırır.",
+        "Çamur kuruyunca temizlenir. Skechers ıslak çamurun file ve kumaşın daha derinine sürüldüğünü, kuru çamurun ise çoğu zaman fırçayla daha temiz kalktığını söylüyor. Nike da işe ayakkabı tamamen kuruyunca başlamanı öneriyor: eve yeni geldiysen ayakkabıyı günün geri kalanında havalanmaya bırak. Süette bu kural daha da sıkı: Nike’a göre çamur kurumadan fırçalarsan yeni bir leke oluşabilir.",
+        "Ayakkabının içi de ıslandıysa beklerken onu da kurut. Merrell ayakkabıyı açıp içini kâğıt havluyla doldurmayı ve bir gece kurumaya bırakmayı öneriyor; kâğıt suyu çeker.",
       ],
-      sourceIds: ["nikeMud"],
+      links: [{ type: "guide", slug: "yagmurda-islanan-ayakkabi-bakimi", label: "Yağmurda ıslanan ayakkabıya ne yapılır?" }],
+      sourceIds: ["skechersKidsShoes", "nikeMud", "nikeSuede", "merrellCare"],
+    },
+    {
+      id: "taban",
+      title: "Ayakkabının altı ve taban dişleri nasıl temizlenir?",
+      paragraphs: [
+        "Ayakkabının altını bastırarak, üstünü hafifçe fırçala. Nike tabanda bastırmanın sorun olmadığını, üst kısımda ise nazik olman gerektiğini söylüyor; dişlerde kalan inatçı çamur için de koyu bir karbonat macunu öneriyor. Oran amaca göre değişiyor: Nike çamurlu taban için 3’e 1 koyu macun, beyaz ve açık renk ayakkabılar için eşit ölçü karbonat ve su öneriyor.",
+      ],
+      steps: [
+        "Dışarıda ya da yere serdiğin gazetenin üstünde çalış; Nike bunu kir etrafa dağılmasın diye öneriyor.",
+        "Kurumuş çamuru eski bir diş fırçası ya da yumuşak kıllı bir bulaşık fırçasıyla al.",
+        "Bir kapta 3 ölçü karbonatı 1 ölçü suyla karıştırıp koyu bir macun yap.",
+        "Macunu önce tabanın görünmeyen bir köşesinde dene, sonra aynı fırçayla taban dişlerine bastırarak işle.",
+        "Fırçanın girmediği oyuklar için Nike başka küçük bir araç bulmanı öneriyor; ucu küt, ince bir tahta çubuk iş görür, bıçak kullanma.",
+        "Macunu ve çözülen kiri ıslak bir bezle sil. Bezi iyice sık ki su tabandan üst yüzeye akmasın.",
+        "Taban kenarını ve ara tabanı ılık suya az yumuşak sabun kattığın bir fırçayla temizle, sonra yumuşak bir bezle kurula.",
+      ],
+      links: [
+        {
+          type: "guide",
+          slug: "sararan-ayakkabi-tabani-nasil-beyazlatilir",
+          label: "Sararan ayakkabı tabanı ve kenarı nasıl beyazlatılır?",
+        },
+      ],
+      sourceIds: ["nikeMud", "nikeClean"],
     },
     {
       id: "bolgeler",
-      title: "İki bölge, iki ayrı araç",
+      title: "Çamurlu ayakkabının üstü malzemeye göre nasıl temizlenir?",
+      paragraphs: [
+        "Ayakkabının üstünde yöntemi malzeme belirler: file ve kumaş sabunlu ılık suyla, deri nemli bezle, süet ve nubuk kuru fırçayla temizlenir. Karışık ayakkabıda her parçaya kendi yöntemini uygula. Hangi temizleyiciyi kullanacaksan önce dilin iç yüzü gibi görünmeyen bir yerde dene; renk ya da doku değişirse devam etme.",
+        "Nike bulaşık deterjanını bol suyla seyreltmeni istiyor; yoğun kullanırsan bazı malzemelerin rengi değişebilir ya da doğal yağı gidebilir. Clarks süet ve nubukta fırçayı düz hareketlerle ama farklı yönlere gezdirmeni öneriyor; böylece kiri liflerin içine itmezsin.",
+      ],
       table: {
-        caption: "Taban kirini üst yüzeye taşıma",
-        headings: ["Bölge", "Yaklaşım"],
+        caption: "Çamurlu ayakkabının üstü: malzemeye göre ne kullanılır?",
+        headings: ["Malzeme", "Ne kullan", "Kaçın"],
         rows: [
-          ["Taban dişleri", "Gevşek parçaları çıkar; üst yüzeyde kullanılmayan araçla çalış."],
-          ["File ve kumaş", "Lifleri çekmeden, yumuşak araçla kontrollü temizle."],
-          ["Süet veya nubuk detay", "Kendi hassas yüzey bakımına geç."],
-          ["Açılan birleşim", "Kiri kazıyarak arayı büyütme; hasarı göster."],
+          [
+            "File, kumaş, örgü",
+            "Önce kuru fırça, sonra ılık suya az yumuşak sabun ya da sıvı çamaşır deterjanı; Nike örgüyü örgü yönünde fırçalamanı öneriyor",
+            "Malzemeyi sırılsıklam etmek, çamaşır suyu ve sert temizleyiciler",
+          ],
+          [
+            "Düz deri",
+            "Yumuşak fırça ya da bez; deri botta lekeye sirkeli suyla nemlendirilmiş bez, ardından temiz nemli bez",
+            "Suya batırmak, sert ovmak",
+          ],
+          [
+            "Süet ve nubuk",
+            "Tam kuruduktan sonra süet fırçası, iz kalırsa temiz bir silgi, en son bez ucuna az beyaz sirke",
+            "Sabun ve su, ıslakken fırçalamak",
+          ],
         ],
       },
+      links: [
+        { type: "guide", slug: "file-orgu-ayakkabi-temizligi", label: "File ve örgü ayakkabı temizliği" },
+        { type: "guide", slug: "deri-ayakkabi-nasil-temizlenir", label: "Deri ayakkabı temizliği" },
+        { type: "guide", slug: "suet-nubuk-ayakkabi-nasil-temizlenir", label: "Süet ve nubuk ayakkabı temizliği" },
+      ],
+      sourceIds: ["nikeMud", "nikeClean", "skechersKidsShoes", "nikeSuede", "clarksCare"],
     },
     {
       id: "sira",
-      title: "İşlemi küçük adımlara böl",
-      steps: [
-        "Bağcıkları ve yalnız çıkarılabilir tabanlığı ayır; mevcut durumu fotoğrafla.",
-        "Gevşek kuru çamuru al. Islak bezle geniş alana yaymadan önce malzemeyi kontrol et.",
-        "Uygun temizleyiciyi küçük alanda dene; taban ve üst yüzey için ayrı bez kullan.",
-        "Kalıntıları ürün talimatına göre gider ve ayakkabıyı doğrudan ısı vermeden kurut.",
-        "Kuruduktan sonra kalan izi yeniden değerlendir; sert fırçayla tekrar tekrar zorlamak yerine danış.",
+      title: "Çamurlu spor ayakkabı adım adım nasıl temizlenir?",
+      paragraphs: [
+        "Çamurlu spor ayakkabıda sıra şu: çamur kuruyunca parçalarına ayır, fırçala, sabunlu suyla temizle ve tamamen kuruyana kadar havada beklet.",
       ],
-      sourceIds: ["nikeMud"],
+      steps: [
+        "Ayakkabıyı çamur tamamen kuruyana kadar havadar bir yerde beklet.",
+        "Bağcıkları çıkar. Tabanlık çıkıyorsa onu da al; Skechers yapıştırılmış tabanlığı yerinde bırakmanı söylüyor.",
+        "Gevşek çamuru dışarıda ya da gazete üstünde yumuşak bir fırçayla al: altta bastırarak, üstte hafifçe.",
+        "Taban dişlerini karbonat macunuyla fırçala, macunu ıslak bir bezle sil.",
+        "Ilık suya az yumuşak sabun ya da sıvı çamaşır deterjanı kat. Önce görünmeyen bir yerde dene, sonra fırçayı ya da bezi bu suya batırıp üst yüzeyi nazikçe temizle.",
+        "Sabunu temiz, nemli bir bezle al. Ardından kuru bir havluyla bastırarak nemi çek; Nike sürterek kurulamanın kumaşı yıpratıp kalan kiri yayabileceğini söylüyor.",
+        "Bağcıkları aynı sabunlu suda parmaklarınla ovuştur ve durula.",
+        "Tabanlığı aynı fırça ve suyla temizleyip akan suyun altında iyice durula; Nike tabanlığı kurutma makinesine koymamanı istiyor.",
+        "Ayakkabıyı, bağcıkları ve tabanlığı ayrı ayrı, oda sıcaklığında kurut. Nike çoğu ayakkabının tamamen kuruması için en az 8 saat gerektiğini söylüyor; hepsi kuruyunca birleştir.",
+      ],
+      links: [
+        { type: "guide", slug: "ayakkabi-nasil-kurutulur", label: "Ayakkabı nasıl kurutulur?" },
+        { type: "guide", slug: "ayakkabi-bagcigi-nasil-temizlenir", label: "Ayakkabı bağcığı nasıl temizlenir?" },
+        {
+          type: "guide",
+          slug: "ayakkabi-tabanligi-nasil-temizlenir",
+          label: "Ayakkabı tabanlığı ve içi nasıl temizlenir?",
+        },
+      ],
+      sourceIds: ["nikeMud", "skechersKidsShoes", "nikeClean"],
+    },
+    {
+      id: "bot",
+      title: "Çamurlu deri bot nasıl temizlenir?",
+      paragraphs: [
+        "Çamurlu deri botu suya batırmadan, yalnızca kirli yerleri silerek temizle. Sirke oranında markalar ayrılıyor: Nike 1 ölçü beyaz sirke ve 1 ölçü su öneriyor, Clarks ise deri bot lekesi için 2 ölçü suya 1 ölçü sirke veriyor. Collonil sirkeyi deri için fazla zararlı buluyor; bu yüzden karışımı yalnızca lekeli yere sür.",
+        "Membranlı yürüyüş botunda önce etiketteki yıkama talimatına bak. GORE-TEX, içindeki kumu ve çakılı silkeledikten sonra botun dışını bez ya da fırça ve ılık suyla temizlemeyi, mümkünse tabanlığı çıkarmayı öneriyor. GORE-TEX botlarda su geçirmezlik mumu ve gres kullanma; GORE-TEX bunların botun nefes almasını olumsuz etkilediğini yazıyor. Bakım ürünü sürmeden önce de üreticinin talimatına bak.",
+      ],
+      steps: [
+        "Çamurun tamamen kurumasını bekle.",
+        "Kuru kiri yumuşak bir fırça ya da bezle al. Girintilerde eski bir diş fırçası işe yarar.",
+        "Beyaz sirkeyi bir kapta, yukarıdaki oranlardan biriyle suyla karıştır; karışımı önce konçun iç yüzünde, görünmeyen bir yerde dene.",
+        "Yumuşak bir bezi karışıma batır, iyice sık ve lekeli yerlere bastırarak uygula.",
+        "Temiz suya batırıp sıktığın başka bir bezle sirkeyi al.",
+        "Botu oda sıcaklığında kurut, kaloriferin yanına koyma; Clarks kaloriferin deriyi kurutup kırılganlaştırabileceğini söylüyor.",
+        "Bot tamamen kuruyunca deriye uygun bir bakım kremi ya da su itici sprey sürebilirsin; Nike bunun bir sonraki temizliği kolaylaştıracağını söylüyor.",
+      ],
+      links: [
+        { type: "guide", slug: "bot-nasil-temizlenir", label: "Bot nasıl temizlenir?" },
+        { type: "guide", slug: "timberland-bot-nasil-temizlenir", label: "Timberland ve nubuk bot temizliği" },
+      ],
+      sourceIds: ["nikeMud", "clarksBoots", "goreTexHikingBoots", "merrellCare", "collonilSnowMarks"],
+    },
+    {
+      id: "yapma",
+      title: "Çamurlu ayakkabıyı temizlerken nelerden kaçınmalı?",
+      paragraphs: [
+        "Makineden, çamaşır suyundan, çözücülerden, sıcak sudan, bıçakla kazımaktan ve ısıyla kurutmaktan kaçın. Temizleyicileri birbirine karıştırma; çamaşır suyunu sirkeyle asla bir araya getirme.",
+      ],
+      table: {
+        caption: "Çamurlu ayakkabıda yapılmaması gerekenler",
+        headings: ["Yapma", "Neden", "Yerine"],
+        rows: [
+          ["Islak çamuru ovmak", "Skechers’a göre çamuru file ve kumaşın içine sürer", "Önce kurumasını bekle"],
+          [
+            "Çamaşır makinesi",
+            "Merrell ayakkabıyı makinede yıkamamanı söylüyor; Skechers de çocuk ayakkabılarında makineye yalnızca “makinede yıkanabilir” diye işaretlenmiş çiftlerin girebileceğini söylüyor",
+            "Fırça ve bezle elde temizlik",
+          ],
+          [
+            "Çamaşır suyu",
+            "Nike çamaşır suyu ve sert temizleyicilerin örgü ve fileye zarar verebileceğini söylüyor",
+            "Ilık suda az yumuşak sabun",
+          ],
+          [
+            "Aseton, tiner, benzin",
+            "Çözücüdür, yanıcıdır; bu sayfadaki üreticilerin hiçbiri çamur için önermiyor",
+            "Sabunlu su, deri botta sirkeli su",
+          ],
+          [
+            "Sıcak su",
+            "Skechers ısının malzemeye, yapıştırıcılara ve yastıklamaya zarar verebileceğini söylüyor",
+            "Ilık su",
+          ],
+          ["Bıçakla kazımak", "Dikişi, fileyi ya da deriyi kesebilir", "Fırça ya da ucu küt ince bir çubuk"],
+          [
+            "Kalorifer, saç kurutma makinesi, güneş",
+            "Merrell doğrudan ısının ayakkabının biçimini değiştirdiğini, Clarks yapay ısının deriyi bozabileceğini söylüyor",
+            "Oda sıcaklığında, havadar bir yerde kurutmak",
+          ],
+        ],
+      },
+      links: [{ type: "guide", slug: "ayakkabi-makinede-yikanir-mi", label: "Ayakkabı makinede yıkanır mı?" }],
+      sourceIds: ["skechersKidsShoes", "merrellCare", "nikeClean", "clarksCare"],
     },
     {
       id: "kalan",
-      title: "Çamur çıktı, iz kaldıysa",
+      title: "Çamur çıktı ama iz kaldıysa ne yapmalı?",
       paragraphs: [
-        "Kalan koyuluk hâlâ kir olabilir; fakat sürtünme, eski renk kaybı veya önceki bir işlem de benzer görünebilir. Islak ve kuru görüntüyü birbirine karıştırma. Fotoğraf gönderirken nerede oluştuğunu, ne kadar beklediğini ve hangi ürünle denediğini yaz.",
-        "Kabul sırasında genel temizlik ile hedeflenen lekenin değerlendirmesini ayırmak sonuç beklentisini netleştirir. Her çamur lekesinin bütünüyle çıkacağına dair söz verilmez; ayakkabının malzemesi ve mevcut durumu belirleyicidir.",
+        "Önce ayakkabının tamamen kurumasını bekle, kararı ondan sonra ver. Clarks nemli bezin süeti geçici olarak koyulaştırabileceğini, havada kuruyunca geçmesi gerektiğini söylüyor. Aynı yeri sert fırçayla tekrar tekrar zorlama.",
+        "Bakırköy’deki dükkânımızda ayakkabıyı görerek değerlendiriyor, yöntemi malzemeye göre seçiyoruz; temizlikten sonra ayakkabıyı kontrollü biçimde kurutuyoruz. Fotoğrafla ön değerlendirme yapabiliriz; uygun yöntemi, ücreti ve teslim zamanını ayakkabıyı dükkânda gördükten sonra netleştiriyoruz.",
+        "Fotoğraf gönderirken lekenin nerede olduğunu, ne zamandır durduğunu ve hangi ürünle denediğini yaz. Eski lekeler veya renk değişimi tamamen düzelmeyebilir, beklentiyi baştan konuşuyoruz. Boyama, onarım veya taban işi yapmıyoruz; yalnızca temizlik ve bakım yapıyoruz.",
       ],
+      links: [
+        { type: "guide", slug: "ayakkabidaki-leke-nasil-cikar", label: "Ayakkabıdaki leke nasıl çıkar?" },
+        { type: "photo", label: "Ön değerlendirme için fotoğraf gönder" },
+        { type: "service", href: "/ayakkabi-temizleme", label: "Bakırköy’de ayakkabı temizleme" },
+      ],
+      sourceIds: ["clarksCare"],
     },
   ],
   faqs: [
     {
-      q: "Çamuru sıcak suyla hemen akıtayım mı?",
-      a: "Ayakkabının tamamını sıcak suya tutma. Önce malzemeyi ve bakım talimatını belirle; hassas parçaları ayrı ele al.",
+      q: "Çamuru hemen sıcak suyla yıkasam olur mu?",
+      a: "Hayır. Önce çamurun kurumasını bekle, sonra fırçala. Temizlikte de sıcak değil ılık su kullan; Skechers ısının yapıştırıcılara zarar verebileceğini söylüyor.",
     },
     {
-      q: "Süet ayakkabıda aynı sıra geçerli mi?",
-      a: "Süet yüzey için ayrı bakım gerekir. Kumaş veya taban için kullanılan ıslak işlemi süete uygulama.",
+      q: "Süet ayakkabıdaki çamur lekesi nasıl çıkar?",
+      a: "Çamur tamamen kuruyunca süet fırçasıyla al, iz kalırsa temiz bir silgiyle hafifçe ov. Nike en son çare olarak bez ucunu az beyaz sirkeyle nemlendirip süeti sırılsıklam etmeden ovmayı öneriyor; sabunlu su kullanma.",
+    },
+    {
+      q: "Çamurlu ayakkabı makinede yıkanır mı?",
+      a: "Hayır. Merrell ayakkabıyı makinede yıkamamanı söylüyor; Skechers ise yalnızca “makinede yıkanabilir” işaretli çocuk ayakkabılarına izin veriyor. Bu izin işaretli modele özgü; diğerlerini elde temizle.",
+    },
+    {
+      q: "Karbonat ayakkabının üstüne sürülür mü?",
+      a: "Çamur için Nike karbonat macununu taban dişlerine öneriyor, üst yüzey için yumuşak sabunlu su veriyor. Beyaz ve açık renk ayakkabılarda ise eşit ölçü karbonat ve sudan macun öneriyor. Süete sürme.",
+    },
+    {
+      q: "Çamurlu ayakkabı kaç saatte kurur?",
+      a: "Nike’a göre çoğu ayakkabının tamamen kuruması en az 8 saat sürüyor; Merrell içi kâğıtla doldurulmuş ayakkabıyı bir gece bekletmeyi öneriyor. Tamamen kurumadan giyme.",
     },
   ],
   related: [
@@ -73,5 +219,15 @@ export const camurluAyakkabiNasilTemizlenir: CareGuide = {
     "bot-nasil-temizlenir",
   ],
   service: { href: "/ayakkabi-temizleme", label: "Malzemene göre temizlik seç" },
-  sourceIds: ["nikeMud"],
+  sourceIds: [
+    "skechersKidsShoes",
+    "nikeMud",
+    "nikeSuede",
+    "merrellCare",
+    "nikeClean",
+    "clarksCare",
+    "clarksBoots",
+    "goreTexHikingBoots",
+    "collonilSnowMarks",
+  ],
 }

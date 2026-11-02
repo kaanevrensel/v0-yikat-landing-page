@@ -45,10 +45,11 @@ export const renklilerHangiProgramdaYikanir: CareGuide = {
           ],
           [
             "Az kirli, küçük bir yük",
-            "Hızlı program. ACI bunu az kirli parçalar için tarif ediyor; Ariel koyularda kısa programın solmayı azalttığını söylüyor.",
+            "Hızlı program. American Cleaning Institute (ACI) bunu az kirli parçalar için tarif ediyor; Ariel koyularda kısa programın solmayı azalttığını söylüyor.",
           ],
         ],
       },
+      links: [{ type: "guide", slug: "camasir-kac-derecede-yikanir", label: "Çamaşır kaç derecede yıkanır?" }],
       sourceIds: [
         "persilWashCycle",
         "vanishFading",
@@ -67,7 +68,7 @@ export const renklilerHangiProgramdaYikanir: CareGuide = {
         "Vanish 30 °C’ye kadarını soğuk, 40 °C’yi ılık, 60 °C’yi sıcak yıkama sayıyor. Ona göre 30 °C, akabilecek ya da solabilecek canlı renkler ve az kirli giysiler için yeterli; çok kirli giysiler ise ılık ya da sıcak program ister. Etiket izin veriyorsa kirli bir renkli yükü 40 °C’ye çıkarabilirsin.",
         "Açık renkliler için de sınır etikette. IKEA, gri gibi açık renkli nevresimlerin 40 °C’de, koyu renklilerin 30 °C’de yıkanabileceğini söylüyor. Bu öneri nevresim için; başka parçada yine etikete bak.",
       ],
-      links: [{ type: "guide", slug: "yikama-sembolleri", label: "Yıkama sembolleri ne anlama gelir?" }],
+      links: [{ type: "guide", slug: "yikama-sembolleri", label: "Çamaşır yıkama sembolleri ve anlamları" }],
       sourceIds: ["ginetexCurrent", "vanishTempGuide", "ikeaTrDuvetCover"],
     },
     {
@@ -85,7 +86,7 @@ export const renklilerHangiProgramdaYikanir: CareGuide = {
       title: "Renkli çamaşırlar nasıl ayrılır?",
       paragraphs: [
         "Renklileri önce beyazlardan ayır, sonra açık ve koyu diye iki gruba böl. Persil de açıkla koyuyu dikkatle ayırmanı söylüyor.",
-        "Kirliliğe göre de ayır. ACI’ye göre az kirli parçalar yıkama suyundaki kiri kapar ve renkliler giderek donuklaşır. Vanish beyazlar dışında renkleri karıştırmakta sakınca görmüyor, ama bunu kendi renk koruyucu ürünüyle öneriyor. IKEA ise nevresimlerde açıkla koyuyu ayırmanın renk akmasını ve solmayı önlediğini söylüyor.",
+        "Kirliliğe göre de ayır. ACI’ya göre az kirli parçalar yıkama suyundaki kiri kapar ve renkliler giderek donuklaşır. Vanish beyazlar dışında renkleri karıştırmakta sakınca görmüyor, ama bunu kendi renk koruyucu ürünüyle öneriyor. IKEA ise nevresimlerde açıkla koyuyu ayırmanın renk akmasını ve solmayı önlediğini söylüyor.",
       ],
       table: {
         caption: "ACI ve Persil’e göre renkli çamaşır grupları",
@@ -99,18 +100,19 @@ export const renklilerHangiProgramdaYikanir: CareGuide = {
           ],
           [
             "Neon renkler",
-            "ACI’ye göre çoğu zaman daha kolay renk verir. Ayrı yıka ya da önce dene; ön yıkama leke çıkarıcısı sürme.",
+            "ACI’ya göre çoğu zaman daha kolay renk verir. Ayrı yıka ya da önce dene; ön yıkama leke çıkarıcısı sürme.",
           ],
           ["Açık renkli sentetikler", "Koyu kumaşlardan boya kapabilir (ACI); koyularla yıkama."],
           [
             "Tüy bırakanlar",
-            "Tüylü sweatshirt, flanel ve yeni havlu ACI’ye göre tüyünü diğer çamaşıra verir; ayrı yıka.",
+            "Tüylü sweatshirt, flanel ve yeni havlu ACI’ya göre tüyünü diğer çamaşıra verir; ayrı yıka.",
           ],
           ["Yün, ipek", "Persil hassas kumaşları havlu gibi dayanıklılarla yıkamamanı söylüyor."],
         ],
       },
       links: [
         { type: "guide", slug: "siyahlar-hangi-programda-yikanir", label: "Siyahlar hangi programda yıkanır?" },
+        { type: "guide", slug: "beyazlar-kac-derecede-yikanir", label: "Beyazlar kaç derecede yıkanır?" },
         { type: "guide", slug: "havlu-hangi-programda-yikanir", label: "Havlu hangi programda yıkanır?" },
       ],
       sourceIds: ["persilColoursWash", "aciLaundryBasics", "vanishTempGuide", "ikeaTrDuvetCover", "persilSortingPretreat"],
@@ -146,6 +148,7 @@ export const renklilerHangiProgramdaYikanir: CareGuide = {
         "Elde yıkarken hızlı çalış, parçayı ıslak bekletme; GINETEX renkliler için bunu istiyor.",
         "Su temiz kaldıysa bile ilk birkaç yıkamada parçayı ayrı ya da benzer renklerle yıka.",
       ],
+      links: [{ type: "guide", slug: "nevresim-kac-derecede-yikanir", label: "Nevresim kaç derecede yıkanır?" }],
       sourceIds: ["persilColoursWash", "aciLaundryBasics", "ikeaTrDuvetCover", "arielDarks", "ginetexCurrent"],
     },
     {
@@ -158,7 +161,7 @@ export const renklilerHangiProgramdaYikanir: CareGuide = {
         "Lekeli parçayı kurutma. ACI kurutmanın lekeyi kalıcı hale getirebileceğini söylüyor.",
         "Etiketi oku: en yüksek yıkama sıcaklığına ve ağartıcı işaretine bak. Üçgen çarpılıysa GINETEX’e göre ağartıcı kullanılmaz, yalnızca ağartıcısız deterjan kullanılır.",
         "Kullanacağın ürünü önce görünmeyen bir yerde dene; parçanın kendi rengi ya da dokusu değişirse dur.",
-        "Etiket ağartıcıya izin veriyorsa klorlu çamaşır suyu değil, renk dostu bir ürün kullan. Tide ağartıcı alternatifi içeren sıvı deterjanı ılık suda çözüp parçayı en fazla 5 dakika bekletmeyi, suyun altında kalsın diye üstüne beyaz bir havlu koymayı öneriyor. ACI’ye göre oksijenli ağartıcılar da bütün yıkanabilir kumaşlarda güvenle kullanılabilir. Ağartıcıyı başka temizlik ürünleriyle karıştırma.",
+        "Etiket ağartıcıya izin veriyorsa klorlu çamaşır suyu değil, renk dostu bir ürün kullan. Tide ağartıcı alternatifi içeren sıvı deterjanı ılık suda çözüp parçayı en fazla 5 dakika bekletmeyi, suyun altında kalsın diye üstüne beyaz bir havlu koymayı öneriyor. ACI’ya göre oksijenli ağartıcılar da bütün yıkanabilir kumaşlarda güvenle kullanılabilir. Ağartıcıyı başka temizlik ürünleriyle karıştırma.",
         "Tide’a göre durulamadan makineye koy ve normal programda, etiketin izin verdiği en yüksek sıcaklıkta yıka. Bu sıcaklık yalnızca kurtarma yıkaması için; günlük yıkamada yine serin yıka.",
         "Program bitince parçayı hemen çıkar. Leke duruyorsa Tide, sıvı deterjanı lekeyi örtecek kadar döküp 20 dakika bekletmeyi, sonra ılık suda yeniden yıkamayı öneriyor; leke çıkmadan kurutma.",
       ],
@@ -172,11 +175,11 @@ export const renklilerHangiProgramdaYikanir: CareGuide = {
     },
     {
       q: "Renkli ve beyaz aynı makinede yıkanır mı?",
-      a: "Hayır, ayrı yıka. Ariel koyu yüke karışan beyaz gömleğin boya kapıp grileşebileceğini anlatıyor; ACI de beyazları her zaman ayrı yıkamayı öneriyor.",
+      a: "Hayır, ayrı yıka. Ariel koyu yüke karışan beyaz gömleğin boya kapıp grileşebileceğini anlatıyor; ACI da beyazları her zaman ayrı yıkamayı öneriyor.",
     },
     {
       q: "Kot pantolon renklilerle yıkanır mı?",
-      a: "Koyu kotu koyu renklerle, açık renklilerden ayrı yıka. Persil kot için içini dışına çevirmeyi, makineyi üçte bir doldurmayı, hassas programı, en fazla 600 devir ve en fazla 40 °C’yi öneriyor; etiket daha düşüğünü söylüyorsa ona uy.",
+      a: "Koyu kotu koyu renklerle, açık renklilerden ayrı yıka. Persil kotu ters çevirip en fazla 40 °C’de yıkamayı öneriyor; etiket daha düşüğünü söylüyorsa ona uy. Doluluk ve devir ayarları siyahlar rehberinin kot bölümünde.",
     },
     {
       q: "Renk tutucu mendil işe yarar mı?",
@@ -187,7 +190,13 @@ export const renklilerHangiProgramdaYikanir: CareGuide = {
       a: "Etiketinde kurutma makinesi işareti çarpılıysa atılmaz. İzin verse bile Vanish kurutma makinesinin solmaya katkıda bulunduğunu söylüyor.",
     },
   ],
-  related: ["siyahlar-hangi-programda-yikanir", "yikama-sembolleri"],
+  related: [
+    "siyahlar-hangi-programda-yikanir",
+    "beyazlar-kac-derecede-yikanir",
+    "yikama-sembolleri",
+    "camasir-kac-derecede-yikanir",
+    "bebek-kiyafetleri-nasil-yikanir",
+  ],
   sourceIds: [
     "ginetexCurrent",
     "vanishTempGuide",

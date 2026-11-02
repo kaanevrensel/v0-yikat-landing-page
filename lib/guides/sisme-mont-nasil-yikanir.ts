@@ -21,8 +21,8 @@ export const sismeMontNasilYikanir: CareGuide = {
         "Dış kumaşta yırtık ya da dikişten tüy kaçıran bir delik varsa önce onu hallet. Patagonia küçük delikler için onarım bandını yeterli buluyor, büyük yırtıklarda ise montun onarıma gitmesini öneriyor.",
       ],
       links: [
-        { type: "guide", slug: "yikama-sembolleri", label: "Yıkama sembolleri ne anlama gelir?" },
-        { type: "guide", slug: "kuru-temizleme-nedir", label: "Kuru temizleme nedir, yıkamadan farkı ne?" },
+        { type: "guide", slug: "yikama-sembolleri", label: "Çamaşır yıkama sembolleri ve anlamları" },
+        { type: "guide", slug: "kuru-temizleme-nedir", label: "Kuru temizleme nedir, nasıl yapılır?" },
       ],
       sourceIds: [
         "tideDownBedding",
@@ -69,6 +69,7 @@ export const sismeMontNasilYikanir: CareGuide = {
           ],
         ],
       },
+      links: [{ type: "guide", slug: "mont-hangi-programda-yikanir", label: "Mont hangi programda, kaç derecede yıkanır?" }],
       sourceIds: [
         "arcelikDuvetProgram",
         "samsungWashCycles",
@@ -173,7 +174,7 @@ export const sismeMontNasilYikanir: CareGuide = {
       a: "Etiketteki daire simgesi izin veriyorsa verilebilir. Patagonia ise kuru temizleme kimyasallarını sert bulduğu için kendi ürünlerinde bunu önermiyor, evde yıkamanı tavsiye ediyor.",
     },
   ],
-  related: ["mont-hangi-programda-yikanir", "yorgan-nasil-yikanir", "yikama-sembolleri", "kuru-temizleme-nedir"],
+  related: ["yorgan-nasil-yikanir", "yikama-sembolleri", "kuru-temizleme-nedir", "mont-hangi-programda-yikanir"],
   sourceIds: [
     "tideDownBedding",
     "arielDown",

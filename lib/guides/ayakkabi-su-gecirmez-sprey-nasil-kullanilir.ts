@@ -21,7 +21,11 @@ export const ayakkabiSuGecirmezSpreyNasilKullanilir: CareGuide = {
       ],
       links: [
         { type: "guide", slug: "yagmurda-islanan-ayakkabi-bakimi", label: "Yağmurda ıslanan ayakkabıya ne yapılır?" },
-        { type: "guide", slug: "ayakkabi-bakimi-mi-onarim-mi", label: "Temizlik, bakım ve onarım arasındaki fark" },
+        {
+          type: "guide",
+          slug: "ayakkabi-bakimi-mi-onarim-mi",
+          label: "Ayakkabı temizlikle mi düzelir, onarım mı gerekir?",
+        },
       ],
       sourceIds: ["tarragoWinterCare", "collonilWaterproofing", "nikeSuede", "pumaTrCare", "nikeRain", "tarragoSuedeNubuck"],
     },
@@ -100,6 +104,7 @@ export const ayakkabiSuGecirmezSpreyNasilKullanilir: CareGuide = {
       links: [
         { type: "guide", slug: "deri-ayakkabi-nasil-temizlenir", label: "Deri ayakkabı nasıl temizlenir?" },
         { type: "guide", slug: "bot-nasil-temizlenir", label: "Bot nasıl temizlenir?" },
+        { type: "guide", slug: "ugg-nasil-temizlenir", label: "UGG nasıl temizlenir?" },
       ],
       sourceIds: [
         "timberlandCare",

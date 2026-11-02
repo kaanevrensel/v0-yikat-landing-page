@@ -55,7 +55,7 @@ export const murekkepLekesiNasilCikar: CareGuide = {
         "Bakım etiketine bak; oradaki sıcaklık üst sınırdır. Yalnızca kuru temizleme işareti varsa ya da kumaş ipek, yün, asetat, triasetat, modakrilik veya akrilikse hassas kumaş bölümüne geç.",
         "Tide’ın önerdiği renk testini yap: alkolü pamuklu çubukla dikiş payı gibi görünmeyen bir yere sür, 1–3 dakika bekle ve kâğıt havluyla bastır. Havluya renk geçmiyor, kumaş da bozulmuyorsa devam et; değişiklik görürsen dur.",
         "Giysiyi lekeli yüzü aşağı bakacak şekilde birkaç kat temiz kâğıt havlunun üstüne ser.",
-        "Amerikan Temizlik Enstitüsü’nün (ACI) önerdiği gibi önce lekenin çevresini alkolle nemlendir, sonra alkollü pamukla lekenin arkasından bastır. Ovma; alttaki havlu boyandıkça yenisiyle değiştir.",
+        "American Cleaning Institute’un (ACI) önerdiği gibi önce lekenin çevresini alkolle nemlendir, sonra alkollü pamukla lekenin arkasından bastır. Ovma; alttaki havlu boyandıkça yenisiyle değiştir.",
         "Alkollü bölgeyi soğuk suyla iyice durula.",
         "Lekeye az miktarda sıvı deterjan dök ve parmaklarınla hafifçe yedir. Tide 5 dakika, Persil 10 dakikaya kadar bekletmeyi söylüyor.",
         "Deterjanı durulamadan giysiyi makineye koy ve etiketin izin verdiği en yüksek sıcaklıkta yıka.",
@@ -76,7 +76,7 @@ export const murekkepLekesiNasilCikar: CareGuide = {
       id: "kurumus",
       title: "Kurumuş ya da yıkanmış mürekkep lekesi nasıl çıkar?",
       paragraphs: [
-        "Kurumuş lekede de aynı alkol ve deterjan sırasını izle, araya uzun bir bekletme ekle. Persil’e göre leke, kumaş yıkandıktan ya da kuruduktan sonra ıslakken olduğundan daha zor çıkar. ACI de bazı tükenmez, keçeli ve sıvı mürekkeplerin hiç çıkmayabileceğini yazıyor.",
+        "Kurumuş lekede de aynı alkol ve deterjan sırasını izle, araya uzun bir bekletme ekle. Persil’e göre leke, kumaş yıkandıktan ya da kuruduktan sonra ıslakken olduğundan daha zor çıkar. ACI da bazı tükenmez, keçeli ve sıvı mürekkeplerin hiç çıkmayabileceğini yazıyor.",
       ],
       steps: [
         "Etiketi oku ve görünmeyen bir yerde renk testini yap.",
@@ -96,13 +96,14 @@ export const murekkepLekesiNasilCikar: CareGuide = {
         "Tahta kalemi ve silinebilir asetat kalemi için kaynaklar ayrı bir yöntem vermiyor; bunlar da keçe uçlu, aynı sırayla dene. Buradaki asetat kalemin adı; asetat kumaşla karıştırma. Kalemin gövdesinde “permanent” ya da “silinmez” yazıyorsa beklentini düşük tut: ACI keçeli kalem mürekkeplerinin bir kısmının hiç çıkmayabileceğini söylüyor.",
         "Yazıcı mürekkebinde Persil kumaşın iki yanına birer kâğıt havlu koyup mürekkebi olabildiğince havluya çekmeni öneriyor. Sonra tükenmez kalemdeki alkol ve deterjan adımlarına geç.",
       ],
+      links: [{ type: "guide", slug: "kiyafetten-boya-lekesi-nasil-cikar", label: "Kıyafetten boya lekesi nasıl çıkar?" }],
       sourceIds: ["ugaInkStain", "aciStainGuide", "persilInkStain"],
     },
     {
       id: "kumas",
       title: "Kumaşa göre mürekkep lekesi nasıl çıkar?",
       paragraphs: [
-        "Persil’e göre ipek ve yün zarar görmemesi için elde yıkanmalı; kot, polyester, naylon ve keten gibi dayanıklı kumaşlar ise ön işlemden sonra makineye girebilir. Polyester, naylon ve likrada Tide bardak yöntemini anlatıyor, ACI de genel bir yol olarak veriyor: lekeli yeri bir bardağın ağzına ger, alkolü damla damla lekenin içinden geçir, mürekkep bardağa aksın.",
+        "Persil’e göre ipek ve yün zarar görmemesi için elde yıkanmalı; kot, polyester, naylon ve keten gibi dayanıklı kumaşlar ise ön işlemden sonra makineye girebilir. Polyester, naylon ve likrada Tide bardak yöntemini anlatıyor, ACI da genel bir yol olarak veriyor: lekeli yeri bir bardağın ağzına ger, alkolü damla damla lekenin içinden geçir, mürekkep bardağa aksın.",
         "Tide asetat, triasetat ve modakrilikte çözücüyle ön işlem yapmamanı, giysiyi bir an önce kuru temizlemeciye götürmeni öneriyor. Georgia Üniversitesi de alkolün bu liflere ve akriliğe zarar verdiğini yazıyor.",
       ],
       table: {
@@ -121,8 +122,8 @@ export const murekkepLekesiNasilCikar: CareGuide = {
         ],
       },
       links: [
-        { type: "guide", slug: "kuru-temizleme-nedir", label: "Kuru temizleme nedir, yıkamadan farkı ne" },
-        { type: "guide", slug: "oje-lekesi-nasil-cikar", label: "Oje lekesi nasıl çıkar" },
+        { type: "guide", slug: "kuru-temizleme-nedir", label: "Kuru temizleme nedir, nasıl yapılır?" },
+        { type: "guide", slug: "oje-lekesi-nasil-cikar", label: "Kıyafetteki oje lekesi nasıl çıkar?" },
       ],
       sourceIds: ["persilInkStain", "tideInkStain", "aciStainGuide", "tideNailPolish", "ugaStainProducts"],
     },
@@ -163,7 +164,7 @@ export const murekkepLekesiNasilCikar: CareGuide = {
         {
           type: "guide",
           slug: "camasir-suyu-lekesi-nasil-cikar",
-          label: "Çamaşır suyu lekesi nasıl çıkar, geri döner mi",
+          label: "Çamaşır suyu lekesi nasıl çıkarılır, nasıl kapatılır?",
         },
       ],
       sourceIds: [
@@ -194,7 +195,13 @@ export const murekkepLekesiNasilCikar: CareGuide = {
       a: "Giysiyi kurutma makinesine atma, adımları tekrarla; Persil ön işlemi ancak leke hâlâ ıslakken tekrarlamayı öneriyor. Birkaç turdan sonra değişmiyorsa havada kurut, daha güçlü bir çözücüye geçme. Hassas ya da değerli bir parçaysa kuru temizlemeciye göster.",
     },
   ],
-  related: ["oje-lekesi-nasil-cikar", "fondoten-lekesi-nasil-cikar", "kuru-temizleme-nedir", "yikama-sembolleri"],
+  related: [
+    "kiyafetten-boya-lekesi-nasil-cikar",
+    "oje-lekesi-nasil-cikar",
+    "fondoten-lekesi-nasil-cikar",
+    "yag-lekesi-nasil-cikar",
+    "ayakkabidaki-leke-nasil-cikar",
+  ],
   sourceIds: [
     "persilInkStain",
     "tideInkStain",

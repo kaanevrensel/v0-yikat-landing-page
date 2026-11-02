@@ -18,7 +18,7 @@ export const ayakkabiNasilKurutulur: CareGuide = {
         "Kurutmadan önce ayakkabıyı aç: kirini al, bağcığı ve tabanlığı çıkar, suyu havluyla bastırarak çek. İçinde ya da kutusunda kurutma talimatı varsa önce ona uy.",
       ],
       steps: [
-        "Kirli ya da çamurluysa kurutmadan önce temizle (Nike); üstünde kir ya da ter kalmışken kurutulan ayakkabıda leke ve koku kalıcı olabilir. Çamuru yaymadan nasıl alacağını çamurlu ayakkabı rehberinde anlattık.",
+        "Kirli ya da çamurluysa kurutmadan önce temizle (Nike); üstünde kir ya da ter kalmışken kurutulan ayakkabıda leke ve koku kalıcı olabilir. Islak çamuru ise hemen ovma: Skechers ıslak çamurun file ve kumaşa daha derin işlediğini söylüyor. Çamur kuruyunca fırçala, sonra malzemesine göre temizle; sırası çamurlu ayakkabı rehberinde.",
         "Bağcıkları çıkar ya da iyice gevşet. Dili yukarı ve öne doğru çek ki hava içeride dolaşabilsin.",
         "Tabanlık çıkıyorsa çıkar ve ayrı kurut. Yapıştırılmış tabanlığı zorlama; Skechers bazı köpük tabanlıklarının hafifçe yapıştırıldığını, çıkarılamadığını belirtiyor.",
         "Yüzeydeki suyu kuru bir havlu ya da mikrofiber bezle bastırarak al. Ovalama; kumaş aşınabilir, kalan kir yayılabilir.",
@@ -26,7 +26,15 @@ export const ayakkabiNasilKurutulur: CareGuide = {
         "Islak ayakkabıyı spor çantasında ya da kapalı dolapta bekletme; orada bir gece kalan ıslak ayakkabı hiç kurumaz.",
       ],
       links: [{ type: "guide", slug: "camurlu-ayakkabi-nasil-temizlenir", label: "Çamurlu ayakkabı nasıl temizlenir" }],
-      sourceIds: ["tomsDryShoes", "skechersCleanGuide", "mizunoDry", "nikeTrClean", "collonilWetShoes", "nikeDry"],
+      sourceIds: [
+        "tomsDryShoes",
+        "skechersCleanGuide",
+        "mizunoDry",
+        "nikeTrClean",
+        "collonilWetShoes",
+        "nikeDry",
+        "skechersKidsShoes",
+      ],
     },
     {
       id: "yontem",
@@ -89,7 +97,7 @@ export const ayakkabiNasilKurutulur: CareGuide = {
       title: "Kurutma makinesinde ayakkabı kurutulur mu?",
       paragraphs: [
         "Hayır, ayakkabıyı kurutma makinesine atma. Kurutma makinesi üreten Haier, spor ayakkabının yapıştırıcısının yüksek ısıda eridiğini, kanvas ve deri ayakkabının da zarar görebileceğini yazıyor; ayakkabıyı havada kurutmanı öneriyor.",
-        "Ayakkabı markaları da benzer riskleri sayıyor. Nike tamburda dönen ayakkabının hırpalandığını, ısının onu çektirebileceğini ve yapıştırıcıyı bozup parçaları ayırabileceğini söylüyor. Skechers ısının yastıklama yapısına da zarar verebileceğini, Mizuno sayayı zayıflatıp çatlatabileceğini yazıyor.",
+        "Ayakkabı markaları da benzer riskleri sayıyor. Nike tamburda dönen ayakkabının hırpalandığını, ısının onu çektirebileceğini ve yapıştırıcıyı bozup parçaları ayırabileceğini söylüyor. Skechers ısının yastıklama yapısına da zarar verebileceğini, Mizuno üst yüzeyi zayıflatıp çatlatabileceğini yazıyor.",
         "Başka ısı kaynaklarından da uzak dur; Collonil güçlü, doğrudan ısının verdiği hasarın çoğu zaman geri dönmediğini söylüyor.",
       ],
       table: {
@@ -162,7 +170,7 @@ export const ayakkabiNasilKurutulur: CareGuide = {
             "Merrell kalorifer ve ısıtıcının yanına koymamanı söylüyor.",
           ],
           [
-            "Koyun postu bot",
+            "Koyun derisi bot",
             "İçine hafifçe kâğıt doldur, yavaş ve doğal yoldan kurusun (UGG).",
             "UGG doğrudan ısıda ve güneşte kurutmamanı söylüyor.",
           ],
@@ -212,7 +220,11 @@ export const ayakkabiNasilKurutulur: CareGuide = {
       },
       links: [
         { type: "guide", slug: "ayakkabi-kokusu-nasil-giderilir", label: "Ayakkabı kokusu nasıl giderilir" },
-        { type: "guide", slug: "ayakkabi-tabanligi-nasil-temizlenir", label: "Ayakkabı tabanlığı nasıl temizlenir" },
+        {
+          type: "guide",
+          slug: "ayakkabi-tabanligi-nasil-temizlenir",
+          label: "Ayakkabı tabanlığı ve içi nasıl temizlenir",
+        },
       ],
       sourceIds: ["aciSneakers", "skechersCleanGuide", "nhsSmellyFeet"],
     },
@@ -267,6 +279,7 @@ export const ayakkabiNasilKurutulur: CareGuide = {
     "skechersCleanGuide",
     "mizunoDry",
     "nikeDry",
+    "skechersKidsShoes",
     "merrellCare",
     "aciSneakers",
     "nikeRunning",

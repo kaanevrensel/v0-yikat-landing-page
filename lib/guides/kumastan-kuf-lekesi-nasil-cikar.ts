@@ -4,40 +4,40 @@ import type { CareGuide } from "@/lib/discovery"
 
 export const kumastanKufLekesiNasilCikar: CareGuide = {
   slug: "kumastan-kuf-lekesi-nasil-cikar",
-  title: "Kumaştan küf lekesi nasıl çıkar? Çamaşır ve havlu",
-  description: "Kumaştaki küf lekesi kuru fırçalama, deterjanla ön işlem ve etiketin izin verdiği en sıcak yıkamayla çıkar. Bekletme, çamaşır suyu ve küf kokusu da burada.",
+  title: "Küf lekesi nasıl çıkar? Kıyafet, beyaz çamaşır ve havlu",
+  description: "Kumaştaki küf lekesi dışarıda fırçalama, deterjanla ön işlem ve etiketteki en sıcak yıkamayla çıkar. Çamaşır suyu yalnızca etiketi izin veren beyazlarda.",
   category: "Tekstil",
   topic: "Leke çıkarma",
   published: "2026-11-02",
-  answer: "Küf lekesi kumaştan şöyle çıkar: giysi kuruyken üstündeki küfü dışarıda fırçayla al, lekeye biraz sıvı deterjan sürüp hafifçe fırçala, sonra bakım etiketinin izin verdiği en yüksek sıcaklıkta yıka. İz kaldıysa giysiyi kurutmadan deterjanlı suda beklet ve yeniden yıka. Klorlu çamaşır suyu yalnızca etiketi ağartmaya izin veren beyazlarda ve tek başına kullanılır. Çok eski küf kumaşı zayıflatmış olabilir; leke tamamen çıkmayabilir.",
+  answer: "Küf lekesi kumaştan şöyle çıkar: üstündeki küfü dışarıda fırçayla al, lekeye biraz sıvı deterjan sür, kot ya da pamukluysa hafifçe fırçala, sonra bakım etiketinin izin verdiği en yüksek sıcaklıkta yıka. İz kaldıysa giysiyi kurutmadan deterjanlı suda beklet ve yeniden yıka. Çamaşır suyunu yalnızca etiketi klorlu ağartmaya izin veren beyazlarda kullan, başka hiçbir temizleyiciyle karıştırma. Ağır küflenmiş kumaş zarar görmüş olabilir; o zaman leke tamamen çıkmayabilir.",
   sections: [
     {
       id: "neden",
       title: "Kumaşta küf lekesi neden oluşur?",
       paragraphs: [
-        "Küf lekesi, uzun süre ıslak ya da nemli kalan kumaşta oluşur. Persil’in tarif ettiği tipik durum, makinede ya da çamaşır sepetinde unutulan ıslak çamaşır; bu giysiler kısa sürede kokmaya başlıyor. Tide’a göre sıcak, karanlık bir yerde birkaç saat beklemek bile küf kokusuna yetebiliyor.",
-        "Missouri Üniversitesi’nin yayım servisine göre küf en çok pamuk, keten, viskon, ipek ve yünde ürüyor; birçok sentetik dayanıklı, ama kirliyse o da küflenebiliyor. Dolapta bekleyen kıyafetteki rutubet lekesi de genellikle aynı şey: Missouri, havasız dolapta nemli havalarda bekleyen eşyanın küflenebildiğini yazıyor.",
-        "Küf zamanla kumaşı da zayıflatır. Missouri küfün kumaşın rengini bozduğunu, ilerlerse lifleri çürütebildiğini, American Cleaning Institute (ACI) da ağır küflenmiş kumaşın onarılamayacak kadar zarar görmüş olabileceğini yazıyor. Lekeyi fark ettiğin gün işe başla.",
+        "Küf lekesi, uzun süre ıslak ya da nemli kalan kumaşta oluşur. Persil’in örneği tanıdık: makinede ya da çamaşır sepetinde unutulan ıslak çamaşır kısa sürede kokmaya başlar. Tide’a göre sıcak, karanlık bir yerde birkaç saat kalması bile küf kokusuna yetebiliyor.",
+        "Missouri Üniversitesi’nin ev bakımı kılavuzuna göre küf en çok pamukta, ketende, viskonda, ipekte ve yünde görülür. Sentetiklerin çoğu küfe dayanıklıdır, ama kirliyse onlar da küflenebilir.",
+        "Küf zamanla kumaşa da zarar verir: rengini bozar, ilerlerse kumaşı çürütebilir. American Cleaning Institute (ACI) da ağır küflenmiş kumaşın onarılamayacak kadar zarar görmüş olabileceğini yazıyor. Lekeyi fark ettiğin gün işe başla.",
       ],
       sourceIds: ["persilMouldRustStain", "tideTowelOdour", "missouriMildew", "aciStainGuide"],
     },
     {
       id: "adimlar",
-      title: "Kıyafetten küf lekesi adım adım nasıl çıkar?",
+      title: "Kıyafetten küf lekesi nasıl çıkar?",
       paragraphs: [
-        "Kıyafetten küf lekesini kuru küfü dışarıda fırçalayarak, deterjanla ön işlem yaparak ve etiketin izin verdiği en sıcak suda yıkayarak çıkarırsın. Bekletme süresinde markalar ayrışıyor. Persil deterjanlı soğuk suda 10 dakika, kurumuş lekede birkaç saat diyor; Tide ılık suda toz deterjanla iki saat. Ilık suyu yalnızca etiket izin veriyorsa seç.",
+        "Kıyafetteki küf lekesi için yüzeydeki küfü dışarıda fırçala, deterjanla ön işlem yap ve etiketin izin verdiği en sıcak suda yıka. Bekletmede markalar farklı: Persil deterjanlı soğuk suda 10 dakika diyor, Tide ılık suda toz deterjanla iki saat. Ilık suyu yalnızca etiket izin veriyorsa seç.",
       ],
       steps: [
-        "Bakım etiketine bak: leğendeki sayı aşılmaması gereken en yüksek sıcaklık, üçgen ağartıcı iznini gösterir.",
-        "Kullanacağın deterjanı önce iç dikiş payı gibi görünmeyen bir yerde dene; renk ya da doku değişirse dur.",
-        "Giysi kuruyken yüzeydeki küfü dışarıda yumuşak bir fırçayla al; Persil bunu küf parçacıkları eve dağılmasın diye öneriyor.",
-        "Kot ve pamuklu kumaşta lekeye biraz sıvı deterjan dök ve eski bir diş fırçasıyla hafifçe fırçala.",
-        "Giysiyi benzer renklerle birlikte, bakım etiketinin izin verdiği en yüksek sıcaklıkta yıka.",
+        "Bakım etiketine bak: leğendeki sayı aşmaman gereken en yüksek sıcaklıktır, üçgen de ağartıcı iznini gösterir.",
+        "Deterjanı önce iç dikiş payı gibi görünmeyen bir yerde dene; renk ya da doku değişirse devam etme.",
+        "Yüzeydeki küfü dışarıda fırçayla al, böylece küf parçacıkları eve dağılmaz.",
+        "Kot ya da pamukluysa yine dışarıda lekeye biraz sıvı deterjan dök, eski bir diş fırçasıyla hafifçe fırçala.",
+        "Giysiyi benzer çamaşırlarla, etiketin izin verdiği en yüksek sıcaklıkta yıka.",
         "Program bitince giysiyi hemen çıkar ve lekeye bak.",
-        "İz kaldıysa Persil’in yolunu izle: deterjanı soğuk suyla karıştır, giysiyi 10 dakika bu suya batır, lekeye yeniden ön işlem yap ve tekrar yıka.",
-        "Leke çıkana kadar kurutma makinesine koyma; Persil’e göre birçok leke, fark edilmeden kurutucuya girdiği için kalıcı oluyor.",
+        "İz kaldıysa Persil’e göre deterjanı soğuk suya kat, giysiyi 10 dakika bu suya batır, yeniden ön işlem yap, tekrar yıka.",
+        "Leke çıkana kadar giysiyi kurutma makinesine atma; Persil’e göre birçok leke, fark edilmeden kurutucuya girdiği için kalıcı oluyor.",
       ],
-      links: [{ type: "guide", slug: "yikama-sembolleri", label: "Yıkama sembolleri ne anlama gelir?" }],
+      links: [{ type: "guide", slug: "yikama-sembolleri", label: "Etiketteki yıkama sembolleri ne demek?" }],
       sourceIds: [
         "persilMouldRustStain",
         "tideMildewStain",
@@ -51,40 +51,48 @@ export const kumastanKufLekesiNasilCikar: CareGuide = {
       id: "beyaz",
       title: "Beyaz çamaşırdan küf lekesi nasıl çıkar?",
       paragraphs: [
-        "Beyaz pamuklu ve ketende önce aynı adımları uygula; yıkamadan sonra iz kaldıysa ve etiket izin veriyorsa klorlu çamaşır suyu son adım olabilir. Persil bu sırayı öneriyor ve ağartıcıyı ürünün kendi talimatıyla kullanmanı istiyor. GINETEX’e göre etiketteki içi boş üçgen klorlu ağartıcıya da izin verir, iki eğik çizgili üçgen yalnızca oksijenli ağartıcıya izin verir, çarpılı üçgen ise hiç ağartma yapılmaması demektir.",
-        "Doz için önce şişenin etiketine bak. Missouri, 0,95 litre ılık suya 2 yemek kaşığı sıvı klorlu ağartıcı katıp lekeyi bu suyla 5–15 dakika ıslatmayı, sonra durulamayı anlatıyor. İpek, yün ve elastanlı kumaşta klorlu ağartıcının kullanılmamasını söylüyor.",
-        "Çamaşır suyunu başka hiçbir temizleyiciyle karıştırma, art arda da kullanma. Washington Eyalet Sağlık Bakanlığı’na göre çamaşır suyu sirke gibi asitlerle karışınca klor gazı, amonyakla karışınca zehirli gaz çıkarıyor.",
+        "Beyaz pamuklu ve ketende de aynı adımlarla başla; iz kalırsa ve etiket izin veriyorsa son adım klorlu çamaşır suyu olabilir. Persil sırayı böyle veriyor; ağartıcıyı da ürünün kendi talimatıyla kullan. GINETEX’e göre içi boş üçgen klorlu ağartıcıya da izin verir, iki eğik çizgili üçgen yalnızca oksijenli ağartıcıya, çarpılı üçgen ise hiçbir ağartmaya izin vermez.",
+        "Dozu önce çamaşır suyu şişesinden oku. Missouri Üniversitesi, 0,95 litre ılık suya 2 yemek kaşığı sıvı klorlu ağartıcı katmayı, lekeyi bu suyla ıslatıp 5–15 dakika bekletmeyi, sonra durulamayı anlatıyor. Aynı kaynak ipek, yün ve elastanlı kumaşta klorlu ağartıcıyı kullanmamanı söylüyor.",
+        "Çamaşır suyunu başka hiçbir temizleyiciyle karıştırma, sirkeyle art arda da kullanma. Washington Eyaleti Sağlık Bakanlığı’na göre çamaşır suyu sirke gibi asitlerle karışınca klor gazı, amonyakla karışınca zehirli gaz çıkarıyor.",
       ],
-      links: [{ type: "guide", slug: "camasir-suyu-lekesi-nasil-cikar", label: "Çamaşır suyu lekesi nasıl çıkar?" }],
+      links: [
+        {
+          type: "guide",
+          slug: "camasir-suyu-lekesi-nasil-cikar",
+          label: "Çamaşır suyu lekesi çıkar mı, nasıl kapatılır?",
+        },
+        { type: "guide", slug: "beyaz-camasir-nasil-beyazlatilir", label: "Beyaz çamaşır nasıl beyazlatılır?" },
+      ],
       sourceIds: ["persilMouldRustStain", "ginetexCurrent", "missouriMildew", "waDohBleach"],
     },
     {
       id: "renkli-hassas",
-      title: "Renkli, yün ve hassas kumaştan küf lekesi nasıl çıkar?",
+      title: "Renkli kıyafette ve hassas kumaşta küf lekesi nasıl temizlenir?",
       paragraphs: [
-        "Renkli kumaşta da aynı adımlar geçerli; Persil renkliler için yapılmış bir deterjan öneriyor. Leke kalırsa Missouri oksijenli toz ağartıcıyı anlatıyor: 0,47 litre suya 1–2 yemek kaşığı, kumaş kaldırıyorsa sıcak, kaldırmıyorsa ılık su ve en az 30 dakika bekletme.",
-        "Missouri ağartıcıdan önce renkli kumaşın boyasını denemeni istiyor. Persil de limon suyu ve hidrojen peroksit gibi ev çözümlerinin renkli giysiyi ağartabildiğini yazıyor. Etikette boş ya da iki çizgili üçgen yoksa ağartıcıya hiç başlama. Yün, ipek ve sentetikte Persil ağartıcıdan mümkünse kaçınmanı söylüyor, çünkü ağartma bu kumaşları bozup ömrünü kısaltabiliyor; onun yerine hassas kumaş deterjanı öneriyor.",
+        "Renkli kıyafette de aynı adımlar geçerli; Persil renkliler için yapılmış bir deterjan öneriyor. Leke kalırsa Missouri Üniversitesi oksijenli toz ağartıcıyı anlatıyor: 0,47 litre suya 1–2 yemek kaşığı, kumaş kaldırıyorsa sıcak, kaldırmıyorsa ılık su ve en az 30 dakika bekletme.",
+        "Ağartıcıdan önce kumaşın boyasını görünmeyen bir yerde dene. Etikette boş ya da iki çizgili üçgen yoksa ağartıcıya hiç başlama. Persil’e göre limon suyu ve hidrojen peroksit gibi ev çözümleri de renkli giysiyi ağartabiliyor.",
+        "Yün, ipek ve sentetikte Persil mümkünse ağartıcı kullanmamanı söylüyor, çünkü ağartma bu kumaşları bozup ömrünü kısaltabiliyor. Onun yerine hassas kumaşlar için bir deterjan öneriyor.",
       ],
       table: {
         caption: "Kumaşa göre küf lekesinde ne kullanılır?",
         headings: ["Kumaş", "İlk yol", "Ağartıcı"],
         rows: [
-          ["Beyaz pamuk, keten", "Ön işlem, etiketteki en sıcak yıkama", "Etiket izin veriyorsa klorlu da olur"],
+          ["Beyaz pamuk, keten", "Ön işlem, etiketteki en sıcak yıkama", "Etiket izin veriyorsa klorlu da olabilir"],
           ["Renkli pamuk, kot", "Renkliler için deterjan, aynı adımlar", "Etiketin izin verdiği tür, önce boya testi"],
           ["Yün, ipek", "Hassas kumaş deterjanı", "Kullanma"],
           ["Polyester, elastanlı kumaş", "Hassas kumaş deterjanı", "Mümkünse kaçın; elastanda klorlu asla"],
-          ["Yıkanamayan eşya", "Kuru temizleme (Missouri)", "Evde deneme"],
+          ["Yıkanamayan eşya", "Kuru temizleme", "Evde kullanma"],
         ],
       },
-      links: [{ type: "guide", slug: "kuru-temizleme-nedir", label: "Kuru temizleme nedir, hangi giysiye uygulanır?" }],
+      links: [{ type: "guide", slug: "kuru-temizleme-nedir", label: "Kuru temizleme nedir, nasıl yapılır?" }],
       sourceIds: ["persilMouldRustStain", "missouriMildew", "persilGeneralStainTips", "ginetexCurrent", "aciStainGuide"],
     },
     {
       id: "havlu",
       title: "Havlu ve çamaşırdaki küf kokusu nasıl gider?",
       paragraphs: [
-        "Küf kokan havluyu bakım etiketindeki programda ve etiketin izin verdiği en sıcak suda yeniden yıka, sonra tamamen kurut; Tide bu sırayı öneriyor. Missouri’ye göre yavaş kuruyan kumaş da küf gibi kokabiliyor; havluyu havadar bir yere açarak as.",
-        "Sirkeye Tide temkinli bakıyor: deterjanı daha etkili buluyor, sirkenin aynı yıkamada deterjanın pH’ını değiştirip sonucu tutarsız yaptığını yazıyor. Tide’a göre karbonat da koku için uygun değil, çünkü kokuyu gidermek düşük pH’lı bir madde istiyor. Sirkeyi denersen çamaşır suyuyla asla aynı anda ya da art arda kullanma.",
+        "Küf kokan havluyu etiketteki programda ve izin verilen en sıcak suyla yeniden yıka, sonra tamamen kurut; Tide böyle öneriyor. Missouri Üniversitesi’ne göre yavaş kuruyan kumaş da küf gibi kokabiliyor; havluyu havadar bir yere açarak as.",
+        "Tide deterjanı sirkeden daha etkili buluyor; ikisi aynı yıkamaya girince sirkenin deterjanın pH’ını değiştirdiğini, sonucun da tutarsız olabildiğini yazıyor. Tide’a göre karbonat da koku için uygun değil, çünkü kokuyu gidermek düşük pH’lı bir madde istiyor. Sirkeyi denersen çamaşır suyuyla asla aynı anda ya da art arda kullanma.",
       ],
       links: [{ type: "guide", slug: "havlu-hangi-programda-yikanir", label: "Havlu hangi programda yıkanır?" }],
       sourceIds: ["tideTowelOdour", "missouriMildew", "waDohBleach"],
@@ -93,7 +101,7 @@ export const kumastanKufLekesiNasilCikar: CareGuide = {
       id: "onleme",
       title: "Küf lekesi tekrar olmasın diye ne yapmalı?",
       paragraphs: [
-        "En etkili önlem, çamaşırı ıslak bekletmemek. Ariel çamaşırı program bitince hemen, en geç 2 saat içinde çıkarmanı öneriyor. Tide ıslak havluyu ya da giysiyi kirli sepetine atmamanı, Missouri de yağmurda ya da terle ıslanan giysiyi dolaba koymadan kurutmanı söylüyor. Missouri giysileri sıkıştırmadan asmanı, havasız dolabın kapağını ara ara açmanı ve ıslak duş perdesini toplamadan açık bırakmanı öneriyor.",
+        "Önce çamaşırı ıslak bekletme. Ariel çamaşırı program bitince hemen, en geç 2 saat içinde çıkarmanı öneriyor. Tide ıslak havluyu ya da giysiyi kirli sepetine atmamanı, Missouri Üniversitesi de yağmurda ya da terle ıslanan giysiyi dolaba koymadan kurutmanı söylüyor. Giysileri sıkıştırmadan as, havasız dolabın kapağını ara ara aç, ıslak duş perdesini de toplamadan açık bırak.",
         "Mevsimlik kıyafeti yalnızca temiz ve tamamen kuruyken kaldır. Woolmark vakumlu torbaların nem hapsedebileceğini yazıyor; saklama kutusuna silika jel koymayı ve giysilere ara ara bakmayı öneriyor.",
       ],
       links: [
@@ -106,26 +114,35 @@ export const kumastanKufLekesiNasilCikar: CareGuide = {
   faqs: [
     {
       q: "Sirke küf lekesini çıkarır mı?",
-      a: "Kumaştaki küf lekesi için sirke öneren bir üretici talimatı bulamadık; Tide sirkeyi yalnızca havludaki koku için anlatıyor. Persil’e göre sirke zamanla çamaşır makinesine zarar verir. Çamaşır suyuyla asla bir araya getirme.",
+      a: "Persil’in de Tide’ın da küf lekesi tarifinde sirke yok; Tide sirkeyi yalnızca havludaki koku için anlatıyor. Persil’e göre sirke zamanla çamaşır makinesine zarar verir. Sirkeyi çamaşır suyuyla asla bir araya getirme.",
     },
     {
       q: "Çamaşır suyu küf lekesini çıkarır mı?",
-      a: "Ağartmaya uygun beyaz pamukluda yardımcı olabilir; Persil onu yıkamadan sonra kalan iz için son adım olarak anıyor. Yün, ipek, elastanlı kumaşta ve çarpılı üçgenli etikette kullanma.",
+      a: "Etiketi klorlu ağartmaya izin veren beyaz pamukluda işe yarayabilir; Persil onu yıkamadan sonra kalan iz için son adım olarak anıyor. Yün, ipek ve elastanlı kumaşta ya da etikette içi boş üçgen yoksa kullanma.",
     },
     {
       q: "Renkli kumaştaki küf lekesi çıkar mı?",
-      a: "Çıkabilir, ama tamamen çıkacağının sözü verilemez; Missouri’ye göre küf kumaşın rengini bozabiliyor. Ağartıcıyı yalnızca etiket izin veriyorsa, görünmeyen bir yerde denedikten sonra kullan.",
+      a: "Çıkabilir, ama tamamen çıkması kesin değil, çünkü küf kumaşın rengini de bozabiliyor. Ağartıcıyı yalnızca etiket izin veriyorsa ve görünmeyen bir yerde denedikten sonra kullan.",
     },
     {
       q: "Eski küf lekesi çıkar mı?",
-      a: "Daha zor çıkar, birkaç tur isteyebilir. Persil kurumuş lekede birkaç saat soğuk deterjanlı suda, Missouri eski lekede oksijenli ağartıcıda gece boyu bekletmeyi anlatıyor. ACI’ye göre ağır küflenmiş kumaş kurtarılamayabilir.",
+      a: "Daha zor çıkar, birkaç tur isteyebilir. Missouri Üniversitesi’ne göre uzun süredir duran lekede, etiket izin veriyorsa, kumaşı oksijenli ağartıcıda gece boyu bekletmek gerekebilir. ACI’ya göre ağır küflenmiş kumaş kurtarılamayabilir.",
     },
     {
       q: "Perdedeki küf lekesi nasıl çıkar?",
-      a: "Etiketi yıkamaya izin veren perdede aynı yol geçerli: kuru küfü dışarıda fırçala, ön işlem yap, etiketteki sıcaklıkla yıka. Sonra perdeyi toplamadan kurut.",
+      a: "Etiketi yıkamaya izin veren perdede aynı yol geçerli: yüzeydeki küfü dışarıda fırçala, ön işlem yap, etiketteki sınırı aşmadan yıka. Sonra perdeyi katlamadan, açarak tamamen kurut.",
+    },
+    {
+      q: "Kıyafetteki rutubet lekesi nasıl çıkar?",
+      a: "Dolaptaki kıyafette çıkan rutubet lekesi genellikle küftür, aynı adımlarla çıkar. Missouri Üniversitesi, havasız dolapta nemli havalarda bekleyen eşyanın küflenebildiğini yazıyor.",
     },
   ],
-  related: ["havlu-hangi-programda-yikanir", "camasir-suyu-lekesi-nasil-cikar", "kiyafetten-pas-lekesi-nasil-cikar"],
+  related: [
+    "havlu-hangi-programda-yikanir",
+    "camasir-suyu-lekesi-nasil-cikar",
+    "kiyafetten-pas-lekesi-nasil-cikar",
+    "beyaz-camasir-nasil-beyazlatilir",
+  ],
   sourceIds: [
     "persilMouldRustStain",
     "tideTowelOdour",

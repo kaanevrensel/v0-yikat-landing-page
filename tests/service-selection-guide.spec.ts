@@ -36,7 +36,8 @@ test("service selection guide stays useful without JavaScript and explains the a
 test("service selection guide is discoverable from the guide hub, price guide and sitemap", async ({ page, request }) => {
   for (const entry of ["/rehber", "/rehber/ayakkabi-temizleme-fiyati-neye-gore-belirlenir"]) {
     await page.goto(entry)
-    await expect(page.locator(`main a[href='${path}']`)).toBeVisible()
+    // The price guide links it from its #kuru section and again from its related list; one visible link is enough.
+    await expect(page.locator(`main a[href='${path}']`).first()).toBeVisible()
   }
   await expect(page.getByRole("link", { name: "Bir çift için baz fiyatları incele" })).toHaveAttribute("href", "/ayakkabi-temizleme#fiyat")
   await expect(page.locator("main")).not.toContainText("Güncel ve doğrulanmış bir menü olmadan")

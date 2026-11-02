@@ -89,6 +89,10 @@ export const yikamaSembolleri: CareGuide = {
           ["Çarpılı leğen", "Evde yıkanmaz", "Suya hassas ya da ev makinesi için fazla büyük eşyalar", "Suya sokma"],
         ],
       },
+      links: [
+        { type: "guide", slug: "camasir-kac-derecede-yikanir", label: "Çamaşır kaç derecede yıkanır?" },
+        { type: "guide", slug: "beyazlar-kac-derecede-yikanir", label: "Beyazlar kaç derecede yıkanır?" },
+      ],
       sourceIds: ["ginetexCurrent", "persilCareSymbols"],
     },
     {
@@ -120,7 +124,10 @@ export const yikamaSembolleri: CareGuide = {
           ],
         ],
       },
-      links: [{ type: "guide", slug: "camasir-suyu-lekesi-nasil-cikar", label: "Çamaşır suyu lekesi nasıl çıkar?" }],
+      links: [
+        { type: "guide", slug: "camasir-suyu-lekesi-nasil-cikar", label: "Çamaşır suyu lekesi nasıl çıkar?" },
+        { type: "guide", slug: "beyaz-camasir-nasil-beyazlatilir", label: "Beyaz çamaşır nasıl beyazlatılır?" },
+      ],
       sourceIds: ["ginetexCurrent", "persilCareSymbols", "waDohBleach", "vanishCareSymbols"],
     },
     {
@@ -161,7 +168,7 @@ export const yikamaSembolleri: CareGuide = {
       title: "Ütü sembolleri ve anlamları: noktalar kaç derece?",
       paragraphs: [
         "Ütüdeki noktalar tabanın en yüksek ısısını gösterir: GINETEX’e göre bir nokta 120 °C, iki nokta 160 °C, üç nokta 210 °C’ye kadar. Ütünün ısı düğmesindeki noktalar da aynı kademeleri işaret eder.",
-        "Persil’in Türkçe tablosu ise 110, 150 ve 200 °C veriyor, Woolmark da iki nokta için 150 °C yazıyor. Düşük olan değeri seçersen ikisine de uyarsın.",
+        "Persil’in Türkçe tablosu ise 110, 150 ve 200 °C veriyor, Woolmark da iki nokta için 150 °C yazıyor. Düşük olan değerde kalırsan hepsine uyarsın.",
         "Sıcaklığı kumaşın adına göre değil, etikete göre seç; GINETEX de bunu istiyor. Kabartmalı desen ya da aplike süs varsa dikkatli ol.",
       ],
       table: {
@@ -195,7 +202,10 @@ export const yikamaSembolleri: CareGuide = {
           ["Çarpılı ütü", "Ütülenmez", "Yok", "Ütü kumaşta geri dönüşü olmayan değişiklik yapar."],
         ],
       },
-      links: [{ type: "guide", slug: "gomlek-nasil-utulenir", label: "Gömlek nasıl ütülenir?" }],
+      links: [
+        { type: "guide", slug: "gomlek-nasil-utulenir", label: "Gömlek nasıl ütülenir?" },
+        { type: "guide", slug: "utu-nasil-yapilir", label: "Ütü nasıl yapılır?" },
+      ],
       sourceIds: ["ginetexCurrent", "persilCareSymbols", "woolmarkSymbols", "vanishCareSymbols"],
     },
     {
@@ -212,17 +222,21 @@ export const yikamaSembolleri: CareGuide = {
           [
             "Daire içinde P",
             "Perkloroetilen ya da hidrokarbonla profesyonel kuru temizleme",
-            "Temizlemeci solventli leke çıkarıcıyı kısıtlı kullanabilir, önce gizli bir yerde dener.",
+            "Temizlemeci çözücü bazlı leke çıkarıcıyı kısıtlı kullanabilir, önce gizli bir yerde dener.",
           ],
-          ["Daire içinde F", "Yalnız hidrokarbonla profesyonel kuru temizleme", "Solventli leke çıkarıcı kullanılmaz."],
+          [
+            "Daire içinde F",
+            "Yalnız hidrokarbonla profesyonel kuru temizleme",
+            "Çözücü bazlı leke çıkarıcı kullanılmaz.",
+          ],
           ["Daire içinde W", "Profesyonel ıslak temizleme", "GINETEX’e göre ev makinesiyle yapılamaz."],
           ["Harfin altında tek çizgi", "Daha hafif işlem", "Nem, mekanik hareket ya da kurutma ısısı sınırlanır."],
           ["W’nin altında iki çizgi", "Çok hafif ıslak temizleme", "Çok hassas kumaşlar içindir."],
-          ["Çarpılı daire", "Kuru temizleme yapılmaz", "Solvent içeren leke çıkarıcı da kullanma."],
+          ["Çarpılı daire", "Kuru temizleme yapılmaz", "Çözücü içeren leke çıkarıcı da kullanma."],
           ["İçinde W olan çarpılı daire", "Profesyonel ıslak temizleme yapılmaz", "Kuru temizleme iznine ayrıca bak."],
         ],
       },
-      links: [{ type: "guide", slug: "kuru-temizleme-nedir", label: "Kuru temizleme nedir, yıkamadan farkı ne?" }],
+      links: [{ type: "guide", slug: "kuru-temizleme-nedir", label: "Kuru temizleme nedir, nasıl yapılır?" }],
       sourceIds: ["ginetexCurrent", "ginetex", "boschWashingSymbolsPdf"],
     },
     {
@@ -264,6 +278,7 @@ export const yikamaSembolleri: CareGuide = {
       },
       links: [
         { type: "guide", slug: "sisme-mont-nasil-yikanir", label: "Şişme mont nasıl yıkanır?" },
+        { type: "guide", slug: "yun-kazak-nasil-yikanir", label: "Yün kazak nasıl yıkanır?" },
         { type: "guide", slug: "perde-nasil-yikanir", label: "Perde nasıl yıkanır?" },
       ],
       sourceIds: [
@@ -303,7 +318,13 @@ export const yikamaSembolleri: CareGuide = {
       a: "Tek nokta en fazla 120 °C, iki nokta 160 °C, üç nokta 210 °C; bunlar GINETEX’in değerleri. Persil her kademeyi 10 °C düşük veriyor; emin değilsen düşük olanı seç.",
     },
   ],
-  related: ["kuru-temizleme-nedir", "gomlek-nasil-utulenir", "yorgan-nasil-yikanir"],
+  related: [
+    "kuru-temizleme-nedir",
+    "gomlek-nasil-utulenir",
+    "yorgan-nasil-yikanir",
+    "camasir-kac-derecede-yikanir",
+    "beyazlar-kac-derecede-yikanir",
+  ],
   sourceIds: [
     "ginetex",
     "ginetexCurrent",

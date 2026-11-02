@@ -116,6 +116,7 @@ export const skechersAyakkabiNasilYikanir: CareGuide = {
       paragraphs: [
         "Hayır, ışıklı Skechers ne çamaşır makinesine ne kurutma makinesine girer; Skechers pili ve ışıkları korumak için suya da batırmamanı istiyor. Dışını ılık su ve yumuşak sabunla nemlendirip sıktığın bir bezle sil; ışık panellerine fırça değdirme, ısıdan uzakta kurut.",
       ],
+      links: [{ type: "guide", slug: "isikli-ayakkabi-nasil-yikanir", label: "Işıklı ayakkabı nasıl yıkanır" }],
       sourceIds: ["skechersCleanGuide", "skechersKidsShoes"],
     },
     {
@@ -151,6 +152,7 @@ export const skechersAyakkabiNasilYikanir: CareGuide = {
   ],
   related: [
     "ayakkabi-makinede-yikanir-mi",
+    "isikli-ayakkabi-nasil-yikanir",
     "spor-ayakkabi-nasil-temizlenir",
     "new-balance-nasil-temizlenir",
     "ayakkabi-nasil-kurutulur",

@@ -20,8 +20,8 @@ export const mumLekesiNasilCikar: CareGuide = {
       steps: [
         "Damlayan mumu silme, ovalama; dokunmadan kurumasını bekle.",
         "Acelen varsa buzu bir poşete koy ve lekenin üstüne bırak. Buzla dondurup işi hızlandırmayı Persil öneriyor; buzu poşete koymayı da Georgia Üniversitesi döşemelik kumaş için anlatıyor.",
-        "Ya da Tide’ın yolunu dene: giysinin tamamını dondur, donan mumu kırıp kopar.",
-        "Mum iyice sertleşince kaşıkla ya da küt uçlu bir bıçakla nazikçe kazı. Persil de Vanish de bu iki aleti öneriyor.",
+        "Ya da Tide’ın yolunu dene: giysiyi dondurucuya koy, donan mumu kırıp kopar.",
+        "Mum iyice sertleşince kaşıkla ya da küt uçlu bir bıçakla nazikçe kazı.",
         "Kabuk kalkınca kumaşta ince bir mum tabakasıyla koyu bir iz kalabilir; tabakayı ütüyle alırsın.",
       ],
       sourceIds: ["tideWaxStain", "persilWaxCrayonStain", "vanishCandleWax", "ugaCandleWaxStain"],
@@ -30,13 +30,13 @@ export const mumLekesiNasilCikar: CareGuide = {
       id: "utu",
       title: "Kumaşa işleyen mum lekesi ütüyle nasıl çıkar?",
       paragraphs: [
-        "Lekeyi iki kâğıt havlunun arasına alıp düşük ısıdaki ütüyle bastırırsın; ısınan mum yeniden erir ve kâğıda geçer. Vanish bu yöntemi sentetik ve pamuklu kumaş için anlatıyor; önce yıkama talimatına bakmanı da istiyor. Isıda kaynaklar aynı yerde: Tide düşük ısı ve buharsız ütü diyor, American Cleaning Institute (ACI) ile Persil de ılık ütü.",
+        "Lekeyi iki kâğıt havlunun arasına alıp düşük ısıdaki ütüyle bastırırsın; ısınan mum yeniden erir ve kâğıda geçer. Vanish bu yöntemi sentetik ve pamuklu kumaş için anlatıyor; önce yıkama talimatına bakmanı da istiyor. Ütü ısısında kaynaklar hemfikir sayılır: Tide düşük ısıda buharsız ütü diyor, American Cleaning Institute (ACI) ile Persil de ılık ütü öneriyor.",
       ],
       steps: [
         "Bakım etiketindeki ütü simgesine bak. Üstünde çarpı varsa ütüyü hiç kullanma; GINETEX’e göre o kumaşta ütü geri dönüşü olmayan değişikliğe yol açabilir.",
         "Ütüyü düşük ısıya getir ve buharı kapat.",
         "Giysiyi ütü masasına ser, lekenin altına ve üstüne beyaz, desensiz kâğıt havlu koy.",
-        "Ütüyü kumaşın tersinden, kâğıdın üstüne bastır ve kaldır. Tersinden çalışmayı Georgia Üniversitesi öneriyor; Tide da ütüyü tek noktada uzun süre bırakmamanı istiyor.",
+        "Ütüyü kumaşın tersinden, kâğıdın üstüne bastırıp kaldır; tek noktada uzun süre bekletme.",
         "Kâğıt mumu emdikçe temiz bir kâğıtla değiştir. ACI bunu hem daha çok mum çekmek hem de lekeyi kumaşın başka yerine taşımamak için öneriyor.",
         "Kâğıda yeni mum geçmeyene kadar devam et, sonra yağlı ize geç.",
       ],
@@ -54,8 +54,8 @@ export const mumLekesiNasilCikar: CareGuide = {
       id: "yag-izi",
       title: "Mumdan kalan yağlı iz ve renk nasıl çıkar?",
       paragraphs: [
-        "Mum kalkınca yerinde yağlı, koyu bir iz kalabilir; onu deterjanla ön işlem yapıp etiketin izin verdiği en sıcak suda yıkayarak çıkarırsın. Persil’e göre de asıl zor olan mumun kendisi değil, mum yağı ve onunla gelen renk lekesi.",
-        "Renkli mum, hele beyaz giysideyse, daha da zor çıkar. Persil bu boyanın gitmesi için işlemi birkaç kez tekrarlamak gerekebileceğini yazıyor. Renk izi kalırsa ACI, kumaşa uygunsa çamaşır suyuyla ya da oksijenli ağartıcıyla yeniden yıkamayı öneriyor. Etiket ağartmaya izin vermiyorsa ikisini de kullanma; çamaşır suyunu da hiçbir temizlik ürünüyle karıştırma.",
+        "Mum kalkınca yerinde yağlı, koyu bir iz kalabilir; ona deterjanla ön işlem uygulayıp etiketin izin verdiği en sıcak suda yıkayarak çıkarırsın. Persil’e göre de asıl zor olan mumun kendisi değil, mum yağı ve onunla gelen renk lekesi.",
+        "Renkli mum, hele beyaz giysideyse, daha da zor çıkar. Persil bu boyanın gitmesi için işlemi birkaç kez tekrarlamak gerekebileceğini yazıyor. Renk izi kalırsa ACI, kumaşa uygunsa çamaşır suyuyla ya da oksijenli ağartıcıyla yeniden yıkamayı öneriyor. Etiketteki üçgenin izin vermediği ağartıcıyı kullanma; çamaşır suyunu da hiçbir temizlik ürünüyle karıştırma.",
       ],
       steps: [
         "Önce iç dikiş gibi gözden uzak bir yere biraz deterjan sür; renk akarsa ya da kumaşın dokusu değişirse lekeye geçme.",
@@ -64,9 +64,10 @@ export const mumLekesiNasilCikar: CareGuide = {
         "Deterjanı durulamadan giysiyi makineye koy; Tide lekede kalan deterjanın yıkamaya güç kattığını söylüyor.",
         "Etiketin izin verdiği en sıcak programda yıka. Persil 50–60 °C’yi en iyi aralık sayıyor, ama etikette daha düşük bir sayı yazıyorsa o sayı üst sınırdır.",
         "Program bitince giysiyi hemen çıkar ve lekeye ışıkta bak.",
-        "İz kaldıysa kurutma makinesine atma, ön işlemi ve yıkamayı tekrarla. Tide kurutmanın lekeyi sabitlediğini söylüyor; Persil de leke çıkmadan kurutucuya koymamanı istiyor.",
+        "İz kaldıysa kurutma makinesine atma, ön işlemi ve yıkamayı tekrarla. Tide kurutmanın lekeyi sabitlediğini söylüyor; Persil de leke çıkmadan kurutucuya koymamanı istiyor. Profilo’nun bir kurutucu kılavuzu, parafin bulaşmış çamaşırın makinede tutuşabileceğini de yazıyor.",
       ],
-      sourceIds: ["persilWaxCrayonStain", "aciStainGuide", "vanishCandleWax", "tideWaxStain"],
+      links: [{ type: "guide", slug: "yag-lekesi-nasil-cikar", label: "Kıyafetteki yağ lekesi nasıl çıkar?" }],
+      sourceIds: ["persilWaxCrayonStain", "aciStainGuide", "vanishCandleWax", "tideWaxStain", "profiloDryerManual"],
     },
     {
       id: "beklemis",
@@ -109,7 +110,7 @@ export const mumLekesiNasilCikar: CareGuide = {
       id: "hassas",
       title: "Ütülenemeyen kumaşta mum lekesi nasıl çıkar?",
       paragraphs: [
-        "Etiketteki ütü çarpılıysa ya da giysi yalnızca kuru temizlemelikse mumun sertleşmesini bekle, nazikçe kazı ve gerisini kuru temizleyiciye bırak. Vanish ve Persil de bazı kumaş ve lekelerde profesyonel destek gerekebileceğini yazıyor.",
+        "Etiketteki ütü çarpılıysa ya da giysi yalnızca kuru temizlemelikse mumun sertleşmesini bekle, nazikçe kazı ve gerisini kuru temizlemeciye bırak. Vanish ve Persil de bazı kumaş ve lekelerde profesyonel destek gerekebileceğini yazıyor.",
         "Terebentin, alkol, tiner ya da aseton gibi çözücülere uzanma. Vanish bu uyarıyı halı ve kilim için yapıyor: terebentin ya da alkol gibi ürünler dönüşü olmayan zarar verebilir.",
       ],
       links: [{ type: "guide", slug: "kuru-temizleme-nedir", label: "Kuru temizleme nedir, nasıl yapılır?" }],
@@ -119,8 +120,9 @@ export const mumLekesiNasilCikar: CareGuide = {
       id: "sakiz",
       title: "Sakız da mum gibi mi çıkar?",
       paragraphs: [
-        "Dondurup kazıma kısmı aynı. Persil sakızı da üstüne buz koyup dondurmayı, sonra kaşıkla ya da küt bir bıçakla kazımayı öneriyor. Isıyla çıkarmak istersen yol farklı. Persil sakızı saç kurutma makinesiyle eritmeden yumuşatmayı, sonra giysiyi sakız kartona değecek şekilde serip tersinden orta ısıda ütülemeyi anlatıyor.",
+        "Dondurup kazıma kısmı aynı: Persil sakızı da buzla dondurup kaşıkla ya da küt bir bıçakla kazımayı öneriyor. Isıyla çıkarırken yol farklı: Persil sakızda kâğıt havlu yerine karton kullanıyor, tersinden orta ısıda ütülüyor; bunu da yalnızca etiketteki ütü simgesi orta ısıya izin veriyorsa dene.",
       ],
+      links: [{ type: "guide", slug: "kiyafete-yapisan-sakiz-nasil-cikar", label: "Kıyafete yapışan sakız nasıl çıkar?" }],
       sourceIds: ["persilGumStain"],
     },
   ],
@@ -143,10 +145,10 @@ export const mumLekesiNasilCikar: CareGuide = {
     },
     {
       q: "Ütü yerine saç kurutma makinesi olur mu?",
-      a: "Tide’a göre olur; ütün yoksa bu yolu anlatıyor. Mum düşük ısıda erir; saç kurutma makinesiyle yumuşatıp kâğıt havluyla emdirebilirsin. Kalan izi yine deterjanla işleyip yıkarsın.",
+      a: "Tide’a göre olur; ütün yoksa bu yolu anlatıyor. Mum düşük ısıda erir; saç kurutma makinesini tek noktada tutmadan mumu yumuşat, kâğıt havluyla emdir ve kumaşın dokusu değişirse dur. Kalan izi yine deterjanla işleyip yıkarsın.",
     },
   ],
-  related: ["oje-lekesi-nasil-cikar", "yikama-sembolleri"],
+  related: ["yag-lekesi-nasil-cikar", "kiyafete-yapisan-sakiz-nasil-cikar", "oje-lekesi-nasil-cikar", "yikama-sembolleri"],
   sourceIds: [
     "tideWaxStain",
     "persilWaxCrayonStain",
@@ -154,6 +156,7 @@ export const mumLekesiNasilCikar: CareGuide = {
     "ugaCandleWaxStain",
     "aciStainGuide",
     "ginetexCurrent",
+    "profiloDryerManual",
     "persilGumStain",
   ],
 }

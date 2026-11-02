@@ -4,61 +4,197 @@ import type { CareGuide } from "@/lib/discovery"
 
 export const yagmurdaIslananAyakkabiBakimi: CareGuide = {
   slug: "yagmurda-islanan-ayakkabi-bakimi",
-  title: "Yağmurda ıslanan ayakkabıya ne yapılır?",
-  description: "Islak ayakkabıda ilk kontrol: yüzey, astar ve tabanlık. Isıya başvurmadan nemi yönet, iz ile hasarı ayır ve yeniden kullanmadan önce kontrol et.",
+  title: "Yağmurda ıslanan ayakkabıya ne yapılır? Süet, deri ve koku",
+  description: "Ayakkabın yağmurda ıslandıysa tabanlığı çıkar, içini kâğıtla doldur, ısıdan uzakta kurut. Süet, deri ve spor ayakkabıda su izi, koku ve korunma.",
   category: "Ayakkabı",
   topic: "Yıkama ve kurutma",
   published: "2026-10-15",
-  answer: "Ayakkabıyı çıkar, gevşet ve yalnız çıkarılabilir parçalarını ayır. Fazla nemi nazikçe al; kalorifer, saç kurutma makinesi veya kurutucu kullanma. Hava alan bir yerde, biçimini zorlamadan kurumasına izin ver. Sonrasında iç yüzeyi, tabanlığı ve birleşim yerlerini kontrol et.",
+  updated: "2026-11-02",
+  answer: "Yağmurda ıslanan ayakkabıyı eve girince hemen çıkar, bağcığını gevşet, tabanlığını çıkar ve içini buruşturulmuş kâğıtla burun ucuna kadar doldur. Sonra oda sıcaklığında, güneş almayan havadar bir yerde kurumaya bırak; kâğıt ıslandıkça değiştir. Kalorifer, saç kurutma makinesi ya da güneş kullanma; ısı yapıştırıcıyı ve deriyi bozabilir. Süre için Nike yaklaşık 12 saat diyor, Collonil ise tam kurumanın 1–2 günü bulabileceğini söylüyor.",
   sections: [
     {
       id: "ilk-kontrol",
-      title: "Yalnız üstü mü ıslandı, içine de su girdi mi?",
+      title: "Ayakkabın su aldıysa eve girince ilk ne yapmalısın?",
       paragraphs: [
-        "Yağmur damlası, su birikintisi ve ayakkabının içine dolan su aynı başlangıç değildir. Üstü hafif ıslak görünen bir çiftin iç astarı nemli olabilir; tersi de mümkündür. İlk değerlendirmede dili açıp iç kısma bak. Yapışık tabanlığı sırf kontrol için zorlayarak çıkarma.",
-        "Clarks’ın bakım rehberi, kurutma için yapay ısı kaynaklarına başvurulmamasını belirtir. Buradaki ilk yardım yaklaşımı da süreyi zorla kısaltmak yerine ayakkabının durumunu izlemektir.",
+        "Yağmurda ıslanan ayakkabıda ilk iş onu çıkarmak, içini açmak ve kâğıtla doldurmak; ne kadar erken başlarsan ayakkabı o kadar kısa süre ıslak kalır. GORE-TEX de ayakkabıyı uzun süre ıslak bırakmamanı söylüyor.",
+        "Elini burun ucuna kadar sokup içine su girmiş mi bak. Girmediyse dışındaki suyu kuru bir bezle bastırarak alıp ayakkabıyı ısıdan ve güneşten uzakta, havadar bir yerde kurumaya bırakman yeter. Girdiyse tabanlık ve astar da kurumalı; aşağıdaki adımların hepsini uygula.",
       ],
-      sourceIds: ["clarksCare"],
-    },
-    {
-      id: "ayir",
-      title: "Islaklık, leke ve açılma farklı kararlar",
-      table: {
-        caption: "İlk fotoğrafta neyi göstermeli?",
-        headings: ["Gözlem", "Paylaşılacak bilgi"],
-        rows: [
-          ["İçine su girdi", "Ne kadar süre ıslak kaldığı ve tabanlığın çıkıp çıkmadığı."],
-          ["Yüzeyde halka veya koyuluk", "Ayakkabı kuruduktan sonraki görünüm ve malzeme."],
-          ["Taban kenarında aralık", "Yakın plan ile bütün ayakkabının fotoğrafı."],
-          ["Sertleşme veya şekil değişimi", "Daha önce ısı veya kimyasal uygulanıp uygulanmadığı."],
-        ],
-      },
+      steps: [
+        "Eve girer girmez ayakkabını ve ıslak çorabını çıkar. Ayakkabıyı ıslak hâliyle poşete, spor çantasına ya da kapalı dolaba koyup bekletme.",
+        "Dışındaki suyu kuru, emici bir bezle bastırarak al.",
+        "Çamuru ıslakken silip ovma, önce kurusun: Skechers ıslak çamurun file ve kumaşa daha derin işlediğini, Nike da süeti ıslakken fırçalamanın leke bırakabileceğini söylüyor. Kuruyunca fırçayla al; temizlik sırası çamurlu ayakkabı rehberinde.",
+        "Bağcığı gevşet ya da tamamen sök, dili öne doğru aç ki ayakkabının içi havalansın.",
+        "Tabanlık çıkan türdense ayırıp ayrı kurut; yapıştırılmış tabanlığı sırf bakmak için zorlama.",
+        "İçine buruşturulmuş kâğıdı burun ucuna kadar doldur. Açık renkli ayakkabıda ve süette gazete yerine düz beyaz kâğıt ya da kâğıt havlu kullan; mürekkep astara geçebilir.",
+        "Dış yüzey de kurusun diye ayakkabıyı emici bir havluya sarabilir ya da birkaç sayfa kâğıdın üstüne koyabilirsin.",
+        "Kapı önündeki ıslak paspasta bırakma; ayakkabıyı ev içinde, güneş almayan havadar bir yere koy. Kaloriferin, sobanın ya da ısıtıcının yanına koyma.",
+      ],
+      links: [{ type: "guide", slug: "camurlu-ayakkabi-nasil-temizlenir", label: "Çamurlu ayakkabı nasıl temizlenir?" }],
+      sourceIds: [
+        "goreTexFootwearCare",
+        "pumaTrCare",
+        "nikeDry",
+        "clarksCare",
+        "tomsDryShoes",
+        "timberlandStains",
+        "collonilWetShoes",
+        "nikeSuede",
+        "skechersKidsShoes",
+      ],
     },
     {
       id: "kuruma",
-      title: "Kurumasını beklerken",
+      title: "Islanan ayakkabı nasıl kurutulur, ne kadar sürede kurur?",
       paragraphs: [
-        "Ayakkabıyı kapalı spor çantasında veya poşette bırakma. Çıkarılabilir parçaları ayırmak, gözden kaçan nemi fark etmeye yardımcı olur. Kurutma düzenini, ürünü sıkıştırmayacak ve hava almasına izin verecek şekilde kur.",
-        "Dışarıdan kuru görünmesi tek başına kullanım kararı değildir. Dil, burun içi ve tabanlık altında nem kalıp kalmadığını kontrol et. Ayrıntılı kurutma rehberimiz, bu bölgeleri sırayla gözden geçirmen için ayrı bir liste sunar.",
+        "Islanan ayakkabı ısıyla değil havayla kurur; süreyi en çok ne kadar ıslandığı belirler. Nike gazeteyle doldurulmuş ayakkabı için yaklaşık 12 saat diyor, Collonil ise tam kurumanın bir iki günü bulabileceğini yazıyor.",
+        "Kâğıdı sık değiştir. ASICS ilk kâğıdı 10 dakika sonra çıkarıp yenisini koymanı öneriyor, çünkü kâğıt suyu en çok ilk konduğunda çekiyor. Sonraki saatlerde de kâğıt nemlendikçe kurusuyla değiştir.",
+        "Acelen varsa ısı değil hava kullan. Nike, ayakkabıyı bir fanın önünde birkaç saat ya da kuruyana kadar bekletmeyi öneriyor; ayakkabının ağzını açık tut ki hava içine girsin.",
+        "Giymeden önce ayakkabının içini yokla: burun ucunda, dilin altında ya da tabanlığın altında nem varsa biraz daha beklet. Ayrıntısı ayakkabı kurutma rehberinde.",
+      ],
+      links: [{ type: "guide", slug: "ayakkabi-nasil-kurutulur", label: "Ayakkabı nasıl kurutulur?" }],
+      sourceIds: ["nikeDry", "collonilWetShoes", "asicsShoeCareTips", "tomsDryShoes"],
+    },
+    {
+      id: "isi",
+      title: "Ayakkabı kaloriferde ya da saç kurutma makinesiyle kurutulur mu?",
+      paragraphs: [
+        "Hayır. Islak ayakkabıyı kaloriferin üstünde, sobanın yanında, saç kurutma makinesiyle ya da güneşte kurutma; kısa süreliğine de olsa ısı kullanma. PUMA Türkiye, ısıtıcı yanında ya da güneş altında kurutulan ayakkabının şeklini kaybedebileceğini, kuruyup çatlayabileceğini yazıyor.",
+        "Collonil güçlü ısının deriyi ve sentetiği kırılgan yapıp çatlatabileceğini, bu hasarın çoğu zaman geri dönmediğini söylüyor; Nike de yüksek ısının spor ayakkabının yapıştırıcısına zarar verebileceğini yazıyor. Hangi ısı kaynağının neye zarar verdiği ayakkabı kurutma rehberinde tek tek var.",
+      ],
+      links: [
+        {
+          type: "guide",
+          slug: "ayakkabi-nasil-kurutulur",
+          label: "Ayakkabı kurutma makinesinde ya da kaloriferde kurutulur mu?",
+        },
+      ],
+      sourceIds: ["pumaTrCare", "collonilWetShoes", "nikeDry"],
+    },
+    {
+      id: "ayir",
+      title: "Süet, deri ve spor ayakkabı ıslanırsa ne olur?",
+      paragraphs: [
+        "Islanınca düz deri kuruyup pürüzlenebilir, biçimini kaybedebilir; süet iz bırakabilir. Üzerinde su geçirmez ibaresi olmayan spor ayakkabı da yağmurda içine su alabilir. Hangisi olursa olsun ayakkabıyı ısıtıcıdan ve güneşten uzakta, oda sıcaklığında kurut; bakım etiketinde ya da kutusunda farklı bir talimat varsa o geçerli.",
+        "Yağmur bekleniyorsa süet ve nubuk ayakkabıyı evde bırakmak en kolayı. Giyeceksen önceden süete uygun bir koruyucu sprey sık; Nike bunun su lekesini önlemeye yardım ettiğini yazıyor.",
+      ],
+      table: {
+        caption: "Malzemeye göre: ıslanınca ne olur, kuruyunca ne yapılır?",
+        headings: ["Malzeme", "Islanınca ne olur?", "Kuruyunca ne yap?"],
+        rows: [
+          [
+            "Düz deri",
+            "Collonil’e göre su, deriden besleyici maddeleri çekip onu kuru ve pürüzlü bırakır; deri ıslakken kolayca ezilip biçimini kaybedebilir.",
+            "İçini doldururken biçimini gözet, kuruyunca deri türüne uygun bir bakım ürünü sür (Collonil); ürünü önce görünmeyen bir yerde dene. Birkenstock ahşap kalıbın ayakkabının düzgün kurumasına yardım ettiğini söylüyor.",
+          ],
+          [
+            "Süet ve nubuk",
+            "Nike’a göre süet nemi emer ve kolayca lekelenir; bu yüzden ıslandığında iz bırakabilir.",
+            "Tamamen kurumadan fırçalama; Nike ıslakken fırçalamanın leke bırakabileceğini söylüyor. Kuruyunca havı fırçayla kaldır.",
+          ],
+          [
+            "File, kumaş ve spor ayakkabı",
+            "PUMA Türkiye, üzerinde su geçirmez ibaresi olmayan ayakkabının suyla doğrudan temasta su geçirebileceğini yazıyor.",
+            "PUMA Türkiye kumaş kısımları oda sıcaklığında kurutmayı öneriyor; açık renkliyse içine beyaz kâğıt koy (TOMS).",
+          ],
+          [
+            "Su geçirmez zarlı ayakkabı ve bot",
+            "Red Wing, su geçirmez botlarda bile uzun süre nemde kalmanın deriyi zamanla yıpratabileceğini yazıyor.",
+            "GORE-TEX ılımlı sıcaklıkta doğal yoldan kurutmayı ve doğrudan ısıdan kaçınmayı öneriyor.",
+          ],
+        ],
+      },
+      links: [
+        {
+          type: "guide",
+          slug: "deri-ayakkabi-nasil-temizlenir",
+          label: "Deri ayakkabı nasıl temizlenir ve bakımı yapılır",
+        },
+        {
+          type: "guide",
+          slug: "suet-nubuk-ayakkabi-nasil-temizlenir",
+          label: "Süet ve nubuk ayakkabı nasıl temizlenir",
+        },
+      ],
+      sourceIds: [
+        "collonilWetShoes",
+        "nikeSuede",
+        "pumaTrCare",
+        "birkenstockShoeCare",
+        "tomsDryShoes",
+        "redWingCare",
+        "goreTexFootwearCare",
       ],
     },
     {
       id: "sonra",
-      title: "Kuruduktan sonra kalan sorun",
+      title: "Islanan ayakkabıda su izi ve koku nasıl giderilir?",
       paragraphs: [
-        "Kalan su izi veya farklı doku için hemen yeni bir ürün deneme. Özellikle süet ve karışık malzemelerde iz ile yüzey değişimini birlikte değerlendirmek gerekir. Temizlik, açılmış tabanı yapıştırma veya çatlamış kaplamayı yenileme işlemi değildir.",
-        "Bir etkinlik için ayakkabıya ihtiyacın varsa tarihini baştan belirt. Dükkânın açık olduğu saat, her ıslak çiftin o gün hazır olacağı anlamına gelmez. Ücret ve teslim zamanını kabulde ayakkabının durumuna göre netleştirelim.",
+        "Önce ayakkabının tamamen kuruduğundan emin ol; kalan halkayı, sertliği ya da kokuyu ondan sonra malzemesine uygun yöntemle ele al. Isıyla düzeltmeye çalışma. Kurutma da temizlik de açılmış bir tabanı yapıştırmaz, çatlamış bir yüzeyi yenilemez.",
+        "Collonil, kaplamalı düz derideki su izinin genelde dert olmadığını, çünkü kaplamanın nemin derine işlemesini engellediğini söylüyor. Süet ve nubuk gibi gözenekli derilerde su içeri işler; Collonil burada ev çareleri yerine süet için yapılmış bir temizleyici öneriyor. Hangi ürünü kullanırsan kullan önce görünmeyen küçük bir yerde dene, renk ya da doku değişirse dur. Kışın görülen beyaz tuz izleri ayrı bir konu; onlar için tuz lekesi rehberine bak.",
+        "Kokuya karşı ilk önlem, ayakkabıyı bekletmeden ve ısı kullanmadan kurutmak. ASICS, ayakkabıyı gazeteyle kurutmanın, kendi hâline bırakılan ıslak ayakkabıda sık görülen kokunun önüne geçtiğini söylüyor. Kuruduktan sonra koku geçmediyse koku rehberindeki adımlara geç.",
+      ],
+      links: [
+        { type: "guide", slug: "suet-nubuk-ayakkabi-nasil-temizlenir", label: "Süette su lekesi ve temizlik adımları" },
+        { type: "guide", slug: "ayakkabi-kokusu-nasil-giderilir", label: "Ayakkabı kokusu nasıl giderilir" },
+        { type: "guide", slug: "ayakkabida-tuz-lekesi-nasil-cikar", label: "Ayakkabıda tuz ve kar lekesi nasıl çıkar" },
+      ],
+      sourceIds: ["collonilSnowMarks", "asicsShoeCareTips"],
+    },
+    {
+      id: "koruma",
+      title: "Ayakkabıyı yağmurdan nasıl korursun?",
+      paragraphs: [
+        "Ayakkabın temiz ve tamamen kuruyken malzemesine uygun bir su itici sprey sık; ıslak ya da kirli ayakkabıya sıkma. Clarks ve Collonil spreyi ayakkabı temizlenip kuruduktan sonra sıkmayı öneriyor.",
+        "Spreyi açık havada ya da iyi havalanan bir yerde sık; önce görünmeyen küçük bir yerde dene, renk ya da doku değişirse dur. Mesafeyi, kat sayısını ve kuruma süresini spreyin kutusundan oku; ayrıntısı su geçirmez sprey rehberinde.",
+        "Koruma kalıcı değil; GORE-TEX su yüzeyde boncuk boncuk durmayınca yenilemeyi öneriyor. Yeni ayakkabı alacaksan bunu da hesaba kat. Nike hafif yağmurda su itici ayakkabının yettiğini, sağanağın sık olduğu yerlerde su geçirmez ayakkabı seçmeni öneriyor.",
+      ],
+      links: [
+        {
+          type: "guide",
+          slug: "ayakkabi-su-gecirmez-sprey-nasil-kullanilir",
+          label: "Ayakkabıya su geçirmez sprey nasıl sıkılır",
+        },
+      ],
+      sourceIds: ["clarksCare", "collonilWaterproofing", "goreTexFootwearCare", "nikeRain"],
+    },
+    {
+      id: "yetmezse",
+      title: "Evde kurutma yetmezse ne yapmalı?",
+      paragraphs: [
+        "İki gün geçtiği hâlde içi hâlâ nemliyse, deride sertlik ya da süette belirgin bir halka kaldıysa üst üste ürün deneme. Fotoğraf göndereceksen bir kare bütün ayakkabıyı, bir kare de izin olduğu yeri yakından göstersin.",
+        "Bakırköy’deki dükkânımızda ayakkabıyı görerek değerlendiriyor, yöntemi malzemeye göre seçiyoruz; temizlikten sonra da ayakkabıyı kontrollü biçimde kurutuyoruz. Fotoğrafla ön değerlendirme yapabiliriz; uygun yöntemi, ücreti ve teslim zamanını ayakkabıyı dükkânda gördükten sonra netleştiriyoruz.",
+        "Eski lekeler ya da renk değişimi tamamen düzelmeyebilir, beklentiyi baştan konuşuyoruz. Boyama, onarım veya taban işi yapmıyoruz; yalnızca temizlik ve bakım yapıyoruz.",
+      ],
+      links: [
+        { type: "photo", label: "Ön değerlendirme için fotoğraf gönder" },
+        { type: "service", href: "/ayakkabi-temizleme", label: "Ayakkabının durumunu birlikte değerlendirelim" },
       ],
     },
   ],
   faqs: [
     {
-      q: "Kaloriferin üstüne koyabilir miyim?",
-      a: "Koyma. Doğrudan ısı yerine hava alan ortamda kontrollü kurutmayı seç.",
+      q: "Islak ayakkabıyı kaloriferin üstüne koyabilir miyim?",
+      a: "Hayır, dibine de bırakma. Merrell doğrudan ısının ayakkabının biçimini değiştireceğini söylüyor. Oda sıcaklığında, havayla kurut.",
     },
     {
-      q: "Ertesi sabah giymek güvenli mi?",
-      a: "Saatten çok kuruma durumu önemlidir. İç yüzey ve tabanlıkta nem kalmışsa tekrar kullanma; tek bir kuruma süresi bütün ayakkabılara uymaz.",
+      q: "Islanan ayakkabı ertesi gün giyilir mi?",
+      a: "İçi tamamen kuruduysa giyilir; burun ucunda ya da tabanlığın altında nem varsa beklet. PUMA Türkiye ayakkabıyı bir gün ara vererek giymenin ömrünü uzattığını söylüyor; yağmurlu günlerde iki çifti sırayla giymek bu yüzden işini kolaylaştırır.",
+    },
+    {
+      q: "Islanan ayakkabıya gazete mi, kâğıt havlu mu konur?",
+      a: "İkisi de olur. Collonil gazete yoksa mutfak kâğıdının da işe yarayacağını söylüyor; açık renkli ayakkabıda ve süette mürekkep bulaşmasın diye beyaz kâğıt havluyu seç.",
+    },
+    {
+      q: "Süet ayakkabı yağmurda giyilir mi?",
+      a: "Mümkünse giyme; Clarks süetin su geçirmez olmadığını söylüyor. Yağmura yakalandıysan eve gelince içini beyaz kâğıtla doldur, fırçalamak için tamamen kurumasını bekle.",
+    },
+    {
+      q: "Islanan süet ayakkabı eski hâline döner mi?",
+      a: "Hafif nemlenen süet kuruyunca açılabilir; Clarks nemli bezin süette bıraktığı geçici koyuluğun havada kuruyunca gitmesi gerektiğini söylüyor. İyice ıslanıp halka bırakan süette iz tamamen çıkmayabilir; bu yüzden önce kurut, sonra fırçala.",
+    },
+    {
+      q: "Islanan ayakkabı koku yapar mı?",
+      a: "Yapabilir: uzun süre nemli kalan ayakkabının içi kötü kokmaya başlar. Nike ıslak ayakkabının küf için de uygun bir ortam olduğunu yazıyor; bu yüzden ayakkabıyı bekletmeden ve ısı kullanmadan kurut.",
     },
   ],
   related: [
@@ -69,5 +205,22 @@ export const yagmurdaIslananAyakkabiBakimi: CareGuide = {
     "ayakkabida-tuz-lekesi-nasil-cikar",
   ],
   service: { href: "/ayakkabi-temizleme", label: "Ayakkabının durumunu birlikte değerlendirelim" },
-  sourceIds: ["clarksCare"],
+  sourceIds: [
+    "goreTexFootwearCare",
+    "pumaTrCare",
+    "nikeDry",
+    "clarksCare",
+    "tomsDryShoes",
+    "timberlandStains",
+    "collonilWetShoes",
+    "nikeSuede",
+    "skechersKidsShoes",
+    "asicsShoeCareTips",
+    "birkenstockShoeCare",
+    "redWingCare",
+    "collonilSnowMarks",
+    "collonilWaterproofing",
+    "nikeRain",
+    "merrellCare",
+  ],
 }

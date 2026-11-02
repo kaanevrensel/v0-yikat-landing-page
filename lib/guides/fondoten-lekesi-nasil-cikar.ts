@@ -15,14 +15,14 @@ export const fondotenLekesiNasilCikar: CareGuide = {
       id: "ilk",
       title: "Kıyafete fondöten bulaşınca ilk ne yapmalısın?",
       paragraphs: [
-        "İlk iş, fazlasını sıyırıp lekeyi ovmadan soğuk suyla almak. Persil’e göre makyaj lekesine hızlı davranırsan giysi kurtulabilir.",
+        "Hemen davran ve ovma. Persil’e göre makyaj lekesine hızlı davranırsan giysi kurtulabilir. Koyu giysideki açık renk makyaj izinde de ilk müdahale aynı.",
       ],
       steps: [
-        "Tide’ın dediği gibi fazla makyajı küt bir bıçakla ya da kaşıkla nazikçe sıyır; lekeyi kumaşa bastırma.",
-        "Lekeli yeri tersinden soğuk suya tut; Persil’e göre lekenin büyük kısmı böyle akıp gider.",
-        "Temiz beyaz bir bezi az deterjanla nemlendir ve lekenin üstüne bastırarak kalanını çek.",
-        "Fırçalama, ovalama; Persil’e göre leke böyle yayılabilir.",
-        "Giysiyi kirli sepetinde bekletme; Vanish’e göre fondöten kurursa kumaşa daha çok işler.",
+        "Fazla makyajı küt bir bıçakla ya da kaşıkla nazikçe sıyır; lekeyi kumaşa bastırma.",
+        "Lekeli yeri tersinden soğuk suya tut; lekenin büyük kısmı böyle akıp gider.",
+        "Temiz beyaz bir bezi az deterjanla nemlendir, lekeye bastırarak kalanını çek.",
+        "Fırçalama, ovalama; leke böyle yayılabilir.",
+        "Giysiyi kirli sepetinde bekletme; fondöten kurursa kumaşa daha derin işleyebilir.",
       ],
       sourceIds: ["tideMakeup", "persilMakeupLipstickStain", "persilGeneralStainTips", "vanishFoundation"],
     },
@@ -30,16 +30,16 @@ export const fondotenLekesiNasilCikar: CareGuide = {
       id: "fondoten",
       title: "Kıyafetten fondöten lekesi nasıl çıkar?",
       paragraphs: [
-        "Kıyafetteki fondöten lekesini sıvı deterjanla ön işlem yapıp etiketteki en sıcak suda yıkayarak çıkarırsın. Persil’e göre pamuk ve polyester gibi dayanıklı kumaşlarda bu adımlar yeterli. Beyaz tişörtte ve gömlekte de yol aynı; Persil, koyu giysideki açık renk makyaj izine de aynı işlemi öneriyor.",
-        "Evde sıvı deterjan yoksa Georgia Üniversitesi su bazlı makyaj için iki yol veriyor: lekeyi ıslatıp katı sabunla ov ya da toz deterjanı biraz suyla macun yapıp lekeye sür.",
+        "Kıyafetteki fondöten lekesini sıvı deterjanla ön işlem yapıp etiketteki en sıcak suda yıkayarak çıkarırsın. Persil’e göre pamuk ve polyester gibi dayanıklı kumaşlarda bu adımlar yeterli. Beyaz tişörtte ve gömlekte de yol aynı.",
+        "Evde sıvı deterjan yoksa ve fondötenin ambalajında “su bazlı” yazıyorsa Georgia Üniversitesi iki yol veriyor: lekeyi ıslatıp katı sabunla hafifçe ov ya da toz deterjanı suyla macun yapıp sür.",
       ],
       steps: [
-        "Bakım etiketini oku; giysinin makineye girip girmediğini ve en fazla kaç derecede yıkanacağını oradan öğrenirsin.",
+        "Bakım etiketinden giysinin makineye girip girmediğine ve en fazla kaç derecede yıkanacağına bak.",
         "Deterjanı iç dikiş gibi görünmeyen bir yerde dene; renk akarsa ya da doku değişirse dur.",
         "Lekeye biraz sıvı çamaşır deterjanı dök, parmağınla hafifçe yedir ve beklet: Persil 5 dakika, Tide fondötende 5–10 dakika diyor.",
         "Giysiyi rengi ve kumaşı benzer çamaşırlarla makineye koy.",
         "Normal programda, etiketin izin verdiği en yüksek sıcaklıkta yıka.",
-        "Program biter bitmez giysiyi makineden çıkar ve lekeye bak.",
+        "Program biter bitmez giysiyi çıkar ve lekeye bak.",
         "İz kaldıysa kurutma; giysi ıslakken ön işlemi ve yıkamayı tekrarla.",
       ],
       links: [{ type: "guide", slug: "yikama-sembolleri", label: "Çamaşır yıkama sembolleri ve anlamları" }],
@@ -56,17 +56,18 @@ export const fondotenLekesiNasilCikar: CareGuide = {
       id: "ruj",
       title: "Ruj lekesi nasıl çıkar?",
       paragraphs: [
-        "Ruj lekesi de aynı yolla çıkar: fazlasını sıyır, deterjanla ön işlem yap, etiketteki en sıcak suda yıka. Ariel’e göre ruj yağ, mum ve boya içerir; bu boyalar kumaşı kalıcı olarak boyayabilir ama çabuk davranırsan giysi kurtulabilir. Amerikan Temizlik Enstitüsü (ACI) de kalıcı rujların daha çok uğraştırabileceğini yazıyor; deterjandan sonra kalan iz için alkolü ve risklerini aşağıda, ne kullanılır bölümünde anlattık.",
+        "Ruj lekesi de aynı yolla çıkar: fazlasını sıyır, deterjanla ön işlem yap, etiketteki en sıcak suda yıka. Ariel’e göre ruj yağ, mum ve boya içerir; bu boyalar kumaşı kalıcı boyayabilir ama çabuk davranırsan giysi kurtulabilir. American Cleaning Institute (ACI) da kalıcı rujların daha çok uğraştırabileceğini yazıyor.",
       ],
       steps: [
         "Fazla ruju kaşığın kenarıyla sıyır.",
         "Giysiyi ters çevirip lekeyi akan suyun altında durula: Ariel ılık su, Persil ilk müdahalede soğuk su diyor.",
         "Sıvı deterjanı önce görünmeyen bir yerde dene.",
         "Deterjanı doğrudan rujun üstüne dök, hafifçe yedir ve 5 dakika beklet; Persil böyle öneriyor.",
-        "Deterjanı durulamadan giysiyi makineye koy; Tide’a göre lekede kalan deterjan yıkamaya güç katar.",
+        "Deterjanı durulamadan giysiyi makineye at; Tide’a göre lekenin üstündeki deterjan yıkamayı güçlendirir.",
         "Etiketin izin verdiği en yüksek sıcaklıkta yıka.",
-        "İz kaldıysa kurutma; Tide’a göre ruj çıkmadan kurutursan ısı lekeyi kalıcı yapabilir.",
+        "İz kaldıysa kurutma; ısı ruj lekesini kalıcı yapabilir.",
       ],
+      links: [{ type: "guide", slug: "yag-lekesi-nasil-cikar", label: "Yağ lekesi nasıl çıkar?" }],
       sourceIds: ["arielLipstickStain", "persilMakeupLipstickStain", "aciStainGuide", "tideMakeup"],
     },
     {
@@ -78,7 +79,7 @@ export const fondotenLekesiNasilCikar: CareGuide = {
       steps: [
         "Lekeye su değdirmeden selobantı yapıştır ve çek.",
         "Toz banda geçmeyi bırakana kadar yapıştırıp çekmeyi tekrarla.",
-        "Kalan iz için bir pamuğa biraz deterjan al ve lekeye hafifçe bastır; Tide böyle öneriyor.",
+        "Kalan iz için bir pamuğa biraz deterjan al ve lekeye hafifçe bastır.",
         "Deterjan kalmasın diye lekeli yeri soğuk suyla durula.",
         "Giysiyi etiketin izin verdiği en sıcak suda yıka.",
         "Kurutmadan önce lekenin çıktığına bak.",
@@ -89,7 +90,7 @@ export const fondotenLekesiNasilCikar: CareGuide = {
       id: "kurumus",
       title: "Kurumuş ya da yıkanmış fondöten lekesi çıkar mı?",
       paragraphs: [
-        "Kurumuş fondöten lekesi çıkabilir; sonucu lekenin türü ve ne kadar ısı gördüğü belirler. Makyajlı giysiyi yanlışlıkla yıkadıysan da umut var: Persil’e göre kurutucudan çıkmış sıvı fondöten, ruj ve maskara izi deterjanla ön işlem yapınca çıkabilir.",
+        "Kurumuş fondöten lekesi çıkabilir; sonucu lekenin türü ve ne kadar ısı gördüğü belirler. Yanlışlıkla yıkadıysan da umut var: Persil’e göre kurutucudan çıkmış sıvı fondöten, ruj ve maskara izi deterjanla ön işlem yapınca çıkabilir.",
         "Yine de her iz çıkmayabilir; Ariel ruj boyasının kumaşı kalıcı boyayabildiğini yazıyor. Birkaç denemeden sonra renk açılmaya ya da kumaş bozulmaya başlarsa dur.",
       ],
       steps: [
@@ -106,9 +107,13 @@ export const fondotenLekesiNasilCikar: CareGuide = {
       title: "İpek, yün ve gömlek yakasında makyaj lekesi nasıl çıkar?",
       paragraphs: [
         "İpek ve yünde önce etiketine bak; Persil bu kumaşların makineye dayanamayabileceğini ve en iyi yolun elde yıkamak olduğunu yazıyor. İpekte, ipek ve yüne uygun deterjanı sulandırıp lekeye sür ve kurumasına fırsat vermeden ılık suda elde yıka.",
-        "Vanish ipek eşarp için 30 °C ya da daha soğuk su öneriyor; elde yıkarken çitileme, ovalama. Leke birkaç denemede çıkmazsa ipeği kurutmadan kuru temizleyiciye götür; Persil böyle öneriyor.",
-        "Yünde Woolmark’ın yolu şu: lekeyi kenarından başlayarak leke çıkarıcı spreyle ya da white spirit denen çözücüyle ıslatılmış bezle tamponla, sonra yün deterjanıyla yıka. Çözücü yanıcı olabilir; odayı havalandır, yakında açık alev olmasın, eldiven tak ve önce görünmeyen yerde dene.",
-        "Makineye giremeyen parçada Persil’in yolu şu: lekeye kumaşına uygun deterjandan biraz dök, soğuk suyla durula, temiz beyaz bir bezle kurula. Etikette yalnızca kuru temizleme işareti varsa evde suyla uğraşma. Gömlek yakasındaki ruj ya da fondöten izinde de yukarıdaki fondöten adımlarını uygula.",
+        "Vanish ipek eşarp için 30 °C ya da daha soğuk su öneriyor; elde yıkarken çitileme, ovalama. Leke birkaç denemede çıkmazsa ipeği kurutmadan kuru temizlemeciye götür; Persil böyle öneriyor.",
+        "Yünde Woolmark’ın yolu şu: lekeyi kenarından başlayarak leke çıkarıcı spreyle ıslatılmış bezle tamponla, sonra yünlü deterjanıyla yıka. Odayı havalandır, yakında açık alev olmasın, eldiven tak ve spreyi önce görünmeyen yerde dene. Woolmark’ın saydığı white spirit ise yanıcı bir çözücü; makyaj lekesi için onu evde deneme.",
+        "Makineye giremeyen parçada Persil’in yolu: lekeye kumaşına uygun deterjandan biraz dök, soğuk suyla durula, temiz beyaz bir bezle kurula. Etikette yalnızca kuru temizleme işareti varsa evde suyla uğraşma. Gömlek yakasındaki makyaj izinde de yukarıdaki fondöten adımları geçerli.",
+      ],
+      links: [
+        { type: "guide", slug: "ipek-esarp-nasil-yikanir", label: "İpek eşarp nasıl yıkanır?" },
+        { type: "guide", slug: "gomlek-yakasi-nasil-temizlenir", label: "Gömlek yakası nasıl temizlenir?" },
       ],
       sourceIds: ["persilMakeupLipstickStain", "persilSilkStain", "vanishFoundation", "woolmarkWoolStains", "ugaCosmeticsStain"],
     },
@@ -117,8 +122,8 @@ export const fondotenLekesiNasilCikar: CareGuide = {
       title: "Fondöten lekesini ne çıkarır, neyi kullanmamalısın?",
       paragraphs: [
         "Fondöten lekesini dayanıklı kumaşlarda sıvı çamaşır deterjanı çıkarır. Ev karışımlarına uzanma; Persil makyaj lekesinde ev yapımı ve doğal leke çıkarıcılardan uzak durmanı söylüyor.",
-        "Alkolde kaynaklar ayrışıyor. Persil tuvalet ispirtosunun kumaşa zarar verebileceğini yazıyor. ACI ise peçetedeki ruj için şu yolu anlatıyor: lekeli yüzü birkaç kat kâğıt havlunun üstüne kapat, yüzde 70 ya da 90’lık alkolle ıslattığın bir bezle tamponla. Bu yüzden alkolü yalnızca deterjana direnen ruj izinde, son çare olarak düşün.",
-        "Alkolü deneyeceksen renksiz ve kokusuz olanı seç, önce görünmeyen bir yerde dene, pencereyi aç ve ateşten uzak çalış. Georgia Üniversitesi alkolün bazı boyaları soldurabileceğini, zehirli ve yanıcı olduğunu yazıyor. Asetat, triasetat, modakrilik ve akrilik giysilerde alkol kullanma.",
+        "Alkolde kaynaklar ayrışıyor. Persil tuvalet ispirtosunun kumaşa zarar verebileceğini yazıyor. ACI ise peçetedeki ruj için şu yolu anlatıyor: lekeli yüzü birkaç kat kâğıt havlunun üstüne kapat, yüzde 70 ya da 90’lık alkolle ıslattığın bir bezle tamponla. Alkolü yalnızca deterjana direnen ruj izinde son çare olarak düşün.",
+        "Deneyeceksen eczanede satılan renksiz, kokusuz yüzde 70’lik izopropil alkolü seç, önce görünmeyen bir yerde dene, pencereyi aç ve ateşten uzak çalış. Georgia Üniversitesi alkolün bazı boyaları soldurabileceğini, zehirli ve yanıcı olduğunu yazıyor. Asetat, triasetat, modakrilik ve akrilik giysilerde alkol kullanma.",
       ],
       table: {
         caption: "Makyaj lekesinde ne kullanılır, ne kullanılmaz",
@@ -132,18 +137,14 @@ export const fondotenLekesiNasilCikar: CareGuide = {
           [
             "Misel su, makyaj temizleyicisi",
             "Önerilmiyor, deterjanla başla",
-            "Baktığımız kaynaklarda kumaş için geçmiyor; Persil giysi için yapılmış deterjan ya da leke çıkarıcı öneriyor.",
+            "Kaynaklarda kumaş için geçmiyor; Persil giysiye özel deterjan ya da leke çıkarıcı öneriyor.",
           ],
           [
             "Kolonya, tuvalet ispirtosu",
             "Kullanma",
-            "Georgia Üniversitesi renk ya da koku eklenmiş alkolden kaçınmayı söylüyor; Persil de tuvalet ispirtosunun kumaşa zarar verebileceğini yazıyor.",
+            "Georgia Üniversitesi renkli ya da kokulu alkolden kaçınmanı söylüyor; Persil ispirtoya karşı uyarıyor.",
           ],
-          [
-            "Renksiz, kokusuz alkol",
-            "Yalnızca inatçı ruj izinde, son çare olarak ve testten sonra",
-            "ACI peçetedeki rujda anlatıyor; Persil ispirtoya karşı uyarıyor. Yanıcıdır, bazı boyaları soldurabilir.",
-          ],
+          ["Renksiz, kokusuz izopropil alkol", "Yalnızca rujda, son çare", "Yanıcıdır, bazı boyaları soldurabilir."],
           [
             "Çamaşır suyu",
             "Kullanma",
@@ -166,22 +167,28 @@ export const fondotenLekesiNasilCikar: CareGuide = {
   faqs: [
     {
       q: "Misel su fondöten lekesini çıkarır mı?",
-      a: "Bunu söyleyen bir kaynak bulamadık: baktığımız deterjan üreticisi ve üniversite sayfalarında misel su kumaş için geçmiyor. Kaynakların ortak yolu lekeyi sıvı çamaşır deterjanıyla ön işleme tutup yıkamak.",
+      a: "Bunu söyleyen bir kaynak bulamadık: baktığımız deterjan üreticisi ve üniversite sayfalarında misel su kumaş için geçmiyor. Kaynakların ortak yolu sıvı çamaşır deterjanıyla ön işlem ve yıkama.",
     },
     {
       q: "Ruj lekesi sıcak suyla çıkar mı?",
-      a: "Yıkamada evet: Persil, Ariel ve Tide etiketin izin verdiği en yüksek sıcaklığı öneriyor. İlk durulamada Persil soğuk, Ariel ılık su diyor; kurutma makinesinin ısısı ise lekeyi kalıcı yapabilir.",
+      a: "Yıkamada evet: Persil, Ariel ve Tide etiketin izin verdiği en yüksek sıcaklığı öneriyor. İlk durulamada Persil soğuk, Ariel ılık su diyor; kurutmadaki ısı ise lekeyi kalıcı yapabilir.",
     },
     {
       q: "Dışarıdayken kıyafete makyaj bulaşırsa ne yapmalıyım?",
-      a: "Bir bezi ıslat; kuru bir bezle lekeyi olabildiğince çek, sonra ıslak bezle lekeyi nemli tut. Persil’e göre leke kurumadıkça sonradan çıkarmak daha kolay.",
+      a: "Bir bezi ıslat; kuru bir bezle lekeyi olabildiğince çek, sonra ıslak bezle nemli tut. Persil’e göre leke kurumadıkça sonradan çıkarmak daha kolay.",
     },
     {
       q: "Beyaz gömlek yakasındaki makyaj izi nasıl çıkar?",
       a: "Yakayı soğuk suya tut, deterjanlı temiz beyaz bir bezle bastırarak al, sonra fondöten adımlarıyla ön işlem yapıp yıka. Çamaşır suyuna uzanma; Persil polyesteri sarartabileceğini yazıyor.",
     },
   ],
-  related: ["murekkep-lekesi-nasil-cikar", "oje-lekesi-nasil-cikar"],
+  related: [
+    "yag-lekesi-nasil-cikar",
+    "murekkep-lekesi-nasil-cikar",
+    "oje-lekesi-nasil-cikar",
+    "gomlek-yakasi-nasil-temizlenir",
+    "ipek-esarp-nasil-yikanir",
+  ],
   sourceIds: [
     "tideMakeup",
     "persilMakeupLipstickStain",

@@ -35,9 +35,8 @@ export const ojeLekesiNasilCikar: CareGuide = {
       paragraphs: [
         "Sürülebilir, ama her kumaşa değil ve görünmeyen bir yerde denemeden asla. Vanish, aseton ve oje çıkarıcının kumaş için üretilmediğini, dokuya zarar verebileceğini söylüyor; Tide’a göre aseton kumaşı ağartabilir ya da boyasını sökebilir.",
         "Etiketinde asetat, triasetat ya da modakrilik yazan giysiye hiçbir oje çıkarıcı sürme. Tide bu üç lifi sayıyor, American Cleaning Institute de asetat ve triasetat için aynı uyarıyı yapıyor.",
-        "Çıkarıcın renksiz olsun; Tide boyalı çıkarıcının giysiyi lekeleyebileceğini söylüyor. Georgia Üniversitesi’ne göre oje çıkarıcıdaki asetondan başka maddeler lekeyi kötüleştirebilir; yerine eczaneden saf aseton ya da yağsız bir çıkarıcı kullanabilirsin.",
+        "Çıkarıcın renksiz olsun; Tide boyalı çıkarıcının giysiyi lekeleyebileceğini söylüyor. Georgia Üniversitesi’ne göre oje çıkarıcıdaki asetondan başka maddeler lekeyi kötüleştirebilir; bunun yerine eczaneden saf aseton ya da yağsız bir oje çıkarıcı kullanabilirsin.",
         "Aseton kolay alev alır ve hızla buharlaşır. Pencereyi aç, ocaktan, sigaradan ve çakmaktan uzak dur, buharını soluma; şişeden dökme, pamuğa aldığın kadarla çalış.",
-        "Tükenmez kalem lekesinde aynı arkadan bastırma yöntemi alkolle yapılıyor.",
       ],
       table: {
         caption: "Asetonsuz ne kullanabilirsin?",
@@ -55,7 +54,7 @@ export const ojeLekesiNasilCikar: CareGuide = {
           ],
           [
             "İzopropil alkol",
-            "Tide’ın saydığı bir ön işlem seçeneği",
+            "Oje çıkarıcı yerine, elinde varsa (Tide’ın saydığı bir seçenek)",
             "Georgia Üniversitesi’ne göre bazı boyaları soldurur, asetat, triasetat, modakrilik ve akriliğe zarar verir, yanıcıdır; önce gizli yerde dene, pencereyi açık tut.",
           ],
           [
@@ -81,6 +80,7 @@ export const ojeLekesiNasilCikar: CareGuide = {
       ],
       steps: [
         "Kabuğu küt uçlu bir bıçakla ya da tırnağınla nazikçe kaldır.",
+        "Önce taze lekedeki gibi sıvı deterjanla dokundurup durula, birkaç kez tekrarla; çıkmazsa çıkarıcıya geç.",
         "Düz bir yere kalın bir kat beyaz kâğıt havlu ser, giysiyi lekeli yüzü havluya değecek şekilde üstüne koy.",
         "Etikette asetat, triasetat ya da modakrilik yoksa pencereyi aç, çıkarıcıya batırdığın pamuğu önce dikiş payı gibi görünmeyen bir yerde dene; renk açılırsa ya da pamuğa boya geçerse dur.",
         "Sorun yoksa çıkarıcılı pamuğu lekenin arkasından bastır; leke yayılmasın diye dıştan içe çalış.",
@@ -102,8 +102,8 @@ export const ojeLekesiNasilCikar: CareGuide = {
       id: "yikama",
       title: "Oje lekesine sıcak su olur mu?",
       paragraphs: [
-        "İz tamamen gidene kadar sıcak su yerine ılık su daha az risklidir. Persil ılık suda yıkamayı öneriyor, çünkü iz kalmışsa sıcak su lekeyi sabitleyebilir; Tide ise bakım etiketinin izin verdiği en sıcak suyu söylüyor.",
-        "Hangisini seçersen seç, etiketteki sıcaklık üst sınırdır. Kumaşın rengi açılır, parlaklığı gider ya da dokusu sertleşirse denemeyi bırak.",
+        "İz tamamen gitmediyse sıcak değil, ılık suyla yıka. Persil ılık suda yıkamayı öneriyor, çünkü iz kalmışsa sıcak su lekeyi sabitleyebilir; Tide ise bakım etiketinin izin verdiği en sıcak suyu söylüyor.",
+        "Etiketteki sıcaklık her durumda üst sınırdır. Kumaşın rengi açılır, parlaklığı gider ya da dokusu sertleşirse denemeyi bırak.",
       ],
       sourceIds: ["persilNailPolish", "tideNailPolish", "persilGeneralStainTips"],
     },
@@ -111,11 +111,13 @@ export const ojeLekesiNasilCikar: CareGuide = {
       id: "hassas",
       title: "İpek, saten ve sentetik kumaşta oje lekesine ne yapmalı?",
       paragraphs: [
-        "Persil’e göre deterjanla ön işlem pamuk ve polyester gibi çoğu kumaşta işe yarıyor, ama saten ve ipek daha fazla özen istiyor; bunlarda hassaslar için yapılmış bir deterjan öneriyor.",
-        "Sentetiklerde önce etiketteki lif listesine bak. Asetat, triasetat ya da modakrilik varsa, ya da giysi hassassa veya “yalnızca kuru temizleme” etiketliyse, Tide hiçbir çözücüyle ön işlem yapmamanı ve giysiyi bir an önce kuru temizlemeciye götürmeni öneriyor.",
-        "Kumaştan emin değilsen evde aseton deneme, bir kuru temizlemeciye sor; Tide da gerekirse bir profesyonele danışmanı söylüyor.",
+        "Persil’e göre deterjanla ön işlem pamuk ve polyester gibi çoğu kumaşta işe yarıyor, ama saten ve ipek daha fazla özen istiyor. Persil bunlarda hassaslar için yapılmış bir deterjan öneriyor.",
+        "Sentetiklerde önce etiketteki lif listesine bak. Asetat, triasetat ya da modakrilik varsa, ya da giysi hassassa veya “yalnızca kuru temizleme” etiketliyse, Tide hiçbir çözücüyle ön işlem yapmamanı ve giysiyi bir an önce kuru temizlemeciye götürmeni öneriyor. Kumaştan emin değilsen evde aseton deneme, bir kuru temizlemeciye sor.",
       ],
-      links: [{ type: "guide", slug: "kuru-temizleme-nedir", label: "Kuru temizleme nedir, yıkamadan farkı ne" }],
+      links: [
+        { type: "guide", slug: "ipek-esarp-nasil-yikanir", label: "İpek eşarp nasıl yıkanır" },
+        { type: "guide", slug: "kuru-temizleme-nedir", label: "Kuru temizleme nedir, nasıl yapılır?" },
+      ],
       sourceIds: ["persilNailPolish", "tideNailPolish"],
     },
   ],
@@ -138,10 +140,16 @@ export const ojeLekesiNasilCikar: CareGuide = {
     },
     {
       q: "Oje lekesini ne çıkarır?",
-      a: "Taze lekede bazen sıvı deterjan yeter; Persil’in yöntemi bu. Kalan izi Tide, Vanish ve American Cleaning Institute oje çıkarıcıyla alıyor; önce gizli yerde dene, asetat, triasetat ve modakrilikte kullanma.",
+      a: "Taze lekede bazen sıvı deterjan yeter; Persil’in yöntemi bu. Kalan iz için Tide, Vanish ve American Cleaning Institute oje çıkarıcı kullanmayı anlatıyor; önce gizli yerde dene, asetat, triasetat ve modakrilikte kullanma.",
     },
   ],
-  related: ["murekkep-lekesi-nasil-cikar", "mum-lekesi-nasil-cikar", "fondoten-lekesi-nasil-cikar", "kuru-temizleme-nedir"],
+  related: [
+    "murekkep-lekesi-nasil-cikar",
+    "kiyafetten-boya-lekesi-nasil-cikar",
+    "mum-lekesi-nasil-cikar",
+    "kiyafete-yapisan-sakiz-nasil-cikar",
+    "ipek-esarp-nasil-yikanir",
+  ],
   sourceIds: [
     "persilNailPolish",
     "tideNailPolish",

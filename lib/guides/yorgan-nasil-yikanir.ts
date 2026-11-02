@@ -20,8 +20,8 @@ export const yorganNasilYikanir: CareGuide = {
         "Leğenin üstü çarpılıysa yorgan evde yıkanmaz, ne elde ne makinede; GINETEX bu simgenin ikisini de kapsadığını söylüyor. Etikette leğen yok da yalnızca daire varsa yorganı evde yıkamaya kalkma; Persil bu simgeyi “sadece kuru temizleme” diye açıklıyor. Etiket kesilmişse ya da okunmuyorsa üreticinin sitesinde aynı modelin bakım bilgisini ara; bulamazsan sıcaklığı tahmin etme.",
       ],
       links: [
-        { type: "guide", slug: "yikama-sembolleri", label: "Yıkama sembolleri ne anlama gelir?" },
-        { type: "guide", slug: "kuru-temizleme-nedir", label: "Kuru temizleme nedir, yıkamadan farkı ne?" },
+        { type: "guide", slug: "yikama-sembolleri", label: "Çamaşır yıkama sembolleri ve anlamları" },
+        { type: "guide", slug: "kuru-temizleme-nedir", label: "Kuru temizleme nedir, nasıl yapılır?" },
       ],
       sourceIds: ["ikeaDuvet", "ginetexCurrent", "persilCareSymbols"],
     },
@@ -98,6 +98,7 @@ export const yorganNasilYikanir: CareGuide = {
         "Tek bir lekeyi çıkarmak istiyorsan IKEA, sentetik ve pamuk yorganlarda karbonat ya da sirkeli su gibi ev yöntemlerinin basit lekelerde işe yarayabildiğini söylüyor. Kaz tüyü, kuş tüyü ve yün yorganda aynı yöntemler lifi ve dolguyu bozabilir, içeride nem bırakabilir. Kan lekesinde sıcak su değil soğuk su kullan; Tide sıcak suyun lekeyi sabitlediğini söylüyor.",
         "Ne kullanırsan kullan önce görünmeyen küçük bir yerde dene, renk ya da doku değişirse dur. Sirkeli suyu çamaşır suyuyla ya da başka bir temizleyiciyle asla karıştırma.",
       ],
+      links: [{ type: "guide", slug: "kan-lekesi-nasil-cikar", label: "Kan lekesi nasıl çıkar?" }],
       sourceIds: ["arcelikDuvetProgram", "ikeaDuvet", "tideBloodStain"],
     },
     {
@@ -125,6 +126,10 @@ export const yorganNasilYikanir: CareGuide = {
         "Dolguya uygun deterjandan ölçülü koy, yumuşatıcı bölmesini boş bırak.",
         "Kaz tüyü yorganda ek durulamayı aç ve sıkma devrini düşük tut.",
         "Program biter bitmez yorganı çıkar ve kurutmaya başla.",
+      ],
+      links: [
+        { type: "guide", slug: "nevresim-kac-derecede-yikanir", label: "Nevresim kaç derecede yıkanır?" },
+        { type: "guide", slug: "alez-nasil-yikanir", label: "Alez nasıl yıkanır?" },
       ],
       sourceIds: ["arcelikDuvetProgram", "ginetexCurrent", "ikeaDuvet", "ikeaSaPillows", "tideBloodStain"],
     },
@@ -174,9 +179,9 @@ export const yorganNasilYikanir: CareGuide = {
   related: [
     "yun-yorgan-nasil-yikanir",
     "battaniye-nasil-yikanir",
+    "nevresim-kac-derecede-yikanir",
+    "yastik-nasil-yikanir",
     "yikama-sembolleri",
-    "kuru-temizleme-nedir",
-    "sisme-mont-nasil-yikanir",
   ],
   sourceIds: [
     "ikeaDuvet",
