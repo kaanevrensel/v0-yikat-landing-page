@@ -4,7 +4,7 @@ Google refused production access for Yıkat Gitsin (`com.yikat.tech`) on October
 
 ## What ships
 
-- `/android` (`app/android/page.tsx`): a favour, not a "be first" pitch ("Android’in varsa bir ricamız var."); why we ask; three steps (join the Google Group, opt in on Play, install); what the app can do today (browse services and prices, sign in; doorstep pickup has not started); staying at least 14 days, ideally until the app is public on Google Play, because testers join on different days and Google counts who is opted in on the day we apply; feedback (Play private feedback, e-mail as the main channel, WhatsApp secondary); leaving at any time (leaving the group also counts as leaving the test; uninstalling does not); a privacy note that links `/kvkk` for rights and `/gizlilik-politikasi` for the general policy without claiming either describes the test; and an iPhone note linking the App Store. `noindex, follow`, not in the sitemap, like `/yorum`. No incentives or discounts.
+- `/android` (`app/android/page.tsx`): a favour, not a "be first" pitch ("Android’in varsa bir ricamız var."); why we ask; three steps (join the Google Group, opt in on Play, install); what the app can do today (browse services and prices, sign in; doorstep pickup has not started); staying at least 14 days, ideally until the app is public on Google Play, because testers join on different days and Google counts who is opted in on the day we apply; feedback (Play private feedback and e-mail; no WhatsApp link, because the shop line is answered by the AI assistant first); leaving at any time (leaving the group also counts as leaving the test; uninstalling does not); a privacy note that links `/kvkk` for rights and `/gizlilik-politikasi` for the general policy without claiming either describes the test; and an iPhone note linking the App Store. `noindex, follow`, not in the sitemap, like `/yorum`. No incentives or discounts.
 - The opt-in button is described, never quoted as exact: Google's Turkish label is not verified yet (Emre records it with a screenshot before release). The page names the likely labels with "gibi"; the card names none.
 - External links open in a new tab and share one visually hidden description, "Bağlantı yeni sekmede açılır." (`aria-describedby`).
 - Constants: `lib/android-test.ts` (group, opt-in, Play, App Store, page URL, feedback e-mail, PDF, QR). The group URL lives only there.
@@ -17,8 +17,15 @@ Google refused production access for Yıkat Gitsin (`com.yikat.tech`) on October
 2. Confirm the group's **Who can view members** is "Group managers". The Gizlilik paragraph says other testers cannot see the member list; it is false otherwise.
 3. Record the exact Turkish label of the opt-in button (opt-in page signed in with a member account, Google account language Turkish, `?hl=tr`). If the page's "gibi" sentence names the wrong label, correct it. Do not quote a label on the card.
 4. `feedbackEmail` in `lib/android-test.ts` must equal the feedback address set on the Alpha track.
-5. WhatsApp: the shop line is answered by the AI assistant first. Before release, either the assistant has a pinned fact about the Android test (no doorstep orders yet, thank them, hand off to the team), or remove the WhatsApp button from the feedback section.
+5. WhatsApp: done. The button was removed, because the shop line is answered by the AI assistant first. Add it back only after the assistant has a pinned fact about the Android test (no doorstep orders yet, thank them, hand off to the team).
 6. Privacy: the privacy and KVKK texts do not mention the test group yet. Add a short "Android kapalı test grubu" paragraph to the privacy source in yikat-app `docs.ts` and regenerate `lib/legal-content.json` in the lawyer pass. The page does not claim those texts cover it.
+
+## Status, November 5, 2026
+
+- The group exists at the address in `lib/android-test.ts` (`yikat-android-test@googlegroups.com`, created 22:26 UTC from emre@yikat.tech, its owner). Settings read back on the group's own page: anyone on the web can see and join the group; conversations, posting, the member list and member e-mail addresses are visible to group managers only. Item 2 is done.
+- The Alpha track's testers are now managed by that group. The feedback address on the track is `emre@yikat.tech`, the same as `feedbackEmail`. Item 4 is done. Google is reviewing the tester change (sent 22:29 UTC).
+- Items 1 and 3 can only be checked after Google publishes the change. The page goes live after both pass.
+- Item 6 stays with the lawyer pass.
 
 If the group has another address, change `groupUrl` in `lib/android-test.ts` only. The card does not change.
 
