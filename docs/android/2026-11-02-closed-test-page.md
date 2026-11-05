@@ -24,7 +24,10 @@ Google refused production access for Yıkat Gitsin (`com.yikat.tech`) on October
 
 - The group exists at the address in `lib/android-test.ts` (`yikat-android-test@googlegroups.com`, created 22:26 UTC from emre@yikat.tech, its owner). Settings read back on the group's own page: anyone on the web can see and join the group; conversations, posting, the member list and member e-mail addresses are visible to group managers only. Item 2 is done.
 - The Alpha track's testers are now managed by that group. The feedback address on the track is `emre@yikat.tech`, the same as `feedbackEmail`. Item 4 is done. Google is reviewing the tester change (sent 22:29 UTC).
-- Items 1 and 3 can only be checked after Google publishes the change. The page goes live after both pass.
+- Google published the change on November 5 (Publishing overview: "Last published on November 5, 2026", nothing in review at 23:05 UTC). The only closed track is Alpha, and its testers come only from the group.
+- Item 1, checked 23:10 UTC as emre@benian.ai, which is not a member: the group page offers **Join group** directly (not "Ask to join"). Nothing was pressed.
+- Item 3 could not be recorded. Both team accounts we may use (emre@yikat.tech, the group owner, and emre@benian.ai) opted in during the September team test, and their opt-in survives the switch: the opt-in page tells both "You are a tester." It is shown in English, whatever `hl` says, because it follows the Google account's language. The page keeps naming the label with "gibi". Record the label from the first real tester's screen if one is shared, and never by joining with a team account.
+- The Play dashboard still ticks all three production-access tasks, including "at least 12 testers opted-in", on those September team opt-ins. Before the production application, team accounts should leave the program (opt-in page, "Leave the program") so that only real testers are counted.
 - Item 6 stays with the lawyer pass.
 
 If the group has another address, change `groupUrl` in `lib/android-test.ts` only. The card does not change.
