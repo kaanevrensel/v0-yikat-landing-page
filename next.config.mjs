@@ -42,6 +42,12 @@ const nextConfig = {
         source: "/videos/:path*",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
+      {
+        // Müşteri önce/sonra filmi izinle yayında: izin geri çekilirse dosya kaldırılır, bu yüzden
+        // paylaşılan önbelleklerde 1 yıl kalmasın. Aynı anahtarı taşıyan sonraki kural öncekini ezer.
+        source: "/videos/cases/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=86400" }],
+      },
     ]
   },
 }

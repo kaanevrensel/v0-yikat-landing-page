@@ -3,6 +3,7 @@ import { contactAction, contactPagePaths, contactProperties, referrerChannel } f
 import { siteConfig } from "../lib/site"
 import { careGuides } from "../lib/care-guides"
 import sitemap from "../app/sitemap"
+import { liveCasePaths } from "../lib/customer-cases"
 
 test("contact classification accepts only actual contact destinations", () => {
   expect(contactAction(`${siteConfig.whatsappHref}?text=synthetic-private-message`)).toBe("whatsapp")
@@ -15,7 +16,7 @@ test("contact classification accepts only actual contact destinations", () => {
 })
 
 test("event properties exclude messages, queries, arbitrary paths and referring URLs", () => {
-  const paths = contactPagePaths(careGuides.map(guide => guide.slug))
+  const paths = contactPagePaths(careGuides.map(guide => guide.slug), liveCasePaths())
   expect(new Set(paths)).toEqual(new Set(sitemap().map(entry => new URL(entry.url).pathname)))
   const event = contactProperties(`${siteConfig.whatsappHref}?text=synthetic-private-message`, "/private-person@example.test", "https://www.google.com/search?q=synthetic-private-query", paths)
   expect(event).toEqual({ schema: 1, action: "whatsapp", page: "other", referrer: "google" })

@@ -5,6 +5,7 @@ import { WebVitalsReporter } from "@/components/web-vitals-reporter"
 import { ContactMeasurement } from "@/components/contact-measurement"
 import { contactPagePaths } from "@/lib/contact-measurement"
 import { careGuides } from "@/lib/care-guides"
+import { liveCasePaths } from "@/lib/customer-cases"
 import { priceMenu, siteConfig } from "@/lib/site"
 import legal from "@/lib/legal-content.json"
 import "./globals.css"
@@ -156,7 +157,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         }).replace(/</g, "\\u003c") }} />
         {children}
         <Analytics />
-        <ContactMeasurement publicPaths={contactPagePaths(careGuides.map(guide => guide.slug))} />
+        <ContactMeasurement publicPaths={contactPagePaths(careGuides.map(guide => guide.slug), liveCasePaths())} />
         <WebVitalsReporter />
       </body>
     </html>
