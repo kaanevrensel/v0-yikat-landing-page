@@ -2,13 +2,18 @@ import type { MetadataRoute } from "next"
 import { siteConfig } from "@/lib/site"
 import { careGuides, guideRelease } from "@/lib/care-guides"
 import { guideModified } from "@/lib/discovery"
+import { CASE_GALLERY_PATH, customerCases, latestApproval, publishableCases } from "@/lib/customer-cases"
 
 // changeFrequency/priority bilinçle YOK (Google ikisini de yok sayıyor). lastModified her build'de
 // yenilenen new Date() İDİ — Google lastmod'u yalnız "tutarlı ve doğrulanabilir" ise kullanır;
 // bu yüzden gerçek içerik-değişim tarihleri elle tutulur (içerik değişince güncelle).
 export default function sitemap(): MetadataRoute.Sitemap {
+  // Önce/sonra galerisi yalnız yayın izni incelenmiş vaka varken var; tarihi son onay tarihi.
+  const casesUpdated = latestApproval(publishableCases(customerCases))
+  const latest = (...dates: (string | null)[]) => new Date(dates.filter((date): date is string => !!date).sort().at(-1)!)
   return [
-    { url: `${siteConfig.url}/ayakkabi-temizleme`, lastModified: new Date("2026-10-21") },
+    { url: `${siteConfig.url}/ayakkabi-temizleme`, lastModified: latest("2026-10-21", casesUpdated) },
+    ...(casesUpdated ? [{ url: `${siteConfig.url}${CASE_GALLERY_PATH}`, lastModified: new Date(casesUpdated) }] : []),
     { url: `${siteConfig.url}/bakirkoy-ayakkabi-temizleme`, lastModified: new Date("2026-10-25") },
     // The hub lists every guide of the release: lastmod moves when that list changes (converter).
     { url: `${siteConfig.url}/rehber`, lastModified: new Date(guideRelease.hubUpdated) },

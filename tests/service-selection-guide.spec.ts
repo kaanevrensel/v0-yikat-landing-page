@@ -2,10 +2,13 @@ import { test, expect } from "@playwright/test"
 import AxeBuilder from "@axe-core/playwright"
 import { siteConfig } from "../lib/site"
 import { guideBySlug, guideRelease } from "../lib/care-guides"
+import { customerCases, latestApproval, publishableCases } from "../lib/customer-cases"
 
 // Guide lastmod moves only when a release rewrites the guide (a later release that keeps it keeps the
 // date recorded then); /rehber moves when the release changes its list of guides.
-// Service pages keep their dates: a row of guide links is not a substantive change.
+// Service pages keep their dates: a row of guide links is not a substantive change. The shoe hub moves
+// when its before/after section changes, to the latest case approval.
+const hubLastmod = ["2026-10-21", latestApproval(publishableCases(customerCases))].filter((date): date is string => !!date).sort().at(-1)!
 const guideLastmod = (slug: string, liveDate: string) => guideRelease.rewritten.includes(slug) ? guideRelease.date : guideBySlug(slug)?.updated ?? liveDate
 
 const path = "/rehber/ayakkabi-kuru-temizlemeye-verilir-mi"
@@ -46,7 +49,7 @@ test("service selection guide is discoverable from the guide hub, price guide an
   const entry = sitemap.match(/<url>[\s\S]*?<\/url>/g)?.find(block => block.includes(`<loc>${siteConfig.url}${path}</loc>`))
   expect(entry).toContain(`<lastmod>${guideLastmod("ayakkabi-kuru-temizlemeye-verilir-mi", "2026-10-25")}T00:00:00.000Z</lastmod>`)
   for (const [changedPath, date] of [
-    ["/ayakkabi-temizleme", "2026-10-21"],
+    ["/ayakkabi-temizleme", hubLastmod],
     ["/bakirkoy-ayakkabi-temizleme", "2026-10-25"],
     ["/rehber", guideRelease.hubUpdated],
     ["/rehber/ayakkabi-temizleme-fiyati-neye-gore-belirlenir", guideLastmod("ayakkabi-temizleme-fiyati-neye-gore-belirlenir", "2026-10-21")],

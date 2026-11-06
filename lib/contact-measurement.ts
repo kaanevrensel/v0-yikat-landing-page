@@ -4,7 +4,7 @@ export const CONTACT_EVENT = "contact_intent"
 export const CONTACT_SCHEMA = 1
 
 // Only published route names are sent. An arbitrary 404 path could contain PII.
-export function contactPagePaths(guideSlugs: string[]) {
+export function contactPagePaths(guideSlugs: string[], livePaths: string[] = []) {
   return [
     "/", "/urun", "/partnerler", "/ayakkabi-temizleme", "/bakirkoy-ayakkabi-temizleme",
     "/rehber", "/sneaker-yikama", "/suet-nubuk-temizleme", "/deri-ayakkabi-bakimi",
@@ -12,6 +12,7 @@ export function contactPagePaths(guideSlugs: string[]) {
     "/acik-riza-metni", "/kart-saklama-metni", "/mesafeli-satis-sozlesmesi",
     "/gizlilik-politikasi", "/hesap-silme", "/teslimat-ve-iade", "/iletisim",
     ...guideSlugs.map(slug => `/rehber/${slug}`),
+    ...livePaths,
   ]
 }
 
