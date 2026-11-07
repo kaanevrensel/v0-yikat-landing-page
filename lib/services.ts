@@ -1,10 +1,13 @@
 // One existing URL per material intent. Verified shop scope; no invented prices or outcomes.
+import type { CaseGroup } from "@/lib/customer-cases"
 export type ServiceFaq = { q: string; a: string }
 export type Service = {
   slug: string; nav: string; metaTitle: string; metaDescription: string; h1: string; intro: string;
   heroImg: string; risks: { title: string; text: string }[]; steps: { title: string; text: string }[];
   notes: string[]; faqs: ServiceFaq[]; priceCategory: string; guideSlug: string; sourceIds: string[];
   beforeVisit: string; afterCare: string; afterCareSourceId: string; relatedGuides: string[];
+  /** The before/after gallery group this page shows (and links to) while pairs are published. */
+  caseGroup: CaseGroup;
 }
 const timing = "Teslim zamanını ayakkabının durumuna, işlem ve kuruma ihtiyacına göre netleştirelim. Belirli bir saate ihtiyacın varsa gelmeden önce WhatsApp’tan yaz."
 const price = "Güncel ücret için ayakkabının tamamını, sorunlu bölgesini ve varsa bakım etiketini paylaş. İşlem kapsamını ve fiyatı kabulden önce netleştirelim."
@@ -38,7 +41,7 @@ export const services: Service[] = [
       { q: "Beyaz spor ayakkabıdaki sararma çıkar mı?", a: "Kir, leke ve malzemenin renk değişimi ayrı değerlendirilir. Ayakkabıyı görmeden kesin beyazlatma veya yenileme sözü vermiyoruz." },
       { q: "Spor ayakkabı yıkama fiyatı ne kadar?", a: price },
     ],
-    priceCategory: "Spor Ayakkabı", guideSlug: "spor-ayakkabi-nasil-temizlenir", sourceIds: ["nikeMachine", "nikeClean"],
+    priceCategory: "Spor Ayakkabı", guideSlug: "spor-ayakkabi-nasil-temizlenir", sourceIds: ["nikeMachine", "nikeClean"], caseGroup: "sneaker",
   },
   {
     slug: "suet-nubuk-temizleme", nav: "Süet ve nubuk ayakkabı temizleme",
@@ -68,7 +71,7 @@ export const services: Service[] = [
       { q: "Süet temizliği ne kadar sürer?", a: timing },
       { q: "Süet ve nubuk temizleme ücreti ne kadar?", a: price },
     ],
-    priceCategory: "Süet & Nubuk", guideSlug: "suet-nubuk-ayakkabi-nasil-temizlenir", sourceIds: ["nikeSuede", "clarks"],
+    priceCategory: "Süet & Nubuk", guideSlug: "suet-nubuk-ayakkabi-nasil-temizlenir", sourceIds: ["nikeSuede", "clarks"], caseGroup: "suet",
   },
   {
     slug: "deri-ayakkabi-bakimi", nav: "Deri ayakkabı temizliği ve bakımı",
@@ -98,7 +101,7 @@ export const services: Service[] = [
       { q: "Deri bakım ne kadar sürer?", a: timing },
       { q: "Deri ayakkabı bakım fiyatı ne kadar?", a: price },
     ],
-    priceCategory: "Deri Ayakkabı", guideSlug: "deri-ayakkabi-nasil-temizlenir", sourceIds: ["adidasLeather"],
+    priceCategory: "Deri Ayakkabı", guideSlug: "deri-ayakkabi-nasil-temizlenir", sourceIds: ["adidasLeather"], caseGroup: "deri",
   },
 ]
 export const serviceBySlug = (slug: string) => services.find(s => s.slug === slug)

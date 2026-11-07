@@ -73,6 +73,16 @@ export function discoveryMetadata(title: string, description: string, path: stri
   }
 }
 
+/** Swaps the default share picture for a page's own (the link preview in WhatsApp, Instagram messages and other apps). */
+export function withShareImage(metadata: Metadata, image: { src: string; width: number; height: number; alt: string } | null): Metadata {
+  if (!image) return metadata
+  return {
+    ...metadata,
+    openGraph: { ...metadata.openGraph, images: [{ url: image.src, width: image.width, height: image.height, alt: image.alt, type: "image/jpeg" }] },
+    twitter: { ...metadata.twitter, images: [{ url: image.src, alt: image.alt }] },
+  }
+}
+
 export function breadcrumbJson(items: { name: string; path: string }[]) {
   return { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ name: "Ana sayfa", path: "" }, ...items].map((item, i) => ({ "@type": "ListItem", position: i + 1, name: item.name, item: `${siteConfig.url}${item.path}` })) }
 }

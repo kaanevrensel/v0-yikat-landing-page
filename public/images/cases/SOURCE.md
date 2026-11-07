@@ -26,3 +26,5 @@ Shop photos taken at the Bakırköy counter when each pair arrived and when the 
 - `suet-terlik/`: Matlaşmış UGG terlik
 - `cocuk-spor-ayakkabisi/`: Pembe çocuk spor ayakkabısı
 - `cocuk-cirtli-ayakkabi/`: Cırt cırtlı beyaz çocuk ayakkabısı
+
+`once-sonra-paylasim-c8e9f2c9d958.jpg` is the link preview picture: the before and after photos of `krampon-camur/` side by side, 1200×630, JPEG, no metadata.

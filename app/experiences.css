@@ -25,6 +25,18 @@
 .washing-steps p { max-width: 330px; color: #516c7d; font-size: 16px; line-height: 1.55; margin: 0; }
 .washing-guide-links { display: flex; flex-wrap: wrap; gap: 0 20px; margin-top: 8px; }
 .washing-guide-links a { display: inline-flex; align-items: center; min-height: 44px; color: #1f5eb8; font-size: 15px; text-decoration: underline; }
+/* From "how we clean" to the before/after gallery: the clearest published pair, small, and the count. */
+.washing-case-link { display: flex; align-items: center; gap: 14px; margin: 14px 0 6px; padding: 9px 16px 9px 9px; border: 1px solid #dbe9f1; border-radius: 18px; background: #fff; color: #173d56; text-decoration: none; transition: border-color .2s ease; }
+.washing-case-pair { display: flex; flex: none; gap: 3px; }
+.washing-case-pair img { display: block; width: 72px; height: 54px; object-fit: cover; }
+.washing-case-pair img:first-child { border-radius: 11px 3px 3px 11px; }
+.washing-case-pair img:last-child { border-radius: 3px 11px 11px 3px; }
+.washing-case-text { display: grid; flex: 1; gap: 2px; min-width: 0; }
+.washing-case-text strong { font-size: 17px; font-weight: 600; color: #173d56; }
+.washing-case-text span { font-size: 14px; line-height: 1.4; color: #516c7d; }
+.washing-case-link > svg { flex: none; color: #1f5eb8; }
+.washing-case-link:focus-visible { outline: 3px solid #1a68c1; outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .washing-case-link:hover { border-color: #1f5eb8; } }
 .washing-film { position: relative; width: min(400px,100%); margin: 0 auto; }
 .washing-film-frame { position: relative; border: 9px solid #d7eeff; border-radius: 150px 150px 32px 32px; overflow: hidden; background: #e2f3ff; box-shadow: 14px 18px 0 #edf7fe; transform: rotate(3deg); }
 .washing-film video { display: block; width: 100%; aspect-ratio: 9/13; object-fit: cover; object-position: center; }
@@ -48,8 +60,15 @@
   .washing-steps li { padding: 19px 0; gap: 15px; }
   .washing-steps h3 { font-size: 20px; }
   .washing-steps p { font-size: 15px; }
+  .washing-case-pair img { width: 56px; height: 42px; }
   .washing-film { width: min(330px, calc(100% - 24px)); }
   .washing-seal { width: 70px; height: 70px; right: -20px; }
+}
+/* Narrow phones: smaller photos and no arrow, so both lines stay on one line each. */
+@media (max-width: 400px) {
+  .washing-case-link { padding-right: 14px; }
+  .washing-case-link > svg { display: none; }
+  .washing-case-pair img { width: 50px; height: 38px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .washing-thread-glint, .washing-loading, .washing-steps[data-instant="false"], .washing-media[data-instant="false"] { animation: none; }
