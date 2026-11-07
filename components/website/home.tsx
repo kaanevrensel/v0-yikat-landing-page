@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type MouseEvent, type ReactNode } from "react";
 import { ChevronRight, Play, X } from "lucide-react";
 import { useDownload } from "./shared";
 import { useDirectionsUrl } from "@/hooks/use-directions-url";
@@ -24,7 +24,8 @@ const choices = [
 ] as const;
 type Choice = (typeof choices)[number];
 
-export function HomePage({ googleReviewsEnabled = false }: { googleReviewsEnabled?: boolean }) {
+// caseLink: the server-rendered way into the before/after gallery (nothing while no pair is published).
+export function HomePage({ googleReviewsEnabled = false, caseLink }: { googleReviewsEnabled?: boolean; caseLink?: ReactNode }) {
   const [selected, setSelected] = useState<Choice>(choices[2]);
   const [instant, setInstant] = useState(false);
   const [night, setNight] = useState(false);
@@ -97,7 +98,7 @@ export function HomePage({ googleReviewsEnabled = false }: { googleReviewsEnable
 
       <AppInvitation />
 
-      <WashingProcess />
+      <WashingProcess caseLink={caseLink} />
 
       <section className="shop-destination" aria-labelledby="shop-title">
         <div className="shop-welcome">

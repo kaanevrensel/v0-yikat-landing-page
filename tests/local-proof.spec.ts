@@ -2,7 +2,8 @@ import { test, expect } from "@playwright/test"
 import AxeBuilder from "@axe-core/playwright"
 import { createHash } from "node:crypto"
 import { existsSync, readdirSync, readFileSync } from "node:fs"
-import { CASE_GALLERY_PATH, caseReel, customerCases, publishableCases, publishableReel, type CaseReel, type CustomerCase } from "../lib/customer-cases"
+import { CASE_GALLERY_PATH, caseGroups, caseReel, caseShare, customerCases, publishableCases, publishableReel, publishableShare, showcaseCases, type CaseReel, type CaseShare, type CustomerCase } from "../lib/customer-cases"
+import { services } from "../lib/services"
 import { reviewRequest } from "../lib/review-request"
 
 const approvedFixture: CustomerCase = {
@@ -173,5 +174,112 @@ for (const width of [320, 1280]) test(`published before/after gallery stays acce
     const links = page.locator("#sonuclar").getByRole("link", { name: `${cases.length} çiftin hepsine bak` })
     await expect(links).toHaveCount(2)
     for (const link of await links.all()) await expect(link).toHaveAttribute("href", CASE_GALLERY_PATH)
+  }
+})
+
+const shareFixture: CaseShare = { slug: "test-pair", src: "/images/cases/once-sonra-paylasim-abcdef123456.jpg", width: 1200, height: 630, alt: "Test çifti, önce ve sonra" }
+
+test("the link preview picture is withheld unless its pair is publishable", () => {
+  const live = publishableCases([approvedFixture], now)
+  expect(publishableShare(shareFixture, live)).toEqual(shareFixture)
+  expect(publishableShare(null, live)).toBeNull()
+  expect(publishableShare(shareFixture, [])).toBeNull()
+  expect(publishableShare({ ...shareFixture, slug: "unpublished-pair" }, live)).toBeNull()
+  for (const src of ["/images/og.jpg", "https://example.supabase.co/storage/v1/object/public/x.jpg", "/images/cases/test-pair/before-abcdef123456.webp", "/images/cases/once-sonra-paylasim.jpg"])
+    expect(publishableShare({ ...shareFixture, src }, live)).toBeNull()
+  expect(publishableShare({ ...shareFixture, alt: " " }, live)).toBeNull()
+  expect(publishableShare({ ...shareFixture, width: 900, height: 900 }, live)).toBeNull()
+})
+
+// Width and height from the first baseline/progressive frame header of a JPEG.
+function jpegSize(bytes: Buffer) {
+  for (let i = 2; i < bytes.length - 9;) {
+    if (bytes[i] !== 0xff) return null
+    const marker = bytes[i + 1]
+    if (marker === 0xc0 || marker === 0xc2) return { height: bytes.readUInt16BE(i + 5), width: bytes.readUInt16BE(i + 7) }
+    i += 2 + bytes.readUInt16BE(i + 2)
+  }
+  return null
+}
+
+test("the shipped link preview picture is exactly the published one: content-addressed, metadata-free and small enough for WhatsApp", () => {
+  const share = publishableShare(caseShare, publishableCases(customerCases))
+  expect(share).toEqual(caseShare) // A picture that fails its gate must not be left in the data.
+  const shipped = existsSync("public/images/cases")
+    ? readdirSync("public/images/cases", { recursive: true }).filter(path => /\.(jpe?g|png)$/.test(String(path))).map(path => `/images/cases/${path}`)
+    : []
+  expect(shipped).toEqual(share ? [share.src] : []) // Withdrawing its pair must also remove its bytes.
+  if (!share) return
+  const bytes = readFileSync(`public${share.src}`)
+  expect(share.src).toContain(createHash("sha256").update(bytes).digest("hex").slice(0, 12))
+  expect([...bytes.subarray(0, 3)]).toEqual([0xff, 0xd8, 0xff])
+  expect(bytes.length).toBeLessThan(300_000)
+  expect(bytes.includes(Buffer.from("Exif"))).toBe(false)
+  expect(jpegSize(bytes)).toEqual({ width: share.width, height: share.height })
+})
+
+test("the gallery's link preview shows its pair, and pages without one keep the site picture", async ({ page }) => {
+  const share = publishableShare(caseShare, publishableCases(customerCases))
+  test.skip(!share, "No published pair to show.")
+  await page.goto(CASE_GALLERY_PATH)
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", `https://www.yikat.tech${share!.src}`)
+  await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute("content", String(share!.width))
+  await expect(page.locator('meta[property="og:image:height"]')).toHaveAttribute("content", String(share!.height))
+  await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute("content", share!.alt)
+  await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute("content", `https://www.yikat.tech${share!.src}`)
+  const ld = await page.locator('script[type="application/ld+json"]').evaluateAll(nodes => nodes.map(node => JSON.parse(node.textContent!)))
+  expect(ld.find(item => item["@type"] === "CollectionPage")?.primaryImageOfPage?.contentUrl).toBe(`https://www.yikat.tech${share!.src}`)
+  await page.goto("/ayakkabi-temizleme")
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", "https://www.yikat.tech/images/og.jpg")
+})
+
+test("strips outside the gallery show the clearest pairs: one group, or one pair per group first", () => {
+  const fixtures = (["sneaker", "sneaker", "suet", "deri"] as const).map((group, index) => ({ ...approvedFixture, slug: `test-pair-${index}`, group,
+    before: { ...approvedFixture.before, src: `/images/cases/test-pair-${index}/before-abcdef12345${index}.webp` },
+    after: { ...approvedFixture.after, src: `/images/cases/test-pair-${index}/after-fedcba12345${index}.webp` } }))
+  expect(showcaseCases("sneaker", 3, fixtures)).toEqual({ shown: fixtures.slice(0, 2), total: 2 })
+  expect(showcaseCases(undefined, 3, fixtures).shown.map(item => item.group)).toEqual(["sneaker", "suet", "deri"])
+  expect(showcaseCases(undefined, 3, [])).toEqual({ shown: [], total: 0 })
+})
+
+test("home, Bakırköy and every material page lead into the gallery only while pairs are published", async ({ page, request }) => {
+  const cases = publishableCases(customerCases)
+  const gallery = cases.length ? await (await request.get(CASE_GALLERY_PATH)).text() : ""
+  const pages: [string, string][] = [["/", CASE_GALLERY_PATH], ["/bakirkoy-ayakkabi-temizleme", CASE_GALLERY_PATH],
+    ...services.map(service => [`/${service.slug}`, `${CASE_GALLERY_PATH}#${caseGroups.find(group => group.id === service.caseGroup)!.anchor}`] as [string, string])]
+  for (const [path, more] of pages) {
+    await page.goto(path)
+    const links = page.locator(`main a[href^="${CASE_GALLERY_PATH}"]`)
+    if (!cases.length) { await expect(links, path).toHaveCount(0); continue }
+    await expect(page.locator(`main a[href="${more}"]`), path).toHaveCount(1)
+    for (const href of await links.evaluateAll(nodes => nodes.map(node => node.getAttribute("href")!))) {
+      const anchor = href.split("#")[1] // Every card and group link lands on a real place in the gallery.
+      if (anchor) expect(gallery, `${path} → ${href}`).toContain(`id="${anchor}"`)
+    }
+    if (path !== "/") {
+      const service = services.find(item => `/${item.slug}` === path)
+      const shown = showcaseCases(service?.caseGroup, 3).shown
+      await expect(page.locator(".case-teaser-item"), path).toHaveCount(shown.length)
+      for (const item of shown) await expect(page.locator(`.case-teaser a[href="${CASE_GALLERY_PATH}#case-${item.slug}"]`), path).toHaveText(item.title)
+    }
+  }
+  if (cases.length) {
+    await page.goto("/")
+    await expect(page.getByRole("link", { name: `Önce ve sonra Dükkândan ${cases.length} çift` })).toHaveAttribute("href", CASE_GALLERY_PATH)
+  }
+})
+
+for (const width of [320, 1280]) test(`before/after strips stay accessible and inside the viewport at ${width}px`, async ({ page }) => {
+  test.skip(!publishableCases(customerCases).length, "No reviewed case is published yet.")
+  await page.setViewportSize({ width, height: 900 })
+  await page.emulateMedia({ reducedMotion: "reduce" })
+  for (const [path, target] of [["/", ".washing-case-link"], ["/bakirkoy-ayakkabi-temizleme", ".case-teaser"], ["/suet-nubuk-temizleme", ".case-teaser"]]) {
+    await page.goto(path)
+    const strip = page.locator(target)
+    await strip.scrollIntoViewIfNeeded()
+    await expect(strip.locator("img").first()).toBeVisible()
+    expect(await page.evaluate(() => document.documentElement.scrollWidth), path).toBeLessThanOrEqual(width + 1)
+    expect((await new AxeBuilder({ page }).include(target).analyze()).violations, path).toEqual([])
+    await (path === "/" ? page.locator(".washing-copy") : strip).screenshot({ path: test.info().outputPath(`strip${path.replace(/\//g, "-") || "-home"}-${width}.png`) })
   }
 })

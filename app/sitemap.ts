@@ -14,7 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: `${siteConfig.url}/ayakkabi-temizleme`, lastModified: latest("2026-10-21", casesUpdated) },
     ...(casesUpdated ? [{ url: `${siteConfig.url}${CASE_GALLERY_PATH}`, lastModified: new Date(casesUpdated) }] : []),
-    { url: `${siteConfig.url}/bakirkoy-ayakkabi-temizleme`, lastModified: new Date("2026-10-25") },
+    // Pages with a before/after strip move with the latest case approval too.
+    { url: `${siteConfig.url}/bakirkoy-ayakkabi-temizleme`, lastModified: latest("2026-10-25", casesUpdated) },
     // The hub lists every guide of the release: lastmod moves when that list changes (converter).
     { url: `${siteConfig.url}/rehber`, lastModified: new Date(guideRelease.hubUpdated) },
     ...careGuides.map(guide => ({
@@ -27,9 +28,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteConfig.url}/partnerler`, lastModified: new Date("2026-10-10") },
     { url: siteConfig.url, lastModified: new Date("2026-10-25") },
     // Actual service-scope edits in ac6b2d4 (2026-10-21), not this build's date.
-    { url: `${siteConfig.url}/sneaker-yikama`, lastModified: new Date("2026-10-21") },
-    { url: `${siteConfig.url}/suet-nubuk-temizleme`, lastModified: new Date("2026-10-21") },
-    { url: `${siteConfig.url}/deri-ayakkabi-bakimi`, lastModified: new Date("2026-10-21") },
+    { url: `${siteConfig.url}/sneaker-yikama`, lastModified: latest("2026-10-21", casesUpdated) },
+    { url: `${siteConfig.url}/suet-nubuk-temizleme`, lastModified: latest("2026-10-21", casesUpdated) },
+    { url: `${siteConfig.url}/deri-ayakkabi-bakimi`, lastModified: latest("2026-10-21", casesUpdated) },
     { url: `${siteConfig.url}/kvkk`, lastModified: new Date("2026-10-15") },
     // Legal texts the contract and privacy pages cite by name (published 2026-10-15).
     ...["/kullanim-kosullari", "/odeme-ve-guvenli-alisveris", "/kvkk-basvuru-formu", "/acik-riza-metni", "/kart-saklama-metni"].map(path => ({ url: `${siteConfig.url}${path}`, lastModified: new Date("2026-10-15") })),

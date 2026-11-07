@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import { LoaderCircle, Pause, Play, RotateCcw } from "lucide-react";
 import { useScenePlayback } from "./motion";
 
@@ -59,7 +59,7 @@ const processes = [
   },
 ] as const;
 
-export function WashingProcess() {
+export function WashingProcess({ caseLink }: { caseLink?: ReactNode } = {}) {
   const { ref, visible, tabVisible, playing: inView } = useScenePlayback();
   const [active, setActive] = useState(0);
   // Keyboard changes swap content at once; pointer changes get a short fade.
@@ -129,6 +129,7 @@ export function WashingProcess() {
               <div><h3>{step.title}</h3><p>{step.text}</p></div>
             </li>)}
           </ol>
+          {process.key === "ayakkabi" && caseLink}
           {process.key === "ayakkabi" && <div className="washing-guide-links">
             <Link href="/rehber/ayakkabi-makinede-yikanir-mi">Ayakkabı makinede yıkanır mı?</Link>
             <Link href="/rehber/ayakkabi-kuru-temizlemeye-verilir-mi">Kuru temizlemeye verilir mi?</Link>
