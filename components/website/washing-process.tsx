@@ -66,7 +66,9 @@ export function WashingProcess({ caseLink }: { caseLink?: ReactNode } = {}) {
   const [instant, setInstant] = useState(true);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const [highlight, setHighlight] = useState<{ x: number; width: number } | null>(null);
-  const process = processes[active];
+  // Not named `process`: Next's server build guards useLayoutEffect with a global
+  // `process.env` check, and a local `process` breaks the webpack prerender.
+  const selected = processes[active];
 
   // One highlight slides to the measured position of the selected pill.
   useLayoutEffect(() => {
@@ -121,16 +123,16 @@ export function WashingProcess({ caseLink }: { caseLink?: ReactNode } = {}) {
             onKeyDown={onKeyDown}
           >{item.name}</button>)}
         </div>
-        <div id="washing-panel" role="tabpanel" aria-labelledby={`washing-tab-${process.key}`}>
-          {process.key !== "ayakkabi" && <p className="washing-coming-soon">Yakında. Bu hizmet henüz siparişe açık değil.</p>}
-          <ol className="washing-steps" key={process.key} data-instant={instant}>
-            {process.steps.map((step, i) => <li key={step.title}>
+        <div id="washing-panel" role="tabpanel" aria-labelledby={`washing-tab-${selected.key}`}>
+          {selected.key !== "ayakkabi" && <p className="washing-coming-soon">Yakında. Bu hizmet henüz siparişe açık değil.</p>}
+          <ol className="washing-steps" key={selected.key} data-instant={instant}>
+            {selected.steps.map((step, i) => <li key={step.title}>
               <span className="washing-number" aria-hidden="true">0{i + 1}</span>
               <div><h3>{step.title}</h3><p>{step.text}</p></div>
             </li>)}
           </ol>
-          {process.key === "ayakkabi" && caseLink}
-          {process.key === "ayakkabi" && <div className="washing-guide-links">
+          {selected.key === "ayakkabi" && caseLink}
+          {selected.key === "ayakkabi" && <div className="washing-guide-links">
             <Link href="/rehber/ayakkabi-makinede-yikanir-mi">Ayakkabı makinede yıkanır mı?</Link>
             <Link href="/rehber/ayakkabi-kuru-temizlemeye-verilir-mi">Kuru temizlemeye verilir mi?</Link>
           </div>}
@@ -139,10 +141,10 @@ export function WashingProcess({ caseLink }: { caseLink?: ReactNode } = {}) {
       <div className="washing-film" ref={ref}>
         <svg className="washing-thread" viewBox="0 0 660 800" fill="none" aria-hidden="true"><path d="M12 200C122 102 489 7 602 191S547 648 378 720 18 633 61 456 564 262 639 524"/><path className="washing-thread-glint" d="M12 200C122 102 489 7 602 191S547 648 378 720 18 633 61 456 564 262 639 524"/></svg>
         <div className="washing-film-frame">
-          <div className="washing-media" key={process.key} data-instant={instant}>
-            {process.key === "ayakkabi"
+          <div className="washing-media" key={selected.key} data-instant={instant}>
+            {selected.key === "ayakkabi"
               ? <ShopFilm visible={visible} tabVisible={tabVisible}/>
-              : <Image unoptimized className="washing-still" src={`/images/services/hero-v2/${process.key}.webp`} alt="" width={512} height={512} sizes="(max-width: 900px) 330px, 400px"/>}
+              : <Image unoptimized className="washing-still" src={`/images/services/hero-v2/${selected.key}.webp`} alt="" width={512} height={512} sizes="(max-width: 900px) 330px, 400px"/>}
           </div>
         </div>
         <svg className="washing-seal" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="47" fill="#fff" stroke="#b7dff5" strokeWidth="2"/><path d="M50 16C52 39 61 48 84 50 61 52 52 61 50 84 48 61 39 52 16 50 39 48 48 39 50 16Z" fill="#258eed"/></svg>
